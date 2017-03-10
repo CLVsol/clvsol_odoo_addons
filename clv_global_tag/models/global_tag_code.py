@@ -18,5 +18,12 @@
 #
 ###############################################################################
 
-from . import global_tag
-from . import global_tag_code
+from odoo import fields, models
+
+
+class GlobalTag(models.Model):
+    _name = "clv.global_tag"
+    _inherit = 'clv.global_tag', 'clv.code.model'
+
+    code = fields.Char(string='Tag Code', required=False)
+    code_sequence = fields.Char(default='clv.global_tag.code')
