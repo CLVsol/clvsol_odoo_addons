@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_person_view_form" model="ir.ui.view">
+            <field name="name">clv.person.form</field>
+            <field name="model">clv.person</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" default_focus="1" placeholder="Name..."/></h1>
+                        </div>
+                        <div name="title" class="oe_title">
+                            <label for="code" class="oe_edit_only"/>
+                            <h3><field name="code" placeholder="Person Code..."/></h3>
+                        </div>
+                        <group>
+                            <group name="status" string="Status">
+                                <field name="date_inclusion"/>
+                            </group>
+                        </group>
+                        <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <notebook>
+                            <page name="personal_information" string="Personal Information" groups="clv_base.group_supuser">
+                                <group>
+                                    <group string="Citizenship &amp; Other Info">
+                                        <field name="country_id" options='{"no_open": True}'/>
+                                        <field name="identification_id"/>
+                                        <field name="otherid"/>
+                                    </group>
+                                    <group string="Family">
+                                        <field name="spouse_id" options="{'no_open': False, 'no_create': True}"/>
+                                        <field name="father_id" options="{'no_open': False, 'no_create': True}"/>
+                                        <field name="mother_id" options="{'no_open': False, 'no_create': True}"/>
+                                        <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
+                                        <field name="caregiver_id" options="{'no_open': False, 'no_create': True}"/>
+                                    </group>
+                                    <group string="Status">
+                                        <field name="gender" widget="radio"/>
+                                        <field name="marital" widget="radio"/>
+                                    </group>
+                                    <group string="Birth">
+                                        <field name="birthday"/>
+                                        <field name="age"/>
+                                        <field name="estimated_age"/>
+                                        <field name="date_reference"/>
+                                        <field name="age_reference"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_person_view_tree" model="ir.ui.view">
+            <field name="name">clv.person.tree</field>
+            <field name="model">clv.person</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree name="person" string="Person">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="age"/>
+                    <field name="estimated_age"/>
+                    <field name="age_reference"/>
+                    <field name="birthday"/>
+                    <field name="date_reference"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_person_view_search" model="ir.ui.view">
+            <field name="name">clv.person.search</field>
+            <field name="model">clv.person</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Person">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="age"/>
+                    <field name="estimated_age"/>
+                    <field name="age_reference"/>
+                    <field name="birthday"/>
+                    <field name="date_reference"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <group name="group_by" expand="0" string="Group By...">
+                        <filter string="Date of Birth" context="{'group_by': 'birthday'}"/>
+                        <filter string="Reference Date" context="{'group_by': 'date_reference'}"/>
+                        <filter string="Age" context="{'group_by': 'age'}"/>
+                        <filter string="Estimated Age" context="{'group_by': 'estimated_age'}"/>
+                        <filter string="Reference Age" context="{'group_by': 'age_reference'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="clv_person_action" model="ir.actions.act_window">
+            <field name="name">Persons</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.person</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_person_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new person.
+              </p>
+            </field>
+        </record>
+        
+    </data>
+</odoo>
