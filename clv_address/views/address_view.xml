@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_address_view_form" model="ir.ui.view">
+            <field name="name">clv.address.form</field>
+            <field name="model">clv.address</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" default_focus="1" placeholder="Name..."/></h1>
+                        </div>
+                        <div name="title" class="oe_title">
+                            <label for="code" class="oe_edit_only"/>
+                            <h3><field name="code" placeholder="Address Code..."/></h3>
+                        </div>
+                        <group>
+                            <group name="Address">
+                                <label for="street" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True, "no_create": True}}'/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                                <field name="fax"/>
+                                <field name="email" widget="email"/>
+                            </group>
+                        </group>
+                        <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <notebook colspan="4">
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="clv_address_view_tree" model="ir.ui.view">
+            <field name="name">clv.address.tree</field>
+            <field name="model">clv.address</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree name="addresses" string="Addresses">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="mobile"/>
+                    <field name="email"/>
+                    <field name="code"/>
+                    <field name="notes"/>
+                    <field name="street" invisible="1"/>
+                    <field name="zip" invisible="1"/>
+                    <field name="city" invisible="1"/>
+                    <field name="state_id" invisible="1"/>
+                    <field name="country_id" invisible="1"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id="clv_address_view_search" model="ir.ui.view">
+            <field name="name">clv.address.search</field>
+            <field name="model">clv.address</field>
+            <field name="arch" type="xml">
+                <search string="Search Address">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="notes"/>
+                    <field name="street"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="state_id"/>
+                    <newline/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <group  name="group_by" expand="0" string="Group By...">
+                        <filter string="Street" context="{'group_by': 'street'}"/>
+                        <filter string="ZIP Code" context="{'group_by': 'zip'}"/>
+                        <filter name="city" string="City" context="{'group_by': 'city'}"/>
+                        <filter string="State" context="{'group_by': 'state_id'}"/>
+                        <filter string="Country" context="{'group_by': 'country_id'}"/>
+                   </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="clv_address_action" model="ir.actions.act_window">
+            <field name="name">Addresses</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.address</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_customer":1}</field>
+            <field name="search_view_id" ref="clv_address_view_search"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new address.
+              </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
