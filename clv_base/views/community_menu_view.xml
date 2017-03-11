@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Community" id="menu_community" 
+            groups="clv_base.group_user"
+            sequence="14"/>
+
+        <menuitem name="Community" id="menu_community_community"  
+            parent="menu_community"
+            groups="clv_base.group_user"
+            sequence="10"/>
+
+        <menuitem name="Configuration" id="menu_community_config"  
+            parent="menu_community"
+            groups="clv_base.group_manager"
+            sequence="90"/>
+
+        <menuitem name="Configuration" id="menu_community_config_config"  
+            parent="menu_community_config"
+            groups="clv_base.group_manager"
+            sequence="10"/>
+
+    </data>
+</odoo>

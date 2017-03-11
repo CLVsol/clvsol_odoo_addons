@@ -30,6 +30,7 @@
     'data': [
         'security/base_security.xml',
         'views/base_menu_view.xml',
+        'views/community_menu_view.xml',
     ],
     'demo': [],
     'test': [],
