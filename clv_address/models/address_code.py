@@ -18,5 +18,12 @@
 #
 ###############################################################################
 
-from . import address
-from . import address_code
+from odoo import fields, models
+
+
+class Address(models.Model):
+    _name = "clv.address"
+    _inherit = 'clv.address', 'clv.code.model'
+
+    code = fields.Char(string='Address Code', required=False)
+    code_sequence = fields.Char(default='clv.address.code')
