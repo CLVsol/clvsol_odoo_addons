@@ -18,33 +18,12 @@
 #
 ###############################################################################
 
-{
-    'name': 'Document',
-    'summary': 'Document Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-    ],
-    'data': [
-        'security/document_security.xml',
-        'security/ir.model.access.csv',
-        'views/document_view.xml',
-        'views/document_code_view.xml',
-        'views/document_menu_view.xml',
-        'data/document_seq.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import fields, models
+
+
+class Document(models.Model):
+    _name = "clv.document"
+    _inherit = 'clv.document', 'clv.code.model'
+
+    code = fields.Char(string='Document Code', required=False)
+    code_sequence = fields.Char(default='clv.document.code')
