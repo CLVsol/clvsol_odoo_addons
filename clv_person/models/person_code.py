@@ -18,33 +18,12 @@
 #
 ###############################################################################
 
-{
-    'name': 'Person',
-    'summary': 'Person Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-    ],
-    'data': [
-        'security/person_security.xml',
-        'security/ir.model.access.csv',
-        'views/person_view.xml',
-        'views/person_code_view.xml',
-        'views/person_menu_view.xml',
-        'data/person_seq.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import fields, models
+
+
+class Person(models.Model):
+    _name = "clv.person"
+    _inherit = 'clv.person', 'clv.code.model'
+
+    code = fields.Char(string='Person Code', required=False)
+    code_sequence = fields.Char(default='clv.person.code')
