@@ -18,11 +18,12 @@
 #
 ###############################################################################
 
-from . import address
-from . import address_category
-from . import address_code
-from . import address_category_code
-from . import address_state
-from . import address_annotation
-from . import address_name
-from . import global_tag
+from odoo import fields, models
+
+
+class AddressCategory(models.Model):
+    _name = "clv.address.category"
+    _inherit = 'clv.address.category', 'clv.code.model'
+
+    code = fields.Char(string='Category Code', required=False)
+    code_sequence = fields.Char(default='clv.address_cat.code')
