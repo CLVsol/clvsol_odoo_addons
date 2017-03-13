@@ -36,6 +36,9 @@
                 <group name="settings" position="inside">
                     <field name="active_log"/>
                 </group>
+                <page name="settings" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                </page>
             </field>
         </record>
 

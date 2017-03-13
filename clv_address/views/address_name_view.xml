@@ -17,6 +17,9 @@
                 <group name="settings" position="inside">
                     <field name="automatic_set_name"/>
                 </group>
+                <page name="settings" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                </page>
             </field>
         </record>
 
