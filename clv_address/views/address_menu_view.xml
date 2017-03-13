@@ -8,6 +8,12 @@
             sequence="50"
             action="clv_address.clv_address_action"/>
 
+        <menuitem name="Annotations" id="menu_base_base_addresses_annotations"
+            parent="menu_base_base_addresses"
+            groups="clv_address.group_user"
+            sequence="10"
+            action="clv_address.clv_address_annotation_action"/>
+
         <menuitem name="Address Categories" id="menu_base_config_config_address_categories" 
             parent="clv_base.menu_base_config_config"
             groups="clv_address.group_user"

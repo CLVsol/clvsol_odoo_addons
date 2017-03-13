@@ -18,9 +18,35 @@
 #
 ###############################################################################
 
-from . import address
-from . import address_category
-from . import address_code
-from . import global_tag
-from . import address_state
-from . import address_annotation
+from openerp import fields, models
+
+
+class AddressAnotation(models.Model):
+    _description = 'Address Annotation'
+    _name = 'clv.address.annotation'
+    _inherit = 'clv.object.annotation', 'clv.code.model'
+
+    code = fields.Char(string='Annotation Code', required=False)
+    code_sequence = fields.Char(default='clv.annotation.code')
+
+    address_id = fields.Many2one(
+        comodel_name='clv.address',
+        string='Address',
+        ondelete='cascade'
+    )
+
+    _sql_constraints = [
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]
+
+
+class Address(models.Model):
+    _inherit = "clv.address"
+
+    annotation_ids = fields.One2many(
+        comodel_name='clv.address.annotation',
+        inverse_name='address_id',
+        string='Annotations'
+    )
