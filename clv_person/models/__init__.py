@@ -20,3 +20,4 @@
 
 from . import person
 from . import person_code
+from . import address

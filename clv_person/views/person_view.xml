@@ -23,7 +23,8 @@
                             <h3><field name="code" placeholder="Person Code..."/></h3>
                         </div>
                         <group>
-                            <group name="status" string="Status">
+                            <!--group name="status" string="Status"-->
+                            <group name="status">
                                 <field name="date_inclusion"/>
                             </group>
                         </group>
@@ -31,28 +32,28 @@
                         <notebook>
                             <page name="personal_information" string="Personal Information" groups="clv_base.group_supuser">
                                 <group>
-                                    <group string="Citizenship &amp; Other Info">
+                                    <group name="person_status">
+                                        <field name="gender" widget="radio"/>
+                                        <field name="marital" widget="radio"/>
+                                    </group>
+                                    <group name="birth">
+                                        <field name="age"/>
+                                        <field name="age_reference"/>
+                                        <field name="estimated_age"/>
+                                        <field name="birthday"/>
+                                        <field name="date_reference"/>
+                                    </group>
+                                    <group name="other_info">
                                         <field name="country_id" options='{"no_open": True}'/>
                                         <field name="identification_id"/>
                                         <field name="otherid"/>
                                     </group>
-                                    <group string="Family">
+                                    <group name="family">
                                         <field name="spouse_id" options="{'no_open': False, 'no_create': True}"/>
                                         <field name="father_id" options="{'no_open': False, 'no_create': True}"/>
                                         <field name="mother_id" options="{'no_open': False, 'no_create': True}"/>
                                         <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
                                         <field name="caregiver_id" options="{'no_open': False, 'no_create': True}"/>
-                                    </group>
-                                    <group string="Status">
-                                        <field name="gender" widget="radio"/>
-                                        <field name="marital" widget="radio"/>
-                                    </group>
-                                    <group string="Birth">
-                                        <field name="birthday"/>
-                                        <field name="age"/>
-                                        <field name="estimated_age"/>
-                                        <field name="date_reference"/>
-                                        <field name="age_reference"/>
                                     </group>
                                 </group>
                             </page>
