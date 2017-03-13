@@ -18,35 +18,29 @@
 #
 ###############################################################################
 
-{
-    'name': 'Address',
-    'summary': 'Address Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': [
-        'clv_base',
-        'clv_global_tag',
-    ],
-    'data': [
-        'security/address_security.xml',
-        'security/ir.model.access.csv',
-        'views/address_view.xml',
-        'views/address_code_view.xml',
-        'views/address_category_view.xml',
-        'views/global_tag_view.xml',
-        'views/address_menu_view.xml',
-        'data/address_seq.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import models, fields
+
+
+class Address(models.Model):
+    _inherit = 'clv.address'
+
+    global_tag_ids = fields.Many2many(
+        comodel_name='clv.global_tag',
+        relation='clv_address_global_tag_rel',
+        column1='address_id',
+        column2='global_tag_id',
+        string='Global Tags'
+    )
+    global_tag_names = fields.Char(string='Global Tags', related='global_tag_ids.name', store=True)
+
+
+class Tag(models.Model):
+    _inherit = 'clv.global_tag'
+
+    address_ids = fields.Many2many(
+        comodel_name='clv.address',
+        relation='clv_address_global_tag_rel',
+        column1='address_id',
+        column2='global_tag_id',
+        string='Addresses'
+    )
