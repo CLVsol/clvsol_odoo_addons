@@ -21,19 +21,6 @@
 from openerp import fields, models
 
 
-class Address(models.Model):
-    _inherit = "clv.address"
-
-    category_ids = fields.Many2many(
-        comodel_name='clv.address.category',
-        relation='clv_address_category_rel',
-        column1='address_id',
-        column2='category_id',
-        string='Categories'
-    )
-    category_names = fields.Char(string='Categories', related='category_ids.name', store=True)
-
-
 class AddressCategory(models.Model):
     _description = 'Address Category'
     _name = 'clv.address.category'
@@ -56,6 +43,9 @@ class AddressCategory(models.Model):
 
     address_ids = fields.Many2many(
         comodel_name='clv.address',
+        relation='clv_address_category_rel',
+        column1='address_id',
+        column2='category_id',
         string='Addresses'
     )
 
@@ -64,3 +54,16 @@ class AddressCategory(models.Model):
          'UNIQUE (code)',
          u'Error! The Code must be unique!'),
     ]
+
+
+class Address(models.Model):
+    _inherit = "clv.address"
+
+    category_ids = fields.Many2many(
+        comodel_name='clv.address.category',
+        relation='clv_address_category_rel',
+        column1='address_id',
+        column2='category_id',
+        string='Categories'
+    )
+    category_names = fields.Char(string='Categories', related='category_ids.name', store=True)

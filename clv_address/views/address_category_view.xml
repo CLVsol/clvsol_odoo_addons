@@ -104,9 +104,7 @@
             <field name="arch" type="xml">
                 <label for="name" position="before">
                     <label for="category_ids" class="oe_edit_only"/>
-                    <h2>
-                        <field name="category_ids" widget="many2many_tags" placeholder="Categories..." options="{'no_open': False, 'no_create': True}"/>
-                    </h2>
+                    <h2><field name="category_ids" widget="many2many_tags" placeholder="Categories..." options="{'no_open': False, 'no_create': True}"/></h2>
                 </label>
             </field>
         </record>
