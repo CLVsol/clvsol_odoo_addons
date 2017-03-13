@@ -8,5 +8,11 @@
             sequence="50"
             action="clv_address.clv_address_action"/>
 
+        <menuitem name="Address Categories" id="menu_base_config_config_address_categories" 
+            parent="clv_base.menu_base_config_config"
+            groups="clv_address.group_user"
+            sequence="50"
+            action="clv_address.clv_address_category_action"/>
+
     </data>
 </odoo>

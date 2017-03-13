@@ -19,4 +19,5 @@
 ###############################################################################
 
 from . import address
+from . import address_category
 from . import address_code

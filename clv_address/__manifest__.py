@@ -34,6 +34,7 @@
         'security/ir.model.access.csv',
         'views/address_view.xml',
         'views/address_code_view.xml',
+        'views/address_category_view.xml',
         'views/address_menu_view.xml',
         'data/address_seq.xml',
     ],
