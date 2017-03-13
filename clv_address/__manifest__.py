@@ -38,6 +38,7 @@
         'views/address_log_view.xml',
         'views/address_category_view.xml',
         'views/address_category_code_view.xml',
+        'views/address_category_log_view.xml',
         'views/global_tag_view.xml',
         'views/address_annotation_view.xml',
         'views/address_state_view.xml',
