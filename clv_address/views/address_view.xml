@@ -8,7 +8,7 @@
             <field eval="1" name="priority"/>
             <field name="arch" type="xml">
                 <form>
-                    <sheet>
+                    <sheet name="address">
                         <div name="button_box" class="oe_right oe_button_box">
                             <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
                                 <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
@@ -17,6 +17,8 @@
                         <div name="center" class="oe_center">
                             <label for="name" class="oe_edit_only"/>
                             <h1><field name="name" default_focus="1" placeholder="Name..."/></h1>
+                        </div>
+                        <div name="button_box_2" class="oe_right oe_button_box">
                         </div>
                         <div name="title" class="oe_title">
                             <label for="code" class="oe_edit_only"/>

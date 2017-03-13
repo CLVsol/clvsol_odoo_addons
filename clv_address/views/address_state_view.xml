@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_address_view_form_state" model="ir.ui.view">
+            <field name="name">clv.address.form</field>
+            <field name="model">clv.address</field>
+            <field name="inherit_id" ref="clv_address.clv_address_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <sheet name="address" position="before">
+                    <header>
+                        <!--field name="state" widget="statusbar"
+                               clickable="True"
+                               statusbar_visible="draft,revised,waiting,selected,unselected,canceled"/-->
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,revised,waiting,selected,unselected,canceled"/>
+                    </header>
+                </sheet>
+                <div name="button_box" position="inside">
+                    <header>
+                        <button name="action_draft" type="object"
+                                string="Draft"
+                                states="canceled"
+                                groups="clv_address.group_manager"/>
+                        <button name="action_revised" type="object"
+                                string="Revised"
+                                states="draft,waiting,selected,unselected"
+                                groups="clv_address.group_manager"/>
+                        <button name="action_waiting" type="object"
+                                string="Waiting"
+                                states="revised"
+                                groups="clv_address.group_manager"/>
+                        <button name="action_select" type="object"
+                                string="Selected"
+                                states="revised,waiting,unselected"
+                                groups="clv_address.group_manager"/>
+                        <button name="action_unselect" type="object"
+                                string="Unselected"
+                                states="revised,waiting,selected"
+                                groups="clv_address.group_manager"/>
+                        <button name="action_cancel" type="object"
+                                string="Cancel"
+                                states="draft,revised"
+                                groups="clv_address.group_manager"/>
+                    </header>
+                </div>
+            </field>
+        </record>
+
+        <record id="clv_address_view_tree_state" model="ir.ui.view">
+            <field name="name">clv.address.tree</field>
+            <field name="model">clv.address</field>
+            <field name="inherit_id" ref="clv_address.clv_address_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="state"/>
+                </field>
+                <tree name="addresses" position="attributes">
+                    <attribute name="colors">gray:state=='draft';green:state=='unselected';blue:state in('selected','waiting');red:state=='canceled'</attribute>
+                    <attribute name="fonts">italic:state in ('draft','canceled');bold:state=='selected'</attribute>
+                </tree>
+            </field>
+        </record>
+
+        <record id="clv_address_view_search_state" model="ir.ui.view">
+            <field name="name">clv.address.search</field>
+            <field name="model">clv.address</field>
+            <field name="inherit_id" ref="clv_address.clv_address_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="state"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
