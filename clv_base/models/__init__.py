@@ -19,5 +19,6 @@
 ###############################################################################
 
 from . import tag_model
+from . import category_model
 from . import code_model
 from . import log_model
