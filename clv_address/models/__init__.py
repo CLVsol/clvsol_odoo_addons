@@ -24,3 +24,4 @@ from . import address_code
 from . import global_tag
 from . import address_state
 from . import address_annotation
+from . import address_name

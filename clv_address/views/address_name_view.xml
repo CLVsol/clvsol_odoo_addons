@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_address_view_form_name" model="ir.ui.view">
+            <field name="name">clv.address.form</field>
+            <field name="model">clv.address</field>
+            <field name="inherit_id" ref="clv_address_view_form"/>
+            <field name="priority" eval="10" />
+            <field name="arch" type="xml">
+                <label for="code" position="before">
+                    <!--label for="suggested_name"/-->
+                    <h3>
+                        <field name="suggested_name" invisible="True"/>
+                    </h3>
+                </label>
+                <group name="settings" position="inside">
+                    <field name="automatic_set_name"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
