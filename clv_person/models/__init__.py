@@ -20,4 +20,5 @@
 
 from . import person
 from . import person_code
+from . import person_category
 from . import address

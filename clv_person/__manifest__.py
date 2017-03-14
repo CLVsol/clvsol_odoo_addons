@@ -36,6 +36,7 @@
         'security/ir.model.access.csv',
         'views/person_view.xml',
         'views/person_code_view.xml',
+        'views/person_category_view.xml',
         'views/address_view.xml',
         'views/person_menu_view.xml',
         'data/person_seq.xml',

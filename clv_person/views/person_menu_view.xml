@@ -8,5 +8,11 @@
             sequence="10"
             action="clv_person.clv_person_action"/>
 
+        <menuitem name="Person Categories" id="menu_community_community_config_person_categories" 
+            parent="clv_base.menu_community_config_config"
+            groups="clv_person.group_user"
+            sequence="10"
+            action="clv_person.clv_person_category_action"/>
+
     </data>
 </odoo>
