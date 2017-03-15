@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Media Files" id="menu_mfmng_mfmng_media_files"
+            parent="clv_base.menu_mfmng_mfmng"
+            groups="clv_mfile.group_user"
+            sequence="50"
+            action="clv_mfile.clv_mfile_action"/>
+
+    </data>
+</odoo>

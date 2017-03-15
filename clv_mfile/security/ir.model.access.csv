@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_mfile_user,clv.mfile.user,model_clv_mfile,clv_mfile.group_user,1,0,0,0
+access_clv_mfile_manager,clv.mfile.manager,model_clv_mfile,clv_mfile.group_manager,1,1,1,0
+access_clv_mfile_supmanager,clv.mfile.supmanager,model_clv_mfile,clv_mfile.group_supmanager,1,1,1,1

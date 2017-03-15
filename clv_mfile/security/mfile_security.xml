@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="clv_mfile.group_user" model="res.groups">
+            <field name="name">User (Media File)</field>
+        </record>
+        
+        <record id="clv_mfile.group_manager" model="res.groups">
+            <field name="name">Manager (Media File)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_mfile.group_user'))]"/>
+        </record>
+        
+        <record id="clv_mfile.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Media File)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_mfile.group_manager'))]"/>
+        </record>
+
+    </data>
+</openerp>
