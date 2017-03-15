@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Media File Management" id="menu_mfmng" 
+            groups="clv_base.group_user"
+            sequence="14"/>
+
+        <menuitem name="Media File Management" id="menu_mfmng_mfmng"  
+            parent="menu_mfmng"
+            groups="clv_base.group_user"
+            sequence="10"/>
+
+        <menuitem name="Configuration" id="menu_mfmng_config"  
+            parent="menu_mfmng"
+            groups="clv_base.group_manager"
+            sequence="90"/>
+
+        <menuitem name="Configuration" id="menu_mfmng_config_config"  
+            parent="menu_mfmng_config"
+            groups="clv_base.group_manager"
+            sequence="10"/>
+
+    </data>
+</odoo>
