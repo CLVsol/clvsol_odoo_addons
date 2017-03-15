@@ -35,6 +35,7 @@
         'security/ir.model.access.csv',
         'views/mfile_view.xml',
         'views/mfile_category_view.xml',
+        'views/global_tag_view.xml',
         'views/mfile_menu_view.xml',
     ],
     'demo': [],

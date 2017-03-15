@@ -20,3 +20,4 @@
 
 from . import mfile
 from . import mfile_category
+from . import global_tag
