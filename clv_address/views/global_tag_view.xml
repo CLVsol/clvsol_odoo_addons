@@ -2,6 +2,20 @@
 <odoo>
     <data>
         
+        <record id="clv_global_tag_view_form_address" model="ir.ui.view">
+            <field name="name">clv.global_tag.form</field>
+            <field name="model">clv.global_tag</field>
+            <field name="inherit_id" ref="clv_global_tag.clv_global_tag_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="tag_for" position="inside">
+                    <group string="Addresses">
+                        <field name="address_ids" colspan="4" nolabel="1"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+
         <record id="clv_address_view_form_global_tag" model="ir.ui.view">
             <field name="name">clv.address.form</field>
             <field name="model">clv.address</field>
@@ -23,6 +37,7 @@
             <field name="arch" type="xml">
                 <field name="code" position="before">
                     <field name="global_tag_ids" groups="clv_global_tag.group_user"/>
+                    <field name="global_tag_names_suport" invisible="True"/>
                 </field>
             </field>
         </record>
@@ -39,20 +54,6 @@
                 <group name="group_by" position="inside">
                     <filter string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
                 </group>
-            </field>
-        </record>
-
-        <record id="clv_global_tag_view_form_address" model="ir.ui.view">
-            <field name="name">clv.global_tag.form</field>
-            <field name="model">clv.global_tag</field>
-            <field name="inherit_id" ref="clv_global_tag.clv_global_tag_view_form"/>
-            <field name="priority" eval="8"/>
-            <field name="arch" type="xml">
-                <page name="tag_for" position="inside">
-                    <group string="Addresses">
-                        <field name="address_ids" colspan="4" nolabel="1"/>
-                    </group>
-                </page>
             </field>
         </record>
 
