@@ -15,12 +15,12 @@
                         </div>
                         <div name="title" class="oe_title">
                             <label for="parent_id" class="oe_edit_only"/>
-                            <h2> <field name="parent_id" placeholder="Parent Category..." options="{'no_open': False, 'no_create': True}"/></h2>
+                            <h2><field name="parent_id" placeholder="Parent Category..." options="{'no_open': False, 'no_create': True}"/></h2>
                             <label for="name" class="oe_edit_only"/>
-                            <h1> <field name="name" default_focus="1" placeholder="Address Category..."/></h1>
+                            <h1><field name="name" default_focus="1" placeholder="Address Category..."/></h1>
                             <label for="code" class="oe_edit_only"/>
                             <h2><field name="code" placeholder="Category Code..."/></h2>
-                            <label for="description"/>
+                            <label for="description" class="oe_edit_only"/>
                             <h3><field name="description" placeholder="Description..."/></h3>
                         </div>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
@@ -96,6 +96,19 @@
             </field>
         </record>
         
+        <record id="clv_address_view_tree_category" model="ir.ui.view">
+            <field name="name">clv.address.tree</field>
+            <field name="model">clv.address</field>
+            <field name="inherit_id" ref="clv_address_view_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="code" position="before">
+                    <field name="category_ids"/>
+                    <field name="category_names_suport" invisible="True"/>
+                </field>
+            </field>
+        </record>
+
         <record id="clv_address_view_form_category" model="ir.ui.view">
             <field name="name">clv.address.form</field>
             <field name="model">clv.address</field>
@@ -106,18 +119,6 @@
                     <label for="category_ids" class="oe_edit_only"/>
                     <h2><field name="category_ids" widget="many2many_tags" placeholder="Categories..." options="{'no_open': False, 'no_create': True}"/></h2>
                 </label>
-            </field>
-        </record>
-
-        <record id="clv_address_view_tree_category" model="ir.ui.view">
-            <field name="name">clv.address.tree</field>
-            <field name="model">clv.address</field>
-            <field name="inherit_id" ref="clv_address_view_tree"/>
-            <field name="priority" eval="20"/>
-            <field name="arch" type="xml">
-                <field name="code" position="before">
-                    <field name="category_ids"/>
-                </field>
             </field>
         </record>
 
