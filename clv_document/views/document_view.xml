@@ -67,7 +67,7 @@
             <field name="model">clv.document</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <search string="Document">
+                <search>
                     <field name="name"/>
                     <field name="code"/>
                     <field name="date_requested"/>
