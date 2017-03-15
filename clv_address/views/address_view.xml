@@ -8,6 +8,9 @@
             <field eval="1" name="priority"/>
             <field name="arch" type="xml">
                 <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
                     <sheet name="address">
                         <div name="button_box" class="oe_right oe_button_box">
                             <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
@@ -81,7 +84,7 @@
             <field name="name">clv.address.search</field>
             <field name="model">clv.address</field>
             <field name="arch" type="xml">
-                <search string="Search Address">
+                <search>
                     <field name="name"/>
                     <field name="code"/>
                     <field name="notes"/>

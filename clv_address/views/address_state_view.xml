@@ -8,15 +8,10 @@
             <field name="inherit_id" ref="clv_address.clv_address_view_form"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <sheet name="address" position="before">
-                    <header>
-                        <!--field name="state" widget="statusbar"
-                               clickable="True"
-                               statusbar_visible="draft,revised,waiting,selected,unselected,canceled"/-->
-                        <field name="state" widget="statusbar"
-                               statusbar_visible="draft,revised,waiting,selected,unselected,canceled"/>
-                    </header>
-                </sheet>
+                <header name="header" position="inside">
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,revised,waiting,selected,unselected,canceled"/>
+                </header>
                 <div name="button_box" position="inside">
                     <header>
                         <button name="action_draft" type="object"
@@ -58,8 +53,12 @@
                     <field name="state"/>
                 </field>
                 <tree name="addresses" position="attributes">
-                    <attribute name="colors">gray:state=='draft';green:state=='unselected';blue:state in('selected','waiting');red:state=='canceled'</attribute>
-                    <attribute name="fonts">italic:state in ('draft','canceled');bold:state=='selected'</attribute>
+                    <attribute name="decoration-muted">state=='draft'</attribute>
+                    <attribute name="decoration-success">state=='unselected'</attribute>
+                    <attribute name="decoration-primary">state in('waiting','selected')</attribute>
+                    <attribute name="decoration-danger">state=='canceled'</attribute>
+                    <attribute name="decoration-it">state in('draft','canceled')</attribute>
+                    <attribute name="decoration-bf">state in('selected','unselected')</attribute>
                 </tree>
             </field>
         </record>

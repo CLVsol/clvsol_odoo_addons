@@ -64,7 +64,7 @@
             <field name="model">clv.address.category</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <search string="Address Category">
+                <search>
                     <field name="name"/>
                     <field name="parent_id"/>
                     <field name="code"/>

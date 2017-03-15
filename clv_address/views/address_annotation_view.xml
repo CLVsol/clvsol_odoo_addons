@@ -78,7 +78,7 @@
             <field name="model">clv.address.annotation</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <search string="Address Annotation">
+                <search>
                     <field name="name"/>
                     <field name="code"/>
                     <field name="author"/>
