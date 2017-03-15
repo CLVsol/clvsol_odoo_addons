@@ -7,3 +7,7 @@ access_clv_mfile_supmanager,clv.mfile.supmanager,model_clv_mfile,clv_mfile.group
 access_clv_mfile_category_user,clv.mfile.category.user,model_clv_mfile_category,clv_mfile.group_user,1,0,0,0
 access_clv_mfile_category_manager,clv.mfile.manager.category,model_clv_mfile_category,clv_mfile.group_manager,1,1,1,0
 access_clv_mfile_category_supmanager,clv.mfile.category.supmanager,model_clv_mfile_category,clv_mfile.group_supmanager,1,1,1,1
+
+access_clv_mfile_annotation_user,clv.mfile.annotation.user,model_clv_mfile_annotation,clv_mfile.group_user,1,0,0,0
+access_clv_mfile_annotation_manager,clv.mfile.annotation.manager,model_clv_mfile_annotation,clv_mfile.group_manager,1,1,1,0
+access_clv_mfile_annotation_supmanager,clv.mfile.annotation.supmanager,model_clv_mfile_annotation,clv_mfile.group_supmanager,1,1,1,1
