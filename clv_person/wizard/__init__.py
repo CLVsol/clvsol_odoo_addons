@@ -18,37 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Person',
-    'summary': 'Person Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_address',
-    ],
-    'data': [
-        'security/person_security.xml',
-        'security/ir.model.access.csv',
-        'views/person_view.xml',
-        'views/person_code_view.xml',
-        'views/person_category_view.xml',
-        'views/address_view.xml',
-        'wizard/person_address_updt_wizard_view.xml',
-        'views/person_menu_view.xml',
-        'data/person_seq.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+import person_address_updt_wizard
