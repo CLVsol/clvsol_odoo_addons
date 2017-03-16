@@ -25,14 +25,7 @@ from odoo import api, fields, models
 
 class ObjectLog(models.AbstractModel):
     _name = 'clv.object.log'
-    _order = "date_log desc"
-
-    # object_id = fields.Many2one(
-    #     comodel_name='clv.object',
-    #     string='Object',
-    #     required=True,
-    #     ondelete='cascade'
-    # )
+    _order = "id desc"
 
     user_id = fields.Many2one(
         comodel_name='res.users',
@@ -53,29 +46,11 @@ class ObjectLog(models.AbstractModel):
 class LogModel(models.AbstractModel):
     _name = 'clv.log.model'
 
-    # log_ids = fields.One2many(
-    #     comodel_name='clv.object.log',
-    #     inverse_name='object_id',
-    #     string='Object Log',
-    #     readonly=True
-    # )
-
     active_log = fields.Boolean(
         string='Active Log',
         help="If unchecked, it will allow you to disable the log without removing it.",
         default=True
     )
-
-    # @api.one
-    # def insert_object_log(self, object_id, values, action, notes):
-    #     if self.active_log or 'active_log' in values:
-    #         vals = {
-    #             'object_id': object_id,
-    #             'values': values,
-    #             'action': action,
-    #             'notes': notes,
-    #         }
-    #         self.env['clv.object.log'].create(vals)
 
     @api.multi
     def write(self, values):
