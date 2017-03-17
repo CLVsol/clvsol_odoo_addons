@@ -27,8 +27,8 @@ class Tag(models.Model):
     mfile_ids = fields.Many2many(
         comodel_name='clv.mfile',
         relation='clv_mfile_global_tag_rel',
-        column1='mfile_id',
-        column2='global_tag_id',
+        column1='global_tag_id',
+        column2='mfile_id',
         string='Media Files'
     )
 

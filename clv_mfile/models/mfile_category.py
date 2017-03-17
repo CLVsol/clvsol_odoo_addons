@@ -44,9 +44,9 @@ class MediaFileCategory(models.Model):
     mfile_ids = fields.Many2many(
         comodel_name='clv.mfile',
         relation='clv_mfile_category_rel',
-        column1='mfile_id',
-        column2='category_id',
-        string='Media Filees'
+        column1='category_id',
+        column2='mfile_id',
+        string='Media Files'
     )
 
     _sql_constraints = [
