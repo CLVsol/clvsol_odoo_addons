@@ -20,7 +20,7 @@
 
 {
     'name': 'Base Module',
-    'summary': 'Base Module used by MostlyOpen Solutions.',
+    'summary': 'Base Module used by CLVsol Solutions.',
     'version': '3.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
