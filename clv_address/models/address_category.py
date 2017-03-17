@@ -44,8 +44,8 @@ class AddressCategory(models.Model):
     address_ids = fields.Many2many(
         comodel_name='clv.address',
         relation='clv_address_category_rel',
-        column1='address_id',
-        column2='category_id',
+        column1='category_id',
+        column2='address_id',
         string='Addresses'
     )
 

@@ -27,8 +27,8 @@ class Tag(models.Model):
     address_ids = fields.Many2many(
         comodel_name='clv.address',
         relation='clv_address_global_tag_rel',
-        column1='address_id',
-        column2='global_tag_id',
+        column1='global_tag_id',
+        column2='address_id',
         string='Addresses'
     )
 
