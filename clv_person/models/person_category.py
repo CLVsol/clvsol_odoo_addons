@@ -44,8 +44,8 @@ class PersonCategory(models.Model):
     person_ids = fields.Many2many(
         comodel_name='clv.person',
         relation='clv_person_category_rel',
-        column1='person_id',
-        column2='category_id',
+        column1='category_id',
+        column2='person_id',
         string='Persons'
     )
 
