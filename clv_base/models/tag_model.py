@@ -31,19 +31,6 @@ class ObjectTag(models.AbstractModel):
     description = fields.Char(string='Description')
     notes = fields.Text(string='Notes')
 
-    # parent_id = fields.Many2one(
-    #     comodel_name='clv.object.tag',
-    #     string='Parent Tag',
-    #     index=True,
-    #     ondelete='restrict'
-    # )
-
-    # child_ids = fields.One2many(
-    #     comodel_name='clv.object.tag',
-    #     inverse_name='parent_id',
-    #     string='Child Tags'
-    # )
-
     parent_left = fields.Integer('Left parent', index=True)
     parent_right = fields.Integer('Right parent', index=True)
     complete_name = fields.Char(
@@ -53,20 +40,9 @@ class ObjectTag(models.AbstractModel):
         readonly=True
     )
 
-    # object_ids = fields.Many2many(
-    #     comodel_name='clv.object',
-    #     string='Objects'
-    # )
-
     active = fields.Boolean(string='Active', default=True)
 
     color = fields.Integer('Color Index')
-
-    # _sql_constraints = [
-    #     ('uniq_code',
-    #      'UNIQUE(code)',
-    #      'Error! The Code must be unique!'),
-    # ]
 
     _constraints = [
         (models.Model._check_recursion,
@@ -115,16 +91,3 @@ class ObjectTag(models.AbstractModel):
             self.complete_name = complete_name[0][1]
         else:
             self.complete_name = self.name
-
-
-# class Object(models.AbstractModel):
-#     _inherit = 'clv.object'
-
-#     category_ids = fields.Many2many(
-#         comodel_name='clv.object.tag',
-#         relation='clv_object_tag_rel',
-#         column1='object_id',
-#         column2='tag_id',
-#         string='Tags'
-#     )
-#     category_names = fields.Char(string='Tags', related='category_ids.name', store=True)

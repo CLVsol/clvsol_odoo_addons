@@ -31,19 +31,6 @@ class ObjectCategory(models.AbstractModel):
     description = fields.Char(string='Description')
     notes = fields.Text(string='Notes')
 
-    # parent_id = fields.Many2one(
-    #     comodel_name='clv.object.category',
-    #     string='Parent Category',
-    #     index=True,
-    #     ondelete='restrict'
-    # )
-
-    # child_ids = fields.One2many(
-    #     comodel_name='clv.object.category',
-    #     inverse_name='parent_id',
-    #     string='Child Categories'
-    # )
-
     parent_left = fields.Integer(string='Left parent', index=True)
     parent_right = fields.Integer(string='Right parent', index=True)
     complete_name = fields.Char(
@@ -52,11 +39,6 @@ class ObjectCategory(models.AbstractModel):
         store=False,
         readonly=True
     )
-
-    # object_ids = fields.Many2many(
-    #     comodel_name='clv.object',
-    #     string='Objects'
-    # )
 
     active = fields.Boolean(string='Active', default=True)
 
@@ -109,16 +91,3 @@ class ObjectCategory(models.AbstractModel):
             self.complete_name = complete_name[0][1]
         else:
             self.complete_name = self.name
-
-
-# class Object(models.AbstractModel):
-#     _inherit = 'clv.object'
-
-#     category_ids = fields.Many2many(
-#         comodel_name='clv.object.category',
-#         relation='clv_object_category_rel',
-#         column1='object_id',
-#         column2='category_id',
-#         string='Categories'
-#     )
-#     category_names = fields.Char(string='Categories', related='category_ids.name', store=True)

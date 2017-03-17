@@ -39,13 +39,3 @@ class ObjectAnnotation(models.AbstractModel):
     body = fields.Text(string='Body')
 
     active = fields.Boolean(string='Active', default=True)
-
-
-# class Object(models.AbstractModel):
-#     _name = 'clv.object'
-
-#     annotation_ids = fields.One2many(
-#         comodel_name='clv.object.annotation',
-#         inverse_name='object_id',
-#         string='Annotations'
-#     )
