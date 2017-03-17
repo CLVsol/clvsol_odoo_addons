@@ -20,10 +20,8 @@
 
 from . import address
 from . import address_name
-from . import address_code
 from . import address_log
 from . import address_category
-from . import address_category_code
 from . import address_category_log
 from . import global_tag
 from . import address_annotation

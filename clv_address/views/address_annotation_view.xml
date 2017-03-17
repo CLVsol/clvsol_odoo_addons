@@ -42,8 +42,6 @@
                         <group>
                             <field name="date_annotation"/>
                             <field name="author"/>
-                            <field name="code" placeholder="Annotation Code..."/>
-                            <field name="code_sequence" invisible="True"/>
                         </group>
                         <div name="button_box_2" class="oe_right oe_button_box">
                         </div>
@@ -65,7 +63,6 @@
             <field name="arch" type="xml">
                 <tree string="Annotations">
                     <field name="name"/>
-                    <field name="code"/>
                     <field name="author"/>
                     <field name="date_annotation"/>
                     <field name="body"/>
@@ -80,7 +77,6 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
-                    <field name="code"/>
                     <field name="author"/>
                     <field name="date_annotation"/>
                     <field name="body"/>

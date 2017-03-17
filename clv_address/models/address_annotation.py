@@ -24,22 +24,13 @@ from openerp import fields, models
 class AddressAnotation(models.Model):
     _description = 'Address Annotation'
     _name = 'clv.address.annotation'
-    _inherit = 'clv.object.annotation', 'clv.code.model'
-
-    code = fields.Char(string='Annotation Code', required=False)
-    code_sequence = fields.Char(default='clv.annotation.code')
+    _inherit = 'clv.object.annotation'
 
     address_id = fields.Many2one(
         comodel_name='clv.address',
         string='Address',
         ondelete='cascade'
     )
-
-    _sql_constraints = [
-        ('code_uniq',
-         'UNIQUE (code)',
-         u'Error! The Code must be unique!'),
-    ]
 
 
 class Address(models.Model):
