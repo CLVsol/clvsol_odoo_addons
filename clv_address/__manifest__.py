@@ -40,7 +40,6 @@
         'views/global_tag_view.xml',
         'views/address_annotation_view.xml',
         'views/address_annotation_log_view.xml',
-        'views/address_state_view.xml',
         'views/address_name_view.xml',
         'views/address_menu_view.xml',
     ],

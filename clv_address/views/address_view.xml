@@ -19,7 +19,7 @@
                         </div>
                         <div name="center" class="oe_center">
                             <label for="name" class="oe_edit_only"/>
-                            <h1><field name="name" default_focus="1" placeholder="Name..."/></h1>
+                            <h2><field name="name" placeholder="Name..."/></h2>
                         </div>
                         <div name="button_box_2" class="oe_right oe_button_box">
                         </div>
@@ -31,7 +31,7 @@
                             <group name="Address">
                                 <label for="street" string="Address"/>
                                 <div class="o_address_format">
-                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street" placeholder="Street..." class="o_address_street" default_focus="1"/>
                                     <field name="street2" placeholder="Street 2..." class="o_address_street"/>
                                     <field name="city" placeholder="City" class="o_address_city"/>
                                     <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True, "no_create": True}}'/>

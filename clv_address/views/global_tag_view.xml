@@ -24,7 +24,7 @@
             <field name="arch" type="xml">
                 <label for="name" position="before">
                     <label for="global_tag_ids"  groups="clv_global_tag.group_user" class="oe_edit_only"/>
-                    <h2><field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'no_open': False, 'no_create': True}" groups="clv_global_tag.group_user"/></h2>
+                    <h4><field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'no_open': False, 'no_create': True}" groups="clv_global_tag.group_user"/></h4>
                 </label>
             </field>
         </record>
