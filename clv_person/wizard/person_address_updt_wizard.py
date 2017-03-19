@@ -59,12 +59,12 @@ class PersonAddressUpdtWizard(models.TransientModel):
         store=False,
         readonly=True
     )
-    new_address_state = fields.Selection(
-        string='New Address Status',
-        related='new_address_id.state',
-        store=False,
-        readonly=True
-    )
+    # new_address_state = fields.Selection(
+    #     string='New Address State',
+    #     related='new_address_id.state',
+    #     store=False,
+    #     readonly=True
+    # )
 
     @api.depends('person_ids')
     def _compute_count_persons(self):

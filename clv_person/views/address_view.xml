@@ -60,7 +60,6 @@
                             options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
                         <field name="address_code" string="Address Code"/>
                         <field name="address_category_ids" string="Address Categories"/>
-                        <field name="address_state" string="Address Status"/>
                     </group>
                     <group name="personal_contact_info">
                         <field name="phone"/>
@@ -82,7 +81,6 @@
             <field name="arch" type="xml">
                 <field name="code" position="after">
                     <field name="address_category_ids" string="Address Categories"/>
-                    <field name="address_state" string="Address Status"/>
                 </field>
             </field>
         </record>
@@ -95,12 +93,10 @@
             <field name="arch" type="xml">
                 <field name="code" position="after">
                     <field name="address_category_ids"/>
-                    <field name="address_state"/>
                 </field>
                 <group name="group_by" position="inside">
                     <filter string="Address" context="{'group_by': 'address_id'}"/>
                     <filter string="Address Categories" context="{'group_by': 'address_category_ids'}"/>
-                    <filter string="Address Status" context="{'group_by': 'address_state'}"/>
                 </group>
             </field>
         </record>

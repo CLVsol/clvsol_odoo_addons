@@ -32,7 +32,7 @@
                                 options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
                             <field name="new_address_code"/>
                             <field name="new_address_category_ids"/>
-                            <field name="new_address_state"/>
+                            <!--field name="new_address_state"/-->
                         </group>
                     </group>
                     <footer>

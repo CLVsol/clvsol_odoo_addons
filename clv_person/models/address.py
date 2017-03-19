@@ -56,7 +56,6 @@ class Person(models.Model):
         related='address_id.category_ids.name',
         store=True
     )
-    address_state = fields.Selection(string='Address Status', related='address_id.state', store=True)
 
     phone = fields.Char(string='Phone')
     mobile = fields.Char(string='Mobile')
