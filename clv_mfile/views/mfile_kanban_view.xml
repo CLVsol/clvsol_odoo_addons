@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="clv_mfile_view_form_kanban" model="ir.ui.view">
+            <field name="name">clv.mfile.form</field>
+            <field name="model">clv.mfile</field>
+            <field name="inherit_id" ref="clv_mfile.clv_mfile_view_form"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <div name="title" position="before">
+                    <field name="image" widget="image" class="oe_avatar" options='{"preview_image":"image_medium"}'/>
+                </div>
+            </field>
+        </record>
+
+        <record id="clv_mfile_view_kanban" model="ir.ui.view">
+            <field name="name">clv.mfile.kanban</field>
+            <field name="model">clv.mfile</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <!--field name="has_image"/-->
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('clv.mfile', 'image_medium', record.id.value)"/>
+                                </div>
+                                <div name="kanban_details" class="oe_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                    <ul>
+                                        <li t-if="record.alias.raw_value">
+                                            <field name="alias"/>
+                                        </li>
+                                        <li t-if="record.code.raw_value">
+                                            <field name="code"/>
+                                        </li>
+                                        <li t-if="record.path.raw_value">
+                                            <field name="path"/>
+                                        </li>
+                                        <li t-if="record.category_names.raw_value">
+                                            <field name="category_names"/>
+                                        </li>
+                                        <li t-if="record.global_tag_names.raw_value">
+                                            <field name="global_tag_names"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    
+        <record id="clv_mfile_action" model="ir.actions.act_window">
+            <field name="name">Media Files</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.mfile</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="clv_mfile_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new media file.
+              </p>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

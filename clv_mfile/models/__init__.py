@@ -22,3 +22,4 @@ from . import mfile
 from . import mfile_category
 from . import global_tag
 from . import mfile_annotation
+from . import mfile_kanban
