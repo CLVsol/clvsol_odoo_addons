@@ -19,5 +19,4 @@
 ###############################################################################
 
 from . import global_tag
-from . import global_tag_code
 from . import global_tag_log
