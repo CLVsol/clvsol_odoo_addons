@@ -72,7 +72,7 @@
             <field name="model">clv.person</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree name="person" string="Person">
+                <tree name="person">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="age"/>
