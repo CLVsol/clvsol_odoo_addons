@@ -44,6 +44,9 @@
                                         <li t-if="record.category_names.raw_value">
                                             <field name="category_names"/>
                                         </li>
+                                        <li t-if="record.format_names.raw_value">
+                                            <field name="format_names"/>
+                                        </li>
                                         <li t-if="record.global_tag_names.raw_value">
                                             <field name="global_tag_names"/>
                                         </li>

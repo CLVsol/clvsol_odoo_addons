@@ -20,5 +20,11 @@
             sequence="50"
             action="clv_mfile.clv_mfile_category_action"/>
 
+        <menuitem name="Media Files Formats" id="menu_mfmng_config_config_media_file_formats" 
+            parent="clv_base.menu_mfmng_config_config"
+            groups="clv_mfile.group_user"
+            sequence="60"
+            action="clv_mfile.clv_mfile_format_action"/>
+
     </data>
 </odoo>
