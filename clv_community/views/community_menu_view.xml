@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Communities" id="menu_community_community_communities"
+            parent="clv_base.menu_community_community"
+            groups="clv_community.group_user"
+            sequence="30"
+            action="clv_community.clv_community_action"/>
+
+    </data>
+</odoo>
