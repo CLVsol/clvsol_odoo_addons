@@ -38,6 +38,7 @@
         'views/person_category_view.xml',
         'views/person_log_view.xml',
         'views/address_view.xml',
+        'views/global_tag_view.xml',
         'wizard/person_address_updt_wizard_view.xml',
         'views/person_menu_view.xml',
     ],
