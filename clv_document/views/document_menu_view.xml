@@ -8,5 +8,11 @@
             sequence="30"
             action="clv_document.clv_document_action"/>
 
+        <menuitem name="Document Categories" id="menu_base_config_config_document_categories" 
+            parent="clv_base.menu_base_config_config"
+            groups="clv_document.group_user"
+            sequence="30"
+            action="clv_document.clv_document_category_action"/>
+
     </data>
 </odoo>

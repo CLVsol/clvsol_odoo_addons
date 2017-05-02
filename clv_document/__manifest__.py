@@ -34,6 +34,7 @@
         'security/document_security.xml',
         'security/ir.model.access.csv',
         'views/document_view.xml',
+        'views/document_category_view.xml',
         'views/document_menu_view.xml',
     ],
     'demo': [],
