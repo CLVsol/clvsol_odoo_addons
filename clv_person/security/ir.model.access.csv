@@ -11,3 +11,11 @@ access_clv_person_category_supmanager,clv.person.category.supmanager,model_clv_p
 access_clv_person_log_user,clv.person.log.user,model_clv_person_log,clv_person.group_user,1,0,0,0
 access_clv_person_log_manager,clv.person.log.manager,model_clv_person_log,clv_person.group_manager,1,1,1,0
 access_clv_person_log_supmanager,clv.person.log.supmanager,model_clv_person_log,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_annotation_user,clv.person.annotation.user,model_clv_person_annotation,clv_person.group_user,1,0,0,0
+access_clv_person_annotation_manager,clv.person.annotation.manager,model_clv_person_annotation,clv_person.group_manager,1,1,1,0
+access_clv_person_annotation_supmanager,clv.person.annotation.supmanager,model_clv_person_annotation,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_annotation_log_user,clv.person.annotation.log.user,model_clv_person_annotation_log,clv_person.group_user,1,0,0,0
+access_clv_person_annotation_log_manager,clv.person.annotation.log.manager,model_clv_person_annotation_log,clv_person.group_manager,1,1,1,0
+access_clv_person_annotation_log_supmanager,clv.person.annotation.log.supmanager,model_clv_person_annotation_log,clv_person.group_supmanager,1,1,1,1

@@ -18,10 +18,26 @@
 #
 ###############################################################################
 
-from . import person
-from . import person_category
-from . import person_log
-from . import address
-from . import global_tag
-from . import person_annotation
-from . import person_annotation_log
+from openerp import fields, models
+
+
+class PersonAnotation(models.Model):
+    _description = 'Person Annotation'
+    _name = 'clv.person.annotation'
+    _inherit = 'clv.object.annotation'
+
+    person_id = fields.Many2one(
+        comodel_name='clv.person',
+        string='Person',
+        ondelete='cascade'
+    )
+
+
+class Person(models.Model):
+    _inherit = "clv.person"
+
+    annotation_ids = fields.One2many(
+        comodel_name='clv.person.annotation',
+        inverse_name='person_id',
+        string='Annotations'
+    )
