@@ -24,3 +24,4 @@ from . import person_log
 from . import address
 from . import global_tag
 from . import person_annotation
+from . import person_annotation_log
