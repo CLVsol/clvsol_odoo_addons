@@ -35,6 +35,7 @@
         'security/community_security.xml',
         'security/ir.model.access.csv',
         'views/community_view.xml',
+        'views/community_log_view.xml',
         'views/community_category_view.xml',
         'views/global_tag_view.xml',
         'views/community_menu_view.xml',

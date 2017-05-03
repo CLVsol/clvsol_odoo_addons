@@ -19,5 +19,6 @@
 ###############################################################################
 
 from . import community
+from . import community_log
 from . import community_category
 from . import global_tag
