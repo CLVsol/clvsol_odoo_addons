@@ -4,6 +4,10 @@ access_clv_document_user,clv.document.user,model_clv_document,clv_document.group
 access_clv_document_manager,clv.document.manager,model_clv_document,clv_document.group_manager,1,1,1,0
 access_clv_document_supmanager,clv.document.supmanager,model_clv_document,clv_document.group_supmanager,1,1,1,1
 
+access_clv_document_log_user,clv.document.log.user,model_clv_document_log,clv_document.group_user,1,0,0,0
+access_clv_document_log_manager,clv.document.log.manager,model_clv_document_log,clv_document.group_manager,1,1,1,0
+access_clv_document_log_supmanager,clv.document.log.supmanager,model_clv_document_log,clv_document.group_supmanager,1,1,1,1
+
 access_clv_document_category_user,clv.document.category.user,model_clv_document_category,clv_document.group_user,1,0,0,0
 access_clv_document_category_manager,clv.document.manager.category,model_clv_document_category,clv_document.group_manager,1,1,1,0
 access_clv_document_category_supmanager,clv.document.category.supmanager,model_clv_document_category,clv_document.group_supmanager,1,1,1,1
