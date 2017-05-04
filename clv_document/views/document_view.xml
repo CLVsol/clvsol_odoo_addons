@@ -78,9 +78,6 @@
                     <separator/>
                     <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                     <group name="group_by" string="Group By...">
-                        <filter name="group_by_date_document" string="Document Date" domain="[]" context="{'group_by': 'date_document'}"/>
-                        <filter name="group_by_date_foreseen" string="Foreseen Date" context="{'group_by': 'date_foreseen'}"/>
-                        <filter name="group_by_date_deadline" string="Deadline" context="{'group_by': 'date_deadline'}"/>
                     </group>
                 </search>
             </field>
