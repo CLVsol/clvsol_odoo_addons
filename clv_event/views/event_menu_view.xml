@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Events" id="menu_base_base_events"
+            parent="clv_base.menu_base_base"
+            groups="clv_event.group_user"
+            sequence="60"
+            action="clv_event.clv_event_action"/>
+
+    </data>
+</odoo>
