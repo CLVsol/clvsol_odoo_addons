@@ -30,9 +30,11 @@
     'depends': [
         'hr',
         'clv_base',
+        'clv_global_tag',
     ],
     'data': [
         'views/hr_employee_view.xml',
+        'views/global_tag_view.xml',
     ],
     'demo': [],
     'test': [],
