@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="hr_employee_view_tree" model="ir.ui.view">
+            <field name="name">hr.employee.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="code"/>
+                    <field name="professional_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_employee_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <div class="oe_title" position="inside">
+                    <label for="code" class="oe_edit_only"/>
+                    <h2>
+                        <field name="code" placeholder="Employee Code..."/>
+                    </h2>
+                    <label for="professional_id" class="oe_edit_only"/>
+                    <h2>
+                        <field name="professional_id" placeholder="Professional ID..."/>
+                    </h2>
+                </div>
+            </field>
+        </record>
+
+        <record id="hr_employee_view_kanban_view" model="ir.ui.view">
+            <field name="name">HR - Employess Kanban</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <li t-if="record.job_id.raw_value" position="replace">
+                    <li t-if="record.code.raw_value"><field name="code"/></li>
+                    <li t-if="record.professional_id.raw_value"><field name="professional_id"/></li>
+                    <li t-if="record.job_id.raw_value"><field name="job_id"/></li>
+                </li>
+            </field>
+        </record>
+
+        <record id="hr_employee_view_search" model="ir.ui.view">
+            <field name="name">hr.employee.search</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="code"/>
+                    <field name="professional_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
