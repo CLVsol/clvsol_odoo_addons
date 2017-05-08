@@ -20,3 +20,4 @@
 
 from . import hr_employee
 from . import global_tag
+from . import hr_employee_log
