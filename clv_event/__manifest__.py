@@ -29,12 +29,14 @@
     'images': [],
     'depends': [
         'clv_base',
+        'clv_global_tag',
     ],
     'data': [
         'security/event_security.xml',
         'security/ir.model.access.csv',
         'views/event_view.xml',
         'views/event_category_view.xml',
+        'views/global_tag_view.xml',
         'views/event_menu_view.xml',
     ],
     'demo': [],
