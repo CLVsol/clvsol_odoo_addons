@@ -7,3 +7,7 @@ access_clv_event_supmanager,clv.event.supmanager,model_clv_event,clv_event.group
 access_clv_event_category_user,clv.event.category.user,model_clv_event_category,clv_event.group_user,1,0,0,0
 access_clv_event_category_manager,clv.event.manager.category,model_clv_event_category,clv_event.group_manager,1,1,1,0
 access_clv_event_category_supmanager,clv.event.category.supmanager,model_clv_event_category,clv_event.group_supmanager,1,1,1,1
+
+access_clv_event_log_user,clv.event.log.user,model_clv_event_log,clv_event.group_user,1,0,0,0
+access_clv_event_log_manager,clv.event.log.manager,model_clv_event_log,clv_event.group_manager,1,1,1,0
+access_clv_event_log_supmanager,clv.event.log.supmanager,model_clv_event_log,clv_event.group_supmanager,1,1,1,1

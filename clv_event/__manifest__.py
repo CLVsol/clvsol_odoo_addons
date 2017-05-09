@@ -37,6 +37,7 @@
         'views/event_view.xml',
         'views/event_category_view.xml',
         'views/global_tag_view.xml',
+        'views/event_log_view.xml',
         'views/event_menu_view.xml',
     ],
     'demo': [],
