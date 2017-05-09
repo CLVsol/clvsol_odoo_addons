@@ -8,5 +8,11 @@
             sequence="60"
             action="clv_event.clv_event_action"/>
 
+        <menuitem name="Event Categories" id="menu_base_config_config_event_categories" 
+            parent="clv_base.menu_base_config_config"
+            groups="clv_event.group_user"
+            sequence="60"
+            action="clv_event.clv_event_category_action"/>
+
     </data>
 </odoo>
