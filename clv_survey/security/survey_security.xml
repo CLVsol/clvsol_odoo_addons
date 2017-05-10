@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="clv_survey.group_user" model="res.groups">
+            <field name="name">User (Survey)</field>
+            <field name="implied_ids" eval="[(4, ref('survey.group_survey_user'))]"/>
+        </record>
+        
+        <record id="clv_survey.group_manager" model="res.groups">
+            <field name="name">Manager (Survey)</field>
+            <field name="implied_ids" eval="[(4, ref('survey.group_survey_manager')),
+                                             (4, ref('clv_survey.group_user'))]"/>
+        </record>
+        
+        <record id="clv_survey.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Survey)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_survey.group_manager'))]"/>
+        </record>
+
+    </data>
+</odoo>

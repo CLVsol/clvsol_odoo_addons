@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="survey_survey_view_form" model="ir.ui.view">
+            <field name="name">survey.survey.form</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="title" position="replace">
+                </field>
+                <label for="title" position="replace">
+                    <label for="title" class="oe_edit_only"/>
+                    <h1><field name="title" placeholder="Survey Title"/></h1>
+                    <label for="description" class="oe_edit_only"/>
+                    <h2><field name="description" placeholder="Survey Description"/></h2>
+                    <label for="code" class="oe_edit_only"/>
+                    <h3><field name="code" placeholder="Survey Code"/></h3>
+                </label>
+            </field>
+        </record>
+
+        <record id="survey_survey_view_tree" model="ir.ui.view">
+            <field name="name">survey.survey.tree</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="title" position="after">
+                    <field name="description" />
+                    <field name="code" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>
