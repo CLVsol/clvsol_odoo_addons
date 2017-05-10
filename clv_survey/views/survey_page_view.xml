@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="survey_survey_view_form_page" model="ir.ui.view">
+            <field name="name">survey.survey.form</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="sequence" position="after">
+                    <field name="code"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="survey_page_view_form" model="ir.ui.view">
+            <field name="name">survey.page.form</field>
+            <field name="model">survey.page</field>
+            <field name="inherit_id" ref="survey.survey_page_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="title" position="replace">
+                </field>
+                <label for="title" position="replace">
+                    <label for="title" class="oe_edit_only"/>
+                    <h1><field name="title" placeholder="Page Title"/></h1>
+                    <label for="code" class="oe_edit_only"/>
+                    <h3><field name="code" placeholder="Page Code"/></h3>
+                </label>
+            </field>
+        </record>
+
+        <record id="survey_page_view_tree" model="ir.ui.view">
+            <field name="name">survey.page.tree</field>
+            <field name="model">survey.page</field>
+            <field name="inherit_id" ref="survey.survey_page_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="sequence" position="after">
+                    <field name="code" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
