@@ -18,33 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Survey',
-    'summary': 'Survey Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'survey',
-    ],
-    'data': [
-        'security/survey_security.xml',
-        'views/survey_survey_view.xml',
-        'views/survey_page_view.xml',
-        'views/survey_question_view.xml',
-        'views/survey_label_view.xml',
-        'wizard/survey_code_updt_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+import survey_code_updt
