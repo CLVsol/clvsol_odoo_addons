@@ -37,6 +37,8 @@
         'views/hr_employee_view.xml',
         'views/global_tag_view.xml',
         'views/hr_employee_log_view.xml',
+        'views/hr_employee_job_history_view.xml',
+        'views/hr_employee_menu_view.xml',
     ],
     'demo': [],
     'test': [],
