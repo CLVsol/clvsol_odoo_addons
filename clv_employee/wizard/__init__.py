@@ -18,36 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Employee',
-    'summary': 'Employee Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'hr',
-        'clv_base',
-        'clv_global_tag',
-    ],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/hr_employee_view.xml',
-        'views/global_tag_view.xml',
-        'views/hr_employee_log_view.xml',
-        'views/hr_employee_job_history_view.xml',
-        'views/hr_employee_menu_view.xml',
-        'wizard/hr_employee_job_updt_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+import hr_employee_job_updt
