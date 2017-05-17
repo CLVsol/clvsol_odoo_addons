@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Jobs" id="menu_human_resources_configuration_jobs"
+            parent="hr.menu_human_resources_configuration"
+            groups="base.group_no_one"
+            sequence="5"
+            action="hr.action_hr_job"/>
+
+        <menuitem name="Job History" id="menu_human_resources_configuration_job_history"
+            parent="hr.menu_human_resources_configuration"
+            groups="base.group_no_one"
+            sequence="10"
+            action="clv_employee.hr_employee_job_history_actions"/>
+
+    </data>
+</odoo>

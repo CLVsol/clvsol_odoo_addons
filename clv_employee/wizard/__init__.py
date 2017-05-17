@@ -18,7 +18,5 @@
 #
 ###############################################################################
 
-from . import hr_employee
-from . import global_tag
-from . import hr_employee_log
-from . import hr_employee_job_history
+import hr_employee_updt
+import hr_employee_job_history_updt
