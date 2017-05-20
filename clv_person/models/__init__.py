@@ -25,3 +25,4 @@ from . import address
 from . import global_tag
 from . import person_annotation
 from . import person_annotation_log
+from . import person_address_role

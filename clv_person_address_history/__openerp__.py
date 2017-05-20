@@ -32,7 +32,6 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/person_address_role_view.xml',
         'views/person_address_history_view.xml',
         'views/person_address_history_menu_view.xml',
     ],

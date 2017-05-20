@@ -18,5 +18,4 @@
 #
 ###############################################################################
 
-from . import person_address_role
 from . import person_address_history
