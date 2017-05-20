@@ -19,3 +19,4 @@
 ###############################################################################
 
 import person_address_updt_wizard
+import person_updt
