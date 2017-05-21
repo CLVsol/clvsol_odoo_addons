@@ -18,36 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Event',
-    'summary': 'Event Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_global_tag',
-    ],
-    'data': [
-        'security/event_security.xml',
-        'security/ir.model.access.csv',
-        'views/event_view.xml',
-        'views/event_category_view.xml',
-        'views/global_tag_view.xml',
-        'views/event_log_view.xml',
-        'wizard/event_updt_view.xml',
-        'views/event_menu_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+import event_updt
