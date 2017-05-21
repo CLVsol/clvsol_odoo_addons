@@ -19,3 +19,4 @@
 ###############################################################################
 
 from . import person_address_history
+from . import global_tag
