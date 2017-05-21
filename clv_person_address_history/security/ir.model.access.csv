@@ -3,3 +3,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_clv_person_address_history_person_user,clv.person.address.history,model_clv_person_address_history,clv_person.group_user,1,0,0,0
 access_clv_person_address_history_person_manager,clv.person.address.history,model_clv_person_address_history,clv_person.group_manager,1,1,1,0
 access_clv_person_address_history_supmanager,clv.person.address.history,model_clv_person_address_history,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_address_history_log_user,clv.person.address.history.log.user,model_clv_person_address_history_log,clv_person.group_user,1,0,0,0
+access_clv_person_address_history_log_manager,clv.person.address.history.log.manager,model_clv_person_address_history_log,clv_person.group_manager,1,1,1,0
+access_clv_person_address_history_log_supmanager,clv.person.address.history.log.supmanager,model_clv_person_address_history_log,clv_person.group_supmanager,1,1,1,1

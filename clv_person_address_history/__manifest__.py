@@ -34,6 +34,7 @@
         'security/ir.model.access.csv',
         'views/person_address_history_view.xml',
         'views/global_tag_view.xml',
+        'views/person_address_history_log_view.xml',
         'views/person_address_history_menu_view.xml',
         'wizard/person_address_history_updt_view.xml',
     ],
