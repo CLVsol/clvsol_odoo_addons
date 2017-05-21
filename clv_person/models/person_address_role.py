@@ -48,3 +48,13 @@ class PersonAddressRole(models.Model):
          u'Error! The Person Role Code must be unique!'
          )
     ]
+
+
+class Person(models.Model):
+    _inherit = 'clv.person'
+
+    person_address_role_id = fields.Many2one(
+        comodel_name='clv.person.address.role',
+        string='Person Address Role',
+        required=False
+    )

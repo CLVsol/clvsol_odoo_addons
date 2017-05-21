@@ -18,5 +18,6 @@
 #
 ###############################################################################
 
-from . import person_address_role
 from . import person_address_history
+from . import global_tag
+from . import person_address_history_log

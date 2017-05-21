@@ -19,3 +19,8 @@ access_clv_person_annotation_supmanager,clv.person.annotation.supmanager,model_c
 access_clv_person_annotation_log_user,clv.person.annotation.log.user,model_clv_person_annotation_log,clv_person.group_user,1,0,0,0
 access_clv_person_annotation_log_manager,clv.person.annotation.log.manager,model_clv_person_annotation_log,clv_person.group_manager,1,1,1,0
 access_clv_person_annotation_log_supmanager,clv.person.annotation.log.supmanager,model_clv_person_annotation_log,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_address_role_person_user,clv.person.address.role,model_clv_person_address_role,clv_person.group_user,1,0,0,0
+access_clv_person_address_role_person_manager,clv.person.address.role,model_clv_person_address_role,clv_person.group_manager,1,1,1,0
+access_clv_person_address_role_supmanager,clv.person.address.role,model_clv_person_address_role,clv_person.group_supmanager,1,1,1,1
+

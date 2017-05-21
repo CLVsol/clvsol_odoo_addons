@@ -68,7 +68,7 @@
                     <filter name="opened_address" string="Opened Address" domain="[('sign_out_date','=',False)]"/>
                     <filter name="closed_address" string="Closed Address" domain="[('sign_out_date','!=',False)]"/>
                     <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
-                    <group expand="0" string="Group By...">
+                    <group name="group_by" expand="0" string="Group By...">
                         <filter string="Person" domain="[]" context="{'group_by':'person_id'}"/>
                         <filter string="Address" domain="[]" context="{'group_by':'address_id'}"/>
                         <filter string="Role" domain="[]" context="{'group_by':'role_id'}"/>

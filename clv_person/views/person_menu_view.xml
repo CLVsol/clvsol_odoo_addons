@@ -20,5 +20,11 @@
             sequence="10"
             action="clv_person.clv_person_category_action"/>
 
+        <menuitem name="Person Roles (Address)" id="menu_community_config_config_person_roles_address"
+            parent="clv_base.menu_community_config_config"
+            groups="clv_person.group_user"
+            sequence="20"
+            action="clv_person.clv_person_address_role_action"/>
+
     </data>
 </odoo>

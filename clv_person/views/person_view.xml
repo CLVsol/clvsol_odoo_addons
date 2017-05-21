@@ -8,7 +8,10 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form>
-                    <sheet>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
+                    <sheet name="person">
                         <div name="button_box" class="oe_right oe_button_box">
                             <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
                                 <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
@@ -72,7 +75,7 @@
             <field name="model">clv.person</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree name="person">
+                <tree name="persons" string="Persons">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="age"/>

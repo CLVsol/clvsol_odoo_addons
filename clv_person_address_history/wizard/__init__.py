@@ -18,5 +18,4 @@
 #
 ###############################################################################
 
-import person_address_updt_wizard
-import person_updt
+import person_address_history_updt
