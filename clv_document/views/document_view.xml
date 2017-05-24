@@ -8,6 +8,9 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
                     <sheet>
                         <div name="button_box" class="oe_right oe_button_box">
                             <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
