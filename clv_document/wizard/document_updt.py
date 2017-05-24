@@ -81,6 +81,47 @@ class DocumentUpdate(models.TransientModel):
          ], string='Categories', default=False, readonly=False, required=False
     )
 
+    base_document_id = fields.Many2one(
+        comodel_name='clv.document',
+        string='Base Document'
+    )
+    base_document_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Base Document', default=False, readonly=False, required=False
+    )
+
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Document Responsible'
+    )
+    user_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Document Responsible', default=False, readonly=False, required=False
+    )
+
+    date_document = fields.Date(string='Document Date', default=False, readonly=False, required=False)
+    date_document_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Document Date', default=False, readonly=False, required=False
+    )
+
+    date_foreseen = fields.Date(string='Foreseen Date', default=False, readonly=False, required=False)
+    date_foreseen_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Foreseen Date', default=False, readonly=False, required=False
+    )
+
+    date_deadline = fields.Date(string='Deadline', default=False, readonly=False, required=False)
+    date_deadline_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Deadline', default=False, readonly=False, required=False
+    )
+
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -149,5 +190,30 @@ class DocumentUpdate(models.TransientModel):
                     m2m_list.append((4, category_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 document.category_ids = m2m_list
+
+            if self.base_document_id_selection == 'set':
+                document.base_document_id = self.base_document_id.id
+            if self.base_document_id_selection == 'remove':
+                document.base_document_id = False
+
+            if self.user_id_selection == 'set':
+                document.user_id = self.user_id.id
+            if self.user_id_selection == 'remove':
+                document.user_id = False
+
+            if self.date_document_selection == 'set':
+                document.date_document = self.date_document
+            if self.date_document_selection == 'remove':
+                document.date_document = False
+
+            if self.date_foreseen_selection == 'set':
+                document.date_foreseen = self.date_foreseen
+            if self.date_foreseen_selection == 'remove':
+                document.date_foreseen = False
+
+            if self.date_deadline_selection == 'set':
+                document.date_deadline = self.date_deadline
+            if self.date_deadline_selection == 'remove':
+                document.date_deadline = False
 
         return True
