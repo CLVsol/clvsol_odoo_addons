@@ -12,7 +12,7 @@
                     <label for="document_ids"/>
                     <field name="document_ids"/>
                     <group>
-                        <group>
+                        <group name="global_tag_ids_selection">
                             <field name="global_tag_ids_selection"/>
                         </group>
                         <group>
@@ -51,7 +51,7 @@
                         <group>
                             <field name="date_deadline_selection"/>
                         </group>
-                        <group>
+                        <group name="date_deadline">
                             <field name="date_deadline" nolabel='1'/>
                         </group>
                     </group>
