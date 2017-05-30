@@ -38,6 +38,7 @@
         'views/global_tag_view.xml',
         'views/hr_employee_log_view.xml',
         'views/hr_employee_job_history_view.xml',
+        'views/hr_job_view.xml',
         'views/hr_employee_menu_view.xml',
         'wizard/hr_employee_updt_view.xml',
         'wizard/hr_employee_job_history_updt_view.xml',
