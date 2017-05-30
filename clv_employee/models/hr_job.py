@@ -18,8 +18,10 @@
 #
 ###############################################################################
 
-from . import hr_employee
-from . import global_tag
-from . import hr_employee_log
-from . import hr_employee_job_history
-from . import hr_job
+from odoo import models, fields
+
+
+class HrJob(models.Model):
+    _inherit = 'hr.job'
+
+    active = fields.Boolean(string='Active', default=True)
