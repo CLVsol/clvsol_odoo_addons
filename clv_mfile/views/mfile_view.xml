@@ -30,7 +30,7 @@
                             <h3><field name="path"/></h3>
                         </div>
                         <notebook>
-                            <page string="Information">
+                            <page name="information" string="Information">
                                 <group>
                                     <group>
                                         <field name="date_inclusion"/>
