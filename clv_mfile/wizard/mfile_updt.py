@@ -82,7 +82,7 @@ class MFileUpdate(models.TransientModel):
     )
 
     parent_id = fields.Many2one(
-        comodel_name='res.users',
+        comodel_name='clv.mfile',
         string='Parent File'
     )
     parent_id_selection = fields.Selection(
