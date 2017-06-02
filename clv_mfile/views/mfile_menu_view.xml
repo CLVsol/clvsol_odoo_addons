@@ -14,13 +14,13 @@
             sequence="10"
             action="clv_mfile.clv_mfile_annotation_action"/>
 
-        <menuitem name="Media Files Categories" id="menu_mfmng_config_config_media_file_categories" 
+        <menuitem name="Media File Categories" id="menu_mfmng_config_config_media_file_categories" 
             parent="clv_base.menu_mfmng_config_config"
             groups="clv_mfile.group_user"
             sequence="50"
             action="clv_mfile.clv_mfile_category_action"/>
 
-        <menuitem name="Media Files Formats" id="menu_mfmng_config_config_media_file_formats" 
+        <menuitem name="Media File Formats" id="menu_mfmng_config_config_media_file_formats" 
             parent="clv_base.menu_mfmng_config_config"
             groups="clv_mfile.group_user"
             sequence="60"
