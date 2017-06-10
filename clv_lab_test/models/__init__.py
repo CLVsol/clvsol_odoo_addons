@@ -20,3 +20,4 @@
 
 from . import lab_test_type
 from . import lab_test_result
+from . import lab_test_request

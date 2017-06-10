@@ -35,6 +35,7 @@
         'security/ir.model.access.csv',
         'views/lab_test_type_view.xml',
         'views/lab_test_result_view.xml',
+        'views/lab_test_request_view.xml',
         'views/lab_test_menu_view.xml',
     ],
     'demo': [],
