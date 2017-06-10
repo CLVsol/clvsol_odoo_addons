@@ -23,3 +23,4 @@ from . import lab_test_type_log
 from . import lab_test_result
 from . import lab_test_result_log
 from . import lab_test_request
+from . import lab_test_request_log

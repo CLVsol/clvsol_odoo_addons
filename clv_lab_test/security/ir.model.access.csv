@@ -19,3 +19,7 @@ access_clv_lab_test_result_log_supmanager,clv.lab_test.result.log.supmanager,mod
 access_clv_lab_test_request_user,clv.lab_test.request.user,model_clv_lab_test_request,clv_lab_test.group_user,1,0,0,0
 access_clv_lab_test_request_manager,clv.lab_test.request.manager,model_clv_lab_test_request,clv_lab_test.group_manager,1,1,1,0
 access_clv_lab_test_request_supmanager,clv.lab_test.request.supmanager,model_clv_lab_test_request,clv_lab_test.group_supmanager,1,1,1,1
+
+access_clv_lab_test_request_log_user,clv.lab_test.request.log.user,model_clv_lab_test_request_log,clv_lab_test.group_user,1,0,0,0
+access_clv_lab_test_request_log_manager,clv.lab_test.request.log.manager,model_clv_lab_test_request_log,clv_lab_test.group_manager,1,1,1,0
+access_clv_lab_test_request_log_supmanager,clv.lab_test.request.log.supmanager,model_clv_lab_test_request_log,clv_lab_test.group_supmanager,1,1,1,1

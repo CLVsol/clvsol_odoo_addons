@@ -38,6 +38,7 @@
         'views/lab_test_result_view.xml',
         'views/lab_test_result_log_view.xml',
         'views/lab_test_request_view.xml',
+        'views/lab_test_request_log_view.xml',
         'views/lab_test_menu_view.xml',
     ],
     'demo': [],
