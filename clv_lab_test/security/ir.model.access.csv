@@ -4,6 +4,10 @@ access_clv_lab_test_type_user,clv.lab_test.type.user,model_clv_lab_test_type,clv
 access_clv_lab_test_type_manager,clv.lab_test.type.manager,model_clv_lab_test_type,clv_lab_test.group_manager,1,1,1,0
 access_clv_lab_test_type_supmanager,clv.lab_test.type.supmanager,model_clv_lab_test_type,clv_lab_test.group_supmanager,1,1,1,1
 
+access_clv_lab_test_type_log_user,clv.lab_test.type.log.user,model_clv_lab_test_type_log,clv_lab_test.group_user,1,0,0,0
+access_clv_lab_test_type_log_manager,clv.lab_test.type.log.manager,model_clv_lab_test_type_log,clv_lab_test.group_manager,1,1,1,0
+access_clv_lab_test_type_log_supmanager,clv.lab_test.type.log.supmanager,model_clv_lab_test_type_log,clv_lab_test.group_supmanager,1,1,1,1
+
 access_clv_lab_test_result_user,clv.lab_test.result.user,model_clv_lab_test_result,clv_lab_test.group_user,1,0,0,0
 access_clv_lab_test_result_manager,clv.lab_test.result.manager,model_clv_lab_test_result,clv_lab_test.group_manager,1,1,1,0
 access_clv_lab_test_result_supmanager,clv.lab_test.result.supmanager,model_clv_lab_test_result,clv_lab_test.group_supmanager,1,1,1,1
