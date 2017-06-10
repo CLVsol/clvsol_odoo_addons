@@ -58,10 +58,12 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Search Lab Test Types">
-                    <separator orientation="vertical"/>
                     <field name="name" select="1"/>
                     <field name="code" select="1"/>
-                    <newline/>
+                    <separator/>
+                    <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
+                    <group name="group_by" string="Group By...">
+                    </group>
                 </search>
             </field>
         </record>
