@@ -19,3 +19,4 @@
 ###############################################################################
 
 from . import lab_test_type
+from . import lab_test_result
