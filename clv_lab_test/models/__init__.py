@@ -18,30 +18,9 @@
 #
 ###############################################################################
 
-{
-    'name': 'Base Module',
-    'summary': 'Base Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': ['base'],
-    'data': [
-        'security/base_security.xml',
-        'views/base_menu_view.xml',
-        'views/mfmng_menu_view.xml',
-        'views/community_menu_view.xml',
-        'views/health_menu_view.xml',
-        'data/annotation_seq.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from . import lab_test_type
+from . import lab_test_type_log
+from . import lab_test_request
+from . import lab_test_request_log
+from . import lab_test_result
+from . import lab_test_result_log

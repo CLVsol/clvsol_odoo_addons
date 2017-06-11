@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_lab_test_request_view_form" model="ir.ui.view">
+            <field name="name">clv.lab_test.request.form</field>
+            <field name="model">clv.lab_test.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                            <label for="code" class="oe_edit_only"/>
+                            <h1> <field name="code" placeholder="Lab Test Request Code..."/></h1>
+                        </div>
+                        <div class="oe_title">
+                            <label for="date_requested" class="oe_edit_only"/>
+                            <h3><field name="date_requested" placeholder="Request Date..."/></h3>
+                            <label for="lab_test_type_ids" class="oe_edit_only"/>
+                            <h3><field name="lab_test_type_ids" default_focus="1" placeholder="Test Types..." options="{'no_open': False, 'no_create': True}"/></h3>
+                        </div>
+                        <group name="group_top">
+                            <group name="group_left">
+                            </group>
+                            <group name="group_right">
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record id="clv_lab_test_request_view_tree" model="ir.ui.view">
+            <field name="name">clv.lab_test.request.tree</field>
+            <field name="model">clv.lab_test.request</field>
+            <field name="arch" type="xml">
+                <tree string="Test Requests">
+                    <field name="code"/>
+                    <field name="date_requested"/>
+                    <field name="lab_test_type_ids"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_lab_test_request_view_search" model="ir.ui.view">
+            <field name="name">clv.lab_test.request.search</field>
+            <field name="model">clv.lab_test.request</field>
+            <field name="arch" type="xml">
+                <search string="Search Lab Tests Requests">
+                    <separator orientation="vertical"/>
+                        <field name="code" select="1"/>
+                        <field name="lab_test_type_ids" select="1"/>
+                    <newline/>
+                    <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
+                    <group name="group_by" expand="0" string="Group By...">
+                        <filter string="Lab Test Types" context="{'group_by': 'lab_test_type_names'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+       
+        <record id="clv_lab_test_request_action" model="ir.actions.act_window">
+            <field name="name">Lab Test Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.lab_test.request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_lab_test_request_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new lab test request.
+              </p>
+            </field>
+        </record>
+    
+        <record id="clv_lab_test_type_view_form_request" model="ir.ui.view">
+            <field name="name">clv.lab_test.type.form</field>
+            <field name="model">clv.lab_test.type</field>
+            <field name="inherit_id" ref="clv_lab_test.clv_lab_test_type_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="settings" position="before">
+                    <page string="Lab Test Requests">
+                        <group>
+                            <field name="lab_test_request_ids" colspan="4" nolabel="1"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</odoo>

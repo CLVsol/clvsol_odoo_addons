@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Lab Test" id="menu_health_health_lab_test"
+            parent="clv_base.menu_health_health"
+            groups="clv_lab_test.group_user"
+            sequence="20"/>
+
+        <menuitem name="Requests" id="menu_health_health_lab_test_requests"
+            parent="menu_health_health_lab_test"
+            groups="clv_lab_test.group_user"
+            sequence="10"
+            action="clv_lab_test.clv_lab_test_request_action"/>
+
+        <menuitem name="Results" id="menu_health_health_lab_test_results"
+            parent="menu_health_health_lab_test"
+            groups="clv_lab_test.group_user"
+            sequence="30"
+            action="clv_lab_test.clv_lab_test_result_action"/>
+
+        <menuitem name="Lab Test" id="menu_health_config_config_lab_test" 
+            parent="clv_base.menu_health_config_config"
+            groups="clv_lab_test.group_user"
+            sequence="60"/>
+
+        <menuitem name="Types" id="menu_health_config_config_lab_test_types"
+            parent="menu_health_config_config_lab_test"
+            groups="clv_lab_test.group_user"
+            sequence="30"
+            action="clv_lab_test.clv_lab_test_type_action"/>
+
+    </data>
+</odoo>
