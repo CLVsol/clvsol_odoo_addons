@@ -20,7 +20,7 @@
 
 from datetime import datetime
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class LabTestRequest(models.Model):
@@ -31,20 +31,28 @@ class LabTestRequest(models.Model):
 
     code = fields.Char(string="Lab Test Request Code")
 
-    lab_test_type_id = fields.Many2one(
+    lab_test_type_ids = fields.Many2many(
         comodel_name='clv.lab_test.type',
-        string='Lab Test Type'
+        relation='clv_lab_test_request_lab_test_type_rel',
+        column1='request_id',
+        column2='type_id',
+        string='Lab Test Types'
+    )
+    lab_test_type_names = fields.Char(
+        string='Lab Test Type Names',
+        compute='_compute_lab_test_type_names',
+        store=True
+    )
+    lab_test_type_names_suport = fields.Char(
+        string='Lab Test Type Names Suport',
+        compute='_compute_lab_test_type_names_suport',
+        store=False
     )
 
     date_requested = fields.Datetime(
         string='Requested Date',
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
-
-    # lab_test_result_id = fields.Many2one(
-    #     comodel_name='clv.lab_test.result',
-    #     string='Lab Test Result'
-    # )
 
     active = fields.Boolean(string='Active', default=1)
 
@@ -54,12 +62,33 @@ class LabTestRequest(models.Model):
          u'Error! The Code must be unique!'),
     ]
 
+    @api.depends('lab_test_type_ids')
+    def _compute_lab_test_type_names(self):
+        for r in self:
+            r.lab_test_type_names = r.lab_test_type_names_suport
+
+    @api.multi
+    def _compute_lab_test_type_names_suport(self):
+        for r in self:
+            lab_test_type_names = False
+            for lab_test_type in r.lab_test_type_ids:
+                if lab_test_type_names is False:
+                    lab_test_type_names = lab_test_type.name
+                else:
+                    lab_test_type_names = lab_test_type_names + ', ' + lab_test_type.name
+            r.lab_test_type_names_suport = lab_test_type_names
+            if r.lab_test_type_names != lab_test_type_names:
+                record = self.env['clv.lab_test.request'].search([('id', '=', r.id)])
+                record.write({'lab_test_type_ids': r.lab_test_type_ids})
+
 
 class LabTestType(models.Model):
     _inherit = 'clv.lab_test.type'
 
-    lab_test_request_ids = fields.One2many(
+    lab_test_request_ids = fields.Many2many(
         comodel_name='clv.lab_test.request',
-        inverse_name='lab_test_type_id',
+        relation='clv_lab_test_request_lab_test_type_rel',
+        column1='type_id',
+        column2='request_id',
         string='Lab Test Requests'
     )
