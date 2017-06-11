@@ -26,10 +26,13 @@ from odoo import fields, models
 class LabTestResult(models.Model):
     _description = 'Lab Test Result'
     _name = "clv.lab_test.result"
+    _rec_name = 'code'
+    _order = 'code'
 
-    name = fields.Char(string='Lab Test Code')
+    code = fields.Char(string='Lab Test Result Code')
 
     lab_test_type_id = fields.Many2one(comodel_name='clv.lab_test.type', string='Lab Test Type')
+    lab_test_request_id = fields.Many2one(comodel_name='clv.lab_test.request', string='Lab Test Request')
 
     results = fields.Text(string='Results')
     diagnosis = fields.Text(string='Diagnosis')
@@ -43,8 +46,8 @@ class LabTestResult(models.Model):
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [
-        ('name_uniq',
-         'UNIQUE (name)',
+        ('code_uniq',
+         'UNIQUE (code)',
          u'Error! The Code must be unique!'),
     ]
 
@@ -55,5 +58,15 @@ class LabTestType(models.Model):
     lab_test_result_ids = fields.One2many(
         comodel_name='clv.lab_test.result',
         inverse_name='lab_test_type_id',
+        string='Lab Test Results'
+    )
+
+
+class LabTestRequest(models.Model):
+    _inherit = 'clv.lab_test.request'
+
+    lab_test_result_ids = fields.One2many(
+        comodel_name='clv.lab_test.result',
+        inverse_name='lab_test_request_id',
         string='Lab Test Results'
     )

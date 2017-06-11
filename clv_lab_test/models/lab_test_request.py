@@ -26,8 +26,10 @@ from odoo import fields, models
 class LabTestRequest(models.Model):
     _description = 'Lab Test Request'
     _name = 'clv.lab_test.request'
+    _rec_name = 'code'
+    _order = 'code'
 
-    name = fields.Char(string="Lab Test Code")
+    code = fields.Char(string="Lab Test Request Code")
 
     lab_test_type_id = fields.Many2one(
         comodel_name='clv.lab_test.type',
@@ -39,12 +41,18 @@ class LabTestRequest(models.Model):
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
 
-    lab_test_result_id = fields.Many2one(
-        comodel_name='clv.lab_test.result',
-        string='Lab Test Result'
-    )
+    # lab_test_result_id = fields.Many2one(
+    #     comodel_name='clv.lab_test.result',
+    #     string='Lab Test Result'
+    # )
 
     active = fields.Boolean(string='Active', default=1)
+
+    _sql_constraints = [
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]
 
 
 class LabTestType(models.Model):

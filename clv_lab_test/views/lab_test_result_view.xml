@@ -14,12 +14,14 @@
                             </button>
                         </div>
                         <div name="center" class="oe_center">
-                            <label for="name" class="oe_edit_only"/>
-                            <h1> <field name="name" default_focus="1" placeholder="Lab Test Code..."/></h1>
+                            <label for="code" class="oe_edit_only"/>
+                            <h1> <field name="code" default_focus="1" placeholder="Lab Test Result Code..."/></h1>
                         </div>
                         <div name="title" class="oe_title">
                             <label for="lab_test_type_id" class="oe_edit_only"/>
-                            <h3><field name="lab_test_type_id" default_focus="1" placeholder="Test Type..." options="{'no_open': False, 'no_create': True}"/></h3>
+                            <h3><field name="lab_test_type_id" default_focus="1" placeholder="Lab Test Type..." options="{'no_open': False, 'no_create': True}"/></h3>
+                            <label for="lab_test_request_id" class="oe_edit_only"/>
+                            <h3><field name="lab_test_request_id" default_focus="1" placeholder="Lab Test Request..." options="{'no_open': False, 'no_create': True}"/></h3>
                             <label for="date_analysis" class="oe_edit_only"/>
                             <h3><field name="date_analysis" placeholder="Analysis Date..."/></h3>
                         </div>
@@ -53,8 +55,9 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree name="lab_test_result" string='Lab Test'>
-                    <field name="name"/>
+                    <field name="code"/>
                     <field name="lab_test_type_id"/>
+                    <field name="lab_test_request_id"/>
                     <field name="date_analysis"/>
                     <field name="date_result"/>
                 </tree>
@@ -67,18 +70,16 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Lab Test">
-                    <field name="name"/>
+                    <field name="code"/>
                     <field name="lab_test_type_id"/>
+                    <field name="lab_test_request_id"/>
                     <field name="date_analysis"/>
                     <field name="date_result"/>
                     <separator/>
                     <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                     <group name="group_by" expand="0" string="Group By...">
                         <filter string="Lab Test Type" domain="[]" context="{'group_by': 'lab_test_type_id'}"/>
-                        <filter string="Patient" domain="[]" context="{'group_by': 'patient_id'}"/>
-                        <filter string="Analysis Date" domain="[]" context="{'group_by': 'date_analysis'}"/>
-                        <filter string="Professional Responsible" context="{'group_by': 'professional_id'}"/>
-                        <filter string="Person Responsible" context="{'group_by': 'person_user_id'}"/>
+                        <filter string="Lab Test Request" domain="[]" context="{'group_by': 'lab_test_request_id'}"/>
                     </group>
                 </search>
             </field>
@@ -104,6 +105,22 @@
             <field name="name">clv.lab_test.type.form</field>
             <field name="model">clv.lab_test.type</field>
             <field name="inherit_id" ref="clv_lab_test.clv_lab_test_type_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="settings" position="before">
+                    <page string="Lab Test Results">
+                        <group>
+                            <field name="lab_test_result_ids" colspan="4" nolabel="1"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_request_view_form_result" model="ir.ui.view">
+            <field name="name">clv.lab_test.request.form</field>
+            <field name="model">clv.lab_test.request</field>
+            <field name="inherit_id" ref="clv_lab_test.clv_lab_test_request_view_form"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <page name="settings" position="before">

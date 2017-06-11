@@ -25,10 +25,11 @@ from odoo import fields, models
 
 class LabTestType (models.Model):
     _description = 'Lab Test Type'
-    _name = "clv.lab_test.type"
+    _name = 'clv.lab_test.type'
+    _order = 'name'
 
     name = fields.Char(string='Lab Test Type', required=True)
-    code = fields.Char(string='Lab Test Code')
+    code = fields.Char(string='Lab Test Type Code')
 
     notes = fields.Text(string='Notes')
 
