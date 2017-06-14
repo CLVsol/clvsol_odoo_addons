@@ -12,7 +12,7 @@
                     <label for="person_ids"/>
                     <field name="person_ids"/>
                     <group>
-                        <group>
+                        <group name="global_tag_ids_selection">
                             <field name="global_tag_ids_selection"/>
                         </group>
                         <group>
