@@ -18,7 +18,7 @@
 #
 ###############################################################################
 
-from datetime import datetime
+# from datetime import datetime
 
 from odoo import fields, models
 
@@ -39,7 +39,7 @@ class LabTestResult(models.Model):
 
     date_result = fields.Datetime(
         string='Date of the Result',
-        default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        # default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     )
     date_analysis = fields.Datetime(string='Date of the Analysis')
 
