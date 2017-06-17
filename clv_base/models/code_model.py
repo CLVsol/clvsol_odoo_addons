@@ -67,6 +67,9 @@ class CodeModel(models.AbstractModel):
             if 'code' not in values or ('code' in values and values['code'] == '/'):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence'])
                 values['code'] = format_code(code_seq)
+        else:
+            if 'code' not in values or ('code' in values and values['code'] == '/'):
+                values['code'] = False
         return super(CodeModel, self).create(values)
 
     @api.multi
