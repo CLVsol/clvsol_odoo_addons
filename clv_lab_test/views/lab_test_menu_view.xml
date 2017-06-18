@@ -24,6 +24,12 @@
             groups="clv_lab_test.group_user"
             sequence="60"/>
 
+        <menuitem name="Units" id="menu_community_config_config_lab_test_units"
+            parent="menu_health_config_config_lab_test"
+            groups="clv_lab_test.group_user"
+            sequence="10"
+            action="clv_lab_test.clv_lab_test_unit_action"/>
+
         <menuitem name="Types" id="menu_health_config_config_lab_test_types"
             parent="menu_health_config_config_lab_test"
             groups="clv_lab_test.group_user"

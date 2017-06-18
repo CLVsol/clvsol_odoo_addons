@@ -33,6 +33,7 @@
     'data': [
         'security/lab_test_security.xml',
         'security/ir.model.access.csv',
+        'views/lab_test_unit_view.xml',
         'views/lab_test_type_view.xml',
         'views/lab_test_type_log_view.xml',
         'views/lab_test_request_view.xml',
