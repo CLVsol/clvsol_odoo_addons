@@ -21,14 +21,16 @@
 from odoo import fields, models
 
 
-class AnimalSpecies(models.Model):
-    _description = 'Animal Species'
-    _name = 'clv.animal.species'
+class AnimalBreed(models.Model):
+    _description = 'Animal Breed'
+    _name = 'clv.animal.breed'
     _order = 'name'
 
-    name = fields.Char(string='Species', required=True)
+    name = fields.Char(string='Breed', required=True)
 
-    code = fields.Char(string='Species Code', required=False)
+    code = fields.Char(string='Breed Code', required=False)
+
+    species_id = fields.Many2one(comodel_name='clv.animal.species', string='Species', ondelete='restrict')
 
     notes = fields.Text(string='Notes')
 
@@ -49,18 +51,29 @@ class AnimalSpecies(models.Model):
 class Animal(models.Model):
     _inherit = 'clv.animal'
 
-    species_id = fields.Many2one(
-        comodel_name='clv.animal.species',
-        string='Species',
-        ondelete='restrict'
+    breed_id = fields.Many2one(
+        comodel_name='clv.animal.breed',
+        string='Breed',
+        ondelete='restrict',
+        domain="[('species_id','in',species_id)]"
     )
 
 
 class AnimalSpecies_2(models.Model):
     _inherit = 'clv.animal.species'
 
+    breed_ids = fields.One2many(
+        comodel_name='clv.animal.breed',
+        inverse_name='species_id',
+        string='Breeds'
+    )
+
+
+class AnimalBreed_2(models.Model):
+    _inherit = 'clv.animal.breed'
+
     animal_ids = fields.One2many(
         comodel_name='clv.animal',
-        inverse_name='species_id',
+        inverse_name='breed_id',
         string='Animals'
     )
