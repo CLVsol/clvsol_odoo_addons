@@ -13,5 +13,11 @@
             groups="clv_animal.group_user"
             sequence="90"/>
 
+        <menuitem name="Animal Species" id="menu_community_community_config_animal_species" 
+            parent="menu_community_community_config_animal"
+            groups="clv_animal.group_user"
+            sequence="10"
+            action="clv_animal.clv_animal_species_action"/>
+
     </data>
 </odoo>

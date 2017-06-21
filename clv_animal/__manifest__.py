@@ -35,6 +35,7 @@
         'security/animal_security.xml',
         'security/ir.model.access.csv',
         'views/animal_view.xml',
+        'views/animal_species_view.xml',
         'views/animal_menu_view.xml',
     ],
     'demo': [],
