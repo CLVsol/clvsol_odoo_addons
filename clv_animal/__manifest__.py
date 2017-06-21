@@ -40,6 +40,7 @@
         'views/animal_category_view.xml',
         'views/global_tag_view.xml',
         'views/animal_log_view.xml',
+        'views/animal_annotation_view.xml',
         'views/animal_menu_view.xml',
     ],
     'demo': [],

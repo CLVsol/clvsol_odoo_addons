@@ -18,10 +18,26 @@
 #
 ###############################################################################
 
-from . import animal
-from . import animal_species
-from . import animal_breed
-from . import animal_category
-from . import global_tag
-from . import animal_log
-from . import animal_annotation
+from openerp import fields, models
+
+
+class AnimalAnotation(models.Model):
+    _description = 'Animal Annotation'
+    _name = 'clv.animal.annotation'
+    _inherit = 'clv.object.annotation'
+
+    animal_id = fields.Many2one(
+        comodel_name='clv.animal',
+        string='Animal',
+        ondelete='cascade'
+    )
+
+
+class Animal(models.Model):
+    _inherit = "clv.animal"
+
+    annotation_ids = fields.One2many(
+        comodel_name='clv.animal.annotation',
+        inverse_name='animal_id',
+        string='Annotations'
+    )

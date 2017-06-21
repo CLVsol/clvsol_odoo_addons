@@ -19,3 +19,7 @@ access_clv_animal_category_supmanager,clv.animal.category.supmanager,model_clv_a
 access_clv_animal_log_user,clv.animal.log.user,model_clv_animal_log,clv_animal.group_user,1,0,0,0
 access_clv_animal_log_manager,clv.animal.log.manager,model_clv_animal_log,clv_animal.group_manager,1,1,1,0
 access_clv_animal_log_supmanager,clv.animal.log.supmanager,model_clv_animal_log,clv_animal.group_supmanager,1,1,1,1
+
+access_clv_animal_annotation_user,clv.animal.annotation.user,model_clv_animal_annotation,clv_animal.group_user,1,0,0,0
+access_clv_animal_annotation_manager,clv.animal.annotation.manager,model_clv_animal_annotation,clv_animal.group_manager,1,1,1,0
+access_clv_animal_annotation_supmanager,clv.animal.annotation.supmanager,model_clv_animal_annotation,clv_animal.group_supmanager,1,1,1,1
