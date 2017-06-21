@@ -23,3 +23,4 @@ from . import animal_species
 from . import animal_breed
 from . import animal_category
 from . import global_tag
+from . import animal_log
