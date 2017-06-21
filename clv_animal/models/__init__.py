@@ -26,3 +26,4 @@ from . import global_tag
 from . import animal_log
 from . import animal_annotation
 from . import animal_annotation_log
+from . import address

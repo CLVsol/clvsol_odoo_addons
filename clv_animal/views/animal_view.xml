@@ -23,7 +23,7 @@
                         </div>
                         <div name="title" class="oe_title">
                             <label for="code" class="oe_edit_only"/>
-                            <h3><field name="code" placeholder="Person Code..."/></h3>
+                            <h3><field name="code" placeholder="Animal Code..."/></h3>
                         </div>
                         <group>
                             <group name="status">

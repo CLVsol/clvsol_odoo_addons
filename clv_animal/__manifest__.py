@@ -42,6 +42,7 @@
         'views/animal_log_view.xml',
         'views/animal_annotation_view.xml',
         'views/animal_annotation_log_view.xml',
+        'views/address_view.xml',
         'views/animal_menu_view.xml',
     ],
     'demo': [],
