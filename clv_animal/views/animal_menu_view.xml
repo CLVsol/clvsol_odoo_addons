@@ -25,5 +25,11 @@
             sequence="20"
             action="clv_animal.clv_animal_breed_action"/>
 
+        <menuitem name="Animal Categories" id="menu_community_community_config_animal_categories" 
+            parent="menu_community_community_config_animal"
+            groups="clv_animal.group_user"
+            sequence="30"
+            action="clv_animal.clv_animal_category_action"/>
+
     </data>
 </odoo>

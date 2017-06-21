@@ -11,3 +11,7 @@ access_clv_animal_species_supmanager,clv.animal.species.supmanager,model_clv_ani
 access_clv_animal_breed_user,clv.animal.breed.user,model_clv_animal_breed,clv_animal.group_user,1,0,0,0
 access_clv_animal_breed_manager,clv.animal.breed.manager,model_clv_animal_breed,clv_animal.group_manager,1,1,1,0
 access_clv_animal_breed_supmanager,clv.animal.breed.supmanager,model_clv_animal_breed,clv_animal.group_supmanager,1,1,1,1
+
+access_clv_animal_category_user,clv.animal.category.user,model_clv_animal_category,clv_animal.group_user,1,0,0,0
+access_clv_animal_category_manager,clv.animal.category.manager,model_clv_animal_category,clv_animal.group_manager,1,1,1,0
+access_clv_animal_category_supmanager,clv.animal.category.supmanager,model_clv_animal_category,clv_animal.group_supmanager,1,1,1,1
