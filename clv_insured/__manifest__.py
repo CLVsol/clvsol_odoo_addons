@@ -36,6 +36,7 @@
         'security/ir.model.access.csv',
         'views/insured_view.xml',
         'views/insured_category_view.xml',
+        'views/global_tag_view.xml',
         'views/insured_menu_view.xml',
     ],
     'demo': [],
