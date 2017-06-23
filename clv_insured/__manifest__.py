@@ -41,6 +41,7 @@
         'views/insured_log_view.xml',
         'views/insured_annotation_view.xml',
         'views/insured_annotation_log_view.xml',
+        'wizard/insured_updt_view.xml',
         'views/insured_menu_view.xml',
     ],
     'demo': [],
