@@ -18,37 +18,26 @@
 #
 ###############################################################################
 
-{
-    'name': 'Insured',
-    'summary': 'Insured Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_address',
-    ],
-    'data': [
-        'security/insured_security.xml',
-        'security/ir.model.access.csv',
-        'views/insured_view.xml',
-        'views/insured_category_view.xml',
-        'views/global_tag_view.xml',
-        'views/address_view.xml',
-        'views/insured_log_view.xml',
-        'views/insured_annotation_view.xml',
-        'views/insured_menu_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from openerp import fields, models
+
+
+class InsuredAnotation(models.Model):
+    _description = 'Insured Annotation'
+    _name = 'clv.insured.annotation'
+    _inherit = 'clv.object.annotation'
+
+    insured_id = fields.Many2one(
+        comodel_name='clv.insured',
+        string='Insured',
+        ondelete='cascade'
+    )
+
+
+class Insured(models.Model):
+    _inherit = "clv.insured"
+
+    annotation_ids = fields.One2many(
+        comodel_name='clv.insured.annotation',
+        inverse_name='insured_id',
+        string='Annotations'
+    )

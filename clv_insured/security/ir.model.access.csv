@@ -11,3 +11,7 @@ access_clv_insured_category_supmanager,clv.insured.category.supmanager,model_clv
 access_clv_insured_log_user,clv.insured.log.user,model_clv_insured_log,clv_insured.group_user,1,0,0,0
 access_clv_insured_log_manager,clv.insured.log.manager,model_clv_insured_log,clv_insured.group_manager,1,1,1,0
 access_clv_insured_log_supmanager,clv.insured.log.supmanager,model_clv_insured_log,clv_insured.group_supmanager,1,1,1,1
+
+access_clv_insured_annotation_user,clv.insured.annotation.user,model_clv_insured_annotation,clv_insured.group_user,1,0,0,0
+access_clv_insured_annotation_manager,clv.insured.annotation.manager,model_clv_insured_annotation,clv_insured.group_manager,1,1,1,0
+access_clv_insured_annotation_supmanager,clv.insured.annotation.supmanager,model_clv_insured_annotation,clv_insured.group_supmanager,1,1,1,1
