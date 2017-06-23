@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Insureds" id="menu_insurance_insured_insureds"
+            parent="clv_base.menu_insurance_insured"
+            groups="clv_insured.group_user"
+            sequence="10"
+            action="clv_insured.clv_insured_action"/>
+
+        <menuitem name="Annotations" id="menu_insurance_insured_insureds_annotations"
+            parent="menu_insurance_insured_insureds"
+            groups="clv_insured.group_user"
+            sequence="10"
+            action="clv_insured.clv_insured_annotation_action"/>
+
+        <menuitem name="Insured Categories" id="menu_insurance_insurance_config_insured_categories" 
+            parent="clv_base.menu_insurance_config_config"
+            groups="clv_insured.group_user"
+            sequence="10"
+            action="clv_insured.clv_insured_category_action"/>
+
+    </data>
+</odoo>
