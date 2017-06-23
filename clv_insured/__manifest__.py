@@ -38,6 +38,7 @@
         'views/insured_category_view.xml',
         'views/global_tag_view.xml',
         'views/address_view.xml',
+        'views/insured_log_view.xml',
         'views/insured_menu_view.xml',
     ],
     'demo': [],
