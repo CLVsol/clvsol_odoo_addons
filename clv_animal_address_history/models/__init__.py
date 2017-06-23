@@ -20,3 +20,4 @@
 
 from . import animal_address_history
 from . import animal_address_history_log
+from . import global_tag
