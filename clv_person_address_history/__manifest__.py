@@ -20,7 +20,7 @@
 
 {
     'name': 'Person Address History',
-    'summary': 'Person Address History Module used in MostlyOpen Solutions.',
+    'summary': 'Person Address History Module used in CLVsol Solutions.',
     'version': '3.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
