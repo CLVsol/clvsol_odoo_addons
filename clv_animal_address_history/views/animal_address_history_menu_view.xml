@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem name="Address History" id="menu_community_community_animals_address_history"
+            parent="clv_animal.menu_community_community_animals"
+            groups="clv_animal.group_user"
+            sequence="10"
+            action="clv_animal_address_history.clv_animal_address_history_actions"/>
+
+    </data>
+</openerp>
