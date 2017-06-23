@@ -3,3 +3,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_clv_insured_user,clv.insured.user,model_clv_insured,clv_insured.group_user,1,0,0,0
 access_clv_insured_manager,clv.insured.manager,model_clv_insured,clv_insured.group_manager,1,1,1,0
 access_clv_insured_supmanager,clv.insured.supmanager,model_clv_insured,clv_insured.group_supmanager,1,1,1,1
+
+access_clv_insured_category_user,clv.insured.category.user,model_clv_insured_category,clv_insured.group_user,1,0,0,0
+access_clv_insured_category_manager,clv.insured.category.manager,model_clv_insured_category,clv_insured.group_manager,1,1,1,0
+access_clv_insured_category_supmanager,clv.insured.category.supmanager,model_clv_insured_category,clv_insured.group_supmanager,1,1,1,1
