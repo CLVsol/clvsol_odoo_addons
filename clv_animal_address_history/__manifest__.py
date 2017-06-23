@@ -19,8 +19,8 @@
 ###############################################################################
 
 {
-    'name': 'Person Address History',
-    'summary': 'Person Address History Module used in CLVsol Solutions.',
+    'name': 'Animal Address History',
+    'summary': 'Animal Address History Module used in CLVsol Solutions.',
     'version': '3.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
@@ -28,15 +28,14 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_address',
-        'clv_person',
+        'clv_animal',
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/person_address_history_view.xml',
+        'views/animal_address_history_view.xml',
+        'views/animal_address_history_log_view.xml',
         'views/global_tag_view.xml',
-        'views/person_address_history_log_view.xml',
-        'views/person_address_history_menu_view.xml',
-        'wizard/person_address_history_updt_view.xml',
+        'views/animal_address_history_menu_view.xml',
     ],
     'demo': [],
     'test': [],

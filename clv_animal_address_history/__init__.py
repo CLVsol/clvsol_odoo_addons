@@ -18,33 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Person Address History',
-    'summary': 'Person Address History Module used in CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': [
-        'clv_address',
-        'clv_person',
-    ],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/person_address_history_view.xml',
-        'views/global_tag_view.xml',
-        'views/person_address_history_log_view.xml',
-        'views/person_address_history_menu_view.xml',
-        'wizard/person_address_history_updt_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from . import models
