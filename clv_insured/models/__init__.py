@@ -21,3 +21,4 @@
 from . import insured
 from . import insured_category
 from . import global_tag
+from . import address
