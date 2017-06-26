@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_medicament_view_form" model="ir.ui.view">
+            <field name="name">clv.medicament.form</field>
+            <field name="model">clv.medicament</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
+                    <sheet name="medicament">
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" default_focus="1" placeholder="Product Name..."/></h1>
+                        </div>
+                        <div name="title" class="oe_title">
+                            <label for="code" class="oe_edit_only"/>
+                            <h3><field name="code" placeholder="Medicament Code..."/></h3>
+                        </div>
+                        <group>
+                            <group name="A">
+                                <field name="medicament_name" placeholder="Name..."/>
+                            </group>
+                            <group name="B">
+                                <field name="presentation" placeholder="Presentation..."/>
+                            </group>
+                            <group name="X">
+                            </group>
+                            <group name="Y">
+                            </group>
+                        </group>
+                        <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <notebook>
+                            <page name="medicament_information" string="Medicament Information" groups="clv_base.group_supuser">
+                                <group>
+                                    <group>
+                                        <field name="is_product"/>
+                                        <field name="is_fraction"/>
+                                        <field name="for_hospital_use"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_inclusion"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_view_tree" model="ir.ui.view">
+            <field name="name">clv.medicament.tree</field>
+            <field name="model">clv.medicament</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree name="medicaments" string="Medicaments">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="presentation"/>
+                    <field name="is_product"/>
+                    <field name="is_fraction"/>
+                    <field name="for_hospital_use"/>
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_view_search" model="ir.ui.view">
+            <field name="name">clv.medicament.search</field>
+            <field name="model">clv.medicament</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="medicament_name"/>
+                    <field name="code"/>
+                    <field name="presentation"/>
+                    <field name="notes"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <filter string="Not a Product" name="not_product" domain="[('is_product','=',0)]"/>
+                    <filter string="Product" name="product" domain="[('is_product','=',1)]"/>
+                    <filter string="Not a Fraction" name="not_fraction" domain="[('is_fraction','=',0)]"/>
+                    <filter string="Fraction" name="fraction" domain="[('is_fraction','=',1)]"/>
+                    <filter string="Not For Hospital Use" name="not_for_hospital_use" domain="[('for_hospital_use','=',0)]"/>
+                    <filter string="For Hospital Use" name="for_hospital_use" domain="[('for_hospital_use','=',1)]"/>
+                    <filter string="Missing Medicament Code" name="missing_medicament_code" domain="[('code','=',False)]"/>
+                    <group name="group_by" expand="0" string="Group By...">
+                        <filter string="Concentration" domain="[]" context="{'group_by': 'concentration'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_action" model="ir.actions.act_window">
+            <field name="name">Medicaments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.medicament</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_medicament_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new medicament.
+              </p>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Medicaments" id="menu_pharmacy_medicament_medicaments"
+            parent="clv_base.menu_pharmacy_medicament"
+            groups="clv_medicament.group_user"
+            sequence="10"
+            action="clv_medicament.clv_medicament_action"/>
+
+        <menuitem name="Medicament" id="menu_pharmacy_config_config_medicament" 
+            parent="clv_base.menu_pharmacy_config_config"
+            groups="clv_medicament.group_user"
+            sequence="10"/>
+
+    </data>
+</odoo>
