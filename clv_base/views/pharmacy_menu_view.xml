@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem name="Pharmacy" id="menu_pharmacy" 
+            groups="clv_base.group_user"
+            sequence="17"/>
+
+        <menuitem name="Medicament" id="menu_pharmacy_medicament"  
+            parent="menu_pharmacy"
+            groups="clv_base.group_user"
+            sequence="10"/>
+
+        <menuitem name="Configuration" id="menu_pharmacy_config"  
+            parent="menu_pharmacy"
+            groups="clv_base.group_manager"
+            sequence="90"/>
+
+        <menuitem name="Configuration" id="menu_pharmacy_config_config"  
+            parent="menu_pharmacy_config"
+            groups="clv_base.group_manager"
+            sequence="10"/>
+
+        <menuitem name="Medicament" id="menu_pharmacy_config_config_medicament"  
+            parent="menu_pharmacy_config_config"
+            groups="clv_base.group_manager"
+            sequence="10"/>
+
+    </data>
+</openerp>
