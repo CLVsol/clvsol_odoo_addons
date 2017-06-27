@@ -80,3 +80,24 @@ class MedicamentModel(models.AbstractModel):
          'UNIQUE (code)',
          u'Error! The Code must be unique!'),
     ]
+
+
+class MedicamentModel_2(models.AbstractModel):
+    _inherit = 'clv.medicament.model'
+
+    active_component_id = fields.Many2one(
+        comodel_name='clv.medicament.active_component',
+        string='Active Component',
+        help='Medicament Active Component'
+    )
+    concentration = fields.Char(string='Concentration')
+
+
+class MedicamentActiveComponent(models.Model):
+    _inherit = 'clv.medicament.active_component'
+
+    medicament_ids = fields.One2many(
+        comodel_name='clv.medicament',
+        inverse_name='active_component_id',
+        string='Medicaments'
+    )

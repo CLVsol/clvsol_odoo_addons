@@ -13,5 +13,11 @@
             groups="clv_medicament.group_user"
             sequence="10"/>
 
+        <menuitem name="Active Components" id="menu_pharmacy_config_config_medicament_active_components"
+            parent="menu_pharmacy_config_config_medicament"
+            groups="clv_medicament.group_user"
+            sequence="20"
+            action="clv_medicament.clv_medicament_active_component_action"/>
+
     </data>
 </odoo>

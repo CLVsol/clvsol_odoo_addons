@@ -18,32 +18,35 @@
 #
 ###############################################################################
 
-{
-    'name': 'Medicament',
-    'summary': 'Medicament Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-    ],
-    'data': [
-        'security/medicament_security.xml',
-        'security/ir.model.access.csv',
-        'views/medicament_view.xml',
-        'views/medicament_active_component_view.xml',
-        'views/medicament_menu_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import api, fields, models
+
+
+class MedicamentActiveComponent(models.Model):
+    _description = 'Medicament Active Component'
+    _name = 'clv.medicament.active_component'
+    _order = 'name'
+
+    name = fields.Char(string='Active Component', required=True)
+
+    code = fields.Char(string='Code')
+
+    notes = fields.Text(string='Notes')
+
+    active = fields.Boolean(string='Active', default=1)
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The Active Component must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]
+
+    @api.multi
+    @api.depends('name', 'code')
+    def name_get(self):
+        result = []
+        for active_component in self:
+            result.append((active_component.id, '%s {%s}' % (active_component.name, active_component.code)))
+        return result

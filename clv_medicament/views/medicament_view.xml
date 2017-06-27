@@ -33,6 +33,8 @@
                                 <field name="presentation" placeholder="Presentation..."/>
                             </group>
                             <group name="X">
+                                <field name="active_component_id" placeholder="Active Component..." options="{'no_open': False, 'no_create': True}"/>
+                                <field name="concentration" placeholder="Concentration..."/>
                             </group>
                             <group name="Y">
                             </group>
@@ -70,6 +72,8 @@
                     <field name="name"/>
                     <field name="code"/>
                     <field name="presentation"/>
+                    <field name="active_component_id"/>
+                    <field name="concentration"/>
                     <field name="is_product"/>
                     <field name="is_fraction"/>
                     <field name="for_hospital_use"/>
@@ -88,6 +92,8 @@
                     <field name="medicament_name"/>
                     <field name="code"/>
                     <field name="presentation"/>
+                    <field name="active_component_id"/>
+                    <field name="concentration"/>
                     <field name="notes"/>
                     <separator/>
                     <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
@@ -98,7 +104,10 @@
                     <filter string="Not For Hospital Use" name="not_for_hospital_use" domain="[('for_hospital_use','=',0)]"/>
                     <filter string="For Hospital Use" name="for_hospital_use" domain="[('for_hospital_use','=',1)]"/>
                     <filter string="Missing Medicament Code" name="missing_medicament_code" domain="[('code','=',False)]"/>
+                    <filter string="Missing Active Component" name="missing_active_component" domain="[('active_component_id','=',False)]"/>
+                    <filter string="Missing Concentration" name="missing_concentration" domain="[('concentration','=',False)]"/>
                     <group name="group_by" expand="0" string="Group By...">
+                        <filter string="Active Component" domain="[]" context="{'group_by':'active_component_id'}"/>
                         <filter string="Concentration" domain="[]" context="{'group_by': 'concentration'}"/>
                     </group>
                 </search>
