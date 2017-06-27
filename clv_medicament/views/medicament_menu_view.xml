@@ -25,5 +25,11 @@
             sequence="40"
             action="clv_medicament.clv_medicament_manufacturer_action"/>
 
+        <menuitem name="Presentation Form" id="menu_pharmacy_config_config_medicament_pres_form"
+            parent="menu_pharmacy_config_config_medicament"
+            groups="clv_medicament.group_manager"
+            sequence="50"
+            action="clv_medicament.clv_medicament_pres_form_action" />
+
     </data>
 </odoo>

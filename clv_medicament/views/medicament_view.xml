@@ -35,6 +35,7 @@
                             <group name="X">
                                 <field name="active_component_id" placeholder="Active Component..." options="{'no_open': False, 'no_create': True}"/>
                                 <field name="concentration" placeholder="Concentration..."/>
+                                <field name="pres_form_id" placeholder="Presentation Form..." options="{'no_open': False, 'no_create': True}"/>
                             </group>
                             <group name="Y">
                                 <field name="manufacturer_id" placeholder="Manufacturer..." options="{'no_open': False, 'no_create': True}"/>
@@ -75,6 +76,7 @@
                     <field name="presentation"/>
                     <field name="active_component_id"/>
                     <field name="concentration"/>
+                    <field name="pres_form_id"/>
                     <field name="manufacturer_id"/>
                     <field name="is_product"/>
                     <field name="is_fraction"/>
@@ -96,6 +98,7 @@
                     <field name="presentation"/>
                     <field name="active_component_id"/>
                     <field name="concentration"/>
+                    <field name="pres_form_id"/>
                     <field name="manufacturer_id"/>
                     <field name="notes"/>
                     <separator/>
@@ -109,10 +112,12 @@
                     <filter string="Missing Medicament Code" name="missing_medicament_code" domain="[('code','=',False)]"/>
                     <filter string="Missing Active Component" name="missing_active_component" domain="[('active_component_id','=',False)]"/>
                     <filter string="Missing Concentration" name="missing_concentration" domain="[('concentration','=',False)]"/>
+                    <filter string="Missing Presentastion Form" name="missing_pres_form" domain="[('pres_form_id','=',False)]"/>
                     <filter string="Missing Manufacturer" name="missing_manufacturer" domain="[('manufacturer_id','=',False)]"/>
                     <group name="group_by" expand="0" string="Group By...">
                         <filter string="Active Component" domain="[]" context="{'group_by':'active_component_id'}"/>
                         <filter string="Concentration" domain="[]" context="{'group_by': 'concentration'}"/>
+                        <filter string="Presentaion Form" domain="[]" context="{'group_by': 'pres_form_id'}"/>
                         <filter string="Manufacturer" domain="[]" context="{'group_by':'manufacturer_id'}"/>
                     </group>
                 </search>

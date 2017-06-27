@@ -35,6 +35,7 @@
         'security/ir.model.access.csv',
         'views/medicament_view.xml',
         'views/medicament_active_component_view.xml',
+        'views/medicament_pres_form_view.xml',
         'views/medicament_manufacturer_view.xml',
         'views/medicament_menu_view.xml',
     ],

@@ -19,6 +19,7 @@
 ###############################################################################
 
 from . import medicament_active_component
+from . import medicament_pres_form
 from . import medicament_manufacturer
 from . import medicament_model
 from . import medicament

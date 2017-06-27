@@ -121,3 +121,23 @@ class MedicamentManufacturer(models.Model):
         inverse_name='manufacturer_id',
         string='Medicaments'
     )
+
+
+class MedicamentModel_4(models.AbstractModel):
+    _inherit = 'clv.medicament.model'
+
+    pres_form_id = fields.Many2one(
+        comodel_name='clv.medicament.pres_form',
+        string='Presentation Form',
+        help='Medicament Presentation Form'
+    )
+
+
+class MedicamentPresentationForm(models.Model):
+    _inherit = 'clv.medicament.pres_form'
+
+    medicament_ids = fields.One2many(
+        comodel_name='clv.medicament',
+        inverse_name='pres_form_id',
+        string='Medicaments'
+    )
