@@ -19,5 +19,11 @@
             sequence="20"
             action="clv_medicament.clv_medicament_active_component_action"/>
 
+        <menuitem name="Manufacturers" id="menu_pharmacy_config_config_medicament_manufacturers"
+            parent="menu_pharmacy_config_config_medicament"
+            groups="clv_medicament.group_user"
+            sequence="40"
+            action="clv_medicament.clv_medicament_manufacturer_action"/>
+
     </data>
 </odoo>

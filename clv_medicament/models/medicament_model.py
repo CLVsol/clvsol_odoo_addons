@@ -101,3 +101,23 @@ class MedicamentActiveComponent(models.Model):
         inverse_name='active_component_id',
         string='Medicaments'
     )
+
+
+class MedicamentModel_3(models.AbstractModel):
+    _inherit = 'clv.medicament.model'
+
+    manufacturer_id = fields.Many2one(
+        comodel_name='clv.medicament.manufacturer',
+        string='Manufacturer',
+        help='Medicament Manufacturer'
+    )
+
+
+class MedicamentManufacturer(models.Model):
+    _inherit = 'clv.medicament.manufacturer'
+
+    medicament_ids = fields.One2many(
+        comodel_name='clv.medicament',
+        inverse_name='manufacturer_id',
+        string='Medicaments'
+    )

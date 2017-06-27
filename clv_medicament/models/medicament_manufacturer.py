@@ -18,7 +18,35 @@
 #
 ###############################################################################
 
-from . import medicament_active_component
-from . import medicament_manufacturer
-from . import medicament_model
-from . import medicament
+from odoo import api, fields, models
+
+
+class MedicamentManufacturer(models.Model):
+    _description = 'Medicament Manufacturer'
+    _name = 'clv.medicament.manufacturer'
+    _order = 'name'
+
+    name = fields.Char(string='Manufacturer', required=True)
+
+    code = fields.Char(string='Code')
+
+    notes = fields.Text(string='Notes')
+
+    active = fields.Boolean(string='Active', default=1)
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The Manufacturer must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]
+
+    @api.multi
+    @api.depends('name', 'code')
+    def name_get(self):
+        result = []
+        for manufacturer in self:
+            result.append((manufacturer.id, '%s {%s}' % (manufacturer.name, manufacturer.code)))
+        return result
