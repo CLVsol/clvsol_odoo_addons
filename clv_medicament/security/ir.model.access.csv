@@ -19,3 +19,7 @@ access_clv_medicament_pres_form_supmanager,clv.medicament.pres_form.supmanager,m
 access_clv_medicament_uom_user,clv.medicament.uom.user,model_clv_medicament_uom,clv_medicament.group_user,1,0,0,0
 access_clv_medicament_uom_manager,clv.medicament.uom.manager,model_clv_medicament_uom,clv_medicament.group_manager,1,1,1,0
 access_clv_medicament_uom_supmanager,clv.medicament.uom.supmanager,model_clv_medicament_uom,clv_medicament.group_supmanager,1,1,1,1
+
+access_clv_medicament_log_user,clv.medicament.log.user,model_clv_medicament_log,clv_medicament.group_user,1,0,0,0
+access_clv_medicament_log_manager,clv.medicament.log.manager,model_clv_medicament_log,clv_medicament.group_manager,1,1,1,0
+access_clv_medicament_log_supmanager,clv.medicament.log.supmanager,model_clv_medicament_log,clv_medicament.group_supmanager,1,1,1,1
