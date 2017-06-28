@@ -36,6 +36,8 @@
                                 <field name="active_component_id" placeholder="Active Component..." options="{'no_open': False, 'no_create': True}"/>
                                 <field name="concentration" placeholder="Concentration..."/>
                                 <field name="pres_form_id" placeholder="Presentation Form..." options="{'no_open': False, 'no_create': True}"/>
+                                <field name="pres_quantity" placeholder="Presentation Quantity..."/>
+                                <field name="pres_quantity_unit_id" placeholder="Presentation Quantity Unity..." options="{'no_open': False, 'no_create': True}"/>
                             </group>
                             <group name="Y">
                                 <field name="manufacturer_id" placeholder="Manufacturer..." options="{'no_open': False, 'no_create': True}"/>

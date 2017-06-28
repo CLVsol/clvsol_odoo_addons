@@ -141,3 +141,14 @@ class MedicamentPresentationForm(models.Model):
         inverse_name='pres_form_id',
         string='Medicaments'
     )
+
+
+class MedicamentModel_5(models.AbstractModel):
+    _inherit = 'clv.medicament.model'
+
+    pres_quantity = fields.Float(string='Presentation Quantity')
+    pres_quantity_unit_id = fields.Many2one(
+        comodel_name='clv.medicament.uom',
+        string='Presentation Quantity Unit',
+        help='Unit of measure for the medicament presentation quantity'
+    )

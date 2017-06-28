@@ -18,9 +18,31 @@
 #
 ###############################################################################
 
-from . import medicament_active_component
-from . import medicament_pres_form
-from . import medicament_uom
-from . import medicament_manufacturer
-from . import medicament_model
-from . import medicament
+from odoo import fields, models
+
+
+class MedicamentUom(models.Model):
+    _name = 'clv.medicament.uom'
+
+    name = fields.Char(
+        string='UOM', required=True,
+        translate=True,
+        help="Unity of Measure."
+    )
+
+    code = fields.Char(string='Code')
+
+    description = fields.Char(string='Description')
+
+    notes = fields.Text(string='Notes')
+
+    active = fields.Boolean(string='Active', default=1)
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The UOM must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]
