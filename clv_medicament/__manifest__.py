@@ -40,6 +40,7 @@
         'views/medicament_manufacturer_view.xml',
         'views/medicament_log_view.xml',
         'views/medicament_category_view.xml',
+        'views/global_tag_view.xml',
         'views/medicament_menu_view.xml',
     ],
     'demo': [],

@@ -26,3 +26,4 @@ from . import medicament_model
 from . import medicament
 from . import medicament_log
 from . import medicament_category
+from . import global_tag
