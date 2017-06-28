@@ -25,3 +25,4 @@ from . import medicament_manufacturer
 from . import medicament_model
 from . import medicament
 from . import medicament_log
+from . import medicament_category

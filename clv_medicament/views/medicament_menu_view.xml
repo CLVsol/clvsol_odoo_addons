@@ -13,6 +13,12 @@
             groups="clv_medicament.group_user"
             sequence="10"/>
 
+        <menuitem name="Categories" id="menu_pharmacy_config_config_medicament_categories" 
+            parent="menu_pharmacy_config_config_medicament"
+            groups="clv_medicament.group_user"
+            sequence="10"
+            action="clv_medicament.clv_medicament_category_action"/>
+
         <menuitem name="Active Components" id="menu_pharmacy_config_config_medicament_active_components"
             parent="menu_pharmacy_config_config_medicament"
             groups="clv_medicament.group_user"
