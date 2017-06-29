@@ -18,32 +18,12 @@
 #
 ###############################################################################
 
-{
-    'name': 'Base Module',
-    'summary': 'Base Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': ['base'],
-    'data': [
-        'security/base_security.xml',
-        'views/base_menu_view.xml',
-        'views/mfmng_menu_view.xml',
-        'views/community_menu_view.xml',
-        'views/health_menu_view.xml',
-        'views/pharmacy_menu_view.xml',
-        'views/insurance_menu_view.xml',
-        'data/annotation_seq.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from . import medicament_active_component
+from . import medicament_pres_form
+from . import medicament_uom
+from . import medicament_manufacturer
+from . import medicament_model
+from . import medicament
+from . import medicament_log
+from . import medicament_category
+from . import global_tag
