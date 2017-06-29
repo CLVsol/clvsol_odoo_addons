@@ -18,31 +18,10 @@
 #
 ###############################################################################
 
-{
-    'name': 'Base Module',
-    'summary': 'Base Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': ['base'],
-    'data': [
-        'security/base_security.xml',
-        'views/base_menu_view.xml',
-        'views/mfmng_menu_view.xml',
-        'views/community_menu_view.xml',
-        'views/health_menu_view.xml',
-        'views/insurance_menu_view.xml',
-        'data/annotation_seq.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from . import insured
+from . import insured_category
+from . import global_tag
+from . import address
+from . import insured_log
+from . import insured_annotation
+from . import insured_annotation_log
