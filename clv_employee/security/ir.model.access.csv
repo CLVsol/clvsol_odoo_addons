@@ -5,3 +5,6 @@ access_hr_employee_log_user,hr.employee.log.user,model_hr_employee_log,hr.group_
 
 access_hr_employee_job_history_emp,hr.employee.job.history.emp,model_hr_employee_job_history,base.group_user,1,0,0,0
 access_hr_employee_job_history_user,hr.employee.job.history.user,model_hr_employee_job_history,hr.group_hr_user,1,1,1,1
+
+access_hr_employee_department_history_emp,hr.employee.department.history.emp,model_hr_employee_department_history,base.group_user,1,0,0,0
+access_hr_employee_department_history_user,hr.employee.department.history.user,model_hr_employee_department_history,hr.group_hr_user,1,1,1,1
