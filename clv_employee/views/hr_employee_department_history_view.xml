@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="hr_employee_department_history_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.department.history.form</field>
+            <field name="model">hr.employee.department.history</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="title" class="oe_title">
+                            <group>
+                                <field name="employee_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="department_id" default_focus="1" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="sign_in_date"/>
+                                <field name="sign_out_date"/>
+                            </group>
+                            <label for="notes" class="oe_edit_only"/>
+                            <field name="notes" departmentholder="Notes..."/>
+                        </div>
+                        <notebook>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="hr_employee_department_history_view_tree" model="ir.ui.view">
+            <field name="name">hr.employee.department.history.tree</field>
+            <field name="model">hr.employee.department.history</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree colors="red:sign_out_date != False;blue:sign_out_date == False">
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="sign_in_date"/>
+                    <field name="sign_out_date"/>
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="hr_employee_department_history_view_search" model="ir.ui.view">
+            <field name="name">hr.employee.department.history.search</field>
+            <field name="model">hr.employee.department.history</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="sign_in_date"/>
+                    <field name="sign_out_date"/>
+                    <field name="notes"/>
+                    <newline/>
+                    <filter name="opened_department" string="Opened Department" domain="[('sign_out_date','=',False)]"/>
+                    <filter name="closed_department" string="Closed Department" domain="[('sign_out_date','!=',False)]"/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_employee_department_history_actions" model="ir.actions.act_window">
+            <field name="name">Employee Department History</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee.department.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="hr_employee_department_history_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new employee department history.
+              </p>
+            </field>
+        </record>
+        
+        <record id="hr_employee_view_form_department_history" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="hr_settings" position="after">
+                    <page string="Department History">
+                        <field name="employee_department_history_ids" colspan="4" nolabel="1">
+                            <group>
+                                <!--tree string="Departments" colors="red:sign_out_date != False;blue:sign_out_date == False">
+                                    <field name="department_id"/>
+                                    <field name="sign_in_date"/>
+                                    <field name="sign_out_date"/>
+                                    <field name="notes"/>
+                                </tree-->
+                            </group>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+

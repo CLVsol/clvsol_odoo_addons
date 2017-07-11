@@ -78,7 +78,7 @@ class Person(models.Model):
     gender = fields.Selection(
         [('M', 'Male'),
          ('F', 'Female')
-         ], 'Gender'
+         ], string='Gender'
     )
     marital = fields.Selection(
         [('single', 'Single'),

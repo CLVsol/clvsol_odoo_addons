@@ -23,3 +23,4 @@ from . import global_tag
 from . import hr_employee_log
 from . import hr_employee_job_history
 from . import hr_job
+from . import hr_employee_department_history
