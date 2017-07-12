@@ -12,7 +12,7 @@
                     <label for="address_ids"/>
                     <field name="address_ids"/>
                     <group>
-                        <group>
+                        <group name="global_tag_ids_selection">
                             <field name="global_tag_ids_selection"/>
                         </group>
                         <group>
