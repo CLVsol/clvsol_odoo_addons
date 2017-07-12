@@ -12,7 +12,7 @@
                     <label for="address_ids"/>
                     <field name="address_ids"/>
                     <group>
-                        <group>
+                        <group name="global_tag_ids_selection">
                             <field name="global_tag_ids_selection"/>
                         </group>
                         <group>
@@ -21,7 +21,7 @@
                         <group>
                             <field name="category_ids_selection"/>
                         </group>
-                        <group>
+                        <group name="category_ids">
                             <field name="category_ids" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
                         </group>
                     </group>
