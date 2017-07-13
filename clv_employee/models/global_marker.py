@@ -18,10 +18,25 @@
 #
 ###############################################################################
 
-from . import hr_employee
-from . import global_tag
-from . import hr_employee_log
-from . import hr_employee_job_history
-from . import hr_job
-from . import hr_employee_department_history
-from . import global_marker
+from odoo import models, fields
+
+
+class Marker(models.Model):
+    _inherit = 'clv.global_marker'
+
+    employee_ids = fields.One2many(
+        comodel_name='hr.employee',
+        inverse_name='global_marker_id',
+        string='Employess',
+        readonly=True
+    )
+
+
+class Employee(models.Model):
+    _inherit = 'hr.employee'
+
+    global_marker_id = fields.Many2one(
+        comodel_name='clv.global_marker',
+        string='Global Marker',
+        ondelete='restrict'
+    )
