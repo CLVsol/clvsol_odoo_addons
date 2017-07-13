@@ -65,7 +65,7 @@
                     <filter name="opened_job" string="Opened Job" domain="[('sign_out_date','=',False)]"/>
                     <filter name="closed_job" string="Closed Job" domain="[('sign_out_date','!=',False)]"/>
                     <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
-                    <group expand="0" string="Group By...">
+                    <group name="group_by" expand="0" string="Group By...">
                         <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
                         <filter string="Job" domain="[]" context="{'group_by':'job_id'}"/>
                     </group>

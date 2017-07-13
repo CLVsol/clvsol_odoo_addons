@@ -59,5 +59,83 @@
             </field>
         </record>
 
+        <record id="hr_employee_department_history_view_form_global_marker" model="ir.ui.view">
+            <field name="name">hr.employee.department.history</field>
+            <field name="model">hr.employee.department.history</field>
+            <field name="inherit_id" ref="hr_employee_department_history_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <field name="sign_out_date" position="after">
+                    <field name="global_marker_id" options='{"no_open": True, "no_create": True}'/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_employee_department_history_view_tree_global_marker" model="ir.ui.view">
+            <field name="name">hr.employee.department.history.tree</field>
+            <field name="model">hr.employee.department.history</field>
+            <field name="inherit_id" ref="hr_employee_department_history_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="sign_out_date" position="after">
+                    <field name="global_marker_id" groups="clv_global_marker.group_user"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_employee_department_history_view_search_global_marker" model="ir.ui.view">
+            <field name="name">hr.employee.department.history.search</field>
+            <field name="model">hr.employee.department.history</field>
+            <field name="inherit_id" ref="hr_employee_department_history_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="sign_out_date" position="after">
+                    <field name="global_marker_id"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Global Markers" context="{'group_by': 'global_marker_id'}"/>
+                </group>
+            </field>
+        </record>
+
+        <record id="hr_employee_job_history_view_form_global_marker" model="ir.ui.view">
+            <field name="name">hr.employee.job.history</field>
+            <field name="model">hr.employee.job.history</field>
+            <field name="inherit_id" ref="hr_employee_job_history_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <field name="sign_out_date" position="after">
+                    <field name="global_marker_id" options='{"no_open": True, "no_create": True}'/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_employee_job_history_view_tree_global_marker" model="ir.ui.view">
+            <field name="name">hr.employee.job.history.tree</field>
+            <field name="model">hr.employee.job.history</field>
+            <field name="inherit_id" ref="hr_employee_job_history_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="sign_out_date" position="after">
+                    <field name="global_marker_id" groups="clv_global_marker.group_user"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_employee_job_history_view_search_global_marker" model="ir.ui.view">
+            <field name="name">hr.employee.job.history.search</field>
+            <field name="model">hr.employee.job.history</field>
+            <field name="inherit_id" ref="hr_employee_job_history_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="sign_out_date" position="after">
+                    <field name="global_marker_id"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Global Markers" context="{'group_by': 'global_marker_id'}"/>
+                </group>
+            </field>
+        </record>
+
     </data>
 </odoo>

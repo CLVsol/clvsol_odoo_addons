@@ -40,3 +40,23 @@ class Employee(models.Model):
         string='Global Marker',
         ondelete='restrict'
     )
+
+
+class EmployeeDepartmentHistory(models.Model):
+    _inherit = 'hr.employee.department.history'
+
+    global_marker_id = fields.Many2one(
+        comodel_name='clv.global_marker',
+        string='Global Marker',
+        ondelete='restrict'
+    )
+
+
+class EmployeeJobHistory(models.Model):
+    _inherit = 'hr.employee.job.history'
+
+    global_marker_id = fields.Many2one(
+        comodel_name='clv.global_marker',
+        string='Global Marker',
+        ondelete='restrict'
+    )
