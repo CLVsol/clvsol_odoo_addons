@@ -19,8 +19,8 @@
 ###############################################################################
 
 {
-    'name': 'Address',
-    'summary': 'Address Module used by CLVsol Solutions.',
+    'name': 'Global Marker',
+    'summary': 'Global Marker Module used by CLVsol Solutions.',
     'version': '3.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
@@ -28,23 +28,12 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_base',
-        'clv_global_tag',
-        'clv_global_marker',
     ],
     'data': [
-        'security/address_security.xml',
+        'security/global_marker_security.xml',
         'security/ir.model.access.csv',
-        'views/address_view.xml',
-        'views/address_log_view.xml',
-        'views/address_category_view.xml',
-        'views/address_category_log_view.xml',
-        'views/global_tag_view.xml',
         'views/global_marker_view.xml',
-        'views/address_annotation_view.xml',
-        'views/address_annotation_log_view.xml',
-        'views/address_name_view.xml',
-        'wizard/address_updt_view.xml',
-        'views/address_menu_view.xml',
+        'views/global_marker_menu_view.xml',
     ],
     'demo': [],
     'test': [],

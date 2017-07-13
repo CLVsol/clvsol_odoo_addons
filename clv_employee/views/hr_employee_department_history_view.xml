@@ -65,7 +65,7 @@
                     <filter name="opened_department" string="Opened Department" domain="[('sign_out_date','=',False)]"/>
                     <filter name="closed_department" string="Closed Department" domain="[('sign_out_date','!=',False)]"/>
                     <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
-                    <group expand="0" string="Group By...">
+                    <group name="group_by" expand="0" string="Group By...">
                         <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
                         <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
                     </group>

@@ -101,6 +101,7 @@ class EmployeeJobHistoryUpdate(models.TransientModel):
                         'employee_id': employee.id,
                         'job_id': employee.job_id.id,
                         'sign_in_date': self.new_job_sign_in_date,
+                        'global_marker_id': employee.global_marker_id.id,
                     }
                     employee_job_history = HrEmployeeJobHistory.create(values)
                     _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_job_history.job_id.name,

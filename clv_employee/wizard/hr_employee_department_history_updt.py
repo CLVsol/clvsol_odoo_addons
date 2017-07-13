@@ -101,6 +101,7 @@ class EmployeeDepartmentHistoryUpdate(models.TransientModel):
                         'employee_id': employee.id,
                         'department_id': employee.department_id.id,
                         'sign_in_date': self.new_department_sign_in_date,
+                        'global_marker_id': employee.global_marker_id.id,
                     }
                     employee_department_history = HrEmployeeDepartmentHistory.create(values)
                     _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_department_history.department_id.name,

@@ -18,12 +18,26 @@
 #
 ###############################################################################
 
-from . import address
-from . import address_name
-from . import address_log
-from . import address_category
-from . import address_category_log
-from . import global_tag
-from . import address_annotation
-from . import address_annotation_log
-from . import global_marker
+from odoo import fields, models
+
+
+class GlobalMarker(models.Model):
+    _description = 'Global Marker'
+    _name = 'clv.global_marker'
+    _order = 'name'
+
+    name = fields.Char(string='Marker', required=True, translate=True)
+    code = fields.Char(string='Marker Code', required=False)
+    description = fields.Char(string='Description')
+    notes = fields.Text(string='Notes')
+
+    active = fields.Boolean(string='Active', default=True)
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         'Error! The Marker must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         'Error! The Code must be unique!'),
+    ]

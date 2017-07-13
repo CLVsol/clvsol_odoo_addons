@@ -18,12 +18,25 @@
 #
 ###############################################################################
 
-from . import address
-from . import address_name
-from . import address_log
-from . import address_category
-from . import address_category_log
-from . import global_tag
-from . import address_annotation
-from . import address_annotation_log
-from . import global_marker
+from odoo import models, fields
+
+
+class Marker(models.Model):
+    _inherit = 'clv.global_marker'
+
+    address_ids = fields.One2many(
+        comodel_name='clv.address',
+        inverse_name='global_marker_id',
+        string='Addresses',
+        readonly=True
+    )
+
+
+class Address(models.Model):
+    _inherit = 'clv.address'
+
+    global_marker_id = fields.Many2one(
+        comodel_name='clv.global_marker',
+        string='Global Marker',
+        ondelete='restrict'
+    )

@@ -14,5 +14,11 @@
             sequence="10"
             action="clv_employee.hr_employee_job_history_actions"/>
 
+        <menuitem name="Department History" id="menu_human_resources_configuration_department_history"
+            parent="hr.menu_human_resources_configuration"
+            groups="base.group_no_one"
+            sequence="20"
+            action="clv_employee.hr_employee_department_history_actions"/>
+
     </data>
 </odoo>
