@@ -29,6 +29,7 @@
     'depends': [
         'clv_base',
         'clv_global_tag',
+        'clv_global_marker',
     ],
     'data': [
         'security/address_security.xml',
@@ -38,6 +39,7 @@
         'views/address_category_view.xml',
         'views/address_category_log_view.xml',
         'views/global_tag_view.xml',
+        'views/global_marker_view.xml',
         'views/address_annotation_view.xml',
         'views/address_annotation_log_view.xml',
         'views/address_name_view.xml',
