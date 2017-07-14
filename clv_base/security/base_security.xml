@@ -33,5 +33,9 @@
             <field name="implied_ids" eval="[(4, ref('clv_base.group_manager'))]"/>
         </record>
 
+        <record id="clv_base.make_invisible" model="res.groups">
+            <field name="name">Make Invisible (Base - do not use!)</field>
+        </record>
+
     </data>
 </odoo>
