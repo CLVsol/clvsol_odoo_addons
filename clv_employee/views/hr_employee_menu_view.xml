@@ -2,23 +2,54 @@
 <odoo>
     <data>
 
-        <menuitem name="Jobs" id="menu_human_resources_configuration_jobs"
-            parent="hr.menu_human_resources_configuration"
-            groups="base.group_no_one"
-            sequence="5"
+        <record model="ir.ui.menu" id="hr.menu_open_view_employee_list_my">
+            <field name="groups_id" eval="[(6,0,[ref('clv_base.make_invisible')])]"/>
+        </record>
+
+        <record model="ir.ui.menu" id="hr.menu_hr_department_tree">
+            <field name="groups_id" eval="[(6,0,[ref('clv_base.make_invisible')])]"/>
+        </record>
+
+        <menuitem name="Employees" id="menu_hr_root_employees"  
+            parent="hr.menu_hr_root"
+            groups="clv_base.group_user"
+            sequence="10"/>
+
+        <menuitem name="Employees" id="menu_hr_root_employees_employees"
+            parent="menu_hr_root_employees"
+            groups="base.group_user"
+            sequence="10"
+            action="hr.open_view_employee_list_my"/>
+
+        <menuitem name="Employee History" id="menu_hr_root_employees_employees_employee_history"
+            parent="menu_hr_root_employees_employees"
+            groups="base.group_user"
+            sequence="10"
+            action="clv_employee.hr_employee_history_actions"/>
+
+        <menuitem name="Departments" id="menu_hr_root_employees_departments"
+            parent="menu_hr_root_employees"
+            groups="base.group_user"
+            sequence="20"
+            action="hr.open_module_tree_department"/>
+
+        <menuitem name="Department History" id="menu_hr_root_employees_department_history"
+            parent="menu_hr_root_employees_departments"
+            groups="base.group_user"
+            sequence="10"
+            action="clv_employee.hr_employee_department_history_actions"/>
+
+        <menuitem name="Jobs" id="menu_hr_root_employees_jobs"
+            parent="menu_hr_root_employees"
+            groups="base.group_user"
+            sequence="30"
             action="hr.action_hr_job"/>
 
-        <menuitem name="Job History" id="menu_human_resources_configuration_job_history"
-            parent="hr.menu_human_resources_configuration"
-            groups="base.group_no_one"
+        <menuitem name="Job History" id="menu_hr_root_employees_job_history"
+            parent="menu_hr_root_employees_jobs"
+            groups="base.group_user"
             sequence="10"
             action="clv_employee.hr_employee_job_history_actions"/>
-
-        <menuitem name="Department History" id="menu_human_resources_configuration_department_history"
-            parent="hr.menu_human_resources_configuration"
-            groups="base.group_no_one"
-            sequence="20"
-            action="clv_employee.hr_employee_department_history_actions"/>
 
     </data>
 </odoo>
