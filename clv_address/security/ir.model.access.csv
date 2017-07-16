@@ -12,10 +12,6 @@ access_clv_address_category_user,clv.address.category.user,model_clv_address_cat
 access_clv_address_category_manager,clv.address.manager.category,model_clv_address_category,clv_address.group_manager,1,1,1,0
 access_clv_address_category_supmanager,clv.address.category.supmanager,model_clv_address_category,clv_address.group_supmanager,1,1,1,1
 
-access_clv_address_category_log_user,clv.address.category.log.user,model_clv_address_category_log,clv_address.group_user,1,0,0,0
-access_clv_address_category_log_manager,clv.address.category.log.manager,model_clv_address_category_log,clv_address.group_manager,1,1,1,0
-access_clv_address_category_log_supmanager,clv.address.category.log.supmanager,model_clv_address_category_log,clv_address.group_supmanager,1,1,1,1
-
 access_clv_address_annotation_user,clv.address.annotation.user,model_clv_address_annotation,clv_address.group_user,1,0,0,0
 access_clv_address_annotation_manager,clv.address.annotation.manager,model_clv_address_annotation,clv_address.group_manager,1,1,1,0
 access_clv_address_annotation_supmanager,clv.address.annotation.supmanager,model_clv_address_annotation,clv_address.group_supmanager,1,1,1,1
