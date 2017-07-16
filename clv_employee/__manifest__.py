@@ -47,6 +47,7 @@
         'wizard/hr_employee_updt_view.xml',
         'wizard/hr_employee_job_history_updt_view.xml',
         'wizard/hr_employee_department_history_updt_view.xml',
+        'wizard/hr_employee_history_updt_view.xml',
     ],
     'demo': [],
     'test': [],
