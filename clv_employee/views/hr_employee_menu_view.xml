@@ -21,6 +21,12 @@
             sequence="10"
             action="hr.open_view_employee_list_my"/>
 
+        <menuitem name="Employee History" id="menu_hr_root_employees_employees_employee_history"
+            parent="menu_hr_root_employees_employees"
+            groups="base.group_user"
+            sequence="10"
+            action="clv_employee.hr_employee_history_actions"/>
+
         <menuitem name="Departments" id="menu_hr_root_employees_departments"
             parent="menu_hr_root_employees"
             groups="base.group_user"
