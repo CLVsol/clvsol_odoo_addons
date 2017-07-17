@@ -24,7 +24,7 @@ from odoo import fields, models
 
 
 class EmployeeHistory(models.Model):
-    _description = 'Employee Job History'
+    _description = 'Employee History'
     _name = 'hr.employee.history'
     _order = "sign_in_date desc"
 
