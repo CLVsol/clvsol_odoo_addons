@@ -18,12 +18,41 @@
 #
 ###############################################################################
 
-from . import person
-from . import person_category
-from . import person_log
-from . import address
-from . import global_tag
-from . import person_annotation
-from . import person_annotation_log
-from . import person_address_role
-from . import person_history
+from datetime import *
+
+from odoo import fields, models
+
+
+class PersonHistory(models.Model):
+    _description = 'Person History'
+    _name = 'clv.person.history'
+    _order = "sign_in_date desc"
+
+    person_id = fields.Many2one(
+        comodel_name='clv.person',
+        string='Person',
+        required=False
+    )
+    sign_in_date = fields.Date(
+        string='Sign in date',
+        required=False,
+        default=lambda *a: datetime.now().strftime('%Y-%m-%d')
+    )
+    sign_out_date = fields.Date(
+        string="Sign out date",
+        required=False
+    )
+
+    notes = fields.Text(string='Notes')
+
+    active = fields.Boolean(string='Active', default=1)
+
+
+class Person(models.Model):
+    _inherit = 'clv.person'
+
+    person_history_ids = fields.One2many(
+        comodel_name='clv.person.history',
+        inverse_name='person_id',
+        string='Person History'
+    )
