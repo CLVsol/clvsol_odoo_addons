@@ -41,6 +41,7 @@
         'views/person_address_role_view.xml',
         'views/global_tag_view.xml',
         'views/person_history_view.xml',
+        'views/global_marker_view.xml',
         'views/person_annotation_view.xml',
         'views/person_annotation_log_view.xml',
         'wizard/person_updt_view.xml',
