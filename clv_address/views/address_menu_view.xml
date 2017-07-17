@@ -14,7 +14,7 @@
             sequence="10"
             action="clv_address.clv_address_annotation_action"/>
 
-        <menuitem name="Address History" id="menu_base_base_addresses_address_history"
+        <menuitem name="History" id="menu_base_base_addresses_history"
             parent="menu_base_base_addresses"
             groups="base.group_user"
             sequence="20"
