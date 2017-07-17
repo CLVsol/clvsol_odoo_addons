@@ -25,4 +25,5 @@ from . import address_category
 from . import global_tag
 from . import address_annotation
 from . import address_annotation_log
+from . import address_history
 from . import global_marker

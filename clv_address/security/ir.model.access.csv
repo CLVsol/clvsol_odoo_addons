@@ -19,3 +19,7 @@ access_clv_address_annotation_supmanager,clv.address.annotation.supmanager,model
 access_clv_address_annotation_log_user,clv.address.annotation.log.user,model_clv_address_annotation_log,clv_address.group_user,1,0,0,0
 access_clv_address_annotation_log_manager,clv.address.annotation.log.manager,model_clv_address_annotation_log,clv_address.group_manager,1,1,1,0
 access_clv_address_annotation_log_supmanager,clv.address.annotation.log.supmanager,model_clv_address_annotation_log,clv_address.group_supmanager,1,1,1,1
+
+access_clv_address_history_user,clv.address.history.user,model_clv_address_history,clv_address.group_user,1,0,0,0
+access_clv_address_history_manager,clv.address.manager.history,model_clv_address_history,clv_address.group_manager,1,1,1,0
+access_clv_address_history_supmanager,clv.address.history.supmanager,model_clv_address_history,clv_address.group_supmanager,1,1,1,1

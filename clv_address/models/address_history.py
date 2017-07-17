@@ -18,35 +18,41 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from datetime import *
+
+from odoo import fields, models
 
 
-class Marker(models.Model):
-    _inherit = 'clv.global_marker'
+class AddressHistory(models.Model):
+    _description = 'Address History'
+    _name = 'clv.address.history'
+    _order = "sign_in_date desc"
 
-    address_ids = fields.One2many(
+    address_id = fields.Many2one(
         comodel_name='clv.address',
-        inverse_name='global_marker_id',
-        string='Addresses',
-        readonly=True
+        string='Address',
+        required=False
     )
+    sign_in_date = fields.Date(
+        string='Sign in date',
+        required=False,
+        default=lambda *a: datetime.now().strftime('%Y-%m-%d')
+    )
+    sign_out_date = fields.Date(
+        string="Sign out date",
+        required=False
+    )
+
+    notes = fields.Text(string='Notes')
+
+    active = fields.Boolean(string='Active', default=1)
 
 
 class Address(models.Model):
     _inherit = 'clv.address'
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
-        ondelete='restrict'
-    )
-
-
-class AddressHistory(models.Model):
-    _inherit = 'clv.address.history'
-
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
-        ondelete='restrict'
+    address_history_ids = fields.One2many(
+        comodel_name='clv.address.history',
+        inverse_name='address_id',
+        string='Address History'
     )

@@ -14,6 +14,12 @@
             sequence="10"
             action="clv_address.clv_address_annotation_action"/>
 
+        <menuitem name="Address History" id="menu_base_base_addresses_address_history"
+            parent="menu_base_base_addresses"
+            groups="base.group_user"
+            sequence="20"
+            action="clv_address.clv_address_history_actions"/>
+
         <menuitem name="Address Categories" id="menu_base_config_config_address_categories" 
             parent="clv_base.menu_base_config_config"
             groups="clv_address.group_user"
