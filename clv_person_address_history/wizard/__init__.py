@@ -19,3 +19,4 @@
 ###############################################################################
 
 import person_address_history_setup
+import person_address_history_updt
