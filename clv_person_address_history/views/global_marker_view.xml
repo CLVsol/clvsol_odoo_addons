@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_global_marker_view_form_person_address_history" model="ir.ui.view">
+            <field name="name">clv.global_marker.form</field>
+            <field name="model">clv.global_marker</field>
+            <field name="inherit_id" ref="clv_global_marker.clv_global_marker_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="marker_for" position="inside">
+                    <group string="Person Address History">
+                        <field name="person_address_history_ids" colspan="4" nolabel="1"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_person_address_history_view_form_global_marker" model="ir.ui.view">
+            <field name="name">clv.person.address.history.form</field>
+            <field name="model">clv.person.address.history</field>
+            <field name="inherit_id" ref="clv_person_address_history_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <field name="sign_in_date" position="before">
+                    <field name="global_marker_id" options='{"no_open": True, "no_create": True}'/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_person_address_history_view_tree_global_marker" model="ir.ui.view">
+            <field name="name">clv.person.address.history.tree</field>
+            <field name="model">clv.person.address.history</field>
+            <field name="inherit_id" ref="clv_person_address_history_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="sign_in_date" position="before">
+                    <field name="global_marker_id" groups="clv_global_marker.group_user"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_person_address_history_view_search_global_marker" model="ir.ui.view">
+            <field name="name">clv.person.address.history.search</field>
+            <field name="model">clv.person.address.history</field>
+            <field name="inherit_id" ref="clv_person_address_history_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="sign_in_date" position="before">
+                    <field name="global_marker_id"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Global Markers" context="{'group_by': 'global_marker_id'}"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
