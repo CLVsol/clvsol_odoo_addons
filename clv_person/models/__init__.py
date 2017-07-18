@@ -26,3 +26,5 @@ from . import global_tag
 from . import person_annotation
 from . import person_annotation_log
 from . import person_address_role
+from . import person_history
+from . import global_marker

@@ -18,5 +18,25 @@
 #
 ###############################################################################
 
-import person_address_history_setup
-import person_address_history_updt
+from odoo import models, fields
+
+
+class Marker(models.Model):
+    _inherit = 'clv.global_marker'
+
+    person_address_history_ids = fields.One2many(
+        comodel_name='clv.person.address.history',
+        inverse_name='global_marker_id',
+        string='Person Address History',
+        readonly=True
+    )
+
+
+class PersonAddressHistory(models.Model):
+    _inherit = 'clv.person.address.history'
+
+    global_marker_id = fields.Many2one(
+        comodel_name='clv.global_marker',
+        string='Global Marker',
+        ondelete='restrict'
+    )

@@ -21,3 +21,4 @@
 from . import person_address_history
 from . import global_tag
 from . import person_address_history_log
+from . import global_marker

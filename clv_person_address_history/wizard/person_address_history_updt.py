@@ -18,10 +18,25 @@
 #
 ###############################################################################
 
+'''
+Reference: http://help.openerp.com/question/18704/hide-menu-for-existing-group/
+
+There are actually0-6 numbers for representing each job for a many2many/ one2many field
+
+    (0, 0, { values }) -- link to a new record that needs to be created with the given values dictionary
+    (1, ID, { values }) -- update the linked record with id = ID (write values on it)
+    (2, ID) -- remove and delete the linked record with id = ID (calls unlink on ID, that will delete the
+               object completely, and the link to it as well)
+    (3, ID) -- cut the link to the linked record with id = ID (delete the relationship between the two
+               objects but does not delete the target object itself)
+    (4, ID) -- link to existing record with id = ID (adds a relationship)
+    (5) -- unlink all (like using (3,ID) for all linked records)
+    (6, 0, [IDs]) -- replace the list of linked IDs (like using (5) then (4,ID) for each ID in the list of IDs)
+'''
+
 import logging
 
 from odoo import api, fields, models
-from odoo import exceptions
 
 _logger = logging.getLogger(__name__)
 
@@ -29,21 +44,61 @@ _logger = logging.getLogger(__name__)
 class PersonAddressHistoryUpdate(models.TransientModel):
     _name = 'clv.person.address.history_updt'
 
-    def _default_person_ids(self):
+    def _default_person_address_history_ids(self):
         return self._context.get('active_ids')
-    person_ids = fields.Many2many(
-        comodel_name='clv.person',
+    person_address_history_ids = fields.Many2many(
+        comodel_name='clv.person.address.history',
         relation='clv_person_address_history_updt_rel',
-        string='Persons',
-        default=_default_person_ids
+        string='Person Address History',
+        default=_default_person_address_history_ids
     )
-    new_address_sign_in_date = fields.Date(
-        string='New address - Sign in date',
-        required=False,
+
+    global_tag_ids = fields.Many2many(
+        comodel_name='clv.global_tag',
+        relation='clv_person_adddress_history_updt_global_tag_rel',
+        column1='person_address_history_id',
+        column2='global_tag_id',
+        string='Global Tags'
     )
-    old_address_sign_out_date = fields.Date(
-        string="Old address - Sign out date",
-        required=False
+    global_tag_ids_selection = fields.Selection(
+        [('add', 'Add'),
+         ('remove_m2m', 'Remove'),
+         ('set', 'Set'),
+         ], string='Global Tags', default=False, readonly=False, required=False
+    )
+
+    global_marker_id = fields.Many2one(
+        comodel_name='clv.global_marker',
+        string='Global Marker'
+    )
+    global_marker_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Global Marker', default=False, readonly=False, required=False
+    )
+
+    role_id = fields.Many2one(
+        comodel_name='clv.person.address.role',
+        string='Role'
+    )
+    role_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Role', default=False, readonly=False, required=False
+    )
+
+    sign_in_date = fields.Date(string='Sign in date', default=False, readonly=False, required=False)
+    sign_in_date_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Sign in date', default=False, readonly=False, required=False
+    )
+
+    sign_out_date = fields.Date(string='Sign out date', default=False, readonly=False, required=False)
+    sign_out_date_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Sign out date', default=False, readonly=False, required=False
     )
 
     @api.multi
@@ -63,68 +118,55 @@ class PersonAddressHistoryUpdate(models.TransientModel):
     def do_person_address_history_updt(self):
         self.ensure_one()
 
-        PersonAddressHistory = self.env['clv.person.address.history']
+        for person_address_history in self.person_address_history_ids:
 
-        for person in self.person_ids:
+            _logger.info(u'%s %s %%', '>>>>>',
+                         person_address_history.person_id.name, person_address_history.address_id.name)
 
-            if self.old_address_sign_out_date is False:
-                raise exceptions.ValidationError('The "Old address - Sign out date" has not been defined!')
-                return self._reopen_form()
+            if self.global_tag_ids_selection == 'add':
+                m2m_list = []
+                for global_tag_id in self.global_tag_ids:
+                    m2m_list.append((4, global_tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person_address_history.global_tag_ids = m2m_list
+            if self.global_tag_ids_selection == 'remove_m2m':
+                m2m_list = []
+                for global_tag_id in self.global_tag_ids:
+                    m2m_list.append((3, global_tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person_address_history.global_tag_ids = m2m_list
+            if self.global_tag_ids_selection == 'set':
+                m2m_list = []
+                for global_tag_id in person_address_history.global_tag_ids:
+                    m2m_list.append((3, global_tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person_address_history.global_tag_ids = m2m_list
+                m2m_list = []
+                for global_tag_id in self.global_tag_ids:
+                    m2m_list.append((4, global_tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person_address_history.global_tag_ids = m2m_list
 
-            if self.new_address_sign_in_date is False:
-                raise exceptions.ValidationError('The "New address - Sign in date" has not been defined!')
-                return self._reopen_form()
+            if self.global_marker_id_selection == 'set':
+                _logger.info(u'%s %s', '>>>>>>>>>>', self.global_marker_id)
+                person_address_history.global_marker_id = self.global_marker_id
+            if self.global_marker_id_selection == 'remove':
+                _logger.info(u'%s %s', '>>>>>>>>>>', False)
+                person_address_history.global_marker_id = False
 
-            _logger.info(u'%s %s %s', '>>>>>', person.name, person.address_id)
+            if self.role_id_selection == 'set':
+                person_address_history.role_id = self.role_id.id
+            if self.role_id_selection == 'remove':
+                person_address_history.role_id = False
 
-            if person.address_id.id is not False:
+            if self.sign_in_date_selection == 'set':
+                person_address_history.sign_in_date = self.sign_in_date
+            if self.sign_in_date_selection == 'remove':
+                person_address_history.sign_in_date = False
 
-                person_address_history = PersonAddressHistory.search([
-                    ('person_id', '=', person.id),
-                    ('address_id', '=', person.address_id.id),
-                    ('sign_out_date', '=', False),
-                ])
+            if self.sign_out_date_selection == 'set':
+                person_address_history.sign_out_date = self.sign_out_date
+            if self.sign_out_date_selection == 'remove':
+                person_address_history.sign_out_date = False
 
-                if person_address_history.id is False:
-
-                    person_address_history_2 = PersonAddressHistory.search([
-                        ('person_id', '=', person.id),
-                        ('sign_out_date', '=', False),
-                    ])
-                    if person_address_history_2.id is not False:
-                        person_address_history_2.sign_out_date = self.old_address_sign_out_date
-                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history_2.address_id.name,
-                                                     person_address_history_2.sign_in_date,
-                                                     person_address_history_2.sign_out_date)
-
-                    values = {
-                        'person_id': person.id,
-                        'address_id': person.address_id.id,
-                        'role_id': person.person_address_role_id.id,
-                        'sign_in_date': self.new_address_sign_in_date,
-                    }
-                    person_address_history = PersonAddressHistory.create(values)
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history.address_id.name,
-                                                 person_address_history.sign_in_date,
-                                                 person_address_history.sign_out_date)
-
-                else:
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history.address_id.name,
-                                                 person_address_history.sign_in_date,
-                                                 person_address_history.sign_out_date)
-
-            else:
-
-                person_address_history = PersonAddressHistory.search([
-                    ('person_id', '=', person.id),
-                    ('sign_out_date', '=', False),
-                ])
-
-                if person_address_history.id is not False:
-                    person_address_history.sign_out_date = self.old_address_sign_out_date
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history.address_id.name,
-                                                 person_address_history.sign_in_date,
-                                                 person_address_history.sign_out_date)
-
-        # return True
-        return self._reopen_form()
+        return True

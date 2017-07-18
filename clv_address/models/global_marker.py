@@ -40,3 +40,13 @@ class Address(models.Model):
         string='Global Marker',
         ondelete='restrict'
     )
+
+
+class AddressHistory(models.Model):
+    _inherit = 'clv.address.history'
+
+    global_marker_id = fields.Many2one(
+        comodel_name='clv.global_marker',
+        string='Global Marker',
+        ondelete='restrict'
+    )

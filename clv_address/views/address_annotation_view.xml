@@ -92,7 +92,7 @@
         </record>
         
         <record id="clv_address_annotation_action" model="ir.actions.act_window">
-            <field name="name">Annotations</field>
+            <field name="name">Address Annotations</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">clv.address.annotation</field>
             <field name="view_type">form</field>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_person_address_history_setup_view_form" model="ir.ui.view">
+            <field name="name">clv.person.address.history_setup.form</field>
+            <field name="model">clv.person.address.history_setup</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                    </div>
+                    <label for="person_ids"/>
+                    <field name="person_ids"/>
+                    <group>
+                        <group>
+                            <field name="sign_out_date"/>
+                        </group>
+                        <group>
+                            <field name="sign_in_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_person_address_history_setup"
+                            string="History Set Up"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <act_window 
+            id="clv_person_address_history_setup_action"
+            name="Person Address History Set Up"
+            src_model="clv.person"
+            res_model="clv.person.address.history_setup"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>

@@ -14,6 +14,12 @@
             sequence="10"
             action="clv_person.clv_person_annotation_action"/>
 
+        <menuitem name="History" id="menu_community_community_persons_history"
+            parent="menu_community_community_persons"
+            groups="base.group_user"
+            sequence="20"
+            action="clv_person.clv_person_history_actions"/>
+
         <menuitem name="Person Categories" id="menu_community_community_config_person_categories" 
             parent="clv_base.menu_community_config_config"
             groups="clv_person.group_user"

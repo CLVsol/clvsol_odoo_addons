@@ -23,24 +23,14 @@ from datetime import *
 from odoo import fields, models
 
 
-class EmployeeHistory(models.Model):
-    _description = 'Employee History'
-    _name = 'hr.employee.history'
+class PersonHistory(models.Model):
+    _description = 'Person History'
+    _name = 'clv.person.history'
     _order = "sign_in_date desc"
 
-    employee_id = fields.Many2one(
-        comodel_name='hr.employee',
-        string='Employee',
-        required=False
-    )
-    department_id = fields.Many2one(
-        comodel_name='hr.department',
-        string='Department',
-        required=False
-    )
-    job_id = fields.Many2one(
-        comodel_name='hr.job',
-        string='Job',
+    person_id = fields.Many2one(
+        comodel_name='clv.person',
+        string='Person',
         required=False
     )
     sign_in_date = fields.Date(
@@ -58,11 +48,11 @@ class EmployeeHistory(models.Model):
     active = fields.Boolean(string='Active', default=1)
 
 
-class Employee(models.Model):
-    _inherit = 'hr.employee'
+class Person(models.Model):
+    _inherit = 'clv.person'
 
-    employee_history_ids = fields.One2many(
-        comodel_name='hr.employee.history',
-        inverse_name='employee_id',
-        string='Employee History'
+    person_history_ids = fields.One2many(
+        comodel_name='clv.person.history',
+        inverse_name='person_id',
+        string='Person History'
     )
