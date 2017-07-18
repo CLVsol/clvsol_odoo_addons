@@ -26,14 +26,14 @@ from odoo import exceptions
 _logger = logging.getLogger(__name__)
 
 
-class PersonAddressHistoryUpdate(models.TransientModel):
-    _name = 'clv.person.address.history_updt'
+class PersonAddressHistorySetUp(models.TransientModel):
+    _name = 'clv.person.address.history_setup'
 
     def _default_person_ids(self):
         return self._context.get('active_ids')
     person_ids = fields.Many2many(
         comodel_name='clv.person',
-        relation='clv_person_address_history_updt_rel',
+        relation='clv_person_address_history_setup_rel',
         string='Persons',
         default=_default_person_ids
     )
@@ -60,7 +60,7 @@ class PersonAddressHistoryUpdate(models.TransientModel):
         return action
 
     @api.multi
-    def do_person_address_history_updt(self):
+    def do_person_address_history_setup(self):
         self.ensure_one()
 
         PersonAddressHistory = self.env['clv.person.address.history']
@@ -128,5 +128,5 @@ class PersonAddressHistoryUpdate(models.TransientModel):
                                                  person_address_history.sign_in_date,
                                                  person_address_history.sign_out_date)
 
-        # return True
-        return self._reopen_form()
+        return True
+        # return self._reopen_form()
