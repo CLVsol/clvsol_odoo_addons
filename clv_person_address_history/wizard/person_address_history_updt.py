@@ -37,12 +37,12 @@ class PersonAddressHistoryUpdate(models.TransientModel):
         string='Persons',
         default=_default_person_ids
     )
-    new_address_sign_in_date = fields.Date(
-        string='New address - Sign in date',
+    sign_in_date = fields.Date(
+        string='Sign in date',
         required=False,
     )
-    old_address_sign_out_date = fields.Date(
-        string="Old address - Sign out date",
+    sign_out_date = fields.Date(
+        string="Sign out date",
         required=False
     )
 
@@ -67,12 +67,12 @@ class PersonAddressHistoryUpdate(models.TransientModel):
 
         for person in self.person_ids:
 
-            if self.old_address_sign_out_date is False:
-                raise exceptions.ValidationError('The "Old address - Sign out date" has not been defined!')
+            if self.sign_out_date is False:
+                raise exceptions.ValidationError('The "Sign out date" has not been defined!')
                 return self._reopen_form()
 
-            if self.new_address_sign_in_date is False:
-                raise exceptions.ValidationError('The "New address - Sign in date" has not been defined!')
+            if self.sign_in_date is False:
+                raise exceptions.ValidationError('The "Sign in date" has not been defined!')
                 return self._reopen_form()
 
             _logger.info(u'%s %s %s', '>>>>>', person.name, person.address_id)
@@ -82,6 +82,7 @@ class PersonAddressHistoryUpdate(models.TransientModel):
                 person_address_history = PersonAddressHistory.search([
                     ('person_id', '=', person.id),
                     ('address_id', '=', person.address_id.id),
+                    ('global_marker_id', '=', person.global_marker_id.id),
                     ('sign_out_date', '=', False),
                 ])
 
@@ -92,7 +93,7 @@ class PersonAddressHistoryUpdate(models.TransientModel):
                         ('sign_out_date', '=', False),
                     ])
                     if person_address_history_2.id is not False:
-                        person_address_history_2.sign_out_date = self.old_address_sign_out_date
+                        person_address_history_2.sign_out_date = self.sign_out_date
                         _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history_2.address_id.name,
                                                      person_address_history_2.sign_in_date,
                                                      person_address_history_2.sign_out_date)
@@ -101,7 +102,8 @@ class PersonAddressHistoryUpdate(models.TransientModel):
                         'person_id': person.id,
                         'address_id': person.address_id.id,
                         'role_id': person.person_address_role_id.id,
-                        'sign_in_date': self.new_address_sign_in_date,
+                        'sign_in_date': self.sign_in_date,
+                        'global_marker_id': person.global_marker_id.id,
                     }
                     person_address_history = PersonAddressHistory.create(values)
                     _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history.address_id.name,
@@ -121,7 +123,7 @@ class PersonAddressHistoryUpdate(models.TransientModel):
                 ])
 
                 if person_address_history.id is not False:
-                    person_address_history.sign_out_date = self.old_address_sign_out_date
+                    person_address_history.sign_out_date = self.sign_out_date
                     _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history.address_id.name,
                                                  person_address_history.sign_in_date,
                                                  person_address_history.sign_out_date)

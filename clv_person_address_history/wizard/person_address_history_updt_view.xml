@@ -13,10 +13,10 @@
                     <field name="person_ids"/>
                     <group>
                         <group>
-                            <field name="old_address_sign_out_date"/>
+                            <field name="sign_out_date"/>
                         </group>
                         <group>
-                            <field name="new_address_sign_in_date"/>
+                            <field name="sign_in_date"/>
                         </group>
                     </group>
                     <footer>
