@@ -21,35 +21,17 @@
             sequence="10"
             action="hr.open_view_employee_list_my"/>
 
-        <menuitem name="History" id="menu_hr_root_employees_employees_history"
-            parent="menu_hr_root_employees_employees"
-            groups="base.group_user"
-            sequence="10"
-            action="clv_employee.hr_employee_history_actions"/>
-
         <menuitem name="Departments" id="menu_hr_root_employees_departments"
             parent="menu_hr_root_employees"
             groups="base.group_user"
             sequence="20"
             action="hr.open_module_tree_department"/>
 
-        <menuitem name="Department History" id="menu_hr_root_employees_department_history"
-            parent="menu_hr_root_employees_departments"
-            groups="base.group_user"
-            sequence="10"
-            action="clv_employee.hr_employee_department_history_actions"/>
-
         <menuitem name="Jobs" id="menu_hr_root_employees_jobs"
             parent="menu_hr_root_employees"
             groups="base.group_user"
             sequence="30"
             action="hr.action_hr_job"/>
-
-        <menuitem name="Job History" id="menu_hr_root_employees_job_history"
-            parent="menu_hr_root_employees_jobs"
-            groups="base.group_user"
-            sequence="10"
-            action="clv_employee.hr_employee_job_history_actions"/>
 
     </data>
 </odoo>

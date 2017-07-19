@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_updt_view_form_enmployee_history" model="ir.ui.view">
+            <field name="name">hr.employee.updt.form</field>
+            <field name="model">hr.employee.updt</field>
+            <field name="inherit_id" ref="clv_employee.hr_employee_updt_view_form"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <group name="global_tag_ids" position="after">
+                    <group>
+                        <field name="global_marker_id_selection"/>
+                    </group>
+                    <group name="global_marker_id">
+                        <field name="global_marker_id" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
