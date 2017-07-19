@@ -6,6 +6,6 @@
 Employee History
 ================
 
-Person Address History Module used in CLVsol Solutions.
+Employee History Module used in CLVsol Solutions.
 
 Developed by `CLVsol <https://github.com/CLVsol>`_.
