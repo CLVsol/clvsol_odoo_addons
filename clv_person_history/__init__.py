@@ -18,5 +18,5 @@
 #
 ###############################################################################
 
-import person_address_updt_wizard
-import person_updt
+from . import models
+from . import wizard

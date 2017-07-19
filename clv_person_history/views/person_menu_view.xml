@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="History" id="menu_community_community_persons_history"
+            parent="clv_person.menu_community_community_persons"
+            groups="base.group_user"
+            sequence="20"
+            action="clv_person_history.clv_person_history_actions"/>
+
+    </data>
+</odoo>
