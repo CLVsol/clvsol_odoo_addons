@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="History" id="menu_hr_root_employees_employees_history"
+            parent="clv_employee.menu_hr_root_employees_employees"
+            groups="base.group_user"
+            sequence="10"
+            action="clv_employee_history.hr_employee_history_actions"/>
+
+        <menuitem name="Department History" id="menu_hr_root_employees_department_history"
+            parent="clv_employee.menu_hr_root_employees_departments"
+            groups="base.group_user"
+            sequence="10"
+            action="clv_employee_history.hr_employee_department_history_actions"/>
+
+        <menuitem name="Job History" id="menu_hr_root_employees_job_history"
+            parent="clv_employee.menu_hr_root_employees_jobs"
+            groups="base.group_user"
+            sequence="10"
+            action="clv_employee_history.hr_employee_job_history_actions"/>
+
+    </data>
+</odoo>

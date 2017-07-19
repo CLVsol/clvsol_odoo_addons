@@ -112,6 +112,8 @@ class EmployeeHistoryUpdate(models.TransientModel):
                                                  employee_history.sign_out_date)
 
                 else:
+                    employee_history.job_id = employee.job_id.id
+                    employee_history.department_id = employee.department_id.id
                     _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_history.global_marker_id.name,
                                                  employee_history.sign_in_date,
                                                  employee_history.sign_out_date)
@@ -135,6 +137,7 @@ class EmployeeHistoryUpdate(models.TransientModel):
                     ('employee_id', '=', employee.id),
                     ('job_id', '=', employee.job_id.id),
                     ('sign_out_date', '=', False),
+                    ('global_marker_id', '=', employee.global_marker_id.id),
                 ])
 
                 if employee_job_history.id is False:
@@ -184,6 +187,7 @@ class EmployeeHistoryUpdate(models.TransientModel):
                     ('employee_id', '=', employee.id),
                     ('department_id', '=', employee.department_id.id),
                     ('sign_out_date', '=', False),
+                    ('global_marker_id', '=', employee.global_marker_id.id),
                 ])
 
                 if employee_department_history.id is False:

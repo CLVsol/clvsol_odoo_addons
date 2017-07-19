@@ -27,8 +27,7 @@
     'license': 'AGPL-3',
     'website': 'https://github.com/CLVsol',
     'depends': [
-        'clv_address',
-        'clv_person',
+        'clv_person_history',
     ],
     'data': [
         'security/ir.model.access.csv',

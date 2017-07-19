@@ -81,16 +81,6 @@ class PersonUpdate(models.TransientModel):
          ], string='Categories', default=False, readonly=False, required=False
     )
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker'
-    )
-    global_marker_id_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Global Marker', default=False, readonly=False, required=False
-    )
-
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -159,12 +149,5 @@ class PersonUpdate(models.TransientModel):
                     m2m_list.append((4, category_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person.category_ids = m2m_list
-
-            if self.global_marker_id_selection == 'set':
-                _logger.info(u'%s %s', '>>>>>>>>>>', self.global_marker_id)
-                person.global_marker_id = self.global_marker_id
-            if self.global_marker_id_selection == 'remove':
-                _logger.info(u'%s %s', '>>>>>>>>>>', False)
-                person.global_marker_id = False
 
         return True

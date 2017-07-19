@@ -101,7 +101,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <page name="settings" position="before">
-                    <page string="Address History">
+                    <page string="Person Address History">
                         <field name="person_address_history_ids" colspan="4" nolabel="1">
                             <group>
                                 <!--tree string="Addresses" colors="red:sign_out_date != False;blue:sign_out_date == False">
