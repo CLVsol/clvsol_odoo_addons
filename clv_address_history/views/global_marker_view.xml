@@ -19,7 +19,7 @@
         <record id="clv_address_view_form_global_marker" model="ir.ui.view">
             <field name="name">clv.address.form</field>
             <field name="model">clv.address</field>
-            <field name="inherit_id" ref="clv_address_view_form"/>
+            <field name="inherit_id" ref="clv_address.clv_address_view_form"/>
             <field name="priority" eval="6"/>
             <field name="arch" type="xml">
                 <group name="phone" position="after">
@@ -33,7 +33,7 @@
         <record id="clv_address_view_tree_global_marker" model="ir.ui.view">
             <field name="name">clv.address.tree</field>
             <field name="model">clv.address</field>
-            <field name="inherit_id" ref="clv_address_view_tree"/>
+            <field name="inherit_id" ref="clv_address.clv_address_view_tree"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <field name="code" position="before">
@@ -45,7 +45,7 @@
         <record id="clv_address_view_search_global_marker" model="ir.ui.view">
             <field name="name">clv.address.search</field>
             <field name="model">clv.address</field>
-            <field name="inherit_id" ref="clv_address_view_search"/>
+            <field name="inherit_id" ref="clv_address.clv_address_view_search"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <field name="code" position="after">

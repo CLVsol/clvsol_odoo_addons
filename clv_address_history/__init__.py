@@ -18,4 +18,5 @@
 #
 ###############################################################################
 
-import address_updt
+from . import models
+from . import wizard
