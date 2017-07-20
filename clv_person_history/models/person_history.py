@@ -61,6 +61,20 @@ class PersonHistory(models.Model):
         store=False
     )
 
+    date_reference = fields.Date(string="Reference Date")
+    age_reference = fields.Char(string='Reference Age')
+
+    responsible_id = fields.Many2one(
+        comodel_name='clv.person',
+        string='Responsible',
+        ondelete='restrict'
+    )
+    caregiver_id = fields.Many2one(
+        comodel_name='clv.person',
+        string='Caregiver',
+        ondelete='restrict'
+    )
+
     notes = fields.Text(string='Notes')
 
     active = fields.Boolean(string='Active', default=1)
