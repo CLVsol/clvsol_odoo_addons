@@ -24,9 +24,7 @@
                             <label for="code" class="oe_edit_only"/>
                             <h3><field name="code" placeholder="Community Code..."/></h3>
                             <label for="comm_location" class="oe_edit_only"/>
-                            <h3><field name="comm_location" placeholder="Community Code..."/></h3>
-                            <label for="user_id" class="oe_edit_only"/>
-                            <h3><field name="user_id" placeholder="Community Responsible..."/></h3>
+                            <h3><field name="comm_location" placeholder="Community Location..."/></h3>
                         </div>
                         <group name="group_top">
                             <group name="group_left">

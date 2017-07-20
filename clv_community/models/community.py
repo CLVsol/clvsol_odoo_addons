@@ -53,11 +53,6 @@ class Community(models.Model):
         default=lambda *a: datetime.now().strftime('%Y-%m-%d')
     )
 
-    user_id = fields.Many2one(
-        comodel_name='res.users',
-        string='Community Responsible'
-    )
-
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [

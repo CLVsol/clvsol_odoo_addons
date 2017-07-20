@@ -17,8 +17,17 @@
                         <div name="title" class="oe_title">
                             <group>
                                 <field name="person_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="category_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
                                 <field name="sign_in_date"/>
                                 <field name="sign_out_date"/>
+                            </group>
+                            <group>
+                                <field name="date_reference"/>
+                                <field name="age_reference"/>
+                            </group>
+                            <group>
+                                <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="caregiver_id" options="{'no_open': False, 'no_create': True}"/>
                             </group>
                             <label for="notes" class="oe_edit_only"/>
                             <field name="notes" jobholder="Notes..."/>
@@ -41,6 +50,9 @@
             <field name="arch" type="xml">
                 <tree colors="red:sign_out_date != False;blue:sign_out_date == False">
                     <field name="person_id"/>
+                    <field name="category_ids"/>
+                    <field name="age_reference"/>
+                    <field name="category_names_suport" invisible="True"/>
                     <field name="sign_in_date"/>
                     <field name="sign_out_date"/>
                     <field name="notes"/>
@@ -55,6 +67,8 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="person_id"/>
+                    <field name="category_ids"/>
+                    <field name="category_names"/>
                     <field name="sign_in_date"/>
                     <field name="sign_out_date"/>
                     <field name="notes"/>
@@ -64,6 +78,7 @@
                     <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                     <group name="group_by" expand="0" string="Group By...">
                         <filter string="Person" domain="[]" context="{'group_by':'person_id'}"/>
+                        <filter string="Categories" context="{'group_by': 'category_names'}"/>
                     </group>
                 </search>
             </field>
@@ -90,9 +105,9 @@
             <field name="name">clv.person.form</field>
             <field name="model">clv.person</field>
             <field name="inherit_id" ref="clv_person.clv_person_view_form"/>
-            <field name="priority" eval="8"/>
+            <field name="priority" eval="20"/>
             <field name="arch" type="xml">
-                <page name="settings" position="after">
+                <page name="settings" position="before">
                     <page string="Person History">
                         <field name="person_history_ids" colspan="4" nolabel="1">
                             <group>

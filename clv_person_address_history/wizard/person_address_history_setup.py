@@ -77,7 +77,7 @@ class PersonAddressHistorySetUp(models.TransientModel):
 
             _logger.info(u'%s %s %s', '>>>>>', person.name, person.address_id)
 
-            if person.address_id.id is not False:
+            if person.address_id.id is not False and person.global_marker_id.id is not False:
 
                 person_address_history = PersonAddressHistory.search([
                     ('person_id', '=', person.id),
@@ -92,11 +92,11 @@ class PersonAddressHistorySetUp(models.TransientModel):
                         ('person_id', '=', person.id),
                         ('sign_out_date', '=', False),
                     ])
-                    if person_address_history_2.id is not False:
-                        person_address_history_2.sign_out_date = self.sign_out_date
-                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history_2.address_id.name,
-                                                     person_address_history_2.sign_in_date,
-                                                     person_address_history_2.sign_out_date)
+                    for person_address_history_3 in person_address_history_2:
+                        person_address_history_3.sign_out_date = self.sign_out_date
+                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history_3.address_id.name,
+                                                     person_address_history_3.sign_in_date,
+                                                     person_address_history_3.sign_out_date)
 
                     values = {
                         'person_id': person.id,
@@ -122,11 +122,11 @@ class PersonAddressHistorySetUp(models.TransientModel):
                     ('sign_out_date', '=', False),
                 ])
 
-                if person_address_history.id is not False:
-                    person_address_history.sign_out_date = self.sign_out_date
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history.address_id.name,
-                                                 person_address_history.sign_in_date,
-                                                 person_address_history.sign_out_date)
+                for person_address_history_4 in person_address_history:
+                    person_address_history_4.sign_out_date = self.sign_out_date
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history_4.address_id.name,
+                                                 person_address_history_4.sign_in_date,
+                                                 person_address_history_4.sign_out_date)
 
         return True
         # return self._reopen_form()
