@@ -14,14 +14,19 @@
             sequence="10"
             action="clv_person.clv_person_annotation_action"/>
 
-        <menuitem name="Person Categories" id="menu_community_community_config_person_categories" 
+        <menuitem name="Person" id="menu_community_community_config_person" 
             parent="clv_base.menu_community_config_config"
+            groups="clv_person.group_user"
+            sequence="10"/>
+
+        <menuitem name="Categories" id="menu_community_community_config_person_categories" 
+            parent="menu_community_community_config_person"
             groups="clv_person.group_user"
             sequence="10"
             action="clv_person.clv_person_category_action"/>
 
-        <menuitem name="Person Roles (Address)" id="menu_community_config_config_person_roles_address"
-            parent="clv_base.menu_community_config_config"
+        <menuitem name="Roles (Address)" id="menu_community_config_config_person_roles_address"
+            parent="menu_community_community_config_person"
             groups="clv_person.group_user"
             sequence="20"
             action="clv_person.clv_person_address_role_action"/>
