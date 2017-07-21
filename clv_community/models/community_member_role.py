@@ -22,7 +22,7 @@ from odoo import fields, models
 
 
 class CommunityMemberRole(models.Model):
-    _description = 'Community'
+    _description = 'Community Member Role'
     _name = 'clv.community.member.role'
     _order = 'name'
 
