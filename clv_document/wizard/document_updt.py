@@ -91,16 +91,6 @@ class DocumentUpdate(models.TransientModel):
          ], string='Base Document', default=False, readonly=False, required=False
     )
 
-    user_id = fields.Many2one(
-        comodel_name='res.users',
-        string='Document Responsible'
-    )
-    user_id_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Document Responsible', default=False, readonly=False, required=False
-    )
-
     date_document = fields.Date(string='Document Date', default=False, readonly=False, required=False)
     date_document_selection = fields.Selection(
         [('set', 'Set'),
@@ -195,11 +185,6 @@ class DocumentUpdate(models.TransientModel):
                 document.base_document_id = self.base_document_id.id
             if self.base_document_id_selection == 'remove':
                 document.base_document_id = False
-
-            if self.user_id_selection == 'set':
-                document.user_id = self.user_id.id
-            if self.user_id_selection == 'remove':
-                document.user_id = False
 
             if self.date_document_selection == 'set':
                 document.date_document = self.date_document
