@@ -2,10 +2,10 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=================
-DSocument History
-=================
+================
+Document History
+================
 
-DSocument History Module used in CLVsol Solutions.
+Document History Module used in CLVsol Solutions.
 
 Developed by `CLVsol <https://github.com/CLVsol>`_.
