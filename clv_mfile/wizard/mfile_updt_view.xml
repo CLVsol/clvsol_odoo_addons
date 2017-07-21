@@ -33,7 +33,7 @@
                         <group>
                             <field name="date_inclusion_selection"/>
                         </group>
-                        <group>
+                        <group name="date_inclusion">
                             <field name="date_inclusion" nolabel='1'/>
                         </group>
                     </group>
