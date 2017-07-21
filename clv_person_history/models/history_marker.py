@@ -21,12 +21,12 @@
 from odoo import models, fields
 
 
-class Marker(models.Model):
-    _inherit = 'clv.global_marker'
+class HistoryMarker(models.Model):
+    _inherit = 'clv.history_marker'
 
     person_ids = fields.One2many(
         comodel_name='clv.person',
-        inverse_name='global_marker_id',
+        inverse_name='history_marker_id',
         string='Persons',
         readonly=True
     )
@@ -35,9 +35,9 @@ class Marker(models.Model):
 class Person(models.Model):
     _inherit = 'clv.person'
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
         ondelete='restrict'
     )
 
@@ -45,8 +45,8 @@ class Person(models.Model):
 class PersonHistory(models.Model):
     _inherit = 'clv.person.history'
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
         ondelete='restrict'
     )

@@ -28,12 +28,12 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_person',
-        'clv_global_marker',
+        'clv_history_marker',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/person_history_view.xml',
-        'views/global_marker_view.xml',
+        'views/history_marker_view.xml',
         'wizard/person_updt_view.xml',
         'wizard/person_history_updt_view.xml',
         'views/person_menu_view.xml',

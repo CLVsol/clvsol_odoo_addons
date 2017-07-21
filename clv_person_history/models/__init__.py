@@ -19,4 +19,4 @@
 ###############################################################################
 
 from . import person_history
-from . import global_marker
+from . import history_marker
