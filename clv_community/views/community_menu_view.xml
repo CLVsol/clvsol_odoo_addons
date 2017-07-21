@@ -8,11 +8,22 @@
             sequence="30"
             action="clv_community.clv_community_action"/>
 
-        <menuitem name="Community Categories" id="menu_community_config_config_community_categories" 
+        <menuitem name="Community" id="menu_community_config_config_community" 
             parent="clv_base.menu_community_config_config"
             groups="clv_community.group_user"
-            sequence="30"
+            sequence="30"/>
+
+        <menuitem name="Categories" id="menu_community_config_config_community_categories" 
+            parent="menu_community_config_config_community"
+            groups="clv_community.group_user"
+            sequence="10"
             action="clv_community.clv_community_category_action"/>
+
+        <menuitem name="Member Roles" id="menu_community_config_config_community_member_roles"
+            parent="menu_community_config_config_community"
+            groups="clv_community.group_user"
+            sequence="20"
+            action="clv_community.clv_community_member_role_action"/>
 
     </data>
 </odoo>

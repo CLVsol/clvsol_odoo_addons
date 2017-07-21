@@ -11,3 +11,7 @@ access_clv_community_log_supmanager,clv.community.log.supmanager,model_clv_commu
 access_clv_community_category_user,clv.community.category.user,model_clv_community_category,clv_community.group_user,1,0,0,0
 access_clv_community_category_manager,clv.community.manager.category,model_clv_community_category,clv_community.group_manager,1,1,1,0
 access_clv_community_category_supmanager,clv.community.category.supmanager,model_clv_community_category,clv_community.group_supmanager,1,1,1,1
+
+access_clv_community_member_role_community_user,clv.community.member.role,model_clv_community_member_role,clv_community.group_user,1,0,0,0
+access_clv_community_member_role_community_manager,clv.community.member.role,model_clv_community_member_role,clv_community.group_manager,1,1,1,0
+access_clv_community_member_role_supmanager,clv.community.member.role,model_clv_community_member_role,clv_community.group_supmanager,1,1,1,1

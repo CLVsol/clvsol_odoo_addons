@@ -18,8 +18,33 @@
 #
 ###############################################################################
 
-from . import community
-from . import community_log
-from . import community_category
-from . import global_tag
-from . import community_member_role
+from odoo import fields, models
+
+
+class CommunityMemberRole(models.Model):
+    _description = 'Community'
+    _name = 'clv.community.member.role'
+    _order = 'name'
+
+    name = fields.Char(
+        string='Community Member Role',
+        required=True,
+        help='Role of a Member in an Community')
+
+    code = fields.Char(string='Community Member Role Code', required=False)
+
+    description = fields.Text(string='Description')
+
+    notes = fields.Text(string='Notes')
+
+    active = fields.Boolean(string='Active', default=1)
+
+    _sql_constraints = [
+        ('role_name_uniq',
+         'UNIQUE (code)',
+         u'Error! The Member Role Name must be unique!'),
+        ('code_uniq',
+         'UNIQUE(code)',
+         u'Error! The Member Role Code must be unique!'
+         )
+    ]
