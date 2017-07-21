@@ -19,4 +19,4 @@
 ###############################################################################
 
 from . import address_history
-from . import global_marker
+from . import history_marker
