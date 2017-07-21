@@ -18,37 +18,33 @@
 #
 ###############################################################################
 
-{
-    'name': 'Event',
-    'summary': 'Event Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_global_tag',
-    ],
-    'data': [
-        'security/event_security.xml',
-        'security/ir.model.access.csv',
-        'views/event_view.xml',
-        'views/event_category_view.xml',
-        'views/global_tag_view.xml',
-        'views/event_log_view.xml',
-        'views/event_participant_role_view.xml',
-        'wizard/event_updt_view.xml',
-        'views/event_menu_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import fields, models
+
+
+class EventParticipantRole(models.Model):
+    _description = 'Event Participant Role'
+    _name = 'clv.event.participant.role'
+    _order = 'name'
+
+    name = fields.Char(
+        string='Event Participant Role',
+        required=True,
+        help='Role of a Participant in an Event')
+
+    code = fields.Char(string='Event Participant Role Code', required=False)
+
+    description = fields.Text(string='Description')
+
+    notes = fields.Text(string='Notes')
+
+    active = fields.Boolean(string='Active', default=1)
+
+    _sql_constraints = [
+        ('role_name_uniq',
+         'UNIQUE (code)',
+         u'Error! The Participant Role Name must be unique!'),
+        ('code_uniq',
+         'UNIQUE(code)',
+         u'Error! The Participant Role Code must be unique!'
+         )
+    ]

@@ -11,3 +11,7 @@ access_clv_event_category_supmanager,clv.event.category.supmanager,model_clv_eve
 access_clv_event_log_user,clv.event.log.user,model_clv_event_log,clv_event.group_user,1,0,0,0
 access_clv_event_log_manager,clv.event.log.manager,model_clv_event_log,clv_event.group_manager,1,1,1,0
 access_clv_event_log_supmanager,clv.event.log.supmanager,model_clv_event_log,clv_event.group_supmanager,1,1,1,1
+
+access_clv_event_participant_role_event_user,clv.event.participant.role,model_clv_event_participant_role,clv_event.group_user,1,0,0,0
+access_clv_event_participant_role_event_manager,clv.event.participant.role,model_clv_event_participant_role,clv_event.group_manager,1,1,1,0
+access_clv_event_participant_role_supmanager,clv.event.participant.role,model_clv_event_participant_role,clv_event.group_supmanager,1,1,1,1
