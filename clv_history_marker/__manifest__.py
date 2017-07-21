@@ -18,26 +18,30 @@
 #
 ###############################################################################
 
-from odoo import fields, models
-
-
-class GlobalMarker(models.Model):
-    _description = 'Global Marker'
-    _name = 'clv.global_marker'
-    _order = 'name'
-
-    name = fields.Char(string='Marker', required=True, translate=True)
-    code = fields.Char(string='Marker Code', required=False)
-    description = fields.Char(string='Description')
-    notes = fields.Text(string='Notes')
-
-    active = fields.Boolean(string='Active', default=True)
-
-    _sql_constraints = [
-        ('name_uniq',
-         'UNIQUE (name)',
-         'Error! The Marker must be unique!'),
-        ('code_uniq',
-         'UNIQUE (code)',
-         'Error! The Code must be unique!'),
-    ]
+{
+    'name': 'History Marker',
+    'summary': 'History Marker Module used by CLVsol Solutions.',
+    'version': '3.0.0',
+    'author': 'Carlos Eduardo Vercelino - CLVsol',
+    'category': 'Generic Modules/Others',
+    'license': 'AGPL-3',
+    'website': 'https://github.com/CLVsol',
+    'depends': [
+        'clv_base',
+    ],
+    'data': [
+        'security/history_marker_security.xml',
+        'security/ir.model.access.csv',
+        'views/history_marker_view.xml',
+        'views/history_marker_menu_view.xml',
+    ],
+    'demo': [],
+    'test': [],
+    'init_xml': [],
+    'test': [],
+    'update_xml': [],
+    'installable': True,
+    'application': False,
+    'active': False,
+    'css': [],
+}
