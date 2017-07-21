@@ -77,11 +77,11 @@ class PersonHistoryUpdate(models.TransientModel):
 
             _logger.info(u'%s %s', '>>>>>', person.name)
 
-            if person.global_marker_id.id is not False:
+            if person.history_marker_id.id is not False:
 
                 person_history = PersonHistory.search([
                     ('person_id', '=', person.id),
-                    ('global_marker_id', '=', person.global_marker_id.id),
+                    ('history_marker_id', '=', person.history_marker_id.id),
                     ('sign_out_date', '=', False),
                 ])
 
@@ -93,7 +93,7 @@ class PersonHistoryUpdate(models.TransientModel):
                     ])
                     if person_history_2.id is not False:
                         person_history_2.sign_out_date = self.sign_out_date
-                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history_2.global_marker_id.name,
+                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history_2.history_marker_id.name,
                                                      person_history_2.sign_in_date,
                                                      person_history_2.sign_out_date)
 
@@ -109,10 +109,10 @@ class PersonHistoryUpdate(models.TransientModel):
                         'responsible_id': person.responsible_id.id,
                         'caregiver_id': person.caregiver_id.id,
                         'sign_in_date': self.sign_in_date,
-                        'global_marker_id': person.global_marker_id.id,
+                        'history_marker_id': person.history_marker_id.id,
                     }
                     person_history = PersonHistory.create(values)
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history.global_marker_id.name,
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history.history_marker_id.name,
                                                  person_history.sign_in_date,
                                                  person_history.sign_out_date)
 
@@ -133,7 +133,7 @@ class PersonHistoryUpdate(models.TransientModel):
                         person_history.responsible_id = person.responsible_id.id
                     if person_history.caregiver_id.id != person.caregiver_id.id:
                         person_history.caregiver_id = person.caregiver_id.id
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history.global_marker_id.name,
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history.history_marker_id.name,
                                                  person_history.sign_in_date,
                                                  person_history.sign_out_date)
 
@@ -146,7 +146,7 @@ class PersonHistoryUpdate(models.TransientModel):
 
                 if person_history.id is not False:
                     person_history.sign_out_date = self.sign_out_date
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history.global_marker_id.name,
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history.history_marker_id.name,
                                                  person_history.sign_in_date,
                                                  person_history.sign_out_date)
 

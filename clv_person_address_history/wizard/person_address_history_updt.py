@@ -67,14 +67,14 @@ class PersonAddressHistoryUpdate(models.TransientModel):
          ], string='Global Tags', default=False, readonly=False, required=False
     )
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker'
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker'
     )
-    global_marker_id_selection = fields.Selection(
+    history_marker_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Global Marker', default=False, readonly=False, required=False
+         ], string='History Marker', default=False, readonly=False, required=False
     )
 
     role_id = fields.Many2one(
@@ -147,12 +147,12 @@ class PersonAddressHistoryUpdate(models.TransientModel):
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person_address_history.global_tag_ids = m2m_list
 
-            if self.global_marker_id_selection == 'set':
-                _logger.info(u'%s %s', '>>>>>>>>>>', self.global_marker_id)
-                person_address_history.global_marker_id = self.global_marker_id
-            if self.global_marker_id_selection == 'remove':
+            if self.history_marker_id_selection == 'set':
+                _logger.info(u'%s %s', '>>>>>>>>>>', self.history_marker_id)
+                person_address_history.history_marker_id = self.history_marker_id
+            if self.history_marker_id_selection == 'remove':
                 _logger.info(u'%s %s', '>>>>>>>>>>', False)
-                person_address_history.global_marker_id = False
+                person_address_history.history_marker_id = False
 
             if self.role_id_selection == 'set':
                 person_address_history.role_id = self.role_id.id

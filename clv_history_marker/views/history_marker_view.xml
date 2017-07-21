@@ -2,9 +2,9 @@
 <odoo>
     <data>
 
-        <record id="clv_global_marker_view_form" model="ir.ui.view">
-            <field name="name">clv.global_marker.form</field>
-            <field name="model">clv.global_marker</field>
+        <record id="clv_history_marker_view_form" model="ir.ui.view">
+            <field name="name">clv.history_marker.form</field>
+            <field name="model">clv.history_marker</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -15,7 +15,7 @@
                         </div>
                         <div name="center" class="oe_center">
                             <label for="name" class="oe_edit_only"/>
-                            <h1><field name="name" default_focus="1" placeholder="Global Marker..."/></h1>
+                            <h1><field name="name" default_focus="1" placeholder="Marker..."/></h1>
                         </div>
                         <div name="title" class="oe_title">
                             <label for="code" class="oe_edit_only"/>
@@ -37,12 +37,12 @@
             </field>
         </record>
         
-        <record id="clv_global_marker_view_tree" model="ir.ui.view">
-            <field name="name">clv_global_marker.tree</field>
-            <field name="model">clv.global_marker</field>
+        <record id="clv_history_marker_view_tree" model="ir.ui.view">
+            <field name="name">clv_history_marker.tree</field>
+            <field name="model">clv.history_marker</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Global Markers">
+                <tree string="History Markers">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="description"/>
@@ -52,9 +52,9 @@
             </field>
         </record>
         
-        <record id="clv_global_marker_view_search" model="ir.ui.view">
-            <field name="name">clv.global_marker.search</field>
-            <field name="model">clv.global_marker</field>
+        <record id="clv_history_marker_view_search" model="ir.ui.view">
+            <field name="name">clv.history_marker.search</field>
+            <field name="model">clv.history_marker</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search>
@@ -71,13 +71,13 @@
             </field>
         </record>
         
-        <record id="clv_global_marker_action" model="ir.actions.act_window">
-            <field name="name">Global Markers</field>
+        <record id="clv_history_marker_action" model="ir.actions.act_window">
+            <field name="name">History Markers</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">clv.global_marker</field>
+            <field name="res_model">clv.history_marker</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="clv_global_marker_view_search"/>
+            <field name="search_view_id" ref="clv_history_marker_view_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
             <field name="help" type="html">

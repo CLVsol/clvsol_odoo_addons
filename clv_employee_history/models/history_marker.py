@@ -21,12 +21,12 @@
 from odoo import models, fields
 
 
-class Marker(models.Model):
-    _inherit = 'clv.global_marker'
+class HistoryMarker(models.Model):
+    _inherit = 'clv.history_marker'
 
     employee_ids = fields.One2many(
         comodel_name='hr.employee',
-        inverse_name='global_marker_id',
+        inverse_name='history_marker_id',
         string='Employess',
         readonly=True
     )
@@ -35,9 +35,9 @@ class Marker(models.Model):
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
         ondelete='restrict'
     )
 
@@ -45,9 +45,9 @@ class Employee(models.Model):
 class EmployeeDepartmentHistory(models.Model):
     _inherit = 'hr.employee.department.history'
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
         ondelete='restrict'
     )
 
@@ -55,9 +55,9 @@ class EmployeeDepartmentHistory(models.Model):
 class EmployeeJobHistory(models.Model):
     _inherit = 'hr.employee.job.history'
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
         ondelete='restrict'
     )
 
@@ -65,8 +65,8 @@ class EmployeeJobHistory(models.Model):
 class EmployeeHistory(models.Model):
     _inherit = 'hr.employee.history'
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
         ondelete='restrict'
     )

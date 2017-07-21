@@ -28,12 +28,12 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_address',
-        'clv_global_marker',
+        'clv_history_marker',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/address_history_view.xml',
-        'views/global_marker_view.xml',
+        'views/history_marker_view.xml',
         'wizard/address_updt_view.xml',
         'wizard/address_history_updt_view.xml',
         'views/address_menu_view.xml',

@@ -33,7 +33,7 @@
         'security/ir.model.access.csv',
         'views/person_address_history_view.xml',
         'views/global_tag_view.xml',
-        'views/global_marker_view.xml',
+        'views/history_marker_view.xml',
         'views/person_address_history_log_view.xml',
         'views/person_address_history_menu_view.xml',
         'wizard/person_address_history_setup_view.xml',

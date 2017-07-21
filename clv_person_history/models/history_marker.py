@@ -18,4 +18,35 @@
 #
 ###############################################################################
 
-from . import global_marker
+from odoo import models, fields
+
+
+class HistoryMarker(models.Model):
+    _inherit = 'clv.history_marker'
+
+    person_ids = fields.One2many(
+        comodel_name='clv.person',
+        inverse_name='history_marker_id',
+        string='Persons',
+        readonly=True
+    )
+
+
+class Person(models.Model):
+    _inherit = 'clv.person'
+
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
+        ondelete='restrict'
+    )
+
+
+class PersonHistory(models.Model):
+    _inherit = 'clv.person.history'
+
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
+        ondelete='restrict'
+    )

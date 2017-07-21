@@ -18,30 +18,25 @@
 #
 ###############################################################################
 
-{
-    'name': 'Global Marker',
-    'summary': 'Global Marker Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': [
-        'clv_base',
-    ],
-    'data': [
-        'security/global_marker_security.xml',
-        'security/ir.model.access.csv',
-        'views/global_marker_view.xml',
-        'views/global_marker_menu_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import models, fields
+
+
+class HistoryMarker(models.Model):
+    _inherit = 'clv.history_marker'
+
+    person_address_history_ids = fields.One2many(
+        comodel_name='clv.person.address.history',
+        inverse_name='history_marker_id',
+        string='Person Address History',
+        readonly=True
+    )
+
+
+class PersonAddressHistory(models.Model):
+    _inherit = 'clv.person.address.history'
+
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
+        ondelete='restrict'
+    )

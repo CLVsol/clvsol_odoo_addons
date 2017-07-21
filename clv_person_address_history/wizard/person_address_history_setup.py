@@ -77,12 +77,12 @@ class PersonAddressHistorySetUp(models.TransientModel):
 
             _logger.info(u'%s %s %s', '>>>>>', person.name, person.address_id)
 
-            if person.address_id.id is not False and person.global_marker_id.id is not False:
+            if person.address_id.id is not False and person.history_marker_id.id is not False:
 
                 person_address_history = PersonAddressHistory.search([
                     ('person_id', '=', person.id),
                     ('address_id', '=', person.address_id.id),
-                    ('global_marker_id', '=', person.global_marker_id.id),
+                    ('history_marker_id', '=', person.history_marker_id.id),
                     ('sign_out_date', '=', False),
                 ])
 
@@ -103,7 +103,7 @@ class PersonAddressHistorySetUp(models.TransientModel):
                         'address_id': person.address_id.id,
                         'role_id': person.person_address_role_id.id,
                         'sign_in_date': self.sign_in_date,
-                        'global_marker_id': person.global_marker_id.id,
+                        'history_marker_id': person.history_marker_id.id,
                     }
                     person_address_history = PersonAddressHistory.create(values)
                     _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_address_history.address_id.name,

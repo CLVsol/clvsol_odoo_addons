@@ -28,14 +28,14 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_employee',
-        'clv_global_marker',
+        'clv_history_marker',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/hr_employee_job_history_view.xml',
         'views/hr_employee_department_history_view.xml',
         'views/hr_employee_history_view.xml',
-        'views/global_marker_view.xml',
+        'views/history_marker_view.xml',
         'views/hr_employee_menu_view.xml',
         'wizard/hr_employee_updt_view.xml',
         'wizard/hr_employee_history_updt_view.xml',

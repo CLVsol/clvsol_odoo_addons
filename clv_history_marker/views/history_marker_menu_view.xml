@@ -4,11 +4,11 @@
 
     <menuitem
         id="menu_base_base_markers"
-        name="Global Markers"
+        name="History Markers"
         parent="clv_base.menu_base_base"
-        groups="clv_global_marker.group_user"
+        groups="clv_history_marker.group_user"
         sequence="15"
-        action="clv_global_marker.clv_global_marker_action"/>
+        action="clv_history_marker.clv_history_marker_action"/>
 
     </data>
 </odoo>

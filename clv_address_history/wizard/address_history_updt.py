@@ -77,11 +77,11 @@ class AddressHistoryUpdate(models.TransientModel):
 
             _logger.info(u'%s %s', '>>>>>', address.name)
 
-            if address.global_marker_id.id is not False:
+            if address.history_marker_id.id is not False:
 
                 address_history = AddressHistory.search([
                     ('address_id', '=', address.id),
-                    ('global_marker_id', '=', address.global_marker_id.id),
+                    ('history_marker_id', '=', address.history_marker_id.id),
                     ('sign_out_date', '=', False),
                 ])
 
@@ -93,7 +93,7 @@ class AddressHistoryUpdate(models.TransientModel):
                     ])
                     if address_history_2.id is not False:
                         address_history_2.sign_out_date = self.sign_out_date
-                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', address_history_2.global_marker_id.name,
+                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', address_history_2.history_marker_id.name,
                                                      address_history_2.sign_in_date,
                                                      address_history_2.sign_out_date)
 
@@ -105,10 +105,10 @@ class AddressHistoryUpdate(models.TransientModel):
                         'address_id': address.id,
                         'category_ids': category_ids,
                         'sign_in_date': self.sign_in_date,
-                        'global_marker_id': address.global_marker_id.id,
+                        'history_marker_id': address.history_marker_id.id,
                     }
                     address_history = AddressHistory.create(values)
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', address_history.global_marker_id.name,
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', address_history.history_marker_id.name,
                                                  address_history.sign_in_date,
                                                  address_history.sign_out_date)
 
@@ -121,7 +121,7 @@ class AddressHistoryUpdate(models.TransientModel):
                         m2m_list_2.append((4, category_id.id))
                     if m2m_list != m2m_list_2:
                         address_history.category_ids = m2m_list
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', address_history.global_marker_id.name,
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', address_history.history_marker_id.name,
                                                  address_history.sign_in_date,
                                                  address_history.sign_out_date)
 
@@ -134,7 +134,7 @@ class AddressHistoryUpdate(models.TransientModel):
 
                 if address_history.id is not False:
                     address_history.sign_out_date = self.sign_out_date
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', address_history.global_marker_id.name,
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', address_history.history_marker_id.name,
                                                  address_history.sign_in_date,
                                                  address_history.sign_out_date)
 

@@ -21,4 +21,4 @@
 from . import hr_employee_job_history
 from . import hr_employee_department_history
 from . import hr_employee_history
-from . import global_marker
+from . import history_marker

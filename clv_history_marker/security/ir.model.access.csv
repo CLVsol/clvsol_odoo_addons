@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_history_marker_user,clv.history_marker.user,model_clv_history_marker,clv_history_marker.group_user,1,0,0,0
+access_clv_history_marker_manager,clv.history_marker.manager,model_clv_history_marker,clv_history_marker.group_manager,1,1,1,0
+access_clv_history_marker_supmanager,clv.history_marker.supmanager,model_clv_history_marker,clv_history_marker.group_supmanager,1,1,1,1

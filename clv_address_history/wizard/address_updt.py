@@ -28,14 +28,14 @@ _logger = logging.getLogger(__name__)
 class AddressUpdate(models.TransientModel):
     _inherit = 'clv.address.updt'
 
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker'
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker'
     )
-    global_marker_id_selection = fields.Selection(
+    history_marker_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Global Marker', default=False, readonly=False, required=False
+         ], string='History Marker', default=False, readonly=False, required=False
     )
 
     @api.multi
@@ -48,9 +48,9 @@ class AddressUpdate(models.TransientModel):
 
             _logger.info(u'%s %s', '>>>>>', address.name)
 
-            if self.global_marker_id_selection == 'set':
-                address.global_marker_id = self.global_marker_id
-            if self.global_marker_id_selection == 'remove':
-                address.global_marker_id = False
+            if self.history_marker_id_selection == 'set':
+                address.history_marker_id = self.history_marker_id
+            if self.history_marker_id_selection == 'remove':
+                address.history_marker_id = False
 
         return True

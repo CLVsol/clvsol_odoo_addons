@@ -18,35 +18,26 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import fields, models
 
 
-class Marker(models.Model):
-    _inherit = 'clv.global_marker'
+class HisotryMarker(models.Model):
+    _description = 'Hisotry Marker'
+    _name = 'clv.history_marker'
+    _order = 'name'
 
-    address_ids = fields.One2many(
-        comodel_name='clv.address',
-        inverse_name='global_marker_id',
-        string='Addresses',
-        readonly=True
-    )
+    name = fields.Char(string='Marker', required=True, translate=True)
+    code = fields.Char(string='Marker Code', required=False)
+    description = fields.Char(string='Description')
+    notes = fields.Text(string='Notes')
 
+    active = fields.Boolean(string='Active', default=True)
 
-class Address(models.Model):
-    _inherit = 'clv.address'
-
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
-        ondelete='restrict'
-    )
-
-
-class AddressHistory(models.Model):
-    _inherit = 'clv.address.history'
-
-    global_marker_id = fields.Many2one(
-        comodel_name='clv.global_marker',
-        string='Global Marker',
-        ondelete='restrict'
-    )
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         'Error! The Marker must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         'Error! The Code must be unique!'),
+    ]
