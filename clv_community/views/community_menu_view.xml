@@ -19,11 +19,5 @@
             sequence="10"
             action="clv_community.clv_community_category_action"/>
 
-        <menuitem name="Member Roles" id="menu_community_config_config_community_member_roles"
-            parent="menu_community_config_config_community"
-            groups="clv_community.group_user"
-            sequence="20"
-            action="clv_community.clv_community_member_role_action"/>
-
     </data>
 </odoo>
