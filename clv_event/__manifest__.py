@@ -38,7 +38,6 @@
         'views/event_category_view.xml',
         'views/global_tag_view.xml',
         'views/event_log_view.xml',
-        'views/event_participant_role_view.xml',
         'wizard/event_updt_view.xml',
         'views/event_menu_view.xml',
     ],

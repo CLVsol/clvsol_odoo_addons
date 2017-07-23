@@ -19,11 +19,5 @@
             sequence="10"
             action="clv_event.clv_event_category_action"/>
 
-        <menuitem name="Participant Roles" id="menu_base_config_config_event_participant_roles"
-            parent="menu_base_config_config_event"
-            groups="clv_event.group_user"
-            sequence="20"
-            action="clv_event.clv_event_participant_role_action"/>
-
     </data>
 </odoo>
