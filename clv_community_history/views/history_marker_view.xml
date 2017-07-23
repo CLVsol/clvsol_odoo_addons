@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_history_marker_view_form_community" model="ir.ui.view">
+            <field name="name">clv.history_marker.form</field>
+            <field name="model">clv.history_marker</field>
+            <field name="inherit_id" ref="clv_history_marker.clv_history_marker_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="marker_for" position="inside">
+                    <group string="Communities">
+                        <field name="community_ids" colspan="4" nolabel="1"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_community_view_form_history_marker" model="ir.ui.view">
+            <field name="name">clv.community.form</field>
+            <field name="model">clv.community</field>
+            <field name="inherit_id" ref="clv_community.clv_community_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <field name="date_inclusion" position="after">
+                    <field name="history_marker_id" options='{"no_open": True, "no_create": True}'/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_community_view_tree_history_marker" model="ir.ui.view">
+            <field name="name">clv.community.tree</field>
+            <field name="model">clv.community</field>
+            <field name="inherit_id" ref="clv_community.clv_community_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="before">
+                    <field name="history_marker_id" groups="clv_history_marker.group_user"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_community_view_search_history_marker" model="ir.ui.view">
+            <field name="name">clv.community.search</field>
+            <field name="model">clv.community</field>
+            <field name="inherit_id" ref="clv_community.clv_community_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="history_marker_id"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="History Markers" context="{'group_by': 'history_marker_id'}"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>

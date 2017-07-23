@@ -18,33 +18,28 @@
 #
 ###############################################################################
 
-from odoo import fields, models
-
-
-class EventParticipantRole(models.Model):
-    _description = 'Event Participant Role'
-    _name = 'clv.event.participant.role'
-    _order = 'name'
-
-    name = fields.Char(
-        string='Event Participant Role',
-        required=True,
-        help='Role of a Participant in an Event')
-
-    code = fields.Char(string='Event Participant Role Code', required=False)
-
-    description = fields.Text(string='Description')
-
-    notes = fields.Text(string='Notes')
-
-    active = fields.Boolean(string='Active', default=1)
-
-    _sql_constraints = [
-        ('role_name_uniq',
-         'UNIQUE (code)',
-         u'Error! The Participant Role Name must be unique!'),
-        ('code_uniq',
-         'UNIQUE(code)',
-         u'Error! The Participant Role Code must be unique!'
-         )
-    ]
+{
+    'name': 'Event History',
+    'summary': 'Event History Module used in CLVsol Solutions.',
+    'version': '3.0.0',
+    'author': 'Carlos Eduardo Vercelino - CLVsol',
+    'category': 'Generic Modules/Others',
+    'license': 'AGPL-3',
+    'website': 'https://github.com/CLVsol',
+    'depends': [
+        'clv_event',
+        'clv_history_marker',
+    ],
+    'data': [
+        'views/history_marker_view.xml',
+    ],
+    'demo': [],
+    'test': [],
+    'init_xml': [],
+    'test': [],
+    'update_xml': [],
+    'installable': True,
+    'application': False,
+    'active': False,
+    'css': [],
+}

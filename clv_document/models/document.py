@@ -49,12 +49,6 @@ class Document(models.Model):
         required=False,
         help="Base Document"
     )
-    user_id = fields.Many2one(
-        comodel_name='res.users',
-        string='Document Responsible',
-        required=False,
-        help='Document Responsible',
-    )
 
     notes = fields.Text(string='Notes')
 

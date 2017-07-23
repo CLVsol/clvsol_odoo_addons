@@ -18,36 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Community',
-    'summary': 'Community Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_global_tag',
-    ],
-    'data': [
-        'security/community_security.xml',
-        'security/ir.model.access.csv',
-        'views/community_view.xml',
-        'views/community_log_view.xml',
-        'views/community_category_view.xml',
-        'views/global_tag_view.xml',
-        'wizard/community_updt_view.xml',
-        'views/community_menu_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+import mfile_updt
