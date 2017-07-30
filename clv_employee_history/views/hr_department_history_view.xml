@@ -2,9 +2,9 @@
 <openerp>
     <data>
 
-        <record id="hr_employee_department_history_view_form" model="ir.ui.view">
-            <field name="name">hr.employee.department.history.form</field>
-            <field name="model">hr.employee.department.history</field>
+        <record id="hr_department_history_view_form" model="ir.ui.view">
+            <field name="name">hr.department.history.form</field>
+            <field name="model">hr.department.history</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form>
@@ -35,9 +35,9 @@
             </field>
         </record>
         
-        <record id="hr_employee_department_history_view_tree" model="ir.ui.view">
-            <field name="name">hr.employee.department.history.tree</field>
-            <field name="model">hr.employee.department.history</field>
+        <record id="hr_department_history_view_tree" model="ir.ui.view">
+            <field name="name">hr.department.history.tree</field>
+            <field name="model">hr.department.history</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree colors="red:sign_out_date != False;blue:sign_out_date == False">
@@ -50,9 +50,9 @@
             </field>
         </record>
         
-        <record id="hr_employee_department_history_view_search" model="ir.ui.view">
-            <field name="name">hr.employee.department.history.search</field>
-            <field name="model">hr.employee.department.history</field>
+        <record id="hr_department_history_view_search" model="ir.ui.view">
+            <field name="name">hr.department.history.search</field>
+            <field name="model">hr.department.history</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search>
@@ -73,19 +73,19 @@
             </field>
         </record>
 
-        <record id="hr_employee_department_history_actions" model="ir.actions.act_window">
+        <record id="hr_department_history_actions" model="ir.actions.act_window">
             <field name="name">Employee Department History</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hr.employee.department.history</field>
+            <field name="res_model">hr.department.history</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="hr_employee_department_history_view_search"/>
+            <field name="search_view_id" ref="hr_department_history_view_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
             <field name="context">{}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Click to add a new employee department history.
+                Click to add a new department history.
               </p>
             </field>
         </record>
@@ -98,7 +98,7 @@
             <field name="arch" type="xml">
                 <page name="hr_settings" position="after">
                     <page string="Department History">
-                        <field name="employee_department_history_ids" colspan="4" nolabel="1">
+                        <field name="department_history_ids" colspan="4" nolabel="1">
                             <group>
                                 <!--tree string="Departments" colors="red:sign_out_date != False;blue:sign_out_date == False">
                                     <field name="department_id"/>

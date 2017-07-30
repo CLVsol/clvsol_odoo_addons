@@ -32,8 +32,8 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/hr_employee_job_history_view.xml',
-        'views/hr_employee_department_history_view.xml',
+        'views/hr_job_history_view.xml',
+        'views/hr_department_history_view.xml',
         'views/hr_employee_history_view.xml',
         'views/history_marker_view.xml',
         'views/hr_employee_menu_view.xml',

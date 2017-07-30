@@ -12,13 +12,13 @@
             parent="clv_employee.menu_hr_root_employees_departments"
             groups="base.group_user"
             sequence="10"
-            action="clv_employee_history.hr_employee_department_history_actions"/>
+            action="clv_employee_history.hr_department_history_actions"/>
 
         <menuitem name="Job History" id="menu_hr_root_employees_job_history"
             parent="clv_employee.menu_hr_root_employees_jobs"
             groups="base.group_user"
             sequence="10"
-            action="clv_employee_history.hr_employee_job_history_actions"/>
+            action="clv_employee_history.hr_job_history_actions"/>
 
     </data>
 </odoo>

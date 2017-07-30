@@ -64,8 +64,8 @@ class EmployeeHistoryUpdate(models.TransientModel):
         self.ensure_one()
 
         HrEmployeeHistory = self.env['hr.employee.history']
-        HrEmployeeJobHistory = self.env['hr.employee.job.history']
-        HrEmployeeDepartmentHistory = self.env['hr.employee.department.history']
+        HrJobHistory = self.env['hr.job.history']
+        HrDepartmentHistory = self.env['hr.department.history']
 
         for employee in self.employee_ids:
 
@@ -133,24 +133,24 @@ class EmployeeHistoryUpdate(models.TransientModel):
 
             if employee.job_id.id is not False:
 
-                employee_job_history = HrEmployeeJobHistory.search([
+                job_history = HrJobHistory.search([
                     ('employee_id', '=', employee.id),
                     ('job_id', '=', employee.job_id.id),
                     ('sign_out_date', '=', False),
                     ('history_marker_id', '=', employee.history_marker_id.id),
                 ])
 
-                if employee_job_history.id is False:
+                if job_history.id is False:
 
-                    employee_job_history_2 = HrEmployeeJobHistory.search([
+                    job_history_2 = HrJobHistory.search([
                         ('employee_id', '=', employee.id),
                         ('sign_out_date', '=', False),
                     ])
-                    if employee_job_history_2.id is not False:
-                        employee_job_history_2.sign_out_date = self.sign_out_date
-                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_job_history_2.job_id.name,
-                                                     employee_job_history_2.sign_in_date,
-                                                     employee_job_history_2.sign_out_date)
+                    if job_history_2.id is not False:
+                        job_history_2.sign_out_date = self.sign_out_date
+                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', job_history_2.job_id.name,
+                                                     job_history_2.sign_in_date,
+                                                     job_history_2.sign_out_date)
 
                     values = {
                         'employee_id': employee.id,
@@ -158,49 +158,49 @@ class EmployeeHistoryUpdate(models.TransientModel):
                         'sign_in_date': self.sign_in_date,
                         'history_marker_id': employee.history_marker_id.id,
                     }
-                    employee_job_history = HrEmployeeJobHistory.create(values)
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_job_history.job_id.name,
-                                                 employee_job_history.sign_in_date,
-                                                 employee_job_history.sign_out_date)
+                    job_history = HrJobHistory.create(values)
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', job_history.job_id.name,
+                                                 job_history.sign_in_date,
+                                                 job_history.sign_out_date)
 
                 else:
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_job_history.job_id.name,
-                                                 employee_job_history.sign_in_date,
-                                                 employee_job_history.sign_out_date)
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', job_history.job_id.name,
+                                                 job_history.sign_in_date,
+                                                 job_history.sign_out_date)
 
             else:
 
-                employee_job_history = HrEmployeeJobHistory.search([
+                job_history = HrJobHistory.search([
                     ('employee_id', '=', employee.id),
                     ('sign_out_date', '=', False),
                 ])
 
-                if employee_job_history.id is not False:
-                    employee_job_history.sign_out_date = self.sign_out_date
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_job_history.job_id.name,
-                                                 employee_job_history.sign_in_date,
-                                                 employee_job_history.sign_out_date)
+                if job_history.id is not False:
+                    job_history.sign_out_date = self.sign_out_date
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', job_history.job_id.name,
+                                                 job_history.sign_in_date,
+                                                 job_history.sign_out_date)
 
             if employee.department_id.id is not False:
 
-                employee_department_history = HrEmployeeDepartmentHistory.search([
+                department_history = HrDepartmentHistory.search([
                     ('employee_id', '=', employee.id),
                     ('department_id', '=', employee.department_id.id),
                     ('sign_out_date', '=', False),
                     ('history_marker_id', '=', employee.history_marker_id.id),
                 ])
 
-                if employee_department_history.id is False:
+                if department_history.id is False:
 
-                    employee_department_history_2 = HrEmployeeDepartmentHistory.search([
+                    department_history_2 = HrDepartmentHistory.search([
                         ('employee_id', '=', employee.id),
                         ('sign_out_date', '=', False),
                     ])
-                    if employee_department_history_2.id is not False:
-                        employee_department_history_2.sign_out_date = self.sign_out_date
-                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_department_history_2.department_id.name,
-                                                     employee_department_history_2.sign_in_date,
-                                                     employee_department_history_2.sign_out_date)
+                    if department_history_2.id is not False:
+                        department_history_2.sign_out_date = self.sign_out_date
+                        _logger.info(u'%s %s %s %s', '>>>>>>>>>>', department_history_2.department_id.name,
+                                                     department_history_2.sign_in_date,
+                                                     department_history_2.sign_out_date)
 
                     values = {
                         'employee_id': employee.id,
@@ -208,28 +208,28 @@ class EmployeeHistoryUpdate(models.TransientModel):
                         'sign_in_date': self.sign_in_date,
                         'history_marker_id': employee.history_marker_id.id,
                     }
-                    employee_department_history = HrEmployeeDepartmentHistory.create(values)
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_department_history.department_id.name,
-                                                 employee_department_history.sign_in_date,
-                                                 employee_department_history.sign_out_date)
+                    department_history = HrDepartmentHistory.create(values)
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', department_history.department_id.name,
+                                                 department_history.sign_in_date,
+                                                 department_history.sign_out_date)
 
                 else:
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_department_history.department_id.name,
-                                                 employee_department_history.sign_in_date,
-                                                 employee_department_history.sign_out_date)
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', department_history.department_id.name,
+                                                 department_history.sign_in_date,
+                                                 department_history.sign_out_date)
 
             else:
 
-                employee_department_history = HrEmployeeDepartmentHistory.search([
+                department_history = HrDepartmentHistory.search([
                     ('employee_id', '=', employee.id),
                     ('sign_out_date', '=', False),
                 ])
 
-                if employee_department_history.id is not False:
-                    employee_department_history.sign_out_date = self.sign_out_date
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', employee_department_history.department_id.name,
-                                                 employee_department_history.sign_in_date,
-                                                 employee_department_history.sign_out_date)
+                if department_history.id is not False:
+                    department_history.sign_out_date = self.sign_out_date
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', department_history.department_id.name,
+                                                 department_history.sign_in_date,
+                                                 department_history.sign_out_date)
 
         return True
         # return self._reopen_form()
