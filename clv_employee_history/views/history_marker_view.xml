@@ -59,10 +59,10 @@
             </field>
         </record>
 
-        <record id="hr_employee_department_history_view_form_history_marker" model="ir.ui.view">
-            <field name="name">hr.employee.department.history</field>
-            <field name="model">hr.employee.department.history</field>
-            <field name="inherit_id" ref="hr_employee_department_history_view_form"/>
+        <record id="hr_department_history_view_form_history_marker" model="ir.ui.view">
+            <field name="name">hr.department.history</field>
+            <field name="model">hr.department.history</field>
+            <field name="inherit_id" ref="hr_department_history_view_form"/>
             <field name="priority" eval="6"/>
             <field name="arch" type="xml">
                 <field name="sign_out_date" position="after">
@@ -71,10 +71,10 @@
             </field>
         </record>
 
-        <record id="hr_employee_department_history_view_tree_history_marker" model="ir.ui.view">
-            <field name="name">hr.employee.department.history.tree</field>
-            <field name="model">hr.employee.department.history</field>
-            <field name="inherit_id" ref="hr_employee_department_history_view_tree"/>
+        <record id="hr_department_history_view_tree_history_marker" model="ir.ui.view">
+            <field name="name">hr.department.history.tree</field>
+            <field name="model">hr.department.history</field>
+            <field name="inherit_id" ref="hr_department_history_view_tree"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <field name="sign_out_date" position="after">
@@ -83,10 +83,10 @@
             </field>
         </record>
 
-        <record id="hr_employee_department_history_view_search_history_marker" model="ir.ui.view">
-            <field name="name">hr.employee.department.history.search</field>
-            <field name="model">hr.employee.department.history</field>
-            <field name="inherit_id" ref="hr_employee_department_history_view_search"/>
+        <record id="hr_department_history_view_search_history_marker" model="ir.ui.view">
+            <field name="name">hr.department.history.search</field>
+            <field name="model">hr.department.history</field>
+            <field name="inherit_id" ref="hr_department_history_view_search"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <field name="sign_out_date" position="after">
@@ -98,10 +98,10 @@
             </field>
         </record>
 
-        <record id="hr_employee_job_history_view_form_history_marker" model="ir.ui.view">
-            <field name="name">hr.employee.job.history</field>
-            <field name="model">hr.employee.job.history</field>
-            <field name="inherit_id" ref="hr_employee_job_history_view_form"/>
+        <record id="hr_job_history_view_form_history_marker" model="ir.ui.view">
+            <field name="name">hr.job.history</field>
+            <field name="model">hr.job.history</field>
+            <field name="inherit_id" ref="hr_job_history_view_form"/>
             <field name="priority" eval="6"/>
             <field name="arch" type="xml">
                 <field name="sign_out_date" position="after">
@@ -110,10 +110,10 @@
             </field>
         </record>
 
-        <record id="hr_employee_job_history_view_tree_history_marker" model="ir.ui.view">
-            <field name="name">hr.employee.job.history.tree</field>
-            <field name="model">hr.employee.job.history</field>
-            <field name="inherit_id" ref="hr_employee_job_history_view_tree"/>
+        <record id="hr_job_history_view_tree_history_marker" model="ir.ui.view">
+            <field name="name">hr.job.history.tree</field>
+            <field name="model">hr.job.history</field>
+            <field name="inherit_id" ref="hr_job_history_view_tree"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <field name="sign_out_date" position="after">
@@ -122,10 +122,10 @@
             </field>
         </record>
 
-        <record id="hr_employee_job_history_view_search_history_marker" model="ir.ui.view">
-            <field name="name">hr.employee.job.history.search</field>
-            <field name="model">hr.employee.job.history</field>
-            <field name="inherit_id" ref="hr_employee_job_history_view_search"/>
+        <record id="hr_job_history_view_search_history_marker" model="ir.ui.view">
+            <field name="name">hr.job.history.search</field>
+            <field name="model">hr.job.history</field>
+            <field name="inherit_id" ref="hr_job_history_view_search"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <field name="sign_out_date" position="after">

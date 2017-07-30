@@ -23,9 +23,9 @@ from datetime import *
 from odoo import fields, models
 
 
-class EmployeeDepartmentHistory(models.Model):
-    _description = 'Employee Department History'
-    _name = 'hr.employee.department.history'
+class DepartmentHistory(models.Model):
+    _description = 'Department History'
+    _name = 'hr.department.history'
     _order = "sign_in_date desc"
 
     employee_id = fields.Many2one(
@@ -56,8 +56,8 @@ class EmployeeDepartmentHistory(models.Model):
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
-    employee_department_history_ids = fields.One2many(
-        comodel_name='hr.employee.department.history',
+    department_history_ids = fields.One2many(
+        comodel_name='hr.department.history',
         inverse_name='employee_id',
         string='Departments'
     )

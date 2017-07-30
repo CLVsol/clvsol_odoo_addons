@@ -42,8 +42,8 @@ class Employee(models.Model):
     )
 
 
-class EmployeeDepartmentHistory(models.Model):
-    _inherit = 'hr.employee.department.history'
+class DepartmentHistory(models.Model):
+    _inherit = 'hr.department.history'
 
     history_marker_id = fields.Many2one(
         comodel_name='clv.history_marker',
@@ -52,8 +52,8 @@ class EmployeeDepartmentHistory(models.Model):
     )
 
 
-class EmployeeJobHistory(models.Model):
-    _inherit = 'hr.employee.job.history'
+class JobHistory(models.Model):
+    _inherit = 'hr.job.history'
 
     history_marker_id = fields.Many2one(
         comodel_name='clv.history_marker',
