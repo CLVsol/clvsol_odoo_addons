@@ -18,5 +18,5 @@
 #
 ###############################################################################
 
-import person_address_updt_wizard
+import person_address_updt
 import person_updt
