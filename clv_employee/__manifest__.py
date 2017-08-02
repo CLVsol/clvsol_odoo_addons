@@ -40,6 +40,7 @@
         'views/hr_job_view.xml',
         'views/hr_employee_menu_view.xml',
         'wizard/hr_employee_updt_view.xml',
+        'wizard/hr_employee_user_groups_updt_view.xml',
     ],
     'demo': [],
     'test': [],
