@@ -26,14 +26,14 @@ from odoo import exceptions
 _logger = logging.getLogger(__name__)
 
 
-class PersonAddressUpdtWizard(models.TransientModel):
-    _name = 'clv.person.address_updt.wizard'
+class PersonAddressUpdt(models.TransientModel):
+    _name = 'clv.person.address_updt'
 
     def _default_person_ids(self):
         return self._context.get('active_ids')
     person_ids = fields.Many2many(
         comodel_name='clv.person',
-        relation='clv_person_address_updt_wizard_rel',
+        relation='clv_person_address_updt_rel',
         string='Persons to Update',
         default=_default_person_ids)
     count_persons = fields.Integer(

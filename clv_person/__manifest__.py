@@ -43,7 +43,7 @@
         'views/person_annotation_view.xml',
         'views/person_annotation_log_view.xml',
         'wizard/person_updt_view.xml',
-        'wizard/person_address_updt_wizard_view.xml',
+        'wizard/person_address_updt_view.xml',
         'views/person_menu_view.xml',
     ],
     'demo': [],

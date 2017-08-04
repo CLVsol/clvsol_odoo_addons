@@ -19,3 +19,4 @@
 ###############################################################################
 
 import hr_employee_updt
+import hr_employee_user_groups_updt
