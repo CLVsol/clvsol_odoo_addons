@@ -17,7 +17,7 @@
                             <label for="name" class="oe_edit_only"/>
                             <h1><field name="name" default_focus="1" placeholder="Unit..." /></h1>
                             <label for="code" class="oe_edit_only"/>
-                            <h3><field name="code" placeholder="Person Code..."/></h3>
+                            <h3><field name="code" placeholder="Unit Code..."/></h3>
                             <label for="description" class="oe_edit_only"/>
                             <h3> <field name="description" placeholder="Description..." /></h3>
                             <label for="notes" class="oe_edit_only"/>

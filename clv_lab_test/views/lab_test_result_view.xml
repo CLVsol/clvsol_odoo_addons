@@ -7,6 +7,9 @@
             <field name="model">clv.lab_test.result</field>
             <field name="arch" type="xml">
                 <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
                     <sheet>
                         <div name="button_box" class="oe_right oe_button_box">
                             <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
@@ -54,7 +57,7 @@
             <field name="model">clv.lab_test.result</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree name="lab_test_result" string='Lab Test'>
+                <tree name="lab_test_results" string='Lab Test Results'>
                     <field name="code"/>
                     <field name="lab_test_type_id"/>
                     <field name="lab_test_request_id"/>

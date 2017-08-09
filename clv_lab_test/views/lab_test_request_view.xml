@@ -7,6 +7,9 @@
             <field name="model">clv.lab_test.request</field>
             <field name="arch" type="xml">
                 <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
                     <sheet>
                         <div name="button_box" class="oe_right oe_button_box">
                             <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
@@ -44,7 +47,7 @@
             <field name="name">clv.lab_test.request.tree</field>
             <field name="model">clv.lab_test.request</field>
             <field name="arch" type="xml">
-                <tree string="Test Requests">
+                <tree name="lab_test_requests" string="Test Requests">
                     <field name="code"/>
                     <field name="date_requested"/>
                     <field name="lab_test_type_ids"/>
