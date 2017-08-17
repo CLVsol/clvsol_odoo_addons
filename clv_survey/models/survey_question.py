@@ -26,6 +26,8 @@ class SurveyQuestion(models.Model):
 
     code = fields.Char(string='Question Code', required=False)
 
+    parameter = fields.Char(string='Related Parameter', required=False)
+
     _sql_constraints = [
         ('code_uniq',
          'UNIQUE (code)',

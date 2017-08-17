@@ -40,7 +40,7 @@
             </field>
         </record>
         
-        <record id="clv_lab_test_view_tree" model="ir.ui.view">
+        <record id="clv_lab_test_type_view_tree" model="ir.ui.view">
             <field name="name">clv.lab_test.type.tree</field>
             <field name="model">clv.lab_test.type</field>
             <field name="priority" eval="8"/>
