@@ -48,10 +48,11 @@ class Address(models.Model):
     @api.one
     def insert_object_log(self, address_id, values, action, notes):
         if self.active_log or 'active_log' in values:
-            vals = {
-                'address_id': address_id,
-                'values': values,
-                'action': action,
-                'notes': notes,
-            }
-            self.env['clv.address.log'].create(vals)
+            if str(values).find("'category_ids': clv.address.category(") == -1:
+                vals = {
+                    'address_id': address_id,
+                    'values': values,
+                    'action': action,
+                    'notes': notes,
+                }
+                self.env['clv.address.log'].create(vals)
