@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <form>
                     <div class="oe_right">
+                        <button type="object" name="do_populate_all_persons" string="Get All Persons"/>
                     </div>
                     <label for="person_ids"/>
                     <field name="person_ids"/>
