@@ -108,6 +108,8 @@ class PersonHistoryUpdate(models.TransientModel):
                         'age_reference': person.age_reference,
                         'responsible_id': person.responsible_id.id,
                         'caregiver_id': person.caregiver_id.id,
+                        'address_id': person.address_id.id,
+                        'person_address_role_id': person.person_address_role_id.id,
                         'sign_in_date': self.sign_in_date,
                         'history_marker_id': person.history_marker_id.id,
                     }
@@ -133,6 +135,10 @@ class PersonHistoryUpdate(models.TransientModel):
                         person_history.responsible_id = person.responsible_id.id
                     if person_history.caregiver_id.id != person.caregiver_id.id:
                         person_history.caregiver_id = person.caregiver_id.id
+                    if person_history.address_id.id != person.address_id.id:
+                        person_history.address_id = person.address_id.id
+                    if person_history.person_address_role_id.id != person.person_address_role_id.id:
+                        person_history.person_address_role_id = person.person_address_role_id.id
                     _logger.info(u'%s %s %s %s', '>>>>>>>>>>', person_history.history_marker_id.name,
                                                  person_history.sign_in_date,
                                                  person_history.sign_out_date)
@@ -151,4 +157,14 @@ class PersonHistoryUpdate(models.TransientModel):
                                                  person_history.sign_out_date)
 
         return True
-        # return self._reopen_form()
+
+    @api.multi
+    def do_populate_all_persons(self):
+        self.ensure_one()
+
+        Person = self.env['clv.person']
+        persons = Person.search([])
+
+        self.person_ids = persons
+
+        return self._reopen_form()
