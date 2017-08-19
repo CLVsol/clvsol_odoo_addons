@@ -48,10 +48,11 @@ class Person(models.Model):
     @api.one
     def insert_object_log(self, person_id, values, action, notes):
         if self.active_log or 'active_log' in values:
-            vals = {
-                'person_id': person_id,
-                'values': values,
-                'action': action,
-                'notes': notes,
-            }
-            self.env['clv.person.log'].create(vals)
+            if str(values).find("'category_ids': clv.person.category(") == -1:
+                vals = {
+                    'person_id': person_id,
+                    'values': values,
+                    'action': action,
+                    'notes': notes,
+                }
+                self.env['clv.person.log'].create(vals)
