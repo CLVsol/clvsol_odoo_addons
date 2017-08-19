@@ -75,6 +75,17 @@ class PersonHistory(models.Model):
         ondelete='restrict'
     )
 
+    address_id = fields.Many2one(
+        comodel_name='clv.address',
+        string='Address',
+        ondelete='restrict'
+    )
+    person_address_role_id = fields.Many2one(
+        comodel_name='clv.person.address.role',
+        string='Person Address Role',
+        required=False
+    )
+
     notes = fields.Text(string='Notes')
 
     active = fields.Boolean(string='Active', default=1)
