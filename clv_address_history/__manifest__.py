@@ -34,6 +34,7 @@
         'security/ir.model.access.csv',
         'views/address_history_view.xml',
         'views/history_marker_view.xml',
+        'views/address_history_log_view.xml',
         'wizard/address_updt_view.xml',
         'wizard/address_history_updt_view.xml',
         'views/address_menu_view.xml',
