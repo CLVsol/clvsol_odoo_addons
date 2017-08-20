@@ -22,8 +22,15 @@
                                 <field name="sign_out_date"/>
                             </group>
                             <group>
+                                <field name="address_id"
+                                    context="{'show_address_only': 1}"
+                                    options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
+                                <field name="person_address_role_id" options='{"no_open": False, "no_create": True}'/>
+                            </group>
+                            <group>
                                 <field name="date_reference"/>
                                 <field name="age_reference"/>
+                                <field name="estimated_age"/>
                             </group>
                             <group>
                                 <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
@@ -52,9 +59,11 @@
                     <field name="person_id"/>
                     <field name="category_ids"/>
                     <field name="age_reference"/>
+                    <field name="estimated_age"/>
                     <field name="category_names_suport" invisible="True"/>
                     <field name="sign_in_date"/>
                     <field name="sign_out_date"/>
+                    <field name="address_id"/>
                     <field name="notes"/>
                 </tree>
             </field>
@@ -71,6 +80,7 @@
                     <field name="category_names"/>
                     <field name="sign_in_date"/>
                     <field name="sign_out_date"/>
+                    <field name="address_id"/>
                     <field name="notes"/>
                     <newline/>
                     <filter name="opened" string="Opened Person" domain="[('sign_out_date','=',False)]"/>
@@ -79,6 +89,7 @@
                     <group name="group_by" expand="0" string="Group By...">
                         <filter string="Person" domain="[]" context="{'group_by':'person_id'}"/>
                         <filter string="Categories" context="{'group_by': 'category_names'}"/>
+                        <filter string="Address" context="{'group_by': 'address_id'}"/>
                     </group>
                 </search>
             </field>

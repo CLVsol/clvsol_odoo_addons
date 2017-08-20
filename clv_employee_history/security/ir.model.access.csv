@@ -8,3 +8,6 @@ access_hr_department_history_user,hr.department.history.user,model_hr_department
 
 access_hr_employee_history_emp,hr.employee.history.emp,model_hr_employee_history,base.group_user,1,0,0,0
 access_hr_employee_history_user,hr.employee.history.user,model_hr_employee_history,hr.group_hr_user,1,1,1,1
+
+access_hr_employee_history_log_emp,hr.employee.history.log.emp,model_hr_employee_history_log,base.group_user,1,0,0,0
+access_hr_employee_history_log_user,hr.employee.history.log.user,model_hr_employee_history_log,hr.group_hr_user,1,1,1,1

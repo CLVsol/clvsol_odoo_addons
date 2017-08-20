@@ -20,3 +20,4 @@
 
 from . import address_history
 from . import history_marker
+from . import address_history_log

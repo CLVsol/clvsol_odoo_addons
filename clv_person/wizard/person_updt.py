@@ -151,3 +151,14 @@ class PersonUpdate(models.TransientModel):
                 person.category_ids = m2m_list
 
         return True
+
+    @api.multi
+    def do_populate_all_persons(self):
+        self.ensure_one()
+
+        Person = self.env['clv.person']
+        persons = Person.search([])
+
+        self.person_ids = persons
+
+        return self._reopen_form()

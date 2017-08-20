@@ -21,38 +21,38 @@
 from odoo import api, fields, models
 
 
-class AddressLog(models.Model):
-    _description = 'Address Log'
-    _name = 'clv.address.log'
+class PersonHistoryLog(models.Model):
+    _description = 'Person History Log'
+    _name = 'clv.person.history.log'
     _inherit = 'clv.object.log'
 
-    address_id = fields.Many2one(
-        comodel_name='clv.address',
-        string='Address',
+    person_history_id = fields.Many2one(
+        comodel_name='clv.person.history',
+        string='Person History',
         required=True,
         ondelete='cascade'
     )
 
 
-class Address(models.Model):
-    _name = "clv.address"
-    _inherit = 'clv.address', 'clv.log.model'
+class PersonHistory(models.Model):
+    _name = "clv.person.history"
+    _inherit = 'clv.person.history', 'clv.log.model'
 
     log_ids = fields.One2many(
-        comodel_name='clv.address.log',
-        inverse_name='address_id',
-        string='Address Log',
+        comodel_name='clv.person.history.log',
+        inverse_name='person_history_id',
+        string='Person History Log',
         readonly=True
     )
 
     @api.one
-    def insert_object_log(self, address_id, values, action, notes):
+    def insert_object_log(self, person_history_id, values, action, notes):
         if self.active_log or 'active_log' in values:
-            if str(values).find("'category_ids': clv.address.category(") == -1:
+            if str(values).find("'category_ids': clv.person.history.category(") == -1:
                 vals = {
-                    'address_id': address_id,
+                    'person_history_id': person_history_id,
                     'values': values,
                     'action': action,
                     'notes': notes,
                 }
-                self.env['clv.address.log'].create(vals)
+                self.env['clv.person.history.log'].create(vals)

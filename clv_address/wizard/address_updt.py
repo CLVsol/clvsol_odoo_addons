@@ -151,3 +151,14 @@ class AddressUpdate(models.TransientModel):
                 address.category_ids = m2m_list
 
         return True
+
+    @api.multi
+    def do_populate_all_addresses(self):
+        self.ensure_one()
+
+        Mfile = self.env['clv.address']
+        addresses = Mfile.search([])
+
+        self.address_ids = addresses
+
+        return self._reopen_form()

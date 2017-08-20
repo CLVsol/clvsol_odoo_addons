@@ -60,7 +60,7 @@
                             options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
                         <field name="address_code" string="Address Code"/>
                         <field name="address_category_ids" string="Address Categories"/>
-                        <field name="person_address_role_id"/>
+                        <field name="person_address_role_id" options='{"no_open": False, "no_create": True}'/>
                     </group>
                     <group name="personal_contact_info">
                         <field name="phone"/>

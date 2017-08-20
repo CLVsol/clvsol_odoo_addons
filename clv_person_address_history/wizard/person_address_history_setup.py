@@ -129,4 +129,14 @@ class PersonAddressHistorySetUp(models.TransientModel):
                                                  person_address_history_4.sign_out_date)
 
         return True
-        # return self._reopen_form()
+
+    @api.multi
+    def do_populate_all_persons(self):
+        self.ensure_one()
+
+        Person = self.env['clv.person']
+        persons = Person.search([])
+
+        self.person_ids = persons
+
+        return self._reopen_form()

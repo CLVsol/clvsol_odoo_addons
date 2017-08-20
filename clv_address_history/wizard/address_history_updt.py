@@ -139,4 +139,14 @@ class AddressHistoryUpdate(models.TransientModel):
                                                  address_history.sign_out_date)
 
         return True
-        # return self._reopen_form()
+
+    @api.multi
+    def do_populate_all_addresses(self):
+        self.ensure_one()
+
+        Mfile = self.env['clv.address']
+        addresses = Mfile.search([])
+
+        self.address_ids = addresses
+
+        return self._reopen_form()

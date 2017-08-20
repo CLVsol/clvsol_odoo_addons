@@ -20,3 +20,4 @@
 
 from . import person_history
 from . import history_marker
+from . import person_history_log

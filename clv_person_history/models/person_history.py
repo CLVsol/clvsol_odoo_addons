@@ -63,6 +63,7 @@ class PersonHistory(models.Model):
 
     date_reference = fields.Date(string="Reference Date")
     age_reference = fields.Char(string='Reference Age')
+    estimated_age = fields.Char(string='Estimated Age')
 
     responsible_id = fields.Many2one(
         comodel_name='clv.person',
@@ -73,6 +74,17 @@ class PersonHistory(models.Model):
         comodel_name='clv.person',
         string='Caregiver',
         ondelete='restrict'
+    )
+
+    address_id = fields.Many2one(
+        comodel_name='clv.address',
+        string='Address',
+        ondelete='restrict'
+    )
+    person_address_role_id = fields.Many2one(
+        comodel_name='clv.person.address.role',
+        string='Person Address Role',
+        required=False
     )
 
     notes = fields.Text(string='Notes')
