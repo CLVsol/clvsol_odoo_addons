@@ -63,6 +63,7 @@ class PersonHistory(models.Model):
 
     date_reference = fields.Date(string="Reference Date")
     age_reference = fields.Char(string='Reference Age')
+    estimated_age = fields.Char(string='Estimated Age')
 
     responsible_id = fields.Many2one(
         comodel_name='clv.person',
