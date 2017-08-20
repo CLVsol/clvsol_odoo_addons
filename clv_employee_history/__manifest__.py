@@ -37,6 +37,7 @@
         'views/hr_employee_history_view.xml',
         'views/history_marker_view.xml',
         'views/hr_employee_menu_view.xml',
+        'views/hr_employee_history_log_view.xml',
         'wizard/hr_employee_updt_view.xml',
         'wizard/hr_employee_history_updt_view.xml',
     ],
