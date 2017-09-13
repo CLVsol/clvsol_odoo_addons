@@ -24,6 +24,13 @@ from odoo import models, fields
 class HistoryMarker(models.Model):
     _inherit = 'clv.history_marker'
 
+    lab_test_type_ids = fields.One2many(
+        comodel_name='clv.lab_test.type',
+        inverse_name='history_marker_id',
+        string='Lab Test Types',
+        readonly=True
+    )
+
     lab_test_request_ids = fields.One2many(
         comodel_name='clv.lab_test.request',
         inverse_name='history_marker_id',
@@ -36,6 +43,16 @@ class HistoryMarker(models.Model):
         inverse_name='history_marker_id',
         string='Lab Test Results',
         readonly=True
+    )
+
+
+class LabTestType(models.Model):
+    _inherit = 'clv.lab_test.type'
+
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
+        ondelete='restrict'
     )
 
 

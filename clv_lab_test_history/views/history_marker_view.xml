@@ -2,6 +2,60 @@
 <odoo>
     <data>
         
+        <record id="clv_history_marker_view_form_lab_test_type" model="ir.ui.view">
+            <field name="name">clv.history_marker.form</field>
+            <field name="model">clv.history_marker</field>
+            <field name="inherit_id" ref="clv_history_marker.clv_history_marker_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="marker_for" position="inside">
+                    <group string="Lab Test Types">
+                        <field name="lab_test_type_ids" colspan="4" nolabel="1"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_type_view_form_history_marker" model="ir.ui.view">
+            <field name="name">clv.lab_test.type.form</field>
+            <field name="model">clv.lab_test.type</field>
+            <field name="inherit_id" ref="clv_lab_test.clv_lab_test_type_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <label for="code" position="before">
+                    <label for="history_marker_id" class="oe_edit_only"/>
+                    <h3><field name="history_marker_id" placeholder="History Marker..." options='{"no_open": True, "no_create": True}'/></h3>
+                </label>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_type_view_tree_history_marker" model="ir.ui.view">
+            <field name="name">clv.lab_test.type.tree</field>
+            <field name="model">clv.lab_test.type</field>
+            <field name="inherit_id" ref="clv_lab_test.clv_lab_test_type_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="history_marker_id" groups="clv_history_marker.group_user"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_type_view_search_history_marker" model="ir.ui.view">
+            <field name="name">clv.lab_test.type.search</field>
+            <field name="model">clv.lab_test.type</field>
+            <field name="inherit_id" ref="clv_lab_test.clv_lab_test_type_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="history_marker_id"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="History Markers" context="{'group_by': 'history_marker_id'}"/>
+                </group>
+            </field>
+        </record>
+
         <record id="clv_history_marker_view_form_lab_test_request" model="ir.ui.view">
             <field name="name">clv.history_marker.form</field>
             <field name="model">clv.history_marker</field>
@@ -24,7 +78,7 @@
             <field name="arch" type="xml">
                 <label for="lab_test_type_ids" position="before">
                     <label for="history_marker_id" class="oe_edit_only"/>
-                    <h3><field name="history_marker_id" placeholder="History Marker..."/></h3>
+                    <h3><field name="history_marker_id" placeholder="History Marker..." options='{"no_open": True, "no_create": True}'/></h3>
                 </label>
             </field>
         </record>
@@ -78,7 +132,7 @@
             <field name="arch" type="xml">
                 <label for="date_analysis" position="before">
                     <label for="history_marker_id" class="oe_edit_only"/>
-                    <h3><field name="history_marker_id" placeholder="History Marker..."/></h3>
+                    <h3><field name="history_marker_id" placeholder="History Marker..." options='{"no_open": True, "no_create": True}'/></h3>
                 </label>
             </field>
         </record>
