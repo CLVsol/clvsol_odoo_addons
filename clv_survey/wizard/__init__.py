@@ -19,4 +19,5 @@
 ###############################################################################
 
 import survey_code_updt
+import survey_export_xls
 import survey_export_xml
