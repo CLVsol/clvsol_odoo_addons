@@ -47,32 +47,19 @@ class LabTestTypeCriterion(models.Model):
 
     active = fields.Boolean(string='Active', default=1)
 
-    # _sql_constraints = [
-    #     ('code_uniq',
-    #      'UNIQUE(code)',
-    #      u'Error! The Code must be unique!'
-    #      )
-    # ]
-
     _sql_constraints = [
         ('type_code_uniq',
          'UNIQUE(lab_test_type_id, code)',
          u'Error! The Code must be unique for a Test Type!'
-         )
-    ]
-
-    _sql_constraints = [
+         ),
         ('result_code_uniq',
          'UNIQUE(lab_test_result_id, code)',
          u'Error! The Code must be unique for a Test Result!'
-         )
-    ]
-
-    _sql_constraints = [
+         ),
         ('report_code_uniq',
          'UNIQUE(lab_test_report_id, code)',
          u'Error! The Code must be unique for a Test Report!'
-         )
+         ),
     ]
 
 
