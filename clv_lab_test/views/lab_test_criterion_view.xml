@@ -143,5 +143,32 @@
             </field>
         </record>
 
+        <record id="clv_lab_test_report_view_form_criterion" model="ir.ui.view">
+            <field name="name">clv.lab_test.report.form</field>
+            <field name="model">clv.lab_test.report</field>
+            <field name="inherit_id" ref="clv_lab_test.clv_lab_test_report_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <group name="group_top" position="after">
+                    <field name="criterion_ids" colspan="4" nolabel="1">
+                        <tree editable="top" string="Test Cases" create="false">
+                            <field name="sequence" readonly="True"/>
+                            <field name="code" readonly="True"/>
+                            <field name="name" readonly="True"/>
+                            <field name="result"/>
+                            <field name="unit_id" readonly="True"/>
+                            <field name="normal_range" readonly="True"/>
+                        </tree>
+                        <!--form string="Test Cases">
+                            <field name="name" readonly="True"/>
+                            <field name="result"/>
+                            <field name="unit_id" readonly="True"/>
+                            <field name="normal_range" readonly="True"/>
+                        </form-->
+                    </field>
+                </group>
+            </field>
+        </record>
+
     </data>
 </odoo>

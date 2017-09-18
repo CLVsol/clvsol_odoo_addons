@@ -19,6 +19,12 @@
             sequence="30"
             action="clv_lab_test.clv_lab_test_result_action"/>
 
+        <menuitem name="Reports" id="menu_health_health_lab_test_reports"
+            parent="menu_health_health_lab_test"
+            groups="clv_lab_test.group_user"
+            sequence="40"
+            action="clv_lab_test.clv_lab_test_report_action"/>
+
         <menuitem name="Lab Test" id="menu_health_config_config_lab_test" 
             parent="clv_base.menu_health_config_config"
             groups="clv_lab_test.group_user"
