@@ -1,3 +1,0 @@
-access_clv_lab_test_criterion_user,clv.lab_test.criterion.user,model_clv_lab_test_criterion,clv_lab_test.group_user,1,0,0,0
-access_clv_lab_test_criterion_manager,clv.lab_test.criterion.manager,model_clv_lab_test_criterion,clv_lab_test.group_manager,1,1,1,0
-access_clv_lab_test_criterion_supmanager,clv.lab_test.criterion.supmanager,model_clv_lab_test_criterion,clv_lab_test.group_supmanager,1,1,1,1
