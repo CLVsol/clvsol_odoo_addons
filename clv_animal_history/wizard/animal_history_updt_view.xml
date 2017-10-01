@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_animal_history_updt_view_form" model="ir.ui.view">
+            <field name="name">clv.animal.history_updt.form</field>
+            <field name="model">clv.animal.history_updt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                        <button type="object" name="do_populate_all_animals" string="Get All Animals"/>
+                    </div>
+                    <label for="animal_ids"/>
+                    <field name="animal_ids"/>
+                    <group>
+                        <group>
+                            <field name="sign_out_date"/>
+                        </group>
+                        <group>
+                            <field name="sign_in_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_animal_history_updt"
+                            string="Animal History Update"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <act_window 
+            id="clv_animal_history_updt_action"
+            name="Animal History Update"
+            src_model="clv.animal"
+            res_model="clv.animal.history_updt"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>

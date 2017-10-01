@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="clv_animal_history_view_form" model="ir.ui.view">
+            <field name="name">clv.animal.history.form</field>
+            <field name="model">clv.animal.history</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="title" class="oe_title">
+                            <group>
+                                <field name="animal_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="category_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="sign_in_date"/>
+                                <field name="sign_out_date"/>
+                            </group>
+                            <group>
+                                <field name="address_id"
+                                    context="{'show_address_only': 1}"
+                                    options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
+                            </group>
+                            <group>
+                                <field name="date_reference"/>
+                                <field name="age_reference"/>
+                                <field name="estimated_age"/>
+                            </group>
+                            <group>
+                                <field name="tutor_id" options="{'no_open': False, 'no_create': True}"/>
+                            </group>
+                            <label for="notes" class="oe_edit_only"/>
+                            <field name="notes" jobholder="Notes..."/>
+                        </div>
+                        <notebook>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_animal_history_view_tree" model="ir.ui.view">
+            <field name="name">clv.animal.history.tree</field>
+            <field name="model">clv.animal.history</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree colors="red:sign_out_date != False;blue:sign_out_date == False">
+                    <field name="animal_id"/>
+                    <field name="category_ids"/>
+                    <field name="age_reference"/>
+                    <field name="estimated_age"/>
+                    <field name="category_names_suport" invisible="True"/>
+                    <field name="sign_in_date"/>
+                    <field name="sign_out_date"/>
+                    <field name="address_id"/>
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_animal_history_view_search" model="ir.ui.view">
+            <field name="name">clv.animal.history.search</field>
+            <field name="model">clv.animal.history</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="animal_id"/>
+                    <field name="category_ids"/>
+                    <field name="category_names"/>
+                    <field name="sign_in_date"/>
+                    <field name="sign_out_date"/>
+                    <field name="address_id"/>
+                    <field name="notes"/>
+                    <newline/>
+                    <filter name="opened" string="Opened Animal" domain="[('sign_out_date','=',False)]"/>
+                    <filter name="closed" string="Closed Animal" domain="[('sign_out_date','!=',False)]"/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <group name="group_by" expand="0" string="Group By...">
+                        <filter string="Animal" domain="[]" context="{'group_by':'animal_id'}"/>
+                        <filter string="Categories" context="{'group_by': 'category_names'}"/>
+                        <filter string="Address" context="{'group_by': 'address_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="clv_animal_history_actions" model="ir.actions.act_window">
+            <field name="name">Animal History</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.animal.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_animal_history_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new animal history item.
+              </p>
+            </field>
+        </record>
+        
+        <record id="clv_animal_view_form_history" model="ir.ui.view">
+            <field name="name">clv.animal.form</field>
+            <field name="model">clv.animal</field>
+            <field name="inherit_id" ref="clv_animal.clv_animal_view_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <page name="settings" position="before">
+                    <page string="Animal History">
+                        <field name="animal_history_ids" colspan="4" nolabel="1">
+                            <group>
+                                <!--tree string="Animals" colors="red:sign_out_date != False;blue:sign_out_date == False">
+                                    <field name="job_id"/>
+                                    <field name="sign_in_date"/>
+                                    <field name="sign_out_date"/>
+                                    <field name="notes"/>
+                                </tree-->
+                            </group>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
