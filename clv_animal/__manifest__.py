@@ -29,6 +29,7 @@
     'images': [],
     'depends': [
         'clv_base',
+        'clv_address',
         'clv_person',
     ],
     'data': [
