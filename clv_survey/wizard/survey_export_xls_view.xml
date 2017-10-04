@@ -14,6 +14,8 @@
                     <group>
                         <field name="dir_path"/>
                         <field name="file_name"/>
+                        <field name="password"/>
+                        <field name="file_format"/>
                     </group>
                     <footer>
                         <button 

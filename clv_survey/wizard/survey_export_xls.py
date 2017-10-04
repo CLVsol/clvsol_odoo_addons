@@ -40,17 +40,30 @@ class SurveyExportXLS(models.TransientModel):
     )
 
     dir_path = fields.Char(
-        'Directory Path',
+        string='Directory Path',
         required=True,
         help="Directory Path",
         default='/opt/openerp/clvsol_clvhealth_jcafb/survey_files/xls'
     )
 
     file_name = fields.Char(
-        'File Name',
+        string='File Name',
         required=True,
         help="File Name",
         default='<code>_nnn.nnn-dd.xls'
+    )
+
+    password = fields.Char(
+        string='Password',
+        required=True,
+        help="Password to protec the sheet",
+        default='OpenSesame'
+    )
+
+    file_format = fields.Selection(
+        [('draft', 'Draft'),
+         ('formated', 'Formated'),
+         ], string='File Format', default='draft'
     )
 
     @api.multi
@@ -84,6 +97,10 @@ class SurveyExportXLS(models.TransientModel):
         style_dot = xlwt.easyxf('''
             align: vertical center, horizontal right;
         ''')
+
+        isHidden = False
+        if self.file_format == 'formated':
+            isHidden = True
 
         for survey_reg in self.survey_ids:
 
@@ -143,7 +160,7 @@ class SurveyExportXLS(models.TransientModel):
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
                         row.write(4, _type_.decode("utf-8"))
-                        row.hidden = False
+                        row.hidden = isHidden
                         row_nr += 2
                         if _type_ == 'free_text':
                             row = sheet.row(row_nr)
@@ -194,7 +211,7 @@ class SurveyExportXLS(models.TransientModel):
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
                         row.write(4, _type_.decode("utf-8"))
-                        row.hidden = False
+                        row.hidden = isHidden
                         row_nr += 2
 
                         for label in question.labels_ids:
@@ -232,7 +249,7 @@ class SurveyExportXLS(models.TransientModel):
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
                         row.write(4, _type_.decode("utf-8"))
-                        row.hidden = False
+                        row.hidden = isHidden
                         row_nr += 2
 
                         for label in question.labels_ids:
@@ -270,7 +287,7 @@ class SurveyExportXLS(models.TransientModel):
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
                         row.write(4, _type_ + '_' + question.matrix_subtype)
-                        row.hidden = False
+                        row.hidden = isHidden
                         row_nr += 1
 
                         row_nr += 1
@@ -281,7 +298,7 @@ class SurveyExportXLS(models.TransientModel):
 
                         row_matrix_col = sheet.row(matrix_col_row_nr)
                         row_matrix_col.write(0, '[]')
-                        sheet.row(matrix_col_row_nr).hidden = False
+                        sheet.row(matrix_col_row_nr).hidden = isHidden
 
                         for label in question.labels_ids_2:
 
@@ -309,13 +326,15 @@ class SurveyExportXLS(models.TransientModel):
 
                         row_nr += 1
 
-            sheet.col(0).hidden = False
+            sheet.col(0).hidden = isHidden
 
-            # for i in range(100):
-            #     sheet.col(i).width = 256 * 2
+            if self.file_format == 'formated':
 
-            # sheet.protect = True
-            # sheet.password = "OpenSesame"
+                for i in range(100):
+                    sheet.col(i).width = 256 * 2
+
+                sheet.protect = True
+                sheet.password = self.password
 
             book.save(file_path)
 
