@@ -45,6 +45,9 @@ class LabTestTypeCriterion(models.Model):
         default=10
     )
 
+    result_display = fields.Boolean(string='Display in Result', default=True)
+    report_display = fields.Boolean(string='Display in Report', default=True)
+
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [
