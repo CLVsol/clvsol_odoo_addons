@@ -67,9 +67,16 @@ class SurveyExportXLS(models.TransientModel):
             font: bold on;
         ''')
 
-        style_choice = xlwt.easyxf('''
+        style_choice_thin = xlwt.easyxf('''
             font: bold on;
             borders: left THIN, right THIN, top THIN, bottom THIN;
+            align: vertical center, horizontal center;
+            protection: cell_locked false;
+        ''')
+
+        style_choice_dotted = xlwt.easyxf('''
+            font: bold on;
+            borders: left DOTTED, right DOTTED, top DOTTED, bottom DOTTED;
             align: vertical center, horizontal center;
             protection: cell_locked false;
         ''')
@@ -197,7 +204,7 @@ class SurveyExportXLS(models.TransientModel):
                             row = sheet.row(row_nr)
                             row.write(0, '[' + label.code + ']')
                             row.write(4, '.', style=style_dot)
-                            row.write(5, None, style=style_choice)
+                            row.write(5, None, style=style_choice_thin)
                             row.write(6, _value_.decode("utf-8"))
                             row_nr += 1
 
@@ -235,7 +242,7 @@ class SurveyExportXLS(models.TransientModel):
                             row = sheet.row(row_nr)
                             row.write(0, '[' + label.code + ']')
                             row.write(4, '.', style=style_dot)
-                            row.write(5, None, style=style_choice)
+                            row.write(5, None, style=style_choice_dotted)
                             row.write(6, _value_.decode("utf-8"))
                             row_nr += 1
 
@@ -297,7 +304,7 @@ class SurveyExportXLS(models.TransientModel):
                             for matrix_row_nr in matrix_row_nrs:
                                 row = sheet.row(matrix_row_nr)
                                 row.write(matrix_col_nr, '.', style=style_dot)
-                                row.write(matrix_col_nr + 1, None, style=style_choice)
+                                row.write(matrix_col_nr + 1, None, style=style_choice_thin)
                             matrix_col_nr += 3
 
                         row_nr += 1
