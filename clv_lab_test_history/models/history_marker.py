@@ -45,6 +45,13 @@ class HistoryMarker(models.Model):
         readonly=True
     )
 
+    lab_test_report_ids = fields.One2many(
+        comodel_name='clv.lab_test.report',
+        inverse_name='history_marker_id',
+        string='Lab Test Reports',
+        readonly=True
+    )
+
 
 class LabTestType(models.Model):
     _inherit = 'clv.lab_test.type'
@@ -68,6 +75,16 @@ class LabTestRequest(models.Model):
 
 class LabTestResult(models.Model):
     _inherit = 'clv.lab_test.result'
+
+    history_marker_id = fields.Many2one(
+        comodel_name='clv.history_marker',
+        string='History Marker',
+        ondelete='restrict'
+    )
+
+
+class LabTestReport(models.Model):
+    _inherit = 'clv.lab_test.report'
 
     history_marker_id = fields.Many2one(
         comodel_name='clv.history_marker',
