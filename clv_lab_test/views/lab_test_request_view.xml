@@ -24,7 +24,7 @@
                             <label for="date_requested" class="oe_edit_only"/>
                             <h3><field name="date_requested" placeholder="Request Date..."/></h3>
                             <label for="lab_test_type_ids" class="oe_edit_only"/>
-                            <h3><field name="lab_test_type_ids" default_focus="1" placeholder="Test Types..." options="{'no_open': False, 'no_create': True}"/></h3>
+                            <h5><field name="lab_test_type_ids" default_focus="1" placeholder="Test Types..." options="{'no_open': False, 'no_create': True}"/></h5>
                         </div>
                         <group name="group_top">
                             <group name="group_left">
