@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_off_instance_user,clv.off.instance.user,model_clv_off_instance,clv_off.group_user,1,0,0,0
+access_clv_off_instance_manager,clv.off.instance.manager,model_clv_off_instance,clv_off.group_manager,1,1,1,0
+access_clv_off_instance_supmanager,clv.off.instance.supmanager,model_clv_off_instance,clv_off.group_supmanager,1,1,1,1

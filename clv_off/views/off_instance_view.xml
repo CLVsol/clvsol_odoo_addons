@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_off_instance_view_form" model="ir.ui.view">
+            <field name="name">clv.off.instance.form</field>
+            <field name="model">clv.off.instance</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
+                    <sheet name="off_instance">
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                            <label for="name" class="oe_edit_only"/>
+                            <h2><field name="name" default_focus="1" placeholder="Name..."/></h2>
+                            <label for="code" class="oe_edit_only"/>
+                            <h3><field name="code" placeholder="Code..."/></h3>
+                            <label for="instance_default" class="oe_edit_only"/>
+                            <h5><field name="instance_default"/></h5>
+                        </div>
+                        <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <notebook>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_off_instance_view_tree" model="ir.ui.view">
+            <field name="name">clv.off.instance.tree</field>
+            <field name="model">clv.off.instance</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree name="persons" string="Persons">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="instance_default"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_off_instance_view_search" model="ir.ui.view">
+            <field name="name">clv.off.instance.search</field>
+            <field name="model">clv.off.instance</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <group name="group_by" expand="0" string="Group By...">
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="clv_off_instance_action" model="ir.actions.act_window">
+            <field name="name">Off Instances</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.off.instance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_off_instance_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new off instance.
+              </p>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

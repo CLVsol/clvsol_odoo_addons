@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="clv_off.group_user" model="res.groups">
+            <field name="name">User (Off)</field>
+        </record>
+
+        <record id="clv_off.group_supuser" model="res.groups">
+            <field name="name">Super User (Off)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_off.group_user'))]"/>
+        </record>
+
+        <record id="clv_off.group_manager" model="res.groups">
+            <field name="name">Manager (Off)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_off.group_supuser'))]"/>
+        </record>
+
+        <record id="clv_off.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Off)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_off.group_manager'))]"/>
+        </record>
+
+    </data>
+</odoo>

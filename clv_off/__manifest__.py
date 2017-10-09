@@ -28,6 +28,10 @@
     'website': 'https://github.com/CLVsol',
     'depends': ['clv_base'],
     'data': [
+        'security/off_security.xml',
+        'security/ir.model.access.csv',
+        'views/off_instance_view.xml',
+        'views/off_menu_view.xml',
     ],
     'demo': [],
     'test': [],
