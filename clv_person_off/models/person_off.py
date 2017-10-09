@@ -24,8 +24,6 @@ from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
-import re
-
 
 class PersonOff(models.Model):
     _description = 'Person Off'
@@ -39,8 +37,7 @@ class PersonOff(models.Model):
         for record in self:
             result.append(
                 (record.id,
-                 # u'%s [%s] (%s)' % (record.name, record.code, record.age)
-                 u'%s (%s)' % (record.name, record.age)
+                 u'%s [%s] (%s)' % (record.name, record.code, record.age)
                  ))
         return result
 
@@ -219,3 +216,12 @@ class PersonOff(models.Model):
          ('none', 'None'),
          ], string='Action (Person Address)', default='undefined'
     )
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The Name must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]

@@ -18,35 +18,14 @@
 #
 ###############################################################################
 
-{
-    'name': 'Person Off (for CLVhealth-JCAFB Solution)',
-    'summary': 'Person Off Module for CLVhealth-JCAFB Solution.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': [
-        'clv_off',
-        'clv_address',
-        'clv_person',
-    ],
-    'data': [
-        'security/person_off_security.xml',
-        'security/ir.model.access.csv',
-        'views/person_off_view.xml',
-        'views/off_instance_view.xml',
-        'views/global_tag_view.xml',
-        'views/person_off_log_view.xml',
-        'views/person_off_menu_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import models, fields
+
+
+class PersonOff(models.Model):
+    _inherit = 'clv.person.off'
+
+    off_instance_id = fields.Many2one(
+        comodel_name='clv.off.instance',
+        string='Off Instance',
+        required=True,
+    )
