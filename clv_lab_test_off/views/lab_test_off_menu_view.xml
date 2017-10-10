@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Off" id="menu_health_health_lab_test_requests_off"
+            parent="clv_lab_test.menu_health_health_lab_test_requests"
+            groups="clv_lab_test_off.group_user"
+            sequence="10"
+            action="clv_lab_test_off.clv_lab_test_off_request_action"/>
+
+        <menuitem name="Off" id="menu_health_health_lab_test_reports_off"
+            parent="clv_lab_test.menu_health_health_lab_test_reports"
+            groups="clv_lab_test_off.group_user"
+            sequence="10"
+            action="clv_lab_test_off.clv_lab_test_off_report_action"/>
+
+    </data>
+</odoo>

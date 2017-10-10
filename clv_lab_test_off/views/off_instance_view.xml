@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_lab_test_off_request_view_form_off_instance" model="ir.ui.view">
+            <field name="name">clv.lab_test.off.request.form</field>
+            <field name="model">clv.lab_test.off.request</field>
+            <field name="inherit_id" ref="clv_lab_test_off_request_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <label for="code" position="before">
+                    <label for="off_instance_id" class="oe_edit_only"/>
+                    <h4><field name="off_instance_id" options="{'no_open': True, 'no_create': True}"/></h4>
+                </label>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_off_request_view_tree_off_instance" model="ir.ui.view">
+            <field name="name">clv.lab_test.off.request.tree</field>
+            <field name="model">clv.lab_test.off.request</field>
+            <field name="inherit_id" ref="clv_lab_test_off_request_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="date_requested" position="before">
+                    <field name="off_instance_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_off_request_view_search_off_instance" model="ir.ui.view">
+            <field name="name">clv.lab_test.off.request.search</field>
+            <field name="model">clv.lab_test.off.request</field>
+            <field name="inherit_id" ref="clv_lab_test_off_request_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="lab_test_type_ids" position="after">
+                    <field name="off_instance_id"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Off Instance" context="{'group_by': 'off_instance_id'}"/>
+                </group>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_off_report_view_form_off_instance" model="ir.ui.view">
+            <field name="name">clv.lab_test.off.report.form</field>
+            <field name="model">clv.lab_test.off.report</field>
+            <field name="inherit_id" ref="clv_lab_test_off_report_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <label for="code" position="before">
+                    <label for="off_instance_id" class="oe_edit_only"/>
+                    <h4><field name="off_instance_id" options="{'no_open': True, 'no_create': True}"/></h4>
+                </label>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_off_report_view_tree_off_instance" model="ir.ui.view">
+            <field name="name">clv.lab_test.off.report.tree</field>
+            <field name="model">clv.lab_test.off.report</field>
+            <field name="inherit_id" ref="clv_lab_test_off_report_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="date_report" position="before">
+                    <field name="off_instance_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_off_report_view_search_off_instance" model="ir.ui.view">
+            <field name="name">clv.lab_test.off.report.search</field>
+            <field name="model">clv.lab_test.off.report</field>
+            <field name="inherit_id" ref="clv_lab_test_off_report_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="date_report" position="after">
+                    <field name="off_instance_id"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Off Instance" context="{'group_by': 'off_instance_id'}"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>

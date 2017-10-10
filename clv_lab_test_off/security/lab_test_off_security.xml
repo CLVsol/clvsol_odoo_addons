@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="clv_lab_test_off.group_user" model="res.groups">
+            <field name="name">User (Lab Test (Off))</field>
+        </record>
+        
+        <record id="clv_lab_test_off.group_manager" model="res.groups">
+            <field name="name">Manager (Lab Test (Off))</field>
+            <field name="implied_ids" eval="[(4, ref('clv_lab_test_off.group_user'))]"/>
+        </record>
+        
+        <record id="clv_lab_test_off.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Lab Test (Off))</field>
+            <field name="implied_ids" eval="[(4, ref('clv_lab_test_off.group_manager'))]"/>
+        </record>
+
+        <record id="clv_lab_test_off.group_approver" model="res.groups">
+            <field name="name">Approver (Lab Test (Off))</field>
+        </record>
+
+    </data>
+</odoo>

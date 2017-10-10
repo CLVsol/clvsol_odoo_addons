@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_lab_test_off_report_user,clv.lab_test.off.report.user,model_clv_lab_test_off_report,clv_lab_test_off.group_user,1,0,0,0
+access_clv_lab_test_off_report_manager,clv.lab_test.off.report.manager,model_clv_lab_test_off_report,clv_lab_test_off.group_manager,1,1,1,0
+access_clv_lab_test_off_report_supmanager,clv.lab_test.off.report.supmanager,model_clv_lab_test_off_report,clv_lab_test_off.group_supmanager,1,1,1,1
+
+access_clv_lab_test_off_report_log_user,clv.lab_test.off.report.log.user,model_clv_lab_test_off_report_log,clv_lab_test_off.group_user,1,0,0,0
+access_clv_lab_test_off_report_log_manager,clv.lab_test.off.report.log.manager,model_clv_lab_test_off_report_log,clv_lab_test_off.group_manager,1,1,1,0
+access_clv_lab_test_off_report_log_supmanager,clv.lab_test.off.report.log.supmanager,model_clv_lab_test_off_report_log,clv_lab_test_off.group_supmanager,1,1,1,1
+
+access_clv_lab_test_off_request_user,clv.lab_test.off.request.user,model_clv_lab_test_off_request,clv_lab_test_off.group_user,1,0,0,0
+access_clv_lab_test_off_request_manager,clv.lab_test.off.request.manager,model_clv_lab_test_off_request,clv_lab_test_off.group_manager,1,1,1,0
+access_clv_lab_test_off_request_supmanager,clv.lab_test.off.request.supmanager,model_clv_lab_test_off_request,clv_lab_test_off.group_supmanager,1,1,1,1
+
+access_clv_lab_test_off_request_log_user,clv.lab_test.off.request.log.user,model_clv_lab_test_off_request_log,clv_lab_test_off.group_user,1,0,0,0
+access_clv_lab_test_off_request_log_manager,clv.lab_test.off.request.log.manager,model_clv_lab_test_off_request_log,clv_lab_test_off.group_manager,1,1,1,0
+access_clv_lab_test_off_request_log_supmanager,clv.lab_test.off.request.log.supmanager,model_clv_lab_test_off_request_log,clv_lab_test_off.group_supmanager,1,1,1,1
