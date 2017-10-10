@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Off" id="menu_base_base_documents_off"
+            parent="clv_document.menu_base_base_documents"
+            groups="clv_document_off.group_user"
+            sequence="10"
+            action="clv_document_off.clv_document_off_action"/>
+
+    </data>
+</odoo>

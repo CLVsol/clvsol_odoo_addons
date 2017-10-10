@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_document_off_user,clv.document.off.user,model_clv_document_off,clv_document_off.group_user,1,0,0,0
+access_clv_document_off_manager,clv.document.off.manager,model_clv_document_off,clv_document_off.group_manager,1,1,1,0
+access_clv_document_off_supmanager,clv.document.off.supmanager,model_clv_document_off,clv_document_off.group_supmanager,1,1,1,1
+
+access_clv_document_off_log_user,clv.document.off.log.user,model_clv_document_off_log,clv_document_off.group_user,1,0,0,0
+access_clv_document_off_log_manager,clv.document.off.log.manager,model_clv_document_off_log,clv_document_off.group_manager,1,1,1,0
+access_clv_document_off_log_supmanager,clv.document.off.log.supmanager,model_clv_document_off_log,clv_document_off.group_supmanager,1,1,1,1
