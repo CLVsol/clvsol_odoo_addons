@@ -28,7 +28,7 @@
     'website': 'https://github.com/CLVsol',
     'images': [],
     'depends': [
-        'clv_base',
+        'clv_off',
         'clv_global_tag',
     ],
     'data': [
