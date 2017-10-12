@@ -22,7 +22,7 @@
                             <h1><field name="name" default_focus="1" placeholder="Name..."/></h1>
                         </div>
                         <group>
-                            <group name="person_off">
+                            <group name="person_off" string="Person">
                                 <field name="code" placeholder="Person Code..."/>
                                 <field name="gender" widget="radio"/>
                                 <field name="age"/>
@@ -46,7 +46,7 @@
                                     context="{'show_address_only': 1}"
                                     options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
                             </group>
-                            <group name="address_off">
+                            <group name="address_off" string="Address">
                                 <label for="street" string="Address"/>
                                 <div class="o_address_format">
                                     <field name="street" placeholder="Street..." class="o_address_street" default_focus="1"/>
