@@ -121,6 +121,7 @@ class PersonOff(models.Model):
     street = fields.Char(string='Street')
     street2 = fields.Char(string='Street2')
     zip = fields.Char(string='ZIP code', change_default=True)
+    city = fields.Char(string='City')
     state_id = fields.Many2one(comodel_name="res.country.state", string='State', ondelete='restrict')
     country_id = fields.Many2one(comodel_name='res.country', string='Country', ondelete='restrict')
 
