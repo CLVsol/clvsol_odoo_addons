@@ -40,6 +40,7 @@
         'views/global_tag_view.xml',
         'views/person_off_log_view.xml',
         'views/person_off_menu_view.xml',
+        'wizard/person_off_updt_view.xml',
         'wizard/person_off_related_address_confirm_view.xml',
         'wizard/person_off_address_confirm_view.xml',
         'wizard/person_off_person_confirm_view.xml',

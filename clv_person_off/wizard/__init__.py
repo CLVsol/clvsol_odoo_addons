@@ -18,6 +18,7 @@
 #
 ###############################################################################
 
+import person_off_updt
 import person_off_related_address_confirm
 import person_off_address_confirm
 import person_off_person_confirm
