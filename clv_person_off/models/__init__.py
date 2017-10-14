@@ -19,6 +19,7 @@
 ###############################################################################
 
 from . import person_off
+from . import address_name
 from . import off_instance
 from . import global_tag
 from . import person_off_log

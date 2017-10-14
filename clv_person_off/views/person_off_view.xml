@@ -47,9 +47,10 @@
                                     options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
                             </group>
                             <group name="address_off" string="Address">
+                                <field name="address_name"/>
                                 <label for="street" string="Address"/>
                                 <div class="o_address_format">
-                                    <field name="street" placeholder="Street..." class="o_address_street" default_focus="1"/>
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
                                     <field name="street2" placeholder="Street 2..." class="o_address_street"/>
                                     <field name="city" placeholder="City" class="o_address_city"/>
                                     <field name="zip" placeholder="ZIP code" class="o_address_zip" style='width: 50%'/>
@@ -106,6 +107,7 @@
                     <field name="age"/>
                     <field name="estimated_age"/>
                     <field name="birthday"/>
+                    <field name="address_name"/>
                     <field name="action_person"/>
                     <field name="action_address"/>
                     <field name="action_person_address"/>
@@ -126,6 +128,7 @@
                     <field name="estimated_age"/>
                     <field name="birthday"/>
                     <field name="street"/>
+                    <field name="address_name"/>
                     <field name="action_person"/>
                     <field name="action_address"/>
                     <field name="action_person_address"/>
@@ -136,8 +139,8 @@
                         <filter string="Date of Birth" context="{'group_by': 'birthday'}"/>
                         <filter string="Age" context="{'group_by': 'age'}"/>
                         <filter string="Estimated Age" context="{'group_by': 'estimated_age'}"/>
-                        <filter string="Street" context="{'group_by': 'street'}"/>
-                        <!--filter name="district" string="District" context="{'group_by': 'district'}"/-->
+                        <filter name="street" string="Street" context="{'group_by': 'street'}"/>
+                        <filter name="address_name" string="Address Name" context="{'group_by': 'address_name'}"/>
                         <filter string="Action (Person)" context="{'group_by': 'action_person'}"/>
                         <filter string="Action (Address)" context="{'group_by': 'action_address'}"/>
                         <filter string="Action (Person Address)" context="{'group_by': 'action_person_address'}"/>

@@ -118,6 +118,8 @@ class PersonOff(models.Model):
         related='person_id.address_id'
     )
 
+    address_name = fields.Char(string='Address Name', required=False, index=True)
+
     street = fields.Char(string='Street')
     street2 = fields.Char(string='Street2')
     zip = fields.Char(string='ZIP code', change_default=True)

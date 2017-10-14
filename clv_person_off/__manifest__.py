@@ -35,6 +35,7 @@
         'security/person_off_security.xml',
         'security/ir.model.access.csv',
         'views/person_off_view.xml',
+        'views/address_name_view.xml',
         'views/off_instance_view.xml',
         'views/global_tag_view.xml',
         'views/person_off_log_view.xml',
