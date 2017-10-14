@@ -34,6 +34,7 @@
         'security/person_mng_security.xml',
         'security/ir.model.access.csv',
         'views/person_mng_view.xml',
+        'views/address_name_view.xml',
         'views/global_tag_view.xml',
         'views/person_mng_log_view.xml',
         'views/person_mng_menu_view.xml',

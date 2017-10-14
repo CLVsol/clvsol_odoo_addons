@@ -19,5 +19,6 @@
 ###############################################################################
 
 from . import person_mng
+from . import address_name
 from . import global_tag
 from . import person_mng_log

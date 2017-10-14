@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_person_mng_view_form_address_name" model="ir.ui.view">
+            <field name="name">clv.person.mng.form</field>
+            <field name="model">clv.person.mng</field>
+            <field name="inherit_id" ref="clv_person_mng_view_form"/>
+            <field name="priority" eval="10" />
+            <field name="arch" type="xml">
+                <field name="address_name" position="before">
+                    <field name="suggested_address_name" invisible="True"/>
+                </field>
+                <group name="settings" position="inside">
+                    <field name="automatic_set_address_name"/>
+                </group>
+                <page name="settings" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</odoo>

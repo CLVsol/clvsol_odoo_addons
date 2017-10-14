@@ -25,7 +25,7 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
-class PersonManagement(models.Model):
+class PersonMng(models.Model):
     _description = 'Person Management'
     _name = 'clv.person.mng'
     _order = 'name'
@@ -116,6 +116,8 @@ class PersonManagement(models.Model):
         string='Person Address',
         related='person_id.address_id'
     )
+
+    address_name = fields.Char(string='Address Name', required=False, index=True)
 
     street = fields.Char(string='Street')
     street2 = fields.Char(string='Street2')
