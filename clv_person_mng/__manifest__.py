@@ -35,7 +35,6 @@
         'security/ir.model.access.csv',
         'views/person_mng_view.xml',
         'views/global_tag_view.xml',
-        # 'views/person_mng_state_view.xml',
         'views/person_mng_log_view.xml',
         'views/person_mng_menu_view.xml',
         'wizard/person_mng_related_address_confirm_view.xml',

@@ -21,7 +21,6 @@
 import logging
 
 from odoo import api, fields, models
-# from odoo import exceptions
 
 _logger = logging.getLogger(__name__)
 
@@ -66,14 +65,3 @@ class PersonMngRelatedAddressConfirm(models.TransientModel):
                 _logger.info(u'>>>>>>>>>> %s', person_mng.address_id.name)
 
         return True
-
-    # @api.multi
-    # def do_populate_all_person_mngs(self):
-    #     self.ensure_one()
-
-    #     PersonMng = self.env['clv.person.mng.related_address_confirm']
-    #     person_mngs = PersonMng.search([])
-
-    #     self.person_mng_ids = person_mngs
-
-    #     return self._reopen_form()
