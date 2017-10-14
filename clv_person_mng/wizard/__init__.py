@@ -18,6 +18,7 @@
 #
 ###############################################################################
 
+import person_mng_updt
 import person_mng_related_address_confirm
 import person_mng_address_confirm
 import person_mng_person_confirm
