@@ -18,5 +18,8 @@
 #
 ###############################################################################
 
-from . import models
-from . import wizard
+import person_off_related_address_confirm
+import person_off_address_confirm
+import person_off_person_confirm
+import person_off_address_create
+import person_off_person_create

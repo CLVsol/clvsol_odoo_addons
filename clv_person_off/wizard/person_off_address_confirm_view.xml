@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_person_off_address_confirm_view_form" model="ir.ui.view">
+            <field name="name">clv.person.off.address_confirm.form</field>
+            <field name="model">clv.person.off.address_confirm</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                        <button type="object" name="do_populate_all_person_offs" string="Get All Persons (Off)"/>
+                    </div>
+                    <label for="person_off_ids"/>
+                    <field name="person_off_ids"/>
+                    <group>
+                        <group>
+                            <field name="history_marker_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_person_off_address_confirm"
+                            string="Addresses Confirm"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <act_window 
+            id="clv_person_off_address_confirm_action"
+            name="Address Confirm"
+            src_model="clv.person.off"
+            res_model="clv.person.off.address_confirm"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>
