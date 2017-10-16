@@ -69,11 +69,14 @@ class PersonMngPersonConfirm(models.TransientModel):
 
             _logger.info(u'>>>>> %s', person_mng.name)
 
-            if person_mng.action_person == 'confirm':
-
-                _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_mng.action_person)
+            if (person_mng.action_person == 'confirm') and \
+               (person_mng.person_id.name == person_mng.name):
 
                 person_mng.person_id.history_marker_id = self.history_marker_id.id
+
+                person_mng.action_person = 'none'
+
+                _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_mng.action_person)
 
         return True
 
@@ -81,7 +84,7 @@ class PersonMngPersonConfirm(models.TransientModel):
     def do_populate_all_person_mngs(self):
         self.ensure_one()
 
-        PersonMng = self.env['clv.person.mng.person_confirm']
+        PersonMng = self.env['clv.person.mng']
         person_mngs = PersonMng.search([])
 
         self.person_mng_ids = person_mngs
