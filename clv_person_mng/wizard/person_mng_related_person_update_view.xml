@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_person_mng_related_person_update_view_form" model="ir.ui.view">
+            <field name="name">clv.person.mng.related_person_update.form</field>
+            <field name="model">clv.person.mng.related_person_update</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                    </div>
+                    <label for="person_mng_ids"/>
+                    <field name="person_mng_ids"/>
+                    <group>
+                        <group>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_person_mng_related_person_update"
+                            string="Related Person Update"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <!--act_window 
+            id="clv_person_mng_related_person_update_action"
+            name="Related Person Update"
+            src_model="clv.person.mng"
+            res_model="clv.person.mng.related_person_update"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        /-->
+        <act_window 
+            id="clv_person_mng_related_person_update_action"
+            name="Related Person Update"
+            src_model="clv.person.mng"
+            res_model="clv.person.mng.related_person_update"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>
