@@ -25,15 +25,15 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class PersonMngRelatedAddressConfirm(models.TransientModel):
-    _name = 'clv.person.mng.related_address_confirm'
+class PersonMngGetRelatedAddress(models.TransientModel):
+    _name = 'clv.person.mng.get_related_address'
 
     def _default_person_mng_ids(self):
         return self._context.get('active_ids')
     person_mng_ids = fields.Many2many(
         comodel_name='clv.person.mng',
-        relation='clv_person_mng_related_address_confirm_rel',
-        string='Persons (Management)',
+        relation='clv_person_mng_get_related_address_rel',
+        string='Persons (Mng)',
         default=_default_person_mng_ids
     )
 
@@ -51,17 +51,25 @@ class PersonMngRelatedAddressConfirm(models.TransientModel):
         return action
 
     @api.multi
-    def do_person_mng_related_address_confirm(self):
+    def do_person_mng_get_related_address(self):
         self.ensure_one()
 
         for person_mng in self.person_mng_ids:
 
             _logger.info(u'>>>>> %s', person_mng.name)
 
-            if person_mng.address_id.id is False:
+            if person_mng.action_address in ['undefined', 'confirm']:
 
-                person_mng.address_id = person_mng.person_id.address_id.id
+                if person_mng.address_id.id is False:
 
-                _logger.info(u'>>>>>>>>>> %s', person_mng.address_id.name)
+                    if (person_mng.person_id.id is not False) and \
+                       (person_mng.person_id.address_id.id is not False) and \
+                       (person_mng.address_name is False):
+
+                        person_mng.address_id = person_mng.person_id.address_id.id
+
+                        _logger.info(u'>>>>>>>>>> %s', person_mng.address_id.name)
+
+                        person_mng.action_address = 'confirm'
 
         return True

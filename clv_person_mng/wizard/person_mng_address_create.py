@@ -73,53 +73,59 @@ class PersonMngAddressCreate(models.TransientModel):
 
             if person_mng.action_address == 'create':
 
-                if person_mng.address_id.id is False:
+                address = Address.search([
+                    ('street', '=', person_mng.street),
+                    ('street2', '=', person_mng.street2),
+                ])
+                if address.id is False:
 
-                    suggested_name = False
-                    if person_mng.street:
-                        suggested_name = person_mng.street
-                        if person_mng.street2:
-                            suggested_name = suggested_name + ' - ' + person_mng.street2
+                    if person_mng.address_id.id is False:
 
-                    if suggested_name is not False:
+                        suggested_name = False
+                        if person_mng.street:
+                            suggested_name = person_mng.street
+                            if person_mng.street2:
+                                suggested_name = suggested_name + ' - ' + person_mng.street2
 
-                        state_id = False
-                        if person_mng.state_id is not False:
-                            state_id = person_mng.state_id.id
+                        if suggested_name is not False:
 
-                        country_id = False
-                        if person_mng.country_id is not False:
-                            country_id = person_mng.country_id.id
+                            state_id = False
+                            if person_mng.state_id is not False:
+                                state_id = person_mng.state_id.id
 
-                        new_category_ids = False
-                        if person_mng.addr_category_ids is not False:
+                            country_id = False
+                            if person_mng.country_id is not False:
+                                country_id = person_mng.country_id.id
 
-                            new_category_ids = []
-                            for category_id in person_mng.addr_category_ids:
+                            new_category_ids = False
+                            if person_mng.addr_category_ids is not False:
 
-                                new_category_ids.append((4, category_id.id))
+                                new_category_ids = []
+                                for category_id in person_mng.addr_category_ids:
 
-                        values = {
-                            'name': suggested_name,
-                            'street': person_mng.street,
-                            'street2': person_mng.street2,
-                            'zip': person_mng.zip,
-                            'city': person_mng.city,
-                            'state_id': state_id,
-                            'country_id': country_id,
-                            'phone': person_mng.phone,
-                            'mobile': person_mng.mobile,
-                            'category_ids': new_category_ids,
-                            'history_marker_id': self.history_marker_id.id,
-                        }
-                        _logger.info(u'>>>>> %s', values)
-                        new_address = Address.create(values)
-                        new_address.code = '/'
+                                    new_category_ids.append((4, category_id.id))
 
-                        person_mng.address_id = new_address.id
+                            values = {
+                                'name': suggested_name,
+                                'street': person_mng.street,
+                                'street2': person_mng.street2,
+                                'zip': person_mng.zip,
+                                'city': person_mng.city,
+                                'state_id': state_id,
+                                'country_id': country_id,
+                                'phone': person_mng.phone,
+                                'mobile': person_mng.mobile,
+                                'category_ids': new_category_ids,
+                                'history_marker_id': self.history_marker_id.id,
+                            }
+                            _logger.info(u'>>>>> %s', values)
+                            new_address = Address.create(values)
+                            new_address.code = '/'
 
-                        _logger.info(u'>>>>>>>>>> %s: %s', 'action_address', person_mng.action_address)
+                            person_mng.address_id = new_address.id
 
-                        person_mng.action_address = 'none'
+                            _logger.info(u'>>>>>>>>>> %s: %s', 'action_address', person_mng.action_address)
+
+                            person_mng.action_address = 'none'
 
         return True

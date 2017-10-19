@@ -2,26 +2,24 @@
 <odoo>
     <data>
 
-        <record id="clv_person_mng_person_confirm_view_form" model="ir.ui.view">
-            <field name="name">clv.person.mng.person_confirm.form</field>
-            <field name="model">clv.person.mng.person_confirm</field>
+        <record id="clv_person_mng_address_search_view_form" model="ir.ui.view">
+            <field name="name">clv.person.mng.address_search.form</field>
+            <field name="model">clv.person.mng.address_search</field>
             <field name="arch" type="xml">
                 <form>
                     <div class="oe_right">
-                        <button type="object" name="do_populate_all_persons_mng" string="Get All Persons (Mng)"/>
                     </div>
                     <label for="person_mng_ids"/>
                     <field name="person_mng_ids"/>
                     <group>
                         <group>
-                            <field name="history_marker_id"/>
                         </group>
                     </group>
                     <footer>
                         <button 
                             type="object"
-                            name="do_person_mng_person_confirm"
-                            string="Persons Confirm"
+                            name="do_person_mng_address_search"
+                            string="Address Search"
                             class="oe_highlight"
                             />
                         <button special="cancel" string="Cancel"/>
@@ -32,13 +30,21 @@
         </record>
 
         <!-- More button Action -->
-        <act_window 
-            id="clv_person_mng_person_confirm_action"
-            name="Person Confirm"
+        <!--act_window 
+            id="clv_person_mng_address_search_action"
+            name="Address Search"
             src_model="clv.person.mng"
-            res_model="clv.person.mng.person_confirm"
+            res_model="clv.person.mng.address_search"
             view_mode="form, tree"
             key2="client_action_multi"
+            target="new"
+        /-->
+        <act_window 
+            id="clv_person_mng_address_search_action"
+            name="Address Search"
+            src_model="clv.person.mng"
+            res_model="clv.person.mng.address_search"
+            view_mode="form, tree"
             target="new"
         />
 

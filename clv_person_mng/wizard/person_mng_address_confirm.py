@@ -84,6 +84,7 @@ class PersonMngAddressConfirm(models.TransientModel):
                  (person_mng.address_name is not False) and \
                  (person_mng.address_id.street == person_mng.street) and \
                  (person_mng.address_id.street2 == person_mng.street2) and \
+                 (person_mng.address_id.zip == person_mng.zip) and \
                  (person_mng.address_id.city == person_mng.city) and \
                  (person_mng.address_id.state_id.id == person_mng.state_id.id) and \
                  (person_mng.address_id.country_id.id == person_mng.country_id.id):
@@ -97,7 +98,7 @@ class PersonMngAddressConfirm(models.TransientModel):
         return True
 
     @api.multi
-    def do_populate_all_person_mngs(self):
+    def do_populate_all_persons_mng(self):
         self.ensure_one()
 
         PersonMng = self.env['clv.person.mng']

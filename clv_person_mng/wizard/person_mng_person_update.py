@@ -25,14 +25,14 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class PersonMngRelatedPersonUpdate(models.TransientModel):
-    _name = 'clv.person.mng.related_person_update'
+class PersonMngPersonUpdate(models.TransientModel):
+    _name = 'clv.person.mng.person_update'
 
     def _default_person_mng_ids(self):
         return self._context.get('active_ids')
     person_mng_ids = fields.Many2many(
         comodel_name='clv.person.mng',
-        relation='clv_person_mng_related_person_update_rel',
+        relation='clv_person_mng_person_update_rel',
         string='Persons (Management)',
         default=_default_person_mng_ids
     )
@@ -51,7 +51,7 @@ class PersonMngRelatedPersonUpdate(models.TransientModel):
         return action
 
     @api.multi
-    def do_person_mng_related_person_update(self):
+    def do_person_mng_person_update(self):
         self.ensure_one()
 
         for person_mng in self.person_mng_ids:
@@ -68,14 +68,14 @@ class PersonMngRelatedPersonUpdate(models.TransientModel):
                     if person_mng.person_id.birthday != person_mng.birthday:
                         person_mng.person_id.birthday = person_mng.birthday
 
-                    if person_mng.responsible_id is not False:
+                    if person_mng.responsible_id.id is not False:
                         if person_mng.person_id.responsible_id.id is not False:
                             if person_mng.person_id.responsible_id.id != person_mng.responsible_id.id:
                                 person_mng.person_id.responsible_id = person_mng.responsible_id.id
                         else:
                             person_mng.person_id.responsible_id = person_mng.responsible_id.id
 
-                    if person_mng.caregiver_id is not False:
+                    if person_mng.caregiver_id.id is not False:
                         if person_mng.person_id.caregiver_id.id is not False:
                             if person_mng.person_id.caregiver_id.id != person_mng.caregiver_id.id:
                                 person_mng.person_id.caregiver_id = person_mng.caregiver_id.id
@@ -85,6 +85,5 @@ class PersonMngRelatedPersonUpdate(models.TransientModel):
                     _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_mng.action_person)
 
                     person_mng.action_person = 'confirm'
-                    person_mng.state = 'revised'
 
         return True

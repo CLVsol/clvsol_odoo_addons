@@ -21,27 +21,20 @@
 import logging
 
 from odoo import api, fields, models
-from odoo import exceptions
 
 _logger = logging.getLogger(__name__)
 
 
-class PersonMngPersonConfirm(models.TransientModel):
-    _name = 'clv.person.mng.person_confirm'
+class PersonMngPersonSearch(models.TransientModel):
+    _name = 'clv.person.mng.person_search'
 
     def _default_person_mng_ids(self):
         return self._context.get('active_ids')
     person_mng_ids = fields.Many2many(
         comodel_name='clv.person.mng',
-        relation='clv_person_mng_person_confirm_rel',
+        relation='clv_person_mng_person_search_rel',
         string='Persons (Management)',
         default=_default_person_mng_ids
-    )
-
-    history_marker_id = fields.Many2one(
-        comodel_name='clv.history_marker',
-        string='History Marker',
-        ondelete='restrict'
     )
 
     @api.multi
@@ -58,35 +51,26 @@ class PersonMngPersonConfirm(models.TransientModel):
         return action
 
     @api.multi
-    def do_person_mng_person_confirm(self):
+    def do_person_mng_person_search(self):
         self.ensure_one()
 
-        if self.history_marker_id.id is False:
-            raise exceptions.ValidationError('The "History Marker" has not been defined!')
-            return self._reopen_form()
+        Person = self.env['clv.person']
 
         for person_mng in self.person_mng_ids:
 
             _logger.info(u'>>>>> %s', person_mng.name)
 
-            if (person_mng.action_person == 'confirm') and \
-               (person_mng.person_id.name == person_mng.name):
+            if (person_mng.action_person in ['undefined', 'create']) and \
+               (person_mng.person_id.id is False):
 
-                person_mng.person_id.history_marker_id = self.history_marker_id.id
+                person = Person.search([
+                    ('name', '=', person_mng.name),
+                ])
+                if person.id is not False:
 
-                _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_mng.action_person)
+                    person_mng.person_id = person.id
+                    person_mng.action_person = 'confirm'
 
-                person_mng.action_person = 'none'
+                    _logger.info(u'>>>>>>>>>> %s', person_mng.person_id.name)
 
         return True
-
-    @api.multi
-    def do_populate_all_persons_mng(self):
-        self.ensure_one()
-
-        PersonMng = self.env['clv.person.mng']
-        person_mngs = PersonMng.search([])
-
-        self.person_mng_ids = person_mngs
-
-        return self._reopen_form()

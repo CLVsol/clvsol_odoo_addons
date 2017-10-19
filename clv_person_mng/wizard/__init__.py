@@ -19,9 +19,12 @@
 ###############################################################################
 
 import person_mng_updt
-import person_mng_related_address_confirm
-import person_mng_related_person_update
-import person_mng_address_confirm
+import person_mng_adapt
 import person_mng_person_confirm
-import person_mng_address_create
+import person_mng_address_confirm
+import person_mng_get_related_address
+import person_mng_person_search
+import person_mng_person_update
 import person_mng_person_create
+import person_mng_address_search
+import person_mng_address_create
