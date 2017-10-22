@@ -48,6 +48,7 @@
         'wizard/person_mng_person_create_view.xml',
         'wizard/person_mng_address_search_view.xml',
         'wizard/person_mng_address_create_view.xml',
+        'wizard/person_mng_person_address_move_view.xml',
     ],
     'demo': [],
     'test': [],

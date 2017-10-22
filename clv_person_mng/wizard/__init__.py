@@ -28,3 +28,4 @@ import person_mng_person_update
 import person_mng_person_create
 import person_mng_address_search
 import person_mng_address_create
+import person_mng_person_address_move

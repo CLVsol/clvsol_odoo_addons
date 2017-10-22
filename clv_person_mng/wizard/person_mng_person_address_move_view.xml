@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_person_mng_person_address_move_view_form" model="ir.ui.view">
+            <field name="name">clv.person.mng.person_address_move.form</field>
+            <field name="model">clv.person.mng.person_address_move</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                    </div>
+                    <label for="person_mng_ids"/>
+                    <field name="person_mng_ids"/>
+                    <!--label for="person_mng_id"/>
+                    <field name="person_mng_id"/-->
+                    <separator/>
+                    <label for="origin_addr_id"/>
+                    <field name="origin_addr_id"/>
+                    <separator/>
+                    <label for="origin_addr_person_ids"/>
+                    <field name="origin_addr_person_ids"/>
+                    <separator/>
+                    <label for="destination_addr_id"/>
+                    <field name="destination_addr_id"/>
+                    <separator/>
+                    <label for="destination_addr_person_ids"/>
+                    <field name="destination_addr_person_ids"/>
+                    <group>
+                        <group>
+                            <field name="person_category_ids" options="{'no_open': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_person_mng_person_address_move"
+                            string="Person Address Move"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <!--act_window 
+            id="clv_person_mng_person_address_move_action"
+            name="Person Address Move"
+            src_model="clv.person.mng"
+            res_model="clv.person.mng.person_address_move"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        /-->
+        <act_window 
+            id="clv_person_mng_person_address_move_action"
+            name="Person Address Move"
+            src_model="clv.person.mng"
+            res_model="clv.person.mng.person_address_move"
+            view_mode="form, tree"
+            target="new"
+        />
+
+    </data>
+</odoo>
