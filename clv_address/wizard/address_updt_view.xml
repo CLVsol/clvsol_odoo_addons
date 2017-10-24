@@ -25,6 +25,12 @@
                         <group name="category_ids">
                             <field name="category_ids" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
                         </group>
+                        <group name="street_selection">
+                            <field name="street_selection"/>
+                        </group>
+                        <group name="street">
+                            <field name="street" nolabel='1'/>
+                        </group>
                     </group>
                     <footer>
                         <button 

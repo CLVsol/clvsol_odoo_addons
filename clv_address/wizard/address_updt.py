@@ -81,6 +81,13 @@ class AddressUpdate(models.TransientModel):
          ], string='Categories', default=False, readonly=False, required=False
     )
 
+    street = fields.Char(string='Street')
+    street_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Street', default=False, readonly=False, required=False
+    )
+
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -149,6 +156,11 @@ class AddressUpdate(models.TransientModel):
                     m2m_list.append((4, category_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 address.category_ids = m2m_list
+
+            if self.street_selection == 'set':
+                address.street = self.street
+            if self.street_selection == 'remove':
+                address.street = False
 
         return True
 
