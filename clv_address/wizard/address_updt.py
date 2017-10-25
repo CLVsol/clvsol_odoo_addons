@@ -81,6 +81,13 @@ class AddressUpdate(models.TransientModel):
          ], string='Categories', default=False, readonly=False, required=False
     )
 
+    name = fields.Char(string='Name')
+    name_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Name', default=False, readonly=False, required=False
+    )
+
     street = fields.Char(string='Street')
     street_selection = fields.Selection(
         [('set', 'Set'),
@@ -156,6 +163,15 @@ class AddressUpdate(models.TransientModel):
                     m2m_list.append((4, category_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 address.category_ids = m2m_list
+
+            if self.name_selection == 'set':
+                if self.name == '/':
+                    street = address.street
+                    address.street = '*'
+                    address.street = street
+                address.name = self.name
+            if self.name_selection == 'remove':
+                address.name = False
 
             if self.street_selection == 'set':
                 address.street = self.street
