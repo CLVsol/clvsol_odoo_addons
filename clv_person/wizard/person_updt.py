@@ -81,6 +81,13 @@ class PersonUpdate(models.TransientModel):
          ], string='Categories', default=False, readonly=False, required=False
     )
 
+    date_reference = fields.Date(string="Reference Date")
+    date_reference_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Reference Date', default=False, readonly=False, required=False
+    )
+
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -149,6 +156,11 @@ class PersonUpdate(models.TransientModel):
                     m2m_list.append((4, category_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person.category_ids = m2m_list
+
+            if self.date_reference_selection == 'set':
+                person.date_reference = self.date_reference
+            if self.date_reference_selection == 'remove':
+                person.date_reference = False
 
         return True
 
