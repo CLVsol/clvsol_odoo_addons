@@ -11,6 +11,8 @@
                     </div>
                     <label for="lab_test_report_ids"/>
                     <field name="lab_test_report_ids"/>
+                    <label for="lab_test_result_ids"/>
+                    <field name="lab_test_result_ids" options='{"no_open": True, "no_create": True}'/>
                     <footer>
                         <button 
                             type="object"
@@ -26,13 +28,21 @@
         </record>
 
         <!-- More button Action -->
-        <act_window 
+        <!--act_window 
             id="clv_lab_test_report_get_results_action"
             name="Lab Test Report Get Results"
             src_model="clv.lab_test.report"
             res_model="clv.lab_test.report.get_results"
             view_mode="form, tree"
             key2="client_action_multi"
+            target="new"
+        /-->
+        <act_window 
+            id="clv_lab_test_report_get_results_action"
+            name="Lab Test Report Get Results"
+            src_model="clv.lab_test.report"
+            res_model="clv.lab_test.report.get_results"
+            view_mode="form, tree"
             target="new"
         />
 

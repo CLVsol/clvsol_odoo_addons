@@ -33,8 +33,23 @@ class LabTestReportGetResults(models.TransientModel):
     lab_test_report_ids = fields.Many2many(
         comodel_name='clv.lab_test.report',
         relation='clv_lab_test_report_lab_test_report_get_results_rel',
-        string='Lab Test Requests',
+        string='Lab Test Reports',
+        readonly=True,
         default=_default_lab_test_report_ids
+    )
+
+    def _default_lab_test_result_ids(self):
+        lab_test_report_ids = self._context.get('active_ids')
+        LabTestReport = self.env['clv.lab_test.report']
+        lab_test_report = LabTestReport.search([
+            ('id', '=', lab_test_report_ids[0]),
+        ])
+        return lab_test_report.lab_test_request_id.lab_test_result_ids
+    lab_test_result_ids = fields.Many2many(
+        comodel_name='clv.lab_test.result',
+        relation='clv_lab_test_result_lab_test_report_get_results_rel',
+        string='Lab Test Results',
+        default=_default_lab_test_result_ids
     )
 
     @api.multi
@@ -60,10 +75,12 @@ class LabTestReportGetResults(models.TransientModel):
             _logger.info(u'%s %s %s', '>>>>>>>>>>',
                          lab_test_report.lab_test_request_id.code, lab_test_report.lab_test_request_id.person_id.name)
 
-            for lab_test_result in lab_test_report.lab_test_request_id.lab_test_result_ids:
+            for lab_test_result in self.lab_test_result_ids:
 
-                _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>', lab_test_result.code, lab_test_result.person_id.name)
+                if lab_test_result.lab_test_type_id == lab_test_report.lab_test_type_id:
 
-                lab_test_result.lab_test_report_id = lab_test_report.id
+                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>', lab_test_result.code, lab_test_result.person_id.name)
+
+                    lab_test_result.lab_test_report_id = lab_test_report.id
 
         return True
