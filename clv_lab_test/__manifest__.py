@@ -46,6 +46,7 @@
         'views/lab_test_menu_view.xml',
         'wizard/lab_test_result_edit_view.xml',
         'wizard/lab_test_report_edit_view.xml',
+        'wizard/lab_test_report_get_results_view.xml',
     ],
     'demo': [],
     'test': [],
