@@ -100,9 +100,9 @@ class PersonOff(models.Model):
         string='Person Caregiver',
         related='person_id.caregiver_id'
     )
-    person_category_ids = fields.Char(
-        string='Person Categories',
-        related='person_id.category_ids.name',
+    person_category_names = fields.Char(
+        string='Person Category Names',
+        related='person_id.category_names',
         store=True
     )
     person_phone = fields.Char(string='Person Phone', related='person_id.phone')
@@ -180,9 +180,9 @@ class PersonOff(models.Model):
     address_phone = fields.Char(string='Address Phone', related='address_id.phone')
     address_mobile_phone = fields.Char(string='Address Mobile', related='address_id.mobile')
 
-    address_category_ids = fields.Char(
-        string='Address Categories',
-        related='address_id.category_ids.name',
+    address_category_names = fields.Char(
+        string='Address Category Names',
+        related='address_id.category_names',
         store=True
     )
     address_history_marker_id = fields.Many2one(

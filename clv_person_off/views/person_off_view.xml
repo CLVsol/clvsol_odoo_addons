@@ -36,7 +36,7 @@
                             <group name="person" string="Related Person">
                                 <field name="person_id" options='{"no_open": False, "no_create": True}'/>
                                 <field name="person_gender" widget="radio"/>
-                                <field name="person_category_ids" string="Person Categories"/>
+                                <field name="person_category_names" string="Person Category Names"/>
                                 <field name="person_phone"/>
                                 <field name="person_mobile"/>
                                 <field name="person_birthday" string="Person Date of Birth"/>
@@ -68,7 +68,7 @@
                                 <field name="address_code" string="Address Code"/>
                                 <field name="address_phone" string="Address Phone"/>
                                 <field name="address_mobile_phone" string="Mobile Phone"/>
-                                <field name="address_category_ids" string="Address Categories"/>
+                                <field name="address_category_names" string="Address Category Names"/>
                             </group>
                         </group>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
