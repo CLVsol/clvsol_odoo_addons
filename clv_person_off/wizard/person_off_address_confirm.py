@@ -69,11 +69,31 @@ class PersonOffAddressConfirm(models.TransientModel):
 
             _logger.info(u'>>>>> %s', person_off.name)
 
-            if person_off.action_address == 'confirm':
+            if (person_off.action_address == 'confirm') and \
+               (person_off.address_name is False) and \
+               (person_off.action_person in ['update', 'confirm', 'none']) and \
+               (person_off.address_id.id == person_off.person_id.address_id.id):
+
+                person_off.address_id.history_marker_id = self.history_marker_id.id
 
                 _logger.info(u'>>>>>>>>>> %s: %s', 'action_address', person_off.action_address)
 
+                person_off.action_address = 'none'
+
+            elif (person_off.action_address == 'confirm') and \
+                 (person_off.address_name is not False) and \
+                 (person_off.address_id.street == person_off.street) and \
+                 (person_off.address_id.street2 == person_off.street2) and \
+                 (person_off.address_id.zip == person_off.zip) and \
+                 (person_off.address_id.city == person_off.city) and \
+                 (person_off.address_id.state_id.id == person_off.state_id.id) and \
+                 (person_off.address_id.country_id.id == person_off.country_id.id):
+
                 person_off.address_id.history_marker_id = self.history_marker_id.id
+
+                _logger.info(u'>>>>>>>>>> %s: %s', 'action_address', person_off.action_address)
+
+                person_off.action_address = 'none'
 
         return True
 
@@ -81,7 +101,7 @@ class PersonOffAddressConfirm(models.TransientModel):
     def do_populate_all_person_offs(self):
         self.ensure_one()
 
-        PersonOff = self.env['clv.person.off.address_confirm']
+        PersonOff = self.env['clv.person.off']
         person_offs = PersonOff.search([])
 
         self.person_off_ids = person_offs
