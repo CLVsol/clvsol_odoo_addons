@@ -73,38 +73,48 @@ class PersonOffPersonCreate(models.TransientModel):
 
             if person_off.action_person == 'create':
 
-                if person_off.person_id.id is False:
-
-                    _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_off.action_person)
-
-                    responsible_id = False
-                    if person_off.responsible_id is not False:
-                        responsible_id = person_off.responsible_id.id
-
-                    caregiver_id = False
-                    if person_off.caregiver_id is not False:
-                        caregiver_id = person_off.caregiver_id.id
+                person = Person.search([
+                    ('name', '=', person_off.name),
+                ])
+                if person.id is False:
 
                     address_id = False
                     if person_off.address_id is not False:
                         address_id = person_off.address_id.id
 
-                    values = {
-                        'name': person_off.name,
-                        'gender': person_off.gender,
-                        'estimated_age': person_off.estimated_age,
-                        'birthday': person_off.birthday,
-                        'responsible_id': responsible_id,
-                        'caregiver_id': caregiver_id,
-                        'address_id': address_id,
-                        'phone': person_off.phone,
-                        'mobile': person_off.mobile,
-                        'history_marker_id': self.history_marker_id.id,
-                    }
-                    _logger.info(u'>>>>> %s', values)
-                    new_person = Person.create(values)
-                    new_person.code = '/'
+                    if (address_id is not False) and \
+                       (person_off.action_address == 'none'):
 
-                    person_off.person_id = new_person.id
+                        if person_off.person_id.id is False:
+
+                            responsible_id = False
+                            if person_off.responsible_id is not False:
+                                responsible_id = person_off.responsible_id.id
+
+                            caregiver_id = False
+                            if person_off.caregiver_id is not False:
+                                caregiver_id = person_off.caregiver_id.id
+
+                            values = {
+                                'name': person_off.name,
+                                'gender': person_off.gender,
+                                'estimated_age': person_off.estimated_age,
+                                'birthday': person_off.birthday,
+                                'responsible_id': responsible_id,
+                                'caregiver_id': caregiver_id,
+                                'address_id': address_id,
+                                'phone': person_off.phone,
+                                'mobile': person_off.mobile,
+                                'history_marker_id': self.history_marker_id.id,
+                            }
+                            _logger.info(u'>>>>> %s', values)
+                            new_person = Person.create(values)
+                            new_person.code = '/'
+
+                            person_off.person_id = new_person.id
+
+                            _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_off.action_person)
+
+                            person_off.action_person = 'none'
 
         return True
