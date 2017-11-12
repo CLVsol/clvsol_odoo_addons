@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_person_off_address_search_view_form" model="ir.ui.view">
+            <field name="name">clv.person.off.address_search.form</field>
+            <field name="model">clv.person.off.address_search</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                    </div>
+                    <label for="person_off_ids"/>
+                    <field name="person_off_ids"/>
+                    <group>
+                        <group>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_person_off_address_search"
+                            string="Address Search"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <!--act_window 
+            id="clv_person_off_address_search_action"
+            name="Address Search"
+            src_model="clv.person.off"
+            res_model="clv.person.off.address_search"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        /-->
+        <act_window 
+            id="clv_person_off_address_search_action"
+            name="Address Search"
+            src_model="clv.person.off"
+            res_model="clv.person.off.address_search"
+            view_mode="form, tree"
+            target="new"
+        />
+
+    </data>
+</odoo>
