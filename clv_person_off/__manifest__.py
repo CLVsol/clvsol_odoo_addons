@@ -46,6 +46,7 @@
         'wizard/person_off_person_confirm_view.xml',
         'wizard/person_off_address_search_view.xml',
         'wizard/person_off_address_create_view.xml',
+        'wizard/person_off_person_search_view.xml',
         'wizard/person_off_person_create_view.xml',
     ],
     'demo': [],
