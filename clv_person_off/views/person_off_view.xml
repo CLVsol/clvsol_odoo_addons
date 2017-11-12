@@ -81,8 +81,8 @@
                                         <field name="action_person_address"/>
                                     </group>
                                     <group name="history_markers" string="History">
-                                        <field name="person_history_marker_id"/>
-                                        <field name="address_history_marker_id"/>
+                                        <field name="person_history_marker_id" options="{'no_open': False, 'no_create': True}"/>
+                                        <field name="address_history_marker_id" options="{'no_open': False, 'no_create': True}"/>
                                     </group>
                                 </group>
                             </page>
