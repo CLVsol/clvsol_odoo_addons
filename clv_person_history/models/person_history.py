@@ -81,6 +81,11 @@ class PersonHistory(models.Model):
         string='Address',
         ondelete='restrict'
     )
+    address_category_names = fields.Char(
+        string='Address Category Names',
+        related='address_id.category_names',
+        store=True
+    )
     person_address_role_id = fields.Many2one(
         comodel_name='clv.person.address.role',
         string='Person Address Role',

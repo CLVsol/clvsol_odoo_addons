@@ -25,6 +25,7 @@
                                 <field name="address_id"
                                     context="{'show_address_only': 1}"
                                     options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
+                                <field name="address_category_names"/>
                                 <field name="person_address_role_id" options='{"no_open": False, "no_create": True}'/>
                             </group>
                             <group>
@@ -64,6 +65,7 @@
                     <field name="sign_in_date"/>
                     <field name="sign_out_date"/>
                     <field name="address_id"/>
+                    <field name="address_category_names"/>
                     <field name="notes"/>
                 </tree>
             </field>
@@ -81,6 +83,7 @@
                     <field name="sign_in_date"/>
                     <field name="sign_out_date"/>
                     <field name="address_id"/>
+                    <field name="address_category_names"/>
                     <field name="notes"/>
                     <newline/>
                     <filter name="opened" string="Opened Person" domain="[('sign_out_date','=',False)]"/>
@@ -90,6 +93,7 @@
                         <filter string="Person" domain="[]" context="{'group_by':'person_id'}"/>
                         <filter string="Categories" context="{'group_by': 'category_names'}"/>
                         <filter string="Address" context="{'group_by': 'address_id'}"/>
+                        <filter string="Address Categories" context="{'group_by': 'address_category_names'}"/>
                     </group>
                 </search>
             </field>
