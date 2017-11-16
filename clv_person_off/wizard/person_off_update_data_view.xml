@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_person_off_update_data_view_form" model="ir.ui.view">
+            <field name="name">clv.person.off.update_data.form</field>
+            <field name="model">clv.person.off.update_data</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                    </div>
+                    <label for="person_off_ids"/>
+                    <field name="person_off_ids"/>
+                    <group>
+                        <group>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_person_off_update_data"
+                            string="Person (Off) Update Data"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <!--act_window 
+            id="clv_person_off_update_data_action"
+            name="Person (Off) Update Data"
+            src_model="clv.person.off"
+            res_model="clv.person.off.update_data"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        /-->
+        <act_window 
+            id="clv_person_off_update_data_action"
+            name="Person (Off) Update Data"
+            src_model="clv.person.off"
+            res_model="clv.person.off.update_data"
+            view_mode="form, tree"
+            target="new"
+        />
+
+    </data>
+</odoo>
