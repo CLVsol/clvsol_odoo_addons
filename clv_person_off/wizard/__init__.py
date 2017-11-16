@@ -25,5 +25,6 @@ import person_off_person_confirm
 import person_off_address_search
 import person_off_address_create
 import person_off_person_search
+import person_off_person_update
 import person_off_person_create
 import person_off_update_data

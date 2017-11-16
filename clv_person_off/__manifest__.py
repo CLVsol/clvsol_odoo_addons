@@ -44,6 +44,7 @@
         'wizard/person_off_related_address_confirm_view.xml',
         'wizard/person_off_address_confirm_view.xml',
         'wizard/person_off_person_confirm_view.xml',
+        'wizard/person_off_person_update_view.xml',
         'wizard/person_off_address_search_view.xml',
         'wizard/person_off_address_create_view.xml',
         'wizard/person_off_person_search_view.xml',
