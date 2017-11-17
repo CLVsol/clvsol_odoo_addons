@@ -48,7 +48,7 @@
             <field name="model">clv.lab_test.off.report</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree name="lab_test_reports" string='Lab Test Reports'>
+                <tree name="lab_test_reports" string='Lab Test (Off) Reports'>
                     <field name="code"/>
                     <field name="lab_test_type_id"/>
                     <field name="lab_test_off_request_id"/>
@@ -62,7 +62,7 @@
             <field name="model">clv.lab_test.off.report</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <search string="Lab Test">
+                <search string="Lab Test (Off)">
                     <field name="code"/>
                     <field name="lab_test_type_id"/>
                     <field name="lab_test_off_request_id"/>
@@ -78,7 +78,7 @@
         </record>
         
         <record id="clv_lab_test_off_report_action" model="ir.actions.act_window">
-            <field name="name">Lab Test Reports</field>
+            <field name="name">Lab Test (Off) Reports</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">clv.lab_test.off.report</field>
             <field name="view_type">form</field>
