@@ -65,21 +65,21 @@ class LabTestOffRequest(models.Model):
     @api.depends('lab_test_type_ids')
     def _compute_lab_test_type_names(self):
         for r in self:
-            r.lab_test.off_type_names = r.lab_test.off_type_names_suport
+            r.lab_test_type_names = r.lab_test_type_names_suport
 
     @api.multi
     def _compute_lab_test_type_names_suport(self):
         for r in self:
             lab_test_type_names = False
-            for lab_test_type in r.lab_test.off_type_ids:
+            for lab_test_type in r.lab_test_type_ids:
                 if lab_test_type_names is False:
                     lab_test_type_names = lab_test_type.name
                 else:
                     lab_test_type_names = lab_test_type_names + ', ' + lab_test_type.name
-            r.lab_test.off_type_names_suport = lab_test_type_names
-            if r.lab_test.off_type_names != lab_test_type_names:
+            r.lab_test_type_names_suport = lab_test_type_names
+            if r.lab_test_type_names != lab_test_type_names:
                 record = self.env['clv.lab_test.off.request'].search([('id', '=', r.id)])
-                record.write({'lab_test_type_ids': r.lab_test.off_type_ids})
+                record.write({'lab_test_type_ids': r.lab_test_type_ids})
 
 
 class LabTestType(models.Model):
