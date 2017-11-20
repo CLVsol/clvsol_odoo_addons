@@ -40,6 +40,7 @@
         'views/off_instance_view.xml',
         'views/lab_test_criterion_view.xml',
         'views/lab_test_off_menu_view.xml',
+        'wizard/lab_test_off_report_edit_view.xml',
     ],
     'demo': [],
     'test': [],

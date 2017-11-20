@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_lab_test_off_report_edit_view_form" model="ir.ui.view">
+            <field name="name">clv.lab_test.off.report.edit.form</field>
+            <field name="model">clv.lab_test.off.report.edit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_right">
+                        </div>
+                        <group  name="group_top">
+                            <field name="report_id" options="{'no_open': True, 'no_create': True, 'readonly': True}"/>
+                            <field name="lab_test_type_id" options="{'no_open': True, 'no_create': True, 'readonly': True}"/>
+                            <field name="lab_test_off_request_id" options="{'no_open': True, 'no_create': True, 'readonly': True}"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_report_updt"
+                            string="Report Update"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <act_window 
+            id="clv_lab_test_off_report_edit_action"
+            name="Lab Test (Off) Report Edit"
+            src_model="clv.lab_test.off.report"
+            res_model="clv.lab_test.off.report.edit"
+            view_mode="form, tree"
+            target="new"
+        />
+
+    </data>
+</odoo>
