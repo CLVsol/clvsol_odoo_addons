@@ -38,6 +38,7 @@
         'views/lab_test_off_report_view.xml',
         'views/lab_test_off_report_log_view.xml',
         'views/off_instance_view.xml',
+        'views/lab_test_criterion_view.xml',
         'views/lab_test_off_menu_view.xml',
     ],
     'demo': [],

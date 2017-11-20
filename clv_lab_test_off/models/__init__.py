@@ -23,3 +23,4 @@ from . import lab_test_off_request_log
 from . import lab_test_off_report
 from . import lab_test_off_report_log
 from . import off_instance
+from . import lab_test_criterion
