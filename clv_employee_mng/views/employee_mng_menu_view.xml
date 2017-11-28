@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Management" id="menu_hr_root_employees_employees_management"
+            parent="clv_employee.menu_hr_root_employees_employees"
+            groups="clv_employee_mng.group_user"
+            sequence="90"
+            action="clv_employee_mng.clv_employee_mng_action"/>
+
+    </data>
+</odoo>

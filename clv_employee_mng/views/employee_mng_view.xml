@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_employee_mng_view_form" model="ir.ui.view">
+            <field name="name">clv.employee.mng.form</field>
+            <field name="model">clv.employee.mng</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
+                    <sheet name="employee_mng">
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" default_focus="1" placeholder="Name..."/></h1>
+                        </div>
+                        <group>
+                            <group name="employee_mng" string="Employee">
+                                <field name="history_marker_id" options='{"no_open": True, "no_create": True}'/>
+                                <field name="code"/>
+                                <field name="professional_id"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                                <field name="department_id" options='{"no_open": False, "no_create": True}'/>
+                                <field name="job_id" options='{"no_open": False, "no_create": True}'/>
+                            </group>
+                            <group name="employee" string="Related Employee">
+                                <field name="partner_id" options='{"no_open": False, "no_create": True}'/>
+                                <field name="user_id" options='{"no_open": False, "no_create": True}'/>
+                                <field name="employee_id" options='{"no_open": False, "no_create": True}'/>
+                            </group>
+                        </group>
+                        <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <notebook>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_employee_mng_view_tree" model="ir.ui.view">
+            <field name="name">clv.employee.mng.tree</field>
+            <field name="model">clv.employee.mng</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree name="employees" string="Employees">
+                    <field name="name"/>
+                    <field name="history_marker_id"/>
+                    <field name="code"/>
+                    <field name="professional_id"/>
+                    <field name="email"/>
+                    <field name="department_id"/>
+                    <field name="job_id"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_employee_mng_view_search" model="ir.ui.view">
+            <field name="name">clv.employee.mng.search</field>
+            <field name="model">clv.employee.mng</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="history_marker_id"/>
+                    <field name="professional_id"/>
+                    <field name="email"/>
+                    <field name="department_id"/>
+                    <field name="job_id"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <group name="group_by" expand="0" string="Group By...">
+                        <filter string="History Marker" context="{'group_by': 'history_marker_id'}"/>
+                        <filter string="Department" context="{'group_by': 'department_id'}"/>
+                        <filter string="Job Title" context="{'group_by': 'job_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="clv_employee_mng_action" model="ir.actions.act_window">
+            <field name="name">Employees Management</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.employee.mng</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_employee_mng_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new employee (management).
+              </p>
+            </field>
+        </record>
+        
+    </data>
+</odoo>
