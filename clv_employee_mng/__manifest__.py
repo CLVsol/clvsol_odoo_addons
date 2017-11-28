@@ -34,6 +34,7 @@
         'security/employee_mng_security.xml',
         'security/ir.model.access.csv',
         'views/employee_mng_view.xml',
+        'views/global_tag_view.xml',
         'views/employee_mng_menu_view.xml',
     ],
     'demo': [],
