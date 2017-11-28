@@ -20,3 +20,4 @@
 
 from . import employee_mng
 from . import global_tag
+from . import employee_mng_log
