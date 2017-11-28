@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_employee_mng_updt_view_form" model="ir.ui.view">
+            <field name="name">clv.employee.mng.updt.form</field>
+            <field name="model">clv.employee.mng.updt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                        <!--button type="object" name="do_populate_all_employees" string="Get All Employees (Mng)"/-->
+                    </div>
+                    <label for="employee_mng_ids"/>
+                    <field name="employee_mng_ids"/>
+                    <group>
+                        <group name="global_tag_ids_selection">
+                            <field name="global_tag_ids_selection"/>
+                        </group>
+                        <group>
+                            <field name="global_tag_ids" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_employee_mng_updt"
+                            string="Employees (Mng) Update"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <act_window 
+            id="clv_employee_mng_updt_action"
+            name="Employee (Mng) Update"
+            src_model="clv.employee.mng"
+            res_model="clv.employee.mng.updt"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>

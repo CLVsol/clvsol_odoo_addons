@@ -18,34 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Employee Management',
-    'summary': 'Employee Management Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_employee',
-    ],
-    'data': [
-        'security/employee_mng_security.xml',
-        'security/ir.model.access.csv',
-        'views/employee_mng_view.xml',
-        'views/global_tag_view.xml',
-        'views/employee_mng_log_view.xml',
-        'views/employee_mng_menu_view.xml',
-        'wizard/employee_mng_updt_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+import employee_mng_updt
