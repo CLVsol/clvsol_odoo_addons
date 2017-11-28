@@ -29,6 +29,7 @@
                         <group>
                         </group>
                         <group>
+                            <field name="group_ids_selection"/>
                             <field name="group_ids" options="{'no_open': False, 'no_create': True}"/>
                         </group>
                         <group>
