@@ -97,6 +97,7 @@ class PersonOffPersonCreate(models.TransientModel):
 
                             values = {
                                 'name': person_off.name,
+                                'code': person_off.code,
                                 'gender': person_off.gender,
                                 'estimated_age': person_off.estimated_age,
                                 'birthday': person_off.birthday,
@@ -109,9 +110,12 @@ class PersonOffPersonCreate(models.TransientModel):
                             }
                             _logger.info(u'>>>>> %s', values)
                             new_person = Person.create(values)
-                            new_person.code = '/'
+                            if new_person.code is False:
+                                new_person.code = '/'
 
                             person_off.person_id = new_person.id
+                            if person_off.code is False:
+                                person_off.code = new_person.code
 
                             _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_off.action_person)
 
