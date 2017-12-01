@@ -21,4 +21,4 @@
 from . import summary
 from . import summary_category
 from . import global_tag
-
+from . import summary_log
