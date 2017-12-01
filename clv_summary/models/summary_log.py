@@ -48,7 +48,8 @@ class Summary(models.Model):
     @api.one
     def insert_object_log(self, summary_id, values, action, notes):
         if self.active_log or 'active_log' in values:
-            if str(values).find("'category_ids': clv.summary.category(") == -1:
+            if (str(values).find("'category_ids': clv.summary.category(") == -1) and \
+               (str(values).find("'global_tag_ids': clv.global_tag(") == -1):
                 vals = {
                     'summary_id': summary_id,
                     'values': values,
