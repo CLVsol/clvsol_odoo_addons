@@ -18,36 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Summary',
-    'summary': 'Summary Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_address',
-    ],
-    'data': [
-        'security/summary_security.xml',
-        'security/ir.model.access.csv',
-        'views/summary_view.xml',
-        'views/summary_category_view.xml',
-        'views/global_tag_view.xml',
-        'views/summary_log_view.xml',
-        'wizard/summary_updt_view.xml',
-        'views/summary_menu_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+import summary_updt
