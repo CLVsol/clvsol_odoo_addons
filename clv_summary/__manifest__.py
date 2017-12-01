@@ -36,6 +36,7 @@
         'security/ir.model.access.csv',
         'views/summary_view.xml',
         'views/summary_category_view.xml',
+        'views/global_tag_view.xml',
         'views/summary_menu_view.xml',
     ],
     'demo': [],
