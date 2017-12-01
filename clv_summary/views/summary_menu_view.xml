@@ -8,5 +8,11 @@
             sequence="90"
             action="clv_summary.clv_summary_action"/>
 
+        <menuitem name="Summary Categories" id="menu_base_config_config_summary_categories" 
+            parent="clv_base.menu_base_config_config"
+            groups="clv_summary.group_user"
+            sequence="90"
+            action="clv_summary.clv_summary_category_action"/>
+
     </data>
 </openerp>
