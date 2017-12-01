@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_employee_mng_employee_search_view_form" model="ir.ui.view">
+            <field name="name">clv.employee.mng.employee_search.form</field>
+            <field name="model">clv.employee.mng.employee_search</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                    </div>
+                    <label for="employee_mng_ids"/>
+                    <field name="employee_mng_ids"/>
+                    <group>
+                        <group>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_employee_mng_employee_search"
+                            string="Emplyee Search"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <act_window 
+            id="clv_employee_mng_employee_search_action"
+            name="Emplyee Search"
+            src_model="clv.employee.mng"
+            res_model="clv.employee.mng.employee_search"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>

@@ -38,6 +38,8 @@
         'views/employee_mng_log_view.xml',
         'views/employee_mng_menu_view.xml',
         'wizard/employee_mng_updt_view.xml',
+        'wizard/employee_mng_employee_search_view.xml',
+        'wizard/employee_mng_employee_create_view.xml',
     ],
     'demo': [],
     'test': [],

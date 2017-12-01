@@ -19,3 +19,5 @@
 ###############################################################################
 
 import employee_mng_updt
+import employee_mng_employee_search
+import employee_mng_employee_create
