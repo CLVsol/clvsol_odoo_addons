@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem name="Summaries" id="menu_base_base_summaries"
+            parent="clv_base.menu_base_base"
+            groups="clv_summary.group_user"
+            sequence="90"
+            action="clv_summary.clv_summary_action"/>
+
+    </data>
+</openerp>
