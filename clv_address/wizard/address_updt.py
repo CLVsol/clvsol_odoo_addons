@@ -184,8 +184,8 @@ class AddressUpdate(models.TransientModel):
     def do_populate_all_addresses(self):
         self.ensure_one()
 
-        Mfile = self.env['clv.address']
-        addresses = Mfile.search([])
+        Address = self.env['clv.address']
+        addresses = Address.search([])
 
         self.address_ids = addresses
 
