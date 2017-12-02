@@ -25,11 +25,14 @@
                             <label for="code" class="oe_edit_only"/>
                             <h3><field name="code" placeholder="Summary Code..."/></h3>
                         </div>
-                        <group>
-                            <!--group name="status" string="Status"-->
-                            <group name="status">
+                        <group name="group_title">
+                            <group name="group_title_left">
                                 <field name="date_summary"/>
                             </group>
+                            <group name="group_title_right">
+                            </group>
+                        </group>
+                        <group name="group_title_bottom">
                         </group>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
                         <notebook>
