@@ -35,6 +35,14 @@
                         <group name="group_title_bottom">
                         </group>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <group name="group_top">
+                            <group name="group_top_left">
+                            </group>
+                            <group name="group_top_right">
+                            </group>
+                        </group>
+                        <group name="group_bottom">
+                        </group>
                         <notebook>
                             <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
                                 <group name="settings">
