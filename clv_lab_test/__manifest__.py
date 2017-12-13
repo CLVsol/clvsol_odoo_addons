@@ -46,6 +46,7 @@
         'views/global_tag_view.xml',
         'views/lab_test_menu_view.xml',
         'wizard/lab_test_request_updt_view.xml',
+        'wizard/lab_test_result_updt_view.xml',
         'wizard/lab_test_result_edit_view.xml',
         'wizard/lab_test_report_edit_view.xml',
         'wizard/lab_test_report_get_results_view.xml',

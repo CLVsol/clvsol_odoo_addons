@@ -19,6 +19,7 @@
 ###############################################################################
 
 import lab_test_request_updt
+import lab_test_result_updt
 import lab_test_result_edit
 import lab_test_report_edit
 import lab_test_report_get_results
