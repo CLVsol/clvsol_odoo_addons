@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_global_tag_view_form_lab_test_request" model="ir.ui.view">
+            <field name="name">clv.global_tag.form</field>
+            <field name="model">clv.global_tag</field>
+            <field name="inherit_id" ref="clv_global_tag.clv_global_tag_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="tag_for" position="inside">
+                    <group string="Lab Test Requests">
+                        <field name="lab_test_request_ids" colspan="4" nolabel="1"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_request_view_form_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.request.form</field>
+            <field name="model">clv.lab_test.request</field>
+            <field name="inherit_id" ref="clv_lab_test_request_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <label for="code" position="before">
+                    <label for="global_tag_ids"  groups="clv_global_tag.group_user" class="oe_edit_only"/>
+                    <h4><field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'no_open': False, 'no_create': True}" groups="clv_global_tag.group_user"/></h4>
+                </label>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_request_view_tree_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.request.tree</field>
+            <field name="model">clv.lab_test.request</field>
+            <field name="inherit_id" ref="clv_lab_test_request_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="before">
+                    <field name="global_tag_ids" groups="clv_global_tag.group_user"/>
+                    <field name="global_tag_names_suport" invisible="True"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_request_view_search_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.request.search</field>
+            <field name="model">clv.lab_test.request</field>
+            <field name="inherit_id" ref="clv_lab_test_request_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="global_tag_ids"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
+                </group>
+            </field>
+        </record>
+
+        <record id="clv_global_tag_view_form_lab_test_result" model="ir.ui.view">
+            <field name="name">clv.global_tag.form</field>
+            <field name="model">clv.global_tag</field>
+            <field name="inherit_id" ref="clv_global_tag.clv_global_tag_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="tag_for" position="inside">
+                    <group string="Lab Test Results">
+                        <field name="lab_test_result_ids" colspan="4" nolabel="1"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_result_view_form_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.result.form</field>
+            <field name="model">clv.lab_test.result</field>
+            <field name="inherit_id" ref="clv_lab_test_result_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <label for="code" position="before">
+                    <label for="global_tag_ids"  groups="clv_global_tag.group_user" class="oe_edit_only"/>
+                    <h4><field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'no_open': False, 'no_create': True}" groups="clv_global_tag.group_user"/></h4>
+                </label>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_result_view_tree_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.result.tree</field>
+            <field name="model">clv.lab_test.result</field>
+            <field name="inherit_id" ref="clv_lab_test_result_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="before">
+                    <field name="global_tag_ids" groups="clv_global_tag.group_user"/>
+                    <field name="global_tag_names_suport" invisible="True"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_result_view_search_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.result.search</field>
+            <field name="model">clv.lab_test.result</field>
+            <field name="inherit_id" ref="clv_lab_test_result_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="global_tag_ids"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
+                </group>
+            </field>
+        </record>
+
+        <record id="clv_global_tag_view_form_lab_test_report" model="ir.ui.view">
+            <field name="name">clv.global_tag.form</field>
+            <field name="model">clv.global_tag</field>
+            <field name="inherit_id" ref="clv_global_tag.clv_global_tag_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="tag_for" position="inside">
+                    <group string="Lab Test Reports">
+                        <field name="lab_test_report_ids" colspan="4" nolabel="1"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_report_view_form_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.report.form</field>
+            <field name="model">clv.lab_test.report</field>
+            <field name="inherit_id" ref="clv_lab_test_report_view_form"/>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <label for="code" position="before">
+                    <label for="global_tag_ids"  groups="clv_global_tag.group_user" class="oe_edit_only"/>
+                    <h4><field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'no_open': False, 'no_create': True}" groups="clv_global_tag.group_user"/></h4>
+                </label>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_report_view_tree_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.report.tree</field>
+            <field name="model">clv.lab_test.report</field>
+            <field name="inherit_id" ref="clv_lab_test_report_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="before">
+                    <field name="global_tag_ids" groups="clv_global_tag.group_user"/>
+                    <field name="global_tag_names_suport" invisible="True"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_report_view_search_global_tag" model="ir.ui.view">
+            <field name="name">clv.lab_test.report.search</field>
+            <field name="model">clv.lab_test.report</field>
+            <field name="inherit_id" ref="clv_lab_test_report_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="global_tag_ids"/>
+                </field>
+                <group name="group_by" position="inside">
+                    <filter string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</odoo>
