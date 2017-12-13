@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_lab_test_report_updt_view_form" model="ir.ui.view">
+            <field name="name">clv.lab_test.report.updt.form</field>
+            <field name="model">clv.lab_test.report.updt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                    </div>
+                    <label for="lab_test_report_ids"/>
+                    <field name="lab_test_report_ids"/>
+                    <group>
+                        <group name="global_tag_ids_selection">
+                            <field name="global_tag_ids_selection"/>
+                        </group>
+                        <group>
+                            <field name="global_tag_ids" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_lab_test_report_updt"
+                            string="Lab Test Report Update"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <act_window 
+            id="clv_lab_test_report_updt_action"
+            name="Lab Test Report Update"
+            src_model="clv.lab_test.report"
+            res_model="clv.lab_test.report.updt"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>
