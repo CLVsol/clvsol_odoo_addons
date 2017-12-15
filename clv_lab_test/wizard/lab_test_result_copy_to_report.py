@@ -48,6 +48,15 @@ class LabTestResultCopyToReport(models.TransientModel):
             ])
             criterion_reg.result = result
 
+    def _copy_result(self, lab_test_type_id_code, criterion_code, result):
+        active_id = self.env['clv.lab_test.result'].browse(self._context.get('active_id')).lab_test_report_id
+        if active_id.lab_test_type_id.code == lab_test_type_id_code:
+            criterion_reg = active_id.criterion_ids.search([
+                ('lab_test_report_id', '=', active_id.id),
+                ('code', '=', criterion_code),
+            ])
+            criterion_reg.result = result
+
     def _default_result_id(self):
         return self._context.get('active_id')
     result_id = fields.Many2one(
