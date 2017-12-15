@@ -24,3 +24,4 @@ import lab_test_report_updt
 import lab_test_result_edit
 import lab_test_report_edit
 import lab_test_report_get_results
+import lab_test_result_copy_to_report
