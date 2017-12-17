@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="File System" id="menu_base_base_file_system"
+            parent="clv_base.menu_base_base"
+            groups="clv_file_system.group_user"
+            sequence="200"/>
+
+        <menuitem name="Directories" id="menu_base_base_file_system_directories" 
+            parent="menu_base_base_file_system"
+            groups="clv_file_system.group_user"
+            sequence="10"
+            action="clv_file_system.clv_file_system_directory_action"/>
+
+        <menuitem id="menu_clv_filesystem"
+                  name="Downloads"
+                  parent="clv_base.menu_base_base"
+                  sequence="210"/>
+
+        <menuitem id="menu_clv_filesystem_directory"
+                  action="clv_filesystem_directory_action"
+                  groups="group_filesystem_directory"
+                  parent="menu_clv_filesystem"
+                  sequence="10"/>
+
+    </data>
+</odoo>
