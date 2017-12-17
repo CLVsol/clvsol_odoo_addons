@@ -4,3 +4,7 @@ access_clv_filesystem_directory,clv_filesystem_directory,model_clv_filesystem_di
 access_clv_file_system_directory_user,clv.file_system.directory.user,model_clv_file_system_directory,clv_file_system.group_user,1,0,0,0
 access_clv_file_system_directory_manager,clv.file_system.manager.directory,model_clv_file_system_directory,clv_file_system.group_manager,1,1,1,0
 access_clv_file_system_directory_supmanager,clv.file_system.directory.supmanager,model_clv_file_system_directory,clv_file_system.group_supmanager,1,1,1,1
+
+access_clv_file_system_file_user,clv.file_system.file.user,model_clv_file_system_file,clv_file_system.group_user,1,0,0,0
+access_clv_file_system_file_manager,clv.file_system.manager.file,model_clv_file_system_file,clv_file_system.group_manager,1,1,1,0
+access_clv_file_system_file_supmanager,clv.file_system.file.supmanager,model_clv_file_system_file,clv_file_system.group_supmanager,1,1,1,1

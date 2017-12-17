@@ -25,6 +25,7 @@
         'security/ir.model.access.csv',
         'views/filesystem_directory.xml',
         'views/file_system_directory_view.xml',
+        'views/file_system_file_view.xml',
         'views/file_system_menu_view.xml',
     ],
     'installable': True,

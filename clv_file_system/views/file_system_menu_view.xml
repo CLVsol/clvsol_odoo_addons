@@ -13,6 +13,12 @@
             sequence="10"
             action="clv_file_system.clv_file_system_directory_action"/>
 
+        <menuitem name="Files" id="menu_base_base_file_system_files" 
+            parent="menu_base_base_file_system"
+            groups="clv_file_system.group_user"
+            sequence="20"
+            action="clv_file_system.clv_file_system_file_action"/>
+
         <menuitem id="menu_clv_filesystem"
                   name="Downloads"
                   parent="clv_base.menu_base_base"
