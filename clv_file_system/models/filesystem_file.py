@@ -12,15 +12,15 @@ from odoo.tools import human_size
 _logger = logging.getLogger(__name__)
 
 
-class IrFilesystemDirectoryLine(models.TransientModel):
-    _name = 'ir.filesystem.file'
+class FilesystemDirectoryLine(models.TransientModel):
+    _name = 'clv.filesystem.file'
 
     name = fields.Char(required=True)
     filename = fields.Char()
     file_content = fields.Binary(compute='_compute_file')
     stored_filename = fields.Char()
     directory_id = fields.Many2one(
-        'ir.filesystem.directory',
+        'clv.filesystem.directory',
         string='Directory'
     )
 

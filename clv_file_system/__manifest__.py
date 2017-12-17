@@ -15,9 +15,9 @@
         'clv_base',
     ],
     'data': [
-        'security/groups.xml',
+        'security/file_system_security.xml',
         'security/ir.model.access.csv',
-        'views/ir_filesystem_directory.xml',
+        'views/filesystem_directory.xml',
     ],
     'installable': True,
 }

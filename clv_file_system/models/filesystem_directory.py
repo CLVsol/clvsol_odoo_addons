@@ -12,14 +12,14 @@ from odoo.exceptions import Warning
 _logger = logging.getLogger(__name__)
 
 
-class IrFilesystemDirectory(models.Model):
-    _name = 'ir.filesystem.directory'
+class FilesystemDirectory(models.Model):
+    _name = 'clv.filesystem.directory'
     _description = 'Filesystem Directory'
 
     name = fields.Char(required=True, copy=False)
     directory = fields.Char()
     file_ids = fields.One2many(
-        'ir.filesystem.file',
+        'clv.filesystem.file',
         compute='_compute_file_ids',
         string='Files'
     )
@@ -34,7 +34,7 @@ class IrFilesystemDirectory(models.Model):
 
     @api.multi
     def _compute_file_ids(self):
-        File = self.env['ir.filesystem.file']
+        File = self.env['clv.filesystem.file']
         for directory in self:
             directory.file_ids = None
             if directory.get_dir():
@@ -90,4 +90,4 @@ class IrFilesystemDirectory(models.Model):
     def copy(self, default=None):
         self.ensure_one()
         default = dict(default or {}, name=_("%s (copy)") % self.name)
-        return super(IrFilesystemDirectory, self).copy(default=default)
+        return super(FilesystemDirectory, self).copy(default=default)

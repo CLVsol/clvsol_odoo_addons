@@ -12,7 +12,7 @@ from odoo.exceptions import Warning
 class TestBaseDirectoryFilesDownload(common.TransactionCase):
 
     def test_01_create(self):
-        test_dir = self.env['ir.filesystem.directory'].create({
+        test_dir = self.env['clv.filesystem.directory'].create({
             'name': 'Test Directory 1',
             'directory': gettempdir()
         })
@@ -49,7 +49,7 @@ class TestBaseDirectoryFilesDownload(common.TransactionCase):
         self.assertEqual(len(test_dir.file_ids), 0)
 
     def test_02_copy(self):
-        test_dir = self.env['ir.filesystem.directory'].create({
+        test_dir = self.env['clv.filesystem.directory'].create({
             'name': 'Test Orig',
             'directory': gettempdir()
         })
@@ -61,7 +61,7 @@ class TestBaseDirectoryFilesDownload(common.TransactionCase):
         self.assertEqual(dir_copy.file_count, test_dir.file_count)
 
     def test_03_not_existing_directory(self):
-        test_dir = self.env['ir.filesystem.directory'].create({
+        test_dir = self.env['clv.filesystem.directory'].create({
             'name': 'Test Not Existing Directory',
             'directory': '/tpd'
         })
