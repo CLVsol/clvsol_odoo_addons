@@ -2,10 +2,6 @@
 <odoo>
     <data noupdate="0">
 
-	    <record model="res.groups" id="group_filesystem_directory">
-	        <field name="name">Download files of directory</field>
-	    </record>
-
         <record id="clv_file_system.group_user" model="res.groups">
             <field name="name">User (File System)</field>
         </record>

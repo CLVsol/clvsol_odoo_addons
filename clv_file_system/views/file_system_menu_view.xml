@@ -19,16 +19,5 @@
             sequence="20"
             action="clv_file_system.clv_file_system_file_action"/>
 
-        <menuitem name="Downloads" id="menu_base_base_downloads"
-            parent="clv_base.menu_base_base"
-            groups="clv_file_system.group_filesystem_directory"
-            sequence="210"/>
-
-        <menuitem name="Directory Content" id="menu_base_base_downloads_directory_content" 
-            parent="menu_base_base_downloads"
-            groups="clv_file_system.group_filesystem_directory"
-            sequence="10"
-            action="clv_file_system.clv_filesystem_directory_action"/>
-
     </data>
 </odoo>
