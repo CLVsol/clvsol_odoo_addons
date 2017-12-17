@@ -12,6 +12,7 @@
     'license': 'AGPL-3',
     'depends': [
         'base_setup',
+        'clv_base',
     ],
     'data': [
         'security/groups.xml',

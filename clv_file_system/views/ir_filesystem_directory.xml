@@ -63,13 +63,18 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <!--menuitem id="menu_ir_filesystem"
+              name="Downloads"
+              parent="base.menu_administration"/-->
     <menuitem id="menu_ir_filesystem"
               name="Downloads"
-              parent="base.menu_administration"/>
+              parent="clv_base.menu_base_base"
+              sequence="200"/>
 
     <menuitem id="menu_ir_filesystem_directory"
               action="ir_filesystem_directory_action"
               groups="group_filesystem_directory"
-              parent="menu_ir_filesystem" />
+              parent="menu_ir_filesystem"
+              sequence="10"/>
 
 </odoo>
