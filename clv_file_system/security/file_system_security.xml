@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record model="res.groups" id="group_filesystem_directory">
-        <field name="name">Download files of directory</field>
-    </record>
+    <data noupdate="0">
+
+	    <record model="res.groups" id="group_filesystem_directory">
+	        <field name="name">Download files of directory</field>
+	    </record>
+
+        <record id="clv_file_system.group_user" model="res.groups">
+            <field name="name">User (File System)</field>
+        </record>
+        
+        <record id="clv_file_system.group_manager" model="res.groups">
+            <field name="name">Manager (File System)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_file_system.group_user'))]"/>
+        </record>
+        
+        <record id="clv_file_system.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (File System)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_file_system.group_manager'))]"/>
+        </record>
+
+    </data>
 </odoo>

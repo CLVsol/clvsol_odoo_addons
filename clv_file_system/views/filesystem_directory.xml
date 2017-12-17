@@ -66,15 +66,15 @@
     <!--menuitem id="menu_clv_filesystem"
               name="Downloads"
               parent="base.menu_administration"/-->
-    <menuitem id="menu_clv_filesystem"
+    <!--menuitem id="menu_clv_filesystem"
               name="Downloads"
               parent="clv_base.menu_base_base"
-              sequence="200"/>
+              sequence="200"/-->
 
-    <menuitem id="menu_clv_filesystem_directory"
+    <!--menuitem id="menu_clv_filesystem_directory"
               action="clv_filesystem_directory_action"
               groups="group_filesystem_directory"
               parent="menu_clv_filesystem"
-              sequence="10"/>
+              sequence="10"/-->
 
 </odoo>

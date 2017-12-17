@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Onestein (<http://www.onestein.eu>)
+###############################################################################
+#
+# Copyright (C) 2017 Onestein (<http://www.onestein.eu>)
+# Copyright (C) 2017-Today  Carlos Eduardo Vercelino - CLVsol
+#
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+#
+###############################################################################
 
 {
     'name': 'Directory Files Download',
@@ -18,6 +24,8 @@
         'security/file_system_security.xml',
         'security/ir.model.access.csv',
         'views/filesystem_directory.xml',
+        'views/file_system_directory_view.xml',
+        'views/file_system_menu_view.xml',
     ],
     'installable': True,
 }
