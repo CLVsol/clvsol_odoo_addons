@@ -103,22 +103,6 @@
                 <page name="settings" position="before">
                     <page name="files" string="Files">
                         <field name="file_ids" readonly="1">
-                            <!--form>
-                                <group>
-                                    <group>
-                                        <field name="name"/>
-                                    </group>
-                                    <group>
-                                        <field name="file_content" filename="file_name"/>
-                                        <field name="file_name" invisible="1" class="oe_inline oe_right"/>
-                                    </group>
-                                </group>
-                            </form>
-                            <tree>
-                                <field name="name"/>
-                                <field name="file_content" filename="file_name"/>
-                                <field name="file_name" invisible="1"/>
-                            </tree-->
                         </field>
                     </page>
                 </page>
