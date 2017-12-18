@@ -30,6 +30,7 @@
     'depends': [
         'clv_base',
         'clv_address',
+        'clv_file_system',
     ],
     'data': [
         'security/summary_security.xml',
@@ -38,6 +39,7 @@
         'views/summary_category_view.xml',
         'views/global_tag_view.xml',
         'views/summary_log_view.xml',
+        'views/summary_file_system_view.xml',
         'wizard/summary_updt_view.xml',
         'views/summary_menu_view.xml',
     ],
