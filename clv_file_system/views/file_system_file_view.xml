@@ -17,7 +17,7 @@
                             <label for="name" class="oe_edit_only"/>
                             <h1><field name="name" default_focus="1" placeholder="Name..."/></h1>
                             <label for="file_name" class="oe_edit_only"/>
-                            <h3><field name="file_name" placeholder="Description..."/></h3>
+                            <h3><field name="file_name" placeholder="File Name..."/></h3>
                         </div>
                         <group>
                             <field name="file_content" filename="file_name"/>
