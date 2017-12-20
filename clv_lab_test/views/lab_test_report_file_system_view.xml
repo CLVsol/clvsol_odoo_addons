@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_lab_test_report_view_form_file_system" model="ir.ui.view">
+            <field name="name">clv.lab_test.report.form</field>
+            <field name="model">clv.lab_test.report</field>
+            <field name="inherit_id" ref="clv_lab_test_report_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <group name="group_right" position="inside">
+                    <field name="file_name"/>
+                    <field name="file_content" filename="file_name"/>
+                    <field name="stored_file_name"/>
+                    <field name="directory_id" options="{'no_open': False, 'no_create': True}"/>
+                </group>
+            </field>
+        </record>
+
+        <record id="clv_lab_test_report_view_tree_file_system" model="ir.ui.view">
+            <field name="name">clv.lab_test.report.tree</field>
+            <field name="model">clv.lab_test.report</field>
+            <field name="inherit_id" ref="clv_lab_test_report_view_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="date_report" position="after">
+                    <field name="file_name" invisible="1"/>
+                    <field name="file_content" filename="file_name"/>
+                    <field name="stored_file_name" invisible="1"/>
+                    <field name="directory_id" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>
