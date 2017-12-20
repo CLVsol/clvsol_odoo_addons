@@ -29,4 +29,5 @@ from . import lab_test_result_log
 from . import lab_test_unit
 from . import lab_test_criterion
 from . import global_tag
+from . import lab_test_result_file_system
 from . import lab_test_report_file_system
