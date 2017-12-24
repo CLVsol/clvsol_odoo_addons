@@ -25,5 +25,11 @@
             sequence="20"
             action="clv_document.clv_document_type_action"/>
 
+        <menuitem name="Items" id="menu_base_config_config_document_items"
+            parent="menu_base_config_config_document"
+            groups="clv_document.group_user"
+            sequence="30"
+            action="clv_document.clv_document_item_action"/>
+
     </data>
 </odoo>
