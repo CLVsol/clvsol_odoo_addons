@@ -113,17 +113,20 @@
             <field name="inherit_id" ref="clv_document.clv_document_view_form"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <group name="group_top" position="after">
-                    <field name="item_ids" colspan="4" nolabel="1">
-                        <!--tree editable="top" string="Items" create="false"-->
-                        <tree string="Items" create="true">
-                            <field name="sequence" readonly="True"/>
-                            <field name="code" readonly="True"/>
-                            <field name="name" readonly="True"/>
-                            <field name="value"/>
-                        </tree>
-                    </field>
-                </group>
+                <page name="settings" position="before">
+                    <page name="items" string="Items">
+                        <!--label for="item_ids"/-->
+                        <field name="item_ids" colspan="4" nolabel="1">
+                            <!--tree editable="top" string="Items" create="false"-->
+                            <tree string="Items" create="true">
+                                <field name="sequence" readonly="True"/>
+                                <field name="code" readonly="True"/>
+                                <field name="name" readonly="True"/>
+                                <field name="value"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
             </field>
         </record>
 
