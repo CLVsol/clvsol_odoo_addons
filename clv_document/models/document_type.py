@@ -42,3 +42,13 @@ class Documentype (models.Model):
          'UNIQUE (code)',
          u'Error! The Code must be unique!'),
     ]
+
+
+class Document(models.Model):
+    _inherit = "clv.document"
+
+    document_type_id = fields.Many2one(
+        comodel_name='clv.document.type',
+        string='Document Type',
+        ondelete='restrict'
+    )
