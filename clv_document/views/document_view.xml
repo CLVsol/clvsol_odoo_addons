@@ -25,7 +25,7 @@
                             <label for="code" class="oe_edit_only"/>
                             <h3><field name="code" placeholder="Document Code..."/></h3>
                             <label for="base_document_id" class="oe_edit_only"/>
-                            <h3><field name="base_document_id" placeholder="Base Document..."/></h3>
+                            <h3><field name="base_document_id" placeholder="Base Document..." options="{'no_open': False, 'no_create': True}"/></h3>
                         </div>
                         <group name="group_top">
                             <group name="group_left">
