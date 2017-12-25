@@ -81,6 +81,16 @@ class DocumentUpdate(models.TransientModel):
          ], string='Categories', default=False, readonly=False, required=False
     )
 
+    document_type_id = fields.Many2one(
+        comodel_name='clv.document.type',
+        string='Documnent Type'
+    )
+    document_type_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Documnent Type', default=False, readonly=False, required=False
+    )
+
     base_document_id = fields.Many2one(
         comodel_name='clv.document',
         string='Base Document'
@@ -180,6 +190,11 @@ class DocumentUpdate(models.TransientModel):
                     m2m_list.append((4, category_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 document.category_ids = m2m_list
+
+            if self.document_type_id_selection == 'set':
+                document.document_type_id = self.document_type_id.id
+            if self.document_type_id_selection == 'remove':
+                document.document_type_id = False
 
             if self.base_document_id_selection == 'set':
                 document.base_document_id = self.base_document_id.id
