@@ -42,6 +42,7 @@
         'views/document_item_view.xml',
         'wizard/document_updt_view.xml',
         'wizard/document_item_edit_view.xml',
+        'wizard/document_item_refresh_view.xml',
         'views/document_menu_view.xml',
     ],
     'demo': [],
