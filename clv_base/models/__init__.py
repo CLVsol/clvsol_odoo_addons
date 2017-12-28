@@ -25,3 +25,4 @@ from . import code02_model
 from . import log_model
 from . import annotation_model
 from . import random_model
+from . import export_xls
