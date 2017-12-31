@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Reports" id="menu_reports" 
+            groups="clv_base.group_user"
+            sequence="19"/>
+
+        <menuitem name="Reports" id="menu_reports_reports"  
+            parent="menu_reports"
+            groups="clv_base.group_user"
+            sequence="10"/>
+
+        <menuitem name="Configuration" id="menu_reports_config"  
+            parent="menu_reports"
+            groups="clv_base.group_manager"
+            sequence="90"/>
+
+        <menuitem name="Configuration" id="menu_reports_config_config"  
+            parent="menu_reports_config"
+            groups="clv_base.group_manager"
+            sequence="10"/>
+
+    </data>
+</odoo>
