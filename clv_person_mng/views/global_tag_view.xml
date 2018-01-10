@@ -10,7 +10,7 @@
             <field name="arch" type="xml">
                 <page name="tag_for" position="inside">
                     <group string="Persons Management">
-                        <field name="person_ids" colspan="4" nolabel="1"/>
+                        <field name="person_mng_ids" colspan="4" nolabel="1"/>
                     </group>
                 </page>
             </field>
