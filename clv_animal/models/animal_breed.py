@@ -38,7 +38,7 @@ class AnimalBreed(models.Model):
 
     _sql_constraints = [
         ('name_uniq',
-         'UNIQUE(name)',
+         'UNIQUE(species_id, name)',
          u'Error! The Animal Species must be unique!'
          ),
         ('code_uniq',
@@ -55,7 +55,7 @@ class Animal(models.Model):
         comodel_name='clv.animal.breed',
         string='Breed',
         ondelete='restrict',
-        domain="[('species_id','in',species_id)]"
+        domain="[('species_id','=',species_id)]"
     )
 
 

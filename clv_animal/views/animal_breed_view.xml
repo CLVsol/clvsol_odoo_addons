@@ -107,7 +107,7 @@
             <field name="priority" eval="7"/>
             <field name="arch" type="xml">
                 <field name="gender" position="after">
-                    <field name="breed_id" widget="many2many_tags" placeholder="Breed..." options="{'no_open': False, 'no_create': True}"/>
+                    <field name="breed_id" placeholder="Breed..." options="{'no_open': False, 'no_create': True}"/>
                 </field>
             </field>
         </record>
