@@ -60,6 +60,12 @@ class DocumentOff(models.Model):
     # date_foreseen = fields.Date(string='Foreseen Date', index=True, copy=False)
     # date_deadline = fields.Date(string='Deadline', index=True, copy=False)
 
+    document_id = fields.Many2one(
+        comodel_name='clv.document',
+        string='Related Document',
+        ondelete='restrict'
+    )
+
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [
