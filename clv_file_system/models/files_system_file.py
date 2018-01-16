@@ -95,6 +95,7 @@ class FileSystemDirectory(models.Model):
                 for file_name in directory._get_directory_files():
                     file = File.search([
                         ('file_name', '=', file_name),
+                        ('directory_id', '=', directory.id),
                     ])
                     if file.id is False:
                         directory.file_ids += File.create({
