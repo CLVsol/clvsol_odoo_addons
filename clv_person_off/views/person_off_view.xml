@@ -134,6 +134,9 @@
                     <field name="action_person_address"/>
                     <separator/>
                     <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <separator/>
+                    <filter string="Related Person Defined" name="inactive" domain="[('person_id','!=',False)]"/>
+                    <filter string="Related Person NOT Defined" name="inactive" domain="[('person_id','=',False)]"/>
                     <group name="group_by" expand="0" string="Group By...">
                         <filter string="Address Categories" context="{'group_by': 'addr_category_names'}"/>
                         <filter string="Date of Birth" context="{'group_by': 'birthday'}"/>
