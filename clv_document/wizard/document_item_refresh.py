@@ -54,17 +54,30 @@ class DocumentItemRefresh(models.TransientModel):
     def do_document_refresh(self):
         self.ensure_one()
 
+        DocumentItem = self.env['clv.document.item']
+
         for document in self.document_ids:
 
             _logger.info(u'%s %s %s', '>>>>>', document.code, document.document_type_id.name)
 
             items = []
             for item in document.document_type_id.item_ids:
+
+                document_item = DocumentItem.search([
+                    ('document_id', '=', document.id),
+                    ('code', '=', item.code),
+                ])
+
+                if document_item.id is not False:
+                    break
+
                 if item.document_display:
                     items.append((0, 0, {'code': item.code,
                                          'name': item.name,
                                          'sequence': item.sequence,
                                          }))
             document.item_ids = items
+
+            _logger.info(u'%s %s', '>>>>>>>>>>', items)
 
         return True
