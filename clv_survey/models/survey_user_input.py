@@ -59,26 +59,36 @@ class SurveyUserInput(models.Model):
 
         if survey_question_search.type == 'simple_choice':
             value = ''
-            for survey_user_input_line_reg in survey_user_input_line_search:
-                if value == '':
-                    value = survey_user_input_line_reg.value_suggested.value
-                else:
-                    if survey_user_input_line_reg.value_suggested.value is not False:
-                        value = value + '; ' + survey_user_input_line_reg.value_suggested.value
-                    # else:
-                    #     value = value + '; False'
-            # value = survey_user_input_line_search.value_suggested.value
+            if question_code[11:13] == '_C':
+                for survey_user_input_line_reg in survey_user_input_line_search:
+                    if survey_user_input_line_reg.value_text is not False:
+                        value = survey_user_input_line_reg.value_text
+            else:
+                for survey_user_input_line_reg in survey_user_input_line_search:
+                    if value == '':
+                        value = survey_user_input_line_reg.value_suggested.value
+                    else:
+                        if survey_user_input_line_reg.value_suggested.value is not False:
+                            value = value + '; ' + survey_user_input_line_reg.value_suggested.value
+                        # else:
+                        #     value = value + '; False'
+                # value = survey_user_input_line_search.value_suggested.value
 
         if survey_question_search.type == 'multiple_choice':
             value = ''
-            for survey_user_input_line_reg in survey_user_input_line_search:
-                if value == '':
-                    value = survey_user_input_line_reg.value_suggested.value
-                else:
-                    if survey_user_input_line_reg.value_suggested.value is not False:
-                        value = value + '; ' + survey_user_input_line_reg.value_suggested.value
-                    # else:
-                    #     value = value + '; False'
+            if question_code[11:13] == '_C':
+                for survey_user_input_line_reg in survey_user_input_line_search:
+                    if survey_user_input_line_reg.value_text is not False:
+                        value = survey_user_input_line_reg.value_text
+            else:
+                for survey_user_input_line_reg in survey_user_input_line_search:
+                    if value == '':
+                        value = survey_user_input_line_reg.value_suggested.value
+                    else:
+                        if survey_user_input_line_reg.value_suggested.value is not False:
+                            value = value + '; ' + survey_user_input_line_reg.value_suggested.value
+                        # else:
+                        #     value = value + '; False'
 
         if survey_question_search.type == 'matrix':
             value = ''
