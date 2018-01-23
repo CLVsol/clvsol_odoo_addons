@@ -36,3 +36,9 @@ class ObjectDataExport(models.AbstractModel):
     notes = fields.Text(string='Notes')
 
     active = fields.Boolean(string='Active', default=True)
+
+    def data_export_dir_path(self):
+        return '/opt/openerp/clvsol_clvhealth_jcafb/data_export_files'
+
+    def data_export_file_name(self):
+        return '<category>_<code>.xls'
