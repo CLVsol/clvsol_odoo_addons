@@ -23,3 +23,7 @@ access_clv_person_annotation_log_supmanager,clv.person.annotation.log.supmanager
 access_clv_person_address_role_person_user,clv.person.address.role,model_clv_person_address_role,clv_person.group_user,1,0,0,0
 access_clv_person_address_role_person_manager,clv.person.address.role,model_clv_person_address_role,clv_person.group_manager,1,1,1,0
 access_clv_person_address_role_supmanager,clv.person.address.role,model_clv_person_address_role,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_data_export_user,clv.person.data_export.user,model_clv_person_data_export,clv_person.group_user,1,0,0,0
+access_clv_person_data_export_manager,clv.person.data_export.manager,model_clv_person_data_export,clv_person.group_manager,1,1,1,0
+access_clv_person_data_export_supmanager,clv.person.data_export.supmanager,model_clv_person_data_export,clv_person.group_supmanager,1,1,1,1
