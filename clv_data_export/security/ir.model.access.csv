@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_data_export_user,clv.data_export.user,model_clv_data_export,clv_data_export.group_user,1,0,0,0
+access_clv_data_export_manager,clv.data_export.manager,model_clv_data_export,clv_data_export.group_manager,1,1,1,0
+access_clv_data_export_supmanager,clv.data_export.supmanager,model_clv_data_export,clv_data_export.group_supmanager,1,1,1,1
+
+access_clv_data_export_field_user,clv.data_export.field.user,model_clv_data_export_field,clv_data_export.group_user,1,0,0,0
+access_clv_data_export_field_manager,clv.data_export.field.manager,model_clv_data_export_field,clv_data_export.group_manager,1,1,1,0
+access_clv_data_export_field_supmanager,clv.data_export.field.supmanager,model_clv_data_export_field,clv_data_export.group_supmanager,1,1,1,1

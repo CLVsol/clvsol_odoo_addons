@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_data_export_field_view_form" model="ir.ui.view">
+            <field name="name">clv.data_export.field.form</field>
+            <field name="model">clv.data_export.field</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <!--button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button-->
+                        </div>
+                        <notebook>
+                            <page string="Main Info">
+                                <group>
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                </group>
+                                <group>
+                                    <field name="data_export_id" options="{'no_open': False, 'no_create': True}"/>
+                                    <field name="data_export_display"/>
+                                </group>
+                                <group>
+                                    <field name="model_id" options="{'no_open': False, 'no_create': True}"/>
+                                    <field name="field_id" options="{'no_open': False, 'no_create': True}"/>
+                                    <field name="field_ttype" readonly="True"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_data_export_field_view_tree" model="ir.ui.view">
+            <field name="name">clv.data_export.field.tree</field>
+            <field name="model">clv.data_export.field</field>
+            <field name="arch" type="xml">
+                <tree string='Data Export Item'>
+                    <field name="data_export_id"/>
+                    <field name="model_id"/>
+                    <field name="field_id"/>
+                    <field name="field_ttype"/>
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="data_export_display"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_data_export_field_view_search" model="ir.ui.view">
+            <field name="name">clv.data_export.field.select</field>
+            <field name="model">clv.data_export.field</field>
+            <field name="arch" type="xml">
+                <search string="Search Data Export Item">
+                    <field name="data_export_id"/>
+                    <field name="model_id"/>
+                    <field name="field_id"/>
+                    <field name="name"/>
+                    <field name="data_export_display"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <group name="group_by" expand="0" string="Group By...">
+                        <filter string="Data Export" domain="[]" context="{'group_by': 'data_export_id'}"/>
+                        <filter string="Data Export Model" domain="[]" context="{'group_by': 'model_id'}"/>
+                        <filter string="Data Export Field" domain="[]" context="{'group_by': 'field_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="clv_data_export_field_action" model="ir.actions.act_window">
+            <field name="name">Data Export Item</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.data_export.field</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_data_export_field_view_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new data export field.
+              </p>
+            </field>
+        </record>
+        
+        <record id="clv_data_export_view_form_field" model="ir.ui.view">
+            <field name="name">clv.data_export.form</field>
+            <field name="model">clv.data_export</field>
+            <field name="inherit_id" ref="clv_data_export.clv_data_export_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="date_data_export" position="before">
+                    <field name="count_data_export_fields"/>
+                </field>
+                <page name="settings" position="before">
+                    <page name="data_export_fields" string="Data Export Fields">
+                        <!--label for="data_export_field_ids"/-->
+                        <field name="data_export_field_ids" colspan="4" nolabel="1">
+                            <!--tree editable="top" string="Data Export Fields" create="false"-->
+                            <tree string="Data Export Fields" create="true">
+                                <field name="sequence" widget='handle'/>
+                                <field name="model_id" readonly="True" invisible='True'/>
+                                <field name="field_id" readonly="True"/>
+                                <field name="field_ttype"/>
+                                <field name="name"/>
+                                <field name="data_export_display" readonly="True"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</odoo>

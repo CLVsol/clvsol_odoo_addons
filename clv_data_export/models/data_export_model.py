@@ -28,6 +28,14 @@ class ObjectDataExport(models.AbstractModel):
 
     name = fields.Char(string='Name', index=True, required=True)
 
+    model_id = fields.Many2one(
+        comodel_name='ir.model',
+        string='Model',
+        ondelete='restrict',
+        # domain="[('model','in',['clv.person','clv.address'])]"
+    )
+    model_model = fields.Char(string='Model', related='model_id.model', store=False, readonly=True)
+
     date_data_export = fields.Datetime(
         string="Report Date", required=True, readonly=True,
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')

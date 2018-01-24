@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_data_export_view_form" model="ir.ui.view">
+            <field name="name">clv.data_export.form</field>
+            <field name="model">clv.data_export</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1> <field name="name" default_focus="1" placeholder="Name..."/></h1>
+                        </div>
+                        <div name="title" class="oe_title">
+                            <label for="code" class="oe_edit_only"/>
+                            <h3><field name="code" placeholder="Code..."/></h3>
+                            <field name="code_sequence" invisible="True"/>
+                            <label for="model_id" class="oe_edit_only"/>
+                            <h3><field name="model_id" placeholder="Model..." options='{"no_open": True, "no_create": True}'/></h3>
+                        </div>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="model_model"/>
+                                <field name="date_data_export"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="history_marker_id" options='{"no_open": True, "no_create": True}'/>
+                                <field name="file_name"/>
+                                <field name="file_content" filename="file_name"/>
+                                <field name="stored_file_name"/>
+                                <field name="directory_id" options="{'no_open': False, 'no_create': True}"/>
+                            </group>
+                        </group>
+                        <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <notebook>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_data_export_view_tree" model="ir.ui.view">
+            <field name="name">clv.data_export.tree</field>
+            <field name="model">clv.data_export</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree name="documents" string="Data Exports">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="model_id"/>
+                    <field name="model_model"/>
+                    <field name="history_marker_id" groups="clv_history_marker.group_user"/>
+                    <field name="date_data_export"/>
+                    <field name="file_name" invisible="1"/>
+                    <field name="file_content" filename="file_name"/>
+                    <field name="stored_file_name" invisible="1"/>
+                    <field name="directory_id" invisible="1"/>
+                    <field name="notes"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_data_export_view_search" model="ir.ui.view">
+            <field name="name">clv.data_export.search</field>
+            <field name="model">clv.data_export</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="history_marker_id"/>
+                    <field name="model_id"/>
+                    <field name="model_model"/>
+                    <field name="date_data_export"/>
+                    <field name="notes"/>
+                    <separator/>
+                    <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
+                    <group name="group_by" string="Group By...">
+                        <filter string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
+                        <filter string="Report Date" domain="[]" context="{'group_by': 'date_data_export'}"/>
+                        <filter string="History Markers" context="{'group_by': 'history_marker_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="clv_data_export_action" model="ir.actions.act_window">
+            <field name="name">Data Exports</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.data_export</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_data_export_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new data export.
+              </p>
+            </field>
+        </record>
+        
+    </data>
+</odoo>
