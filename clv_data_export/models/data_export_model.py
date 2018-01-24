@@ -20,7 +20,7 @@
 
 from datetime import *
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ObjectDataExport(models.AbstractModel):
@@ -36,6 +36,16 @@ class ObjectDataExport(models.AbstractModel):
     )
     model_model = fields.Char(string='Model', related='model_id.model', store=False, readonly=True)
 
+    model_items = fields.Char(
+        string='Model Items',
+        compute='compute_model_items',
+        store=False
+    )
+
+    @api.depends('model_model')
+    def compute_model_items(self):
+        pass
+
     date_data_export = fields.Datetime(
         string="Report Date", required=True, readonly=True,
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -46,7 +56,7 @@ class ObjectDataExport(models.AbstractModel):
     active = fields.Boolean(string='Active', default=True)
 
     def data_export_dir_path(self):
-        return '/opt/openerp/clvsol_clvhealth_jcafb/data_export_files'
+        return '/opt/openerp/clvsol_clvhealth_jcafb/data_export_files/xls'
 
     def data_export_file_name(self):
         return '<category>_<code>.xls'
