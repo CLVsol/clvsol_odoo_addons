@@ -49,3 +49,10 @@ class DataExport(models.Model):
     def _compute_count_data_export_persons(self):
         for r in self:
             r.count_data_export_persons = len(r.data_export_person_ids)
+
+    @api.depends('model_model')
+    def compute_model_items(self):
+        for r in self:
+            if self.model_model == 'clv.person':
+                r.model_items = 'data_export_person_ids'
+        super(DataExport, self).compute_model_items()
