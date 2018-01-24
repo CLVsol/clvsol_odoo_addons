@@ -43,7 +43,7 @@
         'views/global_tag_view.xml',
         'views/person_annotation_view.xml',
         'views/person_annotation_log_view.xml',
-        'views/person_data_export_view.xml',
+        'views/data_export_view.xml',
         'wizard/person_updt_view.xml',
         'wizard/person_address_updt_view.xml',
         'views/person_menu_view.xml',

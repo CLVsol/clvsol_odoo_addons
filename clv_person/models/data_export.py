@@ -18,12 +18,34 @@
 #
 ###############################################################################
 
-from . import person
-from . import person_category
-from . import person_log
-from . import address
-from . import global_tag
-from . import person_annotation
-from . import person_annotation_log
-from . import person_address_role
-from . import data_export
+from openerp import api, fields, models
+
+
+class DataExport(models.Model):
+    _name = 'clv.data_export'
+    _inherit = 'clv.data_export'
+
+    model_id = fields.Many2one(
+        comodel_name='ir.model',
+        string='Model',
+        ondelete='restrict',
+        # domain="[('model','in',['clv.person'])]"
+    )
+
+    data_export_person_ids = fields.Many2many(
+        comodel_name='clv.person',
+        relation='clv_data_export_person_rel',
+        column1='person_id',
+        column2='data_export_id',
+        string='Data Export Persons'
+    )
+    count_data_export_persons = fields.Integer(
+        string='Persons',
+        compute='_compute_count_data_export_persons',
+        store=True
+    )
+
+    @api.depends('data_export_person_ids')
+    def _compute_count_data_export_persons(self):
+        for r in self:
+            r.count_data_export_persons = len(r.data_export_person_ids)

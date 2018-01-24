@@ -31,11 +31,5 @@
             sequence="20"
             action="clv_person.clv_person_address_role_action"/>
 
-        <menuitem name="Person" id="menu_data_exports_data_exports_person"  
-            parent="clv_base.menu_data_exports_data_exports"
-            groups="clv_base.group_user"
-            sequence="10"
-            action="clv_person.clv_person_data_export_action"/>
-
     </data>
 </odoo>
