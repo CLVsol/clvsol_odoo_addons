@@ -28,6 +28,8 @@ class ObjectDataExport(models.AbstractModel):
 
     name = fields.Char(string='Name', index=True, required=True)
 
+    label = fields.Char(string='Label')
+
     model_id = fields.Many2one(
         comodel_name='ir.model',
         string='Model',
@@ -59,4 +61,4 @@ class ObjectDataExport(models.AbstractModel):
         return '/opt/openerp/clvsol_clvhealth_jcafb/data_export_files/xls'
 
     def data_export_file_name(self):
-        return '<category>_<code>.xls'
+        return '<model>_<label>_<code>_<timestamp>.xls'

@@ -22,6 +22,8 @@
                             <h1> <field name="name" default_focus="1" placeholder="Name..."/></h1>
                         </div>
                         <div name="title" class="oe_title">
+                            <label for="label" class="oe_edit_only"/>
+                            <h3> <field name="label" default_focus="1" placeholder="Label..."/></h3>
                             <label for="code" class="oe_edit_only"/>
                             <h3><field name="code" placeholder="Code..."/></h3>
                             <field name="code_sequence" invisible="True"/>
@@ -36,9 +38,9 @@
                             </group>
                             <group name="group_right">
                                 <field name="history_marker_id" options='{"no_open": True, "no_create": True}'/>
-                                <field name="file_name"/>
+                                <field name="file_name" invisible="True"/>
                                 <field name="file_content" filename="file_name"/>
-                                <field name="stored_file_name"/>
+                                <field name="stored_file_name" invisible="True"/>
                                 <field name="directory_id" options="{'no_open': False, 'no_create': True}"/>
                             </group>
                         </group>
@@ -61,6 +63,7 @@
             <field name="arch" type="xml">
                 <tree name="documents" string="Data Exports">
                     <field name="name"/>
+                    <field name="label"/>
                     <field name="code"/>
                     <field name="model_id"/>
                     <field name="model_model"/>
@@ -83,6 +86,7 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
+                    <field name="label"/>
                     <field name="code"/>
                     <field name="history_marker_id"/>
                     <field name="model_id"/>
