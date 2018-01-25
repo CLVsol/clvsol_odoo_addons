@@ -22,3 +22,4 @@ import document_updt
 import document_item_edit
 import document_item_refresh
 import document_type_item_setup
+import document_items_ok_setup

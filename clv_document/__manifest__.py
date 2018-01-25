@@ -44,6 +44,7 @@
         'wizard/document_item_edit_view.xml',
         'wizard/document_item_refresh_view.xml',
         'wizard/document_type_item_setup_view.xml',
+        'wizard/document_items_ok_setup_view.xml',
         'views/document_menu_view.xml',
     ],
     'demo': [],

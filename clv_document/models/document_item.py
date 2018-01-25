@@ -74,3 +74,5 @@ class Document(models.Model):
         inverse_name='document_id',
         string='Items'
     )
+
+    items_ok = fields.Boolean(string='Items Ok', default=0)
