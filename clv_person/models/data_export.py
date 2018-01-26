@@ -32,6 +32,22 @@ class DataExport(models.Model):
         # domain="[('model','in',['clv.person'])]"
     )
 
+    data_export_community_id = fields.Many2one(
+        comodel_name='clv.community',
+        string='Community',
+        ondelete='restrict'
+    )
+    count_data_export_community_persons = fields.Integer(
+        string='Community Persons',
+        compute='_compute_count_data_export_community_persons',
+        store=False
+    )
+
+    @api.depends('data_export_community_id')
+    def _compute_count_data_export_community_persons(self):
+        for r in self:
+            r.count_data_export_community_persons = len(r.data_export_community_id.person_ids)
+
     data_export_person_ids = fields.Many2many(
         comodel_name='clv.person',
         relation='clv_data_export_person_rel',

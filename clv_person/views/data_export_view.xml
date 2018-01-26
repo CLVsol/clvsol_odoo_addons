@@ -9,6 +9,8 @@
             <field name="priority" eval="7"/>
             <field name="arch" type="xml">
                 <field name="date_data_export" position="before">
+                    <field name="data_export_community_id" options="{'no_open': False, 'no_create': True}" attrs="{'invisible':[('model_model', '!=', 'clv.person')]}"/>
+                    <field name="count_data_export_community_persons" attrs="{'invisible':[('model_model', '!=', 'clv.person')]}"/>
                     <field name="count_data_export_persons" attrs="{'invisible':[('model_model', '!=', 'clv.person')]}"/>
                 </field>
                 <page name="settings" position="before">
