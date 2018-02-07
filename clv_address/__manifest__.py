@@ -41,7 +41,6 @@
         'views/address_annotation_log_view.xml',
         'views/address_name_view.xml',
         'wizard/address_updt_view.xml',
-        'views/address_menu_view.xml',
     ],
     'demo': [],
     'test': [],
