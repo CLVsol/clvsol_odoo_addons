@@ -41,7 +41,6 @@
         'views/summary_log_view.xml',
         'views/summary_file_system_view.xml',
         'wizard/summary_updt_view.xml',
-        'views/summary_menu_view.xml',
     ],
     'demo': [],
     'test': [],
