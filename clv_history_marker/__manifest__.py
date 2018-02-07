@@ -33,7 +33,6 @@
         'security/history_marker_security.xml',
         'security/ir.model.access.csv',
         'views/history_marker_view.xml',
-        'views/history_marker_menu_view.xml',
     ],
     'demo': [],
     'test': [],
