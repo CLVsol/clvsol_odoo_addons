@@ -39,7 +39,6 @@
         'views/global_tag_view.xml',
         'views/event_log_view.xml',
         'wizard/event_updt_view.xml',
-        'views/event_menu_view.xml',
     ],
     'demo': [],
     'test': [],
