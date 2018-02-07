@@ -37,7 +37,6 @@
         'views/address_history_log_view.xml',
         'wizard/address_updt_view.xml',
         'wizard/address_history_updt_view.xml',
-        'views/address_menu_view.xml',
     ],
     'demo': [],
     'test': [],
