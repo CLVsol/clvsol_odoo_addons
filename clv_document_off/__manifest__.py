@@ -38,7 +38,6 @@
         'views/document_off_log_view.xml',
         'views/off_instance_view.xml',
         'views/global_tag_view.xml',
-        'views/document_off_menu_view.xml',
     ],
     'demo': [],
     'test': [],
