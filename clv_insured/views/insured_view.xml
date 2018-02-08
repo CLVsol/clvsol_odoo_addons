@@ -28,7 +28,24 @@
                             <h3><field name="code" placeholder="Insured Code..."/></h3>
                         </div>
                         <group>
-                            <!--group name="status" string="Status"-->
+                            <group name="address">
+                                <label for="street" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street" default_focus="1"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <!--field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True, "no_create": True}}'/-->
+                                    <field name="state_id" placeholder="State" options='{"no_open": True, "no_create": True}}'/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                </div>
+                            </group>
+                            <group name="phone">
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                                <field name="fax"/>
+                                <field name="email" widget="email"/>
+                            </group>
                             <group name="status">
                                 <field name="date_inclusion"/>
                             </group>
@@ -49,16 +66,11 @@
                                         <field name="date_reference"/>
                                     </group>
                                     <group name="other_info">
-                                        <field name="country_id" options='{"no_open": True}'/>
+                                        <field name="nationality" options='{"no_open": True, "no_create": True}'/>
                                         <field name="identification_id"/>
                                         <field name="otherid"/>
                                     </group>
                                     <group name="family">
-                                        <field name="spouse_id" options="{'no_open': False, 'no_create': True}"/>
-                                        <field name="father_id" options="{'no_open': False, 'no_create': True}"/>
-                                        <field name="mother_id" options="{'no_open': False, 'no_create': True}"/>
-                                        <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
-                                        <field name="caregiver_id" options="{'no_open': False, 'no_create': True}"/>
                                     </group>
                                 </group>
                             </page>

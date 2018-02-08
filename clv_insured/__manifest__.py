@@ -29,7 +29,7 @@
     'images': [],
     'depends': [
         'clv_base',
-        'clv_address',
+        'clv_global_tag',
     ],
     'data': [
         'security/insured_security.xml',
@@ -37,12 +37,10 @@
         'views/insured_view.xml',
         'views/insured_category_view.xml',
         'views/global_tag_view.xml',
-        'views/address_view.xml',
         'views/insured_log_view.xml',
         'views/insured_annotation_view.xml',
         'views/insured_annotation_log_view.xml',
         'wizard/insured_updt_view.xml',
-        'views/insured_menu_view.xml',
     ],
     'demo': [],
     'test': [],

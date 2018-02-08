@@ -21,12 +21,42 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+from lxml import etree
+
 from odoo import api, fields, models
 from odoo.fields import Date as fDate
 from odoo.exceptions import UserError
 
 
-class Insured(models.Model):
+ADDRESS_FORMAT_CLASSES = {
+    '%(city)s %(state_code)s\n%(zip)s': 'o_city_state',
+    '%(zip)s %(city)s': 'o_zip_city'
+}
+
+
+class FormatAddress(object):
+
+    @api.model
+    def fields_view_get_address(self, arch):
+        address_format = self.env.user.company_id.country_id.address_format or ''
+        for format_pattern, format_class in ADDRESS_FORMAT_CLASSES.iteritems():
+            if format_pattern in address_format:
+                doc = etree.fromstring(arch)
+                for address_node in doc.xpath("//div[@class='o_address_format']"):
+                    # add address format class to address block
+                    address_node.attrib['class'] += ' ' + format_class
+                    if format_class.startswith('o_zip'):
+                        zip_fields = address_node.xpath("//field[@name='zip']")
+                        city_fields = address_node.xpath("//field[@name='city']")
+                        if zip_fields and city_fields:
+                            # move zip field before city field
+                            city_fields[0].addprevious(zip_fields[0])
+                arch = etree.tostring(doc)
+                break
+        return arch
+
+
+class Insured(models.Model, FormatAddress):
     _description = 'Insured'
     _name = 'clv.insured'
     _order = 'name'
@@ -53,7 +83,7 @@ class Insured(models.Model):
         string="Inclusion Date", required=False, readonly=False,
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
-    country_id = fields.Many2one(comodel_name='res.country', string='Nationality')
+    nationality = fields.Many2one(comodel_name='res.country', string='Nationality')
     birthday = fields.Date(string="Date of Birth")
     age = fields.Char(
         string='Age',
@@ -67,12 +97,6 @@ class Insured(models.Model):
         compute='_compute_age_reference',
         store=True
     )
-
-    spouse_id = fields.Many2one(comodel_name='clv.insured', string='Spouse', ondelete='restrict')
-    father_id = fields.Many2one(comodel_name='clv.insured', string='Father', ondelete='restrict')
-    mother_id = fields.Many2one(comodel_name='clv.insured', string='Mother', ondelete='restrict')
-    responsible_id = fields.Many2one(comodel_name='clv.insured', string='Responsible', ondelete='restrict')
-    caregiver_id = fields.Many2one(comodel_name='clv.insured', string='Caregiver', ondelete='restrict')
 
     identification_id = fields.Char(string='Insured ID')
     otherid = fields.Char(string='Other ID')
@@ -139,3 +163,41 @@ class Insured(models.Model):
         for insured in self.filtered('birthday'):
             delta = (today - fDate.from_string(insured.birthday))
             insured.age_days = delta.days
+
+    street = fields.Char(string='Street')
+    street2 = fields.Char(string='Street2')
+    zip = fields.Char(string='ZIP code', change_default=True)
+    city = fields.Char(string='City')
+    state_id = fields.Many2one(
+        comodel_name="res.country.state",
+        string='State',
+        ondelete='restrict',
+        domain="[('country_id','=',country_id)]"
+    )
+    country_id = fields.Many2one(comodel_name='res.country', string='Country', ondelete='restrict')
+
+    phone = fields.Char(string='Phone')
+    mobile = fields.Char(string='Mobile')
+    fax = fields.Char(string='Fax')
+    email = fields.Char(string='Email')
+
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='form', toolbar=False, submenu=False):
+        if (not view_id) and (view_type == 'form') and self._context.get('force_email'):
+            view_id = self.env.ref('base.view_partner_simple_form').id
+        res = super(Insured, self).fields_view_get(
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu
+        )
+        if view_type == 'form':
+            res['arch'] = self.fields_view_get_address(res['arch'])
+        return res
+
+    @api.onchange('country_id')
+    def _onchange_country_id(self):
+        if self.country_id:
+            return {'domain': {'state_id': [('country_id', '=', self.country_id.id)]}}
+        else:
+            return {'domain': {'state_id': []}}
