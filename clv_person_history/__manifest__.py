@@ -37,7 +37,6 @@
         'views/person_history_log_view.xml',
         'wizard/person_updt_view.xml',
         'wizard/person_history_updt_view.xml',
-        'views/person_menu_view.xml',
     ],
     'demo': [],
     'test': [],
