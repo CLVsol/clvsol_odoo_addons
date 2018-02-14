@@ -37,7 +37,6 @@
         'views/address_name_view.xml',
         'views/global_tag_view.xml',
         'views/person_mng_log_view.xml',
-        'views/person_mng_menu_view.xml',
         'wizard/person_mng_updt_view.xml',
         'wizard/person_mng_adapt_view.xml',
         'wizard/person_mng_person_confirm_view.xml',
