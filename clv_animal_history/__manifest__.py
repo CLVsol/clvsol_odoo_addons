@@ -37,7 +37,6 @@
         'views/animal_history_log_view.xml',
         'wizard/animal_updt_view.xml',
         'wizard/animal_history_updt_view.xml',
-        'views/animal_menu_view.xml',
     ],
     'demo': [],
     'test': [],
