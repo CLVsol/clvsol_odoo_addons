@@ -45,7 +45,6 @@
         'views/animal_annotation_log_view.xml',
         'views/address_view.xml',
         'wizard/animal_updt_view.xml',
-        'views/animal_menu_view.xml',
     ],
     'demo': [],
     'test': [],
