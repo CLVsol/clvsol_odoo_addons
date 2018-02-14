@@ -46,7 +46,6 @@
         'views/data_export_view.xml',
         'wizard/person_updt_view.xml',
         'wizard/person_address_updt_view.xml',
-        'views/person_menu_view.xml',
     ],
     'demo': [],
     'test': [],
