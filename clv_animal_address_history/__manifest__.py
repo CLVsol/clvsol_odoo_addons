@@ -35,7 +35,6 @@
         'views/animal_address_history_view.xml',
         'views/animal_address_history_log_view.xml',
         'views/global_tag_view.xml',
-        'views/animal_address_history_menu_view.xml',
     ],
     'demo': [],
     'test': [],
