@@ -42,7 +42,6 @@
         'views/medicament_category_view.xml',
         'views/global_tag_view.xml',
         'wizard/medicament_updt_view.xml',
-        'views/medicament_menu_view.xml',
     ],
     'demo': [],
     'test': [],
