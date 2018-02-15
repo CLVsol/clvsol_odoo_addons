@@ -29,7 +29,6 @@
     'depends': ['base'],
     'data': [
         'security/base_security.xml',
-        'views/data_export_menu_view.xml',
         'data/annotation_seq.xml',
     ],
     'demo': [],
