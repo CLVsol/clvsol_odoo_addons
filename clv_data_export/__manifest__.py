@@ -39,7 +39,6 @@
         'views/data_export_view.xml',
         'views/data_export_field_view.xml',
         'wizard/data_export_setup_view.xml',
-        'views/data_export_menu_view.xml',
     ],
     'demo': [],
     'test': [],
