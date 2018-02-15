@@ -41,7 +41,6 @@
         'views/mfile_kanban_view.xml',
         'views/mfile_log_view.xml',
         'wizard/mfile_updt_view.xml',
-        'views/mfile_menu_view.xml',
     ],
     'demo': [],
     'test': [],
