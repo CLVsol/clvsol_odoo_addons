@@ -19,5 +19,4 @@
 ###############################################################################
 
 from . import report_model
-from . import history_marker
 from . import report_file_system
