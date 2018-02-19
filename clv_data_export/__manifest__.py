@@ -29,7 +29,6 @@
     'images': [],
     'depends': [
         'clv_base',
-        'clv_history_marker',
         'clv_file_system',
     ],
     'data': [
