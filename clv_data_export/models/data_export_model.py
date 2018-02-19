@@ -58,7 +58,7 @@ class ObjectDataExport(models.AbstractModel):
     active = fields.Boolean(string='Active', default=True)
 
     def data_export_dir_path(self):
-        return '/opt/openerp/clvsol_clvhealth_jcafb/data_export_files/xls'
+        return ''
 
     def data_export_file_name(self):
         return '<model>_<label>_<code>_<timestamp>.xls'

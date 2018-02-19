@@ -35,7 +35,7 @@ class DataExportSetUp(models.TransientModel):
     data_export_ids = fields.Many2many(
         comodel_name='clv.data_export',
         relation='clv_data_export_setup_rel',
-        string='Person Data Exports',
+        string='Data Exports',
         default=_default_data_export_ids)
 
     def _default_dir_path(self):
