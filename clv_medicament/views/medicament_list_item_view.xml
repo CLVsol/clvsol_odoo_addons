@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="clv_medicament_list_item_view_form" model="ir.ui.view">
+            <field name="name">clv.medicament.list.item.form</field>
+            <field name="model">clv.medicament.list.item</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
+                    <sheet name="medicament_list_item">
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                        </div>
+                        <div name="title" class="oe_title">
+                            <!--label for="medicament_list_id" class="oe_edit_only"/-->
+                            <label for="medicament_list_id"/>
+                            <h2>
+                                <field name="medicament_list_id" placeholder="Medicament List..." options="{'no_open': False, 'no_create': True}"/>
+                            </h2>
+                            <!--label for="medicament_id" class="oe_edit_only"/-->
+                            <label for="medicament_id"/>
+                            <h2>
+                                <field name="medicament_id" placeholder="Medicament..." options="{'no_open': False, 'no_create': True}"/>
+                            </h2>
+                            <label for="order"/>
+                            <h3>
+                                <field name="order" placeholder="Order..."/>
+                            </h3>
+                        </div>
+                        <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <notebook>
+                            <page string="Prices">
+                                <group>
+                                    <group>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_list_item_view_tree" model="ir.ui.view">
+            <field name="name">clv.medicament.list.item.tree</field>
+            <field name="model">clv.medicament.list.item</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Medicament List Item">
+                    <field name="medicament_list_id"/>
+                    <field name="medicament_id"/>
+                    <field name="order"/>
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_list_item_view_search" model="ir.ui.view">
+            <field name="name">clv.medicament.list.item.search</field>
+            <field name="model">clv.medicament.list.item</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Medicament List Item">
+                    <field name="medicament_list_id"/>
+                    <field name="medicament_id"/>
+                    <field name="order"/>
+                    <field name="notes"/>
+                    <separator/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Medicament List" domain="[]" context="{'group_by': 'medicament_list_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_list_item_action" model="ir.actions.act_window">
+            <field name="name">Medicament List Itens</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.medicament.list.item</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_medicament_list_item_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new Medicament List Item.
+              </p>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_list_view_form_item" model="ir.ui.view">
+            <field name="name">clv.medicament.list.form</field>
+            <field name="model">clv.medicament.list</field>
+            <field name="inherit_id" ref="clv_medicament_list_view_form"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <page name="settings" position="before">
+                    <page string="Medicament List Itens">
+                        <group>
+                            <field name="abcfarma_list_item_ids" colspan="4" nolabel="1" />
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

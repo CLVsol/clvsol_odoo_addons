@@ -18,14 +18,35 @@
 #
 ###############################################################################
 
-from . import medicament_active_component
-from . import medicament_pres_form
-from . import medicament_uom
-from . import medicament_manufacturer
-from . import medicament_model
-from . import medicament
-from . import medicament_log
-from . import medicament_category
-from . import global_tag
-from . import medicament_list
-from . import medicament_list_item
+from datetime import datetime
+
+from odoo import fields, models
+
+
+class MedicamentList(models.Model):
+    _description = 'Medicament List'
+    _name = 'clv.medicament.list'
+    _order = 'name'
+
+    name = fields.Char(string='Medicament List', required=True)
+
+    code = fields.Char(string='Medicament List Code', required=False)
+
+    description = fields.Char(string='Description')
+    notes = fields.Text(string='Notes')
+
+    date_inclusion = fields.Date(
+        string='Inclusion Date',
+        default=lambda *a: datetime.now().strftime('%Y-%m-%d')
+    )
+
+    active = fields.Boolean(string='Active', default=1)
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The List Name must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The List Code must be unique!'),
+    ]

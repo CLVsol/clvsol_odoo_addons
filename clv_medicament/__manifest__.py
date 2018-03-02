@@ -40,6 +40,8 @@
         'views/medicament_manufacturer_view.xml',
         'views/medicament_log_view.xml',
         'views/medicament_category_view.xml',
+        'views/medicament_list_view.xml',
+        'views/medicament_list_item_view.xml',
         'views/global_tag_view.xml',
         'wizard/medicament_updt_view.xml',
     ],
