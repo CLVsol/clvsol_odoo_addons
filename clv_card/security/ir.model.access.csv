@@ -3,3 +3,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_clv_card_user,clv.card.user,model_clv_card,clv_card.group_user,1,0,0,0
 access_clv_card_manager,clv.card.manager,model_clv_card,clv_card.group_manager,1,1,1,0
 access_clv_card_supmanager,clv.card.supmanager,model_clv_card,clv_card.group_supmanager,1,1,1,1
+
+access_clv_card_category_user,clv.card.category.user,model_clv_card_category,clv_card.group_user,1,0,0,0
+access_clv_card_category_manager,clv.card.category.manager,model_clv_card_category,clv_card.group_manager,1,1,1,0
+access_clv_card_category_supmanager,clv.card.category.supmanager,model_clv_card_category,clv_card.group_supmanager,1,1,1,1
