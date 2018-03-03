@@ -18,34 +18,40 @@
 #
 ###############################################################################
 
-{
-    'name': 'Card',
-    'summary': 'Card Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_global_tag',
-    ],
-    'data': [
-        'security/card_security.xml',
-        'security/ir.model.access.csv',
-        'views/card_view.xml',
-        'views/card_category_view.xml',
-        'views/global_tag_view.xml',
-        'views/card_log_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import api, fields, models
+
+
+class CardLog(models.Model):
+    _description = 'Card Log'
+    _name = 'clv.card.log'
+    _inherit = 'clv.object.log'
+
+    card_id = fields.Many2one(
+        comodel_name='clv.card',
+        string='Card',
+        required=True,
+        ondelete='cascade'
+    )
+
+
+class Card(models.Model):
+    _name = "clv.card"
+    _inherit = 'clv.card', 'clv.log.model'
+
+    log_ids = fields.One2many(
+        comodel_name='clv.card.log',
+        inverse_name='card_id',
+        string='Card Log',
+        readonly=True
+    )
+
+    @api.one
+    def insert_object_log(self, card_id, values, action, notes):
+        if self.active_log or 'active_log' in values:
+            vals = {
+                'card_id': card_id,
+                'values': values,
+                'action': action,
+                'notes': notes,
+            }
+            self.env['clv.card.log'].create(vals)

@@ -21,3 +21,4 @@
 from . import card
 from . import card_category
 from . import global_tag
+from . import card_log
