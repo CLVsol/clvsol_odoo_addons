@@ -18,36 +18,26 @@
 #
 ###############################################################################
 
-{
-    'name': 'Card',
-    'summary': 'Card Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_global_tag',
-    ],
-    'data': [
-        'security/card_security.xml',
-        'security/ir.model.access.csv',
-        'views/card_view.xml',
-        'views/card_category_view.xml',
-        'views/global_tag_view.xml',
-        'views/card_log_view.xml',
-        'views/card_annotation_view.xml',
-        'views/card_annotation_log_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from openerp import fields, models
+
+
+class CardAnotation(models.Model):
+    _description = 'Card Annotation'
+    _name = 'clv.card.annotation'
+    _inherit = 'clv.object.annotation'
+
+    card_id = fields.Many2one(
+        comodel_name='clv.card',
+        string='Card',
+        ondelete='cascade'
+    )
+
+
+class Card(models.Model):
+    _inherit = "clv.card"
+
+    annotation_ids = fields.One2many(
+        comodel_name='clv.card.annotation',
+        inverse_name='card_id',
+        string='Annotations'
+    )
