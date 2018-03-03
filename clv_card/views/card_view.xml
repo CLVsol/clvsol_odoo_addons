@@ -30,7 +30,7 @@
                             <h3><field name="sequence_code" placeholder="Sequence Code..."/></h3>
                         </div>
                         <group>
-                            <group name="status">
+                            <group name="status" string="Status">
                                 <field name="date_inclusion"/>
                                 <field name="date_valid_from"/>
                                 <field name="date_valid_until"/>
