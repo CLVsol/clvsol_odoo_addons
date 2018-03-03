@@ -34,6 +34,7 @@
         'security/card_security.xml',
         'security/ir.model.access.csv',
         'views/card_view.xml',
+        'views/card_category_view.xml',
     ],
     'demo': [],
     'test': [],
