@@ -50,10 +50,10 @@ class Card(models.Model):
         string="Inclusion Date", required=False, readonly=False,
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
-    date_valid_from = fields.Datetime(
+    date_valid_from = fields.Date(
         string="Valid-from Date", required=False, readonly=False
     )
-    date_valid_until = fields.Datetime(
+    date_valid_until = fields.Date(
         string="Valid-until Date", required=False, readonly=False
     )
 
