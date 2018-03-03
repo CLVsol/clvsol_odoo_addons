@@ -38,7 +38,7 @@ class Card(models.Model):
                  ))
         return result
 
-    name = fields.Char(string='Printed Name', required=True)
+    name = fields.Char(string='Printed Name', required=False)
     printed_code = fields.Char(string='Printed Code', required=False)
 
     code = fields.Char(string='Card Code', required=False)
