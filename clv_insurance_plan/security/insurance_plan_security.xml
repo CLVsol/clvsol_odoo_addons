@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="clv_insurance_plan.group_user" model="res.groups">
+            <field name="name">User (Insurance Plan)</field>
+        </record>
+        
+        <record id="clv_insurance_plan.group_manager" model="res.groups">
+            <field name="name">Manager (Insurance Plan)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_insurance_plan.group_user'))]"/>
+        </record>
+        
+        <record id="clv_insurance_plan.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Insurance Plan)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_insurance_plan.group_manager'))]"/>
+        </record>
+
+    </data>
+</odoo>
