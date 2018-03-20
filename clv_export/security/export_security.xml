@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="clv_export.group_user" model="res.groups">
+            <field name="name">User (Export)</field>
+        </record>
+        
+        <record id="clv_export.group_manager" model="res.groups">
+            <field name="name">Manager (Export)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_export.group_user'))]"/>
+        </record>
+        
+        <record id="clv_export.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Export)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_export.group_manager'))]"/>
+        </record>
+
+    </data>
+</odoo>
