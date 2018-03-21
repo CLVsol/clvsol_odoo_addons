@@ -18,31 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Medicament Dispensation',
-    'summary': 'Medicament Dispensation Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_export',
-    ],
-    'data': [
-        'security/medicament_dispensation_security.xml',
-        'security/ir.model.access.csv',
-        'views/medicament_dispensation_export_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from . import medicamente_dispensation_export

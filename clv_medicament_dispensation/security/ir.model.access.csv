@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_medicament_dispensation_export_user,clv.medicament.dispensation.export.user,model_clv_medicament_dispensation_export,clv_medicament_dispensation.group_user,1,0,0,0
+access_clv_medicament_dispensation_export_manager,clv.medicament.dispensation.export.manager,model_clv_medicament_dispensation_export,clv_medicament_dispensation.group_manager,1,1,1,0
+access_clv_medicament_dispensation_export_supmanager,clv.medicament.dispensation.export.supmanager,model_clv_medicament_dispensation_export,clv_medicament_dispensation.group_supmanager,1,1,1,1
