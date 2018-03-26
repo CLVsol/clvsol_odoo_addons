@@ -18,4 +18,4 @@
 #
 ###############################################################################
 
-from . import medicamente_dispensation_export
+from . import medicament_dispensation_export
