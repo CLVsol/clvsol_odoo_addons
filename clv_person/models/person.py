@@ -77,7 +77,8 @@ class Person(models.Model):
     otherid = fields.Char(string='Other ID')
     gender = fields.Selection(
         [('M', 'Male'),
-         ('F', 'Female')
+         ('F', 'Female'),
+         ('O', 'Other'),
          ], string='Gender'
     )
     marital = fields.Selection(
