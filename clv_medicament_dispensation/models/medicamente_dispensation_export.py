@@ -29,6 +29,16 @@ class MedicamentDispensationExport(models.Model):
     code = fields.Char(string='Medicament Dispensation Export Code', required=False, default='/')
     code_sequence = fields.Char(default='clv.export.code')
 
+    date_start = fields.Date(
+        string="Start Date", required=True, readonly=False,
+    )
+    date_end = fields.Date(
+        string="End Date", required=True, readonly=False,
+    )
+    file_name_template = fields.Char(
+        string='File Name', required=True,
+        default='bb_dispensation_<date_start>_a_<date_end>')
+
     _sql_constraints = [
         ('name_uniq',
          'UNIQUE (name)',

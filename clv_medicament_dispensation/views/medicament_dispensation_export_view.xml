@@ -31,6 +31,9 @@
                         <group name="group_top">
                             <group name="group_left">
                                 <field name="date_export"/>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                                <field name="file_name_template"/>
                             </group>
                             <group name="group_right">
                                 <field name="file_name" invisible="True"/>
@@ -61,6 +64,8 @@
                     <field name="label"/>
                     <field name="code"/>
                     <field name="date_export"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
                     <field name="file_name" invisible="1"/>
                     <field name="file_content" filename="file_name"/>
                     <field name="stored_file_name" invisible="1"/>
@@ -81,6 +86,8 @@
                     <field name="label"/>
                     <field name="code"/>
                     <field name="date_export"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
                     <field name="notes"/>
                     <separator/>
                     <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
