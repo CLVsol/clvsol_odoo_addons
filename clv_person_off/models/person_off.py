@@ -49,7 +49,8 @@ class PersonOff(models.Model):
 
     gender = fields.Selection(
         [('M', 'Male'),
-         ('F', 'Female')
+         ('F', 'Female'),
+         ('O', 'Other'),
          ], string='Gender'
     )
 
