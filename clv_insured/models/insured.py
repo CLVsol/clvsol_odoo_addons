@@ -102,7 +102,8 @@ class Insured(models.Model, FormatAddress):
     otherid = fields.Char(string='Other ID')
     gender = fields.Selection(
         [('M', 'Male'),
-         ('F', 'Female')
+         ('F', 'Female'),
+         ('O', 'Other'),
          ], 'Gender'
     )
     marital = fields.Selection(
