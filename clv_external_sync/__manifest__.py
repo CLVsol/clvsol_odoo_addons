@@ -32,6 +32,8 @@
     ],
     'data': [
         'security/external_sync_security.xml',
+        'security/ir.model.access.csv',
+        'views/external_sync_host_view.xml',
     ],
     'demo': [],
     'test': [],

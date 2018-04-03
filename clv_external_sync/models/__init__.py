@@ -19,3 +19,4 @@
 ###############################################################################
 
 from . import external_sync_model
+from . import external_sync_host
