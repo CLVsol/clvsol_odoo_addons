@@ -20,3 +20,4 @@
 
 from . import external_sync_model
 from . import external_sync_host
+from . import external_sync_host_log
