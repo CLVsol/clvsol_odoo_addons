@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_external_sync_schedule_view_form" model="ir.ui.view">
+            <field name="name">clv.external_sync.schedule.form</field>
+            <field name="model">clv.external_sync.schedule</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div name="center" class="oe_center">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1> <field name="name" default_focus="1" placeholder="External Host Name..."/></h1>
+                        </div>
+                        <div name="title" class="oe_title">
+                            <label for="template_id" class="oe_edit_only"/>
+                            <h3><field name="template_id" placeholder="External Sync Template..." options="{'no_open': False, 'no_create': True}"/></h3>
+                            <label for="external_host_id" class="oe_edit_only"/>
+                            <h3><field name="external_host_id" placeholder="External Host..." options="{'no_open': False, 'no_create': True}"/></h3>
+                        </div>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="external_exec_sync"/>
+                                <field name="external_max_sync"/>
+                                <field name="external_last_update_start"/>
+                                <field name="external_last_update_end"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="date_inclusion"/>
+                            </group>
+                        </group>
+                        <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <notebook>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_external_sync_schedule_view_tree" model="ir.ui.view">
+            <field name="name">clv.external_sync.schedule.tree</field>
+            <field name="model">clv.external_sync.schedule</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree name="events" string="External Sync Schedules">
+                    <field name="template_id"/>
+                    <field name="name"/>
+                    <field name="external_host_id"/>
+                    <field name="external_exec_sync"/>
+                    <field name="external_max_sync"/>
+                    <field name="external_last_update_start"/>
+                    <field name="external_last_update_end"/>
+                    <field name="date_inclusion"/>
+                    <field name="notes"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_external_sync_schedule_view_search" model="ir.ui.view">
+            <field name="name">clv.external_sync.schedule.search</field>
+            <field name="model">clv.external_sync.schedule</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="template_id"/>
+                    <field name="name"/>
+                    <field name="external_host_id"/>
+                    <field name="external_exec_sync"/>
+                    <field name="external_max_sync"/>
+                    <field name="external_last_update_start"/>
+                    <field name="external_last_update_end"/>
+                    <field name="date_inclusion"/>
+                    <field name="notes"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <group name="group_by" string="Group By...">
+                        <filter string="External Sync Template" context="{'group_by': 'template_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="clv_external_sync_schedule_action" model="ir.actions.act_window">
+            <field name="name">External Sync Schedules</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.external_sync.schedule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_external_sync_schedule_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new external sync schedule.
+              </p>
+            </field>
+        </record>
+        
+        <record id="clv_external_sync_template_view_form_schedule" model="ir.ui.view">
+            <field name="name">clv.external_sync.template.form</field>
+            <field name="model">clv.external_sync.template</field>
+            <field name="inherit_id" ref="clv_external_sync_template_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <page name="settings" position="before">
+                    <page string="Schedules">
+                        <group>
+                            <field name="count_schedules"/>
+                            <field name="schedule_ids" colspan="4" nolabel="1"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_external_sync_template_view_tree_schedule" model="ir.ui.view">
+            <field name="name">clv.external_sync.template.tree</field>
+            <field name="model">clv.external_sync.template</field>
+            <field name="inherit_id" ref="clv_external_sync_template_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="date_inclusion" position="after">
+                    <field name="count_schedules" sum="Total Number of Schedules"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

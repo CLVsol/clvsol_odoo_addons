@@ -23,3 +23,4 @@ from . import external_sync_host
 from . import external_sync_host_log
 from . import external_sync_template
 from . import external_sync_template_log
+from . import external_sync_schedule

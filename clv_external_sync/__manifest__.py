@@ -37,6 +37,7 @@
         'views/external_sync_host_log_view.xml',
         'views/external_sync_template_view.xml',
         'views/external_sync_template_log_view.xml',
+        'views/external_sync_schedule_view.xml',
     ],
     'demo': [],
     'test': [],
