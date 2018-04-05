@@ -42,6 +42,7 @@
                             </group>
                         </group>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
+                        <field name="external_sync_log" placeholder="Synchronization Log..." colspan="4"/>
                         <notebook>
                             <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
                                 <group name="settings">

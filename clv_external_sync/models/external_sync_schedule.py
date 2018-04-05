@@ -84,6 +84,10 @@ class ExternalSyncSchedule(models.Model):
         help="External model name, e.g. 'res.partner'"
     )
 
+    external_sync_log = fields.Text(
+        string="Synchronization Log"
+    )
+
     active = fields.Boolean(string='Active', default=1)
 
     # _sql_constraints = [
