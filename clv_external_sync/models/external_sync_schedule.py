@@ -29,12 +29,13 @@ class ExternalSyncSchedule(models.Model):
     template_id = fields.Many2one(
         comodel_name='clv.external_sync.template',
         string='External Sync Template',
+        required=False,
         ondelete='restrict'
     )
 
     name = fields.Char(
         string='Name',
-        required=False,
+        required=True,
         help='External Sync Schedule Name'
     )
 
@@ -65,6 +66,24 @@ class ExternalSyncSchedule(models.Model):
         string='Inclusion Date',
         default=fields.Datetime.now)
 
+    model = fields.Char(
+        string='Model',
+        required=True,
+        help="Model name of the object on which the synchronization method to be called is located, e.g. 'res.partner'"
+    )
+
+    method = fields.Char(
+        string='Method',
+        required=True,
+        help="Name of the method to be called when the synchronization job is processed."
+    )
+
+    external_model = fields.Char(
+        string='External Model',
+        required=True,
+        help="External model name, e.g. 'res.partner'"
+    )
+
     active = fields.Boolean(string='Active', default=1)
 
     # _sql_constraints = [
@@ -72,6 +91,19 @@ class ExternalSyncSchedule(models.Model):
     #      'UNIQUE (name)',
     #      u'Error! The Name must be unique!'),
     # ]
+
+    @api.onchange('template_id')
+    def onchange_template_id(self):
+        if self.template_id:
+            self.name = self.template_id.name
+            self.external_host_id = self.template_id.external_host_id
+            self.external_exec_sync = self.template_id.external_exec_sync
+            self.external_max_sync = self.template_id.external_max_sync
+            self.external_last_update_start = self.template_id.external_last_update_start
+            self.external_last_update_end = self.template_id.external_last_update_end
+            self.model = self.template_id.model
+            self.method = self.template_id.method
+            self.external_model = self.template_id.external_model
 
 
 class ExternalSyncTemplate(models.Model):
@@ -88,6 +120,7 @@ class ExternalSyncTemplate(models.Model):
         store=True
     )
 
+    @api.multi
     @api.depends('schedule_ids')
     def _compute_count_schedules(self):
         for r in self:
