@@ -59,6 +59,24 @@ class ExternalSyncTemplate(models.Model):
         string='Inclusion Date',
         default=fields.Datetime.now)
 
+    model = fields.Char(
+        string='Model',
+        required=True,
+        help="Model name of the object on which the synchronization method to be called is located, e.g. 'res.partner'"
+    )
+
+    method = fields.Char(
+        string='Method',
+        required=True,
+        help="Name of the method to be called when the synchronization job is processed."
+    )
+
+    external_model = fields.Char(
+        string='External Model',
+        required=True,
+        help="External model name, e.g. 'res.partner'"
+    )
+
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [
