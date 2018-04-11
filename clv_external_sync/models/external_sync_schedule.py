@@ -99,7 +99,6 @@ class ExternalSyncSchedule(models.Model):
     @api.onchange('template_id')
     def onchange_template_id(self):
         if self.template_id:
-            self.name = self.template_id.name
             self.external_host_id = self.template_id.external_host_id
             self.external_exec_sync = self.template_id.external_exec_sync
             self.external_max_sync = self.template_id.external_max_sync
