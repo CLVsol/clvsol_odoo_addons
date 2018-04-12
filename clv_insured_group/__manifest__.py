@@ -34,6 +34,7 @@
         'security/insured_group_security.xml',
         'security/ir.model.access.csv',
         'views/insured_group_view.xml',
+        'views/insured_group_log_view.xml',
     ],
     'demo': [],
     'test': [],

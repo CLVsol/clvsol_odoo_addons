@@ -19,3 +19,5 @@
 ###############################################################################
 
 from . import insured_group
+from . import insured_group_log
+
