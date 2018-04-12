@@ -8,7 +8,10 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form>
-                    <sheet>
+                    <header name="header">
+                        <!-- To add buttons and status widget -->
+                    </header>
+                    <sheet name="insured_group">
                         <div name="button_box" class="oe_right oe_button_box">
                             <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
                                 <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
@@ -48,7 +51,7 @@
             <field name="model">clv.insured_group</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree name="communities" string="Insured Groups">
+                <tree name="insured_groups" string="Insured Groups">
                     <field name="name"/>
                     <field name="alias"/>
                     <field name="code"/>
