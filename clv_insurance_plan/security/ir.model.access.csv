@@ -3,3 +3,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_clv_insurance_plan_user,clv.insurance_plan.user,model_clv_insurance_plan,clv_insurance_plan.group_user,1,0,0,0
 access_clv_insurance_plan_manager,clv.insurance_plan.manager,model_clv_insurance_plan,clv_insurance_plan.group_manager,1,1,1,0
 access_clv_insurance_plan_supmanager,clv.insurance_plan.supmanager,model_clv_insurance_plan,clv_insurance_plan.group_supmanager,1,1,1,1
+
+access_clv_insurance_plan_log_user,clv.insurance_plan.log.user,model_clv_insurance_plan_log,clv_insurance_plan.group_user,1,0,0,0
+access_clv_insurance_plan_log_manager,clv.insurance_plan.log.manager,model_clv_insurance_plan_log,clv_insurance_plan.group_manager,1,1,1,0
+access_clv_insurance_plan_log_supmanager,clv.insurance_plan.log.supmanager,model_clv_insurance_plan_log,clv_insurance_plan.group_supmanager,1,1,1,1

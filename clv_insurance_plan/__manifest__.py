@@ -34,6 +34,7 @@
         'security/insurance_plan_security.xml',
         'security/ir.model.access.csv',
         'views/insurance_plan_view.xml',
+        'views/insurance_plan_log_view.xml',
     ],
     'demo': [],
     'test': [],

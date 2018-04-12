@@ -19,3 +19,5 @@
 ###############################################################################
 
 from . import insurance_plan
+from . import insurance_plan_log
+
