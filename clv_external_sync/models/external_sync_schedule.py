@@ -108,6 +108,23 @@ class ExternalSyncSchedule(models.Model):
             self.method = self.template_id.method
             self.external_model = self.template_id.external_model
 
+    @api.model
+    def external_last_update_args(self):
+
+        args = []
+        if self.external_last_update_start is not False and \
+           self.external_last_update_end is False:
+            args = [('write_date', '>=', self.external_last_update_start), ]
+        if self.external_last_update_start is False and \
+           self.external_last_update_end is not False:
+            args += [('write_date', '<=', self.external_last_update_end), ]
+        if self.external_last_update_start is not False and \
+           self.external_last_update_end is not False:
+            args += [('write_date', '>=', self.external_last_update_start),
+                     ('write_date', '<=', self.external_last_update_end), ]
+
+        return args
+
 
 class ExternalSyncTemplate(models.Model):
     _inherit = 'clv.external_sync.template'
