@@ -18,37 +18,4 @@
 #
 ###############################################################################
 
-import logging
-
-from odoo import api, fields, models
-
-_logger = logging.getLogger(__name__)
-
-
-class ObjectModelExport(models.AbstractModel):
-    _inherit = "clv.object.export"
-    _name = 'clv.object.model_export'
-
-    model_id = fields.Many2one(
-        comodel_name='ir.model',
-        string='Model',
-        ondelete='restrict',
-        # domain="[('model','in',['clv.person','clv.address'])]"
-    )
-    model_model = fields.Char(string='Model', related='model_id.model', store=False, readonly=True)
-
-    model_items = fields.Char(
-        string='Model Items',
-        compute='compute_model_items',
-        store=False
-    )
-
-    @api.depends('model_model')
-    def compute_model_items(self):
-        pass
-
-    def model_export_dir_path(self):
-        return ''
-
-    def model_export_file_name(self):
-        return '<model>_<label>_<code>_<timestamp>.xls'
+from . import model_export_setup

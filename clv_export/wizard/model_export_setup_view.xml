@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="clv_model_export_setup_view_form" model="ir.ui.view">
+            <field name="name">clv.model_export.setup.form</field>
+            <field name="model">clv.model_export.setup</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                    </div>
+                    <label for="model_export_ids" class="oe_edit_only"/>
+                    <field name="model_export_ids"/>
+                    <group>
+                        <field name="dir_path"/>
+                        <field name="file_name"/>
+                    </group>
+                    <footer>
+                        <button 
+                            type="object"
+                            name="do_model_export_setup"
+                            string="Model Export Set Up"
+                            class="oe_highlight"
+                            />
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- More button Action -->
+        <act_window 
+            id="clv_person_updt_action"
+            name="Model Export Set Up"
+            src_model="clv.model_export"
+            res_model="clv.model_export.setup"
+            view_mode="form, tree"
+            key2="client_action_multi"
+            target="new"
+        />
+
+    </data>
+</odoo>
