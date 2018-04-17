@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_model_export_user,clv.model_export.user,model_clv_model_export,clv_export.group_user,1,0,0,0
+access_clv_model_export_manager,clv.model_export.manager,model_clv_model_export,clv_export.group_manager,1,1,1,0
+access_clv_model_export_supmanager,clv.model_export.supmanager,model_clv_model_export,clv_export.group_supmanager,1,1,1,1

@@ -18,32 +18,22 @@
 #
 ###############################################################################
 
-{
-    'name': 'Export',
-    'summary': 'Export Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_file_system',
-    ],
-    'data': [
-        'data/export_seq.xml',
-        'security/export_security.xml',
-        'security/ir.model.access.csv',
-        'views/model_export_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from openerp import fields, models
+
+
+class ModelExport(models.Model):
+    _description = 'Model Export'
+    _name = 'clv.model_export'
+    _inherit = 'clv.object.model_export', 'clv.code.model'
+
+    code = fields.Char(string='Model Export Code', required=False, default='/')
+    code_sequence = fields.Char(default='clv.model_export.code')
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The Name must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]
