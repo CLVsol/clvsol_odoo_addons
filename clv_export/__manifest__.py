@@ -36,6 +36,7 @@
         'security/export_security.xml',
         'security/ir.model.access.csv',
         'views/model_export_view.xml',
+        'views/model_export_field_view.xml',
     ],
     'demo': [],
     'test': [],
