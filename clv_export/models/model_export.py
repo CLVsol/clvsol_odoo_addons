@@ -27,7 +27,7 @@ class ModelExport(models.Model):
     _inherit = 'clv.object.model_export', 'clv.code.model'
 
     code = fields.Char(string='Model Export Code', required=False, default='/')
-    code_sequence = fields.Char(default='clv.model_export.code')
+    code_sequence = fields.Char(default='clv.export.code')
 
     _sql_constraints = [
         ('name_uniq',
