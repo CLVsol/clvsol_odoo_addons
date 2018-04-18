@@ -20,7 +20,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -35,17 +35,12 @@ class ObjectModelExport(models.AbstractModel):
         ondelete='restrict',
         # domain="[('model','in',['clv.person','clv.address'])]"
     )
-    model_model = fields.Char(string='Model', related='model_id.model', store=False, readonly=True)
-
-    model_items = fields.Char(
-        string='Model Items',
-        compute='compute_model_items',
-        store=False
+    model_model = fields.Char(
+        string='Model',
+        related='model_id.model',
+        store=False,
+        readonly=True
     )
-
-    @api.depends('model_model')
-    def compute_model_items(self):
-        pass
 
     def model_export_dir_path(self):
         return ''

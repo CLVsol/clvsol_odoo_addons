@@ -114,25 +114,6 @@ class ModelExportSetUp(models.TransientModel):
                 row.write(col_nr, col_name)
                 col_nr += 1
 
-            # for item in eval('model_export.' + model_export.model_items):
-            #     row_nr += 1
-            #     row = sheet.row(row_nr)
-            #     col_nr = 0
-            #     for field in model_export.model_export_field_ids:
-            #         if field.field_id.ttype == 'char':
-            #             cmd = 'item.' + field.field_id.name
-            #         if field.field_id.ttype == 'date':
-            #             cmd = 'item.' + field.field_id.name
-            #         if field.field_id.ttype == 'many2many':
-            #             cmd = 'item.' + field.field_id.name + '.name'
-            #         if field.field_id.ttype == 'many2one':
-            #             cmd = 'item.' + field.field_id.name + '.name'
-            #         if field.field_id.ttype == 'selection':
-            #             cmd = 'item.' + field.field_id.name
-            #         if eval(cmd) is not False:
-            #             row.write(col_nr, eval(cmd))
-            #         col_nr += 1
-
             book.save(file_path)
 
             model_export.directory_id = file_system_directory.id

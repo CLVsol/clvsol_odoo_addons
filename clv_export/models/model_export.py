@@ -18,7 +18,7 @@
 #
 ###############################################################################
 
-from openerp import fields, models
+from openerp import api, fields, models
 
 
 class ModelExport(models.Model):
@@ -29,6 +29,13 @@ class ModelExport(models.Model):
     code = fields.Char(string='Model Export Code', required=False, default='/')
     code_sequence = fields.Char(default='clv.export.code')
 
+    template_id = fields.Many2one(
+        comodel_name='clv.model_export.template',
+        string='Model Export Template',
+        required=False,
+        ondelete='restrict'
+    )
+
     _sql_constraints = [
         ('name_uniq',
          'UNIQUE (name)',
@@ -37,3 +44,47 @@ class ModelExport(models.Model):
          'UNIQUE (code)',
          u'Error! The Code must be unique!'),
     ]
+
+    @api.onchange('template_id')
+    def onchange_template_id(self):
+        # ModelExportField = self.env['clv.model_export.field']
+        if self.template_id:
+            self.name = self.template_id.name
+            self.label = self.template_id.label
+            self.model_id = self.template_id.model_id
+            self.notes = self.template_id.notes
+            # for model_export_field in self.model_export_field_ids:
+            #     print '>>>>>', model_export_field
+            # model_export_field_ids = []
+            # for model_export_template_field in self.template_id.model_export_template_field_ids:
+            #     print '>>>>>', model_export_template_field
+            #     values = {
+            #         'name': model_export_template_field.name,
+            #         'model_export_id': self.id,
+            #         'field_id': model_export_template_field.field_id.id,
+            #         'sequence': model_export_template_field.sequence,
+            #     }
+            #     new_model_export_template_field = ModelExportField.create(values)
+            #     model_export_field_ids += [new_model_export_template_field.id]
+            # self.model_export_field_ids = model_export_field_ids
+
+
+class ModelExportTemplate(models.Model):
+    _inherit = 'clv.model_export.template'
+
+    model_export_ids = fields.One2many(
+        comodel_name='clv.model_export',
+        inverse_name='template_id',
+        string='Model Exports'
+    )
+    count_model_exports = fields.Integer(
+        string='Model Exports',
+        compute='_compute_count_model_exports',
+        store=True
+    )
+
+    @api.multi
+    @api.depends('model_export_ids')
+    def _compute_count_model_exports(self):
+        for r in self:
+            r.count_model_exports = len(r.model_export_ids)

@@ -2,9 +2,9 @@
 <odoo>
     <data>
 
-        <record id="clv_model_export_view_form" model="ir.ui.view">
-            <field name="name">clv.model_export.form</field>
-            <field name="model">clv.model_export</field>
+        <record id="clv_model_export_template_view_form" model="ir.ui.view">
+            <field name="name">clv.model_export.template.form</field>
+            <field name="model">clv.model_export.template</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form>
@@ -27,22 +27,14 @@
                             <label for="code" class="oe_edit_only"/>
                             <h3><field name="code" placeholder="Code..."/></h3>
                             <field name="code_sequence" invisible="True"/>
-                            <label for="template_id" class="oe_edit_only"/>
-                            <h3><field name="template_id" placeholder="Model Export Template..." options="{'no_open': False, 'no_create': True}"/></h3>
                             <label for="model_id" class="oe_edit_only"/>
                             <h3><field name="model_id" placeholder="Model..." options='{"no_open": True, "no_create": True}'/></h3>
                         </div>
                         <group name="group_top">
                             <group name="group_left">
                                 <field name="model_model"/>
-                                <!--field name="model_items"/-->
-                                <field name="date_export"/>
                             </group>
                             <group name="group_right">
-                                <field name="file_name" invisible="True"/>
-                                <field name="file_content" filename="file_name"/>
-                                <field name="stored_file_name" invisible="True"/>
-                                <field name="directory_id" options="{'no_open': False, 'no_create': True}"/>
                             </group>
                         </group>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
@@ -57,98 +49,59 @@
             </field>
         </record>
         
-        <record id="clv_model_export_view_tree" model="ir.ui.view">
-            <field name="name">clv.model_export.tree</field>
-            <field name="model">clv.model_export</field>
+        <record id="clv_model_export_template_view_tree" model="ir.ui.view">
+            <field name="name">clv.model_export.template.tree</field>
+            <field name="model">clv.model_export.template</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree name="documents" string="Model Exports">
+                <tree name="documents" string="Model Export Templates">
                     <field name="name"/>
                     <field name="label"/>
                     <field name="code"/>
-                    <field name="template_id"/>
                     <field name="model_id"/>
                     <field name="model_model"/>
-                    <field name="date_export"/>
-                    <field name="file_name" invisible="1"/>
-                    <field name="file_content" filename="file_name"/>
-                    <field name="stored_file_name" invisible="1"/>
-                    <field name="directory_id" invisible="1"/>
                     <field name="notes"/>
                     <field name="active" invisible="1"/>
                 </tree>
             </field>
         </record>
         
-        <record id="clv_model_export_view_search" model="ir.ui.view">
-            <field name="name">clv.model_export.search</field>
-            <field name="model">clv.model_export</field>
+        <record id="clv_model_export_template_view_search" model="ir.ui.view">
+            <field name="name">clv.model_export.template.search</field>
+            <field name="model">clv.model_export.template</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
                     <field name="label"/>
                     <field name="code"/>
-                    <field name="template_id"/>
                     <field name="model_id"/>
                     <field name="model_model"/>
-                    <field name="date_export"/>
                     <field name="notes"/>
                     <separator/>
                     <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                     <group name="group_by" string="Group By...">
-                        <filter string="Model Export Template" context="{'group_by': 'template_id'}"/>
                         <filter string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
-                        <filter string="Export Date" domain="[]" context="{'group_by': 'date_export'}"/>
                     </group>
                 </search>
             </field>
         </record>
         
-        <record id="clv_model_export_action" model="ir.actions.act_window">
-            <field name="name">Model Exports</field>
+        <record id="clv_model_export_template_action" model="ir.actions.act_window">
+            <field name="name">Model Export Templates</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">clv.model_export</field>
+            <field name="res_model">clv.model_export.template</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="clv_model_export_view_search"/>
+            <field name="search_view_id" ref="clv_model_export_template_view_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Click to add a new model export.
+                Click to add a new model export template.
               </p>
             </field>
         </record>
         
-        <record id="clv_model_export_template_view_form_model_export" model="ir.ui.view">
-            <field name="name">clv.model_export.template.form</field>
-            <field name="model">clv.model_export.template</field>
-            <field name="inherit_id" ref="clv_model_export_template_view_form"/>
-            <field name="priority" eval="8"/>
-            <field name="arch" type="xml">
-                <page name="settings" position="before">
-                    <page string="Model Exports">
-                        <group>
-                            <field name="count_model_exports"/>
-                            <field name="model_export_ids" colspan="4" nolabel="1"/>
-                        </group>
-                    </page>
-                </page>
-            </field>
-        </record>
-
-        <record id="clv_model_export_template_view_tree_model_export" model="ir.ui.view">
-            <field name="name">clv.model_export.template.tree</field>
-            <field name="model">clv.model_export.template</field>
-            <field name="inherit_id" ref="clv_model_export_template_view_tree"/>
-            <field name="priority" eval="8"/>
-            <field name="arch" type="xml">
-                <field name="model_model" position="after">
-                    <field name="count_model_exports" sum="Total Number of Model Exports"/>
-                </field>
-            </field>
-        </record>
-
     </data>
 </odoo>

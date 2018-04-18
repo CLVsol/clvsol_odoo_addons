@@ -18,10 +18,22 @@
 #
 ###############################################################################
 
-from . import export_model
-from . import file_system
-from . import model_export_model
-from . import model_export_template
-from . import model_export_template_field
-from . import model_export
-from . import model_export_field
+from openerp import fields, models
+
+
+class ModelExportTemplate(models.Model):
+    _description = 'Model Export Template'
+    _name = 'clv.model_export.template'
+    _inherit = 'clv.object.model_export', 'clv.code.model'
+
+    code = fields.Char(string='Model Export Template Code', required=False, default='/')
+    code_sequence = fields.Char(default='clv.export.code')
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The Name must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]

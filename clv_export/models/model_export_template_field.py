@@ -21,16 +21,16 @@
 from odoo import api, fields, models
 
 
-class ModelExportField(models.Model):
-    _description = 'Model Export Field'
-    _name = "clv.model_export.field"
+class ModelExportTemplateField(models.Model):
+    _description = 'Model Export Template Field'
+    _name = "clv.model_export.template.field"
     _order = "sequence"
 
     name = fields.Char(string='Alias', index=False, required=False)
 
-    model_export_id = fields.Many2one(
-        comodel_name='clv.model_export',
-        string='Model Export',
+    model_export_template_id = fields.Many2one(
+        comodel_name='clv.model_export.template',
+        string='Model Export Template',
         ondelete='restrict'
     )
 
@@ -50,22 +50,22 @@ class ModelExportField(models.Model):
     model_export_display = fields.Boolean(string='Display in Export', default=True)
 
 
-class ModelExport(models.Model):
-    _inherit = 'clv.model_export'
+class ModelExportTemplate(models.Model):
+    _inherit = 'clv.model_export.template'
 
-    model_export_field_ids = fields.One2many(
-        comodel_name='clv.model_export.field',
-        inverse_name='model_export_id',
-        string='Model Export Fields'
+    model_export_template_field_ids = fields.One2many(
+        comodel_name='clv.model_export.template.field',
+        inverse_name='model_export_template_id',
+        string='Model Export Template Fields'
     )
 
-    count_model_export_fields = fields.Integer(
-        string='Model Export Fields',
-        compute='_compute_count_model_export_fields',
+    count_model_export_template_fields = fields.Integer(
+        string='Model Export Template Fields',
+        compute='_compute_count_model_export_template_fields',
         store=True
     )
 
-    @api.depends('model_export_field_ids')
-    def _compute_count_model_export_fields(self):
+    @api.depends('model_export_template_field_ids')
+    def _compute_count_model_export_template_fields(self):
         for r in self:
-            r.count_model_export_fields = len(r.model_export_field_ids)
+            r.count_model_export_template_fields = len(r.model_export_template_field_ids)
