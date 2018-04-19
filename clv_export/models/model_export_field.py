@@ -34,6 +34,12 @@ class ModelExportField(models.Model):
         ondelete='restrict'
     )
 
+    model_id = fields.Many2one(
+        string='Model',
+        related='model_export_id.model_id',
+        store=False
+    )
+
     field_id = fields.Many2one(
         comodel_name='ir.model.fields',
         string='Field',
