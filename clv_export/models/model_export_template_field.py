@@ -46,6 +46,7 @@ class ModelExportTemplateField(models.Model):
         ondelete='restrict',
         domain="[('model_id','=',model_id)]"
     )
+    field_name = fields.Char(string='Name', related='field_id.name', store=False)
     field_ttype = fields.Selection(string='TType', related='field_id.ttype', store=False)
 
     sequence = fields.Integer(
