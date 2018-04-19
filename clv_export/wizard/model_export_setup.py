@@ -27,6 +27,10 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
+def secondsToStr(t):
+    return "%d:%02d:%02d.%03d" % reduce(lambda ll, b: divmod(ll[0], b) + ll[1:], [(t * 1000,), 1000, 60, 60])
+
+
 class ModelExportSetUp(models.TransientModel):
     _name = 'clv.model_export.setup'
 
@@ -75,6 +79,9 @@ class ModelExportSetUp(models.TransientModel):
     def do_model_export_setup(self):
         self.ensure_one()
 
+        from time import time
+        start = time()
+
         FileSystemDirectory = self.env['clv.file_system.directory']
         file_system_directory = FileSystemDirectory.search([
             ('directory', '=', self.dir_path),
@@ -114,7 +121,9 @@ class ModelExportSetUp(models.TransientModel):
                 row.write(col_nr, col_name)
                 col_nr += 1
 
+            item_count = 0
             for item in eval('model_export.' + model_export.model_items):
+                item_count += 1
                 row_nr += 1
                 row = sheet.row(row_nr)
                 col_nr = 0
@@ -133,10 +142,16 @@ class ModelExportSetUp(models.TransientModel):
                         row.write(col_nr, eval(cmd))
                     col_nr += 1
 
+                _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
+
             book.save(file_path)
 
             model_export.directory_id = file_system_directory.id
             model_export.file_name = file_name
             model_export.stored_file_name = file_name
+
+            _logger.info(u'%s %s', '>>>>>>>>>> file_path: ', file_path)
+            _logger.info(u'%s %s', '>>>>>>>>>> item_count: ', item_count)
+            _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
 
         return True

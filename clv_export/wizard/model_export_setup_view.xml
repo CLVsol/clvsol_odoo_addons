@@ -30,7 +30,7 @@
 
         <!-- More button Action -->
         <act_window 
-            id="clv_person_updt_action"
+            id="clv_model_export_setup_action"
             name="Model Export Set Up"
             src_model="clv.model_export"
             res_model="clv.model_export.setup"
