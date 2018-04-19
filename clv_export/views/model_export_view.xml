@@ -35,7 +35,7 @@
                         <group name="group_top">
                             <group name="group_left">
                                 <field name="model_model"/>
-                                <!--field name="model_items"/-->
+                                <field name="model_items"/>
                                 <field name="date_export"/>
                             </group>
                             <group name="group_right">
