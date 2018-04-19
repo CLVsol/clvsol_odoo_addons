@@ -68,6 +68,51 @@ class ModelExport(models.Model):
             #     model_export_field_ids += [new_model_export_template_field.id]
             # self.model_export_field_ids = model_export_field_ids
 
+    @api.model
+    def create(self, values):
+
+        ModelExportField = self.env['clv.model_export.field']
+
+        new_model_export = super(ModelExport, self).create(values)
+
+        model_export_field_ids = []
+        for model_export_template_field in new_model_export.template_id.model_export_template_field_ids:
+            values = {
+                'name': model_export_template_field.name,
+                'model_export_id': new_model_export.id,
+                'field_id': model_export_template_field.field_id.id,
+                'sequence': model_export_template_field.sequence,
+            }
+            new_model_export_template_field = ModelExportField.create(values)
+            model_export_field_ids += [new_model_export_template_field.id]
+
+        return new_model_export
+
+    @api.multi
+    def write(self, values):
+
+        ModelExportField = self.env['clv.model_export.field']
+
+        res = super(ModelExport, self).write(values)
+
+        if 'template_id' in values:
+
+            for model_export_field in self.model_export_field_ids:
+                model_export_field.unlink()
+
+            model_export_field_ids = []
+            for model_export_template_field in self.template_id.model_export_template_field_ids:
+                values = {
+                    'name': model_export_template_field.name,
+                    'model_export_id': self.id,
+                    'field_id': model_export_template_field.field_id.id,
+                    'sequence': model_export_template_field.sequence,
+                }
+                new_model_export_template_field = ModelExportField.create(values)
+                model_export_field_ids += [new_model_export_template_field.id]
+
+        return res
+
 
 class ModelExportTemplate(models.Model):
     _inherit = 'clv.model_export.template'
