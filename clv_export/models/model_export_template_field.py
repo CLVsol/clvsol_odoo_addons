@@ -31,7 +31,7 @@ class ModelExportTemplateField(models.Model):
     model_export_template_id = fields.Many2one(
         comodel_name='clv.model_export.template',
         string='Model Export Template',
-        ondelete='restrict'
+        ondelete='cascade'
     )
 
     model_id = fields.Many2one(
