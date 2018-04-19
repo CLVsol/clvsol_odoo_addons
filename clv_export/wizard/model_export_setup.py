@@ -122,27 +122,28 @@ class ModelExportSetUp(models.TransientModel):
                 col_nr += 1
 
             item_count = 0
-            for item in eval('model_export.' + model_export.model_items):
-                item_count += 1
-                row_nr += 1
-                row = sheet.row(row_nr)
-                col_nr = 0
-                for field in model_export.model_export_field_ids:
-                    if field.field_id.ttype == 'char':
-                        cmd = 'item.' + field.field_id.name
-                    if field.field_id.ttype == 'date':
-                        cmd = 'item.' + field.field_id.name
-                    if field.field_id.ttype == 'many2many':
-                        cmd = 'item.' + field.field_id.name + '.name'
-                    if field.field_id.ttype == 'many2one':
-                        cmd = 'item.' + field.field_id.name + '.name'
-                    if field.field_id.ttype == 'selection':
-                        cmd = 'item.' + field.field_id.name
-                    if eval(cmd) is not False:
-                        row.write(col_nr, eval(cmd))
-                    col_nr += 1
+            if model_export.model_items is not False:
+                for item in eval('model_export.' + model_export.model_items):
+                    item_count += 1
+                    row_nr += 1
+                    row = sheet.row(row_nr)
+                    col_nr = 0
+                    for field in model_export.model_export_field_ids:
+                        if field.field_id.ttype == 'char':
+                            cmd = 'item.' + field.field_id.name
+                        if field.field_id.ttype == 'date':
+                            cmd = 'item.' + field.field_id.name
+                        if field.field_id.ttype == 'many2many':
+                            cmd = 'item.' + field.field_id.name + '.name'
+                        if field.field_id.ttype == 'many2one':
+                            cmd = 'item.' + field.field_id.name + '.name'
+                        if field.field_id.ttype == 'selection':
+                            cmd = 'item.' + field.field_id.name
+                        if eval(cmd) is not False:
+                            row.write(col_nr, eval(cmd))
+                        col_nr += 1
 
-                _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
+                    _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
 
             book.save(file_path)
 
