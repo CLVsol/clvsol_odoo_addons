@@ -90,6 +90,15 @@ class ExternalSyncSchedule(models.Model):
 
     active = fields.Boolean(string='Active', default=1)
 
+    date_last_sync = fields.Datetime(
+        string='Last Synchronization Date',
+        readonly=True
+    )
+    upmost_last_update = fields.Datetime(
+        string="Upmost Last Update",
+        readonly=True
+    )
+
     # _sql_constraints = [
     #     ('name_uniq',
     #      'UNIQUE (name)',

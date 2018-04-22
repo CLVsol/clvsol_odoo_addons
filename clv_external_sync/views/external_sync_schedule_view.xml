@@ -40,6 +40,10 @@
                                 <field name="method"/>
                                 <field name="external_model"/>
                             </group>
+                            <group name="sync">
+                                <field name="date_last_sync"/>
+                                <field name="upmost_last_update"/>
+                            </group>
                         </group>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
                         <field name="external_sync_log" placeholder="Synchronization Log..." colspan="4"/>
@@ -68,6 +72,8 @@
                     <field name="external_last_update_start"/>
                     <field name="external_last_update_end"/>
                     <field name="date_inclusion"/>
+                    <field name="date_last_sync"/>
+                    <field name="upmost_last_update"/>
                     <field name="model"/>
                     <field name="method"/>
                     <field name="external_model"/>
