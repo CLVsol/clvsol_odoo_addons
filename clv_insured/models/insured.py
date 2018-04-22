@@ -202,3 +202,28 @@ class Insured(models.Model, FormatAddress):
             return {'domain': {'state_id': [('country_id', '=', self.country_id.id)]}}
         else:
             return {'domain': {'state_id': []}}
+
+
+class Insured2(models.Model):
+    _inherit = 'clv.insured'
+
+    main_insured_id = fields.Many2one(
+        comodel_name='clv.insured',
+        string='Main Insured',
+        ondelete='restrict'
+    )
+    dependent_insured_ids = fields.One2many(
+        comodel_name='clv.insured',
+        inverse_name='main_insured_id',
+        string='Dependent Insureds'
+    )
+    count_dependent_insureds = fields.Integer(
+        string='Number of Dependent Insureds',
+        compute='_compute_count_dependent_insureds',
+        store=True
+    )
+
+    @api.depends('dependent_insured_ids')
+    def _compute_count_dependent_insureds(self):
+        for r in self:
+            r.count_dependent_insureds = len(r.dependent_insured_ids)

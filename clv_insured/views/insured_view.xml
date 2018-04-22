@@ -52,7 +52,7 @@
                         </group>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
                         <notebook>
-                            <page name="insuredal_information" string="Insuredal Information" groups="clv_base.group_supuser">
+                            <page name="insured_information" string="Insured Information" groups="clv_base.group_supuser">
                                 <group>
                                     <group name="insured_status">
                                         <field name="gender" widget="radio"/>
@@ -69,8 +69,6 @@
                                         <field name="nationality" options='{"no_open": True, "no_create": True}'/>
                                         <field name="identification_id"/>
                                         <field name="otherid"/>
-                                    </group>
-                                    <group name="family">
                                     </group>
                                 </group>
                             </page>
@@ -144,5 +142,55 @@
             </field>
         </record>
         
+        <record id="clv_insured_view_form_main_insured" model="ir.ui.view">
+            <field name="name">clv.insured.form</field>
+            <field name="model">clv.insured</field>
+            <field name="inherit_id" ref="clv_insured.clv_insured_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <div name="title" position="inside">
+                    <label for="main_insured_id" class="oe_edit_only"/>
+                    <h3><field name="main_insured_id" placeholder="Main Insured..." options='{"no_open": False, "no_create": True}'/></h3>
+                </div>
+                <page name="settings" position="before">
+                    <page string="Dependent Insureds">
+                        <group>
+                            <field name="count_dependent_insureds"/>
+                            <field name="dependent_insured_ids" colspan="4" nolabel="1"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_insured_view_tree_main_insured" model="ir.ui.view">
+            <field name="name">clv.insured.tree</field>
+            <field name="model">clv.insured</field>
+            <field name="inherit_id" ref="clv_insured.clv_insured_view_tree"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="main_insured_id"/>
+                    <field name="count_dependent_insureds" sum="Total Number of Dependent Insureds"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="clv_insured_view_search_main_insured" model="ir.ui.view">
+            <field name="name">clv.insured.search</field>
+            <field name="model">clv.insured</field>
+            <field name="inherit_id" ref="clv_insured.clv_insured_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="main_insured_id"/>
+                </field>
+                <group  name="group_by" position="inside">
+                    <filter string="Main Insured" context="{'group_by': 'main_insured_id'}"/>
+                    <filter string="Dependent Insureds" context="{'group_by': 'count_dependent_insureds'}"/>
+                </group>
+            </field>
+        </record>
+
     </data>
 </odoo>
