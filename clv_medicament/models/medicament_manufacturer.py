@@ -50,3 +50,23 @@ class MedicamentManufacturer(models.Model):
         for manufacturer in self:
             result.append((manufacturer.id, '%s {%s}' % (manufacturer.name, manufacturer.code)))
         return result
+
+
+class MedicamentManufacturerStr(models.Model):
+    _description = 'Medicament Manufacturer String'
+    _name = 'clv.medicament.manufacturer.str'
+    _order = 'name'
+
+    name = fields.Char(string='Manufacturer String', required=True)
+
+    manufacturer_id = fields.Many2one(
+        comodel_name='clv.medicament.manufacturer',
+        string='Associated Manufacturer',
+        help='Associated Medicament Manufacturer'
+    )
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The Manufacturer String must be unique!'),
+    ]
