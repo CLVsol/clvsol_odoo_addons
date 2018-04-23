@@ -94,5 +94,79 @@
             </field>
         </record>
 
+        <record id="clv_medicament_active_component_str_view_form" model="ir.ui.view">
+            <field name="name">clv.medicament.active_component.str.form</field>
+            <field name="model">clv.medicament.active_component.str</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name="button_box" class="oe_right oe_button_box">
+                            <!--button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button-->
+                        </div>
+                        <div name="title" class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h3><field name="name" default_focus="1" placeholder="Active Component String..."/></h3>
+                            <label for="active_component_id" class="oe_edit_only"/>
+                            <h3><field name="active_component_id" placeholder="Associated Active Component..." options="{'no_open': False, 'no_create': True}"/></h3>
+                        </div>
+                        <notebook>
+                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                                <group name="settings">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_active_component_str_view_tree" model="ir.ui.view">
+            <field name="name">clv.medicament.active_component.str.tree</field>
+            <field name="model">clv.medicament.active_component.str</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="active_component_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="clv_medicament_active_component_str_view_search" model="ir.ui.view">
+            <field name="name">clv.medicament.active_component.str.search</field>
+            <field name="model">clv.medicament.active_component.str</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Active Component String">
+                    <field name="name"/>
+                    <field name="active_component_id"/>
+                    <separator/>
+                    <!--filter string="Archived" name="inactive" domain="[('active','=',False)]"/-->
+                    <group name="group_by" expand="0" string="Group By...">
+                        <filter string="Active Component" domain="[]" context="{'group_by':'active_component_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="clv_medicament_active_component_str_action" model="ir.actions.act_window">
+            <field name="name">Active Component Strings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clv.medicament.active_component.str</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="clv_medicament_active_component_str_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new medicament active component string.
+              </p>
+            </field>
+        </record>
+        
     </data>
 </odoo>

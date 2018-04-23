@@ -50,3 +50,23 @@ class MedicamentActiveComponent(models.Model):
         for active_component in self:
             result.append((active_component.id, '%s {%s}' % (active_component.name, active_component.code)))
         return result
+
+
+class MedicamentActiveComponentStr(models.Model):
+    _description = 'Medicament Active Component String'
+    _name = 'clv.medicament.active_component.str'
+    _order = 'name'
+
+    name = fields.Char(string='Active Component String', required=True)
+
+    active_component_id = fields.Many2one(
+        comodel_name='clv.medicament.active_component',
+        string='Associated Active Component',
+        help='Associated Medicament Active Component'
+    )
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The Active Component String must be unique!'),
+    ]
