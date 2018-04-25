@@ -14,6 +14,8 @@
                     <group>
                         <field name="dir_path"/>
                         <field name="file_name"/>
+                        <field name="date_format"/>
+                        <field name="datetime_format"/>
                     </group>
                     <footer>
                         <button 

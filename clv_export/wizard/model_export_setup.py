@@ -23,6 +23,7 @@ from datetime import *
 import xlwt
 
 from odoo import api, fields, models
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 
 _logger = logging.getLogger(__name__)
 
@@ -60,6 +61,26 @@ class ModelExportSetUp(models.TransientModel):
         required=True,
         help="File Name",
         default=_default_file_name
+    )
+
+    def _default_date_format(self):
+        ObjectModelExport = self.env['clv.object.model_export']
+        return ObjectModelExport.model_export_date_format()
+    date_format = fields.Char(
+        string='Date Format',
+        required=True,
+        help="Date Format",
+        default=_default_date_format
+    )
+
+    def _default_datetime_format(self):
+        ObjectModelExport = self.env['clv.object.model_export']
+        return ObjectModelExport.model_export_datetime_format()
+    datetime_format = fields.Char(
+        string='Date Format',
+        required=True,
+        help="Date Format",
+        default=_default_datetime_format
     )
 
     @api.multi
@@ -129,15 +150,31 @@ class ModelExportSetUp(models.TransientModel):
                     row = sheet.row(row_nr)
                     col_nr = 0
                     for field in model_export.model_export_field_ids:
-                        if field.field_id.ttype == 'char':
-                            cmd = 'item.' + field.field_id.name
                         if field.field_id.ttype == 'date':
                             cmd = 'item.' + field.field_id.name
-                        if field.field_id.ttype == 'many2many':
+                            if eval(cmd) is not False:
+                                date_value = eval(cmd)
+                            date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+                            try:
+                                date_formated = datetime.strftime(date_obj, self.date_format)
+                            except Exception:
+                                date_formated = date_value
+                            cmd = '"' + date_formated + '"'
+                        elif field.field_id.ttype == 'datetime':
+                            cmd = 'item.' + field.field_id.name
+                            if eval(cmd) is not False:
+                                datetime_value = eval(cmd)
+                            datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+                            try:
+                                datetime_formated = datetime.strftime(datetime_obj, self.datetime_format)
+                            except Exception:
+                                datetime_formated = datetime_value
+                            cmd = '"' + datetime_formated + '"'
+                        elif field.field_id.ttype == 'many2many':
                             cmd = 'item.' + field.field_id.name + '.name'
-                        if field.field_id.ttype == 'many2one':
+                        elif field.field_id.ttype == 'many2one':
                             cmd = 'item.' + field.field_id.name + '.name'
-                        if field.field_id.ttype == 'selection':
+                        else:
                             cmd = 'item.' + field.field_id.name
                         if eval(cmd) is not False:
                             row.write(col_nr, eval(cmd))
