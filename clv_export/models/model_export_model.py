@@ -57,3 +57,12 @@ class ObjectModelExport(models.AbstractModel):
 
     def model_export_file_name(self):
         return '<model>_<label>_<code>_<timestamp>.xls'
+
+    def model_export_date_format(self):
+        return '%Y-%m-%d'
+
+    def model_export_time_format(self):
+        return '%H:%M:%S'
+
+    def model_export_datetime_format(self):
+        return "%s %s" % (self.model_export_date_format(), self.model_export_time_format())
