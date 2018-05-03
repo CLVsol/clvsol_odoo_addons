@@ -35,6 +35,7 @@ class ExternalSyncModel(models.AbstractModel):
         [('included', 'Included'),
          ('updated', 'Updated'),
          ('synchronized', 'Synchronized'),
+         ('missing', 'Missing'),
          ], 'External Synchronization'
     )
 
