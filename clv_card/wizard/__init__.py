@@ -18,37 +18,4 @@
 #
 ###############################################################################
 
-{
-    'name': 'Card',
-    'summary': 'Card Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'images': [],
-    'depends': [
-        'clv_base',
-        'clv_global_tag',
-    ],
-    'data': [
-        'security/card_security.xml',
-        'security/ir.model.access.csv',
-        'views/card_view.xml',
-        'views/card_category_view.xml',
-        'views/global_tag_view.xml',
-        'views/card_log_view.xml',
-        'views/card_annotation_view.xml',
-        'views/card_annotation_log_view.xml',
-        'wizard/card_updt_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+import card_updt
