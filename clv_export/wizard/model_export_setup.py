@@ -149,7 +149,7 @@ class ModelExportSetUp(models.TransientModel):
                 items = eval('model_export.' + model_export.model_items)
             elif model_export.export_all_items is True:
                 Model = self.env[model_export.model_model]
-                items = Model.search([])
+                items = Model.search(eval(model_export.export_domain_filter))
 
             if items is not False:
                 for item in items:

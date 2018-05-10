@@ -36,6 +36,7 @@
                             <group name="group_left">
                                 <field name="model_model"/>
                                 <field name="export_all_items"/>
+                                <field name="export_domain_filter" attrs="{'invisible':[('export_all_items', '=', False)]}"/>
                                 <field name="model_items" attrs="{'invisible':[('export_all_items', '=', True)]}"/>
                                 <field name="date_export"/>
                             </group>

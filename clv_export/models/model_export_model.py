@@ -58,6 +58,13 @@ class ObjectModelExport(models.AbstractModel):
 
     export_all_items = fields.Boolean(string='Export All Items', default=True)
 
+    export_domain_filter = fields.Text(
+        string='Export Domain Filter',
+        required=True,
+        help="Export Domain Filter",
+        default='[]'
+    )
+
     @api.depends('model_model')
     def compute_model_items(self):
         return False
