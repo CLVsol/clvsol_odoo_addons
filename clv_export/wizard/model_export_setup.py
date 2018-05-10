@@ -144,14 +144,14 @@ class ModelExportSetUp(models.TransientModel):
 
             item_count = 0
             items = False
-            if model_export.model_items is not False:
+            if (model_export.export_all_items is False) and \
+               (model_export.model_items is not False):
                 items = eval('model_export.' + model_export.model_items)
-            else:
+            elif model_export.export_all_items is True:
                 Model = self.env[model_export.model_model]
                 items = Model.search([])
 
             if items is not False:
-                # for item in eval('model_export.' + model_export.model_items):
                 for item in items:
                     item_count += 1
                     row_nr += 1

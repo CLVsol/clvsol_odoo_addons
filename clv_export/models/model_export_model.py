@@ -56,6 +56,8 @@ class ObjectModelExport(models.AbstractModel):
          ], string='Export Type', default='xls', readonly=False, required=True
     )
 
+    export_all_items = fields.Boolean(string='Export All Items', default=True)
+
     @api.depends('model_model')
     def compute_model_items(self):
         return False
