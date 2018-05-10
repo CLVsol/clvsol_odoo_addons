@@ -52,6 +52,7 @@ class ModelExport(models.Model):
             self.name = self.template_id.name
             self.label = self.template_id.label
             self.model_id = self.template_id.model_id
+            self.export_type = self.template_id.export_type
             self.notes = self.template_id.notes
 
     @api.model

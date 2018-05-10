@@ -48,15 +48,24 @@ class ObjectModelExport(models.AbstractModel):
         store=False
     )
 
+    export_type = fields.Selection(
+        [('xls', 'XLS'),
+         # ('csv', 'CSV'),
+         # ('sqlite', 'SQLite'),
+         # ], string='Export Type', readonly=False, required=True
+         ], string='Export Type', default='xls', readonly=False, required=True
+    )
+
     @api.depends('model_model')
     def compute_model_items(self):
-        pass
+        return False
 
     def model_export_dir_path(self):
-        return ''
+        return False
 
     def model_export_file_name(self):
         return '<model>_<label>_<code>_<timestamp>.xls'
+        # return False
 
     def model_export_date_format(self):
         return '%Y-%m-%d'

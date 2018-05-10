@@ -39,6 +39,7 @@
                                 <field name="date_export"/>
                             </group>
                             <group name="group_right">
+                                <field name="export_type"/>
                                 <field name="file_name" invisible="True"/>
                                 <field name="file_content" filename="file_name"/>
                                 <field name="stored_file_name" invisible="True"/>
@@ -70,6 +71,7 @@
                     <field name="model_id"/>
                     <field name="model_model"/>
                     <field name="date_export"/>
+                    <field name="export_type"/>
                     <field name="file_name" invisible="1"/>
                     <field name="file_content" filename="file_name"/>
                     <field name="stored_file_name" invisible="1"/>
@@ -93,12 +95,14 @@
                     <field name="model_id"/>
                     <field name="model_model"/>
                     <field name="date_export"/>
+                    <field name="export_type"/>
                     <field name="notes"/>
                     <separator/>
                     <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                     <group name="group_by" string="Group By...">
                         <filter string="Model Export Template" context="{'group_by': 'template_id'}"/>
                         <filter string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
+                        <filter string="Export Type" domain="[]" context="{'group_by': 'export_type'}"/>
                         <filter string="Export Date" domain="[]" context="{'group_by': 'date_export'}"/>
                     </group>
                 </search>
