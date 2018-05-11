@@ -65,6 +65,36 @@ class ObjectModelExport(models.AbstractModel):
         default='[]'
     )
 
+    export_dir_path = fields.Char(
+        string='Export Directory Path',
+        required=True,
+        help="Export Directory Path"
+    )
+
+    export_file_name = fields.Char(
+        string='Export File Name',
+        required=True,
+        help="Export File Name"
+    )
+
+    def _default_export_date_format(self):
+        return self.model_export_date_format()
+    export_date_format = fields.Char(
+        string='Date Format',
+        required=True,
+        help="Date Format",
+        default=_default_export_date_format
+    )
+
+    def _default_export_datetime_format(self):
+        return self.model_export_datetime_format()
+    export_datetime_format = fields.Char(
+        string='Date Time Format',
+        required=True,
+        help="Date Time Format",
+        default=_default_export_datetime_format
+    )
+
     @api.depends('model_model')
     def compute_model_items(self):
         return False
