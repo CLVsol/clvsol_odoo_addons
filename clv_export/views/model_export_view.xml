@@ -42,6 +42,10 @@
                             </group>
                             <group name="group_right">
                                 <field name="export_type"/>
+                                <field name="export_dir_path"/>
+                                <field name="export_file_name"/>
+                                <field name="export_date_format"/>
+                                <field name="export_datetime_format"/>
                                 <field name="file_name" invisible="True"/>
                                 <field name="file_content" filename="file_name"/>
                                 <field name="stored_file_name" invisible="True"/>

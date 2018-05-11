@@ -75,6 +75,13 @@ class ModelExport(models.Model):
             self.export_type = self.template_id.export_type
             self.notes = self.template_id.notes
 
+    @api.onchange('export_type')
+    def onchange_export_type(self):
+
+        if self.export_type:
+            self.export_dir_path = self.model_export_dir_path(self.export_type)
+            self.export_file_name = self.model_export_file_name(self.export_type)
+
     @api.model
     def create(self, values):
 
@@ -121,14 +128,14 @@ class ModelExport(models.Model):
         return res
 
     @api.multi
-    def do_model_export_execute_xls(self, dir_path, file_name):
+    def do_model_export_execute_xls(self):
 
         from time import time
         start = time()
 
         FileSystemDirectory = self.env['clv.file_system.directory']
         file_system_directory = FileSystemDirectory.search([
-            ('directory', '=', dir_path),
+            ('directory', '=', self.export_dir_path),
         ])
 
         self.date_export = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -139,12 +146,12 @@ class ModelExport(models.Model):
             label = '_' + self.label
         code = self.code
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')[2:]
-        file_name = file_name\
+        file_name = self.export_file_name\
             .replace('<model>', model_name)\
             .replace('_<label>', label)\
             .replace('<code>', code)\
             .replace('<timestamp>', timestamp)
-        file_path = dir_path + '/' + file_name
+        file_path = self.export_dir_path + '/' + file_name
         _logger.info(u'%s %s', '>>>>>>>>>>', file_path)
 
         book = xlwt.Workbook()
@@ -183,7 +190,7 @@ class ModelExport(models.Model):
                             date_value = eval(cmd)
                         date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
                         try:
-                            date_formated = datetime.strftime(date_obj, self.date_format)
+                            date_formated = datetime.strftime(date_obj, self.export_date_format)
                         except Exception:
                             date_formated = date_value
                         cmd = '"' + date_formated + '"'
@@ -193,7 +200,7 @@ class ModelExport(models.Model):
                             datetime_value = eval(cmd)
                         datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
                         try:
-                            datetime_formated = datetime.strftime(datetime_obj, self.datetime_format)
+                            datetime_formated = datetime.strftime(datetime_obj, self.export_datetime_format)
                         except Exception:
                             datetime_formated = datetime_value
                         cmd = '"' + datetime_formated + '"'
