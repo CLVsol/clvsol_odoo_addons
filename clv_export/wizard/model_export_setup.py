@@ -40,46 +40,6 @@ class ModelExportSetUp(models.TransientModel):
         string='Model Exports',
         default=_default_model_export_ids)
 
-    def _default_dir_path(self):
-        ObjectModelExport = self.env['clv.object.model_export']
-        return ObjectModelExport.model_export_dir_path('xls')
-    dir_path = fields.Char(
-        string='Directory Path',
-        required=True,
-        help="Directory Path",
-        default=_default_dir_path
-    )
-
-    def _default_file_name(self):
-        ObjectModelExport = self.env['clv.object.model_export']
-        return ObjectModelExport.model_export_file_name('xls')
-    file_name = fields.Char(
-        string='File Name',
-        required=True,
-        help="File Name",
-        default=_default_file_name
-    )
-
-    def _default_date_format(self):
-        ObjectModelExport = self.env['clv.object.model_export']
-        return ObjectModelExport.model_export_date_format()
-    date_format = fields.Char(
-        string='Date Format',
-        required=True,
-        help="Date Format",
-        default=_default_date_format
-    )
-
-    def _default_datetime_format(self):
-        ObjectModelExport = self.env['clv.object.model_export']
-        return ObjectModelExport.model_export_datetime_format()
-    datetime_format = fields.Char(
-        string='Date Time Format',
-        required=True,
-        help="Date Time Format",
-        default=_default_datetime_format
-    )
-
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -102,6 +62,6 @@ class ModelExportSetUp(models.TransientModel):
             _logger.info(u'%s %s', '>>>>>', model_export.name)
 
             if model_export.export_type == 'xls':
-                model_export.do_model_export_execute_xls(self.dir_path, self.file_name)
+                model_export.do_model_export_execute_xls()
 
         return True

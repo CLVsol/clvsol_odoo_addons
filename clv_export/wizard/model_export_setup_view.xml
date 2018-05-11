@@ -12,10 +12,6 @@
                     <label for="model_export_ids" class="oe_edit_only"/>
                     <field name="model_export_ids"/>
                     <group>
-                        <field name="dir_path"/>
-                        <field name="file_name"/>
-                        <field name="date_format"/>
-                        <field name="datetime_format"/>
                     </group>
                     <footer>
                         <button 
