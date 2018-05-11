@@ -30,13 +30,13 @@ def secondsToStr(t):
 
 
 class ModelExportSetUp(models.TransientModel):
-    _name = 'clv.model_export.setup'
+    _name = 'clv.model_export.execute'
 
     def _default_model_export_ids(self):
         return self._context.get('active_ids')
     model_export_ids = fields.Many2many(
         comodel_name='clv.model_export',
-        relation='clv_model_export_setup_rel',
+        relation='clv_model_export_execute_rel',
         string='Model Exports',
         default=_default_model_export_ids)
 
@@ -54,7 +54,7 @@ class ModelExportSetUp(models.TransientModel):
         return action
 
     @api.multi
-    def do_model_export_setup(self):
+    def do_model_export_execute(self):
         self.ensure_one()
 
         for model_export in self.model_export_ids:
