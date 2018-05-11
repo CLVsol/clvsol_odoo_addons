@@ -69,12 +69,11 @@ class ObjectModelExport(models.AbstractModel):
     def compute_model_items(self):
         return False
 
-    def model_export_dir_path(self):
+    def model_export_dir_path(self, export_type):
         return False
 
-    def model_export_file_name(self):
-        return '<model>_<label>_<code>_<timestamp>.xls'
-        # return False
+    def model_export_file_name(self, export_type):
+        return False
 
     def model_export_date_format(self):
         return '%Y-%m-%d'

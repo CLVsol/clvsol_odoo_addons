@@ -18,7 +18,27 @@
 #
 ###############################################################################
 
-from openerp import api, fields, models
+import logging
+from datetime import *
+import xlwt
+
+from odoo import api, fields, models
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+
+_logger = logging.getLogger(__name__)
+
+
+def secondsToStr(t):
+    return "%d:%02d:%02d.%03d" % reduce(lambda ll, b: divmod(ll[0], b) + ll[1:], [(t * 1000,), 1000, 60, 60])
+
+
+class ObjectModelExport(models.AbstractModel):
+    _inherit = 'clv.object.model_export'
+
+    def model_export_file_name(self, export_type):
+        if export_type == 'xls':
+            return '<model>_<label>_<code>_<timestamp>.xls'
+        return False
 
 
 class ModelExport(models.Model):
@@ -99,6 +119,105 @@ class ModelExport(models.Model):
                 model_export_field_ids += [new_model_export_template_field.id]
 
         return res
+
+    @api.multi
+    def do_model_export_execute_xls(self, dir_path, file_name):
+
+        from time import time
+        start = time()
+
+        FileSystemDirectory = self.env['clv.file_system.directory']
+        file_system_directory = FileSystemDirectory.search([
+            ('directory', '=', dir_path),
+        ])
+
+        self.date_export = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        model_name = self.model_id.name
+        label = ''
+        if self.label is not False:
+            label = '_' + self.label
+        code = self.code
+        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')[2:]
+        file_name = file_name\
+            .replace('<model>', model_name)\
+            .replace('_<label>', label)\
+            .replace('<code>', code)\
+            .replace('<timestamp>', timestamp)
+        file_path = dir_path + '/' + file_name
+        _logger.info(u'%s %s', '>>>>>>>>>>', file_path)
+
+        book = xlwt.Workbook()
+
+        sheet = book.add_sheet(file_name)
+        row_nr = 0
+
+        row = sheet.row(row_nr)
+        col_nr = 0
+        for field in self.model_export_field_ids:
+            col_name = field.field_id.field_description
+            if field.name is not False:
+                col_name = field.name
+            row.write(col_nr, col_name)
+            col_nr += 1
+
+        item_count = 0
+        items = False
+        if (self.export_all_items is False) and \
+           (self.model_items is not False):
+            items = eval('self.' + self.model_items)
+        elif self.export_all_items is True:
+            Model = self.env[self.model_model]
+            items = Model.search(eval(self.export_domain_filter))
+
+        if items is not False:
+            for item in items:
+                item_count += 1
+                row_nr += 1
+                row = sheet.row(row_nr)
+                col_nr = 0
+                for field in self.model_export_field_ids:
+                    if field.field_id.ttype == 'date':
+                        cmd = 'item.' + field.field_id.name
+                        if eval(cmd) is not False:
+                            date_value = eval(cmd)
+                        date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+                        try:
+                            date_formated = datetime.strftime(date_obj, self.date_format)
+                        except Exception:
+                            date_formated = date_value
+                        cmd = '"' + date_formated + '"'
+                    elif field.field_id.ttype == 'datetime':
+                        cmd = 'item.' + field.field_id.name
+                        if eval(cmd) is not False:
+                            datetime_value = eval(cmd)
+                        datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+                        try:
+                            datetime_formated = datetime.strftime(datetime_obj, self.datetime_format)
+                        except Exception:
+                            datetime_formated = datetime_value
+                        cmd = '"' + datetime_formated + '"'
+                    elif field.field_id.ttype == 'many2many':
+                        cmd = 'item.' + field.field_id.name + '.name'
+                    elif field.field_id.ttype == 'many2one':
+                        cmd = 'item.' + field.field_id.name + '.name'
+                    else:
+                        cmd = 'item.' + field.field_id.name
+                    if eval(cmd) is not False:
+                        row.write(col_nr, eval(cmd))
+                    col_nr += 1
+
+                _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
+
+        book.save(file_path)
+
+        self.directory_id = file_system_directory.id
+        self.file_name = file_name
+        self.stored_file_name = file_name
+
+        _logger.info(u'%s %s', '>>>>>>>>>> file_path: ', file_path)
+        _logger.info(u'%s %s', '>>>>>>>>>> item_count: ', item_count)
+        _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
 
 
 class ModelExportTemplate(models.Model):
