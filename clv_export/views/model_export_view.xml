@@ -51,6 +51,9 @@
                                 <field name="stored_file_name" invisible="True"/>
                                 <field name="directory_id" options="{'no_open': False, 'no_create': True}"/>
                             </group>
+                            <group name="group_bottom_left">
+                                <field name="export_all_fields"/>
+                            </group>
                         </group>
                         <field name="notes" placeholder="Notes..." colspan="4"/>
                         <notebook>

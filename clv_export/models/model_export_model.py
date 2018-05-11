@@ -95,6 +95,8 @@ class ObjectModelExport(models.AbstractModel):
         default=_default_export_datetime_format
     )
 
+    export_all_fields = fields.Boolean(string='Export All Fields', default=True)
+
     @api.depends('model_model')
     def compute_model_items(self):
         return False

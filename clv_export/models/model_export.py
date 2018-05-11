@@ -127,6 +127,40 @@ class ModelExport(models.Model):
 
         return res
 
+    def _write_xls(self, item, field, row, col_nr):
+
+        if field.ttype == 'date':
+            cmd = 'item.' + field.name
+            if eval(cmd) is not False:
+                date_value = eval(cmd)
+            date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+            try:
+                date_formated = datetime.strftime(date_obj, self.export_date_format)
+            except Exception:
+                date_formated = date_value
+            cmd = '"' + date_formated + '"'
+        elif field.ttype == 'datetime':
+            cmd = 'item.' + field.name
+            if eval(cmd) is not False:
+                datetime_value = eval(cmd)
+            datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+            try:
+                datetime_formated = datetime.strftime(datetime_obj, self.export_datetime_format)
+            except Exception:
+                datetime_formated = datetime_value
+            cmd = '"' + datetime_formated + '"'
+        elif field.ttype == 'many2many':
+            cmd = 'item.' + field.name + '.name'
+        elif field.ttype == 'many2one':
+            cmd = 'item.' + field.name + '.name'
+        elif field.ttype == 'one2many':
+            cmd = 'item.' + field.name
+            cmd = str(len(eval(cmd)))
+        else:
+            cmd = 'item.' + field.name
+        if eval(cmd) is not False:
+            row.write(col_nr, eval(cmd))
+
     @api.multi
     def do_model_export_execute_xls(self):
 
@@ -136,6 +170,11 @@ class ModelExport(models.Model):
         FileSystemDirectory = self.env['clv.file_system.directory']
         file_system_directory = FileSystemDirectory.search([
             ('directory', '=', self.export_dir_path),
+        ])
+
+        IRModelFields = self.env['ir.model.fields']
+        all_model_fields = IRModelFields.search([
+            ('model_id', '=', self.model_id.id),
         ])
 
         self.date_export = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -161,12 +200,18 @@ class ModelExport(models.Model):
 
         row = sheet.row(row_nr)
         col_nr = 0
-        for field in self.model_export_field_ids:
-            col_name = field.field_id.field_description
-            if field.name is not False:
+        if self.export_all_fields is False:
+            for field in self.model_export_field_ids:
+                col_name = field.field_id.field_description
+                if field.name is not False:
+                    col_name = field.name
+                row.write(col_nr, col_name)
+                col_nr += 1
+        else:
+            for field in all_model_fields:
                 col_name = field.name
-            row.write(col_nr, col_name)
-            col_nr += 1
+                row.write(col_nr, col_name)
+                col_nr += 1
 
         item_count = 0
         items = False
@@ -183,36 +228,15 @@ class ModelExport(models.Model):
                 row_nr += 1
                 row = sheet.row(row_nr)
                 col_nr = 0
-                for field in self.model_export_field_ids:
-                    if field.field_id.ttype == 'date':
-                        cmd = 'item.' + field.field_id.name
-                        if eval(cmd) is not False:
-                            date_value = eval(cmd)
-                        date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
-                        try:
-                            date_formated = datetime.strftime(date_obj, self.export_date_format)
-                        except Exception:
-                            date_formated = date_value
-                        cmd = '"' + date_formated + '"'
-                    elif field.field_id.ttype == 'datetime':
-                        cmd = 'item.' + field.field_id.name
-                        if eval(cmd) is not False:
-                            datetime_value = eval(cmd)
-                        datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
-                        try:
-                            datetime_formated = datetime.strftime(datetime_obj, self.export_datetime_format)
-                        except Exception:
-                            datetime_formated = datetime_value
-                        cmd = '"' + datetime_formated + '"'
-                    elif field.field_id.ttype == 'many2many':
-                        cmd = 'item.' + field.field_id.name + '.name'
-                    elif field.field_id.ttype == 'many2one':
-                        cmd = 'item.' + field.field_id.name + '.name'
-                    else:
-                        cmd = 'item.' + field.field_id.name
-                    if eval(cmd) is not False:
-                        row.write(col_nr, eval(cmd))
-                    col_nr += 1
+                if self.export_all_fields is False:
+                    for field in self.model_export_field_ids:
+                        self._write_xls(item, field.field_id, row, col_nr)
+                        col_nr += 1
+
+                else:
+                    for field in all_model_fields:
+                        self._write_xls(item, field, row, col_nr)
+                        col_nr += 1
 
                 _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
 

@@ -95,7 +95,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <page name="settings" position="before">
-                    <page name="model_export_fields" string="Model Export Fields">
+                    <page name="model_export_fields" string="Model Export Fields" attrs="{'invisible':[('export_all_fields', '=', True)]}">
                         <group>
                             <field name="count_model_export_fields"/>
                             <!--label for="model_export_field_ids"/-->
