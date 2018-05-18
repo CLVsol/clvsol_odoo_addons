@@ -51,7 +51,7 @@ class ObjectModelExport(models.AbstractModel):
     export_type = fields.Selection(
         [('xls', 'XLS'),
          # ('csv', 'CSV'),
-         # ('sqlite', 'SQLite'),
+         ('sqlite', 'SQLite'),
          # ], string='Export Type', readonly=False, required=True
          ], string='Export Type', default='xls', readonly=False, required=True
     )

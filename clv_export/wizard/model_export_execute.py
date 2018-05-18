@@ -64,4 +64,7 @@ class ModelExportSetUp(models.TransientModel):
             if model_export.export_type == 'xls':
                 model_export.do_model_export_execute_xls()
 
+            if model_export.export_type == 'sqlite':
+                model_export.do_model_export_execute_sqlite()
+
         return True
