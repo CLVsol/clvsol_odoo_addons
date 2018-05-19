@@ -350,10 +350,10 @@ class ModelExport_sqlite(models.Model):
         elif field.ttype == 'one2many':
             cmd = 'item.' + field.name
             cmd = str(len(eval(cmd)))
+        # elif field.ttype == 'binary':
+        #     cmd = 'False'
         else:
             cmd = 'item.' + field.name
-        if cmd == 'item.model_items':
-            return None
         if cmd != 'False' and eval(cmd) is not False:
             return eval(cmd)
         else:
@@ -487,7 +487,8 @@ class ModelExport_sqlite(models.Model):
 
         self.directory_id = file_system_directory.id
         self.file_name = file_name
-        self.stored_file_name = file_name
+        # self.stored_file_name = file_name
+        self.stored_file_name = False
 
         _logger.info(u'%s %s', '>>>>>>>>>> db_path: ', db_path)
         _logger.info(u'%s %s', '>>>>>>>>>> item_count: ', item_count)
