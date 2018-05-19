@@ -156,7 +156,8 @@ class ModelExportTemplate(models.Model):
 class ModelExport_xls(models.Model):
     _inherit = 'clv.model_export'
 
-    def _get_value_xls(self, item, field):
+    @api.model
+    def _get_value_xls(self, item, field, export_date_format, export_datetime_format):
 
         if field.ttype == 'date':
             cmd = 'item.' + field.name
@@ -164,7 +165,7 @@ class ModelExport_xls(models.Model):
                 date_value = eval(cmd)
                 date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
                 try:
-                    date_formated = datetime.strftime(date_obj, self.export_date_format)
+                    date_formated = datetime.strftime(date_obj, export_date_format)
                 except Exception:
                     date_formated = date_value
                 cmd = '"' + date_formated + '"'
@@ -176,7 +177,7 @@ class ModelExport_xls(models.Model):
                 datetime_value = eval(cmd)
                 datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
                 try:
-                    datetime_formated = datetime.strftime(datetime_obj, self.export_datetime_format)
+                    datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
                 except Exception:
                     datetime_formated = datetime_value
                 cmd = '"' + datetime_formated + '"'
@@ -188,18 +189,19 @@ class ModelExport_xls(models.Model):
             names_str = '"'
             for id_ in ids:
                 if names_str == '"':
-                    names_str += str(id_.name)
+                    names_str += id_.name
                 else:
-                    names_str += '; ' + str(id_.name)
+                    names_str += '; ' + id_.name
             names_str += '"'
-            cmd = str(names_str)
-        elif field.ttype == 'many2many':
-            cmd = 'item.' + field.name + '.name'
+            cmd = names_str.encode('ascii', 'replace')
+            # cmd = names_str.encode('ascii', 'xmlcharrefreplace')
         elif field.ttype == 'many2one':
             cmd = 'item.' + field.name + '.name'
         elif field.ttype == 'one2many':
             cmd = 'item.' + field.name
             cmd = str(len(eval(cmd)))
+        elif field.ttype == 'binary':
+            cmd = 'False'
         else:
             cmd = 'item.' + field.name
         if cmd != 'False' and eval(cmd) is not False:
@@ -275,15 +277,21 @@ class ModelExport_xls(models.Model):
                 col_nr = 0
                 if self.export_all_fields is False:
                     for field in self.model_export_field_ids:
-                        row.write(col_nr, self._get_value_xls(item, field.field_id))
+                        row.write(col_nr, self._get_value_xls(
+                            item, field.field_id,
+                            self.export_date_format, self.export_datetime_format)
+                        )
                         col_nr += 1
 
                 else:
                     for field in all_model_fields:
-                        row.write(col_nr, self._get_value_xls(item, field))
+                        row.write(col_nr, self._get_value_xls(
+                            item, field,
+                            self.export_date_format, self.export_datetime_format)
+                        )
                         col_nr += 1
 
-                _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
+                _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item)
 
         book.save(file_path)
 
@@ -299,7 +307,8 @@ class ModelExport_xls(models.Model):
 class ModelExport_sqlite(models.Model):
     _inherit = 'clv.model_export'
 
-    def _get_value_sqlite(self, item, field):
+    @api.model
+    def _get_value_sqlite(self, item, field, export_date_format, export_datetime_format):
 
         if field.ttype == 'date':
             cmd = 'item.' + field.name
@@ -307,7 +316,7 @@ class ModelExport_sqlite(models.Model):
                 date_value = eval(cmd)
                 date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
                 try:
-                    date_formated = datetime.strftime(date_obj, self.export_date_format)
+                    date_formated = datetime.strftime(date_obj, export_date_format)
                 except Exception:
                     date_formated = date_value
                 cmd = '"' + date_formated + '"'
@@ -319,7 +328,7 @@ class ModelExport_sqlite(models.Model):
                 datetime_value = eval(cmd)
                 datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
                 try:
-                    datetime_formated = datetime.strftime(datetime_obj, self.export_datetime_format)
+                    datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
                 except Exception:
                     datetime_formated = datetime_value
                 cmd = '"' + datetime_formated + '"'
@@ -343,6 +352,8 @@ class ModelExport_sqlite(models.Model):
             cmd = str(len(eval(cmd)))
         else:
             cmd = 'item.' + field.name
+        if cmd == 'item.model_items':
+            return None
         if cmd != 'False' and eval(cmd) is not False:
             return eval(cmd)
         else:
@@ -453,15 +464,21 @@ class ModelExport_sqlite(models.Model):
                 values = ()
                 if self.export_all_fields is False:
                     for field in self.model_export_field_ids:
-                        values += (self._get_value_sqlite(item, field.field_id),)
+                        values += (self._get_value_sqlite(
+                            item, field.field_id,
+                            self.export_date_format, self.export_datetime_format),
+                        )
                         col_nr += 1
 
                 else:
                     for field in all_model_fields:
-                        values += (self._get_value_sqlite(item, field),)
+                        values += (self._get_value_sqlite(
+                            item, field,
+                            self.export_date_format, self.export_datetime_format),
+                        )
                         col_nr += 1
 
-                _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
+                _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item)
 
                 cursor.execute(insert_into, values)
 
