@@ -156,28 +156,43 @@ class ModelExportTemplate(models.Model):
 class ModelExport_xls(models.Model):
     _inherit = 'clv.model_export'
 
-    def _write_xls(self, item, field, row, col_nr):
+    def _get_value_xls(self, item, field):
 
         if field.ttype == 'date':
             cmd = 'item.' + field.name
             if eval(cmd) is not False:
                 date_value = eval(cmd)
-            date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
-            try:
-                date_formated = datetime.strftime(date_obj, self.export_date_format)
-            except Exception:
-                date_formated = date_value
-            cmd = '"' + date_formated + '"'
+                date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+                try:
+                    date_formated = datetime.strftime(date_obj, self.export_date_format)
+                except Exception:
+                    date_formated = date_value
+                cmd = '"' + date_formated + '"'
+            else:
+                cmd = 'False'
         elif field.ttype == 'datetime':
             cmd = 'item.' + field.name
             if eval(cmd) is not False:
                 datetime_value = eval(cmd)
-            datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
-            try:
-                datetime_formated = datetime.strftime(datetime_obj, self.export_datetime_format)
-            except Exception:
-                datetime_formated = datetime_value
-            cmd = '"' + datetime_formated + '"'
+                datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+                try:
+                    datetime_formated = datetime.strftime(datetime_obj, self.export_datetime_format)
+                except Exception:
+                    datetime_formated = datetime_value
+                cmd = '"' + datetime_formated + '"'
+            else:
+                cmd = 'False'
+        elif field.ttype == 'many2many':
+            cmd = 'item.' + field.name
+            ids = eval(cmd)
+            names_str = '"'
+            for id_ in ids:
+                if names_str == '"':
+                    names_str += str(id_.name)
+                else:
+                    names_str += '; ' + str(id_.name)
+            names_str += '"'
+            cmd = str(names_str)
         elif field.ttype == 'many2many':
             cmd = 'item.' + field.name + '.name'
         elif field.ttype == 'many2one':
@@ -187,8 +202,10 @@ class ModelExport_xls(models.Model):
             cmd = str(len(eval(cmd)))
         else:
             cmd = 'item.' + field.name
-        if eval(cmd) is not False:
-            row.write(col_nr, eval(cmd))
+        if cmd != 'False' and eval(cmd) is not False:
+            return eval(cmd)
+        else:
+            return None
 
     @api.multi
     def do_model_export_execute_xls(self):
@@ -258,12 +275,12 @@ class ModelExport_xls(models.Model):
                 col_nr = 0
                 if self.export_all_fields is False:
                     for field in self.model_export_field_ids:
-                        self._write_xls(item, field.field_id, row, col_nr)
+                        row.write(col_nr, self._get_value_xls(item, field.field_id))
                         col_nr += 1
 
                 else:
                     for field in all_model_fields:
-                        self._write_xls(item, field, row, col_nr)
+                        row.write(col_nr, self._get_value_xls(item, field))
                         col_nr += 1
 
                 _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
@@ -282,7 +299,7 @@ class ModelExport_xls(models.Model):
 class ModelExport_sqlite(models.Model):
     _inherit = 'clv.model_export'
 
-    def _write_sqlite(self, item, field):
+    def _get_value_sqlite(self, item, field):
 
         if field.ttype == 'date':
             cmd = 'item.' + field.name
@@ -436,12 +453,12 @@ class ModelExport_sqlite(models.Model):
                 values = ()
                 if self.export_all_fields is False:
                     for field in self.model_export_field_ids:
-                        values += (self._write_sqlite(item, field.field_id),)
+                        values += (self._get_value_sqlite(item, field.field_id),)
                         col_nr += 1
 
                 else:
                     for field in all_model_fields:
-                        values += (self._write_sqlite(item, field),)
+                        values += (self._get_value_sqlite(item, field),)
                         col_nr += 1
 
                 _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item.code)
