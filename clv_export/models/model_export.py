@@ -20,6 +20,7 @@
 
 import logging
 from datetime import *
+from time import time
 import xlwt
 import sqlite3
 
@@ -130,6 +131,31 @@ class ModelExport(models.Model):
 
         return res
 
+
+class ModelExportTemplate(models.Model):
+    _inherit = 'clv.model_export.template'
+
+    model_export_ids = fields.One2many(
+        comodel_name='clv.model_export',
+        inverse_name='template_id',
+        string='Model Exports'
+    )
+    count_model_exports = fields.Integer(
+        string='Model Exports',
+        compute='_compute_count_model_exports',
+        store=True
+    )
+
+    @api.multi
+    @api.depends('model_export_ids')
+    def _compute_count_model_exports(self):
+        for r in self:
+            r.count_model_exports = len(r.model_export_ids)
+
+
+class ModelExport_xls(models.Model):
+    _inherit = 'clv.model_export'
+
     def _write_xls(self, item, field, row, col_nr):
 
         if field.ttype == 'date':
@@ -167,7 +193,6 @@ class ModelExport(models.Model):
     @api.multi
     def do_model_export_execute_xls(self):
 
-        from time import time
         start = time()
 
         FileSystemDirectory = self.env['clv.file_system.directory']
@@ -253,6 +278,10 @@ class ModelExport(models.Model):
         _logger.info(u'%s %s', '>>>>>>>>>> item_count: ', item_count)
         _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
 
+
+class ModelExport_sqlite(models.Model):
+    _inherit = 'clv.model_export'
+
     def _write_sqlite(self, item, field):
 
         if field.ttype == 'date':
@@ -305,7 +334,6 @@ class ModelExport(models.Model):
     @api.multi
     def do_model_export_execute_sqlite(self):
 
-        from time import time
         start = time()
 
         db_name = self._cr.dbname
@@ -430,24 +458,3 @@ class ModelExport(models.Model):
         _logger.info(u'%s %s', '>>>>>>>>>> db_path: ', db_path)
         _logger.info(u'%s %s', '>>>>>>>>>> item_count: ', item_count)
         _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
-
-
-class ModelExportTemplate(models.Model):
-    _inherit = 'clv.model_export.template'
-
-    model_export_ids = fields.One2many(
-        comodel_name='clv.model_export',
-        inverse_name='template_id',
-        string='Model Exports'
-    )
-    count_model_exports = fields.Integer(
-        string='Model Exports',
-        compute='_compute_count_model_exports',
-        store=True
-    )
-
-    @api.multi
-    @api.depends('model_export_ids')
-    def _compute_count_model_exports(self):
-        for r in self:
-            r.count_model_exports = len(r.model_export_ids)
