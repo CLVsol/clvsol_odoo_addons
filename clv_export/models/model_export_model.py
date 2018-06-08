@@ -67,13 +67,13 @@ class ObjectModelExport(models.AbstractModel):
 
     export_dir_path = fields.Char(
         string='Export Directory Path',
-        required=True,
+        required=False,
         help="Export Directory Path"
     )
 
     export_file_name = fields.Char(
         string='Export File Name',
-        required=True,
+        required=False,
         help="Export File Name"
     )
 
