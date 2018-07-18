@@ -19,8 +19,7 @@
 ###############################################################################
 
 import logging
-# import xmlrpclib
-import xmlrpc.client as xmlrpclib
+import xmlrpclib
 
 from odoo import api, models, fields
 
