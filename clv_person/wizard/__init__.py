@@ -18,5 +18,5 @@
 #
 ###############################################################################
 
-import person_address_updt
-import person_updt
+from . import person_address_updt
+from . import person_updt

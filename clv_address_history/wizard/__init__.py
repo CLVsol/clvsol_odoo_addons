@@ -18,5 +18,5 @@
 #
 ###############################################################################
 
-import address_updt
-import address_history_updt
+from . import address_updt
+from . import address_history_updt

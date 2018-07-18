@@ -18,6 +18,6 @@
 #
 ###############################################################################
 
-import employee_mng_updt
-import employee_mng_employee_search
-import employee_mng_employee_create
+from . import employee_mng_updt
+from . import employee_mng_employee_search
+from . import employee_mng_employee_create

@@ -18,5 +18,5 @@
 #
 ###############################################################################
 
-import animal_updt
-import animal_history_updt
+from . import animal_updt
+from . import animal_history_updt

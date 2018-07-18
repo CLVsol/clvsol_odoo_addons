@@ -18,7 +18,7 @@
 #
 ###############################################################################
 
-import survey_code_updt
-import survey_code_renew
-import survey_export_xls
-import survey_export_xml
+from . import survey_code_updt
+from . import survey_code_renew
+from . import survey_export_xls
+from . import survey_export_xml

@@ -18,10 +18,10 @@
 #
 ###############################################################################
 
-import lab_test_request_updt
-import lab_test_result_updt
-import lab_test_report_updt
-import lab_test_result_edit
-import lab_test_report_edit
-import lab_test_report_get_results
-import lab_test_result_copy_to_report
+from . import lab_test_request_updt
+from . import lab_test_result_updt
+from . import lab_test_report_updt
+from . import lab_test_result_edit
+from . import lab_test_report_edit
+from . import lab_test_report_get_results
+from . import lab_test_result_copy_to_report

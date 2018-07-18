@@ -18,15 +18,15 @@
 #
 ###############################################################################
 
-import person_mng_updt
-import person_mng_adapt
-import person_mng_person_confirm
-import person_mng_address_confirm
-import person_mng_get_related_address
-import person_mng_person_search
-import person_mng_person_update
-import person_mng_person_create
-import person_mng_address_search
-import person_mng_address_create
-import person_mng_person_address_move
-import person_mng_update_data
+from . import person_mng_updt
+from . import person_mng_adapt
+from . import person_mng_person_confirm
+from . import person_mng_address_confirm
+from . import person_mng_get_related_address
+from . import person_mng_person_search
+from . import person_mng_person_update
+from . import person_mng_person_create
+from . import person_mng_address_search
+from . import person_mng_address_create
+from . import person_mng_person_address_move
+from . import person_mng_update_data

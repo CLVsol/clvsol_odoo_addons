@@ -18,4 +18,4 @@
 #
 ###############################################################################
 
-import lab_test_off_report_edit
+from . import lab_test_off_report_edit

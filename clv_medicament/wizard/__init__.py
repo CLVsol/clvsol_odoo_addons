@@ -18,4 +18,4 @@
 #
 ###############################################################################
 
-import medicament_updt
+from . import medicament_updt

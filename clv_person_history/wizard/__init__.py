@@ -18,5 +18,5 @@
 #
 ###############################################################################
 
-import person_updt
-import person_history_updt
+from . import person_updt
+from . import person_history_updt

@@ -18,8 +18,8 @@
 #
 ###############################################################################
 
-import document_updt
-import document_item_edit
-import document_item_refresh
-import document_type_item_setup
-import document_items_ok_setup
+from . import document_updt
+from . import document_item_edit
+from . import document_item_refresh
+from . import document_type_item_setup
+from . import document_items_ok_setup

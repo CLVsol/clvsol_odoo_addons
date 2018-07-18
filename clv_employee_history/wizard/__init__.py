@@ -18,5 +18,5 @@
 #
 ###############################################################################
 
-import hr_employee_updt
-import hr_employee_history_updt
+from . import hr_employee_updt
+from . import hr_employee_history_updt

@@ -18,13 +18,13 @@
 #
 ###############################################################################
 
-import person_off_updt
-import person_off_related_address_confirm
-import person_off_address_confirm
-import person_off_person_confirm
-import person_off_address_search
-import person_off_address_create
-import person_off_person_search
-import person_off_person_update
-import person_off_person_create
-import person_off_update_data
+from . import person_off_updt
+from . import person_off_related_address_confirm
+from . import person_off_address_confirm
+from . import person_off_person_confirm
+from . import person_off_address_search
+from . import person_off_address_create
+from . import person_off_person_search
+from . import person_off_person_update
+from . import person_off_person_create
+from . import person_off_update_data
