@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="clv_global_tag.group_user" model="res.groups">
+            <field name="name">User (Global Tag)</field>
+        </record>
+        
+        <record id="clv_global_tag.group_manager" model="res.groups">
+            <field name="name">Manager (Global Tag)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_global_tag.group_user'))]"/>
+        </record>
+        
+        <record id="clv_global_tag.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Global Tag)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_global_tag.group_manager'))]"/>
+        </record>
+
+    </data>
+</odoo>
