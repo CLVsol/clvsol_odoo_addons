@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="clv_base.group_user" model="res.groups">
+            <field name="name">User (Base)</field>
+        </record>
+
+        <record id="clv_base.group_supuser" model="res.groups">
+            <field name="name">Super User (Base)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_base.group_user'))]"/>
+        </record>
+
+        <record id="clv_base.group_annuser" model="res.groups">
+            <field name="name">Annotation User (Base)</field>
+        </record>
+
+        <record id="clv_base.group_reguser" model="res.groups">
+            <field name="name">Register User (Base)</field>
+        </record>
+
+        <record id="clv_base.group_loguser" model="res.groups">
+            <field name="name">Log User (Base)</field>
+        </record>
+
+        <record id="clv_base.group_manager" model="res.groups">
+            <field name="name">Manager (Base)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_base.group_supuser'))]"/>
+        </record>
+
+        <record id="clv_base.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Base)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_base.group_manager'))]"/>
+        </record>
+
+        <record id="clv_base.make_invisible" model="res.groups">
+            <field name="name">Make Invisible (Base - do not use!)</field>
+        </record>
+
+    </data>
+</odoo>
