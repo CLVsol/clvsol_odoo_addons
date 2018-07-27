@@ -25,9 +25,11 @@ class ObjectTag(models.AbstractModel):
     _name = 'clv.object.tag'
     _parent_store = True
     _parent_order = 'name'
-    _order = 'parent_left'
+    # _order = 'parent_left'
+    _order = 'parent_id, name'
 
     name = fields.Char(string='Tag Name', required=True, translate=True)
+    code = fields.Char(string='Tag Code', required=False)
     description = fields.Char(string='Description')
     notes = fields.Text(string='Notes')
 
@@ -50,6 +52,15 @@ class ObjectTag(models.AbstractModel):
          ['parent_id']),
     ]
 
+    _sql_constraints = [
+        ('code_uniq',
+         'UNIQUE (code)',
+         'Error! The Code must be unique!'),
+        ('name_uniq',
+         'UNIQUE (parent_id, name)',
+         'Error! The Name must be unique for the same Parent!'),
+    ]
+
     @api.multi
     def name_get(self):
         """Return the tag's display name, including their direct parent by default.
@@ -63,15 +74,15 @@ class ObjectTag(models.AbstractModel):
             self._context = {}
         if self._context.get('tag_display') == 'short':
             return super(ObjectTag, self).name_get()
-        if isinstance(self._ids, (int, long)):
-            self._ids = [self._ids]
-        reads = self.read(['name', 'parent_id'])
+
         res = []
-        for record in reads:
-            name = record['name']
-            if record['parent_id']:
-                name = record['parent_id'][1] + ' / ' + name
-            res.append((record['id'], name))
+        for record in self:
+            names = []
+            current = record
+            while current:
+                names.append(current.name)
+                current = current.parent_id
+            res.append((record.id, ' / '.join(reversed(names))))
         return res
 
     @api.model
