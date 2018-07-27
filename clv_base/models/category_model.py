@@ -25,9 +25,11 @@ class ObjectCategory(models.AbstractModel):
     _name = 'clv.object.category'
     _parent_store = True
     _parent_order = 'name'
-    _order = 'parent_left'
+    # _order = 'parent_left'
+    _order = 'parent_id, name'
 
     name = fields.Char(string='Category Name', required=True, translate=True)
+    code = fields.Char(string='Category Code', required=False)
     description = fields.Char(string='Description')
     notes = fields.Text(string='Notes')
 
@@ -50,6 +52,15 @@ class ObjectCategory(models.AbstractModel):
          ['parent_id']),
     ]
 
+    _sql_constraints = [
+        ('code_uniq',
+         'UNIQUE (code)',
+         'Error! The Code must be unique!'),
+        ('name_uniq',
+         'UNIQUE (parent_id, name)',
+         'Error! The Name must be unique for the same Parent!'),
+    ]
+
     @api.multi
     def name_get(self):
         """Return the category's display name, including their direct parent by default.
@@ -63,15 +74,15 @@ class ObjectCategory(models.AbstractModel):
             self._context = {}
         if self._context.get('category_display') == 'short':
             return super(ObjectCategory, self).name_get()
-        if isinstance(self._ids, (int, long)):
-            self._ids = [self._ids]
-        reads = self.read(['name', 'parent_id'])
+
         res = []
-        for record in reads:
-            name = record['name']
-            if record['parent_id']:
-                name = record['parent_id'][1] + ' / ' + name
-            res.append((record['id'], name))
+        for record in self:
+            names = []
+            current = record
+            while current:
+                names.append(current.name)
+                current = current.parent_id
+            res.append((record.id, ' / '.join(reversed(names))))
         return res
 
     @api.model
