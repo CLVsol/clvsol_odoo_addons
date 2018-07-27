@@ -26,8 +26,6 @@ class GlobalTag(models.Model):
     _name = 'clv.global_tag'
     _inherit = 'clv.object.tag'
 
-    code = fields.Char(string='Tag Code', required=False)
-
     parent_id = fields.Many2one(
         comodel_name='clv.global_tag',
         string='Parent Tag',
@@ -40,13 +38,3 @@ class GlobalTag(models.Model):
         inverse_name='parent_id',
         string='Child Tags'
     )
-
-    active = fields.Boolean(string='Active', default=True)
-
-    color = fields.Integer(string='Color Index')
-
-    _sql_constraints = [
-        ('code_uniq',
-         'UNIQUE (code)',
-         'Error! The Code must be unique!'),
-    ]
