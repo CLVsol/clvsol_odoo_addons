@@ -21,22 +21,22 @@
 from openerp import api, fields, models
 
 
-class ObjectCategory(models.AbstractModel):
-    _name = 'clv.object.category'
+class CategoryModel(models.AbstractModel):
+    _name = 'clv.category.model'
     _parent_store = True
     _parent_order = 'name'
     # _order = 'parent_left'
     _order = 'name, parent_id'
 
-    name = fields.Char(string='Category Name', required=True, translate=True)
-    code = fields.Char(string='Category Code', required=False)
+    name = fields.Char(string='Name', required=True, translate=True)
+    code = fields.Char(string='Code', required=False)
     description = fields.Char(string='Description')
     notes = fields.Text(string='Notes')
 
     parent_left = fields.Integer(string='Left parent', index=True)
     parent_right = fields.Integer(string='Right parent', index=True)
     complete_name = fields.Char(
-        string='Full Category Name',
+        string='Full Name',
         compute='_name_get_fnc',
         store=False,
         readonly=True
@@ -73,7 +73,7 @@ class ObjectCategory(models.AbstractModel):
         if self._context is None:
             self._context = {}
         if self._context.get('category_display') == 'short':
-            return super(ObjectCategory, self).name_get()
+            return super(CategoryModel, self).name_get()
 
         res = []
         for record in self:
