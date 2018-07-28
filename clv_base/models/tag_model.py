@@ -21,22 +21,22 @@
 from openerp import api, fields, models
 
 
-class ObjectTag(models.AbstractModel):
-    _name = 'clv.object.tag'
+class TagModel(models.AbstractModel):
+    _name = 'clv.tag.model'
     _parent_store = True
     _parent_order = 'name'
     # _order = 'parent_left'
     _order = 'name, parent_id'
 
-    name = fields.Char(string='Tag Name', required=True, translate=True)
-    code = fields.Char(string='Tag Code', required=False)
+    name = fields.Char(string='Name', required=True, translate=True)
+    code = fields.Char(string='Code', required=False)
     description = fields.Char(string='Description')
     notes = fields.Text(string='Notes')
 
     parent_left = fields.Integer('Left parent', index=True)
     parent_right = fields.Integer('Right parent', index=True)
     complete_name = fields.Char(
-        string='Full Tag Name',
+        string='Full Name',
         compute='_name_get_fnc',
         store=False,
         readonly=True
@@ -73,7 +73,7 @@ class ObjectTag(models.AbstractModel):
         if self._context is None:
             self._context = {}
         if self._context.get('tag_display') == 'short':
-            return super(ObjectTag, self).name_get()
+            return super(TagModel, self).name_get()
 
         res = []
         for record in self:
