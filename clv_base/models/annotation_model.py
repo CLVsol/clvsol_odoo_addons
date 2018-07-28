@@ -23,8 +23,8 @@ from datetime import *
 from odoo import fields, models
 
 
-class ObjectAnnotation(models.AbstractModel):
-    _name = 'clv.object.annotation'
+class AnnotationModel(models.AbstractModel):
+    _name = 'clv.annotation.model'
     _order = "date_annotation desc"
 
     name = fields.Char(string='Subject', index=True, required=False)
