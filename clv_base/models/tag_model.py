@@ -26,7 +26,7 @@ class ObjectTag(models.AbstractModel):
     _parent_store = True
     _parent_order = 'name'
     # _order = 'parent_left'
-    _order = 'parent_id, name'
+    _order = 'name, parent_id'
 
     name = fields.Char(string='Tag Name', required=True, translate=True)
     code = fields.Char(string='Tag Code', required=False)
