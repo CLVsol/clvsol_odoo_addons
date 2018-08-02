@@ -44,13 +44,10 @@ _logger = logging.getLogger(__name__)
 class AddressUpdate(models.TransientModel):
     _name = 'clv.address.updt'
 
-    def _default_address_ids(self):
-        return self._context.get('active_ids')
     address_ids = fields.Many2many(
         comodel_name='clv.address',
         relation='clv_address_updt_rel',
-        string='Addresses',
-        default=_default_address_ids
+        string='Addresses'
     )
 
     global_tag_ids = fields.Many2many(
@@ -94,6 +91,12 @@ class AddressUpdate(models.TransientModel):
          ('remove', 'Remove'),
          ], string='Street', default=False, readonly=False, required=False
     )
+
+    @api.model
+    def default_get(self, field_names):
+        defaults = super(AddressUpdate, self).default_get(field_names)
+        defaults['address_ids'] = self.env.context['active_ids']
+        return defaults
 
     @api.multi
     def _reopen_form(self):
