@@ -29,7 +29,7 @@ class Tag(models.Model):
         relation='clv_person_off_global_tag_rel',
         column1='global_tag_id',
         column2='person_off_id',
-        string='Persons Off'
+        string='Persons (Off)'
     )
 
 

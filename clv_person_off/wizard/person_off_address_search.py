@@ -33,7 +33,7 @@ class PersonOffAddressSearch(models.TransientModel):
     person_off_ids = fields.Many2many(
         comodel_name='clv.person.off',
         relation='clv_person_off_address_search_rel',
-        string='Persons (Management)',
+        string='Persons (Off)',
         default=_default_person_off_ids
     )
 

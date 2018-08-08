@@ -98,7 +98,7 @@ class PersonOffAddressConfirm(models.TransientModel):
         return True
 
     @api.multi
-    def do_populate_all_person_offs(self):
+    def do_populate_all_persons_off(self):
         self.ensure_one()
 
         PersonOff = self.env['clv.person.off']

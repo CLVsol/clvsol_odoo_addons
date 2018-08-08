@@ -22,7 +22,7 @@
                             </group>
                         </group>
                         <field name="log_ids" colspan="4" nolabel="1">
-                            <tree string="Person Off Log">
+                            <tree string="Person (Off) Log">
                                 <!--field name="person_off_id"/-->
                                 <field name="user_id"/>
                                 <field name="date_log"/>

@@ -26,7 +26,7 @@ from odoo.exceptions import UserError
 
 
 class PersonOff(models.Model):
-    _description = 'Person Off'
+    _description = 'Person (Off)'
     _name = 'clv.person.off'
     _order = 'name'
 
