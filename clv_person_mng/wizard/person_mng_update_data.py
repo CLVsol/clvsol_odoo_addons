@@ -33,7 +33,7 @@ class PersonMngUpdateData(models.TransientModel):
     person_mng_ids = fields.Many2many(
         comodel_name='clv.person.mng',
         relation='clv_person_mng_update_data_rel',
-        string='Persons (Management)',
+        string='Persons (Mng)',
         default=_default_person_mng_ids
     )
 
@@ -61,6 +61,8 @@ class PersonMngUpdateData(models.TransientModel):
             if (person_mng.state in ['draft', 'revised']) and \
                (person_mng.person_id.id is not False):
 
+                person_mng.name = person_mng.person_id.name
+                person_mng.code = person_mng.person_id.code
                 person_mng.gender = person_mng.person_id.gender
                 person_mng.birthday = person_mng.person_id.birthday
                 person_mng.birthday = person_mng.person_id.birthday

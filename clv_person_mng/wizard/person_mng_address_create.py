@@ -34,7 +34,7 @@ class PersonMngAddressCreate(models.TransientModel):
     person_mng_ids = fields.Many2many(
         comodel_name='clv.person.mng',
         relation='clv_person_mng_address_create_rel',
-        string='Persons (Management)',
+        string='Persons (Mng)',
         default=_default_person_mng_ids
     )
 

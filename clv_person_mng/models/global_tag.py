@@ -29,11 +29,11 @@ class Tag(models.Model):
         relation='clv_person_mng_global_tag_rel',
         column1='global_tag_id',
         column2='person_mng_id',
-        string='Persons Management'
+        string='Persons (Mng)'
     )
 
 
-class Person(models.Model):
+class PersonMng(models.Model):
     _inherit = 'clv.person.mng'
 
     global_tag_ids = fields.Many2many(

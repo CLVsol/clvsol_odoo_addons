@@ -26,7 +26,7 @@ from odoo.exceptions import UserError
 
 
 class PersonMng(models.Model):
-    _description = 'Person Management'
+    _description = 'Person (Mng)'
     _name = 'clv.person.mng'
     _order = 'name'
 
@@ -37,18 +37,20 @@ class PersonMng(models.Model):
         for record in self:
             result.append(
                 (record.id,
-                 # u'%s [%s] (%s)' % (record.name, record.code, record.age)
-                 u'%s (%s)' % (record.name, record.age)
+                 u'%s [%s] (%s)' % (record.name, record.code, record.age)
                  ))
         return result
 
     name = fields.Char(string='Name', required=True)
 
+    code = fields.Char(string='Person Code', required=False)
+
     notes = fields.Text(string='Notes')
 
     gender = fields.Selection(
         [('M', 'Male'),
-         ('F', 'Female')
+         ('F', 'Female'),
+         ('O', 'Other'),
          ], string='Gender'
     )
 
@@ -218,3 +220,12 @@ class PersonMng(models.Model):
          ('none', 'None'),
          ], string='Action (Person Address)', default='undefined'
     )
+
+    _sql_constraints = [
+        ('name_uniq',
+         'UNIQUE (name)',
+         u'Error! The Name must be unique!'),
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]

@@ -34,7 +34,7 @@ class PersonMngPersonCreate(models.TransientModel):
     person_mng_ids = fields.Many2many(
         comodel_name='clv.person.mng',
         relation='clv_person_mng_person_create_rel',
-        string='Persons (Management)',
+        string='Persons (Mng)',
         default=_default_person_mng_ids
     )
 
@@ -112,6 +112,7 @@ class PersonMngPersonCreate(models.TransientModel):
                             new_person.code = '/'
 
                             person_mng.person_id = new_person.id
+                            person_mng.code = new_person.code
 
                             _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_mng.action_person)
 

@@ -3,16 +3,16 @@
     <data noupdate="0">
 
         <record id="clv_person_mng.group_user" model="res.groups">
-            <field name="name">User (Person Management)</field>
+            <field name="name">User (Person (Mng))</field>
         </record>
         
         <record id="clv_person_mng.group_manager" model="res.groups">
-            <field name="name">Manager (Person Management)</field>
+            <field name="name">Manager (Person (Mng))</field>
             <field name="implied_ids" eval="[(4, ref('clv_person_mng.group_user'))]"/>
         </record>
         
         <record id="clv_person_mng.group_supmanager" model="res.groups">
-            <field name="name">Super Manager (Person Management)</field>
+            <field name="name">Super Manager (Person (Mng))</field>
             <field name="implied_ids" eval="[(4, ref('clv_person_mng.group_manager'))]"/>
         </record>
 

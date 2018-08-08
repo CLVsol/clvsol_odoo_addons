@@ -22,13 +22,13 @@ from odoo import api, fields, models
 
 
 class PersonMngLog(models.Model):
-    _description = 'Person Management Log'
+    _description = 'Person (Mng) Log'
     _name = 'clv.person.mng.log'
     _inherit = 'clv.object.log'
 
     person_mng_id = fields.Many2one(
         comodel_name='clv.person.mng',
-        string='Person Management',
+        string='Person (Mng)',
         required=True,
         ondelete='cascade'
     )
@@ -41,7 +41,7 @@ class PersonMng(models.Model):
     log_ids = fields.One2many(
         comodel_name='clv.person.mng.log',
         inverse_name='person_mng_id',
-        string='Person Log',
+        string='Person (Mng) Log',
         readonly=True
     )
 

@@ -9,7 +9,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <page name="tag_for" position="inside">
-                    <group string="Persons Management">
+                    <group string="Persons (Mng)">
                         <field name="person_mng_ids" colspan="4" nolabel="1"/>
                     </group>
                 </page>
