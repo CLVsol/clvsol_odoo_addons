@@ -29,6 +29,7 @@ _logger = logging.getLogger(__name__)
 class ExternalSyncModel(models.AbstractModel):
     _name = 'clv.external_sync.model'
 
+    external_model = fields.Char(string='External Model')
     external_id = fields.Integer(string='External ID')
     external_last_update = fields.Datetime(string="External Last Update")
     external_sync = fields.Selection(
