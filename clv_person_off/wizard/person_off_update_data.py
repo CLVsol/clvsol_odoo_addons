@@ -61,6 +61,7 @@ class PersonOffUpdateData(models.TransientModel):
             if (person_off.state in ['draft', 'revised']) and \
                (person_off.person_id.id is not False):
 
+                person_off.name = person_off.person_id.name
                 person_off.code = person_off.person_id.code
                 person_off.gender = person_off.person_id.gender
                 person_off.birthday = person_off.person_id.birthday
