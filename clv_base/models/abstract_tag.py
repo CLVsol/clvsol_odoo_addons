@@ -21,8 +21,8 @@
 from openerp import api, fields, models
 
 
-class CategoryModel(models.AbstractModel):
-    _name = 'clv.category.model'
+class AbstractTag(models.AbstractModel):
+    _name = 'clv.abstract.tag'
     _parent_store = True
     _parent_order = 'name'
     # _order = 'parent_left'
@@ -33,8 +33,8 @@ class CategoryModel(models.AbstractModel):
     description = fields.Char(string='Description')
     notes = fields.Text(string='Notes')
 
-    parent_left = fields.Integer(string='Left parent', index=True)
-    parent_right = fields.Integer(string='Right parent', index=True)
+    parent_left = fields.Integer('Left parent', index=True)
+    parent_right = fields.Integer('Right parent', index=True)
     complete_name = fields.Char(
         string='Full Name',
         compute='_name_get_fnc',
@@ -44,11 +44,11 @@ class CategoryModel(models.AbstractModel):
 
     active = fields.Boolean(string='Active', default=True)
 
-    color = fields.Integer(string='Color Index')
+    color = fields.Integer('Color Index')
 
     _constraints = [
         (models.Model._check_recursion,
-         'Error! You can not create recursive categories.',
+         'Error! You can not create recursive tags.',
          ['parent_id']),
     ]
 
@@ -63,17 +63,17 @@ class CategoryModel(models.AbstractModel):
 
     @api.multi
     def name_get(self):
-        """Return the category's display name, including their direct parent by default.
+        """Return the tag's display name, including their direct parent by default.
 
-        :param dict context: the ``category_display`` key can be
+        :param dict context: the ``tag_display`` key can be
                              used to select the short version of the
-                             category (without the direct parent),
+                             tag (without the direct parent),
                              when set to ``'short'``. The default is
                              the long version."""
         if self._context is None:
             self._context = {}
-        if self._context.get('category_display') == 'short':
-            return super(CategoryModel, self).name_get()
+        if self._context.get('tag_display') == 'short':
+            return super(AbstractTag, self).name_get()
 
         res = []
         for record in self:
@@ -91,8 +91,8 @@ class CategoryModel(models.AbstractModel):
         if name:
             name = name.split(' / ')[-1]
             args = [('name', operator, name)] + args
-        categories = self.search(args, limit=limit)
-        return categories.name_get()
+        tags = self.search(args, limit=limit)
+        return tags.name_get()
 
     @api.one
     def _name_get_fnc(self):

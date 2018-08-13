@@ -23,8 +23,8 @@ from datetime import *
 from odoo import api, fields, models
 
 
-class ObjectLog(models.AbstractModel):
-    _name = 'clv.object.log'
+class AbstractLog(models.AbstractModel):
+    _name = 'clv.abstract.log'
     _order = "id desc"
 
     user_id = fields.Many2one(

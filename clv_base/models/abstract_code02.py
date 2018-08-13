@@ -67,8 +67,8 @@ def format_code(code_seq, code_len):
     return code_str
 
 
-class Code02Model(models.AbstractModel):
-    _name = 'clv.code02.model'
+class AbstractCode02(models.AbstractModel):
+    _name = 'clv.abstract.code02'
 
     code = fields.Char(
         string='Code', required=False, default=False,
@@ -104,7 +104,7 @@ class Code02Model(models.AbstractModel):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence_10'])
             code_len = len(code_seq)
             values['code'] = format_code(code_seq, code_len)
-        return super(Code02Model, self).create(values)
+        return super(AbstractCode02, self).create(values)
 
     @api.multi
     def write(self, values):
@@ -142,10 +142,10 @@ class Code02Model(models.AbstractModel):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_10)
                 code_len = len(code_seq)
                 values['code'] = format_code(code_seq, code_len)
-            return super(Code02Model, self).write(values)
+            return super(AbstractCode02, self).write(values)
 
     @api.one
     def copy(self, default=None):
         default = dict(default or {})
         default.update({'code': '/', })
-        return super(Code02Model, self).copy(default)
+        return super(AbstractCode02, self).copy(default)

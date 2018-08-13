@@ -32,8 +32,8 @@ def get_random_field():
     return random_field
 
 
-class RandomModel(models.AbstractModel):
-    _name = 'clv.random.model'
+class AbstractRandom(models.AbstractModel):
+    _name = 'clv.abstract.random'
     _order = 'random'
 
     random_field = fields.Char(
@@ -46,17 +46,17 @@ class RandomModel(models.AbstractModel):
         if 'random_field' not in values or ('random_field' in values and values['random_field'] == '/'):
             random_field = get_random_field()
             values['random_field'] = random_field
-        return super(RandomModel, self).create(values)
+        return super(AbstractRandom, self).create(values)
 
     @api.multi
     def write(self, values):
         if 'random_field' in values and values['random_field'] == '/':
             random_field = get_random_field()
             values['random_field'] = random_field
-        return super(RandomModel, self).write(values)
+        return super(AbstractRandom, self).write(values)
 
     @api.one
     def copy(self, default=None):
         default = dict(default or {})
         default.update({'random_field': '/', })
-        return super(RandomModel, self).copy(default)
+        return super(AbstractRandom, self).copy(default)
