@@ -24,7 +24,7 @@ from odoo import api, fields, models
 class GlobalTagLog(models.Model):
     _description = 'Global Tag Log'
     _name = 'clv.global_tag.log'
-    _inherit = 'clv.object.log'
+    _inherit = 'clv.abstract.log'
 
     global_tag_id = fields.Many2one(
         comodel_name='clv.global_tag',
