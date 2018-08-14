@@ -30,6 +30,7 @@
     'data': [
         'security/base_security.xml',
         'data/annotation_seq.xml',
+        'views/abstract_entity_view.xml',
     ],
     'demo': [],
     'test': [],
