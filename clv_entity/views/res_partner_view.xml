@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_res_partner_form_entity" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <page name="sales_purchases" position="after">
+                    <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
+                        <group name="settings">
+                            <field name="id"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</odoo>
