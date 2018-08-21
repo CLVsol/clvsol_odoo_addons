@@ -18,6 +18,17 @@
 #
 ###############################################################################
 
-from . import patient
-from . import patient_log
-from . import res_partner
+from odoo import fields, models
+
+
+class Patient(models.Model):
+    _name = "clv.patient"
+    _inherit = 'clv.patient', 'clv.abstract.model.log'
+
+    log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
+
+    log_ids = fields.One2many(
+        string='Global Logs',
+        comodel_name='clv.global_log',
+        compute='_compute_log_ids_and_count',
+    )

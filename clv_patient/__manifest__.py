@@ -28,11 +28,13 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_base',
+        'clv_global_log',
     ],
     'data': [
         'security/patient_security.xml',
         'security/ir.model.access.csv',
         'views/patient_view.xml',
+        'views/patient_log_view.xml',
         'views/res_partner_view.xml',
     ],
     'demo': [],
