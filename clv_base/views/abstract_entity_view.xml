@@ -311,6 +311,11 @@
                     <page name='page_internal_notes' string="ID &amp; Notes">
                         <field name="comment" placeholder="Internal Note..." />
                     </page>
+                    <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                        <group name="settings">
+                            <field name="id"/>
+                        </group>
+                    </page>
                 </notebook> 
             </sheet>
             <footer>
