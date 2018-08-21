@@ -26,4 +26,3 @@ from . import abstract_log
 from . import abstract_annotation
 from . import abstract_random
 from . import export_xls
-from . import abstract_entity
