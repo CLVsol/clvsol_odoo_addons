@@ -28,6 +28,7 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_base',
+        'clv_global_log',
     ],
     'data': [
         'security/global_tag_security.xml',
