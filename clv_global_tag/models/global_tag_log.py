@@ -18,39 +18,17 @@
 #
 ###############################################################################
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
-class GlobalTagLog(models.Model):
-    _description = 'Global Tag Log'
-    _name = 'clv.global_tag.log'
-    _inherit = 'clv.abstract.log'
-
-    global_tag_id = fields.Many2one(
-        comodel_name='clv.global_tag',
-        string='Tag',
-        required=True,
-        ondelete='cascade')
-
-
-class Tag(models.Model):
+class GlobalTag(models.Model):
     _name = "clv.global_tag"
-    _inherit = 'clv.global_tag', 'clv.log.model'
+    _inherit = 'clv.global_tag', 'clv.abstract.model.log'
+
+    log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
 
     log_ids = fields.One2many(
-        comodel_name='clv.global_tag.log',
-        inverse_name='global_tag_id',
-        string='Tag Log',
-        readonly=True
+        string='Global Logs',
+        comodel_name='clv.global_log',
+        compute='_compute_log_ids_and_count',
     )
-
-    @api.one
-    def insert_object_log(self, global_tag_id, values, action, notes):
-        if self.active_log or 'active_log' in values:
-            vals = {
-                'global_tag_id': global_tag_id,
-                'values': values,
-                'action': action,
-                'notes': notes,
-            }
-            self.env['clv.global_tag.log'].create(vals)

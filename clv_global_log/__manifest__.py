@@ -19,18 +19,19 @@
 ###############################################################################
 
 {
-    'name': 'Base Module',
-    'summary': 'Base Module used by CLVsol Solutions.',
+    'name': 'Global Log',
+    'summary': 'Global Log Module used by CLVsol Solutions.',
     'version': '3.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'website': 'https://github.com/CLVsol',
-    'depends': ['base'],
+    'depends': [
+        'clv_base',
+    ],
     'data': [
-        'security/base_security.xml',
-        'data/annotation_seq.xml',
-        'views/abstract_log_view.xml',
+        'security/ir.model.access.csv',
+        'views/global_log_view.xml',
     ],
     'demo': [],
     'test': [],
