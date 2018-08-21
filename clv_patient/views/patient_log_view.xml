@@ -39,7 +39,7 @@
                                 </button>
                             </group>
                             <field name="log_ids" colspan="4" nolabel="1">
-                                <tree string="Tag Log">
+                                <tree string="Patient Logs">
                                     <field name="user_id"/>
                                     <field name="date_log"/>
                                     <field name="values"/>

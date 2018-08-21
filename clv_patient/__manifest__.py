@@ -29,6 +29,7 @@
     'depends': [
         'clv_base',
         'clv_global_log',
+        'clv_entity',
     ],
     'data': [
         'security/patient_security.xml',
