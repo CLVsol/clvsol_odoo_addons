@@ -18,31 +18,10 @@
 #
 ###############################################################################
 
-{
-    'name': 'Global Tag',
-    'summary': 'Global Tag Module used by CLVsol Solutions.',
-    'version': '3.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': [
-        'clv_base',
-        'clv_global_log',
-    ],
-    'data': [
-        'security/global_tag_security.xml',
-        'security/ir.model.access.csv',
-        'views/global_tag_view.xml',
-        'views/global_tag_log_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import models
+
+
+class GlobalLog(models.Model):
+    _description = 'Global Log'
+    _name = 'clv.global_log'
+    _inherit = 'clv.abstract.log'
