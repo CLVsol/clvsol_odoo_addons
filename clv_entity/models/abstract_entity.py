@@ -3,6 +3,7 @@
 # License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
 
 import threading
+import base64
 
 from openerp import api, fields, models, tools
 
@@ -98,11 +99,20 @@ class AbstractEntity(models.AbstractModel):
             str: A base64 encoded image.
             NoneType: None if no result.
         """
+        colorize, image_path, image = False, False, False
+
         image_path = self._get_default_image_path(vals)
         if not image_path:
             return
-        with open(image_path, 'r') as image:
-            return image.read().encode('base64')
+
+        if image_path:
+            with open(image_path, 'rb') as f:
+                image = f.read()
+
+        if image and colorize:
+            image = tools.image_colorize(image)
+
+        return base64.b64encode(image)
 
     @api.model_cr_context
     def _get_default_image_path(self, vals):
