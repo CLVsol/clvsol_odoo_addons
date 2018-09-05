@@ -21,9 +21,9 @@
 from odoo import fields, models
 
 
-class Patient(models.Model):
-    _name = "clv.patient"
-    _inherit = 'clv.patient', 'clv.abstract.model.log'
+class AbstractEntity(models.AbstractModel):
+    _name = "clv.abstract.entity"
+    _inherit = 'clv.abstract.entity', 'clv.abstract.model.log'
 
     log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
 

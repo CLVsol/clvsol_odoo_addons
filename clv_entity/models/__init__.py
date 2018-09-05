@@ -20,3 +20,4 @@
 
 from . import res_partner_log
 from . import abstract_entity
+from . import abstract_entry_log

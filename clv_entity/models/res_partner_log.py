@@ -23,12 +23,12 @@ from odoo import fields, models
 
 class ResPartner(models.Model):
     _name = "res.partner"
-    _inherit = 'res.partner', 'clv.abstract.base_model.log'
+    _inherit = 'res.partner', 'clv.abstract.model.log'
 
-    log_model_base = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
+    log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
 
-    log_base_ids = fields.One2many(
+    log_ids = fields.One2many(
         string='Global Logs',
         comodel_name='clv.global_log',
-        compute='_compute_log_base_ids_and_count',
+        compute='_compute_log_ids_and_count',
     )
