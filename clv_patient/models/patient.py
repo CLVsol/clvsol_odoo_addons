@@ -111,10 +111,13 @@ class Patient(models.Model):
 
     @api.model_cr_context
     def _get_default_image_path(self, vals):
-        super(Patient, self)._get_default_image_path(vals)
-        return get_module_resource(
-            'clv', 'static/src/img', 'patient-avatar.png',
+        res = super(Patient, self)._get_default_image_path(vals)
+        if res:
+            return res
+        image_path = get_module_resource(
+            'clv_patient', 'static/src/img', 'patient-avatar.png',
         )
+        return image_path
 
     def _search_age(self, operator, value):
         if operator not in ('ilike', '=', '>=', '>', '<', '<='):

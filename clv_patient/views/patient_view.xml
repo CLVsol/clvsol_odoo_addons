@@ -56,11 +56,11 @@
             <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
                 <img name="kanban_image_default_person"
                      t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv/static/src/img/patient-avatar.png'
+                     t-attf-src='{{ _s }}/clv_patient/static/src/img/patient-avatar.png'
                 />
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page name="clv" string="Medical" autofocus="True">
+                <page name="clv_patient" string="Patient" autofocus="True">
                     <!--group name="group_clv_buttons" class="oe_button_box" col="6">
                         <button name="toggle_is_pregnant"
                             type="object"
