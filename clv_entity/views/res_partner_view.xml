@@ -24,7 +24,6 @@
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
             <filter name="group_country" position="after">
-                <separator/>
                 <filter name="type" string="Address Type" context="{'group_by': 'type'}"/>
             </filter>
         </field>
