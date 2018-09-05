@@ -9,7 +9,7 @@
             <field name="priority" eval="100" />
             <field name="arch" type="xml">
                 <page name="settings" position="after">
-                    <!--page string="Log" groups="clv_base.group_loguser" attrs="{'invisible': ['|', ('active_log_base', '=', False)]}"-->
+                    <!--page string="Log" groups="clv_base.group_loguser" attrs="{'invisible': ['|', ('active_log', '=', False)]}"-->
                     <page string="Log" groups="clv_base.group_loguser">
                         <group name="record_log">
                             <group name="creation">
@@ -21,24 +21,24 @@
                                 <field name="write_date" readonly="True"/>
                             </group>
                             <group name="log_model">
-                                <field name="log_model_base" readonly="True"/>
-                                <field name="reference_base"/>
+                                <field name="log_model" readonly="True"/>
+                                <field name="reference"/>
                                 <button name="clv_global_log.clv_global_log_action"
                                         type="action"
                                         class="oe_stat_button"
                                         icon="fa-list"
-                                        context="{'search_default_reference': reference_base}"
+                                        context="{'search_default_reference': reference}"
                                         target='new'
                                         >
                                     <div class="o_form_field o_stat_info">
                                         <span class="o_stat_value">
-                                            <field name="count_base_logs"/>
+                                            <field name="count_logs"/>
                                         </span>
                                         <span class="o_stat_text"> Global Log(s)</span>
                                     </div>
                                 </button>
                             </group>
-                            <field name="log_base_ids" colspan="4" nolabel="1">
+                            <field name="log_ids" colspan="4" nolabel="1">
                                 <tree string="Partner Logs">
                                     <field name="user_id"/>
                                     <field name="date_log"/>
@@ -47,14 +47,14 @@
                                     <field name="notes"/>
                                     <!--field name="model"/-->
                                     <!--field name="res_id"/-->
-                                    <!--field name="reference_base"/-->
+                                    <!--field name="reference"/-->
                                 </tree>
                             </field>
                         </group>
                     </page>
                 </page>
                 <group name="settings" position="inside">
-                    <field name="active_log_base"/>
+                    <field name="active_log"/>
                 </group>
             </field>
         </record>
