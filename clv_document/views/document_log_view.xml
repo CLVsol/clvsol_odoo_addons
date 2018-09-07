@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <record id="clv_document_view_form_log" model="ir.ui.view">
+            <field name="name">clv.document.form</field>
+            <field name="model">clv.document</field>
+            <field name="inherit_id" ref="clv_document.clv_document_view_form"/>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <page name="settings" position="after">
+                    <!--page string="Log" groups="clv_base.group_log_user" attrs="{'invisible': ['|', ('active_log', '=', False)]}"-->
+                    <page string="Log" groups="clv_base.group_loguser">
+                        <group name="record_log">
+                            <group name="creation" >
+                                <field name="create_uid" readonly="True"/>
+                                <field name="create_date" readonly="True"/>
+                            </group>
+                            <group name="last_update" >
+                                <field name="write_uid" readonly="True"/>
+                                <field name="write_date" readonly="True"/>
+                            </group>
+                        </group>
+                        <field name="log_ids" colspan="4" nolabel="1">
+                            <tree string="Document Log">
+                                <!--field name="document_id"/-->
+                                <field name="user_id"/>
+                                <field name="date_log"/>
+                                <field name="values"/>
+                                <field name="action"/>
+                                <field name="notes"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+                <group name="settings" position="inside">
+                    <field name="active_log"/>
+                </group>
+                <page name="settings" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                </page>
+            </field>
+        </record>
+
+        <record id="clv_document_log_view_form" model="ir.ui.view">
+            <field name="name">clv.document.log.form</field>
+            <field name="model">clv.document.log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name ="title" class="oe_title">
+                            <label for="document_id" class="oe_edit_only"/>
+                            <h2><field name="document_id" placeholder="Document..." readonly="True"/></h2>
+                            <label for="user_id" class="oe_edit_only"/>
+                            <h1><field name="user_id" default_focus="1" placeholder="User..." readonly="True"/></h1>
+                            <label for="date_log" class="oe_edit_only"/>
+                            <h3><field name="date_log" placeholder="When..." readonly="True"/></h3>
+                            <label for="values" class="oe_edit_only"/>
+                            <field name="values" placeholder="Values..."/>
+                            <label for="action" class="oe_edit_only"/>
+                            <field name="action" placeholder="Values..."/>
+                            <label for="notes" class="oe_edit_only"/>
+                            <field name="notes" placeholder="Notes..."/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="clv_document_log_view_tree" model="ir.ui.view">
+            <field name="name">clv.document.log.tree</field>
+            <field name="model">clv.document.log</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="document_id"/>
+                    <field name="user_id"/>
+                    <field name="date_log"/>
+                    <field name="values"/>
+                    <field name="action"/>
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

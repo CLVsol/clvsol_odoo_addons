@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="clv_document.group_user" model="res.groups">
+            <field name="name">User (Document)</field>
+        </record>
+        
+        <record id="clv_document.group_manager" model="res.groups">
+            <field name="name">Manager (Document)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_document.group_user'))]"/>
+        </record>
+        
+        <record id="clv_document.group_supmanager" model="res.groups">
+            <field name="name">Super Manager (Document)</field>
+            <field name="implied_ids" eval="[(4, ref('clv_document.group_manager'))]"/>
+        </record>
+
+        <record id="clv_document.group_approver" model="res.groups">
+            <field name="name">Approver (Document)</field>
+        </record>
+
+    </data>
+</odoo>
