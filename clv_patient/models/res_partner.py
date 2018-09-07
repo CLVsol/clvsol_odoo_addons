@@ -14,10 +14,10 @@ class ResPartner(models.Model):
     type = fields.Selection(selection_add=[
         ('clv.patient', 'Patient'),
     ])
-    alias = fields.Char(
-        string='Alias',
-        help='Common name that the Partner is referred',
-    )
+    # alias = fields.Char(
+    #     string='Alias',
+    #     help='Common name that the Partner is referred',
+    # )
     patient_ids = fields.One2many(
         string='Related Patients',
         comodel_name='clv.patient',
@@ -26,14 +26,14 @@ class ResPartner(models.Model):
     count_patients = fields.Integer(
         compute='_compute_patient_ids_and_count',
     )
-    birthdate_date = fields.Date(
-        string='Birthdate',
-    )
-    gender = fields.Selection([
-        ('male', 'Male'),
-        ('female', 'Female'),
-        ('other', 'Other'),
-    ])
+    # birthdate_date = fields.Date(
+    #     string='Birthdate',
+    # )
+    # gender = fields.Selection([
+    #     ('male', 'Male'),
+    #     ('female', 'Female'),
+    #     ('other', 'Other'),
+    # ])
     # weight = fields.Float()
     # weight_uom = fields.Many2one(
     #     string="Weight UoM",
@@ -47,7 +47,7 @@ class ResPartner(models.Model):
     @api.multi
     def _get_clv_entity(self):
         self.ensure_one()
-        if self.type and self.type[:7] == 'clv':
+        if self.type and self.type[:3] == 'clv':
             return self.env[self.type].search([
                 ('partner_id', '=', self.id),
             ])
@@ -61,19 +61,19 @@ class ResPartner(models.Model):
             record.count_patients = len(patients)
             record.patient_ids = [(6, 0, patients.ids)]
 
-    @api.multi
-    @api.constrains('birthdate_date')
-    def _check_birthdate_date(self):
-        """ It will not allow birthdates in the future. """
-        now = datetime.now()
-        for record in self:
-            if not record.birthdate_date:
-                continue
-            birthdate = fields.Datetime.from_string(record.birthdate_date)
-            if birthdate > now:
-                raise ValidationError(_(
-                    'Partners cannot be born in the future.',
-                ))
+    # @api.multi
+    # @api.constrains('birthdate_date')
+    # def _check_birthdate_date(self):
+    #     """ It will not allow birthdates in the future. """
+    #     now = datetime.now()
+    #     for record in self:
+    #         if not record.birthdate_date:
+    #             continue
+    #         birthdate = fields.Datetime.from_string(record.birthdate_date)
+    #         if birthdate > now:
+    #             raise ValidationError(_(
+    #                 'Partners cannot be born in the future.',
+    #             ))
 
     @api.model
     def create(self, vals):

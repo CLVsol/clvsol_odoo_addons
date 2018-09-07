@@ -15,9 +15,9 @@
                 <attribute name="string">Patients</attribute>
             </xpath>
             <xpath expr="//field[@name='email']" position="after">
-                <field name="identification_code" />
-                <field name="age" />
-                <field name="gender" />
+                <!--field name="identification_code" /-->
+                <!--field name="age" /-->
+                <!--field name="gender" /-->
             </xpath>
         </field>
     </record>
@@ -78,13 +78,13 @@
                     </group-->
                     <group name="group_clv_general" string="General">
                         <group name="group_clv_general_left">
-                            <field name="identification_code" />
-                            <field name="gender" />
+                            <!--field name="identification_code" /-->
+                            <!--field name="gender" /-->
                         </group>
                         <group name="group_clv_general_right">
-                            <field name="birthdate_date" />
-                            <field name="date_death" />
-                            <field name="age" />
+                            <!--field name="birthdate_date" /-->
+                            <!--field name="date_death" /-->
+                            <!--field name="age" /-->
                         </group>
                     </group>
                 </page>
@@ -112,18 +112,18 @@
                 <attribute name="string">Patients</attribute>
             </xpath>
             <xpath expr="//templates" position="before">
-                <field name="birthdate_date" />
+                <!--field name="birthdate_date" /-->
             </xpath>
             <xpath expr="//ul[@name='entity_details']/li" position="before">
-                <li name="field_dob" t-if="record.birthdate_date.raw_value">
+                <!--li name="field_dob" t-if="record.birthdate_date.raw_value">
                     <strong>DOB:</strong> <field name="birthdate_date" />
-                </li>
-                <li name="field_age_gender" t-if="record.birthdate_date.raw_value &amp;&amp; record.gender.raw_value">
+                </li-->
+                <!--li name="field_age_gender" t-if="record.birthdate_date.raw_value &amp;&amp; record.gender.raw_value">
                     <field name="age" /> - <field name="gender" />
-                </li>
-                <li name="field_gender" t-if="! record.birthdate_date.raw_value &amp;&amp; record.gender.raw_value">
+                </li-->
+                <!--li name="field_gender" t-if="! record.birthdate_date.raw_value &amp;&amp; record.gender.raw_value">
                     <field name="gender" />
-                </li>
+                </li-->
             </xpath>
             <xpath expr="//img[@name='kanban_image_entity']" position="replace">
                 <img name="kanban_image_entity"
@@ -149,14 +149,14 @@
                 <attribute name="string">Patients</attribute>
             </xpath>
             <xpath expr="//field[@name='category_id']" position="after">
-                <field name="birthdate_date" />
-                <field name="age_years" />
-                <field name="identification_code" />
+                <!--field name="birthdate_date" /-->
+                <!--field name="age_years" /-->
+                <!--field name="identification_code" /-->
             </xpath>
             <xpath expr="//filter" position="after">
-                <filter string="DoB"
+                <!--filter string="DoB"
                         domain="[]"
-                        context="{'group_by':'birthdate_date'}" />
+                        context="{'group_by':'birthdate_date'}" /-->
             </xpath>
         </field>
     </record>

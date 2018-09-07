@@ -18,74 +18,74 @@ class Patient(models.Model):
     _description = 'Patient'
     _inherit = 'clv.abstract.entity'
 
-    age = fields.Char(
-        compute='_compute_age',
-    )
-    age_years = fields.Integer(
-        string="Age (years old)",
-        compute='_compute_age',
-        search='_search_age',
-    )
-    identification_code = fields.Char(
-        string='Internal Identification',
-        help='Patient Identifier provided by the Health Center.'
-             '(different from the Social Security Number)',
-    )
-    general_info = fields.Text(
-        string='General Information',
-    )
-    is_deceased = fields.Boolean(
-        compute='_compute_is_deceased',
-    )
-    marital_status = fields.Selection([
-        ('s', 'Single'),
-        ('m', 'Married'),
-        ('w', 'Widowed'),
-        ('d', 'Divorced'),
-        ('x', 'Separated'),
-        ('z', 'law marriage'),
-    ], )
-    # is_pregnant = fields.Boolean(
+    # age = fields.Char(
+    #     compute='_compute_age',
+    # )
+    # age_years = fields.Integer(
+    #     string="Age (years old)",
+    #     compute='_compute_age',
+    #     search='_search_age',
+    # )
+    # identification_code = fields.Char(
+    #     string='Internal Identification',
+    #     help='Patient Identifier provided by the Health Center.'
+    #          '(different from the Social Security Number)',
+    # )
+    # general_info = fields.Text(
+    #     string='General Information',
+    # )
+    # is_deceased = fields.Boolean(
+    #     compute='_compute_is_deceased',
+    # )
+    # marital_status = fields.Selection([
+    #     ('s', 'Single'),
+    #     ('m', 'Married'),
+    #     ('w', 'Widowed'),
+    #     ('d', 'Divorced'),
+    #     ('x', 'Separated'),
+    #     ('z', 'law marriage'),
+    # ], )
+    # # is_pregnant = fields.Boolean(
     #     help='Check this if the patient if pregnant',
     # )
-    date_death = fields.Datetime(
-        string='Deceased Date',
-    )
+    # date_death = fields.Datetime(
+    #     string='Deceased Date',
+    # )
 
-    @api.multi
-    def _compute_age(self):
-        """ Age computed depending based on the birth date in the
-         membership request.
-        """
-        now = datetime.now()
-        for record in self:
-            if record.birthdate_date:
-                birthdate_date = fields.Datetime.from_string(
-                    record.birthdate_date,
-                )
-                if record.is_deceased:
-                    date_death = fields.Datetime.from_string(record.date_death)
-                    delta = relativedelta(date_death, birthdate_date)
-                    is_deceased = _(' (deceased)')
-                else:
-                    delta = relativedelta(now, birthdate_date)
-                    is_deceased = ''
-                years_months_days = '%d%s %d%s %d%s%s' % (
-                    delta.years, _('y'), delta.months, _('m'),
-                    delta.days, _('d'), is_deceased
-                )
-                years = delta.years
-            else:
-                years_months_days = _('No DoB')
-                years = False
-            record.age = years_months_days
-            if years:
-                record.age_years = years
+    # @api.multi
+    # def _compute_age(self):
+    #     """ Age computed depending based on the birth date in the
+    #      membership request.
+    #     """
+    #     now = datetime.now()
+    #     for record in self:
+    #         if record.birthdate_date:
+    #             birthdate_date = fields.Datetime.from_string(
+    #                 record.birthdate_date,
+    #             )
+    #             if record.is_deceased:
+    #                 date_death = fields.Datetime.from_string(record.date_death)
+    #                 delta = relativedelta(date_death, birthdate_date)
+    #                 is_deceased = _(' (deceased)')
+    #             else:
+    #                 delta = relativedelta(now, birthdate_date)
+    #                 is_deceased = ''
+    #             years_months_days = '%d%s %d%s %d%s%s' % (
+    #                 delta.years, _('y'), delta.months, _('m'),
+    #                 delta.days, _('d'), is_deceased
+    #             )
+    #             years = delta.years
+    #         else:
+    #             years_months_days = _('No DoB')
+    #             years = False
+    #         record.age = years_months_days
+    #         if years:
+    #             record.age_years = years
 
-    @api.multi
-    def _compute_is_deceased(self):
-        for record in self:
-            record.is_deceased = bool(record.date_death)
+    # @api.multi
+    # def _compute_is_deceased(self):
+    #     for record in self:
+    #         record.is_deceased = bool(record.date_death)
 
     # @api.multi
     # @api.constrains('is_pregnant', 'gender')
@@ -119,36 +119,36 @@ class Patient(models.Model):
         )
         return image_path
 
-    def _search_age(self, operator, value):
-        if operator not in ('ilike', '=', '>=', '>', '<', '<='):
-            raise UserError(_('Invalid operator: %s' % (operator,)))
+    # def _search_age(self, operator, value):
+    #     if operator not in ('ilike', '=', '>=', '>', '<', '<='):
+    #         raise UserError(_('Invalid operator: %s' % (operator,)))
 
-        current_date = date.today()
-        last_birthdate = current_date + relativedelta(years=value * -1)
-        first_birthdate = current_date + relativedelta(
-            years=(value + 1) * -1,
-            days=1,
-        )
-        last_possible_birthdate = fields.Datetime.to_string(last_birthdate)
-        first_possible_birthdate = fields.Datetime.to_string(first_birthdate)
+    #     current_date = date.today()
+    #     last_birthdate = current_date + relativedelta(years=value * -1)
+    #     first_birthdate = current_date + relativedelta(
+    #         years=(value + 1) * -1,
+    #         days=1,
+    #     )
+    #     last_possible_birthdate = fields.Datetime.to_string(last_birthdate)
+    #     first_possible_birthdate = fields.Datetime.to_string(first_birthdate)
 
-        if operator == '=' or operator == 'ilike':
-            return ['&', ('birthdate_date', '>=', first_possible_birthdate),
-                    ('birthdate_date', '<=', last_possible_birthdate)]
-        elif operator == '>=':
-            return [('birthdate_date', '<=', last_possible_birthdate)]
-        elif operator == '>':
-            return [('birthdate_date', '<', first_possible_birthdate)]
-        elif operator == '<=':
-            return [('birthdate_date', '>=', first_possible_birthdate)]
-        elif operator == '<':
-            return [('birthdate_date', '>', last_possible_birthdate)]
+    #     if operator == '=' or operator == 'ilike':
+    #         return ['&', ('birthdate_date', '>=', first_possible_birthdate),
+    #                 ('birthdate_date', '<=', last_possible_birthdate)]
+    #     elif operator == '>=':
+    #         return [('birthdate_date', '<=', last_possible_birthdate)]
+    #     elif operator == '>':
+    #         return [('birthdate_date', '<', first_possible_birthdate)]
+    #     elif operator == '<=':
+    #         return [('birthdate_date', '>=', first_possible_birthdate)]
+    #     elif operator == '<':
+    #         return [('birthdate_date', '>', last_possible_birthdate)]
 
     # def toggle_is_pregnant(self):
     #     self.toggle('is_pregnant')
 
-    def toggle_safety_cap_yn(self):
-        self.toggle('safety_cap_yn')
+    # def toggle_safety_cap_yn(self):
+    #     self.toggle('safety_cap_yn')
 
-    def toggle_counseling_yn(self):
-        self.toggle('counseling_yn')
+    # def toggle_counseling_yn(self):
+    #     self.toggle('counseling_yn')
