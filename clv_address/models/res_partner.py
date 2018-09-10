@@ -12,19 +12,19 @@ from odoo.exceptions import ValidationError
 class ResPartner(models.Model):
     _inherit = 'res.partner'
     type = fields.Selection(selection_add=[
-        ('clv.patient', 'Patient'),
+        ('clv.address', 'Address'),
     ])
     # alias = fields.Char(
     #     string='Alias',
     #     help='Common name that the Partner is referred',
     # )
-    patient_ids = fields.One2many(
-        string='Related Patients',
-        comodel_name='clv.patient',
-        compute='_compute_patient_ids_and_count',
+    address_ids = fields.One2many(
+        string='Related Addresses',
+        comodel_name='clv.address',
+        compute='_compute_address_ids_and_count',
     )
-    count_patients = fields.Integer(
-        compute='_compute_patient_ids_and_count',
+    count_addresss = fields.Integer(
+        compute='_compute_address_ids_and_count',
     )
     # birthdate_date = fields.Date(
     #     string='Birthdate',
@@ -53,13 +53,13 @@ class ResPartner(models.Model):
             ])
 
     @api.multi
-    def _compute_patient_ids_and_count(self):
+    def _compute_address_ids_and_count(self):
         for record in self:
-            patients = self.env['clv.patient'].search([
+            addresss = self.env['clv.address'].search([
                 ('partner_id', 'child_of', record.id),
             ])
-            record.count_patients = len(patients)
-            record.patient_ids = [(6, 0, patients.ids)]
+            record.count_addresss = len(addresss)
+            record.address_ids = [(6, 0, addresss.ids)]
 
     # @api.multi
     # @api.constrains('birthdate_date')

@@ -19,8 +19,8 @@
 ###############################################################################
 
 {
-    'name': 'Patient',
-    'summary': 'Patient Module used by CLVsol Solutions.',
+    'name': 'Address',
+    'summary': 'Address Module used by CLVsol Solutions.',
     'version': '4.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
@@ -32,10 +32,10 @@
         'clv_entity',
     ],
     'data': [
-        'security/patient_security.xml',
+        'security/address_security.xml',
         'security/ir.model.access.csv',
-        'views/patient_view.xml',
-        'views/patient_log_view.xml',
+        'views/address_view.xml',
+        'views/address_log_view.xml',
         'views/res_partner_view.xml',
     ],
     'demo': [],

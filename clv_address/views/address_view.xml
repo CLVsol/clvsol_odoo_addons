@@ -5,14 +5,14 @@
 
 <odoo>
 
-    <record id="clv_patient_view_tree" model="ir.ui.view">
-        <field name="name">clv.patient.tree</field>
-        <field name="model">clv.patient</field>
+    <record id="clv_address_view_tree" model="ir.ui.view">
+        <field name="name">clv.address.tree</field>
+        <field name="model">clv.address</field>
         <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_tree" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
-                <attribute name="string">Patients</attribute>
+                <attribute name="string">Addresses</attribute>
             </xpath>
             <xpath expr="//field[@name='email']" position="after">
                 <!--field name="identification_code" /-->
@@ -22,15 +22,15 @@
         </field>
     </record>
 
-    <record id="clv_patient_view_form" model="ir.ui.view">
-        <field name="name">clv.patient.form</field>
-        <field name="model">clv.patient</field>
+    <record id="clv_address_view_form" model="ir.ui.view">
+        <field name="name">clv.address.form</field>
+        <field name="model">clv.address</field>
         <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_form" />
         <field name="mode">primary</field>
         <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <xpath expr="//form" position="attributes">
-                <attribute name="string">Patient</attribute>
+                <attribute name="string">Address</attribute>
             </xpath>
             <xpath expr="//div[@name='buttons']" position="inside">
                 <button name="toggle_active"
@@ -56,11 +56,11 @@
             <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
                 <img name="kanban_image_default_person"
                      t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv_patient/static/src/img/patient-avatar.png'
+                     t-attf-src='{{ _s }}/clv_address/static/src/img/address-avatar.png'
                 />
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page name="clv_patient" string="Patient" autofocus="True">
+                <page name="clv_address" string="Address" autofocus="True">
                     <!--group name="group_clv_buttons" class="oe_button_box" col="6">
                         <button name="toggle_is_pregnant"
                             type="object"
@@ -101,15 +101,15 @@
         </field>
     </record>
 
-    <record id="clv_patient_view_kanban" model="ir.ui.view">
-        <field name="name">clv.patient.kanban</field>
-        <field name="model">clv.patient</field>
+    <record id="clv_address_view_kanban" model="ir.ui.view">
+        <field name="name">clv.address.kanban</field>
+        <field name="model">clv.address</field>
         <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_kanban" />
         <field name="mode">primary</field>
         <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <xpath expr="//kanban" position="attributes">
-                <attribute name="string">Patients</attribute>
+                <attribute name="string">Addresses</attribute>
             </xpath>
             <xpath expr="//templates" position="before">
                 <!--field name="birthdate_date" /-->
@@ -127,26 +127,26 @@
             </xpath>
             <xpath expr="//img[@name='kanban_image_entity']" position="replace">
                 <img name="kanban_image_entity"
-                     t-att-src="kanban_image('clv.patient', 'image_small', record.id.raw_value)"
+                     t-att-src="kanban_image('clv.address', 'image_small', record.id.raw_value)"
                 />
             </xpath>
             <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
                 <img name="kanban_image_default_person"
                      t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv/static/src/img/patient-avatar.png'
+                     t-attf-src='{{ _s }}/clv/static/src/img/address-avatar.png'
                 />
             </xpath>
         </field>
     </record>
 
-    <record id="clv_patient_view_search" model="ir.ui.view">
-        <field name="name">clv.patient.search</field>
-        <field name="model">clv.patient</field>
+    <record id="clv_address_view_search" model="ir.ui.view">
+        <field name="name">clv.address.search</field>
+        <field name="model">clv.address</field>
         <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_search" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//search" position="attributes">
-                <attribute name="string">Patients</attribute>
+                <attribute name="string">Addresses</attribute>
             </xpath>
             <xpath expr="//field[@name='category_id']" position="after">
                 <!--field name="birthdate_date" /-->
@@ -161,10 +161,10 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="clv_patient_action">
-        <field name="name">Patients</field>
+    <record model="ir.actions.act_window" id="clv_address_action">
+        <field name="name">Addresses</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">clv.patient</field>
+        <field name="res_model">clv.address</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
     </record>

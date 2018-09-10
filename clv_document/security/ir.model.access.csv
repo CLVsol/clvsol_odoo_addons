@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_document_user,clv.document.user,model_clv_document,clv_document.group_user,1,0,0,0
+access_clv_document_manager,clv.document.manager,model_clv_document,clv_document.group_manager,1,1,1,0
+access_clv_document_supmanager,clv.document.supmanager,model_clv_document,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_referenceable_model_user,clv.document.referenceable.model.user,model_clv_document_referenceable_model,clv_document.group_user,1,0,0,0
+access_clv_document_referenceable_model_manager,clv.document.referenceable.model.manager,model_clv_document_referenceable_model,clv_document.group_manager,1,1,1,0
+access_clv_document_referenceable_model_supmanager,clv.document.referenceable.model.supmanager,model_clv_document_referenceable_model,clv_document.group_supmanager,1,1,1,1

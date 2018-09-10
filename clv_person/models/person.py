@@ -12,10 +12,10 @@ from odoo.modules import get_module_resource
 from odoo.exceptions import UserError
 
 
-class Patient(models.Model):
+class Person(models.Model):
 
-    _name = 'clv.patient'
-    _description = 'Patient'
+    _name = 'clv.person'
+    _description = 'Person'
     _inherit = 'clv.abstract.entity'
 
     # age = fields.Char(
@@ -28,7 +28,7 @@ class Patient(models.Model):
     # )
     # identification_code = fields.Char(
     #     string='Internal Identification',
-    #     help='Patient Identifier provided by the Health Center.'
+    #     help='Person Identifier provided by the Health Center.'
     #          '(different from the Social Security Number)',
     # )
     # general_info = fields.Text(
@@ -45,8 +45,8 @@ class Patient(models.Model):
     #     ('x', 'Separated'),
     #     ('z', 'law marriage'),
     # ], )
-    # # is_pregnant = fields.Boolean(
-    #     help='Check this if the patient if pregnant',
+    # is_pregnant = fields.Boolean(
+    #     help='Check this if the person if pregnant',
     # )
     # date_death = fields.Datetime(
     #     string='Deceased Date',
@@ -98,7 +98,7 @@ class Patient(models.Model):
 
     @api.model
     def _create_vals(self, vals):
-        vals = super(Patient, self)._create_vals(vals)
+        vals = super(Person, self)._create_vals(vals)
         if not vals.get('identification_code'):
             Seq = self.env['ir.sequence']
             vals['identification_code'] = Seq.sudo().next_by_code(
@@ -111,11 +111,11 @@ class Patient(models.Model):
 
     @api.model_cr_context
     def _get_default_image_path(self, vals):
-        res = super(Patient, self)._get_default_image_path(vals)
+        res = super(Person, self)._get_default_image_path(vals)
         if res:
             return res
         image_path = get_module_resource(
-            'clv_patient', 'static/src/img', 'patient-avatar.png',
+            'clv_person', 'static/src/img', 'person-avatar.png',
         )
         return image_path
 

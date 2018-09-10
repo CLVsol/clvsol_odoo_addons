@@ -19,23 +19,24 @@
 ###############################################################################
 
 {
-    'name': 'Patient',
-    'summary': 'Patient Module used by CLVsol Solutions.',
+    'name': 'Person',
+    'summary': 'Person Module used by CLVsol Solutions.',
     'version': '4.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'website': 'https://github.com/CLVsol',
+    'images': [],
     'depends': [
         'clv_base',
         'clv_global_log',
         'clv_entity',
     ],
     'data': [
-        'security/patient_security.xml',
+        'security/person_security.xml',
         'security/ir.model.access.csv',
-        'views/patient_view.xml',
-        'views/patient_log_view.xml',
+        'views/person_view.xml',
+        'views/person_log_view.xml',
         'views/res_partner_view.xml',
     ],
     'demo': [],
