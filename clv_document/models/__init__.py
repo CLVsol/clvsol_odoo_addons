@@ -20,7 +20,7 @@
 
 from . import document
 from . import document_referenceable_model
-# from . import document_log
+from . import document_log
 # from . import document_category
 # from . import global_tag
 # from . import document_type

@@ -29,6 +29,7 @@
     'images': [],
     'depends': [
         'clv_base',
+        'clv_global_log',
         # 'clv_global_tag',
     ],
     'data': [
@@ -36,7 +37,7 @@
         'security/ir.model.access.csv',
         'views/document_view.xml',
         'views/document_referenceable_model_view.xml',
-        # 'views/document_log_view.xml',
+        'views/document_log_view.xml',
         # 'views/document_category_view.xml',
         # 'views/global_tag_view.xml',
         # 'views/document_type_view.xml',
