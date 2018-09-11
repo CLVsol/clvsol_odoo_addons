@@ -18,40 +18,17 @@
 #
 ###############################################################################
 
-from odoo import api, fields, models
-
-
-class DocumentLog(models.Model):
-    _description = 'Document Log'
-    _name = 'clv.document.log'
-    _inherit = 'clv.object.log'
-
-    document_id = fields.Many2one(
-        comodel_name='clv.document',
-        string='Document',
-        required=True,
-        ondelete='cascade'
-    )
+from odoo import fields, models
 
 
 class Document(models.Model):
     _name = "clv.document"
-    _inherit = 'clv.document', 'clv.log.model'
+    _inherit = 'clv.document', 'clv.abstract.model.log'
+
+    log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
 
     log_ids = fields.One2many(
-        comodel_name='clv.document.log',
-        inverse_name='document_id',
-        string='Document Log',
-        readonly=True
+        string='Global Logs',
+        comodel_name='clv.global_log',
+        compute='_compute_log_ids_and_count',
     )
-
-    @api.one
-    def insert_object_log(self, document_id, values, action, notes):
-        if self.active_log or 'active_log' in values:
-            vals = {
-                'document_id': document_id,
-                'values': values,
-                'action': action,
-                'notes': notes,
-            }
-            self.env['clv.document.log'].create(vals)
