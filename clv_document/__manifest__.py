@@ -41,7 +41,7 @@
         'views/document_category_view.xml',
         'views/global_tag_view.xml',
         'views/document_type_view.xml',
-        # 'views/document_item_view.xml',
+        'views/document_item_view.xml',
         # 'wizard/document_updt_view.xml',
         # 'wizard/document_item_edit_view.xml',
         # 'wizard/document_item_refresh_view.xml',
