@@ -1,141 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
 
-        <record id="clv_document_category_view_form" model="ir.ui.view">
-            <field name="name">clv.document.category.form</field>
-            <field name="model">clv.document.category</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <div name="button_box" class="oe_right oe_button_box">
-                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
-                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                            </button>
-                        </div>
-                        <div name="title" class="oe_title">
-                            <label for="parent_id" class="oe_edit_only"/>
-                            <h2><field name="parent_id" placeholder="Parent Category..." options="{'no_open': False, 'no_create': True}"/></h2>
-                            <label for="name" class="oe_edit_only"/>
-                            <h1><field name="name" default_focus="1" placeholder="Document Category..."/></h1>
-                            <label for="code" class="oe_edit_only"/>
-                            <h2><field name="code" placeholder="Category Code..."/></h2>
-                            <label for="description" class="oe_edit_only"/>
-                            <h3><field name="description" placeholder="Description..."/></h3>
-                        </div>
-                        <field name="notes" placeholder="Notes..." colspan="4"/>
-                        <notebook>
-                            <page string="Child Categories">
-                                <group>
-                                    <field name="child_ids" colspan="4" nolabel="1"/>
-                                </group>
-                            </page>
-                            <page string="Documents">
-                                <group>
-                                    <field name="document_ids" colspan="4" nolabel="1"/>
-                                </group>
-                            </page>
-                            <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
-                                <group name="settings">
-                                </group>
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        
-        <record id="clv_document_category_view_tree" model="ir.ui.view">
-            <field name="name">clv.document.category.tree</field>
-            <field name="model">clv.document.category</field>
-            <field name="priority" eval="8"/>
-            <field name="arch" type="xml">
-                <tree string="Document Categories">
-                    <field name="complete_name"/>
-                    <field name="code"/>
-                    <field name="description"/>
-                    <field name="notes"/>
-                </tree>
-            </field>
-        </record>
-        
-        <record id="clv_document_category_view_search" model="ir.ui.view">
-            <field name="name">clv.document.category.search</field>
-            <field name="model">clv.document.category</field>
-            <field name="priority" eval="8"/>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="name"/>
-                    <field name="parent_id"/>
-                    <field name="code"/>
-                    <field name="description"/>
-                    <field name="notes"/>
-                    <separator/>
-                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
-                    <group expand="0" string="Group By...">
-                        <filter string="Parent Category" domain="[]" context="{'group_by':'parent_id'}"/>
+    <record id="clv_document_category_view_form" model="ir.ui.view">
+        <field name="name">clv.document.category.form</field>
+        <field name="model">clv.document.category</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_category_view_form"/>
+        <field name="mode">primary</field>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Document Category</attribute>
+            </xpath>
+            <page name="settings" position="before">
+                <page string="Documents">
+                    <group>
+                        <field name="document_ids" colspan="4" nolabel="1"/>
                     </group>
-                </search>
-            </field>
-        </record>
+                </page>
+            </page>
+        </field>
+    </record>
 
-        <record id="clv_document_category_action" model="ir.actions.act_window">
-            <field name="name">Document Categories</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">clv.document.category</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="clv_document_category_view_search"/>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
-            <field name="view_id" eval="False"/>
-            <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                Click to add a new document category.
-              </p>
-            </field>
-        </record>
-        
-        <record id="clv_document_view_tree_category" model="ir.ui.view">
-            <field name="name">clv.document.tree</field>
-            <field name="model">clv.document</field>
-            <field name="inherit_id" ref="clv_document_view_tree"/>
-            <field name="priority" eval="20"/>
-            <field name="arch" type="xml">
-                <field name="code" position="before">
-                    <field name="category_ids"/>
-                    <field name="category_names_suport" invisible="True"/>
-                </field>
-            </field>
-        </record>
+    <record id="clv_document_category_view_tree" model="ir.ui.view">
+        <field name="name">clv.document.category.tree</field>
+        <field name="model">clv.document.category</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_category_view_tree" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Document Categories</attribute>
+            </xpath>
+        </field>
+    </record>
 
-        <record id="clv_document_view_form_category" model="ir.ui.view">
-            <field name="name">clv.document.form</field>
-            <field name="model">clv.document</field>
-            <field name="inherit_id" ref="clv_document_view_form"/>
-            <field name="priority" eval="8"/>
-            <field name="arch" type="xml">
-                <label for="name" position="before">
-                    <label for="category_ids" class="oe_edit_only"/>
-                    <h4><field name="category_ids" widget="many2many_tags" placeholder="Categories..." options="{'no_open': False, 'no_create': True}"/></h4>
-                </label>
-            </field>
-        </record>
+    <record id="clv_document_category_view_search" model="ir.ui.view">
+        <field name="name">clv.document.category.search</field>
+        <field name="model">clv.document.category</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_category_view_search" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="attributes">
+                <attribute name="string">Document Categories</attribute>
+            </xpath>
+        </field>
+    </record>
 
-        <record id="clv_document_view_search_category" model="ir.ui.view">
-            <field name="name">clv.document.search</field>
-            <field name="model">clv.document</field>
-            <field name="inherit_id" ref="clv_document_view_search"/>
-            <field name="priority" eval="20"/>
-            <field name="arch" type="xml">
-                <field name="code" position="after">
-                    <field name="category_ids"/>
-                </field>
-                <group name="group_by" position="inside">
-                    <filter string="Categories" context="{'group_by': 'category_names'}"/>
-                </group>
+    <record id="clv_document_category_action" model="ir.actions.act_window">
+        <field name="name">Document Categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.document.category</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="clv_document_category_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new document category.
+          </p>
+        </field>
+    </record>
+    
+    <record id="clv_document_view_tree_category" model="ir.ui.view">
+        <field name="name">clv.document.tree</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document_view_tree"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <field name="code" position="before">
+                <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="category_names_suport" invisible="True"/>
             </field>
-        </record>
+        </field>
+    </record>
 
-    </data>
+    <record id="clv_document_view_form_category" model="ir.ui.view">
+        <field name="name">clv.document.form</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <label for="name" position="before">
+                <label for="category_ids" class="oe_edit_only"/>
+                <h4><field name="category_ids" widget="many2many_tags" placeholder="Categories..." options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/></h4>
+            </label>
+        </field>
+    </record>
+
+    <record id="clv_document_view_search_category" model="ir.ui.view">
+        <field name="name">clv.document.search</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document_view_search"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="category_ids"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter string="Categories" context="{'group_by': 'category_names'}"/>
+            </group>
+        </field>
+    </record>
+
 </odoo>
