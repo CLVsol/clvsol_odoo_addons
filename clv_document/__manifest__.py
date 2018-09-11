@@ -30,7 +30,7 @@
     'depends': [
         'clv_base',
         'clv_global_log',
-        # 'clv_global_tag',
+        'clv_global_tag',
     ],
     'data': [
         'security/document_security.xml',
@@ -38,10 +38,10 @@
         'views/document_view.xml',
         'views/document_referenceable_model_view.xml',
         'views/document_log_view.xml',
-        # 'views/document_category_view.xml',
-        # 'views/global_tag_view.xml',
-        # 'views/document_type_view.xml',
-        # 'views/document_item_view.xml',
+        'views/document_category_view.xml',
+        'views/global_tag_view.xml',
+        'views/document_type_view.xml',
+        'views/document_item_view.xml',
         # 'wizard/document_updt_view.xml',
         # 'wizard/document_item_edit_view.xml',
         # 'wizard/document_item_refresh_view.xml',

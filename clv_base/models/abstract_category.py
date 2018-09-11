@@ -33,6 +33,18 @@ class AbstractCategory(models.AbstractModel):
     description = fields.Char(string='Description')
     notes = fields.Text(string='Notes')
 
+    parent_id = fields.Many2one(
+        comodel_name='clv.abstract.category',
+        string='Parent Category',
+        index=True,
+        ondelete='restrict'
+    )
+    child_ids = fields.One2many(
+        comodel_name='clv.abstract.category',
+        inverse_name='parent_id',
+        string='Child Categories'
+    )
+
     parent_left = fields.Integer(string='Left parent', index=True)
     parent_right = fields.Integer(string='Right parent', index=True)
     complete_name = fields.Char(

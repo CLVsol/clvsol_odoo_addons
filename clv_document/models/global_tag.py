@@ -21,7 +21,7 @@
 from odoo import api, models, fields
 
 
-class Tag(models.Model):
+class GlobalTag(models.Model):
     _inherit = 'clv.global_tag'
 
     document_ids = fields.Many2many(
