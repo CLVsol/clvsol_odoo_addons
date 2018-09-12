@@ -65,7 +65,7 @@
                         <button 
                             type="object"
                             name="do_document_mass_edit"
-                            string="Documents Mass Edit"
+                            string="Mass Edit"
                             class="oe_highlight"
                             />
                         <button special="cancel" string="Cancel"/>
@@ -78,7 +78,7 @@
         <!-- More button Action -->
         <act_window 
             id="clv_document_mass_edit_action"
-            name="Mass Edit"
+            name="Document Mass Edit"
             src_model="clv.document"
             res_model="clv.document.mass_edit"
             view_mode="form, tree"
