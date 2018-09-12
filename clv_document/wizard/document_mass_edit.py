@@ -122,6 +122,19 @@ class DocumentMassEdit(models.TransientModel):
          ], string='Deadline', default=False, readonly=False, required=False
     )
 
+    @api.model
+    def document_referenceable_models(self):
+        return [(ref.model, ref.name) for ref in self.env['clv.document.referenceable.model'].search([])]
+
+    ref_id = fields.Reference(
+        selection='document_referenceable_models',
+        string='Refers to')
+    ref_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Refers to', default=False, readonly=False, required=False
+    )
+
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -215,5 +228,10 @@ class DocumentMassEdit(models.TransientModel):
                 document.date_deadline = self.date_deadline
             if self.date_deadline_selection == 'remove':
                 document.date_deadline = False
+
+            if self.ref_id_selection == 'set':
+                document.ref_id = self.ref_id
+            if self.ref_id_selection == 'remove':
+                document.ref_id = False
 
         return True
