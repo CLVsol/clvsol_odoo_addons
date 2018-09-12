@@ -25,14 +25,14 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class DocumentItemsOkSetUp(models.TransientModel):
-    _name = 'clv.document.items_ok_setup'
+class DocumentItemsRefresh(models.TransientModel):
+    _name = 'clv.document.items_refresh'
 
     def _default_document_ids(self):
         return self._context.get('active_ids')
     document_ids = fields.Many2many(
         comodel_name='clv.document',
-        relation='clv_document_items_ok_setup_rel',
+        relation='clv_document_items_refresh_rel',
         string='Documents',
         default=_default_document_ids
     )
@@ -51,25 +51,34 @@ class DocumentItemsOkSetUp(models.TransientModel):
         return action
 
     @api.multi
-    def do_document_items_ok_setup(self):
+    def do_document_items_refresh(self):
         self.ensure_one()
+
+        DocumentItems = self.env['clv.document.item']
 
         for document in self.document_ids:
 
             _logger.info(u'%s %s %s', '>>>>>', document.code, document.document_type_id.name)
 
-            value_count = 0
-            for item in document.item_ids:
+            items = []
+            for item in document.document_type_id.item_ids:
 
-                if item.value is not False:
-                    value_count += 1
-                    # break
+                document_item = DocumentItems.search([
+                    ('document_id', '=', document.id),
+                    ('code', '=', item.code),
+                ])
 
-            if value_count > 0:
-                document.items_ok = True
-            else:
-                document.items_ok = False
+                if document_item.id is not False:
+                    document_item.sequence = item.sequence
+                else:
+                    if item.document_display:
+                        items.append((0, 0, {'code': item.code,
+                                             'name': item.name,
+                                             'sequence': item.sequence,
+                                             }))
 
-            _logger.info(u'%s %s %s', '>>>>>>>>>>', document.items_ok, value_count)
+            document.item_ids = items
+
+            _logger.info(u'%s %s', '>>>>>>>>>>', items)
 
         return True

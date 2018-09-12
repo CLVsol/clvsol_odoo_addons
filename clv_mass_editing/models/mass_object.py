@@ -89,3 +89,9 @@ class MassObject(models.Model):
             default = {}
         default.update({'name': _("%s (copy)" % self.name), 'field_ids': []})
         return super(MassObject, self).copy(default)
+
+    @api.model
+    def exec_create_action(self, objet_id):
+        for object in self.search([('id', '=', objet_id)]):
+            object.unlink_action()
+            object.create_action()

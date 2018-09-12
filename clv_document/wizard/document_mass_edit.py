@@ -41,21 +41,21 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class DocumentUpdate(models.TransientModel):
-    _name = 'clv.document.updt'
+class DocumentMassEdit(models.TransientModel):
+    _name = 'clv.document.mass_edit'
 
     def _default_document_ids(self):
         return self._context.get('active_ids')
     document_ids = fields.Many2many(
         comodel_name='clv.document',
-        relation='clv_document_updt_rel',
+        relation='clv_document_mass_edit_rel',
         string='Documents',
         default=_default_document_ids
     )
 
     global_tag_ids = fields.Many2many(
         comodel_name='clv.global_tag',
-        relation='clv_document_updt_global_tag_rel',
+        relation='clv_document_mass_edit_global_tag_rel',
         column1='document_id',
         column2='global_tag_id',
         string='Global Tags'
@@ -69,7 +69,7 @@ class DocumentUpdate(models.TransientModel):
 
     category_ids = fields.Many2many(
         comodel_name='clv.document.category',
-        relation='clv_document_updt_category_rel',
+        relation='clv_document_mass_edit_category_rel',
         column1='document_id',
         column2='category_id',
         string='Categories'
@@ -122,6 +122,19 @@ class DocumentUpdate(models.TransientModel):
          ], string='Deadline', default=False, readonly=False, required=False
     )
 
+    @api.model
+    def document_referenceable_models(self):
+        return [(ref.model, ref.name) for ref in self.env['clv.document.referenceable.model'].search([])]
+
+    ref_id = fields.Reference(
+        selection='document_referenceable_models',
+        string='Refers to')
+    ref_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Refers to', default=False, readonly=False, required=False
+    )
+
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -136,7 +149,7 @@ class DocumentUpdate(models.TransientModel):
         return action
 
     @api.multi
-    def do_document_updt(self):
+    def do_document_mass_edit(self):
         self.ensure_one()
 
         for document in self.document_ids:
@@ -215,5 +228,10 @@ class DocumentUpdate(models.TransientModel):
                 document.date_deadline = self.date_deadline
             if self.date_deadline_selection == 'remove':
                 document.date_deadline = False
+
+            if self.ref_id_selection == 'set':
+                document.ref_id = self.ref_id
+            if self.ref_id_selection == 'remove':
+                document.ref_id = False
 
         return True
