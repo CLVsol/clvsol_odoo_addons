@@ -31,7 +31,7 @@ class DocumentItem(models.Model):
 
     value = fields.Char(sring='Value')
 
-    document_type_id = fields.Many2one(comodel_name='clv.document.type', string='Item Type')
+    document_type_id = fields.Many2one(comodel_name='clv.document.type', string='Document Type')
 
     document_id = fields.Many2one(comodel_name='clv.document', string='Document')
 
