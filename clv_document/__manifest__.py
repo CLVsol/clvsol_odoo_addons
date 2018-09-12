@@ -42,6 +42,7 @@
         'views/global_tag_view.xml',
         'views/document_type_view.xml',
         'views/document_item_view.xml',
+        # 'data/document_mass_editing.xml',
     ],
     'demo': [],
     'test': [],
