@@ -19,3 +19,4 @@
 ###############################################################################
 
 from . import document_mass_edit
+from . import document_items_refresh
