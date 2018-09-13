@@ -415,9 +415,9 @@
                 <filter string="Deactivated"
                         domain="[('active', '=', 0)]" />
                 <group name="group_by" string="Group By...">
-                    <filter string="Tag"
+                    <!--filter string="Tag"
                             domain="[]"
-                            context="{'group_by':'category_id'}" />
+                            context="{'group_by':'category_id'}" /-->
                     <filter string="Parent"
                             domain="[]"
                             context="{'group_by':'parent_id'}" />
