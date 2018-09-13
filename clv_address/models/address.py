@@ -18,6 +18,8 @@ class Address(models.Model):
     _description = 'Address'
     _inherit = 'clv.abstract.entity'
 
+    code = fields.Char(string='Address Code', required=False)
+
     # age = fields.Char(
     #     compute='_compute_age',
     # )
