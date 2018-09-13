@@ -41,7 +41,7 @@
                     </h1>
                     <h3>
                         <label for="code" class="oe_edit_only"/>
-                        <field name="code" placeholder="Entity Code..." />
+                        <field name="code" placeholder="Code..." />
                         <field name="is_company" invisible="True" />
                         <field name="supplier" invisible="True" />
                         <field name="customer" invisible="True" />
