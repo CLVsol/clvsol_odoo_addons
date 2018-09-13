@@ -18,6 +18,8 @@ class Animal(models.Model):
     _description = 'Animal'
     _inherit = 'clv.abstract.entity'
 
+    code = fields.Char(string='Animal Code', required=False)
+
     # age = fields.Char(
     #     compute='_compute_age',
     # )
