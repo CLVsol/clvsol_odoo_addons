@@ -27,10 +27,18 @@ class AbstractEntity(models.AbstractModel):
         related='partner_id.type',
     )
 
+    code = fields.Char(string='Entity Code', required=False)
+
     # Redefine `active` so that it is managed independently from partner.
     active = fields.Boolean(
         default=True,
     )
+
+    _sql_constraints = [
+        ('code_uniq',
+         'UNIQUE (code)',
+         u'Error! The Code must be unique!'),
+    ]
 
     @api.model
     @api.returns('self', lambda value: value.id)

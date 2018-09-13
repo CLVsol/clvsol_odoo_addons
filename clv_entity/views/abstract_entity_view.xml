@@ -10,6 +10,7 @@
         <field name="arch" type="xml">
             <tree string="Entity">
                 <field name="name" />
+                <field name="code" />
                 <field name="email" />
             </tree>
         </field>
@@ -29,14 +30,23 @@
                                  'size': [90, 90],
                                  }"
                        />
+                <!--div name="center" class="oe_center">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1> <field name="name" default_focus="1" placeholder="Document Name..."/></h1>
+                </div-->
                 <div class="oe_title" name="title">
                     <h1>
-                        <field name="name" placeholder="Name" />
+                        <label for="name" class="oe_edit_only"/>
+                        <field name="name" placeholder="Name..." />
+                    </h1>
+                    <h3>
+                        <label for="code" class="oe_edit_only"/>
+                        <field name="code" placeholder="Entity Code..." />
                         <field name="is_company" invisible="True" />
                         <field name="supplier" invisible="True" />
                         <field name="customer" invisible="True" />
                         <field name="parent_id" invisible="True" />
-                    </h1>
+                    </h3>
                 </div>
                 <notebook>
                     <page name="page_general_info" string="General Information">
@@ -398,21 +408,24 @@
         <field name="arch" type="xml">
             <search string="Entities">
                 <field name="name" />
+                <field name="code" />
                 <field name="category_id" />
                 <field name="parent_id" invisible="1" />
                 <field name="partner_id" invisible="1" />
                 <filter string="Deactivated"
                         domain="[('active', '=', 0)]" />
-                <filter string="Tag"
-                        domain="[]"
-                        context="{'group_by':'category_id'}" />
-                <filter string="Parent"
-                        domain="[]"
-                        context="{'group_by':'parent_id'}" />
-                <filter string="Related Partner"
-                        domain="[('partner_id', 'child_of', partner_id)]"
-                        invisible="1"
-                        />
+                <group name="group_by" string="Group By...">
+                    <filter string="Tag"
+                            domain="[]"
+                            context="{'group_by':'category_id'}" />
+                    <filter string="Parent"
+                            domain="[]"
+                            context="{'group_by':'parent_id'}" />
+                    <filter string="Related Partner"
+                            domain="[('partner_id', 'child_of', partner_id)]"
+                            invisible="1"
+                            />
+                </group>
             </search>
         </field>
     </record>
