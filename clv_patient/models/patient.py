@@ -18,6 +18,8 @@ class Patient(models.Model):
     _description = 'Patient'
     _inherit = 'clv.abstract.entity'
 
+    code = fields.Char(string='Person Code', required=False)
+
     # age = fields.Char(
     #     compute='_compute_age',
     # )
