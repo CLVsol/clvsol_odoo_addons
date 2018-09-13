@@ -39,6 +39,7 @@
         'views/document_referenceable_model_view.xml',
         'views/document_log_view.xml',
         'views/document_category_view.xml',
+        'views/document_category_log_view.xml',
         'views/global_tag_view.xml',
         'views/document_type_view.xml',
         'views/document_item_view.xml',
