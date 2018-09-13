@@ -18,12 +18,17 @@
 #
 ###############################################################################
 
-from . import document
-from . import document_referenceable_model
-from . import document_log
-from . import document_category
-from . import document_category_log
-from . import global_tag
-from . import document_type
-from . import document_type_log
-from . import document_item
+from odoo import fields, models
+
+
+class DocumentType(models.Model):
+    _name = "clv.document.type"
+    _inherit = 'clv.document.type', 'clv.abstract.model.log'
+
+    log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
+
+    log_ids = fields.One2many(
+        string='Global Logs',
+        comodel_name='clv.global_log',
+        compute='_compute_log_ids_and_count',
+    )

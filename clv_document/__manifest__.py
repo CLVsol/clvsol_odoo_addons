@@ -42,6 +42,7 @@
         'views/document_category_log_view.xml',
         'views/global_tag_view.xml',
         'views/document_type_view.xml',
+        'views/document_type_log_view.xml',
         'views/document_item_view.xml',
         # 'data/document_mass_editing.xml',
         'wizard/document_mass_edit_view.xml',
