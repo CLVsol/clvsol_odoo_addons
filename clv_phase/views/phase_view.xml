@@ -26,7 +26,7 @@
                     <notebook>
                         <page name="marker_for" string="Phase for">
                         </page>
-                        <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
+                        <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                             <group name="settings">
                                 <field name="id"/>
                             </group>
