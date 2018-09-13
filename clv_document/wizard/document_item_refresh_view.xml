@@ -19,7 +19,7 @@
                         <button 
                             type="object"
                             name="do_document_refresh"
-                            string="Document Refresh"
+                            string="Items Refresh"
                             class="oe_highlight"
                             />
                         <button special="cancel" string="Cancel"/>
@@ -32,7 +32,7 @@
         <!-- More button Action -->
         <act_window 
             id="clv_document_item_refresh_action"
-            name="Document Item Refresh"
+            name="Document Items Refresh"
             src_model="clv.document"
             res_model="clv.document.item_refresh"
             view_mode="form, tree"
