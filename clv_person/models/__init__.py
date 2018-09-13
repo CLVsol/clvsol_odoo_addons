@@ -22,3 +22,4 @@ from . import person
 from . import person_category
 from . import person_category_log
 from . import res_partner
+from . import global_tag
