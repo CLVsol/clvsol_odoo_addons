@@ -18,8 +18,17 @@
 #
 ###############################################################################
 
-from . import animal
-from . import animal_category
-from . import animal_category_log
-from . import res_partner
-from . import global_tag
+from odoo import fields, models
+
+
+class AnimalCategory(models.Model):
+    _name = "clv.animal.category"
+    _inherit = 'clv.animal.category', 'clv.abstract.model.log'
+
+    log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
+
+    log_ids = fields.One2many(
+        string='Global Logs',
+        comodel_name='clv.global_log',
+        compute='_compute_log_ids_and_count',
+    )
