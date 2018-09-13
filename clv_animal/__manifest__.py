@@ -31,6 +31,7 @@
         'clv_base',
         'clv_global_log',
         'clv_entity',
+        'clv_global_tag',
     ],
     'data': [
         'security/animal_security.xml',
