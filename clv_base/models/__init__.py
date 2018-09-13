@@ -18,11 +18,11 @@
 #
 ###############################################################################
 
+from . import abstract_log
 from . import abstract_tag
 from . import abstract_category
 from . import abstract_code
 from . import abstract_code02
-from . import abstract_log
 from . import abstract_annotation
 from . import abstract_random
 from . import export_xls
