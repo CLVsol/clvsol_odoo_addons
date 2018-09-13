@@ -18,30 +18,17 @@
 #
 ###############################################################################
 
-{
-    'name': 'Phase',
-    'summary': 'Phase Module used by CLVsol Solutions.',
-    'version': '4.0.0',
-    'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'website': 'https://github.com/CLVsol',
-    'depends': [
-        'clv_base',
-    ],
-    'data': [
-        'security/phase_security.xml',
-        'security/ir.model.access.csv',
-        'views/phase_view.xml',
-        'views/phase_log_view.xml',
-    ],
-    'demo': [],
-    'test': [],
-    'init_xml': [],
-    'test': [],
-    'update_xml': [],
-    'installable': True,
-    'application': False,
-    'active': False,
-    'css': [],
-}
+from odoo import fields, models
+
+
+class Phase(models.Model):
+    _name = "clv.phase"
+    _inherit = 'clv.phase', 'clv.abstract.model.log'
+
+    log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
+
+    log_ids = fields.One2many(
+        string='Global Logs',
+        comodel_name='clv.global_log',
+        compute='_compute_log_ids_and_count',
+    )
