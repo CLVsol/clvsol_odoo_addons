@@ -59,7 +59,7 @@
                         <button 
                             type="object"
                             name="do_document_updt"
-                            string="Documents Update"
+                            string="Mass Edit"
                             class="oe_highlight"
                             />
                         <button special="cancel" string="Cancel"/>
@@ -72,7 +72,7 @@
         <!-- More button Action -->
         <act_window 
             id="clv_document_updt_action"
-            name="Document Update"
+            name="Document Mass Edit"
             src_model="clv.document"
             res_model="clv.document.updt"
             view_mode="form, tree"
