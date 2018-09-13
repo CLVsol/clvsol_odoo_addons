@@ -28,6 +28,7 @@
                         </page>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
                             <group name="settings">
+                                <field name="id"/>
                             </group>
                         </page>
                     </notebook>
