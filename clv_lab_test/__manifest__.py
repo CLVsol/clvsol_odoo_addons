@@ -24,6 +24,8 @@
         'views/lab_test_request_log_view.xml',
         'views/lab_test_report_view.xml',
         'views/lab_test_report_log_view.xml',
+        'views/lab_test_result_view.xml',
+        'views/lab_test_result_log_view.xml',
     ],
     'demo': [],
     'test': [],
