@@ -5,9 +5,9 @@
 from odoo import fields, models
 
 
-class LabTestType(models.Model):
-    _name = "clv.lab_test.type"
-    _inherit = 'clv.lab_test.type', 'clv.abstract.model.log'
+class LabTestRequest(models.Model):
+    _name = "clv.lab_test.request"
+    _inherit = 'clv.lab_test.request', 'clv.abstract.model.log'
 
     log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
 

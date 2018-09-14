@@ -3,3 +3,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_clv_lab_test_type_user,clv.lab_test.type.user,model_clv_lab_test_type,clv_lab_test.group_user,1,0,0,0
 access_clv_lab_test_type_manager,clv.lab_test.type.manager,model_clv_lab_test_type,clv_lab_test.group_manager,1,1,1,0
 access_clv_lab_test_type_supmanager,clv.lab_test.type.supmanager,model_clv_lab_test_type,clv_lab_test.group_supmanager,1,1,1,1
+
+access_clv_lab_test_request_user,clv.lab_test.request.user,model_clv_lab_test_request,clv_lab_test.group_user,1,0,0,0
+access_clv_lab_test_request_manager,clv.lab_test.request.manager,model_clv_lab_test_request,clv_lab_test.group_manager,1,1,1,0
+access_clv_lab_test_request_supmanager,clv.lab_test.request.supmanager,model_clv_lab_test_request,clv_lab_test.group_supmanager,1,1,1,1
