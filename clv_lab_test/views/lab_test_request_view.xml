@@ -23,8 +23,8 @@
                         <h1> <field name="code" placeholder="Lab Test Request Code..."/></h1>
                     </div>
                     <div class="oe_title">
-                        <label for="date_requested" class="oe_edit_only"/>
-                        <h3><field name="date_requested" placeholder="Request Date..."/></h3>
+                        <label for="date_request" class="oe_edit_only"/>
+                        <h3><field name="date_request" placeholder="Request Date..."/></h3>
                         <label for="lab_test_type_ids" class="oe_edit_only"/>
                         <h5><field name="lab_test_type_ids" default_focus="1" placeholder="Test Types..." options="{'no_open': False, 'no_create': True}"/></h5>
                     </div>
@@ -52,7 +52,7 @@
         <field name="arch" type="xml">
             <tree name="lab_test_requests" string="Test Requests">
                 <field name="code"/>
-                <field name="date_requested"/>
+                <field name="date_request"/>
                 <field name="lab_test_type_ids"/>
             </tree>
         </field>

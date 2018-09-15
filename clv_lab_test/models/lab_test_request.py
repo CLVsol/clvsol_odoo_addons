@@ -33,8 +33,8 @@ class LabTestRequest(models.Model):
         store=False
     )
 
-    date_requested = fields.Datetime(
-        string='Requested Date',
+    date_request = fields.Datetime(
+        string='Date of the Request',
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
 
