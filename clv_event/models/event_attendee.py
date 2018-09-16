@@ -24,7 +24,8 @@ class Event(models.Model):
     event_attendee_ids = fields.One2many(
         comodel_name='clv.event.attendee',
         inverse_name='event_id',
-        string='Attendees'
+        string='Attendees',
+        readonly=True
     )
     count_event_attendees = fields.Integer(
         string='Number of Attendees',
