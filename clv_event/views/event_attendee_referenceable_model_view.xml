@@ -4,16 +4,13 @@
 
 <odoo>
         
-    <record id="clv_event_referenceable_model_view_form" model="ir.ui.view">
-        <field name="name">clv.event.referenceable.model.form</field>
-        <field name="model">clv.event.referenceable.model</field>
+    <record id="clv_event_attendee_referenceable_model_view_form" model="ir.ui.view">
+        <field name="name">clv.event.attendee.referenceable.model.form</field>
+        <field name="model">clv.event.attendee.referenceable.model</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <div name="button_box" class="oe_right oe_button_box">
-                        <!--button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button-->
                     </div>
                     <div name="title" class="oe_title">
                         <label for="name" class="oe_edit_only"/>
@@ -34,9 +31,9 @@
         </field>
     </record>
     
-    <record id="clv_event_referenceable_model_view_tree" model="ir.ui.view">
-        <field name="name">clv.event.referenceable.model.tree</field>
-        <field name="model">clv.event.referenceable.model</field>
+    <record id="clv_event_attendee_referenceable_model_view_tree" model="ir.ui.view">
+        <field name="name">clv.event.attendee.referenceable.model.tree</field>
+        <field name="model">clv.event.attendee.referenceable.model</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <tree>
@@ -47,9 +44,9 @@
         </field>
     </record>
     
-    <record id="clv_event_referenceable_model_view_search" model="ir.ui.view">
-        <field name="name">clv.event.referenceable.model.search</field>
-        <field name="model">clv.event.referenceable.model</field>
+    <record id="clv_event_attendee_referenceable_model_view_search" model="ir.ui.view">
+        <field name="name">clv.event.attendee.referenceable.model.search</field>
+        <field name="model">clv.event.attendee.referenceable.model</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <search>
@@ -63,63 +60,63 @@
         </field>
     </record>
 
-    <record id="clv_event_referenceable_model_action" model="ir.actions.act_window">
-        <field name="name">Event Referenceable Models</field>
+    <record id="clv_event_attendee_referenceable_model_action" model="ir.actions.act_window">
+        <field name="name">Event Attendee Referenceable Models</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">clv.event.referenceable.model</field>
+        <field name="res_model">clv.event.attendee.referenceable.model</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="clv_event_referenceable_model_view_search"/>
+        <field name="search_view_id" ref="clv_event_attendee_referenceable_model_view_search"/>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="view_id" eval="False"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Click to add a new event referenceable model.
+            Click to add a new event attendee referenceable model.
           </p>
         </field>
     </record>
     
-    <record id="clv_event_view_form_event_referenceable_model" model="ir.ui.view">
-        <field name="name">clv.event.form</field>
-        <field name="model">clv.event</field>
-        <field name="inherit_id" ref="clv_event.clv_event_view_form"/>
+    <record id="clv_event_attendee_view_form_event_attendee_referenceable_model" model="ir.ui.view">
+        <field name="name">clv.event.attendee.form</field>
+        <field name="model">clv.event.attendee</field>
+        <field name="inherit_id" ref="clv_event.clv_event_attendee_view_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <group name="group_right" position="inside">
+            <field name="event_id" position="after">
                 <field name="ref_id"  options="{'no_open': False, 'no_create': True}"/>
                 <field name="ref_model"/>
-                <field name="ref_name"/>
-            </group>
+                <field name="name"/>
+            </field>
         </field>
     </record>
 
-    <record id="clv_event_view_tree_event_referenceable_model" model="ir.ui.view">
-        <field name="name">clv.event.tree</field>
-        <field name="model">clv.event</field>
-        <field name="inherit_id" ref="clv_event.clv_event_view_tree"/>
+    <record id="clv_event_attendee_view_tree_event_attendee_referenceable_model" model="ir.ui.view">
+        <field name="name">clv.event.attendee.tree</field>
+        <field name="model">clv.event.attendee</field>
+        <field name="inherit_id" ref="clv_event.clv_event_attendee_view_tree"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="planned_hours" position="before">
+            <field name="event_id" position="after">
                 <field name="ref_id"/>
             </field>
         </field>
     </record>
 
-    <record id="clv_event_view_search_event_referenceable_model" model="ir.ui.view">
-        <field name="name">clv.event.search</field>
-        <field name="model">clv.event</field>
-        <field name="inherit_id" ref="clv_event.clv_event_view_search"/>
+    <record id="clv_event_attendee_view_search_event_attendee_referenceable_model" model="ir.ui.view">
+        <field name="name">clv.event.attendee.search</field>
+        <field name="model">clv.event.attendee</field>
+        <field name="inherit_id" ref="clv_event.clv_event_attendee_view_search"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="planned_hours" position="before">
+            <field name="event_id" position="before">
                 <field name="ref_id"/>
                 <field name="ref_model"/>
-                <field name="ref_name"/>
+                <field name="name"/>
             </field>
             <group name="group_by" position="inside">
                 <filter string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
-                <filter string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
+                <filter string="Attendee Name" context="{'group_by': 'name'}"/>
             </group>
         </field>
     </record>

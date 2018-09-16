@@ -5,8 +5,8 @@
 from odoo import api, fields, models
 
 
-class EventReferenceableModel(models.Model):
-    _name = 'clv.event.referenceable.model'
+class EventAttendeeReferenceableModel(models.Model):
+    _name = 'clv.event.attendee.referenceable.model'
     _order = 'priority, name'
 
     name = fields.Char(required=True, translate=True)
@@ -14,12 +14,13 @@ class EventReferenceableModel(models.Model):
     priority = fields.Integer(default=5)
 
 
-class Event(models.Model):
-    _inherit = 'clv.event'
+class EventAttendee(models.Model):
+    _inherit = 'clv.event.attendee'
+    _order = 'name'
 
     @api.model
     def event_referenceable_models(self):
-        return [(ref.model, ref.name) for ref in self.env['clv.event.referenceable.model'].search([])]
+        return [(ref.model, ref.name) for ref in self.env['clv.event.attendee.referenceable.model'].search([])]
 
     ref_id = fields.Reference(
         selection='event_referenceable_models',
@@ -29,10 +30,15 @@ class Event(models.Model):
         compute='_compute_reference_model_and_name',
         store=True
     )
-    ref_name = fields.Char(
-        string='Refers to (Name)',
+    name = fields.Char(
+        string='Attendee Name',
         compute='_compute_reference_model_and_name',
         store=True
+    )
+    name_suport = fields.Char(
+        string='Name Suport',
+        compute='_compute_name_suport',
+        store=False
     )
 
     @api.depends('ref_id')
@@ -40,4 +46,11 @@ class Event(models.Model):
         for record in self:
             if record.ref_id:
                 record.ref_model = record.ref_id._description
-                record.ref_name = record.ref_id.name
+                record.name = record.ref_id.name
+
+    @api.multi
+    def _compute_name_suport(self):
+        for record in self:
+            name = record.ref_id.name
+            if record.name != name:
+                record.name = name

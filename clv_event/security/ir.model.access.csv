@@ -8,7 +8,10 @@ access_clv_event_category_user,clv.event.category.user,model_clv_event_category,
 access_clv_event_category_manager,clv.event.manager.category,model_clv_event_category,clv_event.group_manager,1,1,1,0
 access_clv_event_category_supmanager,clv.event.category.supmanager,model_clv_event_category,clv_event.group_supmanager,1,1,1,1
 
-access_clv_event_referenceable_model_user,clv.event.referenceable.model.user,model_clv_event_referenceable_model,clv_event.group_user,1,0,0,0
-access_clv_event_referenceable_model_manager,clv.event.referenceable.model.manager,model_clv_event_referenceable_model,clv_event.group_manager,1,1,1,0
-access_clv_event_referenceable_model_supmanager,clv.event.referenceable.model.supmanager,model_clv_event_referenceable_model,clv_event.group_supmanager,1,1,1,1
+access_clv_event_attendee_user,clv.event.attendee.user,model_clv_event_attendee,clv_event.group_user,1,0,0,0
+access_clv_event_attendee_manager,clv.event.manager.attendee,model_clv_event_attendee,clv_event.group_manager,1,1,1,0
+access_clv_event_attendee_supmanager,clv.event.attendee.supmanager,model_clv_event_attendee,clv_event.group_supmanager,1,1,1,1
 
+access_clv_event_attendee_referenceable_model_user,clv.event.attendee.referenceable.model.user,model_clv_event_attendee_referenceable_model,clv_event.group_user,1,0,0,0
+access_clv_event_attendee_referenceable_model_manager,clv.event.attendee.referenceable.model.manager,model_clv_event_attendee_referenceable_model,clv_event.group_manager,1,1,1,0
+access_clv_event_attendee_referenceable_model_supmanager,clv.event.attendee.referenceable.model.supmanager,model_clv_event_attendee_referenceable_model,clv_event.group_supmanager,1,1,1,1
