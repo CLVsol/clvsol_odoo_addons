@@ -354,7 +354,13 @@ class ModelExport_sqlite(models.Model):
         #     cmd = 'False'
         else:
             cmd = 'item.' + field.name
-        if cmd != 'False' and eval(cmd) is not False:
+
+        eval_cmd = False
+        try:
+            eval_cmd = eval(cmd)
+        except Exception as e:
+            _logger.warning(u'%s %s', '>>>>>>>>>> Exception: ', e)
+        if cmd != 'False' and eval_cmd is not False:
             return eval(cmd)
         else:
             return None
