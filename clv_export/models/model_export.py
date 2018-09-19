@@ -409,7 +409,11 @@ class ModelExport_sqlite(models.Model):
         col_nr = 0
         if self.export_all_fields is False:
             for field in self.model_export_field_ids:
+
                 col_name = field.field_id.name
+                if col_name == 'values':
+                    col_name = "'" + col_name + "'"
+
                 if col_name == 'id':
                     create_table += 'id INTEGER NOT NULL PRIMARY KEY, '
                 else:
@@ -425,7 +429,11 @@ class ModelExport_sqlite(models.Model):
                 col_nr += 1
         else:
             for field in all_model_fields:
+
                 col_name = field.name
+                if col_name == 'values':
+                    col_name = "'" + col_name + "'"
+
                 if col_name == 'id':
                     create_table += 'id INTEGER NOT NULL PRIMARY KEY, '
                 else:
