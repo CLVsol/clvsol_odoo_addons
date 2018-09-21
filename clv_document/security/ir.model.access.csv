@@ -19,3 +19,7 @@ access_clv_document_type_supmanager,clv.document.type.supmanager,model_clv_docum
 access_clv_document_item_user,clv.document.item.user,model_clv_document_item,clv_document.group_user,1,0,0,0
 access_clv_document_item_manager,clv.document.manager.item,model_clv_document_item,clv_document.group_manager,1,1,1,0
 access_clv_document_item_supmanager,clv.document.item.supmanager,model_clv_document_item,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_referenceable_model_user,clv.document.referenceable.model.user,model_clv_document_referenceable_model,clv_document.group_user,1,0,0,0
+access_clv_document_referenceable_model_manager,clv.document.referenceable.model.manager,model_clv_document_referenceable_model,clv_document.group_manager,1,1,1,0
+access_clv_document_referenceable_model_supmanager,clv.document.referenceable.model.supmanager,model_clv_document_referenceable_model,clv_document.group_supmanager,1,1,1,1
