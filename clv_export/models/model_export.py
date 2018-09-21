@@ -193,7 +193,8 @@ class ModelExport_xls(models.Model):
                 else:
                     names_str += '; ' + id_.name
             names_str += '"'
-            cmd = names_str.encode('ascii', 'replace')
+            cmd = names_str
+            # cmd = names_str.encode('ascii', 'replace')
             # cmd = names_str.encode('ascii', 'xmlcharrefreplace')
         elif field.ttype == 'many2one':
             cmd = 'item.' + field.name + '.name'
@@ -204,7 +205,13 @@ class ModelExport_xls(models.Model):
             cmd = 'False'
         else:
             cmd = 'item.' + field.name
-        if cmd != 'False' and eval(cmd) is not False:
+
+        eval_cmd = False
+        try:
+            eval_cmd = eval(cmd)
+        except Exception as e:
+            _logger.warning(u'%s %s [%s]', '>>>>>>>>>> Exception: ', e, field.name)
+        if cmd != 'False' and eval_cmd is not False:
             return eval(cmd)
         else:
             return None
@@ -226,7 +233,7 @@ class ModelExport_xls(models.Model):
 
         self.date_export = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        model_name = self.model_id.name
+        model_name = self.model_id.model.replace('.', '_')
         label = ''
         if self.label is not False:
             label = '_' + self.label

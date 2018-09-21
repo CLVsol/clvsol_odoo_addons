@@ -112,6 +112,7 @@
                         <filter string="Model Export Template" context="{'group_by': 'template_id'}"/>
                         <filter string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
                         <filter string="Export Type" domain="[]" context="{'group_by': 'export_type'}"/>
+                        <filter string="Label" domain="[]" context="{'group_by': 'label'}"/>
                         <filter string="Export Date" domain="[]" context="{'group_by': 'date_export'}"/>
                     </group>
                 </search>

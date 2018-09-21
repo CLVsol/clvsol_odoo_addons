@@ -86,6 +86,7 @@
                     <group name="group_by" string="Group By...">
                         <filter string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
                         <filter string="Export Type" domain="[]" context="{'group_by': 'export_type'}"/>
+                        <filter string="Label" domain="[]" context="{'group_by': 'label'}"/>
                     </group>
                 </search>
             </field>
