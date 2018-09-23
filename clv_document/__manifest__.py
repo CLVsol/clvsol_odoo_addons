@@ -25,7 +25,7 @@
         'views/global_tag_view.xml',
         'views/document_type_view.xml',
         'views/document_item_view.xml',
-        'views/document_referenceable_model_view.xml',
+        'views/referenceable_model_view.xml',
         'wizard/document_updt_view.xml',
         'wizard/document_item_edit_view.xml',
         'wizard/document_item_refresh_view.xml',
