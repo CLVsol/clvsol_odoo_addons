@@ -4,83 +4,7 @@
 
 <odoo>
         
-    <record id="clv_lab_test_referenceable_model_view_form" model="ir.ui.view">
-        <field name="name">clv.lab_test.referenceable.model.form</field>
-        <field name="model">clv.lab_test.referenceable.model</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <div name="button_box" class="oe_right oe_button_box">
-                        <!--button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button-->
-                    </div>
-                    <div name="title" class="oe_title">
-                        <label for="name" class="oe_edit_only"/>
-                        <h3><field name="name" default_focus="1" placeholder="Name..."/></h3>
-                        <label for="model" class="oe_edit_only"/>
-                        <h3><field name="model" placeholder="Object..."/></h3>
-                        <label for="priority" class="oe_edit_only"/>
-                        <h3><field name="priority" placeholder="Priority..."/></h3>
-                    </div>
-                    <notebook>
-                        <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
-                            <group name="settings">
-                            </group>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-    
-    <record id="clv_lab_test_referenceable_model_view_tree" model="ir.ui.view">
-        <field name="name">clv.lab_test.referenceable.model.tree</field>
-        <field name="model">clv.lab_test.referenceable.model</field>
-        <field name="priority" eval="8"/>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="model"/>
-                <field name="priority"/>
-            </tree>
-        </field>
-    </record>
-    
-    <record id="clv_lab_test_referenceable_model_view_search" model="ir.ui.view">
-        <field name="name">clv.lab_test.referenceable.model.search</field>
-        <field name="model">clv.lab_test.referenceable.model</field>
-        <field name="priority" eval="8"/>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name"/>
-                <field name="model"/>
-                <separator/>
-                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
-                <group expand="0" string="Group By...">
-                </group>
-            </search>
-        </field>
-    </record>
-
-    <record id="clv_lab_test_referenceable_model_action" model="ir.actions.act_window">
-        <field name="name">Lab Test Referenceable Models</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">clv.lab_test.referenceable.model</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="clv_lab_test_referenceable_model_view_search"/>
-        <field name="domain">[]</field>
-        <field name="context">{}</field>
-        <field name="view_id" eval="False"/>
-        <field name="help" type="html">
-          <p class="oe_view_nocontent_create">
-            Click to add a new lab_test referenceable model.
-          </p>
-        </field>
-    </record>
-    
-    <record id="clv_lab_test_request_view_form_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_request_view_form_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.request.form</field>
         <field name="model">clv.lab_test.request</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_request_view_form"/>
@@ -94,7 +18,7 @@
         </field>
     </record>
 
-    <record id="clv_lab_test_request_view_tree_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_request_view_tree_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.request.tree</field>
         <field name="model">clv.lab_test.request</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_request_view_tree"/>
@@ -106,7 +30,7 @@
         </field>
     </record>
 
-    <record id="clv_lab_test_request_view_search_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_request_view_search_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.request.search</field>
         <field name="model">clv.lab_test.request</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_request_view_search"/>
@@ -124,7 +48,7 @@
         </field>
     </record>
 
-    <record id="clv_lab_test_result_view_form_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_result_view_form_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.result.form</field>
         <field name="model">clv.lab_test.result</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_result_view_form"/>
@@ -138,7 +62,7 @@
         </field>
     </record>
 
-    <record id="clv_lab_test_result_view_tree_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_result_view_tree_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.result.tree</field>
         <field name="model">clv.lab_test.result</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_result_view_tree"/>
@@ -150,7 +74,7 @@
         </field>
     </record>
 
-    <record id="clv_lab_test_result_view_search_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_result_view_search_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.result.search</field>
         <field name="model">clv.lab_test.result</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_result_view_search"/>
@@ -168,7 +92,7 @@
         </field>
     </record>
 
-    <record id="clv_lab_test_report_view_form_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_report_view_form_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.report.form</field>
         <field name="model">clv.lab_test.report</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_report_view_form"/>
@@ -182,7 +106,7 @@
         </field>
     </record>
 
-    <record id="clv_lab_test_report_view_tree_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_report_view_tree_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.report.tree</field>
         <field name="model">clv.lab_test.report</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_report_view_tree"/>
@@ -194,7 +118,7 @@
         </field>
     </record>
 
-    <record id="clv_lab_test_report_view_search_lab_test_referenceable_model" model="ir.ui.view">
+    <record id="clv_lab_test_report_view_search_referenceable_model" model="ir.ui.view">
         <field name="name">clv.lab_test.report.search</field>
         <field name="model">clv.lab_test.report</field>
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_report_view_search"/>

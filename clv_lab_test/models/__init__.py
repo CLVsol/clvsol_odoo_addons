@@ -15,4 +15,4 @@ from . import lab_test_criterion
 from . import global_tag
 from . import lab_test_result_file_system
 from . import lab_test_report_file_system
-from . import lab_test_referenceable_model
+from . import referenceable_model
