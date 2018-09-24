@@ -22,3 +22,5 @@ from . import event
 from . import event_category
 from . import global_tag
 from . import event_log
+from . import event_attendee
+from . import referenceable_model
