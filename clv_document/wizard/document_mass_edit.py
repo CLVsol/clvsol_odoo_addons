@@ -107,11 +107,13 @@ class DocumentMassEdit(models.TransientModel):
     )
 
     @api.model
-    def document_referenceable_models(self):
-        return [(ref.model, ref.name) for ref in self.env['clv.document.referenceable.model'].search([])]
+    def referenceable_models(self):
+        return [(ref.model, ref.name) for ref in self.env['clv.referenceable.model'].search([
+            ('base_model', '=', 'clv.document'),
+        ])]
 
     ref_id = fields.Reference(
-        selection='document_referenceable_models',
+        selection='referenceable_models',
         string='Refers to')
     ref_id_selection = fields.Selection(
         [('set', 'Set'),
