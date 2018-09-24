@@ -8,4 +8,4 @@ from . import event_category
 from . import event_category_log
 from . import global_tag
 from . import event_attendee
-from . import event_attendee_referenceable_model
+from . import referenceable_model
