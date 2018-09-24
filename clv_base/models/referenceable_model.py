@@ -5,24 +5,27 @@
 from odoo import api, fields, models
 
 
-class DocumentReferenceableModel(models.Model):
-    _name = 'clv.document.referenceable.model'
+class ReferenceableModel(models.Model):
+    _name = 'clv.referenceable.model'
     _order = 'priority, name'
 
-    name = fields.Char(required=True, translate=True)
-    model = fields.Char(required=True)
-    priority = fields.Integer(default=5)
+    base_model = fields.Char(string='Base Model', required=True)
+    name = fields.Char(string='Name', required=True, translate=True)
+    model = fields.Char(string='Referenceable Model', required=True)
+    priority = fields.Integer(string='Priority', default=10)
 
 
-class Document(models.Model):
-    _inherit = 'clv.document'
+class AbstractReference(models.AbstractModel):
+    _name = 'clv.abstract.reference'
 
     @api.model
-    def document_referenceable_models(self):
-        return [(ref.model, ref.name) for ref in self.env['clv.document.referenceable.model'].search([])]
+    def referenceable_models(self):
+        return [(ref.model, ref.name) for ref in self.env['clv.referenceable.model'].search([
+            ('base_model', '=', self._name),
+        ])]
 
     ref_id = fields.Reference(
-        selection='document_referenceable_models',
+        selection='referenceable_models',
         string='Refers to')
     ref_model = fields.Char(
         string='Refers to (Model)',
