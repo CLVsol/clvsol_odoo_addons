@@ -13,6 +13,7 @@
     'images': [],
     'depends': [
         'clv_base',
+        'clv_global_log',
         'clv_global_tag',
     ],
     'data': [
