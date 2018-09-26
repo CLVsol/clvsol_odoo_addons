@@ -26,3 +26,4 @@ from . import log_model
 from . import annotation_model
 from . import random_model
 from . import export_xls
+from . import referenceable_model

@@ -22,3 +22,5 @@ from . import community
 from . import community_log
 from . import community_category
 from . import global_tag
+from . import community_member
+from . import referenceable_model

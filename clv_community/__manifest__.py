@@ -37,6 +37,8 @@
         'views/community_view.xml',
         'views/community_log_view.xml',
         'views/community_category_view.xml',
+        'views/community_member_view.xml',
+        'views/referenceable_model_view.xml',
         'views/global_tag_view.xml',
         'wizard/community_updt_view.xml',
     ],
