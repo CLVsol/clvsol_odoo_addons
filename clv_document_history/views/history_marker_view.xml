@@ -52,7 +52,7 @@
                     <field name="history_marker_id"/>
                 </field>
                 <group name="group_by" position="inside">
-                    <filter string="History Markers" context="{'group_by': 'history_marker_id'}"/>
+                    <filter name="group_by_history_marker_id" string="History Markers" context="{'group_by': 'history_marker_id'}"/>
                 </group>
             </field>
         </record>
