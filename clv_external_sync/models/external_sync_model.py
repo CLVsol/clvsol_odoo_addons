@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-import xmlrpclib
+import xmlrpc.client
 
 from odoo import api, models, fields
 
@@ -38,7 +38,7 @@ class ExternalSyncModel(models.AbstractModel):
         user_name = ''
         company_name = ''
 
-        sock_common = xmlrpclib.ServerProxy(xmlrpc_sock_common_url)
+        sock_common = xmlrpc.client.ServerProxy(xmlrpc_sock_common_url)
         try:
             server_version = sock_common.version()
         except Exception:
@@ -55,9 +55,9 @@ class ExternalSyncModel(models.AbstractModel):
             return uid, sock, login_msg
 
         try:
-            sock_common = xmlrpclib.ServerProxy(xmlrpc_sock_common_url)
+            sock_common = xmlrpc.client.ServerProxy(xmlrpc_sock_common_url)
             uid = sock_common.login(external_dbname, external_user, external_user_pw)
-            sock = xmlrpclib.ServerProxy(xmlrpc_sock_str)
+            sock = xmlrpc.client.ServerProxy(xmlrpc_sock_str)
         except Exception:
             pass
 
@@ -72,9 +72,9 @@ class ExternalSyncModel(models.AbstractModel):
             return uid, sock, login_msg
 
         try:
-            sock_common = xmlrpclib.ServerProxy(xmlrpc_sock_common_url)
+            sock_common = xmlrpc.client.ServerProxy(xmlrpc_sock_common_url)
             uid = sock_common.login(external_dbname, external_user, external_user_pw)
-            sock = xmlrpclib.ServerProxy(xmlrpc_sock_str)
+            sock = xmlrpc.client.ServerProxy(xmlrpc_sock_str)
         except Exception:
             pass
 

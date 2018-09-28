@@ -2,40 +2,17 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
-
-
-class ExternalSyncHostLog(models.Model):
-    _description = 'External Sync Host Log'
-    _name = 'clv.external_sync.host.log'
-    _inherit = 'clv.object.log'
-
-    external_sync_host_id = fields.Many2one(
-        comodel_name='clv.external_sync.host',
-        string='External Sync Host',
-        required=True,
-        ondelete='cascade'
-    )
+from odoo import fields, models
 
 
 class ExternalSyncHost(models.Model):
     _name = "clv.external_sync.host"
-    _inherit = 'clv.external_sync.host', 'clv.log.model'
+    _inherit = 'clv.external_sync.host', 'clv.abstract.model.log'
+
+    log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
 
     log_ids = fields.One2many(
-        comodel_name='clv.external_sync.host.log',
-        inverse_name='external_sync_host_id',
-        string='External Sync Host Log',
-        readonly=True
+        string='Global Logs',
+        comodel_name='clv.global_log',
+        compute='_compute_log_ids_and_count',
     )
-
-    @api.one
-    def insert_object_log(self, external_sync_host_id, values, action, notes):
-        if self.active_log or 'active_log' in values:
-            vals = {
-                'external_sync_host_id': external_sync_host_id,
-                'values': values,
-                'action': action,
-                'notes': notes,
-            }
-            self.env['clv.external_sync.host.log'].create(vals)
