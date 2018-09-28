@@ -24,7 +24,7 @@
                         <field name="notes" placeholder="Notes..." colspan="4"/>
                     </div>
                     <notebook>
-                        <page name="marker_for" string="Phase for">
+                        <page name="phase_for" string="Phase for">
                         </page>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                             <group name="settings">

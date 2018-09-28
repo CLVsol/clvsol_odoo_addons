@@ -48,6 +48,12 @@
                         <field name="parent_id" invisible="True" />
                     </h3>
                 </div>
+                <group name="group_top">
+                    <group name="group_left">
+                    </group>
+                    <group name="group_right">
+                    </group>
+                </group>
                 <notebook>
                     <page name="page_general_info" string="General Information">
                         <div class="oe_button_box" name="buttons" />
