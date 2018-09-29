@@ -64,10 +64,11 @@ class AbstractReference(models.AbstractModel):
     @api.multi
     def _compute_ref_suport(self):
         for record in self:
-            ref_name = record.ref_id.name
-            ref_code = record.ref_id.code
-            record.ref_suport = record.ref_id._name + ',' + str(record.ref_id.id)
-            if record.ref_name is False or record.ref_name != ref_name or \
-               record.ref_code is False or record.ref_code != ref_code:
-                record = self.env[self._name].search([('id', '=', record.id)])
-                record.write({'ref_id': record.ref_suport})
+            if record.ref_id is not False:
+                ref_name = record.ref_id.name
+                ref_code = record.ref_id.code
+                record.ref_suport = record.ref_id._name + ',' + str(record.ref_id.id)
+                if record.ref_name is False or record.ref_name != ref_name or \
+                   record.ref_code is False or record.ref_code != ref_code:
+                    record = self.env[self._name].search([('id', '=', record.id)])
+                    record.write({'ref_id': record.ref_suport})
