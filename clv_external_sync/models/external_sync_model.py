@@ -3,7 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-import xmlrpc.client
+import ssl
+import xmlrpc
 
 from odoo import api, models, fields
 
@@ -29,8 +30,8 @@ class ExternalSyncModel(models.AbstractModel):
         uid = False
         sock = False
 
-        xmlrpc_sock_common_url = external_host + '/xmlrpc/common'
-        xmlrpc_sock_str = external_host + '/xmlrpc/object'
+        xmlrpc_sock_common_url = external_host + '/xmlrpc/2/common'
+        xmlrpc_sock_str = external_host + '/xmlrpc/2/object'
 
         server_version = False
 
@@ -38,7 +39,12 @@ class ExternalSyncModel(models.AbstractModel):
         user_name = ''
         company_name = ''
 
-        sock_common = xmlrpc.client.ServerProxy(xmlrpc_sock_common_url)
+        # ctx = ssl.SSLContext()
+        ssl._create_default_https_context = ssl._create_unverified_context
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        sock_common = xmlrpc.client.ServerProxy(xmlrpc_sock_common_url, context=ctx)
         try:
             server_version = sock_common.version()
         except Exception:
@@ -58,7 +64,9 @@ class ExternalSyncModel(models.AbstractModel):
             sock_common = xmlrpc.client.ServerProxy(xmlrpc_sock_common_url)
             uid = sock_common.login(external_dbname, external_user, external_user_pw)
             sock = xmlrpc.client.ServerProxy(xmlrpc_sock_str)
-        except Exception:
+            _logger.info(u'%s %s', '>>>>>>>>>> sock', sock)
+        except Exception as e:
+            _logger.info(u'%s %s %s %s', '>>>>>', e)
             pass
 
         if uid is not False:
@@ -80,7 +88,7 @@ class ExternalSyncModel(models.AbstractModel):
 
         user_fields = ['name', 'parent_id', ]
         user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
-                                 uid, user_fields)
+                                 uid, user_fields)[0]
         user_name = user_data['name']
         parent_id = user_data['parent_id']
 
@@ -90,7 +98,7 @@ class ExternalSyncModel(models.AbstractModel):
 
             company_fields = ['name', ]
             company_data = sock.execute(external_dbname, uid, external_user_pw, 'res.company', 'read',
-                                        company_id[0], company_fields)
+                                        company_id[0], company_fields)[0]
             company_name = company_data['name']
 
         if uid is not False:
@@ -104,7 +112,7 @@ class ExternalSyncModel(models.AbstractModel):
 
             user_fields = ['name', 'parent_id', ]
             user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
-                                     uid, user_fields)
+                                     uid, user_fields)[0]
             user_name = user_data['name']
             parent_id = user_data['parent_id'][0]
 
