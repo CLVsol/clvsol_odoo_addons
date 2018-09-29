@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="clv_document_view_form_biobox" model="ir.ui.view">
+        <field name="name">clv.document.form</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document.clv_document_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <group name="settings" position="inside">
+                <field name="external_id"/>
+                <field name="external_last_update"/>
+                <field name="external_sync"/>
+            </group>
+            <page name="settings" position="attributes">
+                <attribute name="invisible">False</attribute>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_document_view_tree_biobox" model="ir.ui.view">
+        <field name="name">clv.document.tree</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document.clv_document_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="external_sync"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_document_view_search_biobox" model="ir.ui.view">
+        <field name="name">clv.document.search</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document.clv_document_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="external_sync"/>
+            </field>
+            <group  name="group_by" position="inside">
+                <filter string="External Synchronization" context="{'group_by': 'external_sync'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
