@@ -5,10 +5,37 @@
 <odoo noupdate="1">
  
 	<record id="clv_document_clv_document" model="clv.external_sync.template">
-		<field name="name" eval="&quot;&quot;&quot;clv.document (clv_document)&quot;&quot;&quot;"/>
+		<field name="name" eval="&quot;&quot;&quot;clv.document (clv.document)&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.document&quot;&quot;&quot;"/>
 		<field name="method" eval="&quot;&quot;&quot;_document_external_sync&quot;&quot;&quot;"/>
 		<field name="external_model" eval="&quot;&quot;&quot;clv.document&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_document_clv_document_object_field_name" model="clv.external_sync.template.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;name&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;name&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="update" eval="True"/>
+		<field name="template_id" eval="clv_document_clv_document"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_document_clv_document_object_field_code" model="clv.external_sync.template.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;code&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;code&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="False"/>
+		<field name="update" eval="True"/>
+		<field name="template_id" eval="clv_document_clv_document"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_document_clv_document_object_field_date_requested" model="clv.external_sync.template.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;date_requested&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;date_requested&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="False"/>
+		<field name="update" eval="True"/>
+		<field name="template_id" eval="clv_document_clv_document"/>
+		<field name="sequence" eval="10"/>
 	</record>
 	 
 </odoo>
