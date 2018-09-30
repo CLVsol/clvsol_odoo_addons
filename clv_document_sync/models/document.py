@@ -22,13 +22,13 @@ class Document(models.Model):
 
     def _document_synchronize(
         self, sock, external_dbname, uid, external_user_pw,
-        external_model, code
+        external_model, external_id
     ):
 
         external_object_fields = [
             'name', 'code', '__last_update',
         ]
-        args = [('code', '=', code)]
+        args = [('id', '=', external_id)]
         external_objects = sock.execute(external_dbname, uid, external_user_pw,
                                         external_model, 'search_read',
                                         args,
@@ -40,6 +40,8 @@ class Document(models.Model):
 
         if self.name != external_object['name']:
             self.name = external_object['name']
+        if self.code != external_object['code']:
+            self.code = external_object['code']
 
         self.external_last_update = external_object['__last_update']
         self.external_sync = 'synchronized'
@@ -72,28 +74,28 @@ class Document(models.Model):
 
             external_object_ids = sock.execute(external_dbname, uid, external_user_pw,
                                                schedule.external_model, 'search', [])
-            _logger.info(u'%s %s', '>>>>>>>>>>', len(external_object_ids))
+            _logger.info(u'%s %s', '>>>>>>>>>> (external_objects):', len(external_object_ids))
 
             local_objects = Object.search([
                 ('external_id', '!=', False),
                 ('external_sync', '!=', 'missing'),
             ])
-            _logger.info(u'%s %s', '>>>>>>>>>>', len(local_objects))
+            _logger.info(u'%s %s', '>>>>>>>>>> (local_objects):', len(local_objects))
 
             missing_count = 0
             for local_object in local_objects:
                 if local_object.external_id not in external_object_ids:
                     missing_count += 1
-                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>', missing_count, local_object.code)
+                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>> (missing_object):', missing_count, local_object.code)
                     local_object.external_sync = 'missing'
 
             external_object_fields = sock.execute(external_dbname, uid, external_user_pw,
                                                   schedule.external_model, 'fields_get',
                                                   [], {'attributes': ['string', 'help', 'type']})
-            _logger.info(u'%s %s', '>>>>>>>>>>', external_object_fields.keys())
+            _logger.info(u'%s %s', '>>>>>>>>>> (external_object_fields):', external_object_fields.keys())
 
             args = schedule.external_last_update_args()
-            _logger.info(u'%s %s', '>>>>>>>>>>', args)
+            _logger.info(u'%s %s', '>>>>>>>>>> (args):', args)
 
             external_object_fields = ['name', 'code', '__last_update', ]
             external_objects = sock.execute(external_dbname, uid, external_user_pw,
@@ -101,7 +103,7 @@ class Document(models.Model):
                                             args,
                                             external_object_fields)
 
-            _logger.info(u'%s %s', '>>>>>>>>>>', len(external_objects))
+            _logger.info(u'%s %s', '>>>>>>>>>> (external_objects):', len(external_objects))
 
             reg_count = 0
             include_count = 0
@@ -124,7 +126,7 @@ class Document(models.Model):
                         upmost_last_update = external_object['__last_update']
 
                 local_object = Object.search([
-                    ('code', '=', external_object['code']),
+                    ('external_id', '=', external_object['id']),
                 ])
 
                 if local_object.id is False:
@@ -133,7 +135,7 @@ class Document(models.Model):
 
                     values = {
                         'name': external_object['name'],
-                        'code': external_object['code'],
+                        # 'code': external_object['code'],
                         'external_id': external_object['id'],
                         'external_last_update': external_object['__last_update'],
                         'external_sync': 'included',
@@ -150,7 +152,7 @@ class Document(models.Model):
 
                         new_local_object._document_synchronize(
                             sock, external_dbname, uid, external_user_pw,
-                            schedule.external_model, external_object['code']
+                            schedule.external_model, external_object['id']
                         )
 
                 else:
@@ -179,8 +181,42 @@ class Document(models.Model):
 
                         local_object._document_synchronize(
                             sock, external_dbname, uid, external_user_pw,
-                            schedule.external_model, external_object['code']
+                            schedule.external_model, external_object['id']
                         )
+
+            reg_count_2 = 0
+            sync_update_count_2 = 0
+            for external_object in external_objects:
+
+                reg_count_2 += 1
+
+                _logger.info(u'%s %s %s %s %s %s', '>>>>>>>>>>', reg_count_2,
+                             external_object['id'], external_object['name'], external_object['code'],
+                             external_object['__last_update'], )
+
+                if upmost_last_update is False:
+                    upmost_last_update = external_object['__last_update']
+                else:
+                    if external_object['__last_update'] > upmost_last_update:
+                        upmost_last_update = external_object['__last_update']
+
+                local_object = Object.search([
+                    ('external_id', '=', external_object['id']),
+                ])
+
+                if local_object.external_sync == 'updated' and \
+                   schedule.external_exec_sync is True and \
+                   sync_count < schedule.external_max_sync:
+
+                    _logger.info(u'>>>>>>>>>>>>>>> %s %s', sync_count, local_object)
+
+                    if local_object.external_sync == 'updated':
+                        sync_update_count_2 += 1
+
+                    local_object._document_synchronize(
+                        sock, external_dbname, uid, external_user_pw,
+                        schedule.external_model, external_object['id']
+                    )
 
             _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_sync: ', schedule.external_max_sync)
@@ -194,6 +230,8 @@ class Document(models.Model):
             _logger.info(u'%s %s', '>>>>>>>>>> sync_include_count: ', sync_include_count)
             _logger.info(u'%s %s', '>>>>>>>>>> sync_update_count: ', sync_update_count)
             _logger.info(u'%s %s', '>>>>>>>>>> sync_count: ', sync_count)
+            _logger.info(u'%s %s', '>>>>>>>>>> reg_count_2: ', reg_count_2)
+            _logger.info(u'%s %s', '>>>>>>>>>> sync_update_count_2: ', sync_update_count_2)
             _logger.info(u'%s %s', '>>>>>>>>>> date_last_sync: ', date_last_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> upmost_last_update: ', upmost_last_update)
             _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
@@ -213,6 +251,8 @@ class Document(models.Model):
                 'sync_include_count: ' + str(sync_include_count) + '\n' + \
                 'sync_update_count: ' + str(sync_update_count) + '\n' + \
                 'sync_count: ' + str(sync_count) + '\n\n' + \
+                'reg_count_2: ' + str(reg_count_2) + '\n' + \
+                'sync_update_count_2: ' + str(sync_update_count_2) + '\n' + \
                 'date_last_sync: ' + str(date_last_sync) + '\n' + \
                 'upmost_last_update: ' + str(upmost_last_update) + '\n\n' + \
                 'Execution time: ' + str(secondsToStr(time() - start)) + '\n'
