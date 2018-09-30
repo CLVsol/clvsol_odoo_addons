@@ -13,6 +13,7 @@
     'images': [],
     'depends': [
         'clv_base',
+        'clv_global_log',
     ],
     'data': [
         'security/external_sync_security.xml',
@@ -20,6 +21,7 @@
         'views/external_sync_host_view.xml',
         'views/external_sync_host_log_view.xml',
         'views/external_sync_template_view.xml',
+        'views/external_sync_template_object_field_view.xml',
         'views/external_sync_template_log_view.xml',
         'views/external_sync_schedule_view.xml',
         'views/external_sync_schedule_log_view.xml',
