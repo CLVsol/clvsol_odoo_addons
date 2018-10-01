@@ -199,7 +199,7 @@ class AbstractExternalSync(models.AbstractModel):
             for local_object in local_objects:
                 if local_object.external_id not in external_object_ids:
                     missing_count += 1
-                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>> (missing_object):', missing_count, local_object.code)
+                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>> (missing_object):', missing_count, local_object.id)
                     local_object.external_sync = 'missing'
 
             external_object_fields = sock.execute(external_dbname, uid, external_user_pw,
@@ -310,40 +310,51 @@ class AbstractExternalSync(models.AbstractModel):
                             schedule
                         )
 
+            local_objects = Object.search([
+                ('external_sync', '=', 'updated'),
+            ])
+            _logger.info(u'>>>>>>>>>>>>>>> (local_objects): %s %s', local_objects, len(local_objects))
+
             reg_count_2 = 0
             sync_update_count_2 = 0
-            for external_object in external_objects:
+            while len(local_objects) > 0:
+                for external_object in external_objects:
 
-                reg_count_2 += 1
+                    reg_count_2 += 1
 
-                _logger.info(u'%s %s %s %s', '>>>>>>>>>>', reg_count_2,
-                             external_object['id'],
-                             external_object['__last_update'], )
+                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', reg_count_2,
+                                 external_object['id'],
+                                 external_object['__last_update'], )
 
-                if upmost_last_update is False:
-                    upmost_last_update = external_object['__last_update']
-                else:
-                    if external_object['__last_update'] > upmost_last_update:
+                    if upmost_last_update is False:
                         upmost_last_update = external_object['__last_update']
+                    else:
+                        if external_object['__last_update'] > upmost_last_update:
+                            upmost_last_update = external_object['__last_update']
 
-                local_object = Object.search([
-                    ('external_id', '=', external_object['id']),
+                    local_object = Object.search([
+                        ('external_id', '=', external_object['id']),
+                    ])
+
+                    if local_object.external_sync == 'updated' and \
+                       schedule.external_exec_sync is True and \
+                       sync_count < schedule.external_max_sync:
+
+                        _logger.info(u'>>>>>>>>>>>>>>> %s %s', sync_count, local_object)
+
+                        if local_object.external_sync == 'updated':
+                            sync_update_count_2 += 1
+
+                        local_object._object_synchronize(
+                            sock, external_dbname, uid, external_user_pw,
+                            schedule.external_model, external_object['id'],
+                            schedule
+                        )
+
+                local_objects = Object.search([
+                    ('external_sync', '=', 'updated'),
                 ])
-
-                if local_object.external_sync == 'updated' and \
-                   schedule.external_exec_sync is True and \
-                   sync_count < schedule.external_max_sync:
-
-                    _logger.info(u'>>>>>>>>>>>>>>> %s %s', sync_count, local_object)
-
-                    if local_object.external_sync == 'updated':
-                        sync_update_count_2 += 1
-
-                    local_object._object_synchronize(
-                        sock, external_dbname, uid, external_user_pw,
-                        schedule.external_model, external_object['id'],
-                        schedule
-                    )
+                _logger.info(u'>>>>>>>>>>>>>>> (local_objects): %s %s', local_objects, len(local_objects))
 
             _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_sync: ', schedule.external_max_sync)
