@@ -81,11 +81,14 @@ class AbstractModelLog(models.AbstractModel):
     @api.multi
     def _compute_log_ids_and_count(self):
         for record in self:
-            logs = self.env[record.log_model].search([
-                ('reference', '=', record.reference),
-            ])
-            record.count_logs = len(logs)
-            record.log_ids = [(6, 0, logs.ids)]
+            try:
+                logs = self.env[record.log_model].search([
+                    ('reference', '=', record.reference),
+                ])
+                record.count_logs = len(logs)
+                record.log_ids = [(6, 0, logs.ids)]
+            except Exception:
+                pass
 
     @api.depends('model', 'res_id')
     def insert_object_log(self, log_model, model, res_id, values, action, notes):

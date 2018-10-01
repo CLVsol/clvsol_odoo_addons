@@ -101,11 +101,11 @@ class Patient(models.Model):
     @api.model
     def _create_vals(self, vals):
         vals = super(Patient, self)._create_vals(vals)
-        if not vals.get('identification_code'):
-            Seq = self.env['ir.sequence']
-            vals['identification_code'] = Seq.sudo().next_by_code(
-                self._name,
-            )
+        # if not vals.get('identification_code'):
+        #     Seq = self.env['ir.sequence']
+        #     vals['identification_code'] = Seq.sudo().next_by_code(
+        #         self._name,
+        #     )
         vals.update({
             'customer': True,
         })
