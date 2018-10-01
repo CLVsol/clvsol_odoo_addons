@@ -89,9 +89,29 @@ class ExternalSyncSchedule(models.Model):
     #      u'Error! The Name must be unique!'),
     # ]
 
+    @api.model
+    def create(self, values):
+
+        schedule = super(ExternalSyncSchedule, self).create(values)
+
+        ExternalSyncObjectField = self.env['clv.external_sync.object_field']
+        for object_field in schedule.template_id.object_field_ids:
+            values = {
+                'external_object_field': object_field.external_object_field,
+                'local_object_field': object_field.local_object_field,
+                'inclusion': object_field.inclusion,
+                'update': object_field.update,
+                'sequence': object_field.sequence,
+                'schedule_id': schedule.id,
+            }
+            ExternalSyncObjectField.create(values)
+
+        return schedule
+
     @api.onchange('template_id')
     def onchange_template_id(self):
-        if self.template_id:
+        ExternalSyncObjectField = self.env['clv.external_sync.object_field']
+        if self.template_id.id:
             self.external_host_id = self.template_id.external_host_id
             self.external_exec_sync = self.template_id.external_exec_sync
             self.external_max_sync = self.template_id.external_max_sync
@@ -100,6 +120,27 @@ class ExternalSyncSchedule(models.Model):
             self.model = self.template_id.model
             self.method = self.template_id.method
             self.external_model = self.template_id.external_model
+
+            schedule_id = self._origin.id
+
+            if schedule_id is not False:
+
+                object_fields = ExternalSyncObjectField.search([
+                    ('schedule_id', '=', schedule_id),
+                ])
+                for object_field in object_fields:
+                    object_field.schedule_id = False
+
+                for object_field in self.template_id.object_field_ids:
+                    values = {
+                        'external_object_field': object_field.external_object_field,
+                        'local_object_field': object_field.local_object_field,
+                        'inclusion': object_field.inclusion,
+                        'update': object_field.update,
+                        'sequence': object_field.sequence,
+                        'schedule_id': schedule_id,
+                    }
+                    ExternalSyncObjectField.create(values)
 
     @api.model
     def external_last_update_args(self):

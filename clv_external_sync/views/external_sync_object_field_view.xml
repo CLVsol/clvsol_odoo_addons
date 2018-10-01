@@ -4,9 +4,9 @@
 
 <odoo>
         
-    <record id="clv_external_sync_template_object_field_view_form" model="ir.ui.view">
-        <field name="name">clv.external_sync.template.object_field.form</field>
-        <field name="model">clv.external_sync.template.object_field</field>
+    <record id="clv_external_sync_object_field_view_form" model="ir.ui.view">
+        <field name="name">clv.external_sync.object_field.form</field>
+        <field name="model">clv.external_sync.object_field</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -28,6 +28,7 @@
                             </group>
                             <group>
                                 <field name="template_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="schedule_id" options="{'no_open': False, 'no_create': True}"/>
                             </group>
                         </page>
                     </notebook>
@@ -36,12 +37,13 @@
         </field>
     </record>
     
-    <record id="clv_external_sync_template_object_field_view_tree" model="ir.ui.view">
-        <field name="name">clv.external_sync.template.object_field.tree</field>
-        <field name="model">clv.external_sync.template.object_field</field>
+    <record id="clv_external_sync_object_field_view_tree" model="ir.ui.view">
+        <field name="name">clv.external_sync.object_field.tree</field>
+        <field name="model">clv.external_sync.object_field</field>
         <field name="arch" type="xml">
             <tree string='External Sync Template Object Field'>
                 <field name="template_id"/>
+                <field name="schedule_id"/>
                 <field name="sequence"/>
                 <field name="external_object_field"/>
                 <field name="local_object_field"/>
@@ -51,12 +53,13 @@
         </field>
     </record>
     
-    <record id="clv_external_sync_template_object_field_view_search" model="ir.ui.view">
-        <field name="name">clv.external_sync.template.object_field.select</field>
-        <field name="model">clv.external_sync.template.object_field</field>
+    <record id="clv_external_sync_object_field_view_search" model="ir.ui.view">
+        <field name="name">clv.external_sync.object_field.select</field>
+        <field name="model">clv.external_sync.object_field</field>
         <field name="arch" type="xml">
             <search string="Search External Sync Template Object Field">
                 <field name="template_id"/>
+                <field name="schedule_id"/>
                 <field name="external_object_field"/>
                 <field name="local_object_field"/>
                 <field name="inclusion"/>
@@ -65,24 +68,25 @@
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
                     <filter string="Template" domain="[]" context="{'group_by': 'template_id'}"/>
+                    <filter string="Schedule" domain="[]" context="{'group_by': 'schedule_id'}"/>
                 </group>
             </search>
         </field>
     </record>
     
-    <record id="clv_external_sync_template_object_field_action" model="ir.actions.act_window">
+    <record id="clv_external_sync_object_field_action" model="ir.actions.act_window">
         <field name="name">External Sync Template Object Field</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">clv.external_sync.template.object_field</field>
+        <field name="res_model">clv.external_sync.object_field</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="clv_external_sync_template_object_field_view_search" />
+        <field name="search_view_id" ref="clv_external_sync_object_field_view_search" />
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="context">{}</field>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Click to add a new external syng template object field.
+            Click to add a new external sync object field.
           </p>
         </field>
     </record>
@@ -91,6 +95,30 @@
         <field name="name">clv.external_sync.template.form</field>
         <field name="model">clv.external_sync.template</field>
         <field name="inherit_id" ref="clv_external_sync.clv_external_sync_template_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page name="object_fields" string="Object Fields">
+                    <!--label for="object_field_ids"/-->
+                    <field name="object_field_ids" colspan="4" nolabel="1">
+                        <!--tree editable="top" string="Object Fields" create="false"-->
+                        <tree string="Object Fields" create="true">
+                            <field name="sequence" readonly="True"/>
+                            <field name="external_object_field"/>
+                            <field name="local_object_field"/>
+                            <field name="inclusion"/>
+                            <field name="update"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_external_sync_schedule_view_form_object_field" model="ir.ui.view">
+        <field name="name">clv.external_sync.schedule.form</field>
+        <field name="model">clv.external_sync.schedule</field>
+        <field name="inherit_id" ref="clv_external_sync.clv_external_sync_schedule_view_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <page name="settings" position="before">

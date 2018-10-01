@@ -5,9 +5,9 @@
 from odoo import fields, models
 
 
-class ExternalSyncTemplateObjsctField(models.Model):
-    _description = 'External Sync Template Object Field'
-    _name = "clv.external_sync.template.object_field"
+class ExternalSyncObjectField(models.Model):
+    _description = 'External Sync Object Field'
+    _name = "clv.external_sync.object_field"
     _order = "sequence"
 
     external_object_field = fields.Char(string='External Object Field')
@@ -17,6 +17,7 @@ class ExternalSyncTemplateObjsctField(models.Model):
     update = fields.Boolean(string='Use during Update', default=True)
 
     template_id = fields.Many2one(comodel_name='clv.external_sync.template', string='External Sync Template')
+    schedule_id = fields.Many2one(comodel_name='clv.external_sync.schedule', string='External Sync Schedule')
 
     sequence = fields.Integer(
         string='Sequence',
@@ -26,9 +27,13 @@ class ExternalSyncTemplateObjsctField(models.Model):
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [
-        ('object_field_pair_uniq',
+        ('template_object_field_pair_uniq',
          'UNIQUE(template_id, external_object_field, local_object_field)',
          u'Error! The Field pair must be unique for a External Sync Template!'
+         ),
+        ('schedule_object_field_pair_uniq',
+         'UNIQUE(schedule_id, external_object_field, local_object_field)',
+         u'Error! The Field pair must be unique for a External Sync Schedule!'
          ),
     ]
 
@@ -37,7 +42,17 @@ class ExternalSyncTemplate(models.Model):
     _inherit = 'clv.external_sync.template'
 
     object_field_ids = fields.One2many(
-        comodel_name='clv.external_sync.template.object_field',
+        comodel_name='clv.external_sync.object_field',
         inverse_name='template_id',
+        string='Object Fields'
+    )
+
+
+class ExternalSyncSchedule(models.Model):
+    _inherit = 'clv.external_sync.schedule'
+
+    object_field_ids = fields.One2many(
+        comodel_name='clv.external_sync.object_field',
+        inverse_name='schedule_id',
         string='Object Fields'
     )
