@@ -317,7 +317,9 @@ class AbstractExternalSync(models.AbstractModel):
 
             reg_count_2 = 0
             sync_update_count_2 = 0
-            while len(local_objects) > 0:
+            while len(local_objects) > 0 and \
+                    sync_count < schedule.external_max_sync:
+
                 for external_object in external_objects:
 
                     reg_count_2 += 1
