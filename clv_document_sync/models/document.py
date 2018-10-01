@@ -22,12 +22,17 @@ class Document(models.Model):
 
     def _document_synchronize(
         self, sock, external_dbname, uid, external_user_pw,
-        external_model, external_id
+        external_model, external_id, schedule
     ):
 
-        external_object_fields = [
-            'name', 'code', '__last_update',
-        ]
+        external_object_fields = []
+        local_object_fields = []
+        for object_field in schedule.object_field_ids:
+            if object_field.update is True:
+                external_object_fields.append(object_field.external_object_field)
+                local_object_fields.append(object_field.local_object_field)
+        external_object_fields.append('__last_update')
+        local_object_fields.append('external_last_update')
         args = [('id', '=', external_id)]
         external_objects = sock.execute(external_dbname, uid, external_user_pw,
                                         external_model, 'search_read',
@@ -38,13 +43,14 @@ class Document(models.Model):
 
         _logger.info(u'>>>>>>>>>>>>>>> %s %s', external_object, self)
 
-        if self.name != external_object['name']:
-            self.name = external_object['name']
-        if self.code != external_object['code']:
-            self.code = external_object['code']
+        i = 0
+        values = {}
+        for field in local_object_fields:
+            values[local_object_fields[i]] = external_object[external_object_fields[i]]
+            i += 1
+        values['external_sync'] = 'synchronized'
 
-        self.external_last_update = external_object['__last_update']
-        self.external_sync = 'synchronized'
+        self.write(values)
 
     def _document_external_sync(self, schedule):
 
@@ -97,7 +103,17 @@ class Document(models.Model):
             args = schedule.external_last_update_args()
             _logger.info(u'%s %s', '>>>>>>>>>> (args):', args)
 
-            external_object_fields = ['name', 'code', '__last_update', ]
+            external_object_fields = []
+            local_object_fields = []
+            for object_field in schedule.object_field_ids:
+                if object_field.inclusion is True:
+                    external_object_fields.append(object_field.external_object_field)
+                    local_object_fields.append(object_field.local_object_field)
+            external_object_fields.append('__last_update')
+            local_object_fields.append('external_last_update')
+            _logger.info(u'%s %s %s', '>>>>>>>>>> (external_object_fields):',
+                         external_object_fields,
+                         local_object_fields)
             external_objects = sock.execute(external_dbname, uid, external_user_pw,
                                             schedule.external_model, 'search_read',
                                             args,
@@ -115,8 +131,8 @@ class Document(models.Model):
 
                 reg_count += 1
 
-                _logger.info(u'%s %s %s %s %s %s', '>>>>>>>>>>', reg_count,
-                             external_object['id'], external_object['name'], external_object['code'],
+                _logger.info(u'%s %s %s %s', '>>>>>>>>>>', reg_count,
+                             external_object['id'],
                              external_object['__last_update'], )
 
                 if upmost_last_update is False:
@@ -133,13 +149,14 @@ class Document(models.Model):
 
                     include_count += 1
 
-                    values = {
-                        'name': external_object['name'],
-                        # 'code': external_object['code'],
-                        'external_id': external_object['id'],
-                        'external_last_update': external_object['__last_update'],
-                        'external_sync': 'included',
-                    }
+                    i = 0
+                    values = {}
+                    for field in local_object_fields:
+                        values[local_object_fields[i]] = external_object[external_object_fields[i]]
+                        i += 1
+                    values['external_id'] = external_object['id']
+                    values['external_sync'] = 'included'
+
                     _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, values)
                     new_local_object = Object.create(values)
                     _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, new_local_object)
@@ -152,7 +169,8 @@ class Document(models.Model):
 
                         new_local_object._document_synchronize(
                             sock, external_dbname, uid, external_user_pw,
-                            schedule.external_model, external_object['id']
+                            schedule.external_model, external_object['id'],
+                            schedule
                         )
 
                 else:
@@ -181,7 +199,8 @@ class Document(models.Model):
 
                         local_object._document_synchronize(
                             sock, external_dbname, uid, external_user_pw,
-                            schedule.external_model, external_object['id']
+                            schedule.external_model, external_object['id'],
+                            schedule
                         )
 
             reg_count_2 = 0
@@ -190,8 +209,8 @@ class Document(models.Model):
 
                 reg_count_2 += 1
 
-                _logger.info(u'%s %s %s %s %s %s', '>>>>>>>>>>', reg_count_2,
-                             external_object['id'], external_object['name'], external_object['code'],
+                _logger.info(u'%s %s %s %s', '>>>>>>>>>>', reg_count_2,
+                             external_object['id'],
                              external_object['__last_update'], )
 
                 if upmost_last_update is False:
@@ -215,7 +234,8 @@ class Document(models.Model):
 
                     local_object._document_synchronize(
                         sock, external_dbname, uid, external_user_pw,
-                        schedule.external_model, external_object['id']
+                        schedule.external_model, external_object['id'],
+                        schedule
                     )
 
             _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
