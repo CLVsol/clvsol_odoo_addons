@@ -335,7 +335,7 @@
                                               class="oe_stat_button"
                                               icon="fa-list"
                                               context="{'search_default_name': name, 'search_default_id': related_partner_id}"
-                                              attrs="{'invisible': [('related_partner_id', '=', False)]}"
+                                              attrs="{'invisible': [('related_partner_id', '=', 0)]}"
                                               >
                                           <div class="o_form_field o_stat_info">
                                               <span class="o_stat_value">
