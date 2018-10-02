@@ -34,6 +34,19 @@ class AbstractEntity(models.AbstractModel):
         default=True,
     )
 
+    related_partner_id = fields.Integer(
+        string='Related Partner ID',
+        compute='_compute_related_partner_id'
+    )
+
+    @api.depends('partner_id')
+    def _compute_related_partner_id(self):
+        for register in self:
+            if register.partner_id.id is not False:
+                register.related_partner_id = register.partner_id.id
+            else:
+                register.related_partner_id = False
+
     _sql_constraints = [
         ('code_uniq',
          'UNIQUE (code)',

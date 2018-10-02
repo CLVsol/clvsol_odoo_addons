@@ -32,12 +32,12 @@
                        />
                 <!--div name="center" class="oe_center">
                     <label for="name" class="oe_edit_only"/>
-                    <h1> <field name="name" default_focus="1" placeholder="Document Name..."/></h1>
+                    <h1> <field name="name" default_focus="1" placeholder="Name..."/></h1>
                 </div-->
                 <div class="oe_title" name="title">
                     <h1>
                         <label for="name" class="oe_edit_only"/>
-                        <field name="name" placeholder="Name..."/>
+                        <field name="name" placeholder="Name..." default_focus="1"/>
                     </h1>
                     <h3>
                         <label for="code" class="oe_edit_only"/>
@@ -96,16 +96,6 @@
                                                                  ('parent_id', '!=', False)],
                                                    }"
                                     />
-                                    <!--field name="state_id"
-                                           class="o_address_state"
-                                           placeholder="State"
-                                           options='{"no_open": True}'
-                                           attrs="{'readonly': [('type', '=', 'contact'),
-                                                                 ('parent_id', '!=', False)],
-                                                   }"
-                                           context="{'country_id': country_id, 'zip': zip}"
-                                           domain="[('country_id', '=', country_id')]"
-                                    /-->
                                     <field name="state_id"
                                            class="o_address_state"
                                            placeholder="State"
@@ -141,7 +131,6 @@
                             <group name="group_contact_right">
                                 <field name="phone" widget="phone"/>
                                 <field name="mobile" widget="phone"/>
-                                <!--field name="fax" /-->
                                 <field name="user_ids" invisible="1"/>
                                 <field name="email" widget="email" attrs="{'required': [('user_ids','!=', [])]}"/>
                                 <field name="title"
@@ -185,7 +174,6 @@
                                 <field name="city"/>
                                 <field name="country_id"/>
                                 <field name="mobile"/>
-                                <!--field name="fax" /-->
                                 <field name="state_id"/>
                                 <field name="image"/>
                                 <field name="lang"/>
@@ -246,9 +234,6 @@
                                                 <div t-if="record.mobile.raw_value">
                                                     Mobile: <field name="mobile"/>
                                                 </div>
-                                                <!--div t-if="record.fax.raw_value">
-                                                    Fax: <field name="fax"/>
-                                                </div-->
                                             </div>
                                         </div>
                                     </t>
@@ -328,8 +313,39 @@
                         <field name="comment" placeholder="Internal Note..."/>
                     </page>
                     <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
-                        <group name="settings">
-                            <field name="id"/>
+                        <group name="settings_top">
+                            <group name="settings_left">
+                                <field name="related_partner_id"/>
+                                <field name="id"/>
+                            </group>
+                            <group name='settings_right'>
+                                 <div class="oe_button_box" name="settings_buttons">
+                                      <button name="toggle_active"
+                                                  type="object"
+                                                  class="oe_stat_button"
+                                                  icon="fa-archive"
+                                                  >
+                                              <field name="active"
+                                                     widget="boolean_button"
+                                                     options='{"terminology": "archive"}'
+                                                     />
+                                      </button>
+                                      <button name="base.action_partner_form_person"
+                                              type="action"
+                                              class="oe_stat_button"
+                                              icon="fa-list"
+                                              context="{'search_default_name': name, 'search_default_id': related_partner_id}"
+                                              attrs="{'invisible': [('related_partner_id', '=', 0)]}"
+                                              >
+                                          <div class="o_form_field o_stat_info">
+                                              <span class="o_stat_value">
+                                                  <field name="related_partner_id" invisible="True"/>
+                                              </span>
+                                              <span class="o_stat_text">Related Partner</span>
+                                          </div>
+                                      </button>
+                                 </div>
+                            </group>
                         </group>
                     </page>
                 </notebook> 
@@ -421,9 +437,6 @@
                 <filter string="Deactivated"
                         domain="[('active', '=', 0)]"/>
                 <group name="group_by" string="Group By...">
-                    <!--filter string="Tag"
-                            domain="[]"
-                            context="{'group_by':'category_id'}" /-->
                     <filter string="Parent"
                             domain="[]"
                             context="{'group_by':'parent_id'}"/>
