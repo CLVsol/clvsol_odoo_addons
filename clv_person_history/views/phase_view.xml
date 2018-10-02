@@ -54,7 +54,7 @@
         <field name="inherit_id" ref="clv_person.clv_person_view_tree"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="code" position="before">
+            <field name="code" position="after">
                 <field name="phase_id" groups="clv_phase.group_user"/>
             </field>
         </field>

@@ -35,7 +35,7 @@
             <field name="inherit_id" ref="clv_address_view_tree"/>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <field name="code" position="before">
+                <field name="code" position="after">
                     <field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'color_field': 'color'}" groups="clv_global_tag.group_user"/>
                     <field name="global_tag_names_suport" invisible="True"/>
                 </field>

@@ -8,7 +8,7 @@
     <record id="clv_person_view_tree" model="ir.ui.view">
         <field name="name">clv.person.tree</field>
         <field name="model">clv.person</field>
-        <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_tree" />
+        <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_tree"/>
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
@@ -25,9 +25,9 @@
     <record id="clv_person_view_form" model="ir.ui.view">
         <field name="name">clv.person.form</field>
         <field name="model">clv.person</field>
-        <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_form" />
+        <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_form"/>
         <field name="mode">primary</field>
-        <field name="priority" eval="100" />
+        <field name="priority" eval="100"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Person</attribute>
@@ -90,12 +90,12 @@
                 </page>
             </xpath>
             <!--xpath expr="//field[@name='age']" position="after">
-                <label for="weight" />
+                <label for="weight"/>
                 <div>
-                    <field name='weight' class="oe_inline" />
+                    <field name='weight' class="oe_inline"/>
                     <field name='weight_uom'
                            class="oe_inline"
-                           placeholder="UoM" />
+                           placeholder="UoM"/>
                 </div>
             </xpath-->
         </field>
@@ -104,9 +104,9 @@
     <record id="clv_person_view_kanban" model="ir.ui.view">
         <field name="name">clv.person.kanban</field>
         <field name="model">clv.person</field>
-        <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_kanban" />
+        <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_kanban"/>
         <field name="mode">primary</field>
-        <field name="priority" eval="100" />
+        <field name="priority" eval="100"/>
         <field name="arch" type="xml">
             <xpath expr="//kanban" position="attributes">
                 <attribute name="string">Persons</attribute>
@@ -116,13 +116,13 @@
             </xpath>
             <xpath expr="//ul[@name='entity_details']/li" position="before">
                 <!--li name="field_dob" t-if="record.birthdate_date.raw_value">
-                    <strong>DOB:</strong> <field name="birthdate_date" />
+                    <strong>DOB:</strong> <field name="birthdate_date"/>
                 </li-->
                 <!--li name="field_age_gender" t-if="record.birthdate_date.raw_value &amp;&amp; record.gender.raw_value">
-                    <field name="age" /> - <field name="gender" />
+                    <field name="age"/> - <field name="gender"/>
                 </li-->
                 <!--li name="field_gender" t-if="! record.birthdate_date.raw_value &amp;&amp; record.gender.raw_value">
-                    <field name="gender" />
+                    <field name="gender"/>
                 </li-->
             </xpath>
             <xpath expr="//img[@name='kanban_image_entity']" position="replace">
@@ -142,7 +142,7 @@
     <record id="clv_person_view_search" model="ir.ui.view">
         <field name="name">clv.person.search</field>
         <field name="model">clv.person</field>
-        <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_search" />
+        <field name="inherit_id" ref="clv_entity.clv_abstract_entity_view_search"/>
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//search" position="attributes">
@@ -166,7 +166,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.person</field>
         <field name="view_type">form</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
     </record>
 
 </odoo>
