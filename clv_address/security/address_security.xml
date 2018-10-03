@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="0">
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-        <record id="clv_address.group_user" model="res.groups">
-            <field name="name">User (Address)</field>
-        </record>
-        
-        <record id="clv_address.group_manager" model="res.groups">
-            <field name="name">Manager (Address)</field>
-            <field name="implied_ids" eval="[(4, ref('clv_address.group_user'))]"/>
-        </record>
-        
-        <record id="clv_address.group_supmanager" model="res.groups">
-            <field name="name">Super Manager (Address)</field>
-            <field name="implied_ids" eval="[(4, ref('clv_address.group_manager'))]"/>
-        </record>
+<odoo noupdate="0">
 
-    </data>
+    <record id="clv_address.group_user" model="res.groups">
+        <field name="name">User (Address)</field>
+    </record>
+    
+    <record id="clv_address.group_manager" model="res.groups">
+        <field name="name">Manager (Address)</field>
+        <field name="implied_ids" eval="[(4, ref('clv_address.group_user'))]"/>
+    </record>
+    
+    <record id="clv_address.group_supmanager" model="res.groups">
+        <field name="name">Super Manager (Address)</field>
+        <field name="implied_ids" eval="[(4, ref('clv_address.group_manager'))]"/>
+    </record>
+
 </odoo>
