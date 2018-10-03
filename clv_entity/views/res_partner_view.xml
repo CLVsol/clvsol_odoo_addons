@@ -11,6 +11,7 @@
                 <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                     <group name="settings">
                         <field name="id"/>
+                        <field name="type" readonly="True"/>
                     </group>
                 </page>
             </page>
