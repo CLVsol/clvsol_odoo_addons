@@ -315,36 +315,49 @@
                     <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
                         <group name="settings_top">
                             <group name="settings_left">
-                                <field name="related_partner_id"/>
                                 <field name="id"/>
                             </group>
                             <group name='settings_right'>
-                                 <div class="oe_button_box" name="settings_buttons">
-                                      <button name="toggle_active"
-                                                  type="object"
-                                                  class="oe_stat_button"
-                                                  icon="fa-archive"
-                                                  >
-                                              <field name="active"
-                                                     widget="boolean_button"
-                                                     options='{"terminology": "archive"}'
-                                                     />
-                                      </button>
-                                      <button name="base.action_partner_form_person"
-                                              type="action"
-                                              class="oe_stat_button"
-                                              icon="fa-list"
-                                              context="{'search_default_name': name, 'search_default_id': related_partner_id}"
-                                              attrs="{'invisible': [('related_partner_id', '=', 0)]}"
-                                              >
-                                          <div class="o_form_field o_stat_info">
-                                              <span class="o_stat_value">
-                                                  <field name="related_partner_id" invisible="True"/>
-                                              </span>
-                                              <span class="o_stat_text">Related Partner</span>
-                                          </div>
-                                      </button>
-                                 </div>
+                                <div class="oe_button_box" name="settings_buttons">
+                                    <button name="toggle_active"
+                                                type="object"
+                                                class="oe_stat_button"
+                                                icon="fa-archive"
+                                                >
+                                            <field name="active"
+                                                   widget="boolean_button"
+                                                   options='{"terminology": "archive"}'
+                                                   />
+                                    </button>
+                                </div>
+                            </group>
+                            <group name="settings_left_2">
+                                <field name="related_partner_id"/>
+                                <field name="type" readonly="True"/>
+                            </group>
+                            <group name='settings_right_2'>
+                                <div class="oe_button_box" name="settings_buttons_2">
+                                    <button name="base.action_partner_form_person"
+                                            type="action"
+                                            class="oe_stat_button"
+                                            icon="fa-list"
+                                            context="{'search_default_name': name, 'search_default_id': related_partner_id}"
+                                            attrs="{'invisible': [('related_partner_id', '=', 0)]}"
+                                            >
+                                        <div class="o_form_field o_stat_info">
+                                            <span class="o_stat_value">
+                                                <field name="related_partner_id" invisible="True"/>
+                                            </span>
+                                            <span class="o_stat_text">Related Partner</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </group>
+                            <group name="settings_left_3">
+                            </group>
+                            <group name='settings_right_3'>
+                                <div class="oe_button_box" name="settings_buttons_3">
+                                </div>
                             </group>
                         </group>
                     </page>
