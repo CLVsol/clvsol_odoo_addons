@@ -55,7 +55,7 @@
                     </group>
                 </page>
             </page>
-            <group name="settings" position="inside">
+            <group name="settings_left" position="inside">
                 <field name="active_log"/>
             </group>
             <page name="settings" position="attributes">
