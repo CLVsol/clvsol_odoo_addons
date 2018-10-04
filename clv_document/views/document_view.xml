@@ -28,7 +28,7 @@
                     </div>
                     <group name="group_top">
                         <group name="group_left">
-                            <field name="date_requested"/>
+                            <field name="date_inclusion"/>
                             <field name="date_document"/>
                             <field name="date_foreseen"/>
                             <field name="date_deadline"/>
@@ -81,7 +81,7 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="base_document_id"/>
-                <field name="date_requested"/>
+                <field name="date_inclusion"/>
                 <field name="date_document"/>
                 <field name="date_foreseen"/>
                 <field name="date_deadline"/>
@@ -100,7 +100,7 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="base_document_id"/>
-                <field name="date_requested"/>
+                <field name="date_inclusion"/>
                 <field name="date_document"/>
                 <field name="date_foreseen"/>
                 <field name="date_deadline"/>
@@ -110,9 +110,9 @@
                 <filter name="filter_has_base_document" string="Has Base Document" domain="[('base_document_id','!=',False)]"/>
                 <filter name="filter_has_not_base_document" string="Has Not Base Document" domain="[('base_document_id','=',False)]"/>
                 <group name="group_by" string="Group By...">
-                    <filter string="Inclusion Date (Year)" domain="[]" context="{'group_by': 'date_requested:year'}"/>
-                    <filter string="Inclusion Date (Month)" domain="[]" context="{'group_by': 'date_requested:month'}"/>
-                    <filter string="Inclusion Date (Day)" domain="[]" context="{'group_by': 'date_requested:day'}"/>
+                    <filter string="Inclusion Date (Year)" domain="[]" context="{'group_by': 'date_inclusion:year'}"/>
+                    <filter string="Inclusion Date (Month)" domain="[]" context="{'group_by': 'date_inclusion:month'}"/>
+                    <filter string="Inclusion Date (Day)" domain="[]" context="{'group_by': 'date_inclusion:day'}"/>
                     <filter string="Document Date" domain="[]" context="{'group_by': 'date_document'}"/>
                     <filter string="Base Document" context="{'group_by': 'base_document_id'}"/>
                 </group>

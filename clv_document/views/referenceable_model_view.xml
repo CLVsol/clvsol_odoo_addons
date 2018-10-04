@@ -26,7 +26,7 @@
         <field name="inherit_id" ref="clv_document.clv_document_view_tree"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="date_requested" position="before">
+            <field name="date_inclusion" position="before">
                 <field name="ref_id"/>
                 <field name="ref_suport" invisible="True"/>
             </field>
@@ -39,7 +39,7 @@
         <field name="inherit_id" ref="clv_document.clv_document_view_search"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="date_requested" position="before">
+            <field name="date_inclusion" position="before">
                 <field name="ref_id"/>
                 <field name="ref_model"/>
                 <field name="ref_name"/>

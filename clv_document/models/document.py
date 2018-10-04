@@ -36,8 +36,8 @@ class Document(models.Model):
 
     notes = fields.Text(string='Notes')
 
-    date_requested = fields.Date(
-        string='Date requested',
+    date_inclusion = fields.Date(
+        string='Inclusion Date',
         default=lambda *a: datetime.now().strftime('%Y-%m-%d')
     )
     date_document = fields.Date(string='Document Date')
