@@ -132,6 +132,13 @@ class AbstractExternalSync(models.AbstractModel):
         external_model, external_id, schedule
     ):
 
+        Model = self.env['ir.model']
+        ModelFields = self.env['ir.model.fields']
+
+        local_object_model = Model.search([
+            ('model', '=', self._name),
+        ])
+
         external_object_fields = []
         local_object_fields = []
         for object_field in schedule.object_field_ids:
@@ -150,12 +157,38 @@ class AbstractExternalSync(models.AbstractModel):
 
         _logger.info(u'>>>>>>>>>>>>>>> %s %s', external_object, self)
 
+        external_sync = 'synchronized'
+
         i = 0
         values = {}
         for field in local_object_fields:
-            values[local_object_fields[i]] = external_object[external_object_fields[i]]
+            fields = ModelFields.search([
+                ('model_id', '=', local_object_model.id),
+                ('name', '=', local_object_fields[i]),
+            ])
+
+            if fields[0].ttype in ['char', 'date', 'datetime']:
+                values[local_object_fields[i]] = external_object[external_object_fields[i]]
+
+            elif fields[0].ttype == 'reference':
+                if external_object[external_object_fields[i]] is not False:
+                    model_, id_ = external_object[external_object_fields[i]].split(',')
+                    RefObject = self.env[model_]
+                    ref_object = RefObject.search([
+                        ('external_id', '=', int(id_)),
+                    ])
+                    if ref_object.id is not False:
+                        values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
+                    else:
+                        external_sync = 'updated'
+
+            else:
+                _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
+                external_sync = 'updated'
+
             i += 1
-        values['external_sync'] = 'synchronized'
+
+        values['external_sync'] = external_sync
 
         self.write(values)
 
