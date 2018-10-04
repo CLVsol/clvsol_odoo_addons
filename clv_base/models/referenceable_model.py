@@ -29,18 +29,46 @@ class AbstractReference(models.AbstractModel):
         string='Refers to')
     ref_model = fields.Char(
         string='Refers to (Model)',
-        compute='_compute_reference_model_and_name',
+        compute='_compute_refenceable_model',
         store=True
     )
     ref_name = fields.Char(
         string='Refers to (Name)',
-        compute='_compute_reference_model_and_name',
+        compute='_compute_refenceable_model',
         store=True
+    )
+    ref_code = fields.Char(
+        string='Refers to (Code)',
+        compute='_compute_refenceable_model',
+        store=True
+    )
+    ref_suport = fields.Char(
+        string='Refers to (Suport)',
+        compute='_compute_ref_suport',
+        store=False
     )
 
     @api.depends('ref_id')
-    def _compute_reference_model_and_name(self):
+    def _compute_refenceable_model(self):
         for record in self:
-            if record.ref_id:
-                record.ref_model = record.ref_id._description
-                record.ref_name = record.ref_id.name
+            try:
+                if record.ref_id:
+                    record.ref_model = record.ref_id._name
+                    record.ref_name = record.ref_id.name
+                    record.ref_code = record.ref_id.code
+            except Exception:
+                record.ref_model = False
+                record.ref_name = False
+                record.ref_code = False
+
+    @api.multi
+    def _compute_ref_suport(self):
+        for record in self:
+            if record.ref_id is not False:
+                ref_name = record.ref_id.name
+                ref_code = record.ref_id.code
+                record.ref_suport = record.ref_id._name + ',' + str(record.ref_id.id)
+                if record.ref_name is False or record.ref_name != ref_name or \
+                   record.ref_code is False or record.ref_code != ref_code:
+                    record = self.env[self._name].search([('id', '=', record.id)])
+                    record.write({'ref_id': record.ref_suport})

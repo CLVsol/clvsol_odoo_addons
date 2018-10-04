@@ -14,6 +14,8 @@
                 <field name="ref_id"  options="{'no_open': False, 'no_create': True}"/>
                 <field name="ref_model"/>
                 <field name="ref_name"/>
+                <field name="ref_code"/>
+                <field name="ref_suport" invisible="True"/>
             </group>
         </field>
     </record>
@@ -26,6 +28,7 @@
         <field name="arch" type="xml">
             <field name="date_requested" position="before">
                 <field name="ref_id"/>
+                <field name="ref_suport" invisible="True"/>
             </field>
         </field>
     </record>
@@ -40,6 +43,7 @@
                 <field name="ref_id"/>
                 <field name="ref_model"/>
                 <field name="ref_name"/>
+                <field name="ref_code"/>
             </field>
             <group name="group_by" position="inside">
                 <filter string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
@@ -58,6 +62,8 @@
                 <field name="ref_id"  options="{'no_open': False, 'no_create': True}"/>
                 <field name="ref_model"/>
                 <field name="ref_name"/>
+                <field name="ref_code"/>
+                <field name="ref_suport" invisible="True"/>
             </group>
         </field>
     </record>
@@ -70,6 +76,7 @@
         <field name="arch" type="xml">
             <field name="date_result" position="before">
                 <field name="ref_id"/>
+                <field name="ref_suport" invisible="True"/>
             </field>
         </field>
     </record>
@@ -84,6 +91,7 @@
                 <field name="ref_id"/>
                 <field name="ref_model"/>
                 <field name="ref_name"/>
+                <field name="ref_code"/>
             </field>
             <group name="group_by" position="inside">
                 <filter string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
@@ -102,6 +110,8 @@
                 <field name="ref_id"  options="{'no_open': False, 'no_create': True}"/>
                 <field name="ref_model"/>
                 <field name="ref_name"/>
+                <field name="ref_code"/>
+                <field name="ref_suport" invisible="True"/>
             </group>
         </field>
     </record>
@@ -114,6 +124,7 @@
         <field name="arch" type="xml">
             <field name="date_report" position="before">
                 <field name="ref_id"/>
+                <field name="ref_suport" invisible="True"/>
             </field>
         </field>
     </record>
@@ -128,6 +139,7 @@
                 <field name="ref_id"/>
                 <field name="ref_model"/>
                 <field name="ref_name"/>
+                <field name="ref_code"/>
             </field>
             <group name="group_by" position="inside">
                 <filter string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
