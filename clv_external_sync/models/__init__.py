@@ -10,3 +10,4 @@ from . import external_sync_template_log
 from . import external_sync_schedule
 from . import external_sync_schedule_log
 from . import external_sync_object_field
+from . import external_sync_batch
