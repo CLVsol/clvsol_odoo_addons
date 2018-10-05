@@ -167,7 +167,7 @@ class AbstractExternalSync(models.AbstractModel):
                 ('name', '=', local_object_fields[i]),
             ])
 
-            if fields[0].ttype in ['char', 'date', 'datetime']:
+            if fields[0].ttype in ['char', 'date', 'datetime', 'text']:
                 values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
             elif fields[0].ttype == 'many2one':
@@ -317,7 +317,7 @@ class AbstractExternalSync(models.AbstractModel):
                             ('name', '=', local_object_fields[i]),
                         ])
 
-                        if fields[0].ttype in ['char', 'date', 'datetime']:
+                        if fields[0].ttype in ['char', 'date', 'datetime', 'text']:
                             values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
                         elif fields[0].ttype == 'many2one':
