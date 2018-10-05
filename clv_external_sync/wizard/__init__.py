@@ -4,4 +4,5 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import external_sync_template_mass_edit
+from . import external_sync_schedule_mass_edit
 from . import external_sync_schedule_exec

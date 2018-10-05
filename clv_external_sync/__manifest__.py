@@ -26,6 +26,7 @@
         'views/external_sync_schedule_log_view.xml',
         'views/external_sync_object_field_view.xml',
         'wizard/external_sync_template_mass_edit_view.xml',
+        'wizard/external_sync_schedule_mass_edit_view.xml',
         'wizard/external_sync_schedule_exec_view.xml',
     ],
     'demo': [],
