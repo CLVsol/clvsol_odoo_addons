@@ -15,9 +15,6 @@
                 </header>
                 <sheet>
                     <div name="button_box" class="oe_right oe_button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button>
                     </div>
                     <div name="center" class="oe_center">
                         <label for="name" class="oe_edit_only"/>
