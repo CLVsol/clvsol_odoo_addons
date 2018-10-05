@@ -88,7 +88,7 @@
                 <separator/>
                 <newline/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
-                <group expand="0" string="Group By...">
+                <group name="group_by" expand="0" string="Group By...">
                 </group>
             </search>
         </field>
