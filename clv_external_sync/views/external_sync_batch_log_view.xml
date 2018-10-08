@@ -4,10 +4,10 @@
 
 <odoo>
         
-    <record id="clv_external_sync_host_view_form_log" model="ir.ui.view">
-        <field name="name">clv.external_sync.host.form</field>
-        <field name="model">clv.external_sync.host</field>
-        <field name="inherit_id" ref="clv_external_sync.clv_external_sync_host_view_form"/>
+    <record id="clv_external_sync_batch_view_form_log" model="ir.ui.view">
+        <field name="name">clv.external_sync.batch.form</field>
+        <field name="model">clv.external_sync.batch</field>
+        <field name="inherit_id" ref="clv_external_sync.clv_external_sync_batch_view_form"/>
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
             <page name="settings" position="after">
@@ -41,7 +41,7 @@
                             </button>
                         </group>
                         <field name="log_ids" colspan="4" nolabel="1">
-                            <tree string="External Sync Host Log">
+                            <tree string="External Sync Batch Log">
                                 <field name="user_id"/>
                                 <field name="date_log"/>
                                 <field name="values"/>

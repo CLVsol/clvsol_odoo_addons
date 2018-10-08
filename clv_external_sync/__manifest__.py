@@ -26,6 +26,7 @@
         'views/external_sync_schedule_log_view.xml',
         'views/external_sync_object_field_view.xml',
         'views/external_sync_batch_view.xml',
+        'views/external_sync_batch_log_view.xml',
         'views/external_sync_batch_member_view.xml',
         'views/referenceable_model_view.xml',
         'data/external_sync_batch_member.xml',

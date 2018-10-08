@@ -12,4 +12,5 @@ from . import external_sync_schedule_log
 from . import external_sync_object_field
 from . import external_sync_batch
 from . import external_sync_batch_member
+from . import external_sync_batch_log
 from . import referenceable_model
