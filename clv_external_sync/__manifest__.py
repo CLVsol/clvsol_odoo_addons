@@ -32,6 +32,7 @@
         'wizard/external_sync_template_mass_edit_view.xml',
         'wizard/external_sync_schedule_mass_edit_view.xml',
         'wizard/external_sync_schedule_exec_view.xml',
+        'wizard/external_sync_batch_exec_view.xml',
     ],
     'demo': [],
     'test': [],
