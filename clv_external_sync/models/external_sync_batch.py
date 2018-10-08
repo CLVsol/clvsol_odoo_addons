@@ -31,6 +31,10 @@ class ExternalSyncBatch(models.Model):
         string='Inclusion Date',
         default=fields.Datetime.now)
 
+    external_sync_log = fields.Text(
+        string="Synchronization Log"
+    )
+
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [
