@@ -94,6 +94,16 @@ class ExternalSyncSchedule(models.Model):
 
         schedule = super(ExternalSyncSchedule, self).create(values)
 
+        if schedule.template_id.id is not False:
+            schedule.external_host_id = schedule.template_id.external_host_id
+            schedule.external_exec_sync = schedule.template_id.external_exec_sync
+            schedule.external_max_sync = schedule.template_id.external_max_sync
+            schedule.external_last_update_start = schedule.template_id.external_last_update_start
+            schedule.external_last_update_end = schedule.template_id.external_last_update_end
+            schedule.model = schedule.template_id.model
+            schedule.method = schedule.template_id.method
+            schedule.external_model = schedule.template_id.external_model
+
         ExternalSyncObjectField = self.env['clv.external_sync.object_field']
         for object_field in schedule.template_id.object_field_ids:
             values = {
