@@ -147,7 +147,12 @@ class AbstractExternalSync(models.AbstractModel):
                 local_object_fields.append(object_field.local_object_field)
         external_object_fields.append('__last_update')
         local_object_fields.append('external_last_update')
-        args = [('id', '=', external_id)]
+        args = [
+            ('id', '=', external_id),
+            '|',
+            ('active', '=', True),
+            ('active', '=', False),
+        ]
         external_objects = sock.execute(external_dbname, uid, external_user_pw,
                                         external_model, 'search_read',
                                         args,
@@ -167,7 +172,7 @@ class AbstractExternalSync(models.AbstractModel):
                 ('name', '=', local_object_fields[i]),
             ])
 
-            if fields[0].ttype in ['char', 'date', 'datetime', 'text']:
+            if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean']:
                 values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
             elif fields[0].ttype == 'many2one':
@@ -175,24 +180,26 @@ class AbstractExternalSync(models.AbstractModel):
                     model_ = fields[0].relation
                     id_ = external_object[external_object_fields[i]][0]
                     RelationObject = self.env[model_]
-                    relation_object = RelationObject.search([
+                    relation_object = RelationObject.with_context({'active_test': False}).search([
                         ('external_id', '=', int(id_)),
                     ])
                     if relation_object.id is not False:
                         values[local_object_fields[i]] = relation_object.id
                     else:
+                        _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)', fields[0].name, fields[0].ttype, id_)
                         external_sync = 'updated'
 
             elif fields[0].ttype == 'reference':
                 if external_object[external_object_fields[i]] is not False:
                     model_, id_ = external_object[external_object_fields[i]].split(',')
                     RefObject = self.env[model_]
-                    ref_object = RefObject.search([
+                    ref_object = RefObject.with_context({'active_test': False}).search([
                         ('external_id', '=', int(id_)),
                     ])
                     if ref_object.id is not False:
                         values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
                     else:
+                        _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
                         external_sync = 'updated'
 
             else:
@@ -238,8 +245,13 @@ class AbstractExternalSync(models.AbstractModel):
 
             Object = self.env[schedule.model]
 
+            search_args = [
+                '|',
+                ('active', '=', True),
+                ('active', '=', False),
+            ]
             external_object_ids = sock.execute(external_dbname, uid, external_user_pw,
-                                               schedule.external_model, 'search', [])
+                                               schedule.external_model, 'search', search_args)
             _logger.info(u'%s %s', '>>>>>>>>>> (external_objects):', len(external_object_ids))
 
             local_objects = Object.search([
@@ -260,7 +272,7 @@ class AbstractExternalSync(models.AbstractModel):
                                                   [], {'attributes': ['string', 'help', 'type']})
             _logger.info(u'%s %s', '>>>>>>>>>> (external_object_fields):', external_object_fields.keys())
 
-            args = schedule.external_last_update_args()
+            args = schedule.external_last_update_args() + search_args
             _logger.info(u'%s %s', '>>>>>>>>>> (args):', args)
 
             external_object_fields = []
@@ -317,7 +329,7 @@ class AbstractExternalSync(models.AbstractModel):
                             ('name', '=', local_object_fields[i]),
                         ])
 
-                        if fields[0].ttype in ['char', 'date', 'datetime', 'text']:
+                        if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean']:
                             values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
                         elif fields[0].ttype == 'many2one':
@@ -325,7 +337,7 @@ class AbstractExternalSync(models.AbstractModel):
                                 model_ = fields[0].relation
                                 id_ = external_object[external_object_fields[i]][0]
                                 RelationObject = self.env[model_]
-                                relation_object = RelationObject.search([
+                                relation_object = RelationObject.with_context({'active_test': False}).search([
                                     ('external_id', '=', int(id_)),
                                 ])
                                 if relation_object.id is not False:
@@ -335,7 +347,7 @@ class AbstractExternalSync(models.AbstractModel):
                             if external_object[external_object_fields[i]] is not False:
                                 model_, id_ = external_object[external_object_fields[i]].split(',')
                                 RefObject = self.env[model_]
-                                ref_object = RefObject.search([
+                                ref_object = RefObject.with_context({'active_test': False}).search([
                                     ('external_id', '=', int(id_)),
                                 ])
                                 if ref_object.id is not False:
