@@ -147,10 +147,21 @@ class AbstractExternalSync(models.AbstractModel):
                 local_object_fields.append(object_field.local_object_field)
         external_object_fields.append('__last_update')
         local_object_fields.append('external_last_update')
-        args = [('id', '=', external_id)]
+
+        external_args = [
+            ('id', '=', external_id),
+        ]
+        if 'active' in external_object_fields:
+            external_args = [
+                ('id', '=', external_id),
+                '|',
+                ('active', '=', True),
+                ('active', '=', False),
+            ]
+
         external_objects = sock.execute(external_dbname, uid, external_user_pw,
                                         external_model, 'search_read',
-                                        args,
+                                        external_args,
                                         external_object_fields)
 
         external_object = external_objects[0]
@@ -167,7 +178,7 @@ class AbstractExternalSync(models.AbstractModel):
                 ('name', '=', local_object_fields[i]),
             ])
 
-            if fields[0].ttype in ['char', 'date', 'datetime', 'text']:
+            if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean']:
                 values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
             elif fields[0].ttype == 'many2one':
@@ -175,24 +186,26 @@ class AbstractExternalSync(models.AbstractModel):
                     model_ = fields[0].relation
                     id_ = external_object[external_object_fields[i]][0]
                     RelationObject = self.env[model_]
-                    relation_object = RelationObject.search([
+                    relation_object = RelationObject.with_context({'active_test': False}).search([
                         ('external_id', '=', int(id_)),
                     ])
                     if relation_object.id is not False:
                         values[local_object_fields[i]] = relation_object.id
                     else:
+                        _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)', fields[0].name, fields[0].ttype, id_)
                         external_sync = 'updated'
 
             elif fields[0].ttype == 'reference':
                 if external_object[external_object_fields[i]] is not False:
                     model_, id_ = external_object[external_object_fields[i]].split(',')
                     RefObject = self.env[model_]
-                    ref_object = RefObject.search([
+                    ref_object = RefObject.with_context({'active_test': False}).search([
                         ('external_id', '=', int(id_)),
                     ])
                     if ref_object.id is not False:
                         values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
                     else:
+                        _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
                         external_sync = 'updated'
 
             else:
@@ -238,11 +251,24 @@ class AbstractExternalSync(models.AbstractModel):
 
             Object = self.env[schedule.model]
 
+            external_object_fields = []
+            local_object_fields = []
+            for object_field in schedule.object_field_ids:
+                external_object_fields.append(object_field.external_object_field)
+
+            external_search_args = []
+            if 'active' in external_object_fields:
+                external_search_args = [
+                    '|',
+                    ('active', '=', True),
+                    ('active', '=', False),
+                ]
+
             external_object_ids = sock.execute(external_dbname, uid, external_user_pw,
-                                               schedule.external_model, 'search', [])
+                                               schedule.external_model, 'search', external_search_args)
             _logger.info(u'%s %s', '>>>>>>>>>> (external_objects):', len(external_object_ids))
 
-            local_objects = Object.search([
+            local_objects = Object.with_context({'active_test': False}).search([
                 ('external_id', '!=', False),
                 ('external_sync', '!=', 'missing'),
             ])
@@ -260,8 +286,8 @@ class AbstractExternalSync(models.AbstractModel):
                                                   [], {'attributes': ['string', 'help', 'type']})
             _logger.info(u'%s %s', '>>>>>>>>>> (external_object_fields):', external_object_fields.keys())
 
-            args = schedule.external_last_update_args()
-            _logger.info(u'%s %s', '>>>>>>>>>> (args):', args)
+            external_args = schedule.external_last_update_args() + external_search_args
+            _logger.info(u'%s %s', '>>>>>>>>>> (external_args):', external_args)
 
             external_object_fields = []
             local_object_fields = []
@@ -276,7 +302,7 @@ class AbstractExternalSync(models.AbstractModel):
                          local_object_fields)
             external_objects = sock.execute(external_dbname, uid, external_user_pw,
                                             schedule.external_model, 'search_read',
-                                            args,
+                                            external_args,
                                             external_object_fields)
 
             _logger.info(u'%s %s', '>>>>>>>>>> (external_objects):', len(external_objects))
@@ -301,7 +327,7 @@ class AbstractExternalSync(models.AbstractModel):
                     if external_object['__last_update'] > upmost_last_update:
                         upmost_last_update = external_object['__last_update']
 
-                local_object = Object.search([
+                local_object = Object.with_context({'active_test': False}).search([
                     ('external_id', '=', external_object['id']),
                 ])
 
@@ -317,7 +343,7 @@ class AbstractExternalSync(models.AbstractModel):
                             ('name', '=', local_object_fields[i]),
                         ])
 
-                        if fields[0].ttype in ['char', 'date', 'datetime', 'text']:
+                        if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean']:
                             values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
                         elif fields[0].ttype == 'many2one':
@@ -325,7 +351,7 @@ class AbstractExternalSync(models.AbstractModel):
                                 model_ = fields[0].relation
                                 id_ = external_object[external_object_fields[i]][0]
                                 RelationObject = self.env[model_]
-                                relation_object = RelationObject.search([
+                                relation_object = RelationObject.with_context({'active_test': False}).search([
                                     ('external_id', '=', int(id_)),
                                 ])
                                 if relation_object.id is not False:
@@ -335,7 +361,7 @@ class AbstractExternalSync(models.AbstractModel):
                             if external_object[external_object_fields[i]] is not False:
                                 model_, id_ = external_object[external_object_fields[i]].split(',')
                                 RefObject = self.env[model_]
-                                ref_object = RefObject.search([
+                                ref_object = RefObject.with_context({'active_test': False}).search([
                                     ('external_id', '=', int(id_)),
                                 ])
                                 if ref_object.id is not False:
@@ -395,7 +421,7 @@ class AbstractExternalSync(models.AbstractModel):
                             schedule
                         )
 
-            local_objects = Object.search([
+            local_objects = Object.with_context({'active_test': False}).search([
                 ('external_sync', '=', 'updated'),
             ])
             _logger.info(u'>>>>>>>>>>>>>>> (local_objects): %s %s', local_objects, len(local_objects))
@@ -419,7 +445,7 @@ class AbstractExternalSync(models.AbstractModel):
                         if external_object['__last_update'] > upmost_last_update:
                             upmost_last_update = external_object['__last_update']
 
-                    local_object = Object.search([
+                    local_object = Object.with_context({'active_test': False}).search([
                         ('external_id', '=', external_object['id']),
                     ])
 
@@ -440,14 +466,14 @@ class AbstractExternalSync(models.AbstractModel):
                             schedule
                         )
 
-                local_objects = Object.search([
+                local_objects = Object.with_context({'active_test': False}).search([
                     ('external_sync', '=', 'updated'),
                 ])
                 _logger.info(u'>>>>>>>>>>>>>>> (local_objects): %s %s', local_objects, len(local_objects))
 
             _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_sync: ', schedule.external_max_sync)
-            _logger.info(u'%s %s', '>>>>>>>>>> args: ', args)
+            _logger.info(u'%s %s', '>>>>>>>>>> external_args: ', external_args)
             _logger.info(u'%s %s', '>>>>>>>>>> external_object_ids: ', len(external_object_ids))
             _logger.info(u'%s %s', '>>>>>>>>>> local_objects: ', len(local_objects))
             _logger.info(u'%s %s', '>>>>>>>>>> missing_count: ', missing_count)
@@ -468,7 +494,7 @@ class AbstractExternalSync(models.AbstractModel):
             schedule.external_sync_log +=  \
                 'external_exec_sync: ' + str(schedule.external_exec_sync) + '\n' + \
                 'external_max_sync: ' + str(schedule.external_max_sync) + '\n' + \
-                'args: ' + str(args) + '\n\n' + \
+                'external_args: ' + str(external_args) + '\n\n' + \
                 'external_object_ids: ' + str(len(external_object_ids)) + '\n' + \
                 'local_objects: ' + str(len(local_objects)) + '\n' + \
                 'missing_count: ' + str(missing_count) + '\n\n' + \

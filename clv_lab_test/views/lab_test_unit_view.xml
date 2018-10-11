@@ -81,6 +81,8 @@
                 <field name="description" />
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                <group name="group_by" expand="0" string="Group By...">
+                </group>
             </search>
         </field>
     </record>
