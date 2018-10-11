@@ -268,7 +268,7 @@ class AbstractExternalSync(models.AbstractModel):
                                                schedule.external_model, 'search', external_search_args)
             _logger.info(u'%s %s', '>>>>>>>>>> (external_objects):', len(external_object_ids))
 
-            local_objects = Object.search([
+            local_objects = Object.with_context({'active_test': False}).search([
                 ('external_id', '!=', False),
                 ('external_sync', '!=', 'missing'),
             ])
