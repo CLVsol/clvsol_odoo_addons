@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+from functools import reduce
 
 from odoo import api, fields, models
 
@@ -52,6 +53,9 @@ class ExternalSyncBatchExec(models.TransientModel):
     def do_external_sync_batch_exec(self):
         self.ensure_one()
 
+        from time import time
+        start = time()
+
         external_sync_log = False
 
         for batch in self.batch_ids:
@@ -77,7 +81,13 @@ class ExternalSyncBatchExec(models.TransientModel):
                 external_sync_log += '\n########## ' + schedule.name + ' ##########\n'
                 external_sync_log += schedule.external_sync_log
 
+            external_sync_log += '\n############################################################'
+            external_sync_log +=  \
+                '\nExecution time: ' + str(secondsToStr(time() - start)) + '\n'
+
             batch.external_sync_log = external_sync_log
+
+            _logger.info(u'%s %s', '>>>>> Execution time: ', secondsToStr(time() - start))
 
         return True
         # return self._reopen_form()
