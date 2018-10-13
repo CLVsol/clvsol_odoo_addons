@@ -25,3 +25,4 @@ from . import lab_test_result_edit
 from . import lab_test_report_edit
 from . import lab_test_report_get_results
 from . import lab_test_result_copy_to_report
+from . import lab_test_type_duplicate
