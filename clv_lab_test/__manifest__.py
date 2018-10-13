@@ -29,6 +29,7 @@
         'views/lab_test_unit_view.xml',
         'views/lab_test_criterion_view.xml',
         'views/referenceable_model_view.xml',
+        'wizard/lab_test_type_duplicate_view.xml',
     ],
     'demo': [],
     'test': [],

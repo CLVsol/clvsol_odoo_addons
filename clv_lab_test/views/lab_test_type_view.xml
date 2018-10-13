@@ -8,6 +8,7 @@
         <field name="name">clv.lab_test.type.form</field>
         <field name="model">clv.lab_test.type</field>
         <field name="arch" type="xml">
+            <!--form duplicate="0"-->
             <form>
                 <sheet>
                     <div name="button_box" class="oe_right oe_button_box">
@@ -108,4 +109,16 @@
         </field>
     </record>
         
+    <record id="clv_lab_test_type_view_form_duplicate" model="ir.ui.view">
+        <field name="name">clv.lab_test.type.form</field>
+        <field name="model">clv.lab_test.type</field>
+        <field name="inherit_id" ref="clv_lab_test.clv_lab_test_type_view_form"/>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">    
+                <attribute name="duplicate">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
