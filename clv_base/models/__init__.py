@@ -11,3 +11,4 @@ from . import abstract_annotation
 from . import abstract_random
 from . import export_xls
 from . import referenceable_model
+from . import config_settings
