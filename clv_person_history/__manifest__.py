@@ -16,6 +16,7 @@
     ],
     'data': [
         'views/phase_view.xml',
+        'views/config_settings_view.xml',
         # 'wizard/person_mass_edit_view.xml',
     ],
     'demo': [],
