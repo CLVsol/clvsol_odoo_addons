@@ -27,3 +27,4 @@ from . import annotation_model
 from . import random_model
 from . import export_xls
 from . import referenceable_model
+from . import config_settings
