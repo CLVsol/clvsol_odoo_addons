@@ -39,6 +39,7 @@
         'wizard/lab_test_report_edit_view.xml',
         'wizard/lab_test_report_get_results_view.xml',
         'wizard/lab_test_result_copy_to_report_view.xml',
+        'wizard/lab_test_type_duplicate_view.xml',
     ],
     'demo': [],
     'test': [],
