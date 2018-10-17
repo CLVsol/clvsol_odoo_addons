@@ -18,6 +18,7 @@
         'security/ir.model.access.csv',
         'views/phase_view.xml',
         'views/phase_log_view.xml',
+        'views/config_settings_view.xml',
     ],
     'demo': [],
     'test': [],
