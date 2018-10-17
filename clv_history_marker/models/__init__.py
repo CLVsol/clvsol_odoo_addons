@@ -19,3 +19,4 @@
 ###############################################################################
 
 from . import history_marker
+from . import config_settings
