@@ -9,8 +9,8 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class DocumentMassEdit(models.TransientModel):
-    _inherit = 'clv.document.mass_edit'
+class LabTestRequestMassEdit(models.TransientModel):
+    _inherit = 'clv.lab_test.request.mass_edit'
 
     phase_id = fields.Many2one(
         comodel_name='clv.phase',
@@ -23,18 +23,18 @@ class DocumentMassEdit(models.TransientModel):
     )
 
     @api.multi
-    def do_document_mass_edit(self):
+    def do_lab_test_request_mass_edit(self):
         self.ensure_one()
 
-        super(DocumentMassEdit, self).do_document_mass_edit()
+        super(LabTestRequestMassEdit, self).do_lab_test_request_mass_edit()
 
-        for document in self.document_ids:
+        for lab_test_request in self.lab_test_request_ids:
 
-            _logger.info(u'%s %s', '>>>>>', document.name)
+            _logger.info(u'%s %s', '>>>>>', lab_test_request.code)
 
             if self.phase_id_selection == 'set':
-                document.phase_id = self.phase_id
+                lab_test_request.phase_id = self.phase_id
             if self.phase_id_selection == 'remove':
-                document.phase_id = False
+                lab_test_request.phase_id = False
 
         return True
