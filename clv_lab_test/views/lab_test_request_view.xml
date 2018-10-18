@@ -17,18 +17,27 @@
                     </div>
                     <div name="center" class="oe_center">
                         <label for="code" class="oe_edit_only"/>
-                        <h1> <field name="code" placeholder="Lab Test Request Code..."/></h1>
+                        <h3> <field name="code" placeholder="Lab Test Request Code..."/></h3>
                     </div>
-                    <div class="oe_title">
-                        <label for="date_request" class="oe_edit_only"/>
-                        <h3><field name="date_request" placeholder="Request Date..."/></h3>
-                        <label for="lab_test_type_ids" class="oe_edit_only"/>
-                        <h5><field name="lab_test_type_ids" default_focus="1" placeholder="Test Types..." options="{'no_open': False, 'no_create': True}"/></h5>
+                    <div name="title" class="oe_title">
+                        <!--label for="date_request" class="oe_edit_only"/>
+                        <h5><field name="date_request" placeholder="Request Date..."/></h5-->
+                        <!--label for="lab_test_type_ids" class="oe_edit_only"/>
+                        <h5><field name="lab_test_type_ids" default_focus="1" placeholder="Test Types..." options="{'no_open': False, 'no_create': True}"/></h5-->
                     </div>
                     <group name="group_top">
-                        <group name="group_left">
+                        <group name="group_top_left">
+                            <field name="date_request" placeholder="Request Date..."/>
                         </group>
-                        <group name="group_right">
+                        <group name="group_top_right">
+                        </group>
+                    </group>
+                    <label for="lab_test_type_ids" class="oe_edit_only"/>
+                    <h5><field name="lab_test_type_ids" default_focus="1" placeholder="Test Types..." options="{'no_open': False, 'no_create': True}"/></h5>
+                    <group name="group_bottom">
+                        <group name="group_bottom_left">
+                        </group>
+                        <group name="group_bottom_right">
                         </group>
                     </group>
                     <notebook>
