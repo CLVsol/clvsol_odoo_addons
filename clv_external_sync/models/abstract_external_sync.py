@@ -208,6 +208,27 @@ class AbstractExternalSync(models.AbstractModel):
                         _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
                         external_sync = 'updated'
 
+            elif fields[0].ttype == 'many2many':
+                if external_object[external_object_fields[i]] is not False:
+                    model_ = fields[0].relation
+                    ids_ = external_object[external_object_fields[i]]
+                    RelationObject = self.env[model_]
+
+                    m2m_list = []
+                    m2m_list.append((5,))
+                    for external_id in ids_:
+                        relation_object = RelationObject.with_context({'active_test': False}).search([
+                            ('external_id', '=', external_id),
+                        ])
+                        if relation_object.id is not False:
+                            m2m_list.append((4, relation_object.id))
+                        else:
+                            _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)', fields[0].name, fields[0].ttype, id_)
+                            external_sync = 'updated'
+
+                    _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                    values[local_object_fields[i]] = m2m_list
+
             else:
                 _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
                 external_sync = 'updated'
@@ -366,6 +387,24 @@ class AbstractExternalSync(models.AbstractModel):
                                 ])
                                 if ref_object.id is not False:
                                     values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
+
+                        elif fields[0].ttype == 'many2many':
+                            if external_object[external_object_fields[i]] is not False:
+                                model_ = fields[0].relation
+                                ids_ = external_object[external_object_fields[i]]
+                                RelationObject = self.env[model_]
+
+                                m2m_list = []
+                                m2m_list.append((5,))
+                                for external_id in ids_:
+                                    relation_object = RelationObject.with_context({'active_test': False}).search([
+                                        ('external_id', '=', external_id),
+                                    ])
+                                    if relation_object.id is not False:
+                                        m2m_list.append((4, relation_object.id))
+
+                                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                                values[local_object_fields[i]] = m2m_list
 
                         else:
                             _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)

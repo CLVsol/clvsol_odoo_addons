@@ -42,7 +42,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <tree>
-                <field name="sequence" widget='handle'/>
+                <field name="sequence" widget="handle"/>
                 <field name="external_sync_batch_id"/>
                 <field name="notes"/>
             </tree>

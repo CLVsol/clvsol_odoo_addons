@@ -10,8 +10,11 @@
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_request_view_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <group name="group_left" position="inside">
-                <field name="ref_id"  options="{'no_open': False, 'no_create': True}"/>
+            <div name="title" position="inside">
+                <label for="ref_id" class="oe_edit_only"/>
+                <h1><field name="ref_id" placeholder="Name..."  options="{'no_open': False, 'no_create': True}"/></h1>
+            </div>
+            <group name="group_bottom_left" position="inside">
                 <field name="ref_model"/>
                 <field name="ref_name"/>
             </group>
