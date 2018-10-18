@@ -57,7 +57,8 @@ class ConfigSettings_2(models.TransientModel):
 
         current_phase_id = False
         try:
-            if defaults['current_phase_id'] != 'False':
+            if defaults['current_phase_id'] != '' and \
+               defaults['current_phase_id'] != 'False':
                 current_phase_id = defaults['current_phase_id']
         except KeyError:
             pass
