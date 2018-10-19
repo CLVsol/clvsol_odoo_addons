@@ -178,60 +178,66 @@ class AbstractExternalSync(models.AbstractModel):
                 ('name', '=', local_object_fields[i]),
             ])
 
-            if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean']:
-                values[local_object_fields[i]] = external_object[external_object_fields[i]]
+            if fields.id is not False:
 
-            elif fields[0].ttype == 'many2one':
-                if external_object[external_object_fields[i]] is not False:
-                    model_ = fields[0].relation
-                    id_ = external_object[external_object_fields[i]][0]
-                    RelationObject = self.env[model_]
-                    relation_object = RelationObject.with_context({'active_test': False}).search([
-                        ('external_id', '=', int(id_)),
-                    ])
-                    if relation_object.id is not False:
-                        values[local_object_fields[i]] = relation_object.id
-                    else:
-                        _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)', fields[0].name, fields[0].ttype, id_)
-                        external_sync = 'updated'
+                if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean']:
+                    values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
-            elif fields[0].ttype == 'reference':
-                if external_object[external_object_fields[i]] is not False:
-                    model_, id_ = external_object[external_object_fields[i]].split(',')
-                    RefObject = self.env[model_]
-                    ref_object = RefObject.with_context({'active_test': False}).search([
-                        ('external_id', '=', int(id_)),
-                    ])
-                    if ref_object.id is not False:
-                        values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
-                    else:
-                        _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
-                        external_sync = 'updated'
-
-            elif fields[0].ttype == 'many2many':
-                if external_object[external_object_fields[i]] is not False:
-                    model_ = fields[0].relation
-                    ids_ = external_object[external_object_fields[i]]
-                    RelationObject = self.env[model_]
-
-                    m2m_list = []
-                    m2m_list.append((5,))
-                    for external_id in ids_:
+                elif fields[0].ttype == 'many2one':
+                    if external_object[external_object_fields[i]] is not False:
+                        model_ = fields[0].relation
+                        id_ = external_object[external_object_fields[i]][0]
+                        RelationObject = self.env[model_]
                         relation_object = RelationObject.with_context({'active_test': False}).search([
-                            ('external_id', '=', external_id),
+                            ('external_id', '=', int(id_)),
                         ])
                         if relation_object.id is not False:
-                            m2m_list.append((4, relation_object.id))
+                            values[local_object_fields[i]] = relation_object.id
                         else:
                             _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)', fields[0].name, fields[0].ttype, id_)
                             external_sync = 'updated'
 
-                    _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
-                    values[local_object_fields[i]] = m2m_list
+                elif fields[0].ttype == 'reference':
+                    if external_object[external_object_fields[i]] is not False:
+                        model_, id_ = external_object[external_object_fields[i]].split(',')
+                        RefObject = self.env[model_]
+                        ref_object = RefObject.with_context({'active_test': False}).search([
+                            ('external_id', '=', int(id_)),
+                        ])
+                        if ref_object.id is not False:
+                            values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
+                        else:
+                            _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
+                            external_sync = 'updated'
+
+                elif fields[0].ttype == 'many2many':
+                    if external_object[external_object_fields[i]] is not False:
+                        model_ = fields[0].relation
+                        ids_ = external_object[external_object_fields[i]]
+                        RelationObject = self.env[model_]
+
+                        m2m_list = []
+                        m2m_list.append((5,))
+                        for external_id in ids_:
+                            relation_object = RelationObject.with_context({'active_test': False}).search([
+                                ('external_id', '=', external_id),
+                            ])
+                            if relation_object.id is not False:
+                                m2m_list.append((4, relation_object.id))
+                            else:
+                                _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)',
+                                                fields[0].name, fields[0].ttype, id_)
+                                external_sync = 'updated'
+
+                        _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                        values[local_object_fields[i]] = m2m_list
+
+                else:
+                    _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
+                    external_sync = 'updated'
 
             else:
-                _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
-                external_sync = 'updated'
+                _logger.error(u'>>>>>>>>>>>>>>>>>>>> %s %s', local_object_fields[i], fields)
 
             i += 1
 
