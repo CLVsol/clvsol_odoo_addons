@@ -17,6 +17,7 @@
     'data': [
         'views/phase_view.xml',
         'wizard/lab_test_request_mass_edit_view.xml',
+        'wizard/lab_test_result_mass_edit_view.xml',
     ],
     'demo': [],
     'test': [],
