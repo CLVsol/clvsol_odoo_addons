@@ -30,6 +30,7 @@
         'views/lab_test_criterion_view.xml',
         'views/referenceable_model_view.xml',
         'wizard/lab_test_request_mass_edit_view.xml',
+        'wizard/lab_test_result_mass_edit_view.xml',
         'wizard/lab_test_type_duplicate_view.xml',
     ],
     'demo': [],
