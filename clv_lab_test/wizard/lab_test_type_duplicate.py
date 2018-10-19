@@ -88,6 +88,8 @@ class LabTestTypeDuplicate(models.TransientModel):
                                         'normal_range': criterion.normal_range,
                                         # 'lab_test_type_id': criterion.lab_test_type_id.id,
                                         'sequence': criterion.sequence,
+                                        'result_display': criterion.result_display,
+                                        'report_display': criterion.report_display,
                                         }))
 
             new_lab_test_type.criterion_ids = criteria
