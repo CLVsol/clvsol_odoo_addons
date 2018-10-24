@@ -6,6 +6,7 @@ from openerp import api, fields, models
 
 
 class AbstractCategory(models.AbstractModel):
+    _description = 'Abstract Category'
     _name = 'clv.abstract.category'
     _parent_store = True
     _parent_order = 'name'

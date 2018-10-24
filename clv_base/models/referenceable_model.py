@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 
 class ReferenceableModel(models.Model):
+    _description = 'Referenceable Model'
     _name = 'clv.referenceable.model'
     _order = 'priority, name'
 
@@ -16,6 +17,7 @@ class ReferenceableModel(models.Model):
 
 
 class AbstractReference(models.AbstractModel):
+    _description = 'Abstract Reference'
     _name = 'clv.abstract.reference'
 
     @api.model
