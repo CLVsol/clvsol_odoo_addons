@@ -6,5 +6,6 @@ from odoo import models
 
 
 class ConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _description = 'Config Settings'
     _name = 'clv.config.settings'
+    _inherit = 'res.config.settings'

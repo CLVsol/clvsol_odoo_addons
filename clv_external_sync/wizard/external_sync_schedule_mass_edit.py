@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class ExternalSypnScheduleMassEdit(models.TransientModel):
+    _description = 'External Sync Schedule Mass Edit'
     _name = 'clv.external_sync.schedule.mass_edit'
 
     def _default_external_sync_schedule_ids(self):
@@ -28,7 +29,7 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
     external_host_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='External Host', default=False, readonly=False, required=False
+         ], string='External Host:', default=False, readonly=False, required=False
     )
 
     external_exec_sync = fields.Boolean(
@@ -37,7 +38,7 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
     external_exec_sync_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Execute Sync', default=False, readonly=False, required=False
+         ], string='Execute Sync:', default=False, readonly=False, required=False
     )
 
     external_max_sync = fields.Integer(
@@ -46,7 +47,7 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
     external_max_sync_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Max Sync Registers', default=False, readonly=False, required=False
+         ], string='Max Sync Registers:', default=False, readonly=False, required=False
     )
 
     external_last_update_start = fields.Datetime(
@@ -55,7 +56,7 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
     external_last_update_start_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Last Update (Start)', default=False, readonly=False, required=False
+         ], string='Last Update (Start):', default=False, readonly=False, required=False
     )
 
     external_last_update_end = fields.Datetime(
@@ -64,7 +65,7 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
     external_last_update_end_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Last Update (End)', default=False, readonly=False, required=False
+         ], string='Last Update (End):', default=False, readonly=False, required=False
     )
 
     @api.multi

@@ -6,6 +6,7 @@ from openerp import api, fields, models
 
 
 class AbstractTag(models.AbstractModel):
+    _description = 'Abstract Tag'
     _name = 'clv.abstract.tag'
     _parent_store = True
     _parent_order = 'name'
@@ -19,6 +20,7 @@ class AbstractTag(models.AbstractModel):
 
     parent_left = fields.Integer('Left parent', index=True)
     parent_right = fields.Integer('Right parent', index=True)
+    parent_path = fields.Char(index=True)
     complete_name = fields.Char(
         string='Full Name',
         compute='_name_get_fnc',

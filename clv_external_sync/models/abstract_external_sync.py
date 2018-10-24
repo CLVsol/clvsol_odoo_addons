@@ -19,6 +19,7 @@ def secondsToStr(t):
 
 
 class AbstractExternalSync(models.AbstractModel):
+    _description = 'Abstract External Sync'
     _name = 'clv.abstract.external_sync'
 
     external_id = fields.Integer(string='External ID')

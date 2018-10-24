@@ -39,7 +39,7 @@ class ConfigSettings_2(models.TransientModel):
 
     phase_id = fields.Many2one(
         comodel_name='clv.phase',
-        string='Current Phase',
+        string='Current Phase:',
         ondelete='restrict',
     )
 

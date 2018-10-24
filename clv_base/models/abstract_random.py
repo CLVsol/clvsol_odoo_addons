@@ -17,6 +17,7 @@ def get_random_field():
 
 
 class AbstractRandom(models.AbstractModel):
+    _description = 'Abstract Random'
     _name = 'clv.abstract.random'
     _order = 'random'
 

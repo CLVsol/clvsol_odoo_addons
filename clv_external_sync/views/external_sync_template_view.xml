@@ -116,9 +116,9 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" string="Group By...">
-                    <filter string="External Host" context="{'group_by': 'external_host_id'}"/>
-                    <filter string="Model" context="{'group_by': 'model'}"/>
-                    <filter string="External Model" context="{'group_by': 'external_model'}"/>
+                    <filter name="filter_external_host_id" string="External Host" context="{'group_by': 'external_host_id'}"/>
+                    <filter name="filter_model" string="Model" context="{'group_by': 'model'}"/>
+                    <filter name="filter_external_model" string="External Model" context="{'group_by': 'external_model'}"/>
                 </group>
             </search>
         </field>

@@ -37,6 +37,7 @@ def format_code(code_seq):
 
 
 class AbstractCode(models.AbstractModel):
+    _description = 'Abstract Code'
     _name = 'clv.abstract.code'
 
     code = fields.Char(
