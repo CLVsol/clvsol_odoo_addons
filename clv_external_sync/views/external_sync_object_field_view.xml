@@ -92,8 +92,8 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter string="Template" domain="[]" context="{'group_by': 'template_id'}"/>
-                    <filter string="Schedule" domain="[]" context="{'group_by': 'schedule_id'}"/>
+                    <filter name="filter_template_id" string="Template" domain="[]" context="{'group_by': 'template_id'}"/>
+                    <filter name="filter_schedule_id" string="Schedule" domain="[]" context="{'group_by': 'schedule_id'}"/>
                 </group>
             </search>
         </field>

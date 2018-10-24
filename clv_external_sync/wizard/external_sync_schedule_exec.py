@@ -14,6 +14,7 @@ def secondsToStr(t):
 
 
 class ExternalSyncScheduleExec(models.TransientModel):
+    _description = 'External Sync Schedule Exec'
     _name = 'clv.external_sync.schedule.exec'
 
     def _default_schedule_ids(self):

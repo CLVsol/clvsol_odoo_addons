@@ -15,6 +15,7 @@ def secondsToStr(t):
 
 
 class ExternalSyncBatchExec(models.TransientModel):
+    _description = 'External Sync Batch Exec'
     _name = 'clv.external_sync.batch.exec'
 
     def _default_batch_ids(self):
