@@ -180,7 +180,7 @@ class AbstractExternalSync(models.AbstractModel):
 
             if fields.id is not False:
 
-                if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean']:
+                if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'html', 'integer', 'boolean']:
                     values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
                 elif fields[0].ttype == 'many2one':
@@ -188,13 +188,18 @@ class AbstractExternalSync(models.AbstractModel):
                         model_ = fields[0].relation
                         id_ = external_object[external_object_fields[i]][0]
                         RelationObject = self.env[model_]
-                        relation_object = RelationObject.with_context({'active_test': False}).search([
-                            ('external_id', '=', int(id_)),
-                        ])
-                        if relation_object.id is not False:
-                            values[local_object_fields[i]] = relation_object.id
-                        else:
-                            _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)', fields[0].name, fields[0].ttype, id_)
+                        try:
+                            relation_object = RelationObject.with_context({'active_test': False}).search([
+                                ('external_id', '=', int(id_)),
+                            ])
+                            if relation_object.id is not False:
+                                values[local_object_fields[i]] = relation_object.id
+                            else:
+                                _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)',
+                                                fields[0].name, fields[0].ttype, id_)
+                                external_sync = 'updated'
+                        except ValueError as e:
+                            _logger.error(u'>>>>>>>>>>>>>>>>>>>> %s', e)
                             external_sync = 'updated'
 
                 elif fields[0].ttype == 'reference':
