@@ -6,7 +6,7 @@ from odoo import api, fields, models
 
 
 class ExternalSyncBatchMember(models.Model):
-    _description = 'External Sync Batch  Member'
+    _description = 'External Sync Batch Member'
     _name = 'clv.external_sync.batch.member'
     _order = "sequence"
 
