@@ -46,7 +46,7 @@
         name="External Sync Batch Exec"
         src_model="clv.external_sync.batch"
         res_model="clv.external_sync.batch.exec"
-        view_mode="form, tree"
+        view_mode="form"
         key2="client_action_multi"
         target="new"
     />
