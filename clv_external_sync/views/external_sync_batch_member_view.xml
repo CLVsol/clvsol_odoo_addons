@@ -60,7 +60,7 @@
                 <newline/>
                 <!--filter string="Archived" name="inactive" domain="[('active','=',False)]"/-->
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter string="External Sync Batch" domain="[]" context="{'group_by':'external_sync_batch_id'}"/>
+                    <filter name="filter_external_sync_batch_id" string="External Sync Batch" domain="[]" context="{'group_by':'external_sync_batch_id'}"/>
                 </group>
             </search>
         </field>

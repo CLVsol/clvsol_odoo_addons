@@ -8,6 +8,7 @@ from odoo import fields, models
 
 
 class AbstractAnnotation(models.AbstractModel):
+    _description = 'Abstract Annotation'
     _name = 'clv.abstract.annotation'
     _order = "date_annotation desc"
 

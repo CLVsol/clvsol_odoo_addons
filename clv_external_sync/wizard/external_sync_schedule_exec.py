@@ -14,6 +14,7 @@ def secondsToStr(t):
 
 
 class ExternalSyncScheduleExec(models.TransientModel):
+    _description = 'External Sync Schedule Exec'
     _name = 'clv.external_sync.schedule.exec'
 
     def _default_schedule_ids(self):
@@ -54,9 +55,14 @@ class ExternalSyncScheduleExec(models.TransientModel):
 
         for schedule in self.schedule_ids:
 
-            _logger.info(u'%s %s', '>>>>>', schedule.name)
+            model = schedule.model
+            _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
 
-            method_call = 'self.env[schedule.model].' + schedule.method + '(schedule)'
+            if schedule.method == '_object_synchronize':
+                method_call = 'self.env[schedule.model].' + schedule.method + '(schedule)'
+            elif schedule.method == '_object_synchronize_2':
+                method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule, model)'
+
             _logger.info(u'%s %s', '>>>>>>>>>>', method_call)
 
             exec(method_call)

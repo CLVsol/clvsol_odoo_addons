@@ -8,6 +8,7 @@ from odoo import api, fields, models
 
 
 class AbstractLog(models.AbstractModel):
+    _description = 'Abstract Log'
     _name = 'clv.abstract.log'
     _order = "id desc"
 
@@ -37,6 +38,7 @@ class AbstractLog(models.AbstractModel):
 
 
 class AbstractModelLog(models.AbstractModel):
+    _description = 'Abstract Model Log'
     _name = 'clv.abstract.model.log'
 
     active_log = fields.Boolean(

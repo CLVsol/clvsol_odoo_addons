@@ -46,7 +46,7 @@
         name="External Sync Schedule Exec"
         src_model="clv.external_sync.schedule"
         res_model="clv.external_sync.schedule.exec"
-        view_mode="form, tree"
+        view_mode="form"
         key2="client_action_multi"
         target="new"
     />

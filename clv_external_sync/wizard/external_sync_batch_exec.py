@@ -15,6 +15,7 @@ def secondsToStr(t):
 
 
 class ExternalSyncBatchExec(models.TransientModel):
+    _description = 'External Sync Batch Exec'
     _name = 'clv.external_sync.batch.exec'
 
     def _default_batch_ids(self):
@@ -73,8 +74,16 @@ class ExternalSyncBatchExec(models.TransientModel):
 
                 _logger.info(u'%s %s', '>>>>>', schedule.name)
 
-                method_call = 'self.env[schedule.model].' + schedule.method + '(schedule)'
-                _logger.info(u'%s %s', '>>>>>>>>>>', method_call)
+                model = schedule.model
+                _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
+
+                method_call = False
+                if schedule.method == '_object_external_sync':
+                    method_call = 'self.env[schedule.model].' + schedule.method + '(schedule)'
+                elif schedule.method == '_object_external_sync_2':
+                    method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule, model)'
+
+                _logger.info(u'%s %s %s', '>>>>>>>>>>', schedule.method, method_call)
 
                 exec(method_call)
 

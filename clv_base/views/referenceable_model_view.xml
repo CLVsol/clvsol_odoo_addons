@@ -61,9 +61,9 @@
                 <field name="model"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
-                <group expand="0" string="Group By...">
-                    <filter string="Base Model" context="{'group_by': 'base_model'}"/>
-                    <filter string="Referenceable Model" context="{'group_by': 'model'}"/>
+                <group name="group_by" expand="0" string="Group By...">
+                    <filter name="filter_base_model" string="Base Model" context="{'group_by': 'base_model'}"/>
+                    <filter name="filter_model" string="Referenceable Model" context="{'group_by': 'model'}"/>
                 </group>
             </search>
         </field>
