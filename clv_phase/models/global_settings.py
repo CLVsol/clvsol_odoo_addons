@@ -5,12 +5,12 @@
 from odoo import api, fields, models
 
 PARAMS = [
-    ("current_phase_id", "clv.config.settings.current_phase_id"),
+    ("current_phase_id", "clv.global_settings.current_phase_id"),
 ]
 
 
-class ConfigSettings(models.TransientModel):
-    _inherit = 'clv.config.settings'
+class GlobalSettings(models.TransientModel):
+    _inherit = 'clv.global_settings'
 
     current_phase_id = fields.Char(
         string='Current Phase',
@@ -34,8 +34,8 @@ class ConfigSettings(models.TransientModel):
         return res
 
 
-class ConfigSettings_2(models.TransientModel):
-    _inherit = 'clv.config.settings'
+class GlobalSettings_2(models.TransientModel):
+    _inherit = 'clv.global_settings'
 
     phase_id = fields.Many2one(
         comodel_name='clv.phase',
@@ -51,7 +51,7 @@ class ConfigSettings_2(models.TransientModel):
     @api.model
     def default_get(self, field_names):
 
-        defaults = super(ConfigSettings_2, self).default_get(field_names)
+        defaults = super(GlobalSettings_2, self).default_get(field_names)
 
         Phase = self.env['clv.phase']
 
