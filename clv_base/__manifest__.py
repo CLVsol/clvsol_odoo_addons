@@ -18,7 +18,7 @@
         'views/abstract_log_view.xml',
         'views/abstract_category_view.xml',
         'views/referenceable_model_view.xml',
-        'views/config_settings_view.xml',
+        'views/global_settings_view.xml',
     ],
     'demo': [],
     'test': [],
