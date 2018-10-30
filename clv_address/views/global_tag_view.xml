@@ -54,7 +54,7 @@
                 <field name="global_tag_ids"/>
             </field>
             <group name="group_by" position="inside">
-                <filter string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
+                <filter name="filter_global_tag_names" string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
             </group>
         </field>
     </record>
