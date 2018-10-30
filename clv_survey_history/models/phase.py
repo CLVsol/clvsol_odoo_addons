@@ -15,7 +15,7 @@ class Phase(models.Model):
         readonly=True
     )
     count_surveys = fields.Integer(
-        string='Surveys',
+        string='Surveys (count)',
         compute='_compute_survey_ids_and_count',
     )
 
