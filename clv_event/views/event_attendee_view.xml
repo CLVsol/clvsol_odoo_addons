@@ -80,7 +80,7 @@
                 <newline/>
                 <!--filter string="Archived" name="inactive" domain="[('active','=',False)]"/-->
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter string="Event" domain="[]" context="{'group_by':'event_id'}"/>
+                    <filter name="filter_event_id" string="Event" domain="[]" context="{'group_by':'event_id'}"/>
                 </group>
             </search>
         </field>
