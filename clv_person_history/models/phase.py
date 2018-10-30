@@ -15,7 +15,7 @@ class Phase(models.Model):
         readonly=True
     )
     count_persons = fields.Integer(
-        string='Persons',
+        string='Persons (count)',
         compute='_compute_person_ids_and_count',
     )
 

@@ -98,7 +98,7 @@
                 <newline/>
                 <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter string="Lab Test Types" context="{'group_by': 'lab_test_type_names'}"/>
+                    <filter name="filter_lab_test_type_names" string="Lab Test Types" context="{'group_by': 'lab_test_type_names'}"/>
                 </group>
             </search>
         </field>

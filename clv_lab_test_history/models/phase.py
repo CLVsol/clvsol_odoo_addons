@@ -15,7 +15,7 @@ class Phase(models.Model):
         readonly=True
     )
     count_lab_test_types = fields.Integer(
-        string='Lab Test Types',
+        string='Lab Test Types (count)',
         compute='_compute_lab_test_type_ids_and_count',
     )
 
@@ -39,7 +39,7 @@ class Phase(models.Model):
         readonly=True
     )
     count_lab_test_requests = fields.Integer(
-        string='Lab Test Requests',
+        string='Lab Test Requests (count)',
         compute='_compute_lab_test_request_ids_and_count',
     )
 
@@ -63,7 +63,7 @@ class Phase(models.Model):
         readonly=True
     )
     count_lab_test_results = fields.Integer(
-        string='Lab Test Results',
+        string='Lab Test Results (count)',
         compute='_compute_lab_test_result_ids_and_count',
     )
 
@@ -87,7 +87,7 @@ class Phase(models.Model):
         readonly=True
     )
     count_lab_test_reports = fields.Integer(
-        string='Lab Test Reports',
+        string='Lab Test Reports (count)',
         compute='_compute_lab_test_report_ids_and_count',
     )
 

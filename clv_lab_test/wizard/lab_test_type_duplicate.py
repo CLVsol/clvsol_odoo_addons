@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class LabTestTypeDuplicate(models.TransientModel):
+    _description = 'Lab Test Type Duplicate'
     _name = 'clv.lab_test.type.duplicate'
 
     lab_test_type_ids = fields.Many2many(

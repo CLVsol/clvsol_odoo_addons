@@ -26,6 +26,7 @@ _logger = logging.getLogger(__name__)
 
 
 class EmployeeMassEdit(models.TransientModel):
+    _description = 'Employee Mass Edit'
     _name = 'hr.employee.mass_edit'
 
     def _default_employee_ids(self):
@@ -44,7 +45,7 @@ class EmployeeMassEdit(models.TransientModel):
     job_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Job', default=False, readonly=False, required=False
+         ], string='Job:', default=False, readonly=False, required=False
     )
 
     department_id = fields.Many2one(
@@ -54,7 +55,7 @@ class EmployeeMassEdit(models.TransientModel):
     department_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Department', default=False, readonly=False, required=False
+         ], string='Department:', default=False, readonly=False, required=False
     )
 
     global_tag_ids = fields.Many2many(
@@ -68,7 +69,7 @@ class EmployeeMassEdit(models.TransientModel):
         [('add', 'Add'),
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
-         ], string='Global Tags', default=False, readonly=False, required=False
+         ], string='Global Tags:', default=False, readonly=False, required=False
     )
 
     @api.multi

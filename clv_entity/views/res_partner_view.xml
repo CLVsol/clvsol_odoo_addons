@@ -36,7 +36,7 @@
         </field>
     </record>
 
-    <record id="base.action_partner_form_person" model="ir.actions.act_window">
+    <record id="base.action_partner_form" model="ir.actions.act_window">
         <field name="name">Customers</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>

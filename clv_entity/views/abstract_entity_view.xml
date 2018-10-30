@@ -447,13 +447,15 @@
                 <field name="category_id"/>
                 <field name="parent_id" invisible="1"/>
                 <field name="partner_id" invisible="1"/>
-                <filter string="Deactivated"
+                <filter name="filter_deactivated" string="Deactivated"
                         domain="[('active', '=', 0)]"/>
                 <group name="group_by" string="Group By...">
-                    <filter string="Parent"
+                    <filter name="filter_parent_id"
+                            string="Parent"
                             domain="[]"
                             context="{'group_by':'parent_id'}"/>
-                    <filter string="Related Partner"
+                    <filter name="filter_related_partner"
+                            string="Related Partner"
                             domain="[('partner_id', 'child_of', partner_id)]"
                             invisible="1"
                             />

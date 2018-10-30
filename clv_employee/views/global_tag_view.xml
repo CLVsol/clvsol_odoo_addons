@@ -54,12 +54,12 @@
                 <field name="global_tag_ids"/>
             </field>
             <field name="job_id" position="after">
-                <filter string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
+                <filter name="filter_global_tag_names" string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
             </field>
         </field>
     </record>
 
-    <record id="hr_employee_view_kanban_global_tag" model="ir.ui.view">
+    <!--record id="hr_employee_view_kanban_global_tag" model="ir.ui.view">
         <field name="name">HR - Employess Kanban</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
@@ -69,6 +69,6 @@
                 <li t-if="record.global_tag_names.raw_value"><field name="global_tag_names"/></li>
             </li>
         </field>
-    </record>
+    </record-->
 
 </odoo>

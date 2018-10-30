@@ -253,11 +253,13 @@ class AbstractExternalSync(models.AbstractModel):
 
     def _object_synchronize_2(
         self, sock, external_dbname, uid, external_user_pw,
-        external_model, external_id, schedule, model_name
+        external_model, external_id, schedule, model_name,
+        sync_object
     ):
 
         Model = self.env['ir.model']
         ModelFields = self.env['ir.model.fields']
+        ExternalSync = self.env['clv.external_sync']
 
         local_object_model = Model.search([
             ('model', '=', model_name),
@@ -308,34 +310,44 @@ class AbstractExternalSync(models.AbstractModel):
 
             if fields.id is not False:
 
-                if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean']:
+                if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'html', 'integer', 'boolean']:
                     local_values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
                 elif fields[0].ttype == 'many2one':
                     if external_object[external_object_fields[i]] is not False:
                         model_ = fields[0].relation
                         id_ = external_object[external_object_fields[i]][0]
+                        relation_sync_object = ExternalSync.with_context({'active_test': False}).search([
+                            ('model', '=', model_),
+                            ('external_id', '=', int(id_)),
+                        ])
                         RelationObject = self.env[model_]
                         relation_object = RelationObject.with_context({'active_test': False}).search([
-                            ('external_id', '=', int(id_)),
+                            # ('external_id', '=', int(id_)),
+                            ('id', '=', relation_sync_object.res_id),
                         ])
                         if relation_object.id is not False:
                             local_values[local_object_fields[i]] = relation_object.id
                         else:
                             _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s (%s)', fields[0].name, fields[0].ttype, id_)
-                            external_sync = 'updated'
+                            # external_sync = 'updated'
+                            sync_object.external_sync = 'updated'
 
                 elif fields[0].ttype == 'reference':
                     if external_object[external_object_fields[i]] is not False:
                         model_, id_ = external_object[external_object_fields[i]].split(',')
-                        RefObject = self.env[model_]
-                        ref_object = RefObject.with_context({'active_test': False}).search([
-                            ('external_id', '=', int(id_)),
-                        ])
-                        if ref_object.id is not False:
-                            local_values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
-                        else:
-                            _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
+                        try:
+                            RefObject = self.env[model_]
+                            ref_object = RefObject.with_context({'active_test': False}).search([
+                                ('external_id', '=', int(id_)),
+                            ])
+                            if ref_object.id is not False:
+                                local_values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
+                            else:
+                                _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
+                                external_sync = 'updated'
+                        except KeyError:
+                            _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', model_, id_)
                             external_sync = 'updated'
 
                 elif fields[0].ttype == 'many2many':
@@ -736,6 +748,7 @@ class AbstractExternalSync(models.AbstractModel):
             _logger.info(u'%s %s', '>>>>>>>>>> (external_objects):', len(external_object_ids))
 
             sync_objects = ExternalSync.with_context({'active_test': False}).search([
+                ('model', '=', model_name),
                 ('external_id', '!=', False),
                 ('external_sync', '!=', 'missing'),
             ])
@@ -794,6 +807,7 @@ class AbstractExternalSync(models.AbstractModel):
                         upmost_last_update = external_object['__last_update']
 
                 sync_object = ExternalSync.with_context({'active_test': False}).search([
+                    ('model', '=', model_name),
                     ('external_id', '=', external_object['id']),
                 ])
 
@@ -877,7 +891,7 @@ class AbstractExternalSync(models.AbstractModel):
                         new_sync_object._object_synchronize_2(
                             sock, external_dbname, uid, external_user_pw,
                             schedule.external_model, external_object['id'],
-                            schedule, model_name
+                            schedule, model_name, new_sync_object
                         )
 
                 else:
@@ -907,58 +921,60 @@ class AbstractExternalSync(models.AbstractModel):
                         sync_object._object_synchronize_2(
                             sock, external_dbname, uid, external_user_pw,
                             schedule.external_model, external_object['id'],
-                            schedule, model_name
+                            schedule, model_name, sync_object
                         )
 
-            sync_objects = ExternalSync.with_context({'active_test': False}).search([
-                ('external_sync', '=', 'updated'),
-            ])
-            _logger.info(u'>>>>>>>>>>>>>>> (sync_objects): %s %s', sync_objects, len(sync_objects))
+            # sync_objects = ExternalSync.with_context({'active_test': False}).search([
+            #     ('model', '=', model_name),
+            #     ('external_sync', '=', 'updated'),
+            # ])
+            # _logger.info(u'>>>>>>>>>>>>>>> (sync_objects): %s %s', sync_objects, len(sync_objects))
 
-            reg_count_2 = 0
-            sync_update_count_2 = 0
-            while len(sync_objects) > 0 and \
-                    sync_count < schedule.external_max_sync:
+            # reg_count_2 = 0
+            # sync_update_count_2 = 0
+            # while len(sync_objects) > 0 and \
+            #         sync_count < schedule.external_max_sync:
 
-                for external_object in external_objects:
+            #     for external_object in external_objects:
 
-                    reg_count_2 += 1
+            #         reg_count_2 += 1
 
-                    _logger.info(u'%s %s %s %s', '>>>>>>>>>>', reg_count_2,
-                                 external_object['id'],
-                                 external_object['__last_update'], )
+            #         _logger.info(u'%s %s %s %s', '>>>>>>>>>>', reg_count_2,
+            #                      external_object['id'],
+            #                      external_object['__last_update'], )
 
-                    if upmost_last_update is False:
-                        upmost_last_update = external_object['__last_update']
-                    else:
-                        if external_object['__last_update'] > upmost_last_update:
-                            upmost_last_update = external_object['__last_update']
+            #         if upmost_last_update is False:
+            #             upmost_last_update = external_object['__last_update']
+            #         else:
+            #             if external_object['__last_update'] > upmost_last_update:
+            #                 upmost_last_update = external_object['__last_update']
 
-                    sync_object = ExternalSync.with_context({'active_test': False}).search([
-                        ('external_id', '=', external_object['id']),
-                    ])
+            #         sync_object = ExternalSync.with_context({'active_test': False}).search([
+            #             ('external_id', '=', external_object['id']),
+            #         ])
 
-                    if sync_object.external_sync == 'updated' and \
-                       schedule.external_exec_sync is True and \
-                       sync_count < schedule.external_max_sync:
+            #         if sync_object.external_sync == 'updated' and \
+            #            schedule.external_exec_sync is True and \
+            #            sync_count < schedule.external_max_sync:
 
-                        sync_count += 1
+            #             sync_count += 1
 
-                        _logger.info(u'>>>>>>>>>>>>>>> %s %s', sync_count, sync_object)
+            #             _logger.info(u'>>>>>>>>>>>>>>> %s %s', sync_count, sync_object)
 
-                        if sync_object.external_sync == 'updated':
-                            sync_update_count_2 += 1
+            #             if sync_object.external_sync == 'updated':
+            #                 sync_update_count_2 += 1
 
-                        sync_object._object_synchronize_2(
-                            sock, external_dbname, uid, external_user_pw,
-                            schedule.external_model, external_object['id'],
-                            schedule, model_name
-                        )
+            #             sync_object._object_synchronize_2(
+            #                 sock, external_dbname, uid, external_user_pw,
+            #                 schedule.external_model, external_object['id'],
+            #                 schedule, model_name, sync_object
+            #             )
 
-                sync_objects = ExternalSync.with_context({'active_test': False}).search([
-                    ('external_sync', '=', 'updated'),
-                ])
-                _logger.info(u'>>>>>>>>>>>>>>> (sync_objects): %s %s', sync_objects, len(sync_objects))
+            #     sync_objects = ExternalSync.with_context({'active_test': False}).search([
+            #         ('model', '=', model_name),
+            #         ('external_sync', '=', 'updated'),
+            #     ])
+            #     _logger.info(u'>>>>>>>>>>>>>>> (sync_objects): %s %s', sync_objects, len(sync_objects))
 
             _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_sync: ', schedule.external_max_sync)
@@ -972,14 +988,32 @@ class AbstractExternalSync(models.AbstractModel):
             _logger.info(u'%s %s', '>>>>>>>>>> sync_include_count: ', sync_include_count)
             _logger.info(u'%s %s', '>>>>>>>>>> sync_update_count: ', sync_update_count)
             _logger.info(u'%s %s', '>>>>>>>>>> sync_count: ', sync_count)
-            _logger.info(u'%s %s', '>>>>>>>>>> reg_count_2: ', reg_count_2)
-            _logger.info(u'%s %s', '>>>>>>>>>> sync_update_count_2: ', sync_update_count_2)
+            # _logger.info(u'%s %s', '>>>>>>>>>> reg_count_2: ', reg_count_2)
+            # _logger.info(u'%s %s', '>>>>>>>>>> sync_update_count_2: ', sync_update_count_2)
             _logger.info(u'%s %s', '>>>>>>>>>> date_last_sync: ', date_last_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> upmost_last_update: ', upmost_last_update)
             _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
 
             schedule.date_last_sync = date_last_sync
             schedule.upmost_last_update = upmost_last_update
+            # schedule.external_sync_log +=  \
+            #     'external_exec_sync: ' + str(schedule.external_exec_sync) + '\n' + \
+            #     'external_max_sync: ' + str(schedule.external_max_sync) + '\n' + \
+            #     'external_args: ' + str(external_args) + '\n\n' + \
+            #     'external_object_ids: ' + str(len(external_object_ids)) + '\n' + \
+            #     'sync_objects: ' + str(len(sync_objects)) + '\n' + \
+            #     'missing_count: ' + str(missing_count) + '\n\n' + \
+            #     'reg_count: ' + str(reg_count) + '\n' + \
+            #     'include_count: ' + str(include_count) + '\n' + \
+            #     'update_count: ' + str(update_count) + '\n' + \
+            #     'sync_include_count: ' + str(sync_include_count) + '\n' + \
+            #     'sync_update_count: ' + str(sync_update_count) + '\n' + \
+            #     'sync_count: ' + str(sync_count) + '\n\n' + \
+            #     'reg_count_2: ' + str(reg_count_2) + '\n' + \
+            #     'sync_update_count_2: ' + str(sync_update_count_2) + '\n' + \
+            #     'date_last_sync: ' + str(date_last_sync) + '\n' + \
+            #     'upmost_last_update: ' + str(upmost_last_update) + '\n\n' + \
+            #     'Execution time: ' + str(secondsToStr(time() - start)) + '\n'
             schedule.external_sync_log +=  \
                 'external_exec_sync: ' + str(schedule.external_exec_sync) + '\n' + \
                 'external_max_sync: ' + str(schedule.external_max_sync) + '\n' + \
@@ -993,8 +1027,6 @@ class AbstractExternalSync(models.AbstractModel):
                 'sync_include_count: ' + str(sync_include_count) + '\n' + \
                 'sync_update_count: ' + str(sync_update_count) + '\n' + \
                 'sync_count: ' + str(sync_count) + '\n\n' + \
-                'reg_count_2: ' + str(reg_count_2) + '\n' + \
-                'sync_update_count_2: ' + str(sync_update_count_2) + '\n' + \
                 'date_last_sync: ' + str(date_last_sync) + '\n' + \
                 'upmost_last_update: ' + str(upmost_last_update) + '\n\n' + \
                 'Execution time: ' + str(secondsToStr(time() - start)) + '\n'

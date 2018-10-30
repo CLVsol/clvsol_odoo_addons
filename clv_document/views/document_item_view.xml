@@ -91,8 +91,8 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter string="Document Type" domain="[]" context="{'group_by': 'document_type_id'}"/>
-                    <filter string="Document" domain="[]" context="{'group_by': 'document_id'}"/>
+                    <filter name="filter_document_type_id" string="Document Type" domain="[]" context="{'group_by': 'document_type_id'}"/>
+                    <filter name="filter_document_id" string="Document" domain="[]" context="{'group_by': 'document_id'}"/>
                 </group>
             </search>
         </field>
@@ -186,7 +186,7 @@
                 <filter name="filter_items_not_ok" string="Items not Ok" domain="[('items_ok','=',False)]"/>
             </filter>
             <group name="group_by" position="inside">
-                <filter string="Items Ok" domain="[]" context="{'group_by': 'items_ok'}"/>
+                <filter name="filter_items_ok" string="Items Ok" domain="[]" context="{'group_by': 'items_ok'}"/>
             </group>
         </field>
     </record>

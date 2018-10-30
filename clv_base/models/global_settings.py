@@ -5,7 +5,7 @@
 from odoo import models
 
 
-class ConfigSettings(models.TransientModel):
-    _description = 'Config Settings'
-    _name = 'clv.config.settings'
+class GlobalSettings(models.TransientModel):
+    _description = 'Global Settings'
+    _name = 'clv.global_settings'
     _inherit = 'res.config.settings'

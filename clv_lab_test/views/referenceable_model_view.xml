@@ -45,8 +45,8 @@
                 <field name="ref_name"/>
             </field>
             <group name="group_by" position="inside">
-                <filter string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
-                <filter string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
+                <filter name="filter_ref_model" string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
+                <filter name="filter_ref_name" string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
             </group>
         </field>
     </record>
@@ -89,8 +89,8 @@
                 <field name="ref_name"/>
             </field>
             <group name="group_by" position="inside">
-                <filter string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
-                <filter string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
+                <filter name="filter_ref_model" string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
+                <filter name="filter_ref_name" string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
             </group>
         </field>
     </record>
@@ -133,8 +133,8 @@
                 <field name="ref_name"/>
             </field>
             <group name="group_by" position="inside">
-                <filter string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
-                <filter string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
+                <filter name="filter_ref_model" string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
+                <filter name="filter_ref_name" string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
             </group>
         </field>
     </record>
