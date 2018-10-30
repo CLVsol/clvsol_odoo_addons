@@ -26,6 +26,7 @@ _logger = logging.getLogger(__name__)
 
 
 class DocumentMassEdit(models.TransientModel):
+    _description = 'Document Mass Edit'
     _name = 'clv.document.mass_edit'
 
     def _default_document_ids(self):
@@ -48,7 +49,7 @@ class DocumentMassEdit(models.TransientModel):
         [('add', 'Add'),
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
-         ], string='Global Tags', default=False, readonly=False, required=False
+         ], string='Global Tags:', default=False, readonly=False, required=False
     )
 
     category_ids = fields.Many2many(
@@ -62,7 +63,7 @@ class DocumentMassEdit(models.TransientModel):
         [('add', 'Add'),
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
-         ], string='Categories', default=False, readonly=False, required=False
+         ], string='Categories:', default=False, readonly=False, required=False
     )
 
     document_type_id = fields.Many2one(
@@ -72,7 +73,7 @@ class DocumentMassEdit(models.TransientModel):
     document_type_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Documnent Type', default=False, readonly=False, required=False
+         ], string='Documnent Type:', default=False, readonly=False, required=False
     )
 
     base_document_id = fields.Many2one(
@@ -82,28 +83,28 @@ class DocumentMassEdit(models.TransientModel):
     base_document_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Base Document', default=False, readonly=False, required=False
+         ], string='Base Document:', default=False, readonly=False, required=False
     )
 
     date_document = fields.Date(string='Document Date', default=False, readonly=False, required=False)
     date_document_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Document Date', default=False, readonly=False, required=False
+         ], string='Document Date:', default=False, readonly=False, required=False
     )
 
     date_foreseen = fields.Date(string='Foreseen Date', default=False, readonly=False, required=False)
     date_foreseen_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Foreseen Date', default=False, readonly=False, required=False
+         ], string='Foreseen Date:', default=False, readonly=False, required=False
     )
 
     date_deadline = fields.Date(string='Deadline', default=False, readonly=False, required=False)
     date_deadline_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Deadline', default=False, readonly=False, required=False
+         ], string='Deadline:', default=False, readonly=False, required=False
     )
 
     @api.model
@@ -118,7 +119,7 @@ class DocumentMassEdit(models.TransientModel):
     ref_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Refers to', default=False, readonly=False, required=False
+         ], string='Refers to:', default=False, readonly=False, required=False
     )
 
     @api.multi

@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class DocumentItemsRefresh(models.TransientModel):
+    _description = 'Document Items Refresh'
     _name = 'clv.document.items_refresh'
 
     def _default_document_ids(self):

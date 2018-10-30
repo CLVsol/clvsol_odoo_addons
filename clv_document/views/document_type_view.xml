@@ -142,7 +142,7 @@
                 <field name="document_type_id"/>
             </field>
             <group name="group_by" position="inside">
-                <filter string="Document Type" context="{'group_by': 'document_type_id'}"/>
+                <filter name="filter_document_type_id" string="Document Type" context="{'group_by': 'document_type_id'}"/>
             </group>
         </field>
     </record>
