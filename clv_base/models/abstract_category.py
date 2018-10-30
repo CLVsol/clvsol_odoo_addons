@@ -32,6 +32,7 @@ class AbstractCategory(models.AbstractModel):
 
     parent_left = fields.Integer(string='Left parent', index=True)
     parent_right = fields.Integer(string='Right parent', index=True)
+    parent_path = fields.Char(index=True)
     complete_name = fields.Char(
         string='Full Name',
         compute='_name_get_fnc',
