@@ -58,7 +58,7 @@
                 <newline/>
                 <!--filter string="Archived" name="inactive" domain="[('active','=',False)]"/-->
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter string="Community" domain="[]" context="{'group_by':'community_id'}"/>
+                    <filter name="filter_community_id" string="Community" domain="[]" context="{'group_by':'community_id'}"/>
                 </group>
             </search>
         </field>
