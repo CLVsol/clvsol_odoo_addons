@@ -100,9 +100,9 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter string="Lab Test Type" domain="[]" context="{'group_by': 'lab_test_type_id'}"/>
-                    <filter string="Lab Test Result" domain="[]" context="{'group_by': 'lab_test_result_id'}"/>
-                    <filter string="Lab Test Report" domain="[]" context="{'group_by': 'lab_test_report_id'}"/>
+                    <filter name="filter_lab_test_type_id" string="Lab Test Type" domain="[]" context="{'group_by': 'lab_test_type_id'}"/>
+                    <filter name="filter_lab_test_result_id" string="Lab Test Result" domain="[]" context="{'group_by': 'lab_test_result_id'}"/>
+                    <filter name="filter_lab_test_report_id" string="Lab Test Report" domain="[]" context="{'group_by': 'lab_test_report_id'}"/>
                 </group>
             </search>
         </field>

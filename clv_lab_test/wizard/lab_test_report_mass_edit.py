@@ -26,6 +26,7 @@ _logger = logging.getLogger(__name__)
 
 
 class LabTestReportMassEdit(models.TransientModel):
+    _description = 'Lab Test Report Mass Edit'
     _name = 'clv.lab_test.report.mass_edit'
 
     def _default_lab_test_report_ids(self):
@@ -41,7 +42,7 @@ class LabTestReportMassEdit(models.TransientModel):
     date_report_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Date of the Report', default=False, readonly=False, required=False
+         ], string='Date of the Report:', default=False, readonly=False, required=False
     )
 
     @api.model
@@ -56,7 +57,7 @@ class LabTestReportMassEdit(models.TransientModel):
     ref_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Refers to', default=False, readonly=False, required=False
+         ], string='Refers to:', default=False, readonly=False, required=False
     )
 
     @api.multi
