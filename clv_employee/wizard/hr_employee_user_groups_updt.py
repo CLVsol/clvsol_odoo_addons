@@ -26,6 +26,7 @@ _logger = logging.getLogger(__name__)
 
 
 class EmployeeUserGroupsEdit(models.TransientModel):
+    _description = 'Employee User Groups Updt'
     _name = 'hr.employee.user_groups_updt'
 
     def _default_employee_ids(self):
@@ -58,7 +59,7 @@ class EmployeeUserGroupsEdit(models.TransientModel):
         [('add', 'Add'),
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
-         ], string='Access Rights', default=False, readonly=False, required=False
+         ], string='Access Rights:', default=False, readonly=False, required=False
     )
 
     @api.depends('employee_ids')
