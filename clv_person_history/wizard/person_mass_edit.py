@@ -19,7 +19,7 @@ class DocumentMassEdit(models.TransientModel):
     phase_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Phase', default=False, readonly=False, required=False
+         ], string='Phase:', default=False, readonly=False, required=False
     )
 
     @api.multi
