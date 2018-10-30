@@ -101,7 +101,7 @@
                 <field name="category_ids"/>
             </field>
             <group name="group_by" position="inside">
-                <filter string="Categories" context="{'group_by': 'category_names'}"/>
+                <filter name="filter_category_names" string="Categories" context="{'group_by': 'category_names'}"/>
             </group>
         </field>
     </record>
