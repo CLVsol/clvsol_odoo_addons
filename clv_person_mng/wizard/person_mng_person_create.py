@@ -38,10 +38,15 @@ class PersonMngPersonCreate(models.TransientModel):
         default=_default_person_mng_ids
     )
 
+    def _default_history_marker_id(self):
+        history_marker_id = int(self.env['ir.config_parameter'].get_param(
+            'clv.config.settings.current_history_marker_id', '').strip())
+        return history_marker_id
     history_marker_id = fields.Many2one(
         comodel_name='clv.history_marker',
         string='History Marker',
-        ondelete='restrict'
+        ondelete='restrict',
+        default=_default_history_marker_id
     )
 
     @api.multi
@@ -117,5 +122,6 @@ class PersonMngPersonCreate(models.TransientModel):
                             _logger.info(u'>>>>>>>>>> %s: %s', 'action_person', person_mng.action_person)
 
                             person_mng.action_person = 'none'
+                            person_mng.action_person_address = 'none'
 
         return True
