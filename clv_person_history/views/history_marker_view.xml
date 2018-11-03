@@ -25,6 +25,7 @@
                 <group name="status" position="after">
                     <group>
                         <field name="history_marker_id" options='{"no_open": True, "no_create": True}'/>
+                        <field name="address_history_marker_id" options='{"no_open": True, "no_create": True}'/>
                     </group>
                 </group>
             </field>
@@ -38,6 +39,7 @@
             <field name="arch" type="xml">
                 <field name="code" position="before">
                     <field name="history_marker_id" groups="clv_history_marker.group_user"/>
+                    <field name="address_history_marker_id" groups="clv_history_marker.group_user"/>
                 </field>
             </field>
         </record>
@@ -50,9 +52,14 @@
             <field name="arch" type="xml">
                 <field name="code" position="after">
                     <field name="history_marker_id"/>
+                    <field name="address_history_marker_id"/>
                 </field>
+                <group name="group_by" position="before">
+                    <filter string="Address History Marker Set" name="filter_address_history_marker_id" domain="[('address_history_marker_id','!=',False)]"/>
+                    <filter name="filter_address_history_marker_id" string="Address History Markers" context="{'group_by': 'address_history_marker_id'}"/>
+                </group>
                 <group name="group_by" position="inside">
-                    <filter string="History Markers" context="{'group_by': 'history_marker_id'}"/>
+                    <filter name="filter_history_marker_id" string="History Markers" context="{'group_by': 'history_marker_id'}"/>
                 </group>
             </field>
         </record>

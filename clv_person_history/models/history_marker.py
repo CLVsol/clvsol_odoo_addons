@@ -41,6 +41,12 @@ class Person(models.Model):
         ondelete='restrict'
     )
 
+    address_history_marker_id = fields.Many2one(
+        string='Address History Marker',
+        related='address_id.history_marker_id',
+        readonly=False
+    )
+
 
 class PersonHistory(models.Model):
     _inherit = 'clv.person.history'
