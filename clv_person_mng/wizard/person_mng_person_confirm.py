@@ -83,6 +83,14 @@ class PersonMngPersonConfirm(models.TransientModel):
 
                 person_mng.action_person = 'none'
 
+            else:
+
+                if person_mng.person_id.history_marker_id.id != self.history_marker_id.id:
+
+                    person_mng.person_id.history_marker_id = self.history_marker_id.id
+
+                    _logger.info(u'>>>>>>>>>> %s: %s', 'history_marker', person_mng.person_id.history_marker_id.name)
+
         return True
 
     @api.multi
