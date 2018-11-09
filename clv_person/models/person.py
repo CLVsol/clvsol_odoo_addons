@@ -67,6 +67,15 @@ class Person(models.Model):
         store=True
     )
 
+    is_deceased = fields.Boolean(
+        string='Is Deceased',
+    )
+
+    @api.multi
+    def _compute_is_deceased(self):
+        for record in self:
+            record.is_deceased = bool(record.date_death)
+
     spouse_id = fields.Many2one(comodel_name='clv.person', string='Spouse', ondelete='restrict')
     father_id = fields.Many2one(comodel_name='clv.person', string='Father', ondelete='restrict')
     mother_id = fields.Many2one(comodel_name='clv.person', string='Mother', ondelete='restrict')
