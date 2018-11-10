@@ -22,7 +22,6 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
-from odoo.fields import Date as fDate
 from odoo.exceptions import UserError
 
 
@@ -54,17 +53,30 @@ class Person(models.Model):
     )
     country_id = fields.Many2one(comodel_name='res.country', string='Nationality')
     birthday = fields.Date(string="Date of Birth")
+
     age = fields.Char(
         string='Age',
         compute='_compute_age',
         store=True
     )
+    age_suport = fields.Char(
+        string='Age Suport',
+        compute='_compute_age_suport',
+        store=False
+    )
+
     estimated_age = fields.Char(string='Estimated Age', required=False)
     date_reference = fields.Date(string="Reference Date")
+
     age_reference = fields.Char(
         string='Reference Age',
         compute='_compute_age_reference',
         store=True
+    )
+    age_reference_suport = fields.Char(
+        string='Reference Age Suport',
+        compute='_compute_age_reference_suport',
+        store=False
     )
 
     is_deceased = fields.Boolean(
@@ -114,37 +126,65 @@ class Person(models.Model):
             if person.birthday > fields.Date.today():
                 raise UserError(u'Date of Birth must be in the past!')
 
-    @api.one
     @api.depends('birthday')
     def _compute_age(self):
         now = datetime.now()
-        if self.birthday:
-            dob = datetime.strptime(self.birthday, '%Y-%m-%d')
-            delta = relativedelta(now, dob)
-            # self.age = str(delta.years) + "y " + str(delta.months) + "m " + str(delta.days) + "d"
-            self.age = str(delta.years)
-        else:
-            self.age = "No Date of Birth!"
-
-    @api.one
-    @api.depends('date_reference', 'birthday')
-    def _compute_age_reference(self):
-        if self.date_reference:
-            if self.birthday:
-                dob = datetime.strptime(self.birthday, '%Y-%m-%d')
-                now = datetime.strptime(self.date_reference, '%Y-%m-%d')
+        for r in self:
+            if r.birthday:
+                dob = datetime.strptime(r.birthday, '%Y-%m-%d')
                 delta = relativedelta(now, dob)
-                # self.age_reference = str(delta.years) + "y " + str(delta.months) + "m " + str(delta.days) + "d"
-                self.age_reference = str(delta.years)
+                # self.age = str(delta.years) + "y " + str(delta.months) + "m " + str(delta.days) + "d"
+                r.age = str(delta.years)
             else:
-                self.age_reference = "No Date of Birth!"
-        else:
-            self.age_reference = "No Reference Date!"
+                r.age = "No Date of Birth!"
 
     @api.multi
-    @api.depends('birthday')
-    def _compute_age_days(self):
-        today = fDate.from_string(fDate.today())
-        for person in self.filtered('birthday'):
-            delta = (today - fDate.from_string(person.birthday))
-            person.age_days = delta.days
+    def _compute_age_suport(self):
+        now = datetime.now()
+        for r in self:
+            if r.birthday:
+                dob = datetime.strptime(r.birthday, '%Y-%m-%d')
+                delta = relativedelta(now, dob)
+                # self.age = str(delta.years) + "y " + str(delta.months) + "m " + str(delta.days) + "d"
+                age = str(delta.years)
+            else:
+                age = "No Date of Birth!"
+
+            r.age_suport = age
+            if r.age != age:
+                record = self.env['clv.person'].search([('id', '=', r.id)])
+                record.write({'birthday': r.birthday})
+
+    @api.depends('date_reference', 'birthday')
+    def _compute_age_reference(self):
+        for r in self:
+            if r.date_reference:
+                if r.birthday:
+                    dob = datetime.strptime(r.birthday, '%Y-%m-%d')
+                    now = datetime.strptime(r.date_reference, '%Y-%m-%d')
+                    delta = relativedelta(now, dob)
+                    # self.age_reference = str(delta.years) + "y " + str(delta.months) + "m " + str(delta.days) + "d"
+                    r.age_reference = str(delta.years)
+                else:
+                    r.age_reference = "No Date of Birth!"
+            else:
+                r.age_reference = "No Reference Date!"
+
+    @api.multi
+    def _compute_age_reference_suport(self):
+        for r in self:
+            if r.date_reference:
+                if r.birthday:
+                    dob = datetime.strptime(r.birthday, '%Y-%m-%d')
+                    now = datetime.strptime(r.date_reference, '%Y-%m-%d')
+                    delta = relativedelta(now, dob)
+                    # self.age_reference = str(delta.years) + "y " + str(delta.months) + "m " + str(delta.days) + "d"
+                    age_reference = str(delta.years)
+                else:
+                    age_reference = "No Date of Birth!"
+            else:
+                age_reference = "No Reference Date!"
+            r.age_reference_suport = age_reference
+            if r.age_reference != age_reference:
+                record = self.env['clv.person'].search([('id', '=', r.id)])
+                record.write({'date_reference': r.date_reference})

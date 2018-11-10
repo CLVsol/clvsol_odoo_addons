@@ -46,6 +46,8 @@
                                         <field name="birthday"/>
                                         <field name="date_reference"/>
                                         <field name="is_deceased"/>
+                                        <field name="age_suport" invisible="True"/>
+                                        <field name="age_reference_suport" invisible="True"/>
                                     </group>
                                     <group name="other_info">
                                         <field name="country_id" options='{"no_open": True}'/>
@@ -86,6 +88,8 @@
                     <field name="date_reference"/>
                     <field name="is_deceased" invisible="1"/>
                     <field name="active" invisible="1"/>
+                    <field name="age_suport" invisible="True"/>
+                    <field name="age_reference_suport" invisible="True"/>
                 </tree>
             </field>
         </record>
