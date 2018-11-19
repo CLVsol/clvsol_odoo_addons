@@ -40,6 +40,7 @@
         'wizard/survey_code_renew_view.xml',
         'wizard/survey_export_xls_view.xml',
         'wizard/survey_export_xml_view.xml',
+        'wizard/survey_duplicate_view.xml',
     ],
     'demo': [],
     'test': [],
