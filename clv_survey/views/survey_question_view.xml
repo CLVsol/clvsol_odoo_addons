@@ -30,6 +30,8 @@
                     <h3><field name="code" placeholder="Question Code"/></h3>
                     <label for="parameter" class="oe_edit_only"/>
                     <h3><field name="parameter" placeholder="Related Parameter"/></h3>
+                    <label for="page_id" class="oe_edit_only"/>
+                    <h3><field name="page_id" placeholder="Page" options="{'no_open': False, 'no_create': True}"/></h3>
                 </label>
             </field>
         </record>
