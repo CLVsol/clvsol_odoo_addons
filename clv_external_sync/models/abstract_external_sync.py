@@ -337,9 +337,14 @@ class AbstractExternalSync(models.AbstractModel):
                     if external_object[external_object_fields[i]] is not False:
                         model_, id_ = external_object[external_object_fields[i]].split(',')
                         try:
+                            relation_sync_object = ExternalSync.with_context({'active_test': False}).search([
+                                ('model', '=', model_),
+                                ('external_id', '=', int(id_)),
+                            ])
                             RefObject = self.env[model_]
                             ref_object = RefObject.with_context({'active_test': False}).search([
-                                ('external_id', '=', int(id_)),
+                                # ('external_id', '=', int(id_)),
+                                ('id', '=', relation_sync_object.res_id),
                             ])
                             if ref_object.id is not False:
                                 local_values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
@@ -359,8 +364,14 @@ class AbstractExternalSync(models.AbstractModel):
                         m2m_list = []
                         m2m_list.append((5,))
                         for external_id in ids_:
+                            relation_sync_object = ExternalSync.with_context({'active_test': False}).search([
+                                ('model', '=', model_),
+                                ('external_id', '=', int(external_id)),
+                            ])
+                            RelationObject = self.env[model_]
                             relation_object = RelationObject.with_context({'active_test': False}).search([
-                                ('external_id', '=', external_id),
+                                # ('external_id', '=', int(id_)),
+                                ('id', '=', relation_sync_object.res_id),
                             ])
                             if relation_object.id is not False:
                                 m2m_list.append((4, relation_object.id))
@@ -701,6 +712,8 @@ class AbstractExternalSync(models.AbstractModel):
         from time import time
         start = time()
 
+        max_task_count = 30000
+
         Model = self.env['ir.model']
         ModelFields = self.env['ir.model.fields']
 
@@ -792,6 +805,7 @@ class AbstractExternalSync(models.AbstractModel):
             sync_count = 0
             sync_include_count = 0
             sync_update_count = 0
+            task_count = 0
             for external_object in external_objects:
 
                 reg_count += 1
@@ -799,6 +813,9 @@ class AbstractExternalSync(models.AbstractModel):
                 _logger.info(u'%s %s %s %s', '>>>>>>>>>>', reg_count,
                              external_object['id'],
                              external_object['__last_update'], )
+
+                if task_count >= max_task_count:
+                    continue
 
                 if upmost_last_update is False:
                     upmost_last_update = external_object['__last_update']
@@ -814,6 +831,7 @@ class AbstractExternalSync(models.AbstractModel):
                 if sync_object.id is False:
 
                     include_count += 1
+                    task_count += 1
 
                     i = 0
                     local_values = {}
@@ -831,9 +849,18 @@ class AbstractExternalSync(models.AbstractModel):
                             if external_object[external_object_fields[i]] is not False:
                                 model_ = fields[0].relation
                                 id_ = external_object[external_object_fields[i]][0]
+                                # RelationObject = self.env[model_]
+                                # relation_object = RelationObject.with_context({'active_test': False}).search([
+                                #     ('external_id', '=', int(id_)),
+                                # ])
+                                relation_sync_object = ExternalSync.with_context({'active_test': False}).search([
+                                    ('model', '=', model_),
+                                    ('external_id', '=', int(id_)),
+                                ])
                                 RelationObject = self.env[model_]
                                 relation_object = RelationObject.with_context({'active_test': False}).search([
-                                    ('external_id', '=', int(id_)),
+                                    # ('external_id', '=', int(id_)),
+                                    ('id', '=', relation_sync_object.res_id),
                                 ])
                                 if relation_object.id is not False:
                                     local_values[local_object_fields[i]] = relation_object.id
@@ -841,9 +868,18 @@ class AbstractExternalSync(models.AbstractModel):
                         elif fields[0].ttype == 'reference':
                             if external_object[external_object_fields[i]] is not False:
                                 model_, id_ = external_object[external_object_fields[i]].split(',')
+                                # RefObject = self.env[model_]
+                                # ref_object = RefObject.with_context({'active_test': False}).search([
+                                #     ('external_id', '=', int(id_)),
+                                # ])
+                                relation_sync_object = ExternalSync.with_context({'active_test': False}).search([
+                                    ('model', '=', model_),
+                                    ('external_id', '=', int(id_)),
+                                ])
                                 RefObject = self.env[model_]
                                 ref_object = RefObject.with_context({'active_test': False}).search([
-                                    ('external_id', '=', int(id_)),
+                                    # ('external_id', '=', int(id_)),
+                                    ('id', '=', relation_sync_object.res_id),
                                 ])
                                 if ref_object.id is not False:
                                     local_values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
@@ -857,8 +893,17 @@ class AbstractExternalSync(models.AbstractModel):
                                 m2m_list = []
                                 m2m_list.append((5,))
                                 for external_id in ids_:
+                                    # relation_object = RelationObject.with_context({'active_test': False}).search([
+                                    #     ('external_id', '=', external_id),
+                                    # ])
+                                    relation_sync_object = ExternalSync.with_context({'active_test': False}).search([
+                                        ('model', '=', model_),
+                                        ('external_id', '=', int(external_id)),
+                                    ])
+                                    RelationObject = self.env[model_]
                                     relation_object = RelationObject.with_context({'active_test': False}).search([
-                                        ('external_id', '=', external_id),
+                                        # ('external_id', '=', int(id_)),
+                                        ('id', '=', relation_sync_object.res_id),
                                     ])
                                     if relation_object.id is not False:
                                         m2m_list.append((4, relation_object.id))
@@ -887,6 +932,7 @@ class AbstractExternalSync(models.AbstractModel):
 
                         sync_count += 1
                         sync_include_count += 1
+                        task_count += 1
 
                         new_sync_object._object_synchronize_2(
                             sock, external_dbname, uid, external_user_pw,
@@ -900,6 +946,7 @@ class AbstractExternalSync(models.AbstractModel):
                        sync_object.external_sync != 'included':
 
                         update_count += 1
+                        task_count += 1
 
                         sync_object.external_sync = 'updated'
 
@@ -909,6 +956,7 @@ class AbstractExternalSync(models.AbstractModel):
                        sync_count < schedule.external_max_sync:
 
                         sync_count += 1
+                        task_count += 1
 
                         _logger.info(u'>>>>>>>>>>>>>>> %s %s', sync_count, sync_object)
 
@@ -976,6 +1024,7 @@ class AbstractExternalSync(models.AbstractModel):
             #     ])
             #     _logger.info(u'>>>>>>>>>>>>>>> (sync_objects): %s %s', sync_objects, len(sync_objects))
 
+            _logger.info(u'%s %s', '>>>>>>>>>> max_task_count: ', max_task_count)
             _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_sync: ', schedule.external_max_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_args: ', external_args)
@@ -990,6 +1039,7 @@ class AbstractExternalSync(models.AbstractModel):
             _logger.info(u'%s %s', '>>>>>>>>>> sync_count: ', sync_count)
             # _logger.info(u'%s %s', '>>>>>>>>>> reg_count_2: ', reg_count_2)
             # _logger.info(u'%s %s', '>>>>>>>>>> sync_update_count_2: ', sync_update_count_2)
+            _logger.info(u'%s %s', '>>>>>>>>>> task_count: ', task_count)
             _logger.info(u'%s %s', '>>>>>>>>>> date_last_sync: ', date_last_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> upmost_last_update: ', upmost_last_update)
             _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
@@ -1015,6 +1065,7 @@ class AbstractExternalSync(models.AbstractModel):
             #     'upmost_last_update: ' + str(upmost_last_update) + '\n\n' + \
             #     'Execution time: ' + str(secondsToStr(time() - start)) + '\n'
             schedule.external_sync_log +=  \
+                'max_task_count: ' + str(max_task_count) + '\n' + \
                 'external_exec_sync: ' + str(schedule.external_exec_sync) + '\n' + \
                 'external_max_sync: ' + str(schedule.external_max_sync) + '\n' + \
                 'external_args: ' + str(external_args) + '\n\n' + \
@@ -1027,6 +1078,7 @@ class AbstractExternalSync(models.AbstractModel):
                 'sync_include_count: ' + str(sync_include_count) + '\n' + \
                 'sync_update_count: ' + str(sync_update_count) + '\n' + \
                 'sync_count: ' + str(sync_count) + '\n\n' + \
+                'task_count: ' + str(task_count) + '\n\n' + \
                 'date_last_sync: ' + str(date_last_sync) + '\n' + \
                 'upmost_last_update: ' + str(upmost_last_update) + '\n\n' + \
                 'Execution time: ' + str(secondsToStr(time() - start)) + '\n'
