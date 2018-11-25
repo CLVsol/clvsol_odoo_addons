@@ -32,6 +32,15 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
          ], string='External Host:', default=False, readonly=False, required=False
     )
 
+    external_max_task = fields.Integer(
+        string='Max Task Registers'
+    )
+    external_max_task_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Max Task Registers:', default=False, readonly=False, required=False
+    )
+
     external_exec_sync = fields.Boolean(
         string='Execute Sync'
     )
@@ -93,6 +102,11 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
                 external_sync_schedule.external_host_id = self.external_host_id.id
             if self.external_host_id_selection == 'remove':
                 external_sync_schedule.external_host_id = False
+
+            if self.external_max_task_selection == 'set':
+                external_sync_schedule.external_max_task = self.external_max_task
+            if self.external_max_task_selection == 'remove':
+                external_sync_schedule.external_max_task = False
 
             if self.external_exec_sync_selection == 'set':
                 external_sync_schedule.external_exec_sync = self.external_exec_sync

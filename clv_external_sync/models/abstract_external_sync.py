@@ -712,7 +712,7 @@ class AbstractExternalSync(models.AbstractModel):
         from time import time
         start = time()
 
-        max_task_count = 30000
+        external_max_task = schedule.external_max_task
 
         Model = self.env['ir.model']
         ModelFields = self.env['ir.model.fields']
@@ -814,7 +814,7 @@ class AbstractExternalSync(models.AbstractModel):
                              external_object['id'],
                              external_object['__last_update'], )
 
-                if task_count >= max_task_count:
+                if task_count >= external_max_task:
                     continue
 
                 if upmost_last_update is False:
@@ -1024,7 +1024,7 @@ class AbstractExternalSync(models.AbstractModel):
             #     ])
             #     _logger.info(u'>>>>>>>>>>>>>>> (sync_objects): %s %s', sync_objects, len(sync_objects))
 
-            _logger.info(u'%s %s', '>>>>>>>>>> max_task_count: ', max_task_count)
+            _logger.info(u'%s %s', '>>>>>>>>>> external_max_task: ', external_max_task)
             _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_sync: ', schedule.external_max_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_args: ', external_args)
@@ -1065,7 +1065,7 @@ class AbstractExternalSync(models.AbstractModel):
             #     'upmost_last_update: ' + str(upmost_last_update) + '\n\n' + \
             #     'Execution time: ' + str(secondsToStr(time() - start)) + '\n'
             schedule.external_sync_log +=  \
-                'max_task_count: ' + str(max_task_count) + '\n' + \
+                'external_max_task: ' + str(external_max_task) + '\n' + \
                 'external_exec_sync: ' + str(schedule.external_exec_sync) + '\n' + \
                 'external_max_sync: ' + str(schedule.external_max_sync) + '\n' + \
                 'external_args: ' + str(external_args) + '\n\n' + \

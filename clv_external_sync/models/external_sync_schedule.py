@@ -28,6 +28,10 @@ class ExternalSyncSchedule(models.Model):
         string='External Host'
     )
 
+    external_max_task = fields.Integer(
+        string='Max Task Registers'
+    )
+
     external_exec_sync = fields.Boolean(
         string='Execute Sync'
     )
@@ -96,6 +100,7 @@ class ExternalSyncSchedule(models.Model):
 
         if schedule.template_id.id is not False:
             schedule.external_host_id = schedule.template_id.external_host_id
+            schedule.external_max_task = schedule.template_id.external_max_task
             schedule.external_exec_sync = schedule.template_id.external_exec_sync
             schedule.external_max_sync = schedule.template_id.external_max_sync
             schedule.external_last_update_start = schedule.template_id.external_last_update_start
@@ -123,6 +128,7 @@ class ExternalSyncSchedule(models.Model):
         ExternalSyncObjectField = self.env['clv.external_sync.object_field']
         if self.template_id.id:
             self.external_host_id = self.template_id.external_host_id
+            self.external_max_task = self.template_id.external_max_task
             self.external_exec_sync = self.template_id.external_exec_sync
             self.external_max_sync = self.template_id.external_max_sync
             self.external_last_update_start = self.template_id.external_last_update_start

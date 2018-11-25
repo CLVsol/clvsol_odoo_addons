@@ -21,6 +21,10 @@ class ExternalSyncTemplate(models.Model):
         string='External Host'
     )
 
+    external_max_task = fields.Integer(
+        string='Max Task Registers'
+    )
+
     external_exec_sync = fields.Boolean(
         string='Execute Sync'
     )

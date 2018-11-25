@@ -26,6 +26,7 @@
                     </div>
                     <group name="group_top">
                         <group name="group_left">
+                            <field name="external_max_task"/>
                             <field name="external_exec_sync"/>
                             <field name="external_max_sync"/>
                             <field name="external_last_update_start"/>
@@ -81,6 +82,7 @@
         <field name="arch" type="xml">
             <tree name="events" string="External Sync Templates">
                 <field name="name"/>
+                <field name="external_max_task"/>
                 <field name="external_host_id"/>
                 <field name="external_exec_sync"/>
                 <field name="external_max_sync"/>
@@ -104,6 +106,7 @@
             <search>
                 <field name="name"/>
                 <field name="external_host_id"/>
+                <field name="external_max_task"/>
                 <field name="external_exec_sync"/>
                 <field name="external_max_sync"/>
                 <field name="external_last_update_start"/>
