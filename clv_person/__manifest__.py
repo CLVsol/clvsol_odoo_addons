@@ -22,6 +22,7 @@
         'security/ir.model.access.csv',
         'views/person_view.xml',
         'views/person_log_view.xml',
+        'views/person_marker_view.xml',
         'views/person_category_view.xml',
         'views/person_category_log_view.xml',
         'views/res_partner_view.xml',
