@@ -19,6 +19,7 @@
 ###############################################################################
 
 from . import person
+from . import person_marker
 from . import person_category
 from . import person_log
 from . import address
