@@ -17,6 +17,7 @@
         'data/annotation_seq.xml',
         'views/referenceable_model_view.xml',
         'views/config_settings_view.xml',
+        'views/abstract_marker_view.xml',
     ],
     'demo': [],
     'test': [],

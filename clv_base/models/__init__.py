@@ -19,6 +19,7 @@
 ###############################################################################
 
 from . import tag_model
+from . import abstract_marker
 from . import category_model
 from . import code_model
 from . import code02_model
