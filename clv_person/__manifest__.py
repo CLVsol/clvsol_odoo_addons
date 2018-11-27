@@ -27,6 +27,7 @@
         'views/person_category_log_view.xml',
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
+        'wizard/person_mass_edit_view.xml',
     ],
     'demo': [],
     'test': [],
