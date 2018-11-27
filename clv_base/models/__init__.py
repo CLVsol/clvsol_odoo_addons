@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import abstract_log
+from . import abstract_marker
 from . import abstract_tag
 from . import abstract_category
 from . import abstract_code
