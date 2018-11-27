@@ -81,6 +81,20 @@ class PersonUpdate(models.TransientModel):
          ], string='Categories', default=False, readonly=False, required=False
     )
 
+    marker_ids = fields.Many2many(
+        comodel_name='clv.person.marker',
+        relation='clv_person_mass_edit_marker_rel',
+        column1='person_id',
+        column2='marker_id',
+        string='Markers'
+    )
+    marker_ids_selection = fields.Selection(
+        [('add', 'Add'),
+         ('remove_m2m', 'Remove'),
+         ('set', 'Set'),
+         ], string='Markers:', default=False, readonly=False, required=False
+    )
+
     date_reference = fields.Date(string="Reference Date")
     date_reference_selection = fields.Selection(
         [('set', 'Set'),
@@ -156,6 +170,30 @@ class PersonUpdate(models.TransientModel):
                     m2m_list.append((4, category_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person.category_ids = m2m_list
+
+            if self.marker_ids_selection == 'add':
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((4, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person.marker_ids = m2m_list
+            if self.marker_ids_selection == 'remove_m2m':
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((3, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person.marker_ids = m2m_list
+            if self.marker_ids_selection == 'set':
+                m2m_list = []
+                for marker_id in person.marker_ids:
+                    m2m_list.append((3, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person.marker_ids = m2m_list
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((4, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person.marker_ids = m2m_list
 
             if self.date_reference_selection == 'set':
                 person.date_reference = self.date_reference
