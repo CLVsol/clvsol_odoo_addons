@@ -83,7 +83,7 @@ class PersonUpdate(models.TransientModel):
 
     marker_ids = fields.Many2many(
         comodel_name='clv.person.marker',
-        relation='clv_person_mass_edit_marker_rel',
+        relation='clv_person_updt_marker_rel',
         column1='person_id',
         column2='marker_id',
         string='Markers'
