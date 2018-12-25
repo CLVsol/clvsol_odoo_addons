@@ -71,11 +71,17 @@ class AbstractExternalSync(models.AbstractModel):
         try:
             sock_common = xmlrpc.client.ServerProxy(xmlrpc_sock_common_url)
             uid = sock_common.login(external_dbname, external_user, external_user_pw)
+            _logger.info(u'%s %s', '>>>>> uid', uid)
             sock = xmlrpc.client.ServerProxy(xmlrpc_sock_str)
-            _logger.info(u'%s %s', '>>>>>>>>>> sock', sock)
+            _logger.info(u'%s %s', '>>>>> sock', sock)
         except Exception as e:
-            _logger.info(u'%s %s %s %s', '>>>>>', e)
-            pass
+            _logger.info(u'%s %s', '>>>>> except', e)
+            login_msg = '[22] Database does not exist.'
+            _logger.info(u'%s %s %s %s', '>>>>>',
+                         login_msg,
+                         user_name,
+                         company_name)
+            return uid, sock, login_msg
 
         if uid is not False:
             pass
@@ -122,7 +128,9 @@ class AbstractExternalSync(models.AbstractModel):
             user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
                                      uid, user_fields)[0]
             user_name = user_data['name']
-            parent_id = user_data['parent_id'][0]
+            parent_id = False
+            if user_data['parent_id'] is not False:
+                parent_id = user_data['parent_id'][0]
 
             _logger.info(u'%s %s', '>>>>>>>>>>', user_data)
 
