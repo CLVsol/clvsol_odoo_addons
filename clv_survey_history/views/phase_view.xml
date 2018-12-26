@@ -76,7 +76,7 @@
             </field>
             <filter name="inactive" position="after">
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter name="filter_phase_id" string="History Marker" context="{'group_by': 'phase_id'}"/>
+                    <filter name="filter_phase_id" string="Phase" context="{'group_by': 'phase_id'}"/>
                 </group>
             </filter>
         </field>
