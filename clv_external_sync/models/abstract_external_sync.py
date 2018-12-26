@@ -884,13 +884,16 @@ class AbstractExternalSync(models.AbstractModel):
                                     ('model', '=', model_),
                                     ('external_id', '=', int(id_)),
                                 ])
-                                RefObject = self.env[model_]
-                                ref_object = RefObject.with_context({'active_test': False}).search([
-                                    # ('external_id', '=', int(id_)),
-                                    ('id', '=', relation_sync_object.res_id),
-                                ])
-                                if ref_object.id is not False:
-                                    local_values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
+                                try:
+                                    RefObject = self.env[model_]
+                                    ref_object = RefObject.with_context({'active_test': False}).search([
+                                        # ('external_id', '=', int(id_)),
+                                        ('id', '=', relation_sync_object.res_id),
+                                    ])
+                                    if ref_object.id is not False:
+                                        local_values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
+                                except Exception as e:
+                                    _logger.error(u'>>>>>>>>>>>>>>>>>>>> %s', e)
 
                         elif fields[0].ttype == 'many2many':
                             if external_object[external_object_fields[i]] is not False:
