@@ -893,7 +893,7 @@ class AbstractExternalSync(models.AbstractModel):
                                     if ref_object.id is not False:
                                         local_values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
                                 except Exception as e:
-                                    _logger.error(u'>>>>>>>>>>>>>>>>>>>> %s', e)
+                                    _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s', e)
 
                         elif fields[0].ttype == 'many2many':
                             if external_object[external_object_fields[i]] is not False:
