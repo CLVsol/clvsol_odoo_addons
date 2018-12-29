@@ -5,7 +5,7 @@
 {
     'name': 'Entity',
     'summary': 'Entity Module used by CLVsol Solutions.',
-    'version': '3.0.0',
+    'version': '4.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
