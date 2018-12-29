@@ -25,6 +25,7 @@
         'views/address_category_log_view.xml',
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
+        'views/address_name_view.xml',
     ],
     'demo': [],
     'test': [],
