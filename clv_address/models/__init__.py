@@ -7,4 +7,4 @@ from . import address_category
 from . import address_category_log
 from . import res_partner
 from . import global_tag
-from . import address_name
+# from . import address_name
