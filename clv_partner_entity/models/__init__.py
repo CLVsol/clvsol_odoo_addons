@@ -3,5 +3,5 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import res_partner_log
-from . import abstract_entity
-from . import abstract_entry_log
+from . import abstract_partner_entity
+from . import abstract_partner_entity_log

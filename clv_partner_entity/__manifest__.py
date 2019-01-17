@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Entity',
-    'summary': 'Entity Module used by CLVsol Solutions.',
+    'name': 'Partner Entity',
+    'summary': 'Partner Entity Module used by CLVsol Solutions.',
     'version': '4.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
@@ -17,7 +17,7 @@
     'data': [
         'views/res_partner_view.xml',
         'views/res_partner_log_view.xml',
-        'views/abstract_entity_view.xml',
+        'views/abstract_partner_entity_view.xml',
     ],
     'demo': [],
     'test': [],

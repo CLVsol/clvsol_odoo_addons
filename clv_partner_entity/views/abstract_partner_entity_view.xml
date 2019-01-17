@@ -4,11 +4,11 @@
 
 <odoo>
 
-    <record id="clv_abstract_entity_view_tree" model="ir.ui.view">
-        <field name="name">clv.abstract.entity.tree</field>
-        <field name="model">clv.abstract.entity</field>
+    <record id="clv_abstract_partner_entity_view_tree" model="ir.ui.view">
+        <field name="name">clv.abstract.partner_entity.tree</field>
+        <field name="model">clv.abstract.partner_entity</field>
         <field name="arch" type="xml">
-            <tree string="Entity">
+            <tree string="Partner Entity">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="email" invisible="True"/>
@@ -16,15 +16,15 @@
         </field>
     </record>
 
-    <record id="clv_abstract_entity_view_form" model="ir.ui.view">
-        <field name="name">clv.abstract.entity.form</field>
-        <field name="model">clv.abstract.entity</field>
+    <record id="clv_abstract_partner_entity_view_form" model="ir.ui.view">
+        <field name="name">clv.abstract.partner_entity.form</field>
+        <field name="model">clv.abstract.partner_entity</field>
         <field name="arch" type="xml">
-        <form string="Entity">
+        <form string="Partner Entity">
             <header name="header">
                 <!-- To add buttons and status widget -->
             </header>
-                <sheet name="abstract_entity">
+                <sheet name="abstract_partner_entity">
                     <field name="image"
                            widget='image'
                            class="oe_left oe_avatar"
@@ -380,9 +380,9 @@
         </field>
     </record>
 
-    <record id="clv_abstract_entity_view_kanban" model="ir.ui.view">
-        <field name="name">clv.abstract.entity.kanban</field>
-        <field name="model">clv.abstract.entity</field>
+    <record id="clv_abstract_partner_entity_view_kanban" model="ir.ui.view">
+        <field name="name">clv.abstract.partner_entity.kanban</field>
+        <field name="model">clv.abstract.partner_entity</field>
         <field name="type">kanban</field>
         <field name="arch" type="xml">
             <kanban class="o_res_partner_kanban">
@@ -412,16 +412,16 @@
                             <div class="o_kanban_image">
                                 <t t-if="record.image_small.raw_value">
                                     <img name="kanban_image_entity"
-                                         t-att-src="kanban_image('clv.abstract.entity', 'image_small', record.id.raw_value)"/>
+                                         t-att-src="kanban_image('clv.abstract.partner_entity', 'image_small', record.id.raw_value)" alt="Partner Entity Image"/>
                                 </t>
                                 <t t-if="!record.image_small.raw_value">
                                     <t t-if="record.is_company.raw_value === true">
                                         <img name="kanban_image_default_company"
-                                             t-attf-src='{{ _s }}/base/static/src/img/company_image.png' />
+                                             t-attf-src='{{ _s }}/base/static/src/img/company_image.png' alt="Partner Entity Image"/>
                                     </t>
                                     <t t-if="record.is_company.raw_value === false">
                                         <img name="kanban_image_default_person"
-                                             t-attf-src='{{ _s }}/base/static/src/img/avatar.png' />
+                                             t-attf-src='{{ _s }}/base/static/src/img/avatar.png' alt="Partner Entity Image"/>
                                     </t>
                                 </t>
                             </div>
@@ -444,9 +444,9 @@
         </field>
     </record>
 
-    <record id="clv_abstract_entity_view_search" model="ir.ui.view">
-        <field name="name">clv.abstract.entity.search</field>
-        <field name="model">clv.abstract.entity</field>
+    <record id="clv_abstract_partner_entity_view_search" model="ir.ui.view">
+        <field name="name">clv.abstract.partner_entity.search</field>
+        <field name="model">clv.abstract.partner_entity</field>
         <field name="arch" type="xml">
             <search string="Entities">
                 <field name="name"/>

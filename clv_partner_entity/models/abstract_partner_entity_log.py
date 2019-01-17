@@ -5,9 +5,9 @@
 from odoo import fields, models
 
 
-class AbstractEntity(models.AbstractModel):
-    _name = "clv.abstract.entity"
-    _inherit = 'clv.abstract.entity', 'clv.abstract.model.log'
+class AbstractPartnerEntity(models.AbstractModel):
+    _name = "clv.abstract.partner_entity"
+    _inherit = 'clv.abstract.partner_entity', 'clv.abstract.model.log'
 
     log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
 

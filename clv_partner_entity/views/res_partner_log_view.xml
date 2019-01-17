@@ -7,7 +7,7 @@
     <record id="view_res_partner_form_log" model="ir.ui.view">
         <field name="name">res.partner.form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="clv_entity.view_res_partner_form_entity"/>
+        <field name="inherit_id" ref="clv_partner_entity.view_res_partner_form_entity"/>
         <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <page name="settings" position="after">

@@ -8,9 +8,9 @@ import base64
 from openerp import api, fields, models, tools
 
 
-class AbstractEntity(models.AbstractModel):
-    _name = 'clv.abstract.entity'
-    _description = 'Abstract Entity'
+class AbstractPartnerEntity(models.AbstractModel):
+    _name = 'clv.abstract.partner_entity'
+    _description = 'Abstract Partner Entity'
     _inherits = {'res.partner': 'partner_id'}
     # _inherit = ['mail.thread']
 
@@ -27,7 +27,7 @@ class AbstractEntity(models.AbstractModel):
         related='partner_id.type',
     )
 
-    code = fields.Char(string='Entity Code', required=False)
+    code = fields.Char(string='Partner Entity Code', required=False)
 
     # Redefine `active` so that it is managed independently from partner.
     active = fields.Boolean(
@@ -57,13 +57,13 @@ class AbstractEntity(models.AbstractModel):
     @api.returns('self', lambda value: value.id)
     def create(self, vals):
         vals = self._create_vals(vals)
-        return super(AbstractEntity, self).create(vals)
+        return super(AbstractPartnerEntity, self).create(vals)
 
     @api.multi
     def toggle_active(self):
         """ It toggles entity and partner activation. """
         for record in self:
-            super(AbstractEntity, self).toggle_active()
+            super(AbstractPartnerEntity, self).toggle_active()
             if record.active:
                 record.partner_id.active = True
             else:
