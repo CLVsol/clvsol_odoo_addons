@@ -16,7 +16,7 @@ class Person(models.Model):
 
     _name = 'clv.person'
     _description = 'Person'
-    _inherit = 'clv.abstract.entity'
+    _inherit = 'clv.abstract.partner_entity'
 
     code = fields.Char(string='Person Code', required=False)
 
