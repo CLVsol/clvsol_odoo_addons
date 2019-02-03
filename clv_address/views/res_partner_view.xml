@@ -21,9 +21,9 @@
                         >
                     <div class="o_form_field o_stat_info">
                         <span class="o_stat_value">
-                            <field name="count_addresss" />
+                            <field name="count_addresses" />
                         </span>
-                        <span class="o_stat_text">Address(s)</span>
+                        <span class="o_stat_text">Address(es)</span>
                     </div>
                 </button>
             </xpath>
