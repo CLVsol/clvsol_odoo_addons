@@ -17,7 +17,7 @@ class GlobalTag(models.Model):
     )
 
 
-class Person(models.Model):
+class Address(models.Model):
     _inherit = 'clv.address'
 
     global_tag_ids = fields.Many2many(
