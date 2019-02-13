@@ -23,7 +23,7 @@ class ResPartner(models.Model):
         comodel_name='clv.address',
         compute='_compute_address_ids_and_count',
     )
-    count_addresss = fields.Integer(
+    count_addresses = fields.Integer(
         compute='_compute_address_ids_and_count',
     )
     # birthdate_date = fields.Date(
@@ -58,7 +58,7 @@ class ResPartner(models.Model):
             addresss = self.env['clv.address'].search([
                 ('partner_id', 'child_of', record.id),
             ])
-            record.count_addresss = len(addresss)
+            record.count_addresses = len(addresss)
             record.address_ids = [(6, 0, addresss.ids)]
 
     # @api.multi
