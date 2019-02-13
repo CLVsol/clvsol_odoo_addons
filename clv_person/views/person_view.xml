@@ -47,9 +47,9 @@
                      t-attf-src='{{ _s }}/clv_person/static/src/img/person-avatar.png'
                 />
             </xpath>
-            <xpath expr="//notebook" position="inside">
+            <!--xpath expr="//notebook" position="inside">
                 <page name="clv_person" string="Person" autofocus="True">
-                    <!--group name="group_clv_buttons" class="oe_button_box" col="6">
+                    <group name="group_clv_buttons" class="oe_button_box" col="6">
                         <button name="toggle_is_pregnant"
                             type="object"
                             class="oe_stat_button"
@@ -63,20 +63,20 @@
                                                              "string_hover_false": "Switch to Pregnant"}}'
                             />
                         </button>
-                    </group-->
+                    </group>
                     <group name="group_clv_general" string="General">
                         <group name="group_clv_general_left">
-                            <!--field name="identification_code" /-->
-                            <!--field name="gender" /-->
+                            <field name="identification_code" />
+                            <field name="gender" />
                         </group>
                         <group name="group_clv_general_right">
-                            <!--field name="birthdate_date" /-->
-                            <!--field name="date_death" /-->
-                            <!--field name="age" /-->
+                            <field name="birthdate_date" />
+                            <field name="date_death" />
+                            <field name="age" />
                         </group>
                     </group>
                 </page>
-            </xpath>
+            </xpath-->
             <!--xpath expr="//field[@name='age']" position="after">
                 <label for="weight"/>
                 <div>
