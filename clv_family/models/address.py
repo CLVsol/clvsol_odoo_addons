@@ -13,16 +13,16 @@ class Address(models.Model):
         inverse_name='ref_address_id',
         string='Families'
     )
-    count_familys = fields.Integer(
+    count_families = fields.Integer(
         string='Number of Families',
-        compute='_compute_count_familys',
+        compute='_compute_count_families',
         store=True
     )
 
     @api.depends('family_ids')
-    def _compute_count_familys(self):
+    def _compute_count_families(self):
         for r in self:
-            r.count_familys = len(r.family_ids)
+            r.count_families = len(r.family_ids)
 
 
 class Family(models.Model):
