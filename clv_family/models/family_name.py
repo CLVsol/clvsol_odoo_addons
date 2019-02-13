@@ -8,11 +8,6 @@ from openerp import api, fields, models
 class Family(models.Model):
     _inherit = 'clv.family'
 
-    name = fields.Char(
-        # string="Name", required=True, default=False,
-        string="Name", required=False, default=False,
-        help='Use "/" to get an automatic new Family Name.'
-    )
     suggested_name = fields.Char(
         string="Suggested Name", required=False, store=True,
         compute="_get_suggested_name",
@@ -31,12 +26,10 @@ class Family(models.Model):
                 record.suggested_name = record.street
                 if record.street2:
                     record.suggested_name = record.suggested_name + ' - ' + record.street2
-            else:
-                if not record.suggested_name:
-                    if record.code:
-                        record.suggested_name = record.code
-            if record.automatic_set_name:
-                record.name = record.suggested_name
+            # else:
+            #     if not record.suggested_name:
+            #         if record.code:
+            #             record.suggested_name = record.code
 
     @api.multi
     def write(self, values):
