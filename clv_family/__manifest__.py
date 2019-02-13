@@ -26,6 +26,7 @@
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
         'views/family_name_view.xml',
+        'views/address_view.xml',
     ],
     'demo': [],
     'test': [],
