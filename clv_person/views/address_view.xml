@@ -40,12 +40,12 @@
         <field name="priority" eval="6"/>
         <field name="arch" type="xml">
             <group name="group_left" position="inside">
-                <field name="address_id"
-                    context="{'show_address_only': 1}"
+                <field name="ref_address_id"
+                    context="{'show_ref_address_only': 1}"
                     options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
-                <field name="address_code" string="Address Code"/>
-                <field name="address_category_ids" string="Address Categories"/>
-                <!--field name="person_address_role_id" options='{"no_open": False, "no_create": True}'/-->
+                <field name="ref_address_code" string="Address Code"/>
+                <field name="ref_address_category_ids" string="Address Categories"/>
+                <!--field name="person_ref_address_role_id" options='{"no_open": False, "no_create": True}'/-->
             </group>
         </field>
     </record>
@@ -57,7 +57,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="address_category_ids" string="Address Categories"/>
+                <field name="ref_address_category_ids" string="Address Categories"/>
             </field>
         </field>
     </record>
@@ -69,11 +69,11 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="address_category_ids"/>
+                <field name="ref_address_category_ids"/>
             </field>
             <group name="group_by" position="inside">
-                <filter name="group_by_address_id" string="Address" context="{'group_by': 'address_id'}"/>
-                <filter name="group_by_address_category_ids" string="Address Categories" context="{'group_by': 'address_category_ids'}"/>
+                <filter name="group_by_ref_address_id" string="Address" context="{'group_by': 'ref_address_id'}"/>
+                <filter name="group_by_ref_address_category_ids" string="Address Categories" context="{'group_by': 'ref_address_category_ids'}"/>
             </group>
         </field>
     </record>

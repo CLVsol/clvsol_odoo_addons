@@ -10,7 +10,7 @@ class Address(models.Model):
 
     person_ids = fields.One2many(
         comodel_name='clv.person',
-        inverse_name='address_id',
+        inverse_name='ref_address_id',
         string='Persons'
     )
     count_persons = fields.Integer(
@@ -28,15 +28,15 @@ class Address(models.Model):
 class Person(models.Model):
     _inherit = 'clv.person'
 
-    address_id = fields.Many2one(comodel_name='clv.address', string='Address', ondelete='restrict')
-    address_code = fields.Char(string='Address Code', related='address_id.code', store=False)
+    ref_address_id = fields.Many2one(comodel_name='clv.address', string='Address', ondelete='restrict')
+    ref_address_code = fields.Char(string='Address Code', related='ref_address_id.code', store=False)
 
-    address_phone = fields.Char(string='Address Phone', related='address_id.phone')
-    address_mobile_phone = fields.Char(string='Address Mobile', related='address_id.mobile')
-    address_email = fields.Char(string='Address Email', related='address_id.email')
+    ref_address_phone = fields.Char(string='Address Phone', related='ref_address_id.phone')
+    ref_address_mobile_phone = fields.Char(string='Address Mobile', related='ref_address_id.mobile')
+    ref_address_email = fields.Char(string='Address Email', related='ref_address_id.email')
 
-    address_category_ids = fields.Char(
+    ref_address_category_ids = fields.Char(
         string='Address Categories',
-        related='address_id.category_ids.name',
+        related='ref_address_id.category_ids.name',
         store=True
     )
