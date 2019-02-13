@@ -344,7 +344,7 @@
                                 </group>
                                 <group name='settings_right_2'>
                                     <div class="oe_button_box" name="settings_buttons_2">
-                                        <button name="base.action_partner_form_person"
+                                        <button name="base.action_partner_form"
                                                 type="action"
                                                 class="oe_stat_button"
                                                 icon="fa-list"
