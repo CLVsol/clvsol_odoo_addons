@@ -26,6 +26,10 @@ class Address(models.Model):
                 record.suggested_name = record.street
                 if record.street2:
                     record.suggested_name = record.suggested_name + ' - ' + record.street2
+            elif record.name:
+                record.suggested_name = record.name
+            else:
+                record.suggested_name = 'x'
             # else:
             #     if not record.suggested_name:
             #         if record.code:
