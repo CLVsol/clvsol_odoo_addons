@@ -14,7 +14,7 @@ class Address(models.Model):
         string='Persons'
     )
     count_persons = fields.Integer(
-        string='Number of Persons',
+        string='Persons (count)',
         compute='_compute_count_persons',
         store=True
     )
