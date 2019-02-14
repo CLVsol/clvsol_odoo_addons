@@ -17,6 +17,7 @@
         'clv_partner_entity',
         'clv_global_tag',
         'clv_address',
+        'clv_family',
     ],
     'data': [
         'security/person_security.xml',
@@ -29,6 +30,7 @@
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
         'views/address_view.xml',
+        'views/family_view.xml',
         'wizard/person_mass_edit_view.xml',
     ],
     'demo': [],
