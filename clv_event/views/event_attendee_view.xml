@@ -86,7 +86,7 @@
         </field>
     </record>
 
-    <record id="clv_event_attendee_actions" model="ir.actions.act_window">
+    <record id="clv_event_attendee_action" model="ir.actions.act_window">
         <field name="name">Event Attendee</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.event.attendee</field>
