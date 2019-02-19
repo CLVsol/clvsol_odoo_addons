@@ -12,6 +12,7 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_base',
+        'clv_global_log',
     ],
     'data': [
         'security/phase_security.xml',
