@@ -13,6 +13,7 @@
     'images': [],
     'depends': [
         'survey',
+        'clv_base',
     ],
     'data': [
         'security/survey_security.xml',
