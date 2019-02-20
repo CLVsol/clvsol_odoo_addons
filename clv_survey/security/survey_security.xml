@@ -4,19 +4,26 @@
 
 <odoo noupdate="0">
 
+    <record id="module_survey_category" model="ir.module.category">
+        <field name="name">Survey</field>
+    </record>
+
     <record id="clv_survey.group_user" model="res.groups">
         <field name="name">User (Survey)</field>
+        <field name="category_id" ref="module_survey_category"/>
         <field name="implied_ids" eval="[(4, ref('survey.group_survey_user'))]"/>
     </record>
     
     <record id="clv_survey.group_manager" model="res.groups">
         <field name="name">Manager (Survey)</field>
+        <field name="category_id" ref="module_survey_category"/>
         <field name="implied_ids" eval="[(4, ref('survey.group_survey_manager')),
                                          (4, ref('clv_survey.group_user'))]"/>
     </record>
     
     <record id="clv_survey.group_supmanager" model="res.groups">
         <field name="name">Super Manager (Survey)</field>
+        <field name="category_id" ref="module_survey_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_survey.group_manager'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')),
                                    (4, ref('base.user_admin'))]"/>

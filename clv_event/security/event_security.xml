@@ -4,18 +4,25 @@
 
 <odoo noupdate="0">
 
+    <record id="module_event_category" model="ir.module.category">
+        <field name="name">Event</field>
+    </record>
+
     <record id="clv_event.group_user" model="res.groups">
         <field name="name">User (Event)</field>
+        <field name="category_id" ref="module_event_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
     
     <record id="clv_event.group_manager" model="res.groups">
         <field name="name">Manager (Event)</field>
+        <field name="category_id" ref="module_event_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_event.group_user'))]"/>
     </record>
     
     <record id="clv_event.group_supmanager" model="res.groups">
         <field name="name">Super Manager (Event)</field>
+        <field name="category_id" ref="module_event_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_event.group_manager'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')),
                                    (4, ref('base.user_admin'))]"/>

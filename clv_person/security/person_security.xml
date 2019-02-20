@@ -4,18 +4,25 @@
 
 <odoo noupdate="0">
 
+    <record id="module_person_category" model="ir.module.category">
+        <field name="name">Person</field>
+    </record>
+
     <record id="clv_person.group_user" model="res.groups">
         <field name="name">User (Person)</field>
+        <field name="category_id" ref="module_person_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
     
     <record id="clv_person.group_manager" model="res.groups">
         <field name="name">Manager (Person)</field>
+        <field name="category_id" ref="module_person_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_person.group_user'))]"/>
     </record>
     
     <record id="clv_person.group_supmanager" model="res.groups">
         <field name="name">Super Manager (Person)</field>
+        <field name="category_id" ref="module_person_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_person.group_manager'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')),
                                    (4, ref('base.user_admin'))]"/>

@@ -4,18 +4,25 @@
 
 <odoo>
 
+    <record id="module_lab_test_category" model="ir.module.category">
+        <field name="name">Lab Test</field>
+    </record>
+
     <record id="clv_lab_test.group_user" model="res.groups">
         <field name="name">User (Lab Test)</field>
+        <field name="category_id" ref="module_lab_test_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
     
     <record id="clv_lab_test.group_manager" model="res.groups">
         <field name="name">Manager (Lab Test)</field>
+        <field name="category_id" ref="module_lab_test_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_lab_test.group_user'))]"/>
     </record>
     
     <record id="clv_lab_test.group_supmanager" model="res.groups">
         <field name="name">Super Manager (Lab Test)</field>
+        <field name="category_id" ref="module_lab_test_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_lab_test.group_manager'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')),
                                    (4, ref('base.user_admin'))]"/>
@@ -23,6 +30,7 @@
 
     <record id="clv_lab_test.group_approver" model="res.groups">
         <field name="name">Approver (Lab Test)</field>
+        <field name="category_id" ref="module_lab_test_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_lab_test.group_manager'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')),
                                    (4, ref('base.user_admin'))]"/>

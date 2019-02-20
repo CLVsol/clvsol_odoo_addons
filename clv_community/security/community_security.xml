@@ -4,18 +4,25 @@
 
 <odoo noupdate="0">
 
+    <record id="module_community_category" model="ir.module.category">
+        <field name="name">Community</field>
+    </record>
+
     <record id="clv_community.group_user" model="res.groups">
         <field name="name">User (Community)</field>
+        <field name="category_id" ref="module_community_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
     
     <record id="clv_community.group_manager" model="res.groups">
         <field name="name">Manager (Community)</field>
+        <field name="category_id" ref="module_community_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_community.group_user'))]"/>
     </record>
     
     <record id="clv_community.group_supmanager" model="res.groups">
         <field name="name">Super Manager (Community)</field>
+        <field name="category_id" ref="module_community_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_community.group_manager'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')),
                                    (4, ref('base.user_admin'))]"/>
