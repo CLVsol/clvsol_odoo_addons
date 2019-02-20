@@ -19,13 +19,13 @@ class AbstractVerification(models.AbstractModel):
     _description = 'Abstract Verification'
     _name = 'clv.abstract.verification'
 
-    date_last_verification = fields.Datetime(string="Last Verification")
-    verification = fields.Selection(
+    date_verification = fields.Datetime(string="Verification Date")
+    verification_status = fields.Selection(
         [('unknown', 'Unknown'),
          ('failed', 'Failed'),
          ('ok', 'Ok'),
          ('missing', 'Missing'),
-         ], string='Verification', default='unknown'
+         ], string='Verification Status', default='unknown'
     )
 
     def _object_verification(self, schedule, model_name):
