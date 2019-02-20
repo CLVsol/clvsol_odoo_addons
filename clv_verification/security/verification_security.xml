@@ -4,18 +4,25 @@
 
 <odoo noupdate="0">
 
+    <record id="module_verification_category" model="ir.module.category">
+        <field name="name">Verification</field>
+    </record>
+
     <record id="clv_verification.group_user" model="res.groups">
         <field name="name">User (Verification)</field>
+        <field name="category_id" ref="module_verification_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
     
     <record id="clv_verification.group_manager" model="res.groups">
         <field name="name">Manager (Verification)</field>
+        <field name="category_id" ref="module_verification_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_verification.group_user'))]"/>
     </record>
     
     <record id="clv_verification.group_supmanager" model="res.groups">
         <field name="name">Super Manager (Verification)</field>
+        <field name="category_id" ref="module_verification_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_verification.group_manager'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')),
                                    (4, ref('base.user_admin'))]"/>
