@@ -16,6 +16,11 @@ class AbstractLog(models.AbstractModel):
     res_id = fields.Integer(string='Record ID', help="ID of the target record in the database")
     reference = fields.Char(string='Reference', compute='_compute_reference', readonly=True, store=True)
 
+    @api.depends('model', 'res_id')
+    def _compute_reference(self):
+        for record in self:
+            record.reference = "%s,%s" % (record.model, record.res_id)
+
     user_id = fields.Many2one(
         comodel_name='res.users',
         string='User',
@@ -31,24 +36,30 @@ class AbstractLog(models.AbstractModel):
     action = fields.Char(string='Action')
     notes = fields.Text(string='Notes')
 
-    @api.depends('model', 'res_id')
-    def _compute_reference(self):
-        for record in self:
-            record.reference = "%s,%s" % (record.model, record.res_id)
-
 
 class AbstractModelLog(models.AbstractModel):
     _description = 'Abstract Model Log'
     _name = 'clv.abstract.model.log'
+
+    # reference = fields.Char(string='Reference', compute='_compute_object_reference', store=False)
+
+    object_model = fields.Char(string='Object Model', compute='_compute_object_reference', store=False)
+    object_res_id = fields.Char(string='Object Record ID', compute='_compute_object_reference', store=False)
+    object_reference = fields.Char(string='Object Reference', compute='_compute_object_reference', store=False)
+
+    def _compute_object_reference(self):
+        for record in self:
+            record.object_model = record._name
+            record.object_res_id = record.id
+            record.object_reference = "%s,%s" % (record._name, record.id)
 
     active_log = fields.Boolean(
         string='Active Log',
         help="If unchecked, it will allow you to disable the log without removing it.",
         default=True
     )
-    log_model = fields.Char(string='Log Model Name', required=True, readonly=False)
 
-    reference = fields.Char(string='Reference', compute='_compute_reference', store=False)
+    log_model = fields.Char(string='Log Model Name', required=True, readonly=False)
 
     log_ids = fields.One2many(
         string='Abstract Logs',
@@ -60,16 +71,12 @@ class AbstractModelLog(models.AbstractModel):
         compute='_compute_log_ids_and_count',
     )
 
-    def _compute_reference(self):
-        for record in self:
-            record.reference = "%s,%s" % (record._name, record.id)
-
     @api.multi
     def _compute_log_ids_and_count(self):
         for record in self:
             try:
                 logs = self.env[record.log_model].search([
-                    ('reference', '=', record.reference),
+                    ('reference', '=', record.object_reference),
                 ])
                 record.count_logs = len(logs)
                 record.log_ids = [(6, 0, logs.ids)]

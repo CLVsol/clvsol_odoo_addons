@@ -12,10 +12,10 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="verification_model"/>
-                            <field name="verification_res_id"/>
-                            <field name="verification_reference" widget="reference"/>
-                            <field name="verification_reference_name"/>
+                            <field name="model"/>
+                            <field name="res_id"/>
+                            <field name="reference" widget="reference"/>
+                            <field name="reference_name"/>
                         </group>
                         <group>
                             <field name="date_verification"/>
@@ -63,10 +63,10 @@
         <field name="model">clv.verification</field>
         <field name="arch" type="xml">
             <tree string="External Sync">
-                <field name="verification_model"/>
-                <field name="verification_res_id"/>
-                <field name="verification_reference"/>
-                <field name="verification_reference_name"/>
+                <field name="model"/>
+                <field name="res_id"/>
+                <field name="reference"/>
+                <field name="reference_name"/>
                 <field name="date_verification"/>
                 <field name="verification_status"/>
                 <field name="outcomes"/>
@@ -80,19 +80,19 @@
         <field name="model">clv.verification</field>
         <field name="arch" type="xml">
             <search string="External Sync">
-                <field name="verification_model"/>
-                <field name="verification_res_id"/>
-                <field name="verification_reference"/>
-                <field name="verification_reference_name"/>
+                <field name="model"/>
+                <field name="res_id"/>
+                <field name="reference"/>
+                <field name="reference_name"/>
                 <field name="verification_status"/>
                 <field name="outcomes"/>
                 <field name="id"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter name="filter_verification_model" string="Model Name" domain="[]" context="{'group_by':'verification_model'}"/>
-                    <filter name="filter_verification_reference" string="Reference" domain="[]" context="{'group_by':'verification_reference'}"/>
-                    <filter name="filter_verification_reference_name" string="Reference Name" domain="[]" context="{'group_by':'verification_reference_name'}"/>
+                    <filter name="filter_model" string="Model Name" domain="[]" context="{'group_by':'model'}"/>
+                    <filter name="filter_reference" string="Reference" domain="[]" context="{'group_by':'reference'}"/>
+                    <filter name="filter_reference_name" string="Reference Name" domain="[]" context="{'group_by':'reference_name'}"/>
                     <filter name="filter_verification_status" string="Verification Status" context="{'group_by': 'verification_status'}"/>
                 </group>
             </search>
