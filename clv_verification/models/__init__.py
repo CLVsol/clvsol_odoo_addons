@@ -4,3 +4,4 @@
 
 from . import abstract_verification
 from . import verification
+from . import verification_log
