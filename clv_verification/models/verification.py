@@ -12,13 +12,13 @@ class Verification(models.Model):
     _order = "id desc"
     _rec_name = 'verification_reference_name'
 
-    verification_model = fields.Char(string='Model Name', required=True)
+    verification_model = fields.Char(string='Model Name ', required=True)
     verification_res_id = fields.Integer(
         string='Record ID',
         help="ID of the target record in the database"
     )
     verification_reference = fields.Char(
-        string='Reference',
+        string='Reference ',
         compute='_compute_verification_reference',
         readonly=True,
         store=True
