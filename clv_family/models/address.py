@@ -15,14 +15,14 @@ class Address(models.Model):
     )
     count_families = fields.Integer(
         string='Number of Families',
-        compute='_compute_count_families',
-        store=True
+        # compute='_compute_count_families',
+        # store=True
     )
 
-    @api.depends('family_ids')
-    def _compute_count_families(self):
-        for r in self:
-            r.count_families = len(r.family_ids)
+    # @api.depends('family_ids')
+    # def _compute_count_families(self):
+    #     for r in self:
+    #         r.count_families = len(r.family_ids)
 
 
 class Family(models.Model):
