@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- # Copyright 2008 Luis Falcon <lfalcon@gnusolidario.org>
-     Copyright 2016 LasLabs Inc.
-     License GPL-3.0 or later (http://www.gnu.org/licenses/gpl). -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
 
@@ -14,10 +13,12 @@
             <xpath expr="//tree" position="attributes">
                 <attribute name="string">Persons</attribute>
             </xpath>
-            <xpath expr="//field[@name='email']" position="after">
+            <xpath expr="//field[@name='code']" position="after">
                 <!--field name="identification_code" /-->
-                <!--field name="age" /-->
-                <!--field name="gender" /-->
+                <field name="gender"/>
+                <field name="age_years"/>
+                <field name="age_reference_years"/>
+                <field name="is_deceased"/>
             </xpath>
         </field>
     </record>
@@ -47,6 +48,41 @@
                      t-attf-src='{{ _s }}/clv_person/static/src/img/person-avatar.png'
                 />
             </xpath>
+            <page name="page_general_info" position="after">
+                <page name="personal_information" string="Personal Information" groups="clv_base.group_supuser">
+                    <group>
+                        <group name="person_status">
+                            <field name="gender" widget="radio"/>
+                            <field name="marital" widget="radio"/>
+                        </group>
+                        <group name="birth">
+                            <field name="estimated_age"/>
+                            <field name="birthday"/>
+                            <field name="date_death"/>
+                            <field name="date_reference"/>
+                            <field name="is_deceased"/>
+                            <field name="age"/>
+                            <field name="age_years"/>
+                            <field name="age_reference"/>
+                            <field name="age_reference_years"/>
+                            <!--field name="age_suport" invisible="True"/-->
+                            <!--field name="age_reference_suport" invisible="True"/-->
+                        </group>
+                        <group name="other_info">
+                            <!--field name="country_id" options='{"no_open": True}'/-->
+                            <!--field name="identification_id"/-->
+                            <!--field name="otherid"/-->
+                        </group>
+                        <group name="family">
+                            <field name="spouse_id" options="{'no_open': False, 'no_create': True}"/>
+                            <field name="father_id" options="{'no_open': False, 'no_create': True}"/>
+                            <field name="mother_id" options="{'no_open': False, 'no_create': True}"/>
+                            <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
+                            <field name="caregiver_id" options="{'no_open': False, 'no_create': True}"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
             <!--xpath expr="//notebook" position="inside">
                 <page name="clv_person" string="Person" autofocus="True">
                     <group name="group_clv_buttons" class="oe_button_box" col="6">
