@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2016 LasLabs Inc.
-     License GPL-3.0 or later (http://www.gnu.org/licenses/gpl). -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
 
@@ -32,15 +32,6 @@
                                      'size': [90, 90],
                                      }"
                            />
-                    <!--div name="button_box" class="oe_right oe_button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" groups="clv_base.group_reguser">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button>
-                    </div-->
-                    <!--div name="center" class="oe_center">
-                        <label for="name" class="oe_edit_only"/>
-                        <h1> <field name="name" default_focus="1" placeholder="Name..."/></h1>
-                    </div-->
                     <div class="oe_title" name="title">
                         <h1>
                             <label for="name" class="oe_edit_only"/>
@@ -153,7 +144,7 @@
                                 <group name="right"/>
                             </group>
                         </page>
-                        <page name="page_contacts" string="Contacts &amp; Addresses">
+                        <page name="page_contacts" string="Contacts &amp; Addresses" invisible="True">
                             <field name="child_ids"
                                    mode="kanban"
                                    context="{'default_parent_id': active_id,
@@ -316,7 +307,7 @@
                                 </form>
                             </field>
                         </page>
-                        <page name='page_internal_notes' string="ID &amp; Notes">
+                        <page name='page_internal_notes' string="ID &amp; Notes" invisible="True">
                             <field name="comment" placeholder="Internal Note..."/>
                         </page>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="True">
