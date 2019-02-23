@@ -71,8 +71,9 @@ class Person(models.Model):
     @api.constrains('birthday')
     def _check_birthday(self):
         for person in self:
-            if person.birthday > fields.Date.today():
-                raise UserError(u'Date of Birth must be in the past!')
+            if person.birthday:
+                if person.birthday > fields.Date.today():
+                    raise UserError(u'Date of Birth must be in the past!')
 
     @api.multi
     # @api.depends('birthday')
