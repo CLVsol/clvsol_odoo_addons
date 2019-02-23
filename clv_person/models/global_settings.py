@@ -6,7 +6,6 @@ from odoo import api, fields, models
 
 PARAMS = [
     ("current_date_reference", "clv.global_settings.current_date_reference"),
-    # ("current_phase_id", "clv.global_settings.current_phase_id"),
 ]
 
 
@@ -18,12 +17,6 @@ class GlobalSettings(models.TransientModel):
         compute='_compute_current_date_reference',
         store=False,
     )
-
-    # current_phase_id = fields.Char(
-    #     string='Current Phase',
-    #     compute='_compute_current_phase_id',
-    #     store=False,
-    # )
 
     @api.multi
     def set_values(self):
@@ -49,21 +42,10 @@ class GlobalSettings_2(models.TransientModel):
 
     date_reference = fields.Date(string="Current Reference Date:")
 
-    # phase_id = fields.Many2one(
-    #     comodel_name='clv.phase',
-    #     string='Current Phase:',
-    #     ondelete='restrict',
-    # )
-
     @api.depends('date_reference')
     def _compute_current_date_reference(self):
         for r in self:
             r.current_date_reference = r.date_reference
-
-    # @api.depends('phase_id')
-    # def _compute_current_phase_id(self):
-    #     for r in self:
-    #         r.current_phase_id = r.phase_id.id
 
     @api.model
     def default_get(self, field_names):
@@ -72,20 +54,5 @@ class GlobalSettings_2(models.TransientModel):
 
         current_date_reference = defaults['current_date_reference']
         defaults['date_reference'] = current_date_reference
-
-        # Phase = self.env['clv.phase']
-
-        # current_phase_id = False
-        # try:
-        #     if defaults['current_phase_id'] != '' and \
-        #        defaults['current_phase_id'] != 'False':
-        #         current_phase_id = defaults['current_phase_id']
-        # except KeyError:
-        #     pass
-
-        # phase = Phase.search([
-        #     ('id', '=', current_phase_id),
-        # ])
-        # defaults['phase_id'] = phase.id
 
         return defaults
