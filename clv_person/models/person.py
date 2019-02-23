@@ -122,7 +122,12 @@ class Person(models.Model):
     #             record = self.env['clv.person'].search([('id', '=', r.id)])
     #             record.write({'birthday': r.birthday})
 
-    date_reference = fields.Date(string="Reference Date")
+    # date_reference = fields.Date(string="Reference Date")
+    date_reference = fields.Date(
+        string="Reference Date",
+        compute='_compute_date_reference',
+        # store=True
+    )
     age_reference = fields.Char(
         string='Reference Age',
         compute='_compute_age_reference',
@@ -138,6 +143,13 @@ class Person(models.Model):
     #     compute='_compute_age_reference_suport',
     #     store=False
     # )
+
+    @api.multi
+    def _compute_date_reference(self):
+        for r in self:
+            date_reference = self.env['ir.config_parameter'].sudo().get_param(
+                'clv.global_settings.current_date_reference', '').strip()
+            r.date_reference = date_reference
 
     @api.multi
     # @api.depends('date_reference', 'birthday')
