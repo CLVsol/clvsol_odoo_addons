@@ -22,13 +22,16 @@ class GlobalSettings(models.TransientModel):
     def set_values(self):
         self.ensure_one()
 
+        super(GlobalSettings, self).set_values()
+
         for field_name, key_name in PARAMS:
             value = str(getattr(self, field_name, '')).strip()
             self.env['ir.config_parameter'].set_param(key_name, value)
 
     def get_values(self):
 
-        res = {}
+        res = super(GlobalSettings, self).get_values()
+
         for field_name, key_name in PARAMS:
             res[field_name] = self.env['ir.config_parameter'].get_param(key_name, '').strip()
         return res
