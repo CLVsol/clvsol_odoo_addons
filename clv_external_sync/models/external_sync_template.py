@@ -25,6 +25,10 @@ class ExternalSyncTemplate(models.Model):
         string='Max Task Registers'
     )
 
+    external_disable_sync = fields.Boolean(
+        string='Disable Sync'
+    )
+
     external_exec_sync = fields.Boolean(
         string='Execute Sync'
     )

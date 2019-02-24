@@ -196,7 +196,8 @@ class AbstractExternalSync(models.AbstractModel):
 
             if fields.id is not False:
 
-                if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'html', 'integer', 'boolean', 'selection']:
+                if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'html', 'integer', 'float',
+                                       'boolean', 'selection']:
                     local_values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
                 elif fields[0].ttype == 'many2one':
@@ -418,7 +419,8 @@ class AbstractExternalSync(models.AbstractModel):
                             ('name', '=', local_object_fields[i]),
                         ])
 
-                        if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'boolean', 'selection']:
+                        if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'float',
+                                               'boolean', 'selection']:
                             local_values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
                         elif fields[0].ttype == 'many2one':
@@ -503,53 +505,59 @@ class AbstractExternalSync(models.AbstractModel):
                     sync_values['external_id'] = external_object['id']
                     sync_values['external_last_update'] = external_object['__last_update']
                     sync_values['external_sync'] = 'included'
+                    if schedule.external_disable_sync:
+                        sync_values['external_sync'] = 'synchronized'
                     _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, sync_values)
                     new_sync_object = ExternalSync.create(sync_values)
 
-                    if schedule.external_exec_sync is True and \
-                       sync_count < schedule.external_max_sync:
+                    if not schedule.external_disable_sync:
 
-                        sync_count += 1
-                        sync_include_count += 1
-                        task_count += 1
+                        if schedule.external_exec_sync is True and \
+                           sync_count < schedule.external_max_sync:
 
-                        new_sync_object._object_synchronize(
-                            sock, external_dbname, uid, external_user_pw,
-                            schedule.external_model, external_object['id'],
-                            schedule, model_name, new_sync_object
-                        )
+                            sync_count += 1
+                            sync_include_count += 1
+                            task_count += 1
+
+                            new_sync_object._object_synchronize(
+                                sock, external_dbname, uid, external_user_pw,
+                                schedule.external_model, external_object['id'],
+                                schedule, model_name, new_sync_object
+                            )
 
                 else:
 
-                    if external_object['__last_update'] > str(sync_object.external_last_update) and \
-                       sync_object.external_sync != 'included':
+                    if not schedule.external_disable_sync:
 
-                        update_count += 1
-                        task_count += 1
+                        if external_object['__last_update'] > str(sync_object.external_last_update) and \
+                           sync_object.external_sync != 'included':
 
-                        sync_object.external_sync = 'updated'
+                            update_count += 1
+                            task_count += 1
 
-                    if (sync_object.external_sync == 'included' or
-                        sync_object.external_sync == 'updated') and \
-                       schedule.external_exec_sync is True and \
-                       sync_count < schedule.external_max_sync:
+                            sync_object.external_sync = 'updated'
 
-                        sync_count += 1
-                        task_count += 1
+                        if (sync_object.external_sync == 'included' or
+                            sync_object.external_sync == 'updated') and \
+                           schedule.external_exec_sync is True and \
+                           sync_count < schedule.external_max_sync:
 
-                        _logger.info(u'>>>>>>>>>>>>>>> %s %s', sync_count, sync_object)
+                            sync_count += 1
+                            task_count += 1
 
-                        if sync_object.external_sync == 'included':
-                            sync_include_count += 1
+                            _logger.info(u'>>>>>>>>>>>>>>> %s %s', sync_count, sync_object)
 
-                        if sync_object.external_sync == 'updated':
-                            sync_update_count += 1
+                            if sync_object.external_sync == 'included':
+                                sync_include_count += 1
 
-                        sync_object._object_synchronize(
-                            sock, external_dbname, uid, external_user_pw,
-                            schedule.external_model, external_object['id'],
-                            schedule, model_name, sync_object
-                        )
+                            if sync_object.external_sync == 'updated':
+                                sync_update_count += 1
+
+                            sync_object._object_synchronize(
+                                sock, external_dbname, uid, external_user_pw,
+                                schedule.external_model, external_object['id'],
+                                schedule, model_name, sync_object
+                            )
 
             # sync_objects = ExternalSync.with_context({'active_test': False}).search([
             #     ('model', '=', model_name),
