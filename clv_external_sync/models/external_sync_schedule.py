@@ -100,7 +100,7 @@ class ExternalSyncSchedule(models.Model):
     @api.model
     def create(self, values):
 
-        schedule = super(ExternalSyncSchedule, self).create(values)
+        schedule = super().create(values)
 
         if schedule.template_id.id is not False:
             schedule.external_host_id = schedule.template_id.external_host_id

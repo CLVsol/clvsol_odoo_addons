@@ -89,7 +89,7 @@ class AbstractCode02(models.AbstractModel):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence_10'])
             code_len = len(code_seq)
             values['code'] = format_code(code_seq, code_len)
-        return super(AbstractCode02, self).create(values)
+        return super().create(values)
 
     @api.multi
     def write(self, values):
@@ -127,10 +127,10 @@ class AbstractCode02(models.AbstractModel):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_10)
                 code_len = len(code_seq)
                 values['code'] = format_code(code_seq, code_len)
-            return super(AbstractCode02, self).write(values)
+            return super().write(values)
 
     @api.one
     def copy(self, default=None):
         default = dict(default or {})
         default.update({'code': '/', })
-        return super(AbstractCode02, self).copy(default)
+        return super().copy(default)

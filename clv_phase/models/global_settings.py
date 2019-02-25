@@ -22,7 +22,7 @@ class GlobalSettings(models.TransientModel):
     def set_values(self):
         self.ensure_one()
 
-        super(GlobalSettings, self).set_values()
+        super().set_values()
 
         for field_name, key_name in PARAMS:
             value = str(getattr(self, field_name, '')).strip()
@@ -30,7 +30,7 @@ class GlobalSettings(models.TransientModel):
 
     def get_values(self):
 
-        res = super(GlobalSettings, self).get_values()
+        res = super().get_values()
 
         for field_name, key_name in PARAMS:
             res[field_name] = self.env['ir.config_parameter'].get_param(key_name, '').strip()
@@ -54,7 +54,7 @@ class GlobalSettings_2(models.TransientModel):
     @api.model
     def default_get(self, field_names):
 
-        defaults = super(GlobalSettings_2, self).default_get(field_names)
+        defaults = super().default_get(field_names)
 
         Phase = self.env['clv.phase']
 

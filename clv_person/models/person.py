@@ -279,7 +279,7 @@ class Person(models.Model):
 
     @api.model
     def _create_vals(self, vals):
-        vals = super(Person, self)._create_vals(vals)
+        vals = super()._create_vals(vals)
         vals.update({
             'customer': True,
         })
@@ -287,7 +287,7 @@ class Person(models.Model):
 
     @api.model_cr_context
     def _get_default_image_path(self, vals):
-        res = super(Person, self)._get_default_image_path(vals)
+        res = super()._get_default_image_path(vals)
         if res:
             return res
         image_path = get_module_resource(

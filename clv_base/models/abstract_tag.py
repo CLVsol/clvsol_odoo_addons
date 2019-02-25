@@ -59,7 +59,7 @@ class AbstractTag(models.AbstractModel):
         if self._context is None:
             self._context = {}
         if self._context.get('tag_display') == 'short':
-            return super(AbstractTag, self).name_get()
+            return super().name_get()
 
         res = []
         for record in self:

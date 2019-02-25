@@ -80,7 +80,7 @@ class MassObject(models.Model):
     @api.multi
     def unlink(self):
         self.unlink_action()
-        return super(MassObject, self).unlink()
+        return super().unlink()
 
     @api.multi
     @api.returns('self', lambda value: value.id)
@@ -88,7 +88,7 @@ class MassObject(models.Model):
         if default is None:
             default = {}
         default.update({'name': _("%s (copy)" % self.name), 'field_ids': []})
-        return super(MassObject, self).copy(default)
+        return super().copy(default)
 
     @api.model
     def exec_create_action(self, objet_id):

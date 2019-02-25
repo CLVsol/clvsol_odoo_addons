@@ -75,7 +75,7 @@ class ModelExport(models.Model):
 
         ModelExportField = self.env['clv.model_export.field']
 
-        new_model_export = super(ModelExport, self).create(values)
+        new_model_export = super().create(values)
 
         model_export_field_ids = []
         for model_export_template_field in new_model_export.template_id.model_export_template_field_ids:
@@ -95,7 +95,7 @@ class ModelExport(models.Model):
 
         ModelExportField = self.env['clv.model_export.field']
 
-        res = super(ModelExport, self).write(values)
+        res = super().write(values)
 
         if 'template_id' in values:
 

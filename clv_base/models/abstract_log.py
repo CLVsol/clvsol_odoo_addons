@@ -108,12 +108,12 @@ class AbstractModelLog(models.AbstractModel):
         notes = False
         for record in self:
             record.insert_object_log(record.log_model, record._name, record.id, values, action, notes)
-        return super(AbstractModelLog, self).write(values)
+        return super().write(values)
 
     @api.model
     def create(self, values):
         action = 'create'
         notes = False
-        record = super(AbstractModelLog, self).create(values)
+        record = super().create(values)
         record.insert_object_log(record.log_model, record._name, record.id, values, action, notes)
         return record

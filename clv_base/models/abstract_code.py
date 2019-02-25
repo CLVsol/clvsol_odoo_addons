@@ -55,7 +55,7 @@ class AbstractCode(models.AbstractModel):
         else:
             if 'code' not in values or ('code' in values and values['code'] == '/'):
                 values['code'] = False
-        return super(AbstractCode, self).create(values)
+        return super().create(values)
 
     @api.multi
     def write(self, values):
@@ -63,10 +63,10 @@ class AbstractCode(models.AbstractModel):
             if 'code' in values and values['code'] == '/':
                 code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence)
                 values['code'] = format_code(code_seq)
-        return super(AbstractCode, self).write(values)
+        return super().write(values)
 
     @api.one
     def copy(self, default=None):
         default = dict(default or {})
         default.update({'code': '/', })
-        return super(AbstractCode, self).copy(default)
+        return super().copy(default)

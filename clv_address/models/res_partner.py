@@ -87,4 +87,4 @@ class ResPartner(models.Model):
             )
             clv_entity = model.create(vals)
             return clv_entity.partner_id
-        return super(ResPartner, self).create(vals)
+        return super().create(vals)

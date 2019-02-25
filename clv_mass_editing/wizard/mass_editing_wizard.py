@@ -15,7 +15,7 @@ class MassEditingWizard(models.TransientModel):
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
         result = \
-            super(MassEditingWizard, self).fields_view_get(
+            super().fields_view_get(
                 view_id=view_id,
                 view_type=view_type,
                 toolbar=toolbar,
@@ -512,7 +512,7 @@ class MassEditingWizard(models.TransientModel):
                             data.write({split_key: tot_val})
             if values:
                 model_rec.write(values)
-        return super(MassEditingWizard, self).create(vals)
+        return super().create(vals)
 
     @api.multi
     def action_apply(self):

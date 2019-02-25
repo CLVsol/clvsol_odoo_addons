@@ -26,7 +26,7 @@ class DocumentMassEdit(models.TransientModel):
     def do_document_mass_edit(self):
         self.ensure_one()
 
-        super(DocumentMassEdit, self).do_document_mass_edit()
+        super().do_document_mass_edit()
 
         for document in self.document_ids:
 

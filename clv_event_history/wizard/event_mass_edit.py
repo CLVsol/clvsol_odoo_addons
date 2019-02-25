@@ -26,7 +26,7 @@ class EventMassEdit(models.TransientModel):
     def do_event_mass_edit(self):
         self.ensure_one()
 
-        super(EventMassEdit, self).do_event_mass_edit()
+        super().do_event_mass_edit()
 
         for event in self.event_ids:
 

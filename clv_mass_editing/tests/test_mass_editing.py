@@ -11,7 +11,7 @@ from ..hooks import uninstall_hook
 class TestMassEditing(common.TransactionCase):
 
     def setUp(self):
-        super(TestMassEditing, self).setUp()
+        super().setUp()
         model_obj = self.env['ir.model']
         self.mass_wiz_obj = self.env['mass.editing.wizard']
         self.mass_object_model = self.env['mass.object']

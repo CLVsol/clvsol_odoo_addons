@@ -71,7 +71,7 @@ class AbstractCategory(models.AbstractModel):
         if self._context is None:
             self._context = {}
         if self._context.get('category_display') == 'short':
-            return super(AbstractCategory, self).name_get()
+            return super().name_get()
 
         res = []
         for record in self:

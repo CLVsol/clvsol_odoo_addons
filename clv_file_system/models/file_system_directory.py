@@ -53,4 +53,4 @@ class FileSystemDirectory(models.Model):
     def copy(self, default=None):
         self.ensure_one()
         default = dict(default or {}, name=_("%s (copy)") % self.name)
-        return super(FileSystemDirectory, self).copy(default=default)
+        return super().copy(default=default)

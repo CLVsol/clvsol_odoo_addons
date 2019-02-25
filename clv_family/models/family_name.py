@@ -37,16 +37,16 @@ class Family(models.Model):
 
     @api.multi
     def write(self, values):
-        ret = super(Family, self).write(values)
+        ret = super().write(values)
         for record in self:
             if record.suggested_name is not False:
                 if record.automatic_set_name:
                     if record.name != record.suggested_name:
                         values['name'] = record.suggested_name
-                        super(Family, record).write(values)
+                        super().write(values)
                 else:
                     if ('name' in values and values['name'] == '/') or \
                        (record.name == '/'):
                         values['name'] = record.suggested_name
-                        super(Family, record).write(values)
+                        super().write(values)
         return ret

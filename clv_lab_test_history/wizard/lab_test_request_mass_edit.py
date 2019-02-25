@@ -26,7 +26,7 @@ class LabTestRequestMassEdit(models.TransientModel):
     def do_lab_test_request_mass_edit(self):
         self.ensure_one()
 
-        super(LabTestRequestMassEdit, self).do_lab_test_request_mass_edit()
+        super().do_lab_test_request_mass_edit()
 
         for lab_test_request in self.lab_test_request_ids:
 

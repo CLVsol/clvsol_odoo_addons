@@ -57,13 +57,13 @@ class AbstractPartnerEntity(models.AbstractModel):
     @api.returns('self', lambda value: value.id)
     def create(self, vals):
         vals = self._create_vals(vals)
-        return super(AbstractPartnerEntity, self).create(vals)
+        return super().create(vals)
 
     @api.multi
     def toggle_active(self):
         """ It toggles entity and partner activation. """
         for record in self:
-            super(AbstractPartnerEntity, self).toggle_active()
+            super().toggle_active()
             if record.active:
                 record.partner_id.active = True
             else:
@@ -145,7 +145,7 @@ class AbstractPartnerEntity(models.AbstractModel):
 
             @api.model
             def _get_default_image_path(self, vals):
-                res = super(MedicalPatient, self)._get_default_image_path(vals)
+                res = super()._get_default_image_path(vals)
                 if res:
                     return res
                 image_path = odoo.modules.get_module_resource(
