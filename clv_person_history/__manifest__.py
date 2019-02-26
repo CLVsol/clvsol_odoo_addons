@@ -15,7 +15,11 @@
         'clv_phase',
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'views/person_history_view.xml',
         'views/phase_view.xml',
+        'views/person_view.xml',
+        'views/address_view.xml',
         # 'wizard/person_mass_edit_view.xml',
     ],
     'demo': [],
