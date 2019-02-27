@@ -15,7 +15,11 @@
         'clv_phase',
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'views/family_history_view.xml',
         'views/phase_view.xml',
+        'views/family_view.xml',
+        'views/address_view.xml',
     ],
     'demo': [],
     'test': [],
