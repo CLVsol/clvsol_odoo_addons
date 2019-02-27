@@ -15,6 +15,7 @@
         'clv_global_log',
         'clv_partner_entity',
         'clv_global_tag',
+        'clv_address',
     ],
     'data': [
         'security/family_security.xml',
@@ -23,6 +24,7 @@
         'views/family_log_view.xml',
         'views/family_category_view.xml',
         'views/family_category_log_view.xml',
+        'views/family_marker_view.xml',
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
         'views/family_name_view.xml',
