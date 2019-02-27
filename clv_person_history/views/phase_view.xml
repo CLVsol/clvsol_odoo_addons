@@ -93,7 +93,7 @@
                                 >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_value">
-                                    <field name="count_persons"/>
+                                    <field name="count_person_histories"/>
                                 </span>
                                 <span class="o_stat_text"> Person(s)</span>
                             </div>
