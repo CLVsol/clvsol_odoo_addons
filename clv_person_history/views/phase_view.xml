@@ -75,7 +75,7 @@
         </field>
     </record>
 
-    <record id="clv_phase_view_form_person" model="ir.ui.view">
+    <record id="clv_phase_view_form_person_history" model="ir.ui.view">
         <field name="name">clv.phase.form</field>
         <field name="model">clv.phase</field>
         <field name="inherit_id" ref="clv_phase.clv_phase_view_form"/>
