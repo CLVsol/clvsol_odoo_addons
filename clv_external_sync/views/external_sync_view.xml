@@ -14,6 +14,7 @@
                         <group>
                             <field name="model"/>
                             <field name="res_id"/>
+                            <field name="res_last_update"/>
                             <field name="reference" widget="reference"/>
                             <field name="reference_name"/>
                         </group>
@@ -39,6 +40,7 @@
             <tree string="External Sync">
                 <field name="model"/>
                 <field name="res_id"/>
+                <field name="res_last_update"/>
                 <field name="reference"/>
                 <field name="reference_name"/>
                 <field name="external_model"/>

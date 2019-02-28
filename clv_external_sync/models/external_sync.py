@@ -13,6 +13,7 @@ class ExternalSync(models.Model):
 
     model = fields.Char(string='Model Name', required=True)
     res_id = fields.Integer(string='Record ID', help="ID of the target record in the database")
+    res_last_update = fields.Datetime(string="Record Last Update")
     reference = fields.Char(string='Reference', compute='_compute_reference', readonly=True, store=True)
     reference_name = fields.Char(string='Reference Name', compute='_compute_reference', readonly=True, store=True)
 
