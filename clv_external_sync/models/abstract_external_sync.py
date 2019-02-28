@@ -356,6 +356,7 @@ class AbstractExternalSync(models.AbstractModel):
                          external_object_fields,
                          local_object_fields)
 
+            external_args = []
             reg_count = 0
             include_count = 0
             update_count = 0
@@ -380,7 +381,6 @@ class AbstractExternalSync(models.AbstractModel):
                     if sync_object.external_last_update > upmost_last_update:
                         upmost_last_update = sync_object.external_last_update
 
-                external_args = []
                 if sync_object.res_id == 0:
 
                     include_count += 1
@@ -563,7 +563,7 @@ class AbstractExternalSync(models.AbstractModel):
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_task: ', external_max_task)
             _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_sync: ', schedule.external_max_sync)
-            _logger.info(u'%s %s', '>>>>>>>>>> external_args: ', external_args)
+            _logger.info(u'%s %s', '>>>>>>>>>> sync_objects: ', len(sync_objects))
             _logger.info(u'%s %s', '>>>>>>>>>> reg_count: ', reg_count)
             _logger.info(u'%s %s', '>>>>>>>>>> include_count: ', include_count)
             _logger.info(u'%s %s', '>>>>>>>>>> update_count: ', update_count)
@@ -578,7 +578,7 @@ class AbstractExternalSync(models.AbstractModel):
             schedule.date_last_sync = date_last_sync
             schedule.upmost_last_update = upmost_last_update
             schedule.external_sync_log +=  \
-                'external_args: ' + str(external_args) + '\n\n' + \
+                'sync_objects: ' + str(len(sync_objects)) + '\n' + \
                 'reg_count: ' + str(reg_count) + '\n' + \
                 'include_count: ' + str(include_count) + '\n' + \
                 'update_count: ' + str(update_count) + '\n' + \

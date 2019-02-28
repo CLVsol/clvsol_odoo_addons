@@ -20,9 +20,8 @@ class ExternalSync(models.Model):
     @api.depends('model', 'res_id')
     def _compute_reference(self):
         for record in self:
-            record.reference = "%s,%s" % (record.model, record.res_id)
-
             if record.model is not False and record.res_id > 0:
+                record.reference = "%s,%s" % (record.model, record.res_id)
                 Model = self.env[record.model]
                 rec = Model.search([
                     ('id', '=', record.res_id),
