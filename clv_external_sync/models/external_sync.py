@@ -21,7 +21,7 @@ class ExternalSync(models.Model):
         for record in self:
             record.reference = "%s,%s" % (record.model, record.res_id)
 
-            if record.model is not False:
+            if record.model is not False and record.res_id > 0:
                 Model = self.env[record.model]
                 rec = Model.search([
                     ('id', '=', record.res_id),

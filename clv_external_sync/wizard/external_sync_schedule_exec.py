@@ -56,7 +56,8 @@ class ExternalSyncScheduleExec(models.TransientModel):
         for schedule in self.schedule_ids:
 
             model = schedule.model
-            _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
+            external_model = schedule.external_model
+            _logger.info(u'%s %s [%s - %s]', '>>>>>', schedule.name, model, external_model)
 
             method_call = False
             if schedule.method == '_object_external_sync':
@@ -64,9 +65,17 @@ class ExternalSyncScheduleExec(models.TransientModel):
             elif schedule.method == '_object_external_recognize':
                 method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule, model)'
 
+            # if schedule.external_disable_check_missing is not False:
+            #     method = '_object_external_identify'
+            #     method_call = 'self.env["clv.external_sync"].' + method + '(schedule)'
+            # method = '_object_external_identify'
+            # method_call = 'self.env["clv.external_sync"].' + method + '(schedule)'
+
             _logger.info(u'%s %s', '>>>>>>>>>>', method_call)
 
-            exec(method_call)
+            if method_call:
+                schedule.external_sync_log = 'method: ' + str(schedule.method) + '\n\n'
+                exec(method_call)
 
         return True
         # return self._reopen_form()

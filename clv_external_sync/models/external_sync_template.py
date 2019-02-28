@@ -25,6 +25,14 @@ class ExternalSyncTemplate(models.Model):
         string='Max Task Registers'
     )
 
+    external_disable_identification = fields.Boolean(
+        string='Disable Identification'
+    )
+
+    external_disable_check_missing = fields.Boolean(
+        string='Disable Check Missing'
+    )
+
     external_disable_sync = fields.Boolean(
         string='Disable Sync'
     )
