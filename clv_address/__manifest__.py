@@ -27,6 +27,7 @@
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
         'views/address_name_view.xml',
+        'wizard/address_mass_edit_view.xml',
     ],
     'demo': [],
     'test': [],
