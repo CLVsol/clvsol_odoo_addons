@@ -332,11 +332,6 @@ class AbstractExternalSync(models.AbstractModel):
 
             schedule.external_sync_log += 'Executing: "' + '_object_external_sync' + '"...\n\n'
 
-            # external_object_fields = []
-            # local_object_fields = []
-            # for object_field in schedule.object_field_ids:
-            #     external_object_fields.append(object_field.external_object_field)
-
             sync_objects = ExternalSync.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
                 ('external_sync', '!=', 'missing'),
