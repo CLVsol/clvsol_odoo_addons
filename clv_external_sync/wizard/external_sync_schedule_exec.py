@@ -63,7 +63,7 @@ class ExternalSyncScheduleExec(models.TransientModel):
             if schedule.method == '_object_external_sync':
                 method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
             elif schedule.method == '_object_external_recognize':
-                method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule, model)'
+                method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
 
             # if schedule.external_disable_check_missing is not False:
             #     method = '_object_external_identify'
