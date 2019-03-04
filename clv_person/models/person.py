@@ -39,10 +39,15 @@ class Person(models.Model):
                         (record.id,
                          u'%s [%s]' % (record.name, record.code)
                          ))
-                if record.age_years:
+                elif record.age_years:
                     result.append(
                         (record.id,
                          u'%s (%s)' % (record.name, record.age_years)
+                         ))
+                else:
+                    result.append(
+                        (record.id,
+                         u'%s' % (record.name)
                          ))
         return result
 
