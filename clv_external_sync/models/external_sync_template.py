@@ -33,13 +33,21 @@ class ExternalSyncTemplate(models.Model):
         string='Disable Check Missing'
     )
 
+    external_disable_inclusion = fields.Boolean(
+        string='Disable Inclusion'
+    )
+
     external_disable_sync = fields.Boolean(
         string='Disable Sync'
     )
 
-    external_exec_sync = fields.Boolean(
-        string='Execute Sync'
+    external_include_and_sync = fields.Boolean(
+        string='Include and Sync'
     )
+
+    # external_exec_sync = fields.Boolean(
+    #     string='Execute Sync'
+    # )
 
     external_max_sync = fields.Integer(
         string='Max Sync Registers'

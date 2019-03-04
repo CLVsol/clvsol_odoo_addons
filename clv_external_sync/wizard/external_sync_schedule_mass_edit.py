@@ -41,13 +41,48 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
          ], string='Max Task Registers:', default=False, readonly=False, required=False
     )
 
-    external_exec_sync = fields.Boolean(
-        string='Execute Sync'
+    external_disable_identification = fields.Boolean(
+        string='Disable Identification'
     )
-    external_exec_sync_selection = fields.Selection(
+    external_disable_identification_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Execute Sync:', default=False, readonly=False, required=False
+         ], string='Disable Identification:', default=False, readonly=False, required=False
+    )
+
+    external_disable_check_missing = fields.Boolean(
+        string='Disable Check Missing'
+    )
+    external_disable_check_missing_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Disable Check Missing:', default=False, readonly=False, required=False
+    )
+
+    external_disable_inclusion = fields.Boolean(
+        string='Disable Inclusion'
+    )
+    external_disable_inclusion_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Disable Inclusion:', default=False, readonly=False, required=False
+    )
+
+    external_disable_sync = fields.Boolean(
+        string='Disable Sync'
+    )
+    external_disable_sync_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Disable Sync:', default=False, readonly=False, required=False
+    )
+    external_include_and_sync = fields.Boolean(
+        string='Include and Sync'
+    )
+    external_include_and_sync_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Include and Sync:', default=False, readonly=False, required=False
     )
 
     external_max_sync = fields.Integer(
@@ -108,10 +143,30 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
             if self.external_max_task_selection == 'remove':
                 external_sync_schedule.external_max_task = False
 
-            if self.external_exec_sync_selection == 'set':
-                external_sync_schedule.external_exec_sync = self.external_exec_sync
-            if self.external_exec_sync_selection == 'remove':
-                external_sync_schedule.external_exec_sync = False
+            if self.external_disable_identification_selection == 'set':
+                external_sync_schedule.external_disable_identification = self.external_disable_identification
+            if self.external_disable_identification_selection == 'remove':
+                external_sync_schedule.external_disable_identification = False
+
+            if self.external_disable_check_missing_selection == 'set':
+                external_sync_schedule.external_disable_check_missing = self.external_disable_check_missing
+            if self.external_disable_check_missing_selection == 'remove':
+                external_sync_schedule.external_disable_check_missing = False
+
+            if self.external_disable_inclusion_selection == 'set':
+                external_sync_schedule.external_disable_inclusion = self.external_disable_inclusion
+            if self.external_disable_inclusion_selection == 'remove':
+                external_sync_schedule.external_disable_inclusion = False
+
+            if self.external_disable_sync_selection == 'set':
+                external_sync_schedule.external_disable_sync = self.external_disable_sync
+            if self.external_disable_sync_selection == 'remove':
+                external_sync_schedule.external_disable_sync = False
+
+            if self.external_include_and_sync_selection == 'set':
+                external_sync_schedule.external_include_and_sync = self.external_include_and_sync
+            if self.external_include_and_sync_selection == 'remove':
+                external_sync_schedule.external_include_and_sync = False
 
             if self.external_max_sync_selection == 'set':
                 external_sync_schedule.external_max_sync = self.external_max_sync

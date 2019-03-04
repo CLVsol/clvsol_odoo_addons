@@ -31,8 +31,10 @@
                             <field name="external_max_task"/>
                             <field name="external_disable_identification"/>
                             <field name="external_disable_check_missing"/>
+                            <field name="external_disable_inclusion"/>
                             <field name="external_disable_sync"/>
-                            <field name="external_exec_sync"/>
+                            <field name="external_include_and_sync"/>
+                            <!--field name="external_exec_sync"/-->
                             <field name="external_max_sync"/>
                             <field name="external_last_update_start"/>
                             <field name="external_last_update_end"/>
@@ -97,8 +99,10 @@
                 <field name="external_max_task"/>
                 <field name="external_disable_identification"/>
                 <field name="external_disable_check_missing"/>
+                <field name="external_disable_inclusion"/>
                 <field name="external_disable_sync"/>
-                <field name="external_exec_sync"/>
+                <field name="external_include_and_sync"/>
+                <!--field name="external_exec_sync"/-->
                 <field name="external_max_sync"/>
                 <field name="external_last_update_start"/>
                 <field name="external_last_update_end"/>
@@ -126,8 +130,10 @@
                 <field name="external_max_task"/>
                 <field name="external_disable_identification"/>
                 <field name="external_disable_check_missing"/>
+                <field name="external_disable_inclusion"/>
                 <field name="external_disable_sync"/>
-                <field name="external_exec_sync"/>
+                <field name="external_include_and_sync"/>
+                <!--field name="external_exec_sync"/-->
                 <field name="external_max_sync"/>
                 <field name="external_last_update_start"/>
                 <field name="external_last_update_end"/>

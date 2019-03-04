@@ -40,13 +40,21 @@ class ExternalSyncSchedule(models.Model):
         string='Disable Check Missing'
     )
 
+    external_disable_inclusion = fields.Boolean(
+        string='Disable Inclusion'
+    )
+
     external_disable_sync = fields.Boolean(
         string='Disable Sync'
     )
 
-    external_exec_sync = fields.Boolean(
-        string='Execute Sync'
+    external_include_and_sync = fields.Boolean(
+        string='Include and Sync'
     )
+
+    # external_exec_sync = fields.Boolean(
+    #     string='Execute Sync'
+    # )
 
     external_max_sync = fields.Integer(
         string='Max Sync Registers'
@@ -115,8 +123,9 @@ class ExternalSyncSchedule(models.Model):
             schedule.external_max_task = schedule.template_id.external_max_task
             schedule.external_disable_identification = schedule.template_id.external_disable_identification
             schedule.external_disable_check_missing = schedule.template_id.external_disable_check_missing
+            schedule.external_disable_inclusion = schedule.template_id.external_disable_inclusion
             schedule.external_disable_sync = schedule.template_id.external_disable_sync
-            schedule.external_exec_sync = schedule.template_id.external_exec_sync
+            schedule.external_include_and_sync = schedule.template_id.external_include_and_sync
             schedule.external_max_sync = schedule.template_id.external_max_sync
             schedule.external_last_update_start = schedule.template_id.external_last_update_start
             schedule.external_last_update_end = schedule.template_id.external_last_update_end
