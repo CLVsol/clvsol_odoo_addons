@@ -296,7 +296,8 @@ class AbstractExternalSync(models.AbstractModel):
         from time import time
         start = time()
 
-        if not schedule.external_disable_inclusion:
+        if (not schedule.external_disable_inclusion) or \
+           (not schedule.external_disable_sync):
 
             AbstractExternalSync = self.env['clv.abstract.external_sync']
             ExternalSync = self.env['clv.external_sync']
