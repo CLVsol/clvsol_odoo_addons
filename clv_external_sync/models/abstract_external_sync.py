@@ -400,110 +400,118 @@ class AbstractExternalSync(models.AbstractModel):
                                                         external_args,
                                                         external_object_fields)
 
-                        external_object = external_objects[0]
+                        if external_objects != []:
 
-                        _logger.info(u'>>>>>>>>>>>>>>> %s', external_object)
+                            external_object = external_objects[0]
 
-                        i = 0
-                        local_values = {}
-                        sync_values = {}
-                        for field in local_object_fields:
-                            fields = ModelFields.search([
-                                ('model_id', '=', local_object_model.id),
-                                ('name', '=', local_object_fields[i]),
-                            ])
+                            _logger.info(u'>>>>>>>>>>>>>>> %s', external_object)
 
-                            if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'float',
-                                                   'boolean', 'selection']:
-                                local_values[local_object_fields[i]] = external_object[external_object_fields[i]]
+                            i = 0
+                            local_values = {}
+                            sync_values = {}
+                            for field in local_object_fields:
+                                fields = ModelFields.search([
+                                    ('model_id', '=', local_object_model.id),
+                                    ('name', '=', local_object_fields[i]),
+                                ])
 
-                            elif fields[0].ttype == 'many2one':
-                                if external_object[external_object_fields[i]] is not False:
-                                    model_ = fields[0].relation
-                                    id_ = external_object[external_object_fields[i]][0]
-                                    relation_sync_object = ExternalSync.with_context({'active_test': False}).search([
-                                        ('model', '=', model_),
-                                        ('external_id', '=', int(id_)),
-                                    ])
-                                    RelationObject = self.env[model_]
-                                    relation_object = RelationObject.with_context({'active_test': False}).search([
-                                        ('id', '=', relation_sync_object.res_id),
-                                    ])
-                                    if relation_object.id is not False:
-                                        local_values[local_object_fields[i]] = relation_object.id
+                                if fields[0].ttype in ['char', 'date', 'datetime', 'text', 'integer', 'float',
+                                                       'boolean', 'selection']:
+                                    local_values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
-                            elif fields[0].ttype == 'reference':
-                                if external_object[external_object_fields[i]] is not False:
-                                    model_, id_ = external_object[external_object_fields[i]].split(',')
-                                    relation_sync_object = ExternalSync.with_context({'active_test': False}).search([
-                                        ('model', '=', model_),
-                                        ('external_id', '=', int(id_)),
-                                    ])
-                                    try:
-                                        RefObject = self.env[model_]
-                                        ref_object = RefObject.with_context({'active_test': False}).search([
-                                            ('id', '=', relation_sync_object.res_id),
-                                        ])
-                                        if ref_object.id is not False:
-                                            local_values[local_object_fields[i]] = model_ + ',' + str(ref_object.id)
-                                    except Exception as e:
-                                        _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s', e)
-
-                            elif fields[0].ttype == 'many2many':
-                                if external_object[external_object_fields[i]] is not False:
-                                    model_ = fields[0].relation
-                                    ids_ = external_object[external_object_fields[i]]
-                                    RelationObject = self.env[model_]
-
-                                    m2m_list = []
-                                    m2m_list.append((5,))
-                                    for external_id in ids_:
+                                elif fields[0].ttype == 'many2one':
+                                    if external_object[external_object_fields[i]] is not False:
+                                        model_ = fields[0].relation
+                                        id_ = external_object[external_object_fields[i]][0]
                                         relation_sync_object = \
                                             ExternalSync.with_context({'active_test': False}).search([
                                                 ('model', '=', model_),
-                                                ('external_id', '=', int(external_id)),
+                                                ('external_id', '=', int(id_)),
                                             ])
                                         RelationObject = self.env[model_]
                                         relation_object = RelationObject.with_context({'active_test': False}).search([
                                             ('id', '=', relation_sync_object.res_id),
                                         ])
                                         if relation_object.id is not False:
-                                            m2m_list.append((4, relation_object.id))
+                                            local_values[local_object_fields[i]] = relation_object.id
 
-                                    _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
-                                    local_values[local_object_fields[i]] = m2m_list
+                                elif fields[0].ttype == 'reference':
+                                    if external_object[external_object_fields[i]] is not False:
+                                        model_, id_ = external_object[external_object_fields[i]].split(',')
+                                        relation_sync_object = \
+                                            ExternalSync.with_context({'active_test': False}).search([
+                                                ('model', '=', model_),
+                                                ('external_id', '=', int(id_)),
+                                            ])
+                                        try:
+                                            RefObject = self.env[model_]
+                                            ref_object = RefObject.with_context({'active_test': False}).search([
+                                                ('id', '=', relation_sync_object.res_id),
+                                            ])
+                                            if ref_object.id is not False:
+                                                local_values[local_object_fields[i]] = \
+                                                    model_ + ',' + str(ref_object.id)
+                                        except Exception as e:
+                                            _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s', e)
 
-                            else:
-                                _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
+                                elif fields[0].ttype == 'many2many':
+                                    if external_object[external_object_fields[i]] is not False:
+                                        model_ = fields[0].relation
+                                        ids_ = external_object[external_object_fields[i]]
+                                        RelationObject = self.env[model_]
 
-                            i += 1
+                                        m2m_list = []
+                                        m2m_list.append((5,))
+                                        for external_id in ids_:
+                                            relation_sync_object = \
+                                                ExternalSync.with_context({'active_test': False}).search([
+                                                    ('model', '=', model_),
+                                                    ('external_id', '=', int(external_id)),
+                                                ])
+                                            RelationObject = self.env[model_]
+                                            relation_object = \
+                                                RelationObject.with_context({'active_test': False}).search([
+                                                    ('id', '=', relation_sync_object.res_id),
+                                                ])
+                                            if relation_object.id is not False:
+                                                m2m_list.append((4, relation_object.id))
 
-                        _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, local_values)
-                        new_local_object = LocalObject.create(local_values)
+                                        _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                                        local_values[local_object_fields[i]] = m2m_list
 
-                        sync_values['res_id'] = new_local_object.id
-                        sync_values['external_last_update'] = external_object['__last_update']
-                        sync_values['res_last_update'] = external_object['__last_update']
-                        sync_values['external_sync'] = 'included'
-                        if schedule.external_include_and_sync:
-                            sync_values['external_sync'] = 'synchronized'
-                        _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, sync_values)
-                        sync_object.write(sync_values)
+                                else:
+                                    _logger.warning(u'>>>>>>>>>>>>>>>>>>>> %s %s', fields[0].name, fields[0].ttype)
 
-                        if not schedule.external_include_and_sync:
+                                i += 1
 
-                            if schedule.external_disable_sync is False and \
-                               sync_count < schedule.external_max_sync:
+                            _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, local_values)
+                            new_local_object = LocalObject.create(local_values)
 
-                                sync_count += 1
-                                sync_include_count += 1
-                                task_count += 1
+                            sync_values['res_id'] = new_local_object.id
+                            sync_values['external_last_update'] = external_object['__last_update']
+                            sync_values['res_last_update'] = external_object['__last_update']
+                            sync_values['external_sync'] = 'included'
+                            if schedule.external_include_and_sync:
+                                sync_values['external_sync'] = 'synchronized'
+                            _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, sync_values)
+                            sync_object.write(sync_values)
 
-                                sync_object._object_synchronize(
-                                    sock, external_dbname, uid, external_user_pw,
-                                    schedule.external_model, external_object['id'],
-                                    schedule, model_name, sync_object
-                                )
+                            if not schedule.external_include_and_sync:
+
+                                if schedule.external_disable_sync is False and \
+                                   sync_count < schedule.external_max_sync:
+
+                                    sync_count += 1
+                                    sync_include_count += 1
+                                    task_count += 1
+
+                                    sync_object._object_synchronize(
+                                        sock, external_dbname, uid, external_user_pw,
+                                        schedule.external_model, external_object['id'],
+                                        schedule, model_name, sync_object
+                                    )
+
+                            self.env.cr.commit()
 
                     else:
 
@@ -558,6 +566,8 @@ class AbstractExternalSync(models.AbstractModel):
                                     schedule.external_model, external_object['id'],
                                     schedule, model_name, sync_object
                                 )
+
+                            self.env.cr.commit()
 
                 _logger.info(u'%s %s', '>>>>>>>>>> external_max_task: ', external_max_task)
                 # _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
@@ -792,6 +802,8 @@ class AbstractExternalSync(models.AbstractModel):
                             _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, sync_values)
                             sync_object.write(sync_values)
 
+                        self.env.cr.commit()
+
                 _logger.info(u'%s %s', '>>>>>>>>>> external_max_task: ', external_max_task)
                 # _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
                 _logger.info(u'%s %s', '>>>>>>>>>> external_max_sync: ', schedule.external_max_sync)
@@ -886,6 +898,7 @@ class AbstractExternalSync(models.AbstractModel):
                         _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>> (missing_object):', missing_count, sync_object.id)
                         sync_object.external_sync = 'missing'
                     reg_count_2 += 1
+                    self.env.cr.commit()
 
             external_args = schedule.external_last_update_args()
             external_objects = []
@@ -956,6 +969,8 @@ class AbstractExternalSync(models.AbstractModel):
                         _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, sync_values)
                         ExternalSync.create(sync_values)
 
+                        self.env.cr.commit()
+
                     else:
 
                         if external_object['__last_update'] > str(sync_object.external_last_update):
@@ -969,6 +984,8 @@ class AbstractExternalSync(models.AbstractModel):
                                 sync_object.external_sync = 'updated'
 
                             _logger.info(u'>>>>>>>>>>>>>>> %s %s', update_count, sync_object)
+
+                            self.env.cr.commit()
 
             _logger.info(u'%s %s', '>>>>>>>>>> external_max_task: ', external_max_task)
             # _logger.info(u'%s %s', '>>>>>>>>>> external_exec_sync: ', schedule.external_exec_sync)
