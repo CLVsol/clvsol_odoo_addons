@@ -76,23 +76,6 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
          ('remove', 'Remove'),
          ], string='Disable Sync:', default=False, readonly=False, required=False
     )
-    external_include_and_sync = fields.Boolean(
-        string='Include and Sync'
-    )
-    external_include_and_sync_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Include and Sync:', default=False, readonly=False, required=False
-    )
-
-    external_max_sync = fields.Integer(
-        string='Max Sync Registers'
-    )
-    external_max_sync_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Max Sync Registers:', default=False, readonly=False, required=False
-    )
 
     external_last_update_start = fields.Datetime(
         string="Last Update (Start)"
@@ -162,16 +145,6 @@ class ExternalSypnScheduleMassEdit(models.TransientModel):
                 external_sync_schedule.external_disable_sync = self.external_disable_sync
             if self.external_disable_sync_selection == 'remove':
                 external_sync_schedule.external_disable_sync = False
-
-            if self.external_include_and_sync_selection == 'set':
-                external_sync_schedule.external_include_and_sync = self.external_include_and_sync
-            if self.external_include_and_sync_selection == 'remove':
-                external_sync_schedule.external_include_and_sync = False
-
-            if self.external_max_sync_selection == 'set':
-                external_sync_schedule.external_max_sync = self.external_max_sync
-            if self.external_max_sync_selection == 'remove':
-                external_sync_schedule.external_max_sync = False
 
             if self.external_last_update_start_selection == 'set':
                 external_sync_schedule.external_last_update_start = self.external_last_update_start

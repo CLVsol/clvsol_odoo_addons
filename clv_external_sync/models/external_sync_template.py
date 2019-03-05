@@ -41,18 +41,6 @@ class ExternalSyncTemplate(models.Model):
         string='Disable Sync'
     )
 
-    external_include_and_sync = fields.Boolean(
-        string='Include and Sync'
-    )
-
-    # external_exec_sync = fields.Boolean(
-    #     string='Execute Sync'
-    # )
-
-    external_max_sync = fields.Integer(
-        string='Max Sync Registers'
-    )
-
     external_last_update_start = fields.Datetime(
         string="Last Update (Start)"
     )

@@ -51,18 +51,6 @@
                         <field name="external_disable_sync" nolabel='1'/>
                     </group>
                     <group>
-                        <field name="external_include_and_sync_selection"/>
-                    </group>
-                    <group>
-                        <field name="external_include_and_sync" nolabel='1'/>
-                    </group>
-                    <group>
-                        <field name="external_max_sync_selection"/>
-                    </group>
-                    <group>
-                        <field name="external_max_sync" nolabel='1'/>
-                    </group>
-                    <group>
                         <field name="external_last_update_start_selection"/>
                     </group>
                     <group name="external_last_update_start">

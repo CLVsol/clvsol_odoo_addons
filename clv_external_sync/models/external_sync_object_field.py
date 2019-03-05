@@ -13,8 +13,8 @@ class ExternalSyncObjectField(models.Model):
     external_object_field = fields.Char(string='External Object Field')
     local_object_field = fields.Char(string='Local Object Field')
 
-    inclusion = fields.Boolean(string='Use during Inclusion', default=False)
-    update = fields.Boolean(string='Use during Update', default=True)
+    identification = fields.Boolean(string='Use during Identification', default=False)
+    synchronization = fields.Boolean(string='Use during Synchronization', default=False)
 
     template_id = fields.Many2one(comodel_name='clv.external_sync.template', string='External Sync Template')
     schedule_id = fields.Many2one(comodel_name='clv.external_sync.schedule', string='External Sync Schedule')

@@ -48,18 +48,6 @@ class ExternalSyncSchedule(models.Model):
         string='Disable Sync'
     )
 
-    external_include_and_sync = fields.Boolean(
-        string='Include and Sync'
-    )
-
-    # external_exec_sync = fields.Boolean(
-    #     string='Execute Sync'
-    # )
-
-    external_max_sync = fields.Integer(
-        string='Max Sync Registers'
-    )
-
     external_last_update_start = fields.Datetime(
         string="Last Update (Start)"
     )
@@ -125,8 +113,6 @@ class ExternalSyncSchedule(models.Model):
             schedule.external_disable_check_missing = schedule.template_id.external_disable_check_missing
             schedule.external_disable_inclusion = schedule.template_id.external_disable_inclusion
             schedule.external_disable_sync = schedule.template_id.external_disable_sync
-            schedule.external_include_and_sync = schedule.template_id.external_include_and_sync
-            schedule.external_max_sync = schedule.template_id.external_max_sync
             schedule.external_last_update_start = schedule.template_id.external_last_update_start
             schedule.external_last_update_end = schedule.template_id.external_last_update_end
             schedule.model = schedule.template_id.model
@@ -138,8 +124,8 @@ class ExternalSyncSchedule(models.Model):
             values = {
                 'external_object_field': object_field.external_object_field,
                 'local_object_field': object_field.local_object_field,
-                'inclusion': object_field.inclusion,
-                'update': object_field.update,
+                'identification': object_field.identification,
+                'synchronization': object_field.synchronization,
                 'sequence': object_field.sequence,
                 'schedule_id': schedule.id,
             }

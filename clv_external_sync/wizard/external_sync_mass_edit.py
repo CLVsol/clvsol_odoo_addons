@@ -23,9 +23,11 @@ class ExternalSyncMassEdit(models.TransientModel):
     )
 
     external_sync = fields.Selection(
-        [('included', 'Included'),
+        [('identified', 'Identified'),
+         ('included', 'Included'),
          ('updated', 'Updated'),
          ('synchronized', 'Synchronized'),
+         ('recognized', 'Recognized'),
          ('missing', 'Missing'),
          ], 'External Synchronization'
     )

@@ -20,8 +20,8 @@
                                 <field name="sequence"/>
                             </group>
                             <group>
-                                <field name="inclusion"/>
-                                <field name="update"/>
+                                <field name="identification"/>
+                                <field name="synchronization"/>
                             </group>
                             <group>
                                 <field name="template_id" options="{'no_open': False, 'no_create': True}"/>
@@ -72,8 +72,8 @@
                 <field name="sequence" widget="handle"/>
                 <field name="external_object_field"/>
                 <field name="local_object_field"/>
-                <field name="inclusion"/>
-                <field name="update"/>
+                <field name="identification"/>
+                <field name="synchronization"/>
             </tree>
         </field>
     </record>
@@ -87,8 +87,8 @@
                 <field name="schedule_id"/>
                 <field name="external_object_field"/>
                 <field name="local_object_field"/>
-                <field name="inclusion"/>
-                <field name="update"/>
+                <field name="identification"/>
+                <field name="synchronization"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
@@ -131,8 +131,8 @@
                             <field name="sequence" readonly="True" widget="handle"/>
                             <field name="external_object_field"/>
                             <field name="local_object_field"/>
-                            <field name="inclusion"/>
-                            <field name="update"/>
+                            <field name="identification"/>
+                            <field name="synchronization"/>
                         </tree>
                     </field>
                 </page>
@@ -155,8 +155,8 @@
                             <field name="sequence" readonly="True" widget="handle"/>
                             <field name="external_object_field"/>
                             <field name="local_object_field"/>
-                            <field name="inclusion"/>
-                            <field name="update"/>
+                            <field name="identification"/>
+                            <field name="synchronization"/>
                         </tree>
                     </field>
                 </page>
