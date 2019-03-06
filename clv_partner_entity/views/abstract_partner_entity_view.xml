@@ -8,7 +8,7 @@
         <field name="name">clv.abstract.partner_entity.tree</field>
         <field name="model">clv.abstract.partner_entity</field>
         <field name="arch" type="xml">
-            <tree string="Partner Entity">
+            <tree name="partner_entities" string="Partner Entity">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="email" invisible="True"/>
@@ -20,10 +20,10 @@
         <field name="name">clv.abstract.partner_entity.form</field>
         <field name="model">clv.abstract.partner_entity</field>
         <field name="arch" type="xml">
-        <form string="Partner Entity">
-            <header name="header">
-                <!-- To add buttons and status widget -->
-            </header>
+            <form string="Partner Entity">
+                <header name="header">
+                    <!-- To add buttons and status widget -->
+                </header>
                 <sheet name="abstract_partner_entity">
                     <field name="image"
                            widget='image'
@@ -32,6 +32,8 @@
                                      'size': [90, 90],
                                      }"
                            />
+                    <div name="button_box" class="oe_right oe_button_box">
+                    </div>
                     <div class="oe_title" name="title">
                         <h1>
                             <label for="name" class="oe_edit_only"/>
@@ -360,13 +362,13 @@
                             </group>
                         </page>
                     </notebook> 
-            </sheet>
-            <footer>
-                <!--div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="message_ids" widget="mail_thread"/>
-                </div-->
-            </footer>
+                </sheet>
+                <footer>
+                    <!--div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div-->
+                </footer>
             </form>
         </field>
     </record>
