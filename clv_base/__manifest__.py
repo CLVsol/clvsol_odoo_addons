@@ -14,7 +14,6 @@
     'data': [
         'security/base_security.xml',
         'security/ir.model.access.csv',
-        'data/annotation_seq.xml',
         'views/abstract_log_view.xml',
         'views/abstract_marker_view.xml',
         'views/abstract_category_view.xml',
