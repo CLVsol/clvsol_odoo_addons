@@ -43,23 +43,32 @@ class PersonContactInformationUpdate(models.TransientModel):
     def do_person_contact_information_updt(self):
         self.ensure_one()
 
+        person_count = 0
         for person in self.person_ids:
 
-            _logger.info(u'%s %s', '>>>>>', person.name)
+            person_count += 1
+
+            _logger.info(u'%s %s %s', '>>>>>', person_count, person.name)
 
             if person.ref_address_id is not False:
 
-                person.street = person.ref_address_id.street
-                person.street2 = person.ref_address_id.street2
-                person.country_id = person.ref_address_id.country_id
-                person.state_id = person.ref_address_id.state_id
-                person.city = person.ref_address_id.city
-                person.zip = person.ref_address_id.zip
+                values = {}
+
+                values['street'] = person.ref_address_id.street
+                values['street2'] = person.ref_address_id.street2
+                values['country_id'] = person.ref_address_id.country_id.id
+                values['state_id'] = person.ref_address_id.state_id.id
+                values['city'] = person.ref_address_id.city
+                values['zip'] = person.ref_address_id.zip
                 if self.updt_phone:
-                    person.phone = person.ref_address_id.phone
+                    values['phone'] = person.ref_address_id.phone
                 if self.updt_mobile:
-                    person.mobile = person.ref_address_id.mobile
+                    values['mobile'] = person.ref_address_id.mobile
                 if self.updt_email:
-                    person.email = person.ref_address_id.email
+                    values['email'] = person.ref_address_id.email
+
+                _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+
+                person.write(values)
 
         return True
