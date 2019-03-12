@@ -56,6 +56,10 @@ class ExternalSyncSchedule(models.Model):
         string="Last Update (End)"
     )
 
+    enable_sequence_code_sync = fields.Boolean(
+        string='Enable Sequence Code Sync'
+    )
+
     notes = fields.Text(string='Notes')
 
     date_inclusion = fields.Datetime(
@@ -72,6 +76,12 @@ class ExternalSyncSchedule(models.Model):
         string='Method',
         required=False,
         help="Name of the method to be called when the synchronization job is processed."
+    )
+
+    sequence_code = fields.Char(
+        string='Sequence Code',
+        required=False,
+        help="Code of the Sequence to be synchronized when the synchronization job is processed."
     )
 
     external_model = fields.Char(
@@ -115,8 +125,10 @@ class ExternalSyncSchedule(models.Model):
             schedule.external_disable_sync = schedule.template_id.external_disable_sync
             schedule.external_last_update_start = schedule.template_id.external_last_update_start
             schedule.external_last_update_end = schedule.template_id.external_last_update_end
+            schedule.enable_sequence_code_sync = schedule.template_id.enable_sequence_code_sync
             schedule.model = schedule.template_id.model
             schedule.method = schedule.template_id.method
+            schedule.sequence_code = schedule.template_id.sequence_code
             schedule.external_model = schedule.template_id.external_model
 
         ExternalSyncObjectField = self.env['clv.external_sync.object_field']
@@ -145,8 +157,10 @@ class ExternalSyncSchedule(models.Model):
             self.external_disable_sync = self.template_id.external_disable_sync
             self.external_last_update_start = self.template_id.external_last_update_start
             self.external_last_update_end = self.template_id.external_last_update_end
+            self.enable_sequence_code_sync = self.template_id.enable_sequence_code_sync
             self.model = self.template_id.model
             self.method = self.template_id.method
+            self.sequence_code = self.template_id.sequence_code
             self.external_model = self.template_id.external_model
 
             schedule_id = self._origin.id

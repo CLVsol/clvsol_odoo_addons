@@ -411,6 +411,35 @@ class AbstractExternalSync(models.AbstractModel):
 
                         self.env.cr.commit()
 
+                sequence_code = False
+                sequence_number_next_actual = False
+
+                if schedule.enable_sequence_code_sync and \
+                   schedule.sequence_code is not False:
+
+                    external_sequence_model = 'ir.sequence'
+                    external_sequence_args = [
+                        ('code', '=', schedule.sequence_code),
+                    ]
+                    external_sequence_fields = ['code', 'number_next_actual']
+                    external_sequence_objects = sock.execute(external_dbname, uid, external_user_pw,
+                                                             external_sequence_model, 'search_read',
+                                                             external_sequence_args,
+                                                             external_sequence_fields)
+
+                    external_sequence_object = external_sequence_objects[0]
+                    sequence_code = external_sequence_object['code']
+                    sequence_number_next_actual = external_sequence_object['number_next_actual']
+
+                    _logger.info(u'%s %s %s', '>>>>>>>>>> (external_sequence):',
+                                 sequence_code, sequence_number_next_actual)
+
+                    IrSequence = self.env['ir.sequence']
+                    local_sequence = IrSequence.with_context({'active_test': False}).search([
+                        ('code', '=', sequence_code),
+                    ])
+                    local_sequence.number_next_actual = sequence_number_next_actual
+
                 _logger.info(u'%s %s', '>>>>>>>>>> external_max_task: ', external_max_task)
                 _logger.info(u'%s %s', '>>>>>>>>>> sync_objects: ', len(sync_objects))
                 _logger.info(u'%s %s', '>>>>>>>>>> reg_count: ', reg_count)
@@ -437,6 +466,8 @@ class AbstractExternalSync(models.AbstractModel):
                     'task_count: ' + str(task_count) + '\n\n' + \
                     'date_last_sync: ' + str(date_last_sync) + '\n' + \
                     'upmost_last_update: ' + str(upmost_last_update) + '\n\n' + \
+                    'sequence_code: ' + str(sequence_code) + '\n' + \
+                    'sequence_number_next_actual: ' + str(sequence_number_next_actual) + '\n\n' + \
                     'Execution time: ' + str(secondsToStr(time() - start)) + '\n'
 
     def _object_external_recognize(self, schedule):

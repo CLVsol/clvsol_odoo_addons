@@ -49,6 +49,10 @@ class ExternalSyncTemplate(models.Model):
         string="Last Update (End)"
     )
 
+    enable_sequence_code_sync = fields.Boolean(
+        string='Enable Sequence Code Sync'
+    )
+
     notes = fields.Text(string='Notes')
 
     date_inclusion = fields.Datetime(
@@ -65,6 +69,12 @@ class ExternalSyncTemplate(models.Model):
         string='Method',
         required=True,
         help="Name of the method to be called when the synchronization job is processed."
+    )
+
+    sequence_code = fields.Char(
+        string='Sequence Code',
+        required=False,
+        help="Code of the Sequence to be synchronized when the synchronization job is processed."
     )
 
     external_model = fields.Char(

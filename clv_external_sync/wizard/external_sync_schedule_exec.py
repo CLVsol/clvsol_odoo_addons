@@ -84,7 +84,8 @@ class ExternalSyncScheduleExec(models.TransientModel):
                     'external_disable_check_missing: ' + str(schedule.external_disable_check_missing) + '\n' + \
                     'external_disable_inclusion: ' + str(schedule.external_disable_inclusion) + '\n' + \
                     'external_disable_sync: ' + str(schedule.external_disable_sync) + '\n' + \
-                    'external_last_update_args: ' + str(schedule.external_last_update_args()) + '\n\n'
+                    'external_last_update_args: ' + str(schedule.external_last_update_args()) + '\n\n' + \
+                    'enable_sequence_code_sync: ' + str(schedule.enable_sequence_code_sync) + '\n\n'
 
                 exec(method_call)
 
