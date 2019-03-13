@@ -11,5 +11,5 @@ class PersonOff(models.Model):
     off_instance_id = fields.Many2one(
         comodel_name='clv.off.instance',
         string='Off Instance',
-        required=True,
+        required=False,
     )

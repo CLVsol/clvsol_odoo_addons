@@ -29,6 +29,7 @@
         'views/global_tag_view.xml',
         'views/address_view.xml',
         'views/family_view.xml',
+        'views/person_view.xml',
         'wizard/person_off_mass_edit_view.xml',
         'wizard/person_off_contact_information_updt_view.xml',
     ],
