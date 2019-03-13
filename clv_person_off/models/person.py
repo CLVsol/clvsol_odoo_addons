@@ -63,8 +63,8 @@ class PersonOff(models.Model):
                     data_values['city'] = person_off.related_person_id.ref_address_id.city
                     data_values['state_id'] = person_off.related_person_id.ref_address_id.state_id.id
                     data_values['country_id'] = person_off.related_person_id.ref_address_id.country_id.id
-                    data_values['phone'] = person_off.related_person_id.ref_address_id.phone
-                    data_values['mobile'] = person_off.related_person_id.ref_address_id.mobile
+                    # data_values['phone'] = person_off.related_person_id.ref_address_id.phone
+                    # data_values['mobile'] = person_off.related_person_id.ref_address_id.mobile
 
                 if person_off.related_person_id.family_id.id is not False:
 
