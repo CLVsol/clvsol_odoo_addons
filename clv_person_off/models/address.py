@@ -35,8 +35,13 @@ class PersonOff(models.Model):
     ref_address_mobile_phone = fields.Char(string='Address Mobile', related='ref_address_id.mobile')
     ref_address_email = fields.Char(string='Address Email', related='ref_address_id.email')
 
-    ref_address_category_ids = fields.Char(
-        string='Address Categories',
+    ref_address_category_names = fields.Char(
+        string='Address Category Names',
         related='ref_address_id.category_ids.name',
         store=True
+    )
+    ref_address_category_ids = fields.Many2many(
+        comodel_name='clv.address.category',
+        string='Address Categories',
+        related='ref_address_id.category_ids'
     )
