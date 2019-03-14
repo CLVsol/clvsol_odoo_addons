@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_address_off_view_tree" model="ir.ui.view">
+        <field name="name">clv.address_off.tree</field>
+        <field name="model">clv.address_off</field>
+        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_tree"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Addresses (Off)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="clv_address_off_view_form" model="ir.ui.view">
+        <field name="name">clv.address_off.form</field>
+        <field name="model">clv.address_off</field>
+        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_form"/>
+        <field name="mode">primary</field>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Address (Off)</attribute>
+            </xpath>
+            <xpath expr="//group[@name='main_data']">
+                <group name="main">
+                    <field name="parent_id"
+                           colspan="2"
+                           string="Legal Representative"
+                           domain="[('customer','=',True)]"
+                           />
+                </group>
+            </xpath>
+            <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
+                <img name="kanban_image_default_person"
+                     t-if="record.is_company.raw_value === false"
+                     t-attf-src='{{ _s }}/clv_address_off/static/src/img/address_off-avatar.png'
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="clv_address_off_view_kanban" model="ir.ui.view">
+        <field name="name">clv.address_off.kanban</field>
+        <field name="model">clv.address_off</field>
+        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_kanban"/>
+        <field name="mode">primary</field>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="string">Addresses (Off)</attribute>
+            </xpath>
+            <xpath expr="//img[@name='kanban_image_entity']" position="replace">
+                <img name="kanban_image_entity"
+                     t-att-src="kanban_image('clv.address_off', 'image_small', record.id.raw_value)" alt="Address Image"
+                />
+            </xpath>
+            <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
+                <img name="kanban_image_default_person"
+                     t-if="record.is_company.raw_value === false"
+                     t-attf-src='{{ _s }}/clv/static/src/img/address_off-avatar.png' alt="Address Image"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="clv_address_off_view_search" model="ir.ui.view">
+        <field name="name">clv.address_off.search</field>
+        <field name="model">clv.address_off</field>
+        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_search"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="attributes">
+                <attribute name="string">Addresses (Off)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clv_address_off_action">
+        <field name="name">Addresses (Off)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.address_off</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+</odoo>
