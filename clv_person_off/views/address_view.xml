@@ -67,7 +67,7 @@
                 <!--field name="person_off_ref_address_role_id" options='{"no_open": False, "no_create": True}'/-->
                 <button name="do_person_off_get_ref_address_data"
                         type="object"
-                        class="oe_stat_button"
+                        class="oe_stat_button, oe_edit_only"
                         icon="fa-download"
                         string=" Get Reference Address Data"
                         confirm="Are you sure you want to copy the 'Reference Address' data?"
@@ -102,7 +102,7 @@
             </field>
             <group name="group_by" position="inside">
                 <filter name="group_by_ref_address_id" string="Address" context="{'group_by': 'ref_address_id'}"/>
-                <filter name="group_by_ref_address_category_ids" string="Address Categories" context="{'group_by': 'ref_address_category_names'}"/>
+                <filter name="group_by_ref_address_category_names" string="Address Categories" context="{'group_by': 'ref_address_category_names'}"/>
             </group>
         </field>
     </record>
