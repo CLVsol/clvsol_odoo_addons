@@ -15,6 +15,8 @@
         'security/off_security.xml',
         'security/ir.model.access.csv',
         'views/off_instance_view.xml',
+        'views/off_code_view.xml',
+        'views/referenceable_model_view.xml',
     ],
     'demo': [],
     'test': [],
