@@ -47,7 +47,7 @@
                 <field name="ref_address_category_names" string="Address Category Names" invisible="True"/>
                 <field name="ref_address_category_ids" string="Address Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
                 <!--field name="person_ref_address_role_id" options='{"no_open": False, "no_create": True}'/-->
-                <button name="do_person_get_ref_address_data"
+                <button name="do_family_get_ref_address_data"
                         type="object"
                         class="oe_stat_button, oe_edit_only"
                         icon="fa-download"
