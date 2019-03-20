@@ -17,16 +17,16 @@ class AddressOff(models.Model):
         inverse_name='ref_address_off_id',
         string='Persons (Off)'
     )
-    count_person_offs = fields.Integer(
+    count_persons_off = fields.Integer(
         string='Persons (Off) (count)',
-        compute='_compute_count_person_offs',
+        compute='_compute_count_persons_off',
         # store=True
     )
 
     @api.depends('person_off_ids')
-    def _compute_count_person_offs(self):
+    def _compute_count_persons_off(self):
         for r in self:
-            r.count_person_offs = len(r.person_off_ids)
+            r.count_persons_off = len(r.person_off_ids)
 
 
 class PersonOff(models.Model):

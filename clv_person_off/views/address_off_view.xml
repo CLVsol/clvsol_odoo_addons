@@ -61,16 +61,16 @@
                 <field name="ref_address_off_id"
                     context="{'show_ref_address_off_only': 1}"
                     options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
-                <field name="ref_address_off_code" string="Address(Off) Code"/>
-                <field name="ref_address_off_category_names" string="Address(Off) Category Names" invisible="True"/>
-                <field name="ref_address_off_category_ids" string="Address(Off) Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
+                <field name="ref_address_off_code" string="Address (Off) Code"/>
+                <field name="ref_address_off_category_names" string="Address (Off) Category Names" invisible="True"/>
+                <field name="ref_address_off_category_ids" string="Address (Off) Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
                 <!--field name="person_off_ref_address_off_role_id" options='{"no_open": False, "no_create": True}'/-->
                 <button name="do_person_off_get_ref_address_off_data"
                         type="object"
                         class="oe_stat_button, oe_edit_only"
                         icon="fa-download"
-                        string=" Get Reference Address(Off) Data"
-                        confirm="Are you sure you want to copy the 'Reference Address(Off)' data?"
+                        string=" Get Reference Address (Off) Data"
+                        confirm="Are you sure you want to copy the 'Reference Address (Off)' data?"
                         attrs="{'invisible': [('ref_address_off_id', '=', False)]}"
                         >
                 </button>
@@ -85,7 +85,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="ref_address_off_category_ids" string="Address(Off) Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
+                <field name="ref_address_off_category_ids" string="Address (Off) Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
             </field>
         </field>
     </record>
@@ -101,8 +101,8 @@
                 <field name="ref_address_off_category_names"/>
             </field>
             <group name="group_by" position="inside">
-                <filter name="group_by_ref_address_off_id" string="Address(Off)" context="{'group_by': 'ref_address_off_id'}"/>
-                <filter name="group_by_ref_address_off_category_names" string="Address(Off) Categories" context="{'group_by': 'ref_address_off_category_names'}"/>
+                <filter name="group_by_ref_address_off_id" string="Address (Off)" context="{'group_by': 'ref_address_off_id'}"/>
+                <filter name="group_by_ref_address_off_category_names" string="Address (Off) Categories" context="{'group_by': 'ref_address_off_category_names'}"/>
             </group>
         </field>
     </record>
