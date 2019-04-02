@@ -33,7 +33,7 @@ class MediaFile(models.Model):
     _sql_constraints = [
         ('code_uniq',
          'UNIQUE(code)',
-         u'Error! The Person Code must be unique!'
+         u'Error! The Media File Code must be unique!'
          )
     ]
 
