@@ -1,10 +1,11 @@
-# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# -*- coding: utf-8 -*-
+# Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models, fields
 
 
-class Tag(models.Model):
+class GlobalTag(models.Model):
     _inherit = 'clv.global_tag'
 
     mfile_ids = fields.Many2many(
@@ -16,7 +17,7 @@ class Tag(models.Model):
     )
 
 
-class Address(models.Model):
+class MediaFile(models.Model):
     _inherit = 'clv.mfile'
 
     global_tag_ids = fields.Many2many(

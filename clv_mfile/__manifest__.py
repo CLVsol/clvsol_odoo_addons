@@ -12,14 +12,16 @@
     'images': [],
     'depends': [
         'clv_base',
+        'clv_global_log',
+        'clv_global_tag',
     ],
     'data': [
         'security/mfile_security.xml',
         'security/ir.model.access.csv',
         'views/mfile_view.xml',
         'views/mfile_category_view.xml',
+        'views/global_tag_view.xml',
         # 'views/mfile_format_view.xml',
-        # 'views/global_tag_view.xml',
         # 'views/mfile_annotation_view.xml',
         # 'views/mfile_kanban_view.xml',
         'views/mfile_log_view.xml',

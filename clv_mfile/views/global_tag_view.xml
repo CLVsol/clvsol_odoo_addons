@@ -26,7 +26,7 @@
         <field name="arch" type="xml">
             <label for="name" position="before">
                 <label for="global_tag_ids"  groups="clv_global_tag.group_user" class="oe_edit_only"/>
-                <h2><field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'no_open': False, 'no_create': True}" groups="clv_global_tag.group_user"/></h2>
+                <h4><field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'color_field': 'color', 'no_open': False, 'no_create': True}" groups="clv_global_tag.group_user"/></h4>
             </label>
         </field>
     </record>
@@ -38,7 +38,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="before">
-                <field name="global_tag_ids" groups="clv_global_tag.group_user"/>
+                <field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'color_field': 'color'}" groups="clv_global_tag.group_user"/>
                 <field name="global_tag_names_suport" invisible="True"/>
             </field>
         </field>
@@ -54,7 +54,7 @@
                 <field name="global_tag_ids"/>
             </field>
             <group name="group_by" position="inside">
-                <filter string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
+                <filter name="filter_global_tag_names" string="Global Tags" context="{'group_by': 'global_tag_names'}"/>
             </group>
         </field>
     </record>
