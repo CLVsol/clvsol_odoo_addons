@@ -1,4 +1,5 @@
-# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# -*- coding: utf-8 -*-
+# Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models
@@ -7,7 +8,7 @@ from openerp import api, fields, models
 class MediaFileCategory(models.Model):
     _description = 'Media File Category'
     _name = 'clv.mfile.category'
-    _inherit = 'clv.object.category'
+    _inherit = 'clv.abstract.category'
 
     code = fields.Char(string='Category Code', required=False)
 
