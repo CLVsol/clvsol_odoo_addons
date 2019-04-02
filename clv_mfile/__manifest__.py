@@ -14,7 +14,7 @@
         'clv_base',
     ],
     'data': [
-        # 'security/mfile_security.xml',
+        'security/mfile_security.xml',
         # 'security/ir.model.access.csv',
         # 'views/mfile_view.xml',
         # 'views/mfile_category_view.xml',
