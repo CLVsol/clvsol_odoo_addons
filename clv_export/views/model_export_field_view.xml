@@ -67,7 +67,7 @@
         <field name="name">clv.model_export.field.tree</field>
         <field name="model">clv.model_export.field</field>
         <field name="arch" type="xml">
-            <tree string='Model Export Item'>
+            <tree string='Model Export Fields'>
                 <field name="model_export_id"/>
                 <field name="field_id"/>
                 <field name="field_name"/>
@@ -83,7 +83,7 @@
         <field name="name">clv.model_export.field.select</field>
         <field name="model">clv.model_export.field</field>
         <field name="arch" type="xml">
-            <search string="Search Model Export Item">
+            <search string="Search Model Export Fields">
                 <field name="model_export_id"/>
                 <field name="field_id"/>
                 <field name="name"/>
@@ -91,15 +91,15 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter string="Model Export" domain="[]" context="{'group_by': 'model_export_id'}"/>
-                    <filter string="Model Export Field" domain="[]" context="{'group_by': 'field_id'}"/>
+                    <filter name="group_by_model_export_id" string="Model Export" domain="[]" context="{'group_by': 'model_export_id'}"/>
+                    <filter name="group_by_field_id" string="Model Export Field" domain="[]" context="{'group_by': 'field_id'}"/>
                 </group>
             </search>
         </field>
     </record>
     
     <record id="clv_model_export_field_action" model="ir.actions.act_window">
-        <field name="name">Model Export Item</field>
+        <field name="name">Model Export Fields</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.model_export.field</field>
         <field name="view_type">form</field>

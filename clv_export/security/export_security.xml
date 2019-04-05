@@ -33,7 +33,7 @@
     </record>
 
     <record id="clv_base.group_admin" model="res.groups">
-        <field name="implied_ids" eval="[(4, ref('clv_export.group_supmanager'))"/>
+        <field name="implied_ids" eval="[(4, ref('clv_export.group_supmanager'))]"/>
     </record>
 
 </odoo>

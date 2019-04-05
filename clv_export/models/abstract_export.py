@@ -8,6 +8,7 @@ from odoo import fields, models
 
 
 class AbstractExport(models.AbstractModel):
+    _description = 'Abstract Export'
     _name = 'clv.abstract.export'
 
     name = fields.Char(string='Name', index=True, required=True)

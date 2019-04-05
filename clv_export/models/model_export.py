@@ -125,7 +125,7 @@ class ModelExportTemplate(models.Model):
         string='Model Exports'
     )
     count_model_exports = fields.Integer(
-        string='Model Exports',
+        string='Model Exports (count)',
         compute='_compute_count_model_exports',
         store=True
     )

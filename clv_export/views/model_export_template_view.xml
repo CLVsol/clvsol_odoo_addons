@@ -106,8 +106,8 @@
                 <separator/>
                 <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                 <group name="group_by" string="Group By...">
-                    <filter string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
-                    <filter string="Export Type" domain="[]" context="{'group_by': 'export_type'}"/>
+                    <filter name="group_by_model_id" string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
+                    <filter name="group_by_export_type" string="Export Type" domain="[]" context="{'group_by': 'export_type'}"/>
                 </group>
             </search>
         </field>

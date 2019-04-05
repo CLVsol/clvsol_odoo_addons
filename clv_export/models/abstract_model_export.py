@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class AbstractModelExport(models.AbstractModel):
+    _description = 'Abstract Model Export'
     _inherit = "clv.abstract.export"
     _name = 'clv.abstract.model_export'
 
@@ -20,7 +21,7 @@ class AbstractModelExport(models.AbstractModel):
         # domain="[('model','in',['clv.person','clv.address'])]"
     )
     model_model = fields.Char(
-        string='Model',
+        string='Model Name',
         related='model_id.model',
         store=False,
         readonly=True

@@ -14,6 +14,7 @@ def secondsToStr(t):
 
 
 class ModelExportSetUp(models.TransientModel):
+    _description = 'Model Export SetUp'
     _name = 'clv.model_export.execute'
 
     def _default_model_export_ids(self):

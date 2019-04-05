@@ -51,7 +51,7 @@ class ModelExportTemplate(models.Model):
     )
 
     count_model_export_template_fields = fields.Integer(
-        string='Model Export Template Fields',
+        string='Model Export Template Fields (count)',
         compute='_compute_count_model_export_template_fields',
         store=True
     )
