@@ -11,6 +11,7 @@ _logger = logging.getLogger(__name__)
 
 
 class FileSystemDirectoryFileUpload(models.TransientModel):
+    _description = 'File System Directory - File Upload'
     _name = 'clv.file_system.directory.file_upload'
 
     def _default_file_system_directory_ids(self):

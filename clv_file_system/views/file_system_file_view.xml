@@ -63,10 +63,10 @@
         <field name="model">clv.file_system.file</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <tree string="File System Directories">
+            <tree string="File System Files">
                 <field name="name"/>
                 <field name="file_name"/>
-                <field name="file_content" filename="file_name"/>
+                <field name="file_content" filename="file_name" widget="binary"/>
                 <field name="stored_file_name"/>
                 <field name="directory_id"/>
             </tree>
@@ -87,14 +87,14 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group expand="0" name="group_by" string="Group By...">
-                    <filter string="Directory" domain="[]" context="{'group_by':'directory_id'}"/>
+                    <filter name="group_by_directory_id" string="Directory" domain="[]" context="{'group_by':'directory_id'}"/>
                 </group>
             </search>
         </field>
     </record>
 
     <record id="clv_file_system_file_action" model="ir.actions.act_window">
-        <field name="name">File System Directories</field>
+        <field name="name">File System Files</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.file_system.file</field>
         <field name="view_type">form</field>
