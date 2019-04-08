@@ -34,7 +34,7 @@
         name="Model Export Execute"
         src_model="clv.model_export"
         res_model="clv.model_export.execute"
-        view_mode="form, tree"
+        view_mode="form"
         key2="client_action_multi"
         target="new"
     />
