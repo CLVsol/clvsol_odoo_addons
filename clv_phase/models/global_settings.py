@@ -13,7 +13,7 @@ class GlobalSettings(models.TransientModel):
     _inherit = 'clv.global_settings'
 
     current_phase_id = fields.Char(
-        string='Current Phase',
+        string='Phase',
         compute='_compute_current_phase_id',
         store=False,
     )
@@ -42,7 +42,7 @@ class GlobalSettings_2(models.TransientModel):
 
     phase_id = fields.Many2one(
         comodel_name='clv.phase',
-        string='Current Phase:',
+        string='Phase:',
         ondelete='restrict',
     )
 
