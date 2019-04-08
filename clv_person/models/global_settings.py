@@ -13,7 +13,7 @@ class GlobalSettings(models.TransientModel):
     _inherit = 'clv.global_settings'
 
     current_date_reference = fields.Date(
-        string='Current Reference Date',
+        string='Reference Date',
         compute='_compute_current_date_reference',
         store=False,
     )
@@ -40,7 +40,7 @@ class GlobalSettings(models.TransientModel):
 class GlobalSettings_2(models.TransientModel):
     _inherit = 'clv.global_settings'
 
-    date_reference = fields.Date(string="Current Reference Date:")
+    date_reference = fields.Date(string="Reference Date:")
 
     @api.depends('date_reference')
     def _compute_current_date_reference(self):
