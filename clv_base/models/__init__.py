@@ -13,3 +13,4 @@ from . import abstract_random
 from . import export_xls
 from . import referenceable_model
 from . import global_settings
+from . import global_settings_filestore

@@ -19,6 +19,7 @@
         'views/abstract_category_view.xml',
         'views/referenceable_model_view.xml',
         'views/global_settings_view.xml',
+        'views/global_settings_filestore_view.xml',
     ],
     'demo': [],
     'test': [],
