@@ -11,8 +11,8 @@
         <field name="priority" eval="10" />
         <field name="arch" type="xml">
             <header name="global_settings_header" position="after">
-                <group string="File Store">
-                    <group>
+                <group name="file_store" string="File Store">
+                    <group name="file_store_path">
                         <field name="filestore_path"/>
                         <field name="current_filestore_path" invisible="True"/>
                     </group>
