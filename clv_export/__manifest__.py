@@ -22,7 +22,7 @@
         'views/model_export_template_field_view.xml',
         'views/model_export_view.xml',
         'views/model_export_field_view.xml',
-        'views/global_settings_filestore_view.xml',
+        'views/global_settings_view.xml',
         'wizard/model_export_execute_view.xml',
     ],
     'demo': [],

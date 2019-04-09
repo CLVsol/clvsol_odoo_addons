@@ -15,19 +15,19 @@ class GlobalSettings(models.TransientModel):
     _inherit = 'clv.global_settings'
 
     current_export_files_directory_csv = fields.Char(
-        string='Export File Directory (CSV)',
+        string='Export Files Directory (CSV)',
         compute='_compute_current_export_files_directory_csv',
         store=False,
     )
 
     current_export_files_directory_sqlite = fields.Char(
-        string='Export File Directory (SQLite)',
+        string='Export Files Directory (SQLite)',
         compute='_compute_current_export_files_directory_sqlite',
         store=False,
     )
 
     current_export_files_directory_xls = fields.Char(
-        string='Export File Directory (XLS)',
+        string='Export Files Directory (XLS)',
         compute='_compute_current_export_files_directory_xls',
         store=False,
     )
@@ -55,15 +55,15 @@ class GlobalSettings_2(models.TransientModel):
     _inherit = 'clv.global_settings'
 
     export_files_directory_csv = fields.Char(
-        string='Export File Directory (CSV):'
+        string='Export Files Directory (CSV):'
     )
 
     export_files_directory_sqlite = fields.Char(
-        string='Export File Directory (SQLite):'
+        string='Export Files Directory (SQLite):'
     )
 
     export_files_directory_xls = fields.Char(
-        string='Export File Directory (XLS):'
+        string='Export Files Directory (XLS):'
     )
 
     @api.depends('export_files_directory_csv')
