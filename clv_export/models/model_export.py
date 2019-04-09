@@ -10,7 +10,7 @@ import sqlite3
 from functools import reduce
 
 from odoo import api, fields, models
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+# from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 
 _logger = logging.getLogger(__name__)
 
@@ -146,8 +146,10 @@ class ModelExport_xls(models.Model):
         if field.ttype == 'date':
             cmd = 'item.' + field.name
             if eval(cmd) is not False:
-                date_value = eval(cmd)
-                date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+                # date_value = eval(cmd)
+                date_value = str(eval(cmd))
+                # date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+                date_obj = datetime.strptime(date_value, "%Y-%m-%d")
                 try:
                     date_formated = datetime.strftime(date_obj, export_date_format)
                 except Exception:
@@ -158,8 +160,10 @@ class ModelExport_xls(models.Model):
         elif field.ttype == 'datetime':
             cmd = 'item.' + field.name
             if eval(cmd) is not False:
-                datetime_value = eval(cmd)
-                datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+                # datetime_value = eval(cmd)
+                datetime_value = str(eval(cmd))
+                # datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+                datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S.%f")
                 try:
                     datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
                 except Exception:
@@ -304,8 +308,10 @@ class ModelExport_sqlite(models.Model):
         if field.ttype == 'date':
             cmd = 'item.' + field.name
             if eval(cmd) is not False:
-                date_value = eval(cmd)
-                date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+                # date_value = eval(cmd)
+                date_value = str(eval(cmd))
+                # date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+                date_obj = datetime.strptime(date_value, "%Y-%m-%d")
                 try:
                     date_formated = datetime.strftime(date_obj, export_date_format)
                 except Exception:
@@ -316,8 +322,10 @@ class ModelExport_sqlite(models.Model):
         elif field.ttype == 'datetime':
             cmd = 'item.' + field.name
             if eval(cmd) is not False:
-                datetime_value = eval(cmd)
-                datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+                # datetime_value = eval(cmd)
+                datetime_value = str(eval(cmd))
+                # datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+                datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S.%f")
                 try:
                     datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
                 except Exception:
