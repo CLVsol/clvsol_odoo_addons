@@ -37,7 +37,6 @@ class AbstractModelExport(models.AbstractModel):
         [('xls', 'XLS'),
          # ('csv', 'CSV'),
          ('sqlite', 'SQLite'),
-         # ], string='Export Type', readonly=False, required=True
          ], string='Export Type', default='xls', readonly=False, required=True
     )
 
