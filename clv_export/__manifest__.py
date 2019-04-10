@@ -26,6 +26,7 @@
         'views/global_settings_view.xml',
         'views/model_export_template_document_item_view.xml',
         'views/model_export_document_item_view.xml',
+        'views/model_export_lab_test_criterion_view.xml',
         'wizard/model_export_execute_view.xml',
     ],
     'demo': [],
