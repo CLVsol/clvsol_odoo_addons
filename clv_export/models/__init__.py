@@ -12,5 +12,6 @@ from . import model_export_field
 from . import global_settings
 from . import model_export_template_document_item
 from . import model_export_document_item
+from . import model_export_template_lab_test_criterion
 from . import model_export_lab_test_criterion
 
