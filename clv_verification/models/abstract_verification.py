@@ -27,9 +27,7 @@ class AbstractVerification(models.AbstractModel):
          ('missing', 'Missing'),
          ], string='Verification Status', default='unknown'
     )
-    outcomes = fields.Text(string='Outcomes')
-
-    active = fields.Boolean(string='Active', default=1)
+    verification_outcomes = fields.Text(string='Verification Outcomes')
 
     def _object_verification(self, schedule, model_name):
 

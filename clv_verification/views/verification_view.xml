@@ -22,7 +22,7 @@
                             <field name="verification_status"/>
                         </group>
                     </group>
-                    <field name="outcomes" placeholder="Outcomes..." colspan="4"/>
+                    <field name="verification_outcomes" placeholder="Verification Outcomes..." colspan="4"/>
                     <notebook>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                             <group name="settings_top">
@@ -69,7 +69,7 @@
                 <field name="reference_name"/>
                 <field name="date_verification"/>
                 <field name="verification_status"/>
-                <field name="outcomes"/>
+                <field name="verification_outcomes"/>
                 <field name="id"/>
             </tree>
         </field>
@@ -85,7 +85,7 @@
                 <field name="reference"/>
                 <field name="reference_name"/>
                 <field name="verification_status"/>
-                <field name="outcomes"/>
+                <field name="verification_outcomes"/>
                 <field name="id"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>

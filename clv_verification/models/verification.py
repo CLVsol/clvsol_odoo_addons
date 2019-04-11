@@ -30,6 +30,8 @@ class Verification(models.Model):
         store=True
     )
 
+    active = fields.Boolean(string='Active', default=1)
+
     @api.depends('model', 'res_id')
     def _compute_reference(self):
         for record in self:
