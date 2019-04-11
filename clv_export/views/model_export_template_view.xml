@@ -35,6 +35,8 @@
                         <group name="group_right">
                             <field name="export_type"/>
                         </group>
+                        <group name="group_bottom_left">
+                        </group>
                     </group>
                     <field name="notes" placeholder="Notes..." colspan="4"/>
                     <notebook>
