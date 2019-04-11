@@ -8,3 +8,4 @@ from . import person
 from . import person_category
 from . import person_marker
 from . import address
+from . import family
