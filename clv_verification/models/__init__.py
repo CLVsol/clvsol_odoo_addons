@@ -12,3 +12,4 @@ from . import verification_schedule_log
 from . import verification_batch
 from . import verification_batch_member
 from . import verification_batch_log
+from . import referenceable_model
