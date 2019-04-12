@@ -7,3 +7,5 @@ from . import verification
 from . import verification_log
 from . import verification_template
 from . import verification_template_log
+from . import verification_schedule
+from . import verification_schedule_log
