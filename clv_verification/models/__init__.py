@@ -5,3 +5,5 @@
 from . import abstract_verification
 from . import verification
 from . import verification_log
+from . import verification_template
+from . import verification_template_log

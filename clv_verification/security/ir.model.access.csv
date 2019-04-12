@@ -3,3 +3,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_clv_verification_user,clv.verification.user,model_clv_verification,clv_verification.group_user,1,0,0,0
 access_clv_verification_manager,clv.verification.manager.host,model_clv_verification,clv_verification.group_manager,1,1,1,0
 access_clv_verification_supmanager,clv.verification.supmanager,model_clv_verification,clv_verification.group_supmanager,1,1,1,1
+
+access_clv_verification_template_user,clv.verification.template.user,model_clv_verification_template,clv_verification.group_user,1,0,0,0
+access_clv_verification_template_manager,clv.verification.manager.template,model_clv_verification_template,clv_verification.group_manager,1,1,1,0
+access_clv_verification_template_supmanager,clv.verification.template.supmanager,model_clv_verification_template,clv_verification.group_supmanager,1,1,1,1

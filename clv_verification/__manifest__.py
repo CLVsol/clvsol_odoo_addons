@@ -13,15 +13,15 @@
     'images': [],
     'depends': [
         'clv_base',
-        # 'clv_global_log',
+        'clv_global_log',
     ],
     'data': [
         'security/verification_security.xml',
         'security/ir.model.access.csv',
         'views/verification_view.xml',
         'views/verification_log_view.xml',
-        # 'views/verification_template_view.xml',
-        # 'views/verification_template_log_view.xml',
+        'views/verification_template_view.xml',
+        'views/verification_template_log_view.xml',
         # 'views/verification_schedule_view.xml',
         # 'views/verification_schedule_log_view.xml',
         # 'views/verification_batch_view.xml',
