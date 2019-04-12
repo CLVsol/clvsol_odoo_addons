@@ -24,7 +24,7 @@ class VerificationBatchMember(models.Model):
     )
 
 
-class ExternalSyncBatch(models.Model):
+class VerificationBatch(models.Model):
     _inherit = 'clv.verification.batch'
 
     verification_batch_member_ids = fields.One2many(

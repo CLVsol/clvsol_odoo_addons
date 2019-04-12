@@ -32,13 +32,13 @@ class VerificationSchedule(models.Model):
     model = fields.Char(
         string='Model',
         required=False,
-        help="Model name of the object on which the synchronization method to be called is located, e.g. 'res.partner'"
+        help="Model name of the object on which the verification method to be called is located, e.g. 'res.partner'"
     )
 
     method = fields.Char(
         string='Method',
         required=False,
-        help="Name of the method to be called when the synchronization job is processed."
+        help="Name of the method to be called when the verification job is processed."
     )
 
     verification_log = fields.Text(
