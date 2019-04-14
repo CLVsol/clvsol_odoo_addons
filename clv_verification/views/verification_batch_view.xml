@@ -32,8 +32,10 @@
                         </group>
                     </group>
                     <field name="notes" placeholder="Notes..." colspan="4"/>
-                    <field name="verification_log" placeholder="Verification Log..." colspan="4"/>
                     <notebook>
+                        <page name="verification_log" string="Verification Log">
+                            <field name="verification_log" placeholder="Verification Log..." colspan="4"/>
+                        </page>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                             <group name="settings_top">
                                 <group name="settings_left">
