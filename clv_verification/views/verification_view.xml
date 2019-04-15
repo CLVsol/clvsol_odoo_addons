@@ -8,7 +8,7 @@
         <field name="name">clv.verification.form</field>
         <field name="model">clv.verification</field>
         <field name="arch" type="xml">
-            <form string="External Sync">
+            <form string="Verification">
                 <sheet>
                     <group>
                         <group>
@@ -62,7 +62,7 @@
         <field name="name">clv.verification.tree</field>
         <field name="model">clv.verification</field>
         <field name="arch" type="xml">
-            <tree string="External Sync">
+            <tree string="Verification">
                 <field name="model"/>
                 <field name="res_id"/>
                 <field name="reference"/>
@@ -79,7 +79,7 @@
         <field name="name">clv.verification.search</field>
         <field name="model">clv.verification</field>
         <field name="arch" type="xml">
-            <search string="External Sync">
+            <search string="Verification">
                 <field name="model"/>
                 <field name="res_id"/>
                 <field name="reference"/>
