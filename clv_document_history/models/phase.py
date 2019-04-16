@@ -43,6 +43,16 @@ class Document(models.Model):
     )
 
 
+class DocumentType(models.Model):
+    _inherit = 'clv.document.type'
+
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase',
+        ondelete='restrict'
+    )
+
+
 class DocumentItem(models.Model):
     _inherit = 'clv.document.item'
 
