@@ -17,6 +17,7 @@
     'data': [
         'views/phase_view.xml',
         'wizard/document_mass_edit_view.xml',
+        'wizard/document_type_mass_edit_view.xml',
     ],
     'demo': [],
     'test': [],
