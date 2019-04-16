@@ -42,17 +42,42 @@ class ModelExportSetUp(models.TransientModel):
     def do_model_export_execute(self):
         self.ensure_one()
 
+        ModelExportMethod = self.env['clv.model_export.method']
+
         for model_export in self.model_export_ids:
 
             _logger.info(u'%s %s', '>>>>>', model_export.name)
 
-            if model_export.export_type == 'xls':
-                model_export.do_model_export_execute_xls()
+            model = model_export.model_model
+            export_type = model_export.export_type
 
-            if model_export.export_type == 'csv':
-                model_export.do_model_export_execute_csv()
+            model_export_method = ModelExportMethod.search([
+                ('name', '=', model),
+                ('export_type', '=', export_type),
+            ])
+            method = False
+            if model_export_method.id is not False:
+                method = model_export_method.method
 
-            if model_export.export_type == 'sqlite':
-                model_export.do_model_export_execute_sqlite()
+            method_call = False
+
+            if method is not False:
+
+                method_call = 'model_export.' + method + '()'
+
+            else:
+
+                if export_type == 'xls':
+                    method_call = 'model_export.do_model_export_execute_xls()'
+
+                if export_type == 'csv':
+                    method_call = 'model_export.do_model_export_execute_csv()'
+
+                if export_type == 'sqlite':
+                    method_call = 'model_export.do_model_export_execute_sqlite()'
+
+            _logger.info(u'%s %s', '>>>>>>>>>> method_call:', method_call)
+
+            exec(method_call)
 
         return True

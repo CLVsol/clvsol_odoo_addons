@@ -15,3 +15,7 @@ access_clv_model_export_supmanager,clv.model_export.supmanager,model_clv_model_e
 access_clv_model_export_field_user,clv.model_export.field.user,model_clv_model_export_field,clv_export.group_user,1,0,0,0
 access_clv_model_export_field_manager,clv.model_export.field.manager,model_clv_model_export_field,clv_export.group_manager,1,1,1,0
 access_clv_model_export_field_supmanager,clv.model_export.field.supmanager,model_clv_model_export_field,clv_export.group_supmanager,1,1,1,1
+
+access_clv_model_export_method_user,clv.model_export.method.user,model_clv_model_export_method,clv_export.group_user,1,0,0,0
+access_clv_model_export_method_manager,clv.model_export.method.manager,model_clv_model_export_method,clv_export.group_manager,1,1,1,0
+access_clv_model_export_method_supmanager,clv.model_export.method.supmanager,model_clv_model_export_method,clv_export.group_supmanager,1,1,1,1

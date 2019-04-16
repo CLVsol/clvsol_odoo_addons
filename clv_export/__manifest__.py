@@ -18,6 +18,7 @@
     'data': [
         'security/export_security.xml',
         'security/ir.model.access.csv',
+        'views/model_export_method_view.xml',
         'views/model_export_template_view.xml',
         'views/model_export_template_field_view.xml',
         'views/model_export_view.xml',
