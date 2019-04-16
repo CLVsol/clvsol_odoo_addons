@@ -6,6 +6,7 @@ import logging
 from datetime import *
 from time import time
 import xlwt
+import csv
 import sqlite3
 from functools import reduce
 
@@ -25,8 +26,8 @@ class AbstractModelExport(models.AbstractModel):
     def model_export_file_name(self, export_type):
         if export_type == 'xls':
             return '<model>_<label>_<code>_<timestamp>.xls'
-        # if export_type == 'csv':
-        #     return '<model>_<label>_<code>_<timestamp>.csv'
+        if export_type == 'csv':
+            return '<model>_<label>_<code>_<timestamp>.csv'
         if export_type == 'sqlite':
             return '<dbname>_<label>.sqlite'
         return False
@@ -301,170 +302,168 @@ class ModelExport_xls(models.Model):
         _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
 
 
-# class ModelExport_csv(models.Model):
-#     _inherit = 'clv.model_export'
+class ModelExport_csv(models.Model):
+    _inherit = 'clv.model_export'
 
-#     @api.model
-#     def _get_value_xls(self, item, field, export_date_format, export_datetime_format):
+    @api.model
+    def _get_value_csv(self, item, field, export_date_format, export_datetime_format):
 
-#         if field.ttype == 'date':
-#             cmd = 'item.' + field.name
-#             if eval(cmd) is not False:
-#                 # date_value = eval(cmd)
-#                 date_value = str(eval(cmd))
-#                 # date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
-#                 date_obj = datetime.strptime(date_value, "%Y-%m-%d")
-#                 try:
-#                     date_formated = datetime.strftime(date_obj, export_date_format)
-#                 except Exception:
-#                     date_formated = date_value
-#                 cmd = '"' + date_formated + '"'
-#             else:
-#                 cmd = 'False'
-#         elif field.ttype == 'datetime':
-#             cmd = 'item.' + field.name
-#             if eval(cmd) is not False:
-#                 # datetime_value = eval(cmd)
-#                 datetime_value = str(eval(cmd))
-#                 # datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
-#                 datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S.%f")
-#                 try:
-#                     datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
-#                 except Exception:
-#                     datetime_formated = datetime_value
-#                 cmd = '"' + datetime_formated + '"'
-#             else:
-#                 cmd = 'False'
-#         elif field.ttype == 'many2many':
-#             cmd = 'item.' + field.name
-#             ids = eval(cmd)
-#             names_str = '"'
-#             for id_ in ids:
-#                 if names_str == '"':
-#                     names_str += id_.name
-#                 else:
-#                     names_str += '; ' + id_.name
-#             names_str += '"'
-#             cmd = names_str
-#             # cmd = names_str.encode('ascii', 'replace')
-#             # cmd = names_str.encode('ascii', 'xmlcharrefreplace')
-#         elif field.ttype == 'many2one':
-#             cmd = 'item.' + field.name + '.name'
-#         elif field.ttype == 'one2many':
-#             cmd = 'item.' + field.name
-#             cmd = str(len(eval(cmd)))
-#         elif field.ttype == 'binary':
-#             cmd = 'False'
-#         else:
-#             cmd = 'item.' + field.name
+        if field.ttype == 'date':
+            cmd = 'item.' + field.name
+            if eval(cmd) is not False:
+                # date_value = eval(cmd)
+                date_value = str(eval(cmd))
+                # date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
+                date_obj = datetime.strptime(date_value, "%Y-%m-%d")
+                try:
+                    date_formated = datetime.strftime(date_obj, export_date_format)
+                except Exception:
+                    date_formated = date_value
+                cmd = '"' + date_formated + '"'
+            else:
+                cmd = 'False'
+        elif field.ttype == 'datetime':
+            cmd = 'item.' + field.name
+            if eval(cmd) is not False:
+                # datetime_value = eval(cmd)
+                datetime_value = str(eval(cmd))
+                # datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
+                datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S.%f")
+                try:
+                    datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
+                except Exception:
+                    datetime_formated = datetime_value
+                cmd = '"' + datetime_formated + '"'
+            else:
+                cmd = 'False'
+        elif field.ttype == 'many2many':
+            cmd = 'item.' + field.name
+            ids = eval(cmd)
+            names_str = '"'
+            for id_ in ids:
+                if names_str == '"':
+                    names_str += id_.name
+                else:
+                    names_str += '; ' + id_.name
+            names_str += '"'
+            cmd = names_str
+            # cmd = names_str.encode('ascii', 'replace')
+            # cmd = names_str.encode('ascii', 'xmlcharrefreplace')
+        elif field.ttype == 'many2one':
+            cmd = 'item.' + field.name + '.name'
+        elif field.ttype == 'one2many':
+            cmd = 'item.' + field.name
+            cmd = str(len(eval(cmd)))
+        elif field.ttype == 'binary':
+            cmd = 'False'
+        else:
+            cmd = 'item.' + field.name
 
-#         eval_cmd = False
-#         try:
-#             eval_cmd = eval(cmd)
-#         except Exception as e:
-#             _logger.warning(u'%s %s [%s]', '>>>>>>>>>> Exception: ', e, field.name)
-#         if cmd != 'False' and eval_cmd is not False:
-#             return eval(cmd)
-#         else:
-#             return None
+        eval_cmd = False
+        try:
+            eval_cmd = eval(cmd)
+        except Exception as e:
+            _logger.warning(u'%s %s [%s]', '>>>>>>>>>> Exception: ', e, field.name)
+        if cmd != 'False' and eval_cmd is not False:
+            return eval(cmd)
+        else:
+            return None
 
-#     @api.multi
-#     def do_model_export_execute_csv(self):
+    @api.multi
+    def do_model_export_execute_csv(self):
 
-#         start = time()
+        start = time()
 
-#         FileSystemDirectory = self.env['clv.file_system.directory']
-#         file_system_directory = FileSystemDirectory.search([
-#             ('directory', '=', self.export_dir_path),
-#         ])
+        FileSystemDirectory = self.env['clv.file_system.directory']
+        file_system_directory = FileSystemDirectory.search([
+            ('directory', '=', self.export_dir_path),
+        ])
 
-#         IRModelFields = self.env['ir.model.fields']
-#         all_model_fields = IRModelFields.search([
-#             ('model_id', '=', self.model_id.id),
-#         ])
+        IRModelFields = self.env['ir.model.fields']
+        all_model_fields = IRModelFields.search([
+            ('model_id', '=', self.model_id.id),
+        ])
 
-#         self.date_export = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.date_export = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-#         model_name = self.model_id.model.replace('.', '_')
-#         label = ''
-#         if self.label is not False:
-#             label = '_' + self.label
-#         code = self.code
-#         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')[2:]
-#         file_name = self.export_file_name\
-#             .replace('<model>', model_name)\
-#             .replace('_<label>', label)\
-#             .replace('<code>', code)\
-#             .replace('<timestamp>', timestamp)
-#         file_path = self.export_dir_path + '/' + file_name
-#         _logger.info(u'%s %s', '>>>>>>>>>>', file_path)
+        model_name = self.model_id.model.replace('.', '_')
+        label = ''
+        if self.label is not False:
+            label = '_' + self.label
+        code = self.code
+        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')[2:]
+        file_name = self.export_file_name\
+            .replace('<model>', model_name)\
+            .replace('_<label>', label)\
+            .replace('<code>', code)\
+            .replace('<timestamp>', timestamp)
+        file_path = self.export_dir_path + '/' + file_name
+        _logger.info(u'%s %s', '>>>>>>>>>>', file_path)
 
-#         # book = xlwt.Workbook()
+        file = open(file_path, 'w', newline='')
+        writer = csv.writer(file, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)
 
-#         # sheet = book.add_sheet(file_name)
-#         # row_nr = 0
+        headings = []
 
-#         # row = sheet.row(row_nr)
-#         # col_nr = 0
-#         if self.export_all_fields is False:
-#             for field in self.model_export_field_ids:
-#                 # col_name = field.field_id.field_description
-#                 # if field.name is not False:
-#                 #     col_name = field.name
-#                 # row.write(col_nr, col_name)
-#                 # col_nr += 1
-#                 pass
-#         else:
-#             for field in all_model_fields:
-#                 # col_name = field.name
-#                 # row.write(col_nr, col_name)
-#                 # col_nr += 1
-#                 pass
+        col_nr = 0
+        if self.export_all_fields is False:
+            for field in self.model_export_field_ids:
+                col_name = field.field_id.field_description
+                if field.name is not False:
+                    col_name = field.name
+                headings.insert(col_nr, col_name)
+                col_nr += 1
+        else:
+            for field in all_model_fields:
+                col_name = field.name
+                headings.insert(col_nr, col_name)
+                col_nr += 1
 
-#         item_count = 0
-#         items = False
-#         if (self.export_all_items is False) and \
-#            (self.model_items is not False):
-#             items = eval('self.' + self.model_items)
-#         elif self.export_all_items is True:
-#             Model = self.env[self.model_model]
-#             items = Model.search(eval(self.export_domain_filter))
+        writer.writerow(headings)
 
-#         if items is not False:
-#             for item in items:
-#                 item_count += 1
-#                 # row_nr += 1
-#                 # row = sheet.row(row_nr)
-#                 # col_nr = 0
-#                 if self.export_all_fields is False:
-#                     for field in self.model_export_field_ids:
-#                         # row.write(col_nr, self._get_value_xls(
-#                         #     item, field.field_id,
-#                         #     self.export_date_format, self.export_datetime_format)
-#                         # )
-#                         # col_nr += 1
-#                         pass
+        item_count = 0
+        items = False
+        if (self.export_all_items is False) and \
+           (self.model_items is not False):
+            items = eval('self.' + self.model_items)
+        elif self.export_all_items is True:
+            Model = self.env[self.model_model]
+            items = Model.search(eval(self.export_domain_filter))
 
-#                 else:
-#                     for field in all_model_fields:
-#                         # row.write(col_nr, self._get_value_xls(
-#                         #     item, field,
-#                         #     self.export_date_format, self.export_datetime_format)
-#                         # )
-#                         # col_nr += 1
-#                         pass
+        if items is not False:
+            for item in items:
+                item_count += 1
+                row = []
+                col_nr = 0
+                if self.export_all_fields is False:
+                    for field in self.model_export_field_ids:
+                        row.insert(col_nr, self._get_value_csv(
+                            item, field.field_id,
+                            self.export_date_format, self.export_datetime_format)
+                        )
+                        col_nr += 1
 
-#                 _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item)
+                else:
+                    for field in all_model_fields:
+                        row.insert(col_nr, self._get_value_csv(
+                            item, field,
+                            self.export_date_format, self.export_datetime_format)
+                        )
+                        col_nr += 1
 
-#         # book.save(file_path)
+                _logger.info(u'>>>>>>>>>>>>>>> %s %s', item_count, item)
 
-#         self.directory_id = file_system_directory.id
-#         self.file_name = file_name
-#         self.stored_file_name = file_name
+                writer.writerow(row)
 
-#         _logger.info(u'%s %s', '>>>>>>>>>> file_path: ', file_path)
-#         _logger.info(u'%s %s', '>>>>>>>>>> item_count: ', item_count)
-#         _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
+        file.close()
+
+        self.directory_id = file_system_directory.id
+        self.file_name = file_name
+        self.stored_file_name = file_name
+
+        _logger.info(u'%s %s', '>>>>>>>>>> file_path: ', file_path)
+        _logger.info(u'%s %s', '>>>>>>>>>> item_count: ', item_count)
+        _logger.info(u'%s %s', '>>>>>>>>>> Execution time: ', secondsToStr(time() - start))
 
 
 class ModelExport_sqlite(models.Model):
