@@ -41,3 +41,14 @@ class Document(models.Model):
         string='Phase',
         ondelete='restrict'
     )
+
+
+class DocumentItem(models.Model):
+    _inherit = 'clv.document.item'
+
+    document_phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Document Phase',
+        related='document_id.phase_id',
+        store=True
+    )
