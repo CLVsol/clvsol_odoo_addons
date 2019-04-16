@@ -124,6 +124,9 @@
         <field name="inherit_id" ref="clv_document.clv_document_item_view_form"/>
         <field name="priority" eval="6"/>
         <field name="arch" type="xml">
+            <field name="document_type_id" position="after">
+                <field name="document_type_phase_id" options='{"no_open": True, "no_create": True}'/>
+            </field>
             <field name="document_id" position="after">
                 <field name="document_phase_id" options='{"no_open": True, "no_create": True}'/>
             </field>
@@ -136,6 +139,9 @@
         <field name="inherit_id" ref="clv_document.clv_document_item_view_tree"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
+            <field name="document_type_id" position="after">
+                <field name="document_type_phase_id"/>
+            </field>
             <field name="document_id" position="after">
                 <field name="document_phase_id"/>
             </field>
@@ -148,10 +154,14 @@
         <field name="inherit_id" ref="clv_document.clv_document_item_view_search"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
+            <field name="document_type_id" position="after">
+                <field name="document_type_phase_id"/>
+            </field>
             <field name="document_id" position="after">
                 <field name="document_phase_id"/>
             </field>
             <group name="group_by" position="inside">
+                <filter name="group_by_document_type_phase_id" string="Document Type Phase" context="{'group_by': 'document_type_phase_id'}"/>
                 <filter name="group_by_document_phase_id" string="Document Phase" context="{'group_by': 'document_phase_id'}"/>
             </group>
         </field>

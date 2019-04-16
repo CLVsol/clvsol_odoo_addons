@@ -62,3 +62,10 @@ class DocumentItem(models.Model):
         related='document_id.phase_id',
         store=True
     )
+
+    document_type_phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Document Type Phase',
+        related='document_type_id.phase_id',
+        store=True
+    )
