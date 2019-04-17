@@ -85,6 +85,7 @@ class ModelExport(models.Model):
             values = {
                 'name': model_export_template_field.name,
                 'model_export_id': new_model_export.id,
+                'model_export_display': model_export_template_field.model_export_display,
                 'field_id': model_export_template_field.field_id.id,
                 'sequence': model_export_template_field.sequence,
             }
@@ -110,6 +111,7 @@ class ModelExport(models.Model):
                 values = {
                     'name': model_export_template_field.name,
                     'model_export_id': self.id,
+                    'model_export_display': model_export_template_field.model_export_display,
                     'field_id': model_export_template_field.field_id.id,
                     'sequence': model_export_template_field.sequence,
                 }
