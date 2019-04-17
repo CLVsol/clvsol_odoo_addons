@@ -140,11 +140,11 @@ class ModelExportTemplate(models.Model):
             r.count_model_exports = len(r.model_export_ids)
 
 
-class ModelExport_xls(models.Model):
+class ModelExport_get_value(models.Model):
     _inherit = 'clv.model_export'
 
     @api.model
-    def _get_value_xls(self, item, field, export_date_format, export_datetime_format):
+    def _get_value(self, item, field, export_date_format, export_datetime_format):
 
         if field.ttype == 'date':
             cmd = 'item.' + field.name
@@ -206,6 +206,10 @@ class ModelExport_xls(models.Model):
             return eval(cmd)
         else:
             return None
+
+
+class ModelExport_xls(models.Model):
+    _inherit = 'clv.model_export'
 
     @api.multi
     def do_model_export_execute_xls(self):
@@ -275,7 +279,7 @@ class ModelExport_xls(models.Model):
                 col_nr = 0
                 if self.export_all_fields is False:
                     for field in self.model_export_field_ids:
-                        row.write(col_nr, self._get_value_xls(
+                        row.write(col_nr, self._get_value(
                             item, field.field_id,
                             self.export_date_format, self.export_datetime_format)
                         )
@@ -283,7 +287,7 @@ class ModelExport_xls(models.Model):
 
                 else:
                     for field in all_model_fields:
-                        row.write(col_nr, self._get_value_xls(
+                        row.write(col_nr, self._get_value(
                             item, field,
                             self.export_date_format, self.export_datetime_format)
                         )
@@ -304,70 +308,6 @@ class ModelExport_xls(models.Model):
 
 class ModelExport_csv(models.Model):
     _inherit = 'clv.model_export'
-
-    @api.model
-    def _get_value_csv(self, item, field, export_date_format, export_datetime_format):
-
-        if field.ttype == 'date':
-            cmd = 'item.' + field.name
-            if eval(cmd) is not False:
-                # date_value = eval(cmd)
-                date_value = str(eval(cmd))
-                # date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
-                date_obj = datetime.strptime(date_value, "%Y-%m-%d")
-                try:
-                    date_formated = datetime.strftime(date_obj, export_date_format)
-                except Exception:
-                    date_formated = date_value
-                cmd = '"' + date_formated + '"'
-            else:
-                cmd = 'False'
-        elif field.ttype == 'datetime':
-            cmd = 'item.' + field.name
-            if eval(cmd) is not False:
-                # datetime_value = eval(cmd)
-                datetime_value = str(eval(cmd))
-                # datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
-                datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S.%f")
-                try:
-                    datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
-                except Exception:
-                    datetime_formated = datetime_value
-                cmd = '"' + datetime_formated + '"'
-            else:
-                cmd = 'False'
-        elif field.ttype == 'many2many':
-            cmd = 'item.' + field.name
-            ids = eval(cmd)
-            names_str = '"'
-            for id_ in ids:
-                if names_str == '"':
-                    names_str += id_.name
-                else:
-                    names_str += '; ' + id_.name
-            names_str += '"'
-            cmd = names_str
-            # cmd = names_str.encode('ascii', 'replace')
-            # cmd = names_str.encode('ascii', 'xmlcharrefreplace')
-        elif field.ttype == 'many2one':
-            cmd = 'item.' + field.name + '.name'
-        elif field.ttype == 'one2many':
-            cmd = 'item.' + field.name
-            cmd = str(len(eval(cmd)))
-        elif field.ttype == 'binary':
-            cmd = 'False'
-        else:
-            cmd = 'item.' + field.name
-
-        eval_cmd = False
-        try:
-            eval_cmd = eval(cmd)
-        except Exception as e:
-            _logger.warning(u'%s %s [%s]', '>>>>>>>>>> Exception: ', e, field.name)
-        if cmd != 'False' and eval_cmd is not False:
-            return eval(cmd)
-        else:
-            return None
 
     @api.multi
     def do_model_export_execute_csv(self):
@@ -437,7 +377,7 @@ class ModelExport_csv(models.Model):
                 col_nr = 0
                 if self.export_all_fields is False:
                     for field in self.model_export_field_ids:
-                        row.insert(col_nr, self._get_value_csv(
+                        row.insert(col_nr, self._get_value(
                             item, field.field_id,
                             self.export_date_format, self.export_datetime_format)
                         )
@@ -445,7 +385,7 @@ class ModelExport_csv(models.Model):
 
                 else:
                     for field in all_model_fields:
-                        row.insert(col_nr, self._get_value_csv(
+                        row.insert(col_nr, self._get_value(
                             item, field,
                             self.export_date_format, self.export_datetime_format)
                         )
@@ -468,68 +408,6 @@ class ModelExport_csv(models.Model):
 
 class ModelExport_sqlite(models.Model):
     _inherit = 'clv.model_export'
-
-    @api.model
-    def _get_value_sqlite(self, item, field, export_date_format, export_datetime_format):
-
-        if field.ttype == 'date':
-            cmd = 'item.' + field.name
-            if eval(cmd) is not False:
-                # date_value = eval(cmd)
-                date_value = str(eval(cmd))
-                # date_obj = datetime.strptime(date_value, DEFAULT_SERVER_DATE_FORMAT)
-                date_obj = datetime.strptime(date_value, "%Y-%m-%d")
-                try:
-                    date_formated = datetime.strftime(date_obj, export_date_format)
-                except Exception:
-                    date_formated = date_value
-                cmd = '"' + date_formated + '"'
-            else:
-                cmd = 'False'
-        elif field.ttype == 'datetime':
-            cmd = 'item.' + field.name
-            if eval(cmd) is not False:
-                # datetime_value = eval(cmd)
-                datetime_value = str(eval(cmd))
-                # datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
-                datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S.%f")
-                try:
-                    datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
-                except Exception:
-                    datetime_formated = datetime_value
-                cmd = '"' + datetime_formated + '"'
-            else:
-                cmd = 'False'
-        elif field.ttype == 'many2many':
-            cmd = 'item.' + field.name
-            ids = eval(cmd)
-            ids_str = '"['
-            for id_ in ids:
-                if ids_str == '"[':
-                    ids_str += str(id_.id)
-                else:
-                    ids_str += ',' + str(id_.id)
-            ids_str += ']"'
-            cmd = str(ids_str)
-        elif field.ttype == 'many2one':
-            cmd = 'item.' + field.name + '.id'
-        elif field.ttype == 'one2many':
-            cmd = 'item.' + field.name
-            cmd = str(len(eval(cmd)))
-        # elif field.ttype == 'binary':
-        #     cmd = 'False'
-        else:
-            cmd = 'item.' + field.name
-
-        eval_cmd = False
-        try:
-            eval_cmd = eval(cmd)
-        except Exception as e:
-            _logger.warning(u'%s %s', '>>>>>>>>>> Exception: ', e)
-        if cmd != 'False' and eval_cmd is not False:
-            return eval(cmd)
-        else:
-            return None
 
     @api.multi
     def do_model_export_execute_sqlite(self):
@@ -644,7 +522,7 @@ class ModelExport_sqlite(models.Model):
                 values = ()
                 if self.export_all_fields is False:
                     for field in self.model_export_field_ids:
-                        values += (self._get_value_sqlite(
+                        values += (self._get_value(
                             item, field.field_id,
                             self.export_date_format, self.export_datetime_format),
                         )
@@ -652,7 +530,7 @@ class ModelExport_sqlite(models.Model):
 
                 else:
                     for field in all_model_fields:
-                        values += (self._get_value_sqlite(
+                        values += (self._get_value(
                             item, field,
                             self.export_date_format, self.export_datetime_format),
                         )
