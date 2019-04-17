@@ -60,3 +60,17 @@ class Document(models.Model):
     )
 
     items_ok = fields.Boolean(string='Items Ok', default=0)
+
+    def get_value(self, item_code):
+
+        DocumentItem = self.env['clv.document.item']
+        document_item = DocumentItem.search([
+            ('document_id', '=', self.id),
+            ('code', '=', item_code),
+        ])
+
+        value = False
+        if document_item.id is not False:
+            value = document_item.value
+
+        return value
