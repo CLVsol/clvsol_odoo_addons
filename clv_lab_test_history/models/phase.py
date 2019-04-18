@@ -143,3 +143,27 @@ class LabTestReport(models.Model):
         string='Phase',
         ondelete='restrict'
     )
+
+
+class LabTestCriterion(models.Model):
+    _inherit = 'clv.lab_test.criterion'
+
+    lab_test_type_phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Lab Test Type Phase',
+        related='lab_test_type_id.phase_id',
+        store=True
+    )
+    lab_test_result_phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Lab Test Result Phase',
+        related='lab_test_result_id.phase_id',
+        store=True
+    )
+
+    lab_test_report_phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Lab Test Report Phase',
+        related='lab_test_report_id.phase_id',
+        store=True
+    )
