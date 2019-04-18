@@ -71,14 +71,15 @@
         <field name="model">clv.lab_test.criterion</field>
         <field name="arch" type="xml">
             <tree string='Lab Test Criteria'>
-                <field name="lab_test_type_id"/>
-                <field name="lab_test_result_id"/>
                 <field name="sequence"/>
                 <field name="code"/>
                 <field name="name"/>
                 <field name="result"/>
                 <field name="unit_id"/>
                 <field name="normal_range"/>
+                <field name="lab_test_type_id"/>
+                <field name="lab_test_result_id"/>
+                <field name="lab_test_report_id"/>
                 <field name="result_display"/>
                 <field name="report_display"/>
             </tree>
