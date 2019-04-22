@@ -18,6 +18,7 @@
     'data': [
         'security/report_security.xml',
         'security/ir.model.access.csv',
+        'views/abstract_row_view.xml',
         'views/report_view.xml',
         'views/report_log_view.xml',
         'views/report_template_view.xml',

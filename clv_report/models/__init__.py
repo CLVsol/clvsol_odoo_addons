@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import abstract_report
+from . import abstract_row
 from . import report
 from . import report_log
 from . import report_template
