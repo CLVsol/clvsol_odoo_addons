@@ -201,6 +201,10 @@ class AbstractExternalSync(models.AbstractModel):
                                        'boolean', 'selection']:
                     local_values[local_object_fields[i]] = external_object[external_object_fields[i]]
 
+                elif fields[0].ttype == 'binary':
+                    if external_object[external_object_fields[i]] is not False:
+                        local_values[local_object_fields[i]] = external_object[external_object_fields[i]]
+
                 elif fields[0].ttype == 'many2one':
                     if external_object[external_object_fields[i]] is not False:
                         model_ = fields[0].relation
