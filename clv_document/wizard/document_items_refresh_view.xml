@@ -37,7 +37,7 @@
         name="Document Items Refresh"
         src_model="clv.document"
         res_model="clv.document.items_refresh"
-        view_mode="form, tree"
+        view_mode="form"
         key2="client_action_multi"
         target="new"
     />

@@ -83,7 +83,7 @@
         name="Document Mass Edit"
         src_model="clv.document"
         res_model="clv.document.mass_edit"
-        view_mode="form, tree"
+        view_mode="form"
         key2="client_action_multi"
         target="new"
     />
