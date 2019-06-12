@@ -19,7 +19,7 @@ def get_random_field():
 class AbstractRandom(models.AbstractModel):
     _description = 'Abstract Random'
     _name = 'clv.abstract.random'
-    _order = 'random'
+    _order = 'random_field'
 
     random_field = fields.Char(
         string='Random ID', index=True, required=False, default='/',
