@@ -39,7 +39,7 @@
         <field name="inherit_id" ref="clv_person.clv_person_view_form"/>
         <field name="priority" eval="6"/>
         <field name="arch" type="xml">
-            <group name="group_right" position="inside">
+            <group name="group_top_right" position="inside">
                 <field name="family_id" options='{"no_open": False, "no_create": True}'/>
                 <field name="family_code" string="Family Code"/>
                 <field name="family_category_ids" string="Family Categories"/>
