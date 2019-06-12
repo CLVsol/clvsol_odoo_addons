@@ -8,5 +8,5 @@ from . import family_category_log
 from . import family_marker
 from . import res_partner
 from . import global_tag
-from . import family_name
+# from . import family_name
 from . import address

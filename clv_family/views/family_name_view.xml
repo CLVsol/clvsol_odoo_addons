@@ -11,9 +11,9 @@
         <field name="priority" eval="10" />
         <field name="arch" type="xml">
             <label for="code" position="before">
-                <!--label for="suggested_name"/-->
+                <label for="suggested_name"/>
                 <h3>
-                    <field name="suggested_name" invisible="True"/>
+                    <field name="suggested_name" invisible="False"/>
                 </h3>
             </label>
             <group name="settings_left_3" position="inside">

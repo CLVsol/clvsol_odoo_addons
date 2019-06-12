@@ -16,7 +16,8 @@ class Family(models.Model):
     automatic_set_name = fields.Boolean(
         string='Automatic Name',
         help="If checked, the Family Name will be set automatically.",
-        default=True
+        # default=True
+        default=False
     )
 
     @api.depends('street', 'street2')
@@ -35,18 +36,18 @@ class Family(models.Model):
             #         if record.code:
             #             record.suggested_name = record.code
 
-    @api.multi
-    def write(self, values):
-        ret = super().write(values)
-        for record in self:
-            if record.suggested_name is not False:
-                if record.automatic_set_name:
-                    if record.name != record.suggested_name:
-                        values['name'] = record.suggested_name
-                        super().write(values)
-                else:
-                    if ('name' in values and values['name'] == '/') or \
-                       (record.name == '/'):
-                        values['name'] = record.suggested_name
-                        super().write(values)
-        return ret
+    # @api.multi
+    # def write(self, values):
+    #     ret = super().write(values)
+    #     for record in self:
+    #         if record.suggested_name is not False:
+    #             if record.automatic_set_name:
+    #                 if record.name != record.suggested_name:
+    #                     values['name'] = record.suggested_name
+    #                     super().write(values)
+    #             else:
+    #                 if ('name' in values and values['name'] == '/') or \
+    #                    (record.name == '/'):
+    #                     values['name'] = record.suggested_name
+    #                     super().write(values)
+    #     return ret
