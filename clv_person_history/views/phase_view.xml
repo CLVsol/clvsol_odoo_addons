@@ -42,7 +42,7 @@
         <field name="inherit_id" ref="clv_person.clv_person_view_form"/>
         <field name="priority" eval="6"/>
         <field name="arch" type="xml">
-            <group name="group_left" position="inside">
+            <group name="group_bottom_left" position="inside">
                 <field name="phase_id" options='{"no_open": True, "no_create": True}'/>
             </group>
         </field>
