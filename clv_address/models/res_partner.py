@@ -1,23 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2008 Luis Falcon <lfalcon@gnusolidario.org>
-# Copyright 2016 LasLabs Inc.
-# License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+# Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
-
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
     type = fields.Selection(selection_add=[
         ('clv.address', 'Address'),
     ])
-    # alias = fields.Char(
-    #     string='Alias',
-    #     help='Common name that the Partner is referred',
-    # )
+
     address_ids = fields.One2many(
         string='Related Addresses',
         comodel_name='clv.address',
@@ -26,23 +20,6 @@ class ResPartner(models.Model):
     count_addresses = fields.Integer(
         compute='_compute_address_ids_and_count',
     )
-    # birthdate_date = fields.Date(
-    #     string='Birthdate',
-    # )
-    # gender = fields.Selection([
-    #     ('male', 'Male'),
-    #     ('female', 'Female'),
-    #     ('other', 'Other'),
-    # ])
-    # weight = fields.Float()
-    # weight_uom = fields.Many2one(
-    #     string="Weight UoM",
-    #     comodel_name="product.uom",
-    #     default=lambda s: s.env['res.lang'].default_uom_by_category('Weight'),
-    #     domain=lambda self: [('category_id', '=',
-    #                           self.env.ref('product.product_uom_categ_kgm').id)
-    #                          ]
-    # )
 
     @api.multi
     def _get_clv_entity(self):
@@ -55,25 +32,11 @@ class ResPartner(models.Model):
     @api.multi
     def _compute_address_ids_and_count(self):
         for record in self:
-            addresss = self.env['clv.address'].search([
+            addresses = self.env['clv.address'].search([
                 ('partner_id', 'child_of', record.id),
             ])
-            record.count_addresses = len(addresss)
-            record.address_ids = [(6, 0, addresss.ids)]
-
-    # @api.multi
-    # @api.constrains('birthdate_date')
-    # def _check_birthdate_date(self):
-    #     """ It will not allow birthdates in the future. """
-    #     now = datetime.now()
-    #     for record in self:
-    #         if not record.birthdate_date:
-    #             continue
-    #         birthdate = fields.Datetime.from_string(record.birthdate_date)
-    #         if birthdate > now:
-    #             raise ValidationError(_(
-    #                 'Partners cannot be born in the future.',
-    #             ))
+            record.count_addresses = len(addresses)
+            record.address_ids = [(6, 0, addresses.ids)]
 
     @api.model
     def create(self, vals):
