@@ -20,7 +20,7 @@ class Family(models.Model):
     count_persons = fields.Integer(
         string='Persons (count)',
         compute='_compute_count_persons',
-        store=True
+        # store=True
     )
 
     @api.depends('person_ids')

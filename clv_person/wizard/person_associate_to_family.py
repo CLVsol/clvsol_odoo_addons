@@ -73,11 +73,13 @@ class PersonAssociateToFamily(models.TransientModel):
 
                         values = {}
                         values['name'] = person.ref_address_id.name
+
                         _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                         new_family = Family.create(values)
                         _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_family:', new_family)
 
                         values = {}
+                        values['phase_id'] = person.phase_id.id
                         values['ref_address_id'] = person.ref_address_id.id
                         values['street'] = person.ref_address_id.street
                         values['street2'] = person.ref_address_id.street2
