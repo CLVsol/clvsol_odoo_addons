@@ -4,3 +4,4 @@
 
 from . import person_mass_edit
 from . import person_contact_information_updt
+from . import person_associate_to_family

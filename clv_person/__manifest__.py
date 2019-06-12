@@ -34,6 +34,7 @@
         'views/global_settings_view.xml',
         'wizard/person_mass_edit_view.xml',
         'wizard/person_contact_information_updt_view.xml',
+        'wizard/person_associate_to_family_view.xml',
     ],
     'demo': [],
     'test': [],

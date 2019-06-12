@@ -44,6 +44,15 @@
                 <field name="family_code" string="Family Code"/>
                 <field name="family_category_ids" string="Family Categories"/>
                 <!--field name="person_family_role_id" options='{"no_open": False, "no_create": True}'/-->
+                <button name="do_person_associate_to_family_with_reference_address"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-download"
+                        string=" Associate to Family with Reference Address"
+                        confirm="Are you sure you want to associete the Person to a Family?"
+                        attrs="{'invisible': [('ref_address_id', '=', False)]}"
+                        >
+                </button>
             </group>
         </field>
     </record>
