@@ -49,9 +49,16 @@
                         </h3>
                     </div>
                     <group name="group_top">
-                        <group name="group_left">
+                        <group name="group_top_left">
                         </group>
-                        <group name="group_right">
+                        <group name="group_top_right">
+                        </group>
+                    </group>
+                    <group name="group_bottom">
+                        <group name="group_bottom_left">
+                        </group>
+                        <group name="group_bottom_right">
+                            <field name="date_inclusion"/>
                         </group>
                     </group>
                     <notebook>

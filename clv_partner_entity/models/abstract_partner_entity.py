@@ -4,6 +4,7 @@
 
 import threading
 import base64
+from datetime import datetime
 
 from openerp import api, fields, models, tools
 
@@ -28,6 +29,11 @@ class AbstractPartnerEntity(models.AbstractModel):
     )
 
     code = fields.Char(string='Partner Entity Code', required=False)
+
+    date_inclusion = fields.Datetime(
+        string="Inclusion Date", required=False, readonly=False,
+        default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    )
 
     # Redefine `active` so that it is managed independently from partner.
     active = fields.Boolean(
