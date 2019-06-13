@@ -185,12 +185,20 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="clv_person_action">
+    <record id="clv_person_action" model="ir.actions.act_window">
         <field name="name">Persons</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.person</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="clv_person_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new person.
+          </p>
+        </field>
     </record>
 
 </odoo>

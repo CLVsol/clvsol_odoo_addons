@@ -4,6 +4,22 @@
 
 <odoo>
         
+    <record id="clv_person.clv_person_action_address" model="ir.actions.act_window">
+        <field name="name">Persons</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.person</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="clv_person.clv_person_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new lab test result.
+          </p>
+        </field>
+    </record>
+    
     <record id="clv_address_view_form_person" model="ir.ui.view">
         <field name="name">clv.address.form</field>
         <field name="model">clv.address</field>
@@ -17,7 +33,7 @@
                             <field name="count_persons"/>
                         </group>
                         <group>
-                            <button name="clv_person.clv_person_action"
+                            <button name="clv_person.clv_person_action_address"
                                     type="action"
                                     class="oe_stat_button"
                                     icon="fa-list"
