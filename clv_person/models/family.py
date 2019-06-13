@@ -23,7 +23,7 @@ class Family(models.Model):
         # store=True
     )
 
-    @api.depends('person_ids')
+    # @api.depends('person_ids')
     def _compute_count_persons(self):
         for r in self:
             r.count_persons = len(r.person_ids)

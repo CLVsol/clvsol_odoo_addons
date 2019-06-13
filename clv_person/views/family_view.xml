@@ -15,7 +15,7 @@
         <field name="context">{}</field>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Click to add a new lab test result.
+            Click to add a new person.
           </p>
         </field>
     </record>
@@ -29,16 +29,22 @@
             <page name="settings" position="before">
                 <page string="Persons">
                     <group>
-                        <group>
+                        <!--group>
                             <field name="count_persons"/>
-                        </group>
+                        </group-->
                         <group>
-                            <button name="clv_person.clv_person_action_family"
+                            <!--button name="clv_person.clv_person_action_family"
                                     type="action"
                                     class="oe_stat_button"
                                     icon="fa-list"
                                     context="{'search_default_family_id': id}"
                                     attrs="{'invisible': [('person_ids', '=', [])]}"
+                                    -->
+                            <button name="clv_person.clv_person_action_family"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_family_id': id}"
                                     >
                                 <div class="o_form_field o_stat_info">
                                     <span class="o_stat_value">
