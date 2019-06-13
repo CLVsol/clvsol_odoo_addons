@@ -23,7 +23,7 @@ class Address(models.Model):
         # store=True
     )
 
-    @api.depends('family_ids')
+    # @api.depends('family_ids')
     def _compute_count_families(self):
         for r in self:
             r.count_families = len(r.family_ids)

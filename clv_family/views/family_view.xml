@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- # Copyright 2008 Luis Falcon <lfalcon@gnusolidario.org>
-     Copyright 2016 LasLabs Inc.
-     License GPL-3.0 or later (http://www.gnu.org/licenses/gpl). -->
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
 
@@ -110,12 +109,20 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="clv_family_action">
+    <record id="clv_family_action" model="ir.actions.act_window">
         <field name="name">Families</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.family</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="clv_family_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new family.
+          </p>
+        </field>
     </record>
 
 </odoo>

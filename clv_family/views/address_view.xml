@@ -4,6 +4,22 @@
 
 <odoo>
         
+    <record id="clv_family.clv_family_action_family" model="ir.actions.act_window">
+        <field name="name">Families</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.family</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="clv_family.clv_family_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new family.
+          </p>
+        </field>
+    </record>
+    
     <record id="clv_address_view_form_family" model="ir.ui.view">
         <field name="name">clv.address.form</field>
         <field name="model">clv.address</field>
@@ -13,9 +29,33 @@
             <page name="settings" position="before">
                 <page string="Families">
                     <group>
-                        <field name="count_families"/>
-                        <field name="family_ids" colspan="4" nolabel="1"/>
+                        <!--group>
+                            <field name="count_families"/>
+                        </group-->
+                        <group>
+                            <!--button name="clv_family.clv_family_action_family"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_ref_address_id': id}"
+                                    attrs="{'invisible': [('family_ids', '=', [])]}"
+                                    -->
+                            <button name="clv_family.clv_family_action_family"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_ref_address_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_families"/>
+                                    </span>
+                                    <span class="o_stat_text"> Family(ies)</span>
+                                </div>
+                            </button>
+                        </group>
                     </group>
+                    <field name="family_ids" colspan="4" nolabel="1"/>
                 </page>
             </page>
         </field>
@@ -80,6 +120,7 @@
         <field name="arch" type="xml">
             <field name="code" position="after">
                 <field name="ref_address_category_names"/>
+                <field name="ref_address_id"/>
             </field>
             <group name="group_by" position="inside">
                 <filter name="group_by_ref_address_id" string="Address" context="{'group_by': 'ref_address_id'}"/>
