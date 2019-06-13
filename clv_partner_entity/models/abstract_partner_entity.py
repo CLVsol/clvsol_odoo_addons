@@ -15,6 +15,8 @@ class AbstractPartnerEntity(models.AbstractModel):
     _inherits = {'res.partner': 'partner_id'}
     # _inherit = ['mail.thread']
 
+    _order = 'name'
+
     partner_id = fields.Many2one(
         string='Related Partner',
         comodel_name='res.partner',
