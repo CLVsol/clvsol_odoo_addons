@@ -28,6 +28,7 @@
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
         # 'views/family_name_view.xml',
+        'views/global_settings_view.xml',
         'views/address_view.xml',
         'wizard/family_mass_edit_view.xml',
         'wizard/family_contact_information_updt_view.xml',
