@@ -20,6 +20,7 @@
     'data': [
         'security/family_security.xml',
         'security/ir.model.access.csv',
+        'data/global_settings.xml',
         'views/family_view.xml',
         'views/family_log_view.xml',
         'views/family_category_view.xml',
@@ -27,7 +28,7 @@
         'views/family_marker_view.xml',
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
-        # 'views/family_name_view.xml',
+        'views/family_name_view.xml',
         'views/global_settings_view.xml',
         'views/address_view.xml',
         'wizard/family_mass_edit_view.xml',

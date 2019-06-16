@@ -10,12 +10,9 @@
         <field name="inherit_id" ref="clv_family_view_form"/>
         <field name="priority" eval="10" />
         <field name="arch" type="xml">
-            <label for="code" position="before">
-                <label for="suggested_name"/>
-                <h3>
-                    <field name="suggested_name" invisible="False"/>
-                </h3>
-            </label>
+            <group name="group_top_left" position="inside">
+                <field name="suggested_name" invisible="False"/>
+            </group>
             <group name="settings_left_3" position="inside">
                 <field name="automatic_set_name"/>
             </group>
