@@ -33,6 +33,7 @@
         'views/address_off_view.xml',
         'wizard/person_off_mass_edit_view.xml',
         'wizard/person_off_contact_information_updt_view.xml',
+        'wizard/person_associate_to_person_off_view.xml',
     ],
     'demo': [],
     'test': [],
