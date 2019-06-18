@@ -25,10 +25,10 @@ class AbstractPartnerEntity(models.AbstractModel):
         index=True,
     )
 
-    type = fields.Selection(
-        default=lambda s: s._name,
-        related='partner_id.type',
-    )
+    # type = fields.Selection(
+    #     default=lambda s: s._name,
+    #     related='partner_id.type',
+    # )
 
     code = fields.Char(string='Partner Entity Code', required=False)
 

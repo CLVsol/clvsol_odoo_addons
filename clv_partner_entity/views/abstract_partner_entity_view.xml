@@ -66,13 +66,14 @@
                             <div class="oe_button_box" name="buttons"/>
                             <group name="group_contact_info" string="Contact Information">
                                 <group name="group_contact_left">
-                                    <field name="type"
+                                    <!--field name="type"
                                            attrs="{'invisible': [('parent_id','=', False)]}"
                                            groups="base.group_no_one"
-                                    />
+                                    /-->
+                                    <field name="type" invisible="True"/>
                                     <label for="street" string="Address"/>
                                     <div class="o_address_format">
-                                        <div class="oe_edit_only">
+                                        <!--div class="oe_edit_only">
                                             <button name="open_parent"
                                                     type="object"
                                                     string="(edit)"
@@ -81,7 +82,7 @@
                                                                           ('type', '!=', 'contact')],
                                                             }"
                                             />
-                                        </div>
+                                        </div-->
                                         <field name="street"
                                                placeholder="Street..."
                                                class="o_address_street"
