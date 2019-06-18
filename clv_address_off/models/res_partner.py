@@ -36,16 +36,16 @@ class ResPartner(models.Model):
             record.count_addresses_off = len(address_offs)
             record.address_off_ids = [(6, 0, address_offs.ids)]
 
-    @api.model
-    def create(self, vals):
-        """ It overrides create to bind appropriate clv entity. """
-        if all((
-            vals.get('type', '').startswith('clv.'),
-            not self.env.context.get('clv_entity_no_create'),
-        )):
-            model = self.env[vals['type']].with_context(
-                clv_entity_no_create=True,
-            )
-            clv_entity = model.create(vals)
-            return clv_entity.partner_id
-        return super().create(vals)
+    # @api.model
+    # def create(self, vals):
+    #     """ It overrides create to bind appropriate clv entity. """
+    #     if all((
+    #         vals.get('type', '').startswith('clv.'),
+    #         not self.env.context.get('clv_entity_no_create'),
+    #     )):
+    #         model = self.env[vals['type']].with_context(
+    #             clv_entity_no_create=True,
+    #         )
+    #         clv_entity = model.create(vals)
+    #         return clv_entity.partner_id
+    #     return super().create(vals)
