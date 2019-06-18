@@ -21,6 +21,9 @@ class FamilyOff(models.Model):
         vals.update({
             'customer': True,
         })
+        vals.update({
+            'type': self._name,
+        })
         return vals
 
     @api.model_cr_context
