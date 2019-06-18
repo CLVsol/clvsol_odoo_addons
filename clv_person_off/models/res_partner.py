@@ -9,7 +9,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     type = fields.Selection(selection_add=[
-        ('clv.person_off', 'Person'),
+        ('clv.person_off', 'Person (Off)'),
     ])
 
     person_off_ids = fields.One2many(
@@ -38,16 +38,16 @@ class ResPartner(models.Model):
             record.count_persons_off = len(persons_off)
             record.person_off_ids = [(6, 0, persons_off.ids)]
 
-    @api.model
-    def create(self, vals):
-        """ It overrides create to bind appropriate clv entity. """
-        if all((
-            vals.get('type', '').startswith('clv.'),
-            not self.env.context.get('clv_entity_no_create'),
-        )):
-            model = self.env[vals['type']].with_context(
-                clv_entity_no_create=True,
-            )
-            clv_entity = model.create(vals)
-            return clv_entity.partner_id
-        return super().create(vals)
+    # @api.model
+    # def create(self, vals):
+    #     """ It overrides create to bind appropriate clv entity. """
+    #     if all((
+    #         vals.get('type', '').startswith('clv.'),
+    #         not self.env.context.get('clv_entity_no_create'),
+    #     )):
+    #         model = self.env[vals['type']].with_context(
+    #             clv_entity_no_create=True,
+    #         )
+    #         clv_entity = model.create(vals)
+    #         return clv_entity.partner_id
+    #     return super().create(vals)
