@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class PersonAssociateToPersonOff(models.TransientModel):
-    _description = 'Person Associate to Person Off'
+    _description = 'Person Associate to Person (Off)'
     _name = 'clv.person.associate_to_person_off'
 
     def _default_person_ids(self):
@@ -22,7 +22,11 @@ class PersonAssociateToPersonOff(models.TransientModel):
         default=_default_person_ids
     )
 
-    create_new_person_off = fields.Boolean(string='Create new PersonOff', default=True)
+    create_new_person_off = fields.Boolean(
+        string='Create new Person (Off)',
+        default=True,
+        readonly=True
+    )
 
     @api.multi
     def _reopen_form(self):

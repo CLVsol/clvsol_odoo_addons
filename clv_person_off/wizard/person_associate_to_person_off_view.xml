@@ -22,7 +22,7 @@
                     <button 
                         type="object"
                         name="do_person_associate_to_person_off"
-                        string="Associate to Person Off"
+                        string="Associate to Person (Off)"
                         class="oe_highlight"
                         />
                     <button special="cancel" string="Cancel"/>
@@ -35,7 +35,7 @@
     <!-- More button Action -->
     <act_window 
         id="clv_person_associate_to_person_off_action"
-        name="Person Associate to Person Off"
+        name="Person Associate to Person (Off)"
         src_model="clv.person"
         res_model="clv.person.associate_to_person_off"
         view_mode="form"
