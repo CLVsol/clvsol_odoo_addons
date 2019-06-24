@@ -11,3 +11,4 @@ from . import model_export_template_field
 from . import model_export
 from . import model_export_field
 from . import global_settings
+from . import set

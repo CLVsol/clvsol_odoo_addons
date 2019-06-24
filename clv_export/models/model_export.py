@@ -73,6 +73,22 @@ class ModelExport(models.Model):
             self.export_dir_path = self.model_export_dir_path(self.export_type)
             self.export_file_name = self.model_export_file_name(self.export_type)
 
+    export_set_id = fields.Many2one(
+        comodel_name='clv.set',
+        string='Set',
+        ondelete='restrict'
+    )
+    count_export_set_elements = fields.Integer(
+        string='Set Elements (count)',
+        compute='_compute_count_export_set_elements',
+        store=False
+    )
+
+    @api.depends('export_set_id')
+    def _compute_count_export_set_elements(self):
+        for r in self:
+            r.count_export_set_elements = len(r.export_set_id.set_element_ids)
+
     @api.model
     def create(self, values):
 
@@ -267,8 +283,16 @@ class ModelExport_xls(models.Model):
         item_count = 0
         items = False
         if (self.export_all_items is False) and \
+           (self.export_set_elements is False) and \
            (self.model_items is not False):
             items = eval('self.' + self.model_items)
+        elif (self.export_all_items is False) and \
+             (self.export_set_elements is True) and \
+             (self.export_set_id is not False):
+            set_elements = self.export_set_id.set_element_ids
+            items = []
+            for set_element in set_elements:
+                items.append(set_element.ref_id)
         elif self.export_all_items is True:
             Model = self.env[self.model_model]
             items = Model.search(eval(self.export_domain_filter))
@@ -366,8 +390,16 @@ class ModelExport_csv(models.Model):
         item_count = 0
         items = False
         if (self.export_all_items is False) and \
+           (self.export_set_elements is False) and \
            (self.model_items is not False):
             items = eval('self.' + self.model_items)
+        elif (self.export_all_items is False) and \
+             (self.export_set_elements is True) and \
+             (self.export_set_id is not False):
+            set_elements = self.export_set_id.set_element_ids
+            items = []
+            for set_element in set_elements:
+                items.append(set_element.ref_id)
         elif self.export_all_items is True:
             Model = self.env[self.model_model]
             items = Model.search(eval(self.export_domain_filter))
@@ -509,8 +541,16 @@ class ModelExport_sqlite(models.Model):
         item_count = 0
         items = False
         if (self.export_all_items is False) and \
+           (self.export_set_elements is False) and \
            (self.model_items is not False):
             items = eval('self.' + self.model_items)
+        elif (self.export_all_items is False) and \
+             (self.export_set_elements is True) and \
+             (self.export_set_id is not False):
+            set_elements = self.export_set_id.set_element_ids
+            items = []
+            for set_element in set_elements:
+                items.append(set_element.ref_id)
         elif self.export_all_items is True:
             Model = self.env[self.model_model]
             items = Model.search(eval(self.export_domain_filter))
