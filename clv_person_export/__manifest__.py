@@ -16,6 +16,7 @@
     ],
     'data': [
         'data/model_export_method.xml',
+        'views/model_export_view.xml',
     ],
     'demo': [],
     'test': [],
