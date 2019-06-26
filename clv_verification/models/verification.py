@@ -15,7 +15,8 @@ class Verification(models.Model):
     model = fields.Char(string='Model Name ', required=True)
     res_id = fields.Integer(
         string='Record ID',
-        help="ID of the target record in the database"
+        help="ID of the target record in the database",
+        required=True
     )
     reference = fields.Char(
         string='Reference ',
@@ -28,6 +29,18 @@ class Verification(models.Model):
         compute='_compute_reference',
         readonly=True,
         store=True
+    )
+
+    method = fields.Char(
+        string='Method',
+        required=False,
+        help="Name of the method to be called when the verification job is processed."
+    )
+
+    action = fields.Char(
+        string='Action',
+        required=False,
+        help="Name of the action used to process the verification."
     )
 
     active = fields.Boolean(string='Active', default=1)

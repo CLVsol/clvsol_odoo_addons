@@ -20,12 +20,11 @@ class AbstractVerification(models.AbstractModel):
     _name = 'clv.abstract.verification'
 
     date_verification = fields.Datetime(string="Verification Date")
-    verification_status = fields.Selection(
+    state = fields.Selection(
         [('unknown', 'Unknown'),
          ('failed', 'Failed'),
          ('ok', 'Ok'),
-         ('missing', 'Missing'),
-         ], string='Verification Status', default='unknown'
+         ], string='State', default='unknown'
     )
     verification_outcomes = fields.Text(string='Verification Outcomes')
 

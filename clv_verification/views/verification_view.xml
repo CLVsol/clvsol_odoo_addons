@@ -9,6 +9,9 @@
         <field name="model">clv.verification</field>
         <field name="arch" type="xml">
             <form string="Verification">
+                <header name="header">
+                    <!-- To add buttons and status widget -->
+                </header>
                 <sheet>
                     <group>
                         <group>
@@ -16,10 +19,12 @@
                             <field name="res_id"/>
                             <field name="reference" widget="reference"/>
                             <field name="reference_name"/>
+                            <field name="method"/>
+                            <field name="action"/>
                         </group>
                         <group>
                             <field name="date_verification"/>
-                            <field name="verification_status"/>
+                            <field name="state"/>
                         </group>
                     </group>
                     <field name="verification_outcomes" placeholder="Verification Outcomes..." colspan="4"/>
@@ -62,13 +67,20 @@
         <field name="name">clv.verification.tree</field>
         <field name="model">clv.verification</field>
         <field name="arch" type="xml">
-            <tree string="Verification">
+            <tree name="verification" string="Verification"
+                decoration-muted="state=='unknown'"
+                decoration-danger="state=='failed'"
+                decoration-success="state=='ok'"
+                decoration-it="state in('unknown')"
+                decoration-bf="state in('failed','ok')">
                 <field name="model"/>
                 <field name="res_id"/>
                 <field name="reference"/>
                 <field name="reference_name"/>
+                <field name="method"/>
+                <field name="action"/>
                 <field name="date_verification"/>
-                <field name="verification_status"/>
+                <field name="state"/>
                 <field name="verification_outcomes"/>
                 <field name="id"/>
             </tree>
@@ -84,7 +96,9 @@
                 <field name="res_id"/>
                 <field name="reference"/>
                 <field name="reference_name"/>
-                <field name="verification_status"/>
+                <field name="method"/>
+                <field name="action"/>
+                <field name="state"/>
                 <field name="verification_outcomes"/>
                 <field name="id"/>
                 <separator/>
@@ -93,7 +107,9 @@
                     <filter name="filter_model" string="Model Name" domain="[]" context="{'group_by':'model'}"/>
                     <filter name="filter_reference" string="Reference" domain="[]" context="{'group_by':'reference'}"/>
                     <filter name="filter_reference_name" string="Reference Name" domain="[]" context="{'group_by':'reference_name'}"/>
-                    <filter name="filter_verification_status" string="Verification Status" context="{'group_by': 'verification_status'}"/>
+                    <filter name="filter_method" string="Method" domain="[]" context="{'group_by':'method'}"/>
+                    <filter name="filter_action" string="Action" domain="[]" context="{'group_by':'action'}"/>
+                    <filter name="filter_state" string="Verification Status" context="{'group_by': 'state'}"/>
                 </group>
             </search>
         </field>

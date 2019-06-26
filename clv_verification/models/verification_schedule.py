@@ -29,6 +29,11 @@ class VerificationSchedule(models.Model):
         string='Inclusion Date',
         default=fields.Datetime.now)
 
+    date_last_verification = fields.Datetime(
+        string='Last Verification Date',
+        readonly=True
+    )
+
     model = fields.Char(
         string='Model',
         required=False,
