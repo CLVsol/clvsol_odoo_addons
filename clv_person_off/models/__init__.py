@@ -12,3 +12,4 @@ from . import address
 from . import family
 from . import person
 from . import address_off
+from . import family_off
