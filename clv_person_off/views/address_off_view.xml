@@ -58,8 +58,9 @@
         <field name="priority" eval="6"/>
         <field name="arch" type="xml">
             <group name="group_top_left" position="inside">
+                <separator/>
                 <field name="ref_address_off_id"
-                    context="{'show_ref_address_off_only': 1}"
+                    context="{'show_ref_address_only': 1}"
                     options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
                 <field name="ref_address_off_code" string="Address (Off) Code"/>
                 <field name="ref_address_off_category_names" string="Address (Off) Category Names" invisible="True"/>
