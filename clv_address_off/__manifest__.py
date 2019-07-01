@@ -14,6 +14,7 @@
         'clv_base',
         'clv_global_log',
         'clv_partner_entity',
+        'clv_address',
         'clv_global_tag',
     ],
     'data': [
@@ -28,6 +29,7 @@
         'views/address_off_name_view.xml',
         'views/address_view.xml',
         'wizard/address_off_mass_edit_view.xml',
+        'wizard/address_associate_to_address_off_view.xml',
     ],
     'demo': [],
     'test': [],
