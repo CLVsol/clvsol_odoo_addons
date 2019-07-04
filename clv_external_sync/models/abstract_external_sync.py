@@ -104,8 +104,12 @@ class AbstractExternalSync(models.AbstractModel):
             pass
 
         user_fields = ['name', 'parent_id', ]
-        user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
-                                 uid, user_fields)[0]
+        try:
+            user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
+                                     uid, user_fields)[0]
+        except KeyError:
+            user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
+                                     uid, user_fields)
         user_name = user_data['name']
         parent_id = user_data['parent_id']
 
@@ -114,8 +118,12 @@ class AbstractExternalSync(models.AbstractModel):
             company_id = sock.execute(external_dbname, uid, external_user_pw, 'res.company', 'search', args)
 
             company_fields = ['name', ]
-            company_data = sock.execute(external_dbname, uid, external_user_pw, 'res.company', 'read',
-                                        company_id[0], company_fields)[0]
+            try:
+                company_data = sock.execute(external_dbname, uid, external_user_pw, 'res.company', 'read',
+                                            company_id[0], company_fields)[0]
+            except KeyError:
+                company_data = sock.execute(external_dbname, uid, external_user_pw, 'res.company', 'read',
+                                            company_id[0], company_fields)
             company_name = company_data['name']
 
         if uid is not False:
@@ -128,8 +136,12 @@ class AbstractExternalSync(models.AbstractModel):
         if uid is not False:
 
             user_fields = ['name', 'parent_id', ]
-            user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
-                                     uid, user_fields)[0]
+            try:
+                user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
+                                         uid, user_fields)[0]
+            except KeyError:
+                user_data = sock.execute(external_dbname, uid, external_user_pw, 'res.users', 'read',
+                                         uid, user_fields)
             user_name = user_data['name']
             parent_id = False
             if user_data['parent_id'] is not False:
