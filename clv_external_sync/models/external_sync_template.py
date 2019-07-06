@@ -83,12 +83,6 @@ class ExternalSyncTemplate(models.Model):
         help="External model name, e.g. 'res.partner'"
     )
 
-    external_sequence_code = fields.Char(
-        string='External Sequence Code',
-        required=False,
-        help="External Sequence Code, e.g. 'clv_address.code."
-    )
-
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [
