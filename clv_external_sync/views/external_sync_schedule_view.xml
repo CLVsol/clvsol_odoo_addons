@@ -43,6 +43,7 @@
                             <field name="method"/>
                             <field name="sequence_code"/>
                             <field name="external_model"/>
+                            <field name="external_sequence_code"/>
                         </group>
                         <group name="sync">
                             <field name="date_last_sync"/>
@@ -111,6 +112,7 @@
                 <field name="method"/>
                 <field name="sequence_code"/>
                 <field name="external_model"/>
+                <field name="external_sequence_code"/>
                 <field name="notes"/>
                 <field name="active" invisible="1"/>
             </tree>
@@ -139,6 +141,7 @@
                 <field name="method"/>
                 <field name="sequence_code"/>
                 <field name="external_model"/>
+                <field name="external_sequence_code"/>
                 <field name="notes"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
