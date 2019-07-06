@@ -90,6 +90,12 @@ class ExternalSyncSchedule(models.Model):
         help="External model name, e.g. 'res.partner'"
     )
 
+    external_sequence_code = fields.Char(
+        string='External Sequence Code',
+        required=False,
+        help="External Sequence Code, e.g. 'clv_address.code."
+    )
+
     external_sync_log = fields.Text(
         string="Synchronization Log"
     )
@@ -130,6 +136,7 @@ class ExternalSyncSchedule(models.Model):
             schedule.method = schedule.template_id.method
             schedule.sequence_code = schedule.template_id.sequence_code
             schedule.external_model = schedule.template_id.external_model
+            schedule.external_sequence_code = schedule.template_id.external_sequence_code
 
         ExternalSyncObjectField = self.env['clv.external_sync.object_field']
         for object_field in schedule.template_id.object_field_ids:
@@ -162,6 +169,7 @@ class ExternalSyncSchedule(models.Model):
             self.method = self.template_id.method
             self.sequence_code = self.template_id.sequence_code
             self.external_model = self.template_id.external_model
+            self.external_sequence_code = self.template_id.external_sequence_code
 
             schedule_id = self._origin.id
 

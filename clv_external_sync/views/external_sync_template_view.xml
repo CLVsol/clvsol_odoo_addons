@@ -41,6 +41,7 @@
                             <field name="method"/>
                             <field name="sequence_code"/>
                             <field name="external_model"/>
+                            <field name="external_sequence_code"/>
                         </group>
                     </group>
                     <field name="notes" placeholder="Notes..." colspan="4"/>
@@ -100,6 +101,7 @@
                 <field name="method"/>
                 <field name="sequence_code"/>
                 <field name="external_model"/>
+                <field name="external_sequence_code"/>
                 <field name="notes"/>
                 <field name="active" invisible="1"/>
             </tree>
@@ -127,6 +129,7 @@
                 <field name="method"/>
                 <field name="sequence_code"/>
                 <field name="external_model"/>
+                <field name="external_sequence_code"/>
                 <field name="notes"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
