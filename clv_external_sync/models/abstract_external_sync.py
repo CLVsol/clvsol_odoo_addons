@@ -458,6 +458,9 @@ class AbstractExternalSync(models.AbstractModel):
                     ])
                     local_sequence.number_next_actual = external_sequence_number_next_actual
 
+                    sequence_code = schedule.sequence_code
+                    sequence_number_next_actual = external_sequence_number_next_actual
+
                 _logger.info(u'%s %s', '>>>>>>>>>> external_max_task: ', external_max_task)
                 _logger.info(u'%s %s', '>>>>>>>>>> sync_objects: ', len(sync_objects))
                 _logger.info(u'%s %s', '>>>>>>>>>> reg_count: ', reg_count)
