@@ -41,3 +41,13 @@ class Employee(models.Model):
         string='Phase',
         ondelete='restrict'
     )
+
+
+class EmployeeHistory(models.Model):
+    _inherit = 'hr.employee.history'
+
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase',
+        ondelete='restrict'
+    )

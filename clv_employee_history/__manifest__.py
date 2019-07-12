@@ -15,7 +15,11 @@
         'clv_phase',
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'views/hr_employee_history_view.xml',
         'views/phase_view.xml',
+        'wizard/employee_mass_edit_view.xml',
+        'wizard/hr_employee_history_updt_view.xml',
     ],
     'demo': [],
     'test': [],
