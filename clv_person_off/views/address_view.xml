@@ -74,7 +74,28 @@
                         attrs="{'invisible': [('ref_address_id', '=', False)]}"
                         >
                 </button>
+                <separator/>
+                <button name="do_person_off_remove_ref_address"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-download"
+                        string=" Remove Reference Address"
+                        confirm="Are you sure you want to remove the 'Reference Address'?"
+                        attrs="{'invisible': [('ref_address_id', '=', False)]}"
+                        >
+                </button>
             </group>
+            <field name="type" position="before">
+                <separator/>
+                <button name="do_person_off_clear_ref_address_data"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-download"
+                        string=" Clear Reference Address Data"
+                        confirm="Are you sure you want to clear the 'Reference Address' data?"
+                        >
+                </button>
+            </field>
         </field>
     </record>
 
