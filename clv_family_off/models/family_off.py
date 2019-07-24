@@ -15,6 +15,8 @@ class FamilyOff(models.Model):
 
     code = fields.Char(string='Family (Off) Code', required=False)
 
+    notes = fields.Text(string='Notes:')
+
     @api.model
     def _create_vals(self, vals):
         vals = super()._create_vals(vals)

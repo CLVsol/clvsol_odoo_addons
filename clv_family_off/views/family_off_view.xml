@@ -25,8 +25,15 @@
         <field name="priority" eval="100"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="attributes">
-                <attribute name="string">Family</attribute>
+                <attribute name="string">Family (Off)</attribute>
             </xpath>
+            <!--label for="name" position="before">
+                <h1><separator string="[  Family (Off)  ]"/></h1>
+            </label-->
+            <field name="code" position="after">
+                <h1><separator string="[  Family (Off)  ]"/></h1>
+                <field name="notes" placeholder="Notes..." colspan="4"/>
+            </field>
             <xpath expr="//group[@name='main_data']">
                 <group name="main">
                     <field name="parent_id"
