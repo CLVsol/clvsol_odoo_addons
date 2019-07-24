@@ -16,6 +16,8 @@
         'clv_global_log',
         'clv_partner_entity',
         'clv_person',
+        'clv_address_off',
+        'clv_family_off',
     ],
     'data': [
         'security/person_off_security.xml',
