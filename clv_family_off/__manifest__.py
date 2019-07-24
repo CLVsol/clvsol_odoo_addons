@@ -16,6 +16,8 @@
         'clv_partner_entity',
         'clv_global_tag',
         'clv_address',
+        'clv_address_off',
+        'clv_family',
     ],
     'data': [
         'security/family_off_security.xml',
