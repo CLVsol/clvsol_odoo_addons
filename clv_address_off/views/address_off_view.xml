@@ -26,6 +26,13 @@
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Address (Off)</attribute>
             </xpath>
+            <!--label for="name" position="before">
+                <h1><separator string="[  Address (Off)  ]"/></h1>
+            </label-->
+            <field name="code" position="after">
+                <h1><separator string="[  Address (Off)  ]"/></h1>
+                <field name="notes" placeholder="Notes..." colspan="4"/>
+            </field>
             <xpath expr="//group[@name='main_data']">
                 <group name="main">
                     <field name="parent_id"
