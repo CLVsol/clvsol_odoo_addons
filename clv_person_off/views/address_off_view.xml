@@ -66,6 +66,16 @@
                 <field name="ref_address_off_category_names" string="Address (Off) Category Names" invisible="True"/>
                 <field name="ref_address_off_category_ids" string="Address (Off) Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
                 <!--field name="person_off_ref_address_off_role_id" options='{"no_open": False, "no_create": True}'/-->
+                <button name="do_person_off_remove_ref_address_off"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-eraser"
+                        string=" Remove Reference Address (Off)"
+                        confirm="Are you sure you want to remove the 'Reference Address (Off)'?"
+                        attrs="{'invisible': [('ref_address_off_id', '=', False)]}"
+                        >
+                </button>
+                <separator/>
                 <button name="do_person_off_get_ref_address_off_data"
                         type="object"
                         class="oe_stat_button, oe_edit_only"

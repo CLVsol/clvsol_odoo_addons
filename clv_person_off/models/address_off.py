@@ -80,3 +80,25 @@ class PersonOff(models.Model):
                 person_off.write(data_values)
 
         return True
+
+    @api.multi
+    def do_person_off_remove_ref_address_off(self):
+
+        for person_off in self:
+
+            _logger.info(u'>>>>> %s', person_off.ref_address_off_id)
+
+            if (person_off.reg_state in ['draft', 'revised']) and \
+               (person_off.ref_address_off_id.id is not False):
+
+                data_values = {}
+
+                if person_off.ref_address_off_id.id is not False:
+
+                    data_values['ref_address_off_id'] = False
+
+                _logger.info(u'>>>>>>>>>> %s', data_values)
+
+                person_off.write(data_values)
+
+        return True
