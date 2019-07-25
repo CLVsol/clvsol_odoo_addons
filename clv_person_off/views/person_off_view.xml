@@ -38,7 +38,7 @@
             </label-->
             <field name="code" position="after">
                 <h1><separator string="[  Person (Off)  ]"/></h1>
-                <field name="notes" placeholder="Notes..." colspan="4"/>
+                <field name="notes" placeholder="Notes..." colspan="4" style="color:Red; background:White;"/>
             </field>
             <xpath expr="//group[@name='main_data']">
                 <group name="main">
