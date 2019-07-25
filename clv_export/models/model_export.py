@@ -184,7 +184,10 @@ class ModelExport_get_value(models.Model):
                 # datetime_value = eval(cmd)
                 datetime_value = str(eval(cmd))
                 # datetime_obj = datetime.strptime(datetime_value, DEFAULT_SERVER_DATETIME_FORMAT)
-                datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S.%f")
+                try:
+                    datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S.%f")
+                except ValueError:
+                    datetime_obj = datetime.strptime(datetime_value, "%Y-%m-%d %H:%M:%S")
                 try:
                     datetime_formated = datetime.strftime(datetime_obj, export_datetime_format)
                 except Exception:
