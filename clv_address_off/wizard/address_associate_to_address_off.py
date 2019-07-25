@@ -18,7 +18,7 @@ class AddressAssociateToAddressOff(models.TransientModel):
     address_ids = fields.Many2many(
         comodel_name='clv.address',
         relation='clv_address_associate_to_address_off_rel',
-        string='Addresss',
+        string='Addresses',
         default=_default_address_ids
     )
 
@@ -84,7 +84,7 @@ class AddressAssociateToAddressOff(models.TransientModel):
 
             action = {
                 'type': 'ir.actions.act_window',
-                'name': 'Addresss (Off)',
+                'name': 'Addresses (Off)',
                 'res_model': 'clv.address_off',
                 'res_id': new_address_off.id,
                 'view_type': 'form',
@@ -97,7 +97,7 @@ class AddressAssociateToAddressOff(models.TransientModel):
 
             action = {
                 'type': 'ir.actions.act_window',
-                'name': 'Addresss (Off)',
+                'name': 'Addresses (Off)',
                 'res_model': 'clv.address_off',
                 'view_type': 'form',
                 'view_mode': 'tree,kanban,form',
