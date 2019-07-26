@@ -28,8 +28,9 @@ class AddressOff(models.Model):
 
             _logger.info(u'>>>>> %s', address_off.related_address_id)
 
-            if (address_off.reg_state in ['draft', 'revised']) and \
-               (address_off.related_address_id.id is not False):
+            # if (address_off.reg_state in ['draft', 'revised']) and \
+            #    (address_off.related_address_id.id is not False):
+            if (address_off.related_address_id.id is not False):
 
                 data_values = {}
                 # data_values['name'] = address_off.related_address_id.name
