@@ -3,4 +3,4 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import family_off_mass_edit
-# from . import family_associate_to_family_off
+from . import family_associate_to_family_off
