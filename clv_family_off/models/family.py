@@ -42,16 +42,13 @@ class FamilyOff(models.Model):
 
             _logger.info(u'>>>>> %s', family_off.related_family_id)
 
-            if (family_off.reg_state in ['draft', 'revised']) and \
-               (family_off.related_family_id.id is not False):
+            # if (family_off.reg_state in ['draft', 'revised']) and \
+            #    (family_off.related_family_id.id is not False):
+            if (family_off.related_family_id.id is not False):
 
                 data_values = {}
                 data_values['name'] = family_off.related_family_id.name
                 data_values['code'] = family_off.related_family_id.code
-                data_values['gender'] = family_off.related_family_id.gender
-                data_values['birthday'] = family_off.related_family_id.birthday
-                data_values['responsible_id'] = family_off.related_family_id.responsible_id.id
-                data_values['caregiver_id'] = family_off.related_family_id.caregiver_id.id
 
                 if self.related_family_id.ref_address_id.id is not False:
 
