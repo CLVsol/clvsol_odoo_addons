@@ -32,6 +32,8 @@
         'views/family_view.xml',
         'views/address_view.xml',
         'views/address_off_view.xml',
+        'wizard/family_off_mass_edit_view.xml',
+        # 'wizard/family_associate_to_address_off_view.xml',
     ],
     'demo': [],
     'test': [],
