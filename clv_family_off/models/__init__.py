@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import family_off
-from . import family_category
-from . import family_marker
+from . import family_off_category
+from . import family_off_marker
 from . import res_partner
 from . import global_tag
 from . import family_off_name
