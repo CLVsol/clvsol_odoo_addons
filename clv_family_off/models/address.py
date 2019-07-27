@@ -79,3 +79,25 @@ class Family(models.Model):
                 family_off.write(data_values)
 
         return True
+
+    @api.multi
+    def do_family_off_remove_ref_address(self):
+
+        for family_off in self:
+
+            _logger.info(u'>>>>> %s', family_off.ref_address_id)
+
+            if (family_off.reg_state in ['draft', 'revised']) and \
+               (family_off.ref_address_id.id is not False):
+
+                data_values = {}
+
+                if family_off.ref_address_id.id is not False:
+
+                    data_values['ref_address_id'] = False
+
+                _logger.info(u'>>>>>>>>>> %s', data_values)
+
+                family_off.write(data_values)
+
+        return True
