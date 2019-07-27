@@ -19,21 +19,6 @@ class Family(models.Model):
         default=True
     )
 
-    @api.multi
-    def get_suggested_name(self):
-        for record in self:
-            if record.ref_address_id.id:
-                family_name_format = self.env['ir.config_parameter'].sudo().get_param(
-                    'clv.global_settings.current_family_name_format', '').strip()
-                family_name = family_name_format.replace('<address_name>', record.ref_address_id.name)
-                record.suggested_name = family_name
-            elif record.name:
-                record.suggested_name = record.name
-            else:
-                record.suggested_name = 'x'
-            if record.automatic_set_name:
-                record.name = record.suggested_name
-
     @api.depends('ref_address_id')
     def _get_suggested_name(self):
         for record in self:
