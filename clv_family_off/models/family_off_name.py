@@ -40,14 +40,21 @@ class FamilyOff(models.Model):
             if record.suggested_name is not False:
                 if record.automatic_set_name:
                     if record.name != record.suggested_name:
-                        values['name'] = record.suggested_name
-                        super().write(values)
+                        if (record.suggested_name != 'Family Name...') or \
+                           (record.name is False):
+                            values['name'] = record.suggested_name
+                            super().write(values)
                     elif 'ref_address_off_id' in values:
                         values['name'] = record.suggested_name
                         super().write(values)
-                else:
-                    if ('name' in values and values['name'] == '/') or \
-                       (record.name == '/'):
-                        values['name'] = record.suggested_name
-                        super().write(values)
+                # else:
+                #     if ('name' in values and values['name'] == '/') or \
+                #        (record.name == '/'):
+                #         values['name'] = record.suggested_name
+                #         super().write(values)
+                if ('name' in values and values['name'] == '/') or \
+                   (record.name == '/'):
+                    values['name'] = record.suggested_name
+                    super().write(values)
+
         return ret
