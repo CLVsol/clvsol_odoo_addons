@@ -45,6 +45,15 @@
                 <field name="family_off_code" string="Family (Off) Code"/>
                 <field name="family_off_category_ids" string="Family (Off) Categories"/>
                 <!--field name="person_off_family_off_role_id" options='{"no_open": False, "no_create": True}'/-->
+                <button name="do_person_off_remove_family_off"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-eraser"
+                        string=" Remove Family (Off)"
+                        confirm="Are you sure you want to remove the 'Family (Off)'?"
+                        attrs="{'invisible': [('family_off_id', '=', False)]}"
+                        >
+                </button>
             </group>
         </field>
     </record>
