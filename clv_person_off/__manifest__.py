@@ -38,6 +38,7 @@
         'wizard/person_off_contact_information_updt_view.xml',
         'wizard/person_associate_to_person_off_view.xml',
         'wizard/person_off_associate_to_address_off_view.xml',
+        'wizard/person_off_associate_to_family_off_view.xml',
     ],
     'demo': [],
     'test': [],
