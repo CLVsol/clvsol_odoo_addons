@@ -60,8 +60,8 @@ class FamilyOff(models.Model):
                     data_values['city'] = family_off.related_family_id.ref_address_id.city
                     data_values['state_id'] = family_off.related_family_id.ref_address_id.state_id.id
                     data_values['country_id'] = family_off.related_family_id.ref_address_id.country_id.id
-                    # data_values['phone'] = family_off.related_family_id.ref_address_id.phone
-                    # data_values['mobile'] = family_off.related_family_id.ref_address_id.mobile
+                    data_values['phone'] = family_off.related_family_id.ref_address_id.phone
+                    data_values['mobile'] = family_off.related_family_id.ref_address_id.mobile
 
                 if family_off.related_family_id.family_id.id is not False:
 
