@@ -2,7 +2,11 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class Family(models.Model):
@@ -36,3 +40,25 @@ class PersonOff(models.Model):
         related='family_id.category_ids.name',
         store=True
     )
+
+    @api.multi
+    def do_person_off_remove_family(self):
+
+        for person_off in self:
+
+            _logger.info(u'>>>>> %s', person_off.family_id)
+
+            if (person_off.reg_state in ['draft', 'revised']) and \
+               (person_off.family_id.id is not False):
+
+                data_values = {}
+
+                if person_off.family_id.id is not False:
+
+                    data_values['family_id'] = False
+
+                _logger.info(u'>>>>>>>>>> %s', data_values)
+
+                person_off.write(data_values)
+
+        return True
