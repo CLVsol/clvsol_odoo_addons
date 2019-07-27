@@ -55,6 +55,17 @@
                      t-attf-src='{{ _s }}/clv_person_off/static/src/img/person_off-avatar.png'
                 />
             </xpath>
+            <field name="type" position="before">
+                <separator/>
+                <button name="do_person_off_clear_address_data"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-eraser"
+                        string=" Clear Address Data"
+                        confirm="Are you sure you want to clear the 'Address' data?"
+                        >
+                </button>
+            </field>
             <page name="page_general_info" position="after">
                 <page name="person_offal_information" string="Personal Information" groups="clv_base.group_supuser">
                     <group>

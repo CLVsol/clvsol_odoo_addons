@@ -2,12 +2,16 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.modules import get_module_resource
 from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
 
 '''
     https://www.odoo.com/documentation/12.0/howtos/backend.html#internationalization
@@ -314,3 +318,27 @@ class PersonOff(models.Model):
 
     # identification_id = fields.Char(string='Person ID')
     # otherid = fields.Char(string='Other ID')
+
+    @api.multi
+    def do_person_off_clear_address_data(self):
+
+        for person_off in self:
+
+            # _logger.info(u'>>>>> %s', person_off.ref_address_id)
+
+            # if (person_off.reg_state in ['draft', 'revised']):
+
+            data_values = {}
+
+            data_values['street'] = False
+            data_values['street2'] = False
+            data_values['zip'] = False
+            data_values['city'] = False
+            data_values['state_id'] = False
+            data_values['country_id'] = False
+            # data_values['phone'] = False
+            # data_values['mobile'] = False
+
+            _logger.info(u'>>>>>>>>>> %s', data_values)
+
+            person_off.write(data_values)
