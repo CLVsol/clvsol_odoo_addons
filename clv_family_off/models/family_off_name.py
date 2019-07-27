@@ -19,21 +19,19 @@ class FamilyOff(models.Model):
         default=True
     )
 
-    @api.depends('street', 'street2')
+    @api.depends('ref_address_off_id')
     def _get_suggested_name(self):
         for record in self:
-            if record.street:
-                record.suggested_name = record.street
-                if record.street2:
-                    record.suggested_name = record.suggested_name + ' - ' + record.street2
-            elif record.name:
-                record.suggested_name = record.name
+            if record.ref_address_off_id.id:
+                family_name_format = self.env['ir.config_parameter'].sudo().get_param(
+                    'clv.global_settings.current_family_name_format', '').strip()
+                family_name = family_name_format.replace('<address_name>', record.ref_address_off_id.name)
+                record.suggested_name = family_name
             else:
-                record.suggested_name = 'x'
-            # else:
-            #     if not record.suggested_name:
-            #         if record.code:
-            #             record.suggested_name = record.code
+                record.suggested_name = 'Family Name...'
+            if record.automatic_set_name:
+                if record.name != record.suggested_name:
+                    record.name = record.suggested_name
 
     @api.multi
     def write(self, values):
@@ -42,6 +40,9 @@ class FamilyOff(models.Model):
             if record.suggested_name is not False:
                 if record.automatic_set_name:
                     if record.name != record.suggested_name:
+                        values['name'] = record.suggested_name
+                        super().write(values)
+                    elif 'ref_address_off_id' in values:
                         values['name'] = record.suggested_name
                         super().write(values)
                 else:
