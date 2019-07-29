@@ -24,6 +24,7 @@
         'security/ir.model.access.csv',
         'views/family_off_view.xml',
         'views/family_off_log_view.xml',
+        'views/off_instance_view.xml',
         'views/family_off_category_view.xml',
         'views/family_off_marker_view.xml',
         'views/res_partner_view.xml',
