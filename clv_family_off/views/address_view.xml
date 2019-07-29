@@ -13,9 +13,33 @@
             <page name="settings" position="before">
                 <page string="Families (Off)">
                     <group>
-                        <field name="count_families_off"/>
-                        <field name="family_off_ids" colspan="4" nolabel="1"/>
+                        <!--group>
+                            <field name="count_families_off"/>
+                        </group-->
+                        <group>
+                            <!--button name="clv_family.clv_family_off_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_ref_address_id': id}"
+                                    attrs="{'invisible': [('family_off_ids', '=', [])]}"
+                                    -->
+                            <button name="clv_family_off.clv_family_off_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_ref_address_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_families_off"/>
+                                    </span>
+                                    <span class="o_stat_text"> Family(ies) (Off)</span>
+                                </div>
+                            </button>
+                        </group>
                     </group>
+                    <field name="family_off_ids" colspan="4" nolabel="1"/>
                 </page>
             </page>
         </field>
@@ -90,6 +114,7 @@
         <field name="arch" type="xml">
             <field name="code" position="after">
                 <field name="ref_address_category_names"/>
+                <field name="ref_address_id"/>
             </field>
             <group name="group_by" position="inside">
                 <filter name="group_by_ref_address_id" string="Address" context="{'group_by': 'ref_address_id'}"/>
