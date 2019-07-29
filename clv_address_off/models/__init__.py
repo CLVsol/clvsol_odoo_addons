@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import address_off
+from . import off_instance
 from . import address_off_category
 from . import address_off_marker
 from . import res_partner
