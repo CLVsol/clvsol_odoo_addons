@@ -16,6 +16,8 @@
                 <group>
                     <group>
                         <field name="create_new_person_off"/>
+                        <field name="create_new_address_off"/>
+                        <field name="create_new_family_off"/>
                     </group>
                 </group>
                 <footer>
