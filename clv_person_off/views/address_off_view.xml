@@ -13,22 +13,28 @@
             <page name="settings" position="before">
                 <page string="Persons (Off)">
                     <group>
-                        <group>
+                        <!--group>
                             <field name="count_persons_off"/>
-                        </group>
+                        </group-->
                         <group>
-                            <button name="clv_person_off.clv_person_off_action"
+                            <!--button name="clv_person_off.clv_person_off_action"
                                     type="action"
                                     class="oe_stat_button"
                                     icon="fa-list"
                                     context="{'search_default_ref_address_off_id': id}"
                                     attrs="{'invisible': [('person_off_ids', '=', [])]}"
+                                    -->
+                            <button name="clv_person_off.clv_person_off_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_ref_address_off_id': id}"
                                     >
                                 <div class="o_form_field o_stat_info">
                                     <span class="o_stat_value">
                                         <field name="count_persons_off"/>
                                     </span>
-                                    <span class="o_stat_text"> Person(s)</span>
+                                    <span class="o_stat_text"> Person(s) (Off)</span>
                                 </div>
                             </button>
                         </group>
