@@ -28,6 +28,12 @@ class FamilyAssociateToFamilyOff(models.TransientModel):
         readonly=True
     )
 
+    create_new_address_off = fields.Boolean(
+        string='Create new Address (Off)',
+        default=True,
+        readonly=True
+    )
+
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -79,6 +85,41 @@ class FamilyAssociateToFamilyOff(models.TransientModel):
                     new_family_off.write(values)
 
                     new_family_off.do_family_off_get_related_family_data()
+
+            if family.ref_address_id.id is not False:
+
+                AddressOff = self.env['clv.address_off']
+                address_off = AddressOff.search([
+                    ('related_address_id', '=', family.ref_address_id.id),
+                ])
+                _logger.info(u'%s %s %s', '>>>>>>>>>>', 'address_off_id:', address_off.id)
+
+                if address_off.id is not False:
+
+                    new_address_off = address_off
+
+                else:
+
+                    if self.create_new_address_off:
+
+                        values = {}
+                        values['street'] = new_family_off.ref_address_id.street
+
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                        new_address_off = AddressOff.create(values)
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_address_off:', new_address_off)
+
+                        values = {}
+                        values['related_address_id'] = new_family_off.ref_address_id.id
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                        new_address_off.write(values)
+
+                        new_address_off.do_address_off_get_related_address_data()
+
+                data_values = {}
+                data_values['ref_address_off_id'] = new_address_off.id
+                _logger.info(u'>>>>>>>>>> %s', data_values)
+                new_family_off.write(data_values)
 
         if family_count == 1:
 
