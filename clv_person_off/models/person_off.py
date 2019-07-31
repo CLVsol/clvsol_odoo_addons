@@ -310,11 +310,21 @@ class PersonOff(models.Model):
         )
         return image_path
 
-    spouse_id = fields.Many2one(comodel_name='clv.person_off', string='Spouse', ondelete='restrict')
-    father_id = fields.Many2one(comodel_name='clv.person_off', string='Father', ondelete='restrict')
-    mother_id = fields.Many2one(comodel_name='clv.person_off', string='Mother', ondelete='restrict')
-    responsible_id = fields.Many2one(comodel_name='clv.person_off', string='Responsible', ondelete='restrict')
-    caregiver_id = fields.Many2one(comodel_name='clv.person_off', string='Caregiver', ondelete='restrict')
+    spouse_id = fields.Many2one(comodel_name='clv.person', string='Spouse', ondelete='restrict')
+    father_id = fields.Many2one(comodel_name='clv.person', string='Father', ondelete='restrict')
+    mother_id = fields.Many2one(comodel_name='clv.person', string='Mother', ondelete='restrict')
+    responsible_id = fields.Many2one(comodel_name='clv.person', string='Responsible', ondelete='restrict')
+    caregiver_id = fields.Many2one(comodel_name='clv.person', string='Caregiver', ondelete='restrict')
+
+    spouse_off_id = fields.Many2one(comodel_name='clv.person_off', string='Spouse (Off)', ondelete='restrict')
+    father_off_id = fields.Many2one(comodel_name='clv.person_off', string='Father (Off)', ondelete='restrict')
+    mother_off_id = fields.Many2one(comodel_name='clv.person_off', string='Mother (Off)', ondelete='restrict')
+    responsible_off_id = fields.Many2one(
+        comodel_name='clv.person_off',
+        string='Responsible (Off)',
+        ondelete='restrict'
+    )
+    caregiver_off_id = fields.Many2one(comodel_name='clv.person_off', string='Caregiver (Off)', ondelete='restrict')
 
     # identification_id = fields.Char(string='Person ID')
     # otherid = fields.Char(string='Other ID')

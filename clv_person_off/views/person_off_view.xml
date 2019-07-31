@@ -92,11 +92,20 @@
                             <!--field name="otherid"/-->
                         </group>
                         <group name="family">
-                            <field name="spouse_id" options="{'no_open': False, 'no_create': True}"/>
-                            <field name="father_id" options="{'no_open': False, 'no_create': True}"/>
-                            <field name="mother_id" options="{'no_open': False, 'no_create': True}"/>
-                            <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
-                            <field name="caregiver_id" options="{'no_open': False, 'no_create': True}"/>
+                            <group>
+                                <field name="spouse_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="father_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="mother_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="caregiver_id" options="{'no_open': False, 'no_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="spouse_off_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="father_off_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="mother_off_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="responsible_off_id" options="{'no_open': False, 'no_create': True}"/>
+                                <field name="caregiver_off_id" options="{'no_open': False, 'no_create': True}"/>
+                            </group>
                         </group>
                     </group>
                 </page>
