@@ -50,3 +50,25 @@ class AddressOff(models.Model):
                 address_off.write(data_values)
 
         return True
+
+    @api.multi
+    def do_address_off_remove_related_address(self):
+
+        for address_off in self:
+
+            _logger.info(u'>>>>> %s', address_off.related_address_id)
+
+            if (address_off.reg_state in ['draft', 'revised']) and \
+               (address_off.related_address_id.id is not False):
+
+                data_values = {}
+
+                if address_off.related_address_id.id is not False:
+
+                    data_values['related_address_id'] = False
+
+                _logger.info(u'>>>>>>>>>> %s', data_values)
+
+                address_off.write(data_values)
+
+        return True

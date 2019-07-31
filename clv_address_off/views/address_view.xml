@@ -19,6 +19,16 @@
                         <field name="related_address_category_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
                     </group>
                     <group name="group_bottom_right">
+                        <button name="do_address_off_remove_related_address"
+                                type="object"
+                                class="oe_stat_button, oe_edit_only"
+                                icon="fa-eraser"
+                                string=" Remove Related Address"
+                                confirm="Are you sure you want to remove the 'Related Address'?"
+                                attrs="{'invisible': [('related_address_id', '=', False)]}"
+                                >
+                        </button>
+                        <separator/>
                         <button name="do_address_off_get_related_address_data"
                                 type="object"
                                 class="oe_stat_button, oe_edit_only"
