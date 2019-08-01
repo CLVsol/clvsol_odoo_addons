@@ -2,10 +2,10 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==========
-Off Module
-==========
+================
+Auxiliary Module
+================
 
-Off Module used by CLVsol Solutions.
+Auxiliary Module used by CLVsol Solutions.
 
 Developed by `CLVsol <https://github.com/CLVsol>`_.

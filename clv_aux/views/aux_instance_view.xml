@@ -3,16 +3,16 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <record id="clv_off_instance_view_form" model="ir.ui.view">
-        <field name="name">clv.off.instance.form</field>
-        <field name="model">clv.off.instance</field>
+    <record id="clv_aux_instance_view_form" model="ir.ui.view">
+        <field name="name">clv.aux.instance.form</field>
+        <field name="model">clv.aux.instance</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <form>
                 <header name="header">
                     <!-- To add buttons and status widget -->
                 </header>
-                <sheet name="off_instance">
+                <sheet name="aux_instance">
                     <div name="button_box" class="oe_right oe_button_box">
                     </div>
                     <div name="center" class="oe_center">
@@ -59,9 +59,9 @@
         </field>
     </record>
     
-    <record id="clv_off_instance_view_tree" model="ir.ui.view">
-        <field name="name">clv.off.instance.tree</field>
-        <field name="model">clv.off.instance</field>
+    <record id="clv_aux_instance_view_tree" model="ir.ui.view">
+        <field name="name">clv.aux.instance.tree</field>
+        <field name="model">clv.aux.instance</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <tree name="persons" string="Persons">
@@ -73,9 +73,9 @@
         </field>
     </record>
     
-    <record id="clv_off_instance_view_search" model="ir.ui.view">
-        <field name="name">clv.off.instance.search</field>
-        <field name="model">clv.off.instance</field>
+    <record id="clv_aux_instance_view_search" model="ir.ui.view">
+        <field name="name">clv.aux.instance.search</field>
+        <field name="model">clv.aux.instance</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <search>
@@ -89,18 +89,18 @@
         </field>
     </record>
     
-    <record id="clv_off_instance_action" model="ir.actions.act_window">
-        <field name="name">Off Instances</field>
+    <record id="clv_aux_instance_action" model="ir.actions.act_window">
+        <field name="name">Auxiliary Instances</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">clv.off.instance</field>
+        <field name="res_model">clv.aux.instance</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="clv_off_instance_view_search"/>
+        <field name="search_view_id" ref="clv_aux_instance_view_search"/>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Click to add a new off instance.
+            Click to add a new auxiliary instance.
           </p>
         </field>
     </record>

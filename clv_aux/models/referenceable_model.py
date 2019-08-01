@@ -5,6 +5,6 @@
 from odoo import models
 
 
-class OffCode(models.Model):
-    _name = "clv.off.code"
-    _inherit = 'clv.off.code', 'clv.abstract.reference'
+class AuxCode(models.Model):
+    _name = "clv.aux.code"
+    _inherit = 'clv.aux.code', 'clv.abstract.reference'

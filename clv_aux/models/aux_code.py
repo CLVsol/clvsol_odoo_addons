@@ -5,17 +5,21 @@
 from odoo import fields, models
 
 
-class OffCode(models.Model):
-    _description = 'Off Code'
-    _name = 'clv.off.code'
+class AuxiliaryCode(models.Model):
+    _description = 'Auxiliary Code'
+    _name = 'clv.aux.code'
     _inherit = 'clv.abstract.code'
     _rec_name = 'code'
     _order = 'code'
 
-    code = fields.Char(string='Off Code', required=True, default='/')
+    code = fields.Char(string='Auxiliary Code', required=True, default='/')
     code_sequence = fields.Char(string='Code Sequence', required=True, default=False)
 
-    off_instance_id = fields.Many2one(comodel_name='clv.off.instance', string='Off Instance', ondelete='restrict')
+    aux_instance_id = fields.Many2one(
+        comodel_name='clv.aux.instance',
+        string='Auxiliary Instance',
+        ondelete='restrict'
+    )
 
     notes = fields.Text(string='Notes')
 

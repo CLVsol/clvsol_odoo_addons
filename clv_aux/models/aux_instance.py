@@ -5,16 +5,16 @@
 from odoo import fields, models
 
 
-class OffInstance(models.Model):
-    _description = 'Off Instance'
-    _name = 'clv.off.instance'
+class AuxInstance(models.Model):
+    _description = 'Auxiliary Instance'
+    _name = 'clv.aux.instance'
     _order = 'name'
 
     name = fields.Char(string='Name', required=True)
 
-    code = fields.Char(string='Off Instance Code', required=False)
+    code = fields.Char(string='Auxiliary Instance Code', required=False)
 
-    instance_default = fields.Boolean(string='Instance Default', default=False)
+    instance_default = fields.Boolean(string='Default Instance', default=False)
 
     notes = fields.Text(string='Notes')
 

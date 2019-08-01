@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Off Module',
-    'summary': 'Off Module used by CLVsol Solutions.',
+    'name': 'Auxiliary Module',
+    'summary': 'Auxiliary Module used by CLVsol Solutions.',
     'version': '4.0.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'Generic Modules/Others',
@@ -12,10 +12,10 @@
     'website': 'https://github.com/CLVsol',
     'depends': ['clv_base'],
     'data': [
-        'security/off_security.xml',
+        'security/aux_security.xml',
         'security/ir.model.access.csv',
-        'views/off_instance_view.xml',
-        'views/off_code_view.xml',
+        'views/aux_instance_view.xml',
+        'views/aux_code_view.xml',
         'views/referenceable_model_view.xml',
     ],
     'demo': [],
