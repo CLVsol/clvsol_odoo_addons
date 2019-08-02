@@ -176,7 +176,7 @@
                     <field name="gender"/>
                 </li-->
             </xpath>
-            <xpath expr="//img[@name='kanban_image_entity']" position="replace">
+            <!--xpath expr="//img[@name='kanban_image_entity']" position="replace">
                 <img name="kanban_image_entity"
                      t-att-src="kanban_image('clv.person_aux', 'image_small', record.id.raw_value)" alt="Person Image"
                 />
@@ -186,7 +186,7 @@
                      t-if="record.is_company.raw_value === false"
                      t-attf-src='{{ _s }}/clv/static/src/img/person_aux-avatar.png' alt="Person Image"
                 />
-            </xpath>
+            </xpath-->
         </field>
     </record>
 
