@@ -73,7 +73,7 @@
             <xpath expr="//kanban" position="attributes">
                 <attribute name="string">Families (Aux)</attribute>
             </xpath>
-            <xpath expr="//img[@name='kanban_image_entity']" position="replace">
+            <!--xpath expr="//img[@name='kanban_image_entity']" position="replace">
                 <img name="kanban_image_entity"
                      t-att-src="kanban_image('clv.family_aux', 'image_small', record.id.raw_value)" alt="Family Image"
                 />
@@ -83,7 +83,7 @@
                      t-if="record.is_company.raw_value === false"
                      t-attf-src='{{ _s }}/clv/static/src/img/family_aux-avatar.png' alt="Family Image"
                 />
-            </xpath>
+            </xpath-->
         </field>
     </record>
 
