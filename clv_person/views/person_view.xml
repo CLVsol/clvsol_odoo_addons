@@ -33,6 +33,13 @@
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Person</attribute>
             </xpath>
+            <!--label for="name" position="before">
+                <h1><separator string="[  Person  ]"/></h1>
+            </label-->
+            <field name="code" position="after">
+                <h1><separator string="[  Person  ]"/></h1>
+                <field name="notes" placeholder="Notes..." colspan="4" style="color:Red; background:White;"/>
+            </field>
             <xpath expr="//group[@name='main_data']">
                 <group name="main">
                     <field name="parent_id"
@@ -149,7 +156,7 @@
                     <field name="gender"/>
                 </li-->
             </xpath>
-            <xpath expr="//img[@name='kanban_image_entity']" position="replace">
+            <!--xpath expr="//img[@name='kanban_image_entity']" position="replace">
                 <img name="kanban_image_entity"
                      t-att-src="kanban_image('clv.person', 'image_small', record.id.raw_value)" alt="Person Image"
                 />
@@ -159,7 +166,7 @@
                      t-if="record.is_company.raw_value === false"
                      t-attf-src='{{ _s }}/clv/static/src/img/person-avatar.png' alt="Person Image"
                 />
-            </xpath>
+            </xpath-->
         </field>
     </record>
 

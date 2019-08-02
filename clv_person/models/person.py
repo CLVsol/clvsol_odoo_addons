@@ -53,6 +53,8 @@ class Person(models.Model):
 
     code = fields.Char(string='Person Code', required=False)
 
+    notes = fields.Text(string='Notes:')
+
     estimated_age = fields.Char(string='Estimated Age', required=False)
 
     birthday = fields.Date(string="Date of Birth")
