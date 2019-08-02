@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-
-access_clv_family_off_user,clv.family_off.user,model_clv_family_off,clv_family_off.group_user,1,0,0,0
-access_clv_family_off_manager,clv.family_off.manager,model_clv_family_off,clv_family_off.group_manager,1,1,1,0
-access_clv_family_off_supmanager,clv.family_off.supmanager,model_clv_family_off,clv_family_off.group_supmanager,1,1,1,1
