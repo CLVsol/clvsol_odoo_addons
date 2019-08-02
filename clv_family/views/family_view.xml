@@ -13,11 +13,6 @@
             <xpath expr="//tree" position="attributes">
                 <attribute name="string">Families</attribute>
             </xpath>
-            <xpath expr="//field[@name='email']" position="after">
-                <!--field name="identification_code" /-->
-                <!--field name="age" /-->
-                <!--field name="gender" /-->
-            </xpath>
         </field>
     </record>
 
@@ -31,6 +26,13 @@
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Family</attribute>
             </xpath>
+            <!--label for="name" position="before">
+                <h1><separator string="[  Family  ]"/></h1>
+            </label-->
+            <field name="code" position="after">
+                <h1><separator string="[  Family  ]"/></h1>
+                <field name="notes" placeholder="Notes..." colspan="4" style="color:Red; background:White;"/>
+            </field>
             <xpath expr="//group[@name='main_data']">
                 <group name="main">
                     <field name="parent_id"
@@ -59,7 +61,7 @@
             <xpath expr="//kanban" position="attributes">
                 <attribute name="string">Families</attribute>
             </xpath>
-            <xpath expr="//img[@name='kanban_image_entity']" position="replace">
+            <!--xpath expr="//img[@name='kanban_image_entity']" position="replace">
                 <img name="kanban_image_entity"
                      t-att-src="kanban_image('clv.family', 'image_small', record.id.raw_value)" alt="Family Image"
                 />
@@ -69,7 +71,7 @@
                      t-if="record.is_company.raw_value === false"
                      t-attf-src='{{ _s }}/clv/static/src/img/family-avatar.png' alt="Family Image"
                 />
-            </xpath>
+            </xpath-->
         </field>
     </record>
 
