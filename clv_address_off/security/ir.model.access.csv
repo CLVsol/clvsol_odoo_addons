@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-
-access_clv_address_off_user,clv.address_off.user,model_clv_address_off,clv_address_off.group_user,1,0,0,0
-access_clv_address_off_manager,clv.address_off.manager,model_clv_address_off,clv_address_off.group_manager,1,1,1,0
-access_clv_address_off_supmanager,clv.address_off.supmanager,model_clv_address_off,clv_address_off.group_supmanager,1,1,1,1
