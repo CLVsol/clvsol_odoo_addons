@@ -5,9 +5,9 @@
 {
     'name': 'Address (Aux)',
     'summary': 'Address (Aux) Module used by CLVsol Solutions.',
-    'version': '4.0.0',
+    'version': '12.0.4.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
-    'category': 'Generic Modules/Others',
+    'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
     'website': 'https://github.com/CLVsol',
     'depends': [
