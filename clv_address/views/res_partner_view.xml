@@ -20,10 +20,12 @@
                         attrs="{'invisible': [('address_ids', '=', [])]}"
                         >
                     <div class="o_form_field o_stat_info">
-                        <span class="o_stat_value">
-                            <field name="count_addresses" />
+                        <span class="o_stat_text">
+                            <field name="type"/>
                         </span>
-                        <span class="o_stat_text">Address(es)</span>
+                        <!--span class="o_stat_value">
+                            [<field name="count_addresses"/>]
+                        </span-->
                     </div>
                 </button>
             </xpath>
