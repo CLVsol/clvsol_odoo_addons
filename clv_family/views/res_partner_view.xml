@@ -20,10 +20,12 @@
                         attrs="{'invisible': [('family_ids', '=', [])]}"
                         >
                     <div class="o_form_field o_stat_info">
-                        <span class="o_stat_value">
-                            <field name="count_families" />
+                        <span class="o_stat_text">
+                            <field name="type"/>
                         </span>
-                        <span class="o_stat_text">Family(ies)</span>
+                        <!--span class="o_stat_value">
+                            [<field name="count_families"/>]
+                        </span-->
                     </div>
                 </button>
             </xpath>
