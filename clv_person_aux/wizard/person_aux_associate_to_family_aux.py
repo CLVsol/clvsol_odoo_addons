@@ -25,7 +25,7 @@ class PersonAuxAssociateToFamilyAux(models.TransientModel):
     create_new_family_aux = fields.Boolean(
         string='Create new Family (Aux)',
         default=True,
-        readonly=True
+        readonly=False
     )
 
     @api.multi
