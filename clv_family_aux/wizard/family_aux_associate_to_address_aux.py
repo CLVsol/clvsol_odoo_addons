@@ -25,7 +25,7 @@ class FamilyAuxAssociateToAddressAux(models.TransientModel):
     create_new_address_aux = fields.Boolean(
         string='Create new Address (Aux)',
         default=True,
-        readonly=True
+        readonly=False
     )
 
     @api.multi
