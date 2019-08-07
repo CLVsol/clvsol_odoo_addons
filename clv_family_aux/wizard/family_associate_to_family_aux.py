@@ -25,13 +25,13 @@ class FamilyAssociateToFamilyAux(models.TransientModel):
     create_new_family_aux = fields.Boolean(
         string='Create new Family (Aux)',
         default=True,
-        readonly=True
+        readonly=False
     )
 
     create_new_address_aux = fields.Boolean(
         string='Create new Address (Aux)',
-        default=True,
-        readonly=True
+        default=False,
+        readonly=False
     )
 
     @api.multi
