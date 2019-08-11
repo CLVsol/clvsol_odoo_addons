@@ -88,6 +88,8 @@ class FamilyAssociateToFamilyAux(models.TransientModel):
 
             if family.ref_address_id.id is not False:
 
+                new_address_aux = False
+
                 AddressAux = self.env['clv.address_aux']
                 address_aux = AddressAux.search([
                     ('related_address_id', '=', family.ref_address_id.id),
@@ -116,10 +118,12 @@ class FamilyAssociateToFamilyAux(models.TransientModel):
 
                         new_address_aux.do_address_aux_get_related_address_data()
 
-                data_values = {}
-                data_values['ref_address_aux_id'] = new_address_aux.id
-                _logger.info(u'>>>>>>>>>> %s', data_values)
-                new_family_aux.write(data_values)
+                if new_address_aux is not False:
+
+                    data_values = {}
+                    data_values['ref_address_aux_id'] = new_address_aux.id
+                    _logger.info(u'>>>>>>>>>> %s', data_values)
+                    new_family_aux.write(data_values)
 
         if family_count == 1:
 
