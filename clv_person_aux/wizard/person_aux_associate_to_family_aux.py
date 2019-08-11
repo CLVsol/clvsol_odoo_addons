@@ -58,6 +58,8 @@ class PersonAuxAssociateToFamilyAux(models.TransientModel):
             ])
             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'family_aux_id:', family_aux.id)
 
+            new_family_aux = False
+
             if family_aux.id is not False:
 
                 new_family_aux = family_aux
@@ -75,15 +77,20 @@ class PersonAuxAssociateToFamilyAux(models.TransientModel):
 
                     values = {}
                     values['related_family_id'] = person_aux.family_id.id
+                    values['ref_address_id'] = person_aux.ref_address_id.id
+                    values['ref_address_aux_id'] = person_aux.ref_address_aux_id.id
                     _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                     new_family_aux.write(values)
 
-                    new_family_aux.do_family_aux_get_related_family_data()
+                    # new_family_aux.do_family_aux_get_related_family_data()
+                    new_family_aux.do_family_aux_get_ref_address_aux_data()
 
-            data_values = {}
-            data_values['family_aux_id'] = new_family_aux.id
-            _logger.info(u'>>>>>>>>>> %s', data_values)
-            person_aux.write(data_values)
+            if new_family_aux is not False:
+
+                data_values = {}
+                data_values['family_aux_id'] = new_family_aux.id
+                _logger.info(u'>>>>>>>>>> %s', data_values)
+                person_aux.write(data_values)
 
         if person_aux_count == 1:
 
