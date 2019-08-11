@@ -58,6 +58,8 @@ class PersonAuxAssociateToAddressAux(models.TransientModel):
             ])
             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'address_aux_id:', address_aux.id)
 
+            new_address_aux = False
+
             if address_aux.id is not False:
 
                 new_address_aux = address_aux
@@ -80,10 +82,13 @@ class PersonAuxAssociateToAddressAux(models.TransientModel):
 
                     new_address_aux.do_address_aux_get_related_address_data()
 
-            data_values = {}
-            data_values['ref_address_aux_id'] = new_address_aux.id
-            _logger.info(u'>>>>>>>>>> %s', data_values)
-            person_aux.write(data_values)
+            if new_address_aux is not False:
+
+                data_values = {}
+                data_values['ref_address_aux_id'] = new_address_aux.id
+                _logger.info(u'>>>>>>>>>> %s', data_values)
+                person_aux.write(data_values)
+                person_aux.do_person_aux_get_ref_address_aux_data()
 
         if person_aux_count == 1:
 
