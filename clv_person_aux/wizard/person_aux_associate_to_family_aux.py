@@ -53,9 +53,15 @@ class PersonAuxAssociateToFamilyAux(models.TransientModel):
             _logger.info(u'%s %s %s', '>>>>>', person_aux_count, person_aux.name)
 
             FamilyAux = self.env['clv.family_aux']
-            family_aux = FamilyAux.search([
-                ('related_family_id', '=', person_aux.family_id.id),
-            ])
+            family_aux = False
+            if person_aux.family_id.id is not False:
+                family_aux = FamilyAux.search([
+                    ('related_family_id', '=', person_aux.family_id.id),
+                ])
+            elif person_aux.ref_address_aux_id.id is not False:
+                family_aux = FamilyAux.search([
+                    ('ref_address_aux_id', '=', person_aux.ref_address_aux_id.id),
+                ])
             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'family_aux_id:', family_aux.id)
 
             new_family_aux = False
