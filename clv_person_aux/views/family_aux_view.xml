@@ -28,7 +28,7 @@
                                     type="action"
                                     class="oe_stat_button"
                                     icon="fa-list"
-                                    context="{'search_default_ref_address_aux_id': id}"
+                                    context="{'search_default_family_aux_id': id}"
                                     >
                                 <div class="o_form_field o_stat_info">
                                     <span class="o_stat_value">
@@ -101,6 +101,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
+                <field name="family_aux_id"/>
                 <field name="family_aux_category_ids"/>
             </field>
             <group name="group_by" position="inside">
