@@ -4,13 +4,13 @@
 
 <odoo>
 
-    <record id="clv_document_mass_edit_view_form_phase" model="ir.ui.view">
-        <field name="name">clv.document.mass_edit.form</field>
-        <field name="model">clv.document.mass_edit</field>
-        <field name="inherit_id" ref="clv_document.clv_document_mass_edit_view_form"/>
+    <record id="clv_person_mass_edit_view_form_phase" model="ir.ui.view">
+        <field name="name">clv.person.mass_edit.form</field>
+        <field name="model">clv.person.mass_edit</field>
+        <field name="inherit_id" ref="clv_person.clv_person_mass_edit_view_form"/>
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
-            <group name="date_deadline" position="after">
+            <group name="marker_ids" position="after">
                 <group>
                     <field name="phase_id_selection"/>
                 </group>
