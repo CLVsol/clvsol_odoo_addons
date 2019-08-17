@@ -28,9 +28,16 @@ class AddressAux(models.Model):
                     record.suggested_name = record.suggested_name + ' - ' + record.street2
             else:
                 record.suggested_name = 'Address Name...'
-            if record.automatic_set_name:
-                if record.name != record.suggested_name:
-                    record.name = record.suggested_name
+
+    @api.model
+    def create(self, values):
+        record = super().create(values)
+
+        if record.automatic_set_name:
+            if record.name != record.suggested_name:
+                record['name'] = record.suggested_name
+
+        return record
 
     @api.multi
     def write(self, values):
