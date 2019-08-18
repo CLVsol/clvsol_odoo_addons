@@ -38,6 +38,7 @@
         'wizard/person_aux_contact_information_updt_view.xml',
         'wizard/person_associate_to_person_aux_view.xml',
         'wizard/person_aux_associate_to_address_aux_view.xml',
+        'wizard/person_aux_associate_to_family_view.xml',
         'wizard/person_aux_associate_to_family_aux_view.xml',
     ],
     'demo': [],
