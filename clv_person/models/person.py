@@ -313,3 +313,14 @@ class Person(models.Model):
 
     # identification_id = fields.Char(string='Person ID')
     # otherid = fields.Char(string='Other ID')
+
+    @api.multi
+    def write(self, values):
+        ret = super().write(values)
+        for record in self:
+            if ('code' in values):
+                if record.entity_code != values['code']:
+                    vals = {}
+                    vals['entity_code'] = values['code']
+                    super().write(vals)
+        return ret

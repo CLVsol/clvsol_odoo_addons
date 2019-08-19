@@ -36,3 +36,14 @@ class Address(models.Model):
             'clv_address', 'static/src/img', 'address-avatar.png',
         )
         return image_path
+
+    @api.multi
+    def write(self, values):
+        ret = super().write(values)
+        for record in self:
+            if ('code' in values):
+                if record.entity_code != values['code']:
+                    vals = {}
+                    vals['entity_code'] = values['code']
+                    super().write(vals)
+        return ret

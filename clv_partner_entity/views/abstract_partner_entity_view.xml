@@ -342,6 +342,7 @@
                                 <group name="settings_left_2">
                                     <field name="related_partner_id"/>
                                     <field name="type" readonly="True"/>
+                                    <field name="entity_code"/>
                                 </group>
                                 <group name='settings_right_2'>
                                     <div class="oe_button_box" name="settings_buttons_2">
@@ -455,8 +456,11 @@
                 <field name="category_id"/>
                 <field name="parent_id" invisible="1"/>
                 <field name="partner_id" invisible="1"/>
+                <field name="entity_code"/>
                 <filter name="filter_deactivated" string="Deactivated"
                         domain="[('active', '=', 0)]"/>
+                <filter name="filter_entity_code" string="Entity Code is missing"
+                        domain="[('entity_code', '=', False)]"/>
                 <group name="group_by" string="Group By...">
                     <filter name="filter_parent_id"
                             string="Parent"
