@@ -20,6 +20,7 @@
         'views/phase_view.xml',
         'views/family_view.xml',
         'views/address_view.xml',
+        'wizard/family_mass_edit_view.xml',
     ],
     'demo': [],
     'test': [],
