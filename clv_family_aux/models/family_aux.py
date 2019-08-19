@@ -43,6 +43,17 @@ class FamilyAux(models.Model):
         return image_path
 
     @api.multi
+    def write(self, values):
+        ret = super().write(values)
+        for record in self:
+            if ('code' in values):
+                if record.entity_code != values['code']:
+                    vals = {}
+                    vals['entity_code'] = values['code']
+                    super().write(vals)
+        return ret
+
+    @api.multi
     def do_family_aux_clear_address_data(self):
 
         for family_aux in self:
