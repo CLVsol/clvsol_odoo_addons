@@ -330,6 +330,17 @@ class PersonAux(models.Model):
     # otherid = fields.Char(string='Other ID')
 
     @api.multi
+    def write(self, values):
+        ret = super().write(values)
+        for record in self:
+            if ('code' in values):
+                if record.entity_code != values['code']:
+                    vals = {}
+                    vals['entity_code'] = values['code']
+                    super().write(vals)
+        return ret
+
+    @api.multi
     def do_person_aux_clear_address_data(self):
 
         for person_aux in self:
