@@ -342,6 +342,7 @@
                                 <group name="settings_left_2">
                                     <field name="related_partner_id"/>
                                     <field name="type" readonly="True"/>
+                                    <field name="entity_code"/>
                                 </group>
                                 <group name='settings_right_2'>
                                     <div class="oe_button_box" name="settings_buttons_2">
