@@ -29,8 +29,13 @@
                     <group>
                         <field name="marker_ids_selection"/>
                     </group>
-                    <group>
+                    <group name="marker_ids">
                         <field name="marker_ids" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
+                    </group>
+                    <group name="partner_entity_code_selection">
+                        <field name="partner_entity_code_selection"/>
+                    </group>
+                    <group>
                     </group>
                 </group>
                 <footer>

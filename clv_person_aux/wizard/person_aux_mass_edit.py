@@ -77,6 +77,12 @@ class PersonoFFMassEdit(models.TransientModel):
          ], string='Markers:', default=False, readonly=False, required=False
     )
 
+    partner_entity_code_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Partner Entity Code:', default=False, readonly=False, required=False
+    )
+
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -178,5 +184,16 @@ class PersonoFFMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person_aux.marker_ids = m2m_list
+
+            if self.partner_entity_code_selection == 'set':
+                if person_aux.entity_code != person_aux.code:
+                    vals = {}
+                    vals['entity_code'] = person_aux.code
+                    person_aux.write(vals)
+            if self.partner_entity_code_selection == 'remove':
+                if person_aux.entity_code is not False:
+                    vals = {}
+                    vals['entity_code'] = False
+                    person_aux.write(vals)
 
         return True
