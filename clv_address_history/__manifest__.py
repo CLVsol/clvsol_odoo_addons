@@ -19,6 +19,7 @@
         'views/address_history_view.xml',
         'views/phase_view.xml',
         'views/address_view.xml',
+        'wizard/address_mass_edit_view.xml',
     ],
     'demo': [],
     'test': [],
