@@ -39,7 +39,7 @@
         name="Lab Test Type Duplicate"
         src_model="clv.lab_test.type"
         res_model="clv.lab_test.type.duplicate"
-        view_mode="form, tree"
+        view_mode="form"
         target="new"
     />
 

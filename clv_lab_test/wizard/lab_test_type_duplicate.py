@@ -65,7 +65,10 @@ class LabTestTypeDuplicate(models.TransientModel):
 
         LabTestType = self.env['clv.lab_test.type']
 
+        lab_test_type_count = 0
         for lab_test_type in self.lab_test_type_ids:
+
+            lab_test_type_count += 1
 
             _logger.info(u'%s %s %s', '>>>>>', lab_test_type.code, lab_test_type.name)
             _logger.info(u'%s %s %s', '>>>>>>>>>>', self.new_code, self.new_name)
@@ -97,4 +100,29 @@ class LabTestTypeDuplicate(models.TransientModel):
 
             _logger.info(u'%s %s', '>>>>>>>>>>>>>>>', criteria)
 
-        return True
+        if lab_test_type_count == 1:
+
+            action = {
+                'type': 'ir.actions.act_window',
+                'name': 'Lab Test Types',
+                'res_model': 'clv.lab_test.type',
+                'res_id': new_lab_test_type.id,
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'target': 'current',
+                'context': {'search_default_name': new_lab_test_type.name},
+            }
+
+        else:
+
+            action = {
+                'type': 'ir.actions.act_window',
+                'name': 'Lab Test Types',
+                'res_model': 'clv.lab_test.type',
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'target': 'current',
+            }
+
+        return action
+        # return True
