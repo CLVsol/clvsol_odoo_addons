@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class SurveyDuplicate(models.TransientModel):
+    _description = 'Survey Duplicate'
     _name = 'survey.survey.duplicate'
 
     survey_ids = fields.Many2many(
