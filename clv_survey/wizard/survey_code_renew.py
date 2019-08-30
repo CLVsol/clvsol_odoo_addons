@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class SurveyCodeRenew(models.TransientModel):
+    _description = 'Survey Code Renew'
     _name = 'clv.survey.code_renew'
 
     def _default_survey_ids(self):
@@ -37,9 +38,9 @@ class SurveyCodeRenew(models.TransientModel):
 
                 new_page_sequence += 10
                 if new_page_sequence < 100:
-                    new_page_code = new_survey_code + '_0' + str(new_page_sequence / 10)
+                    new_page_code = new_survey_code + '_0' + str(int(new_page_sequence / 10))
                 else:
-                    new_page_code = new_survey_code + '_' + str(new_page_sequence / 10)
+                    new_page_code = new_survey_code + '_' + str(int(new_page_sequence / 10))
 
                 _logger.info(
                     u'%s %s: %s, %s: %s',
@@ -53,9 +54,9 @@ class SurveyCodeRenew(models.TransientModel):
 
                     new_question_sequence += 10
                     if new_question_sequence < 100:
-                        new_question_code = new_page_code + '_0' + str(new_question_sequence / 10)
+                        new_question_code = new_page_code + '_0' + str(int(new_question_sequence / 10))
                     else:
-                        new_question_code = new_page_code + '_' + str(new_question_sequence / 10)
+                        new_question_code = new_page_code + '_' + str(int(new_question_sequence / 10))
 
                     _logger.info(
                         u'%s %s: %s, %s: %s',
@@ -74,9 +75,9 @@ class SurveyCodeRenew(models.TransientModel):
 
                             new_label_sequence += 10
                             if new_label_sequence < 100:
-                                new_label_code = new_question_code + '_0' + str(new_label_sequence / 10)
+                                new_label_code = new_question_code + '_0' + str(int(new_label_sequence / 10))
                             else:
-                                new_label_code = new_question_code + '_' + str(new_label_sequence / 10)
+                                new_label_code = new_question_code + '_' + str(int(new_label_sequence / 10))
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
@@ -94,9 +95,9 @@ class SurveyCodeRenew(models.TransientModel):
 
                             new_label_sequence += 10
                             if new_label_sequence < 100:
-                                new_label_code = new_question_code + '_0' + str(new_label_sequence / 10)
+                                new_label_code = new_question_code + '_0' + str(int(new_label_sequence / 10))
                             else:
-                                new_label_code = new_question_code + '_' + str(new_label_sequence / 10)
+                                new_label_code = new_question_code + '_' + str(int(new_label_sequence / 10))
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
@@ -114,9 +115,9 @@ class SurveyCodeRenew(models.TransientModel):
 
                             new_label_sequence += 10
                             if new_label_sequence < 100:
-                                new_label_code = new_question_code + '_0' + str(new_label_sequence / 10)
+                                new_label_code = new_question_code + '_0' + str(int(new_label_sequence / 10))
                             else:
-                                new_label_code = new_question_code + '_' + str(new_label_sequence / 10)
+                                new_label_code = new_question_code + '_' + str(int(new_label_sequence / 10))
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
@@ -131,9 +132,9 @@ class SurveyCodeRenew(models.TransientModel):
 
                             new_label_sequence += 10
                             if new_label_sequence < 100:
-                                new_label_code = new_question_code + '_0' + str(new_label_sequence / 10)
+                                new_label_code = new_question_code + '_0' + str(int(new_label_sequence / 10))
                             else:
-                                new_label_code = new_question_code + '_' + str(new_label_sequence / 10)
+                                new_label_code = new_question_code + '_' + str(int(new_label_sequence / 10))
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
