@@ -12,6 +12,7 @@ _logger = logging.getLogger(__name__)
 
 
 class SurveyExportXLS(models.TransientModel):
+    _description = 'Survey Export XLS'
     _name = 'clv.survey.export_xls'
 
     def _default_survey_ids(self):
@@ -23,11 +24,20 @@ class SurveyExportXLS(models.TransientModel):
         default=_default_survey_ids
     )
 
+    def _default_dir_path(self):
+        dir_path = \
+            self.env['ir.config_parameter'].sudo().get_param(
+                'clv.global_settings.current_filestore_path', '').strip() + \
+            '/' + \
+            self.env['ir.config_parameter'].sudo().get_param(
+                'clv.global_settings.current_survey_files_directory_templates', '').strip()
+
+        return dir_path
     dir_path = fields.Char(
         string='Directory Path',
         required=True,
         help="Directory Path",
-        default='/opt/openerp/clvsol_clvhealth_jcafb/survey_files/xls'
+        default=_default_dir_path
     )
 
     file_name = fields.Char(
@@ -94,8 +104,8 @@ class SurveyExportXLS(models.TransientModel):
 
             book = xlwt.Workbook()
 
-            _title_ = survey_reg.title.encode("utf-8")
-            _description_ = survey_reg.description.replace('<p>', '').replace('</p>', '').encode("utf-8")
+            _title_ = survey_reg.title
+            _description_ = survey_reg.description.replace('<p>', '').replace('</p>', '')
 
             row_nr = 0
             sheet = book.add_sheet(survey_reg.code)
@@ -105,33 +115,33 @@ class SurveyExportXLS(models.TransientModel):
 
             row = sheet.row(row_nr)
             row.write(0, '[' + survey_reg.code + ']')
-            row.write(2, _title_.decode("utf-8"))
+            row.write(2, _title_)
             row_nr += 1
             row = sheet.row(row_nr)
             row.write(0, '[' + survey_reg.code + ']')
-            row.write(2, _description_.decode("utf-8"))
+            row.write(2, _description_)
             row_nr += 2
 
             for page in survey_reg.page_ids:
 
-                _title_ = page.title.encode("utf-8")
-                _description_ = page.description.replace('<p>', '').replace('</p>', '').encode("utf-8")
+                _title_ = page.title
+                _description_ = page.description.replace('<p>', '').replace('</p>', '')
 
                 row = sheet.row(row_nr)
                 row.write(0, '[' + page.code + ']')
-                row.write(3, _title_.decode("utf-8"))
+                row.write(3, _title_)
                 row_nr += 1
                 row = sheet.row(row_nr)
                 row.write(0, '[' + page.code + ']')
-                row.write(3, _description_.decode("utf-8"))
+                row.write(3, _description_)
                 row_nr += 2
 
                 for question in page.question_ids:
 
                     _type_ = question.type
-                    _question_ = question.question.encode("utf-8")
+                    _question_ = question.question
                     if question.comments_message is not False:
-                        _comments_message_ = question.comments_message.encode("utf-8")
+                        _comments_message_ = question.comments_message
                     if question.comments_allowed is False:
                         _comments_message_ = ''
 
@@ -139,11 +149,11 @@ class SurveyExportXLS(models.TransientModel):
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _question_.decode("utf-8"))
+                        row.write(4, _question_)
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _type_.decode("utf-8"))
+                        row.write(4, _type_)
                         row.hidden = isHidden
                         row_nr += 2
                         if _type_ == 'free_text':
@@ -190,29 +200,29 @@ class SurveyExportXLS(models.TransientModel):
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _question_.decode("utf-8"))
+                        row.write(4, _question_)
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _type_.decode("utf-8"))
+                        row.write(4, _type_)
                         row.hidden = isHidden
                         row_nr += 2
 
                         for label in question.labels_ids:
 
-                            _value_ = label.value.encode("utf-8")
+                            _value_ = label.value
 
                             row = sheet.row(row_nr)
                             row.write(0, '[' + label.code + ']')
                             row.write(4, '.', style=style_dot)
                             row.write(5, None, style=style_choice_thin)
-                            row.write(6, _value_.decode("utf-8"))
+                            row.write(6, _value_)
                             row_nr += 1
 
                         if question.comments_allowed is True:
                             row = sheet.row(row_nr)
                             row.write(0, '[' + question.code + ']')
-                            row.write(6, _comments_message_.decode("utf-8"))
+                            row.write(6, _comments_message_)
                             row_nr += 2
                             row = sheet.row(row_nr)
                             row.write(0, '[' + question.code + ']')
@@ -228,29 +238,29 @@ class SurveyExportXLS(models.TransientModel):
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _question_.decode("utf-8"))
+                        row.write(4, _question_)
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _type_.decode("utf-8"))
+                        row.write(4, _type_)
                         row.hidden = isHidden
                         row_nr += 2
 
                         for label in question.labels_ids:
 
-                            _value_ = label.value.encode("utf-8")
+                            _value_ = label.value
 
                             row = sheet.row(row_nr)
                             row.write(0, '[' + label.code + ']')
                             row.write(4, '.', style=style_dot)
                             row.write(5, None, style=style_choice_dotted)
-                            row.write(6, _value_.decode("utf-8"))
+                            row.write(6, _value_)
                             row_nr += 1
 
                         if question.comments_allowed is True:
                             row = sheet.row(row_nr)
                             row.write(0, '[' + question.code + ']')
-                            row.write(6, _comments_message_.decode("utf-8"))
+                            row.write(6, _comments_message_)
                             row_nr += 2
                             row = sheet.row(row_nr)
                             row.write(0, '[' + question.code + ']')
@@ -266,7 +276,7 @@ class SurveyExportXLS(models.TransientModel):
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _question_.decode("utf-8"))
+                        row.write(4, _question_)
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -286,22 +296,22 @@ class SurveyExportXLS(models.TransientModel):
 
                         for label in question.labels_ids_2:
 
-                            _value_ = label.value.encode("utf-8")
+                            _value_ = label.value
 
                             row = sheet.row(row_nr)
                             row.write(0, '[' + label.code + ']')
-                            row.write(5, _value_.decode("utf-8"))
+                            row.write(5, _value_)
                             matrix_row_nrs = matrix_row_nrs + [row_nr]
                             row_nr += 2
 
                         for label in question.labels_ids:
 
-                            _value_ = label.value.encode("utf-8")
+                            _value_ = label.value
 
                             row = sheet.row(matrix_col_row_nr)
                             row.write(matrix_col_nr, '[' + label.code + ']')
                             row = sheet.row(matrix_col_row_nr + 1)
-                            row.write(matrix_col_nr + 1, _value_.decode("utf-8"))
+                            row.write(matrix_col_nr + 1, _value_)
                             for matrix_row_nr in matrix_row_nrs:
                                 row = sheet.row(matrix_row_nr)
                                 row.write(matrix_col_nr, '.', style=style_dot)

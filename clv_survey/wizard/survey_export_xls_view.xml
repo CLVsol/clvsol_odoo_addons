@@ -39,7 +39,7 @@
         name="Survey Export XLS"
         src_model="survey.survey"
         res_model="clv.survey.export_xls"
-        view_mode="form, tree"
+        view_mode="form"
         key2="client_action_multi"
         target="new"
     />
