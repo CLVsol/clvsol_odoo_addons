@@ -44,7 +44,7 @@ class SurveyExportXLS(models.TransientModel):
         string='File Name',
         required=True,
         help="File Name",
-        default='<code>_nnn.nnn-dd.xls'
+        default='<code>_nnn.nnn-dd_<file_format>.xls'
     )
 
     password = fields.Char(
@@ -98,7 +98,8 @@ class SurveyExportXLS(models.TransientModel):
 
         for survey_reg in self.survey_ids:
 
-            file_path = self.dir_path + '/' + self.file_name.replace('<code>', survey_reg.code)
+            file_path = self.dir_path + '/' + \
+                self.file_name.replace('<code>', survey_reg.code).replace('<file_format>', self.file_format)
 
             _logger.info(u'%s %s', '>>>>>', file_path)
 
