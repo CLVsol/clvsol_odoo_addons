@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 
 
 class SurveyExportXML(models.TransientModel):
+    _description = 'Survey Export XML'
     _name = 'clv.survey.export_xml'
 
     def _default_survey_ids(self):
@@ -21,11 +22,20 @@ class SurveyExportXML(models.TransientModel):
         default=_default_survey_ids
     )
 
+    def _default_dir_path(self):
+        dir_path = \
+            self.env['ir.config_parameter'].sudo().get_param(
+                'clv.global_settings.current_filestore_path', '').strip() + \
+            '/' + \
+            self.env['ir.config_parameter'].sudo().get_param(
+                'clv.global_settings.current_survey_files_directory_templates', '').strip()
+
+        return dir_path
     dir_path = fields.Char(
         'Directory Path',
         required=True,
         help="Directory Path",
-        default='/opt/openerp/clvsol_clvhealth_jcafb/survey_files/xml'
+        default=_default_dir_path
     )
 
     file_name = fields.Char(
@@ -54,8 +64,8 @@ class SurveyExportXML(models.TransientModel):
 
             _model_ = 'survey.survey'
             _stage_id_ = 'survey.stage_in_progress'
-            _description_ = survey_reg.description.replace('<p>', '').replace('</p>', '').encode("utf-8")
-            _thank_you_message_ = survey_reg.thank_you_message.replace('<p>', '').replace('</p>', '').encode("utf-8")
+            _description_ = survey_reg.description.replace('<p>', '').replace('</p>', '')
+            _thank_you_message_ = survey_reg.thank_you_message.replace('<p>', '').replace('</p>', '')
 
             xml_file.write('        <!-- %s -->\n' % (survey_reg.title))
             xml_file.write('        <record model="%s" id="%s">\n' % (_model_, survey_reg.code))
@@ -73,9 +83,9 @@ class SurveyExportXML(models.TransientModel):
 
             for page in survey_reg.page_ids:
 
-                _title_ = page.title.encode("utf-8")
+                _title_ = page.title
                 _model_ = 'survey.page'
-                _description_ = page.description.replace('<p>', '').replace('</p>', '').encode("utf-8")
+                _description_ = page.description.replace('<p>', '').replace('</p>', '')
 
                 xml_file.write('            <!-- %s -->\n' % (_title_))
                 xml_file.write('            <record model="%s" id="%s">\n' % (_model_, page.code))
@@ -91,10 +101,10 @@ class SurveyExportXML(models.TransientModel):
                 for question in page.question_ids:
 
                     _type_ = question.type
-                    _question_ = question.question.encode("utf-8")
+                    _question_ = question.question
                     _model_ = 'survey.question'
                     if question.comments_message is not False:
-                        _comments_message_ = question.comments_message.encode("utf-8")
+                        _comments_message_ = question.comments_message
                     if question.comments_allowed is False:
                         _comments_message_ = ''
 
@@ -114,7 +124,7 @@ class SurveyExportXML(models.TransientModel):
                         xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
                                        (question.constr_mandatory))
                         xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
-                                       (question.constr_error_msg.encode("utf-8")))
+                                       (question.constr_error_msg))
                         xml_file.write('                </record>\n')
                         xml_file.write('\n')
 
@@ -138,7 +148,7 @@ class SurveyExportXML(models.TransientModel):
                         xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
                                        (question.constr_mandatory))
                         xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
-                                       (question.constr_error_msg.encode("utf-8")))
+                                       (question.constr_error_msg))
                         xml_file.write('                    <field name="comments_allowed">%s</field>\n' %
                                        (question.comments_allowed))
                         xml_file.write('                    <field name="comments_message">%s</field>\n' %
@@ -152,7 +162,7 @@ class SurveyExportXML(models.TransientModel):
 
                             xml_file.write('                    <record model="%s" id="%s">\n' % (_model_, label.code))
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (label.value.encode("utf-8")))
+                                           (label.value))
                             xml_file.write('                        <field name="code">%s</field>\n' % (label.code))
                             xml_file.write('                        <field name="question_id" ref="%s"/>\n' %
                                            (question.code))
@@ -179,7 +189,7 @@ class SurveyExportXML(models.TransientModel):
                         xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
                                        (question.constr_mandatory))
                         xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
-                                       (question.constr_error_msg.encode("utf-8")))
+                                       (question.constr_error_msg))
                         xml_file.write('                    <field name="comments_allowed">%s</field>\n' %
                                        (question.comments_allowed))
                         xml_file.write('                    <field name="comments_message">%s</field>\n' %
@@ -193,7 +203,7 @@ class SurveyExportXML(models.TransientModel):
 
                             xml_file.write('                    <record model="%s" id="%s">\n' % (_model_, label.code))
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (label.value.encode("utf-8")))
+                                           (label.value))
                             xml_file.write('                        <field name="code">%s</field>\n' % (label.code))
                             xml_file.write('                        <field name="question_id" ref="%s"/>\n' %
                                            (question.code))
@@ -220,7 +230,7 @@ class SurveyExportXML(models.TransientModel):
                         xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
                                        (question.constr_mandatory))
                         xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
-                                       (question.constr_error_msg.encode("utf-8")))
+                                       (question.constr_error_msg))
                         xml_file.write('                </record>\n')
                         xml_file.write('\n')
 
@@ -230,7 +240,7 @@ class SurveyExportXML(models.TransientModel):
 
                             xml_file.write('                    <record model="%s" id="%s">\n' % (_model_, label.code))
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (label.value.encode("utf-8")))
+                                           (label.value))
                             xml_file.write('                        <field name="code">%s</field>\n' % (label.code))
                             xml_file.write('                        <field name="question_id_2" ref="%s"/>\n' %
                                            (question.code))
@@ -245,7 +255,7 @@ class SurveyExportXML(models.TransientModel):
 
                             xml_file.write('                    <record model="%s" id="%s">\n' % (_model_, label.code))
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (label.value.encode("utf-8")))
+                                           (label.value))
                             xml_file.write('                        <field name="code">%s</field>\n' % (label.code))
                             xml_file.write('                        <field name="question_id" ref="%s"/>\n' %
                                            (question.code))
