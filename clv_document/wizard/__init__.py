@@ -5,4 +5,5 @@
 from . import document_mass_edit
 from . import document_items_refresh
 from . import document_type_mass_edit
+from . import document_type_duplicate
 from . import document_type_item_setup
