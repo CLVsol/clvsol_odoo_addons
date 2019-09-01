@@ -32,6 +32,7 @@
         'wizard/document_mass_edit_view.xml',
         'wizard/document_items_refresh_view.xml',
         'wizard/document_type_mass_edit_view.xml',
+        'wizard/document_type_item_setup_view.xml',
     ],
     'demo': [],
     'test': [],
