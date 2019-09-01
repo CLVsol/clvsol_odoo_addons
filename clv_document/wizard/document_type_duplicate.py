@@ -46,8 +46,10 @@ class DocumentTypeDuplicate(models.TransientModel):
         document_type = DocumentType.search([
             ('id', '=', document_type_id),
         ])
+
         defaults['new_name'] = document_type.name
         defaults['new_code'] = document_type.code
+        defaults['new_description'] = document_type.description
 
         return defaults
 
