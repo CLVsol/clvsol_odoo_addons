@@ -29,8 +29,8 @@ class DocumentTypeDuplicate(models.TransientModel):
         required=True
     )
 
-    new_notes = fields.Text(
-        string='New Document Type Notes',
+    new_description = fields.Char(
+        string='New Document Type Description',
         required=False
     )
 
@@ -81,7 +81,7 @@ class DocumentTypeDuplicate(models.TransientModel):
             values = {
                 'name': self.new_name,
                 'code': self.new_code,
-                'notes': self.new_notes,
+                'notes': self.new_description,
             }
             new_document_type = DocumentType.create(values)
 

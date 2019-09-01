@@ -17,7 +17,7 @@
                     <group  name="group_top">
                         <field name="new_name"/>
                         <field name="new_code"/>
-                        <field name="new_notes"/>
+                        <field name="new_description"/>
                     </group>
                 </sheet>
                 <footer>
