@@ -19,6 +19,8 @@
                     <div name="title" class="oe_title">
                         <label for="code" class="oe_edit_only"/>
                         <h3><field name="code" placeholder="Document Type Code..."/></h3>
+                        <label for="description" class="oe_edit_only"/>
+                        <h3><field name="description" placeholder="Document Type Description..."/></h3>
                     </div>
                     <group name="group_top">
                         <group name="group_left">
@@ -70,6 +72,7 @@
             <tree name='document_type' string='Document Type'>
                 <field name="name"></field>
                 <field name="code"></field>
+                <field name="description"></field>
             </tree>
         </field>
     </record>
@@ -116,6 +119,8 @@
             <label for="base_document_id" position="before">
                 <label for="document_type_id" class="oe_edit_only"/>
                 <h3><field name="document_type_id" placeholder="Document Type..." options="{'no_open': False, 'no_create': True}"/></h3>
+                <label for="document_type_description" class="oe_edit_only"/>
+                <h3><field name="document_type_description" placeholder="Document Type Description..." /></h3>
             </label>
         </field>
     </record>
@@ -128,6 +133,7 @@
         <field name="arch" type="xml">
             <field name="code" position="after">
                 <field name="document_type_id"/>
+                <field name="document_type_description"/>
             </field>
         </field>
     </record>
