@@ -83,7 +83,7 @@ class DocumentTypeDuplicate(models.TransientModel):
             values = {
                 'name': self.new_name,
                 'code': self.new_code,
-                'notes': self.new_description,
+                'description': self.new_description,
             }
             new_document_type = DocumentType.create(values)
 
