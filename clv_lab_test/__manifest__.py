@@ -34,6 +34,7 @@
         'wizard/lab_test_report_mass_edit_view.xml',
         'wizard/lab_test_type_duplicate_view.xml',
         'wizard/lab_test_result_edit_view.xml',
+        'wizard/lab_test_report_edit_view.xml',
     ],
     'demo': [],
     'test': [],
