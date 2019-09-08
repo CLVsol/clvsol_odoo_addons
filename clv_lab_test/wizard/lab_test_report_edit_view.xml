@@ -33,10 +33,18 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
+    <!--act_window 
         id="clv_lab_test_report_edit_action"
         name="Lab Test Report Edit"
         src_model="clv.lab_test.report"
+        res_model="clv.lab_test.report.edit"
+        view_mode="form"
+        target="new"
+    /-->
+
+    <act_window 
+        id="clv_lab_test_report_edit_action"
+        name="Lab Test Report Edit"
         res_model="clv.lab_test.report.edit"
         view_mode="form"
         target="new"

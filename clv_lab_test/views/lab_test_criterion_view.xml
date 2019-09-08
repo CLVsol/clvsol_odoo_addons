@@ -163,6 +163,22 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <group name="group_top" position="after">
+                <!--button name="do_person_get_ref_address_data"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-download"
+                        string=" Get Reference Address Data"
+                        confirm="Are you sure you want to copy the 'Reference Address' data?"
+                        attrs="{'invisible': [('ref_address_id', '=', False)]}"
+                        >
+                </button-->
+                <button
+                       type="action"
+                       name="%(clv_lab_test_result_edit_action)d"
+                       string="Lab Test Result Edit"
+                       class="oe_stat_button"
+                       icon="fa-edit"
+                       help="Lab Test Result Edit"/>
                 <field name="criterion_ids" colspan="4" nolabel="1">
                     <tree editable="top" string="Test Cases" create="false">
                         <field name="sequence" readonly="True"/>
@@ -190,6 +206,22 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <group name="group_top" position="after">
+                <!--button name="do_person_get_ref_address_data"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-download"
+                        string=" Get Reference Address Data"
+                        confirm="Are you sure you want to copy the 'Reference Address' data?"
+                        attrs="{'invisible': [('ref_address_id', '=', False)]}"
+                        >
+                </button-->
+                <button
+                       type="action"
+                       name="%(clv_lab_test_report_edit_action)d"
+                       string="Lab Test Report Edit"
+                       class="oe_stat_button"
+                       icon="fa-edit"
+                       help="Lab Test Report Edit"/>
                 <field name="criterion_ids" colspan="4" nolabel="1">
                     <tree editable="top" string="Test Cases" create="false">
                         <field name="sequence" readonly="True"/>
