@@ -179,6 +179,13 @@
                        class="oe_stat_button"
                        icon="fa-edit"
                        help="Lab Test Result Edit"/>
+                <button
+                       type="action"
+                       name="%(clv_lab_test_result_copy_to_report_action)d"
+                       string="Lab Test Result Copy to Report"
+                       class="oe_stat_button"
+                       icon="fa-copy"
+                       help="Lab Test Result Edit"/>
                 <field name="criterion_ids" colspan="4" nolabel="1">
                     <tree editable="top" string="Test Cases" create="false">
                         <field name="sequence" readonly="True"/>
