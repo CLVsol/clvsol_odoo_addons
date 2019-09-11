@@ -33,6 +33,12 @@
                         <group name="group_right">
                         </group>
                     </group>
+                    <group name="group_middle">
+                        <group name="group_middle_left">
+                        </group>
+                        <group name="group_middle_right">
+                        </group>
+                    </group>
                     <notebook>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                             <group name="settings_top">
