@@ -154,21 +154,7 @@
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_result_view_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <group name="group_top" position="after">
-                <button
-                       type="action"
-                       name="%(clv_lab_test_result_edit_action)d"
-                       string="Lab Test Result Edit"
-                       class="oe_stat_button"
-                       icon="fa-edit"
-                       help="Lab Test Result Edit"/>
-                <button
-                       type="action"
-                       name="%(clv_lab_test_result_copy_to_report_action)d"
-                       string="Lab Test Result Copy to Report"
-                       class="oe_stat_button"
-                       icon="fa-copy"
-                       help="Lab Test Result Edit"/>
+            <group name="group_middle" position="after">
                 <field name="criterion_ids" colspan="4" nolabel="1">
                     <tree editable="top" string="Test Cases" create="false">
                         <field name="sequence" readonly="True"/>
