@@ -143,14 +143,6 @@
                         <field name="result_display"/>
                         <field name="report_display"/>
                     </tree>
-                    <!--form string="Test Cases">
-                        <field name="code"/>
-                        <field name="name"/>
-                        <field name="unit_id"/>
-                        <field name="sequence"/>
-                        <newline/>
-                        <field name="normal_range"/>
-                    </form-->
                 </field>
             </field>
         </field>
@@ -162,7 +154,7 @@
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_result_view_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <group name="group_top" position="after">
+            <group name="group_middle" position="after">
                 <field name="criterion_ids" colspan="4" nolabel="1">
                     <tree editable="top" string="Test Cases" create="false">
                         <field name="sequence" readonly="True"/>
@@ -172,12 +164,6 @@
                         <field name="unit_id" readonly="True"/>
                         <field name="normal_range" readonly="True"/>
                     </tree>
-                    <!--form string="Test Cases">
-                        <field name="name" readonly="True"/>
-                        <field name="result"/>
-                        <field name="unit_id" readonly="True"/>
-                        <field name="normal_range" readonly="True"/>
-                    </form-->
                 </field>
             </group>
         </field>
@@ -189,7 +175,7 @@
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_report_view_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <group name="group_top" position="after">
+            <group name="group_middle" position="after">
                 <field name="criterion_ids" colspan="4" nolabel="1">
                     <tree editable="top" string="Test Cases" create="false">
                         <field name="sequence" readonly="True"/>
@@ -199,12 +185,6 @@
                         <field name="unit_id" readonly="True"/>
                         <field name="normal_range" readonly="True"/>
                     </tree>
-                    <!--form string="Test Cases">
-                        <field name="name" readonly="True"/>
-                        <field name="result"/>
-                        <field name="unit_id" readonly="True"/>
-                        <field name="normal_range" readonly="True"/>
-                    </form-->
                 </field>
             </group>
         </field>

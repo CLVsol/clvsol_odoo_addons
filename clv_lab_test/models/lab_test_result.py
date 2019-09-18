@@ -16,6 +16,7 @@ class LabTestResult(models.Model):
     code = fields.Char(string='Lab Test Result Code')
 
     lab_test_type_id = fields.Many2one(comodel_name='clv.lab_test.type', string='Lab Test Type')
+    lab_test_type_code = fields.Char(string='Lab Test Type Code', related='lab_test_type_id.code', store=False)
     lab_test_request_id = fields.Many2one(comodel_name='clv.lab_test.request', string='Lab Test Request')
     lab_test_report_id = fields.Many2one(comodel_name='clv.lab_test.report', string='Lab Test Report')
 
