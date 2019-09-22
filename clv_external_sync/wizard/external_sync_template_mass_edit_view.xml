@@ -19,8 +19,11 @@
                     </group>
                     <group>
                         <field name="external_host_id" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
-                    <group>
                     </group>
+                    <group>
+                        <field name="external_disable_identification_selection"/>
+                    </group>
+                    <group>
                         <field name="external_disable_identification" nolabel='1'/>
                     </group>
                     <group>
