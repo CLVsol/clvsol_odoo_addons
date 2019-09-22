@@ -26,14 +26,22 @@
                     </div>
                     <group name="group_top">
                         <group name="group_left">
+                            <field name="verification_max_task"/>
+                            <field name="verification_disable_identification"/>
+                            <field name="verification_disable_check_missing"/>
+                            <field name="verification_disable_inclusion"/>
+                            <field name="verification_disable_verification"/>
+                            <field name="verification_last_update_start"/>
+                            <field name="verification_last_update_end"/>
                             <field name="date_inclusion"/>
-                            <field name="date_last_verification"/>
                         </group>
                         <group name="group_right">
                             <field name="model"/>
                             <field name="method"/>
                         </group>
-                        <group name="sync">
+                        <group name="verification">
+                            <field name="date_last_verification"/>
+                            <field name="upmost_last_update"/>
                         </group>
                     </group>
                     <field name="notes" placeholder="Notes..." colspan="4"/>
@@ -83,6 +91,13 @@
             <tree name="events" string="Verification Schedules">
                 <field name="template_id"/>
                 <field name="name"/>
+                <field name="verification_max_task"/>
+                <field name="verification_disable_identification"/>
+                <field name="verification_disable_check_missing"/>
+                <field name="verification_disable_inclusion"/>
+                <field name="verification_disable_verification"/>
+                <field name="verification_last_update_start"/>
+                <field name="verification_last_update_end"/>
                 <field name="date_inclusion"/>
                 <field name="model"/>
                 <field name="method"/>
@@ -100,6 +115,13 @@
             <search>
                 <field name="template_id"/>
                 <field name="name"/>
+                <field name="verification_max_task"/>
+                <field name="verification_disable_identification"/>
+                <field name="verification_disable_check_missing"/>
+                <field name="verification_disable_inclusion"/>
+                <field name="verification_disable_verification"/>
+                <field name="verification_last_update_start"/>
+                <field name="verification_last_update_end"/>
                 <field name="date_inclusion"/>
                 <field name="model"/>
                 <field name="method"/>
