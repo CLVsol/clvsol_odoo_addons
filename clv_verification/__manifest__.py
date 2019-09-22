@@ -32,7 +32,7 @@
         'wizard/verification_mass_edit_view.xml',
         'wizard/verification_template_mass_edit_view.xml',
         'wizard/verification_schedule_mass_edit_view.xml',
-        # 'wizard/verification_schedule_exec_view.xml',
+        'wizard/verification_schedule_exec_view.xml',
         # 'wizard/verification_batch_exec_view.xml',
     ],
     'demo': [],
