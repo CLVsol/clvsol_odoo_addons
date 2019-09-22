@@ -16,6 +16,34 @@ class VerificationTemplate(models.Model):
         help='Verification Template Name'
     )
 
+    verification_max_task = fields.Integer(
+        string='Max Task Registers'
+    )
+
+    verification_disable_identification = fields.Boolean(
+        string='Disable Identification'
+    )
+
+    verification_disable_check_missing = fields.Boolean(
+        string='Disable Check Missing'
+    )
+
+    verification_disable_inclusion = fields.Boolean(
+        string='Disable Inclusion'
+    )
+
+    verification_disable_verification = fields.Boolean(
+        string='Disable Verification'
+    )
+
+    verification_last_update_start = fields.Datetime(
+        string="Last Update (Start)"
+    )
+
+    verification_last_update_end = fields.Datetime(
+        string="Last Update (End)"
+    )
+
     notes = fields.Text(string='Notes')
 
     date_inclusion = fields.Datetime(
