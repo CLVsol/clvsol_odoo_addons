@@ -29,7 +29,7 @@
         'views/verification_batch_member_view.xml',
         'views/referenceable_model_view.xml',
         'data/verification_batch_member.xml',
-        # 'wizard/verification_mass_edit_view.xml',
+        'wizard/verification_mass_edit_view.xml',
         # 'wizard/verification_template_mass_edit_view.xml',
         # 'wizard/verification_schedule_mass_edit_view.xml',
         # 'wizard/verification_schedule_exec_view.xml',
