@@ -31,7 +31,7 @@ class AbstractVerification(models.AbstractModel):
     )
     verification_outcomes = fields.Text(string='Verification Outcomes')
 
-    def _object_verification(self, schedule, model_name):
+    def _object_verification(self, schedule):
 
         from time import time
         start = time()
