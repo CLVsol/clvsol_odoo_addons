@@ -69,11 +69,13 @@
         <field name="model">clv.verification</field>
         <field name="arch" type="xml">
             <tree name="verification" string="Verification"
-                decoration-muted="state=='unknown'"
+                decoration-muted="state in('unknown','missing')"
+                decoration-info="state=='updated'"
+                decoration-warning="state=='warned'"
                 decoration-danger="state=='failed'"
                 decoration-success="state=='ok'"
-                decoration-it="state in('unknown')"
-                decoration-bf="state in('failed','ok')">
+                decoration-it="state in('unknown','missing')"
+                decoration-bf="state in('warned','failed','ok')">
                 <field name="model"/>
                 <field name="res_id"/>
                 <field name="res_last_update"/>

@@ -22,8 +22,11 @@ class AbstractVerification(models.AbstractModel):
     date_verification = fields.Datetime(string="Verification Date")
     state = fields.Selection(
         [('unknown', 'Unknown'),
+         ('updated', 'Updated'),
+         ('warned', 'Warned'),
          ('failed', 'Failed'),
          ('ok', 'Ok'),
+         ('missing', 'Missing'),
          ], string='State', default='unknown'
     )
     verification_outcomes = fields.Text(string='Verification Outcomes')
