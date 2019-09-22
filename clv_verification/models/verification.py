@@ -18,6 +18,7 @@ class Verification(models.Model):
         help="ID of the target record in the database",
         required=True
     )
+    res_last_update = fields.Datetime(string="Record Last Update")
     reference = fields.Char(
         string='Reference ',
         compute='_compute_reference',

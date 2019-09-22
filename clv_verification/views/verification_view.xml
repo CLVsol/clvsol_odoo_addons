@@ -17,6 +17,7 @@
                         <group>
                             <field name="model"/>
                             <field name="res_id"/>
+                            <field name="res_last_update"/>
                             <field name="reference" widget="reference"/>
                             <field name="reference_name"/>
                             <field name="method"/>
@@ -75,6 +76,7 @@
                 decoration-bf="state in('failed','ok')">
                 <field name="model"/>
                 <field name="res_id"/>
+                <field name="res_last_update"/>
                 <field name="reference"/>
                 <field name="reference_name"/>
                 <field name="method"/>
