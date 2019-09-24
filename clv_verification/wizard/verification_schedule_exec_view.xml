@@ -25,7 +25,7 @@
                     <button 
                         type="object"
                         name="do_verification_schedule_exec"
-                        string="External Sync Schedule Exec"
+                        string="Verification Schedule Exec"
                         class="oe_highlight"
                         />
                     <button special="cancel" string="Cancel"/>
@@ -38,7 +38,7 @@
     <!-- More button Action -->
     <act_window 
         id="clv_verification_schedule_exec_action"
-        name="External Sync Schedule Exec"
+        name="Verification Schedule Exec"
         src_model="clv.verification.schedule"
         res_model="clv.verification.schedule.exec"
         view_mode="form"
