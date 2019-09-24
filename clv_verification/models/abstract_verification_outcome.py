@@ -16,9 +16,9 @@ def secondsToStr(t):
     return "%d:%02d:%02d.%03d" % reduce(lambda ll, b: divmod(ll[0], b) + ll[1:], [(t * 1000,), 1000, 60, 60])
 
 
-class AbstractVerification(models.AbstractModel):
-    _description = 'Abstract Verification'
-    _name = 'clv.abstract.verification'
+class AbstractVerificationOutcome(models.AbstractModel):
+    _description = 'Abstract Verification Outcome'
+    _name = 'clv.abstract.verification.outcome'
 
     date_verification = fields.Datetime(string="Verification Date")
     state = fields.Selection(
@@ -30,7 +30,7 @@ class AbstractVerification(models.AbstractModel):
          ('missing', 'Missing'),
          ], string='State', default='unknown'
     )
-    verification_outcomes = fields.Text(string='Verification Outcomes')
+    outcome_text = fields.Text(string='Outcome Text')
 
     def _object_verify(self, schedule):
 
@@ -58,7 +58,7 @@ class AbstractVerification(models.AbstractModel):
         if (not schedule.verification_disable_inclusion) or \
            (not schedule.verification_disable_verification):
 
-            Verification = self.env['clv.verification']
+            VerificationOutcome = self.env['clv.verification.outcome']
 
             model_name = schedule.model
 
@@ -69,12 +69,12 @@ class AbstractVerification(models.AbstractModel):
 
             schedule.verification_log += 'Executing: "' + '_object_verification' + '"...\n\n'
 
-            verification_objects = Verification.with_context({'active_test': False}).search([
+            verification_outcome_objects = VerificationOutcome.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
                 ('state', '!=', 'missing'),
                 ('state', '!=', 'ok'),
             ])
-            _logger.info(u'%s %s', '>>>>>>>>>> (verification_objects):', len(verification_objects))
+            _logger.info(u'%s %s', '>>>>>>>>>> (verification_outcome_objects):', len(verification_outcome_objects))
 
             reg_count = 0
             include_count = 0
@@ -83,7 +83,7 @@ class AbstractVerification(models.AbstractModel):
             verification_include_count = 0
             verification_update_count = 0
             task_count = 0
-            for verification_object in verification_objects:
+            for verification_object in verification_outcome_objects:
 
                 reg_count += 1
 
@@ -142,7 +142,7 @@ class AbstractVerification(models.AbstractModel):
                     self.env.cr.commit()
 
             _logger.info(u'%s %s', '>>>>>>>>>> verification_max_task: ', verification_max_task)
-            _logger.info(u'%s %s', '>>>>>>>>>> verification_objects: ', len(verification_objects))
+            _logger.info(u'%s %s', '>>>>>>>>>> verification_outcome_objects: ', len(verification_outcome_objects))
             _logger.info(u'%s %s', '>>>>>>>>>> reg_count: ', reg_count)
             _logger.info(u'%s %s', '>>>>>>>>>> include_count: ', include_count)
             _logger.info(u'%s %s', '>>>>>>>>>> update_count: ', update_count)
@@ -157,7 +157,7 @@ class AbstractVerification(models.AbstractModel):
             schedule.date_last_sync = date_last_sync
             schedule.upmost_last_update = upmost_last_update
             schedule.verification_log +=  \
-                'verification_objects: ' + str(len(verification_objects)) + '\n' + \
+                'verification_outcome_objects: ' + str(len(verification_outcome_objects)) + '\n' + \
                 'reg_count: ' + str(reg_count) + '\n' + \
                 'include_count: ' + str(include_count) + '\n' + \
                 'update_count: ' + str(update_count) + '\n' + \
@@ -177,7 +177,7 @@ class AbstractVerification(models.AbstractModel):
         model_name = schedule.model
 
         ModelObject = self.env[model_name]
-        Verification = self.env['clv.verification']
+        VerificationOutcome = self.env['clv.verification.outcome']
 
         verification_disable_identification = schedule.verification_disable_identification
         verification_disable_check_missing = schedule.verification_disable_check_missing
@@ -189,7 +189,7 @@ class AbstractVerification(models.AbstractModel):
         schedule.verification_log += 'Executing: "' + '_object_verification_identify' + '"...\n\n'
 
         verification_object_ids = []
-        verifications = []
+        verification_outcomes = []
         missing_count = 0
         reg_count_2 = 0
         if not verification_disable_check_missing:
@@ -198,29 +198,31 @@ class AbstractVerification(models.AbstractModel):
             model_objects = ModelObject.with_context({'active_test': False}).search([])
             for model_object in model_objects:
                 verification_object_ids.append(model_object.id)
-            _logger.info(u'%s %s', '>>>>>>>>>> (verification_objects):', len(verification_object_ids))
+            _logger.info(u'%s %s', '>>>>>>>>>> (verification_outcome_objects):', len(verification_object_ids))
 
-            verifications = Verification.with_context({'active_test': False}).search([
+            verification_outcomes = VerificationOutcome.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
                 ('res_id', '!=', False),
                 ('state', '!=', 'missing'),
             ])
-            _logger.info(u'%s %s', '>>>>>>>>>> (verifications):', len(verifications))
+            _logger.info(u'%s %s', '>>>>>>>>>> (verification_outcomes):', len(verification_outcomes))
 
-            for verification in verifications:
-                _logger.info(u'%s %s %s', '>>>>>>>>>>', reg_count_2, verification, )
-                if verification.res_id not in verification_object_ids:
+            for verification_outcome in verification_outcomes:
+                _logger.info(u'%s %s %s', '>>>>>>>>>>', reg_count_2, verification_outcome, )
+                if verification_outcome.res_id not in verification_object_ids:
                     missing_count += 1
-                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>> (missing_object):', missing_count, verification.id)
-                    verification.verification_outcomes = \
-                        verification.model + ' (' + str(verification.res_id) + ') - ' + verification.reference_name
-                    verification.res_id = 0
-                    verification.state = 'missing'
+                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>> (missing_object):',
+                                 missing_count, verification_outcome.id)
+                    verification_outcome.outcome_text = \
+                        verification_outcome.model + ' (' + str(verification_outcome.res_id) + ') - ' + \
+                        verification_outcome.reference_name
+                    verification_outcome.res_id = 0
+                    verification_outcome.state = 'missing'
                 reg_count_2 += 1
                 self.env.cr.commit()
 
         verification_args = schedule.verification_last_update_args()
-        verification_objects = []
+        verification_outcome_objects = []
         reg_count = 0
         include_count = 0
         update_count = 0
@@ -230,13 +232,13 @@ class AbstractVerification(models.AbstractModel):
             verification_args = schedule.verification_last_update_args()
             _logger.info(u'%s %s', '>>>>>>>>>> (verification_args):', verification_args)
 
-            verification_objects = ModelObject.with_context({'active_test': False}).search(
+            verification_outcome_objects = ModelObject.with_context({'active_test': False}).search(
                 verification_args
             )
 
-            _logger.info(u'%s %s', '>>>>>>>>>> (verification_objects):', len(verification_objects))
+            _logger.info(u'%s %s', '>>>>>>>>>> (verification_outcome_objects):', len(verification_outcome_objects))
 
-            for verification_object in verification_objects:
+            for verification_object in verification_outcome_objects:
 
                 reg_count += 1
 
@@ -253,48 +255,48 @@ class AbstractVerification(models.AbstractModel):
                     if verification_object['__last_update'] > upmost_last_update:
                         upmost_last_update = verification_object['__last_update']
 
-                verification = Verification.with_context({'active_test': False}).search([
+                verification_outcome = VerificationOutcome.with_context({'active_test': False}).search([
                     ('model', '=', model_name),
                     ('res_id', '=', verification_object['id']),
                 ])
 
-                if verification.id is False:
+                if verification_outcome.id is False:
 
                     task_count += 1
 
                     include_count += 1
 
-                    verification_values = {}
-                    verification_values['model'] = model_name
-                    verification_values['res_id'] = verification_object['id']
-                    verification_values['res_last_update'] = verification_object['__last_update']
-                    verification_values['state'] = 'unknown'
-                    _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, verification_values)
-                    Verification.create(verification_values)
+                    verification_outcome_values = {}
+                    verification_outcome_values['model'] = model_name
+                    verification_outcome_values['res_id'] = verification_object['id']
+                    verification_outcome_values['res_last_update'] = verification_object['__last_update']
+                    verification_outcome_values['state'] = 'unknown'
+                    _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, verification_outcome_values)
+                    VerificationOutcome.create(verification_outcome_values)
 
                     self.env.cr.commit()
 
                 else:
 
-                    if verification.res_last_update is not False:
-                        if verification_object['__last_update'] > verification.res_last_update:
+                    if verification_outcome.res_last_update is not False:
+                        if verification_object['__last_update'] > verification_outcome.res_last_update:
 
                             task_count += 1
                             update_count += 1
 
-                            verification.res_last_update = verification_object['__last_update']
+                            verification_outcome.res_last_update = verification_object['__last_update']
 
-                            if verification.state == 'ok':
-                                verification.state = 'updated'
+                            if verification_outcome.state == 'ok':
+                                verification_outcome.state = 'updated'
 
-                            _logger.info(u'>>>>>>>>>>>>>>> %s %s', update_count, verification)
+                            _logger.info(u'>>>>>>>>>>>>>>> %s %s', update_count, verification_outcome)
 
                             self.env.cr.commit()
 
         _logger.info(u'%s %s', '>>>>>>>>>> verification_max_task: ', verification_max_task)
         _logger.info(u'%s %s', '>>>>>>>>>> verification_args: ', verification_args)
         _logger.info(u'%s %s', '>>>>>>>>>> verification_object_ids: ', len(verification_object_ids))
-        _logger.info(u'%s %s', '>>>>>>>>>> verifications: ', len(verifications))
+        _logger.info(u'%s %s', '>>>>>>>>>> verification_outcomes: ', len(verification_outcomes))
         _logger.info(u'%s %s', '>>>>>>>>>> reg_count_2: ', reg_count_2)
         _logger.info(u'%s %s', '>>>>>>>>>> missing_count: ', missing_count)
         _logger.info(u'%s %s', '>>>>>>>>>> reg_count: ', reg_count)
@@ -310,10 +312,10 @@ class AbstractVerification(models.AbstractModel):
         schedule.verification_log +=  \
             'verification_args: ' + str(verification_args) + '\n\n' + \
             'verification_object_ids: ' + str(len(verification_object_ids)) + '\n' + \
-            'verifications: ' + str(len(verifications)) + '\n' + \
+            'verification_outcomes: ' + str(len(verification_outcomes)) + '\n' + \
             'reg_count_2: ' + str(reg_count_2) + '\n' + \
             'missing_count: ' + str(missing_count) + '\n\n' + \
-            'verification_objects: ' + str(len(verification_objects)) + '\n' + \
+            'verification_outcome_objects: ' + str(len(verification_outcome_objects)) + '\n' + \
             'reg_count: ' + str(reg_count) + '\n' + \
             'include_count: ' + str(include_count) + '\n' + \
             'update_count: ' + str(update_count) + '\n' + \

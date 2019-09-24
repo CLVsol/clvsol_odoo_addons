@@ -5,10 +5,10 @@
 from odoo import api, fields, models
 
 
-class Verification(models.Model):
-    _description = 'Verification'
-    _name = 'clv.verification'
-    _inherit = 'clv.abstract.verification'
+class VerificationOutcome(models.Model):
+    _description = 'Verification Outcome'
+    _name = 'clv.verification.outcome'
+    _inherit = 'clv.abstract.verification.outcome'
     _order = "id desc"
     _rec_name = 'reference_name'
 

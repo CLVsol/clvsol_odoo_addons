@@ -9,17 +9,17 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class VerificationMassEdit(models.TransientModel):
-    _description = 'Verification Mass Edit'
-    _name = 'clv.verification.mass_edit'
+class VerificationOutcomeMassEdit(models.TransientModel):
+    _description = 'Verification Outcome Mass Edit'
+    _name = 'clv.verification.outcome.mass_edit'
 
-    def _default_verification_ids(self):
+    def _default_verification_outcome_ids(self):
         return self._context.get('active_ids')
-    verification_ids = fields.Many2many(
-        comodel_name='clv.verification',
-        relation='clv_verification_mass_edit_rel',
-        string='Verifications',
-        default=_default_verification_ids
+    verification_outcome_ids = fields.Many2many(
+        comodel_name='clv.verification.outcome',
+        relation='clv_verification_outcome_mass_edit_rel',
+        string='Verification Outcomes',
+        default=_default_verification_outcome_ids
     )
 
     state = fields.Selection(
@@ -51,16 +51,16 @@ class VerificationMassEdit(models.TransientModel):
         return action
 
     @api.multi
-    def do_verification_mass_edit(self):
+    def do_verification_outcome_mass_edit(self):
         self.ensure_one()
 
-        for verification in self.verification_ids:
+        for verification_outcome in self.verification_outcome_ids:
 
-            _logger.info(u'%s %s', '>>>>>', verification.reference)
+            _logger.info(u'%s %s', '>>>>>', verification_outcome.reference)
 
             if self.state_selection == 'set':
-                verification.state = self.state
+                verification_outcome.state = self.state
             if self.state_selection == 'remove':
-                verification.state = False
+                verification_outcome.state = False
 
         return True
