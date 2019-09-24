@@ -58,9 +58,7 @@ class VerificationcheduleExec(models.TransientModel):
             model = schedule.model
             _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
 
-            method_call = False
-            if schedule.method == '_object_verification':
-                method_call = 'self.env["clv.verification.outcome"].' + schedule.method + '(schedule)'
+            method_call = 'self.env["clv.verification.outcome"].' + schedule.method + '(schedule)'
 
             _logger.info(u'%s %s', '>>>>>>>>>>', method_call)
 

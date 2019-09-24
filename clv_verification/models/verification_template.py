@@ -62,6 +62,12 @@ class VerificationTemplate(models.Model):
         help="Name of the method to be called when the verification job is processed."
     )
 
+    action = fields.Char(
+        string='Action',
+        required=False,
+        help="Name of the action used to process the verification."
+    )
+
     active = fields.Boolean(string='Active', default=1)
 
     _sql_constraints = [

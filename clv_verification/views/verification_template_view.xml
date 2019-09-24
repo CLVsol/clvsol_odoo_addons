@@ -36,6 +36,7 @@
                         <group name="group_right">
                             <field name="model"/>
                             <field name="method"/>
+                            <field name="action"/>
                         </group>
                     </group>
                     <field name="notes" placeholder="Notes..." colspan="4"/>
@@ -91,6 +92,7 @@
                 <field name="date_inclusion"/>
                 <field name="model"/>
                 <field name="method"/>
+                <field name="action"/>
                 <field name="notes"/>
                 <field name="active" invisible="1"/>
             </tree>
@@ -114,11 +116,14 @@
                 <field name="date_inclusion"/>
                 <field name="model"/>
                 <field name="method"/>
+                <field name="action"/>
                 <field name="notes"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" string="Group By...">
                     <filter name="filter_model" string="Model" context="{'group_by': 'model'}"/>
+                    <filter name="filter_method" string="Method" context="{'group_by': 'method'}"/>
+                    <filter name="filter_action" string="Action" context="{'group_by': 'action'}"/>
                 </group>
             </search>
         </field>

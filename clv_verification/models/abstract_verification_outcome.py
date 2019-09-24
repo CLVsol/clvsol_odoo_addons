@@ -36,16 +36,31 @@ class AbstractVerificationOutcome(models.AbstractModel):
 
         model_name = schedule.model
 
+        verification_outcome = self
+
         ModelObject = self.env[model_name]
         model_object = ModelObject.with_context({'active_test': False}).search([
             ('id', '=', self.res_id),
         ])
 
+        _logger.info(u'%s %s', '>>>>>>>>>> (verification_outcome):', verification_outcome)
+
         _logger.info(u'%s %s', '>>>>>>>>>> (model_object):', model_object)
 
-        _logger.info(u'%s %s', '>>>>>>>>>> (verification):', self)
+        action_call = 'self.env["clv.verification.outcome"].' + \
+            schedule.action + \
+            '(verification_outcome, model_object)'
 
-        self.state = 'ok'
+        _logger.info(u'%s %s', '>>>>>>>>>>', action_call)
+
+        if action_call:
+
+            self.method = schedule.method
+            self.action = schedule.action
+            self.state = 'unknown'
+            self.outcome_text = False
+
+            exec(action_call)
 
     def _object_verification(self, schedule):
 

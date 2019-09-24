@@ -46,6 +46,12 @@ class VerificationSchedule(models.Model):
         help="Name of the method to be called when the verification job is processed."
     )
 
+    action = fields.Char(
+        string='Action',
+        required=False,
+        help="Name of the action used to process the verification."
+    )
+
     verification_max_task = fields.Integer(
         string='Max Task Registers'
     )
@@ -111,6 +117,7 @@ class VerificationSchedule(models.Model):
             schedule.verification_last_update_end = schedule.template_id.verification_last_update_end
             schedule.model = schedule.template_id.model
             schedule.method = schedule.template_id.method
+            schedule.action = schedule.template_id.action
 
         return schedule
 
@@ -127,6 +134,7 @@ class VerificationSchedule(models.Model):
             self.verification_last_update_end = self.template_id.verification_last_update_end
             self.model = self.template_id.model
             self.method = self.template_id.method
+            self.action = self.template_id.action
 
     @api.model
     def verification_last_update_args(self):
