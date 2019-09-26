@@ -114,6 +114,7 @@
                     <filter name="filter_method" string="Method" domain="[]" context="{'group_by':'method'}"/>
                     <filter name="filter_action" string="Action" domain="[]" context="{'group_by':'action'}"/>
                     <filter name="filter_state" string="Verification Outcome Status" context="{'group_by': 'state'}"/>
+                    <filter name="filter_outcome_text" string="Outcome Text" context="{'group_by': 'outcome_text'}"/>
                 </group>
             </search>
         </field>
