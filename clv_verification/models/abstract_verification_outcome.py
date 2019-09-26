@@ -86,6 +86,7 @@ class AbstractVerificationOutcome(models.AbstractModel):
 
             verification_outcome_objects = VerificationOutcome.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
+                ('action', '=', schedule.action),
                 ('state', '!=', 'missing'),
                 ('state', '!=', 'ok'),
             ])
@@ -218,6 +219,7 @@ class AbstractVerificationOutcome(models.AbstractModel):
             verification_outcomes = VerificationOutcome.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
                 ('res_id', '!=', False),
+                ('action', '=', schedule.action),
                 ('state', '!=', 'missing'),
             ])
             _logger.info(u'%s %s', '>>>>>>>>>> (verification_outcomes):', len(verification_outcomes))
@@ -273,6 +275,7 @@ class AbstractVerificationOutcome(models.AbstractModel):
                 verification_outcome = VerificationOutcome.with_context({'active_test': False}).search([
                     ('model', '=', model_name),
                     ('res_id', '=', verification_object['id']),
+                    ('action', '=', schedule.action),
                 ])
 
                 if verification_outcome.id is False:
@@ -285,6 +288,7 @@ class AbstractVerificationOutcome(models.AbstractModel):
                     verification_outcome_values['model'] = model_name
                     verification_outcome_values['res_id'] = verification_object['id']
                     verification_outcome_values['res_last_update'] = verification_object['__last_update']
+                    verification_outcome_values['action'] = schedule.action
                     verification_outcome_values['state'] = 'unknown'
                     _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, verification_outcome_values)
                     VerificationOutcome.create(verification_outcome_values)
