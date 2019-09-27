@@ -28,7 +28,7 @@
                             <field name="state"/>
                         </group>
                     </group>
-                    <field name="outcome_text" placeholder="Outcome Text..." colspan="4"/>
+                    <field name="outcome_info" placeholder="Outcome Informations..." colspan="4"/>
                     <notebook>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                             <group name="settings_top">
@@ -85,7 +85,7 @@
                 <field name="action"/>
                 <field name="date_verification"/>
                 <field name="state"/>
-                <field name="outcome_text"/>
+                <field name="outcome_info"/>
                 <field name="id"/>
             </tree>
         </field>
@@ -103,7 +103,7 @@
                 <field name="method"/>
                 <field name="action"/>
                 <field name="state"/>
-                <field name="outcome_text"/>
+                <field name="outcome_info"/>
                 <field name="id"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
@@ -114,7 +114,7 @@
                     <filter name="filter_method" string="Method" domain="[]" context="{'group_by':'method'}"/>
                     <filter name="filter_action" string="Action" domain="[]" context="{'group_by':'action'}"/>
                     <filter name="filter_state" string="Verification Outcome Status" context="{'group_by': 'state'}"/>
-                    <filter name="filter_outcome_text" string="Outcome Text" context="{'group_by': 'outcome_text'}"/>
+                    <filter name="filter_outcome_info" string="Outcome Informations" context="{'group_by': 'outcome_info'}"/>
                 </group>
             </search>
         </field>
