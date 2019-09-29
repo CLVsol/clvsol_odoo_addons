@@ -4,10 +4,10 @@
 
 <odoo>
         
-    <record id="clv_verification_view_form_log" model="ir.ui.view">
-        <field name="name">clv.verification.form</field>
-        <field name="model">clv.verification</field>
-        <field name="inherit_id" ref="clv_verification.clv_verification_view_form"/>
+    <record id="clv_verification_outcome_view_form_log" model="ir.ui.view">
+        <field name="name">clv.verification.outcome.form</field>
+        <field name="model">clv.verification.outcome</field>
+        <field name="inherit_id" ref="clv_verification.clv_verification_outcome_view_form"/>
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
             <page name="settings" position="after">

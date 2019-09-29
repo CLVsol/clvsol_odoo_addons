@@ -5,9 +5,9 @@
 from odoo import fields, models
 
 
-class Verification(models.Model):
-    _name = "clv.verification"
-    _inherit = 'clv.verification', 'clv.abstract.model.log'
+class VerificationOutcome(models.Model):
+    _name = "clv.verification.outcome"
+    _inherit = 'clv.verification.outcome', 'clv.abstract.model.log'
 
     log_model = fields.Char(string='Log Model Name', required=True, default='clv.global_log')
 
