@@ -35,11 +35,11 @@ class Phase(models.Model):
     address_history_ids = fields.One2many(
         comodel_name='clv.address.history',
         inverse_name='phase_id',
-        string='Addresss (History)',
+        string='Addresses (History)',
         readonly=True
     )
     count_address_histories = fields.Integer(
-        string='Addresss (History) (count)',
+        string='Addresses (History) (count)',
         compute='_compute_address_history_ids_and_count',
     )
 

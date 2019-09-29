@@ -82,7 +82,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <page name="phase_for" position="inside">
-                <group string="Addressse (History)">
+                <group string="Addresses (History)">
                     <group>
                         <button name="clv_address_history.clv_address_history_action"
                                 type="action"
