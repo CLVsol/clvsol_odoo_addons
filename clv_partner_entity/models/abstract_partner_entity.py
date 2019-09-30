@@ -37,6 +37,11 @@ class AbstractPartnerEntity(models.AbstractModel):
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
 
+    contact_info_unavailable = fields.Boolean(
+        string='Contact Information Unavailable',
+        default=False,
+    )
+
     # Redefine `active` so that it is managed independently from partner.
     active = fields.Boolean(
         default=True,
@@ -176,3 +181,25 @@ class AbstractPartnerEntity(models.AbstractModel):
             self.write({attr: False})
         elif getattr(self, attr) is False:
             self.write({attr: True})
+
+    @api.multi
+    def do_set_contact_info_unavailable(self):
+
+        for record in self:
+
+            data_values = {}
+
+            data_values['contact_info_unavailable'] = True
+
+            data_values['street'] = False
+            data_values['street2'] = False
+            data_values['zip'] = False
+            data_values['city'] = False
+            data_values['state_id'] = False
+            data_values['country_id'] = False
+            # data_values['phone'] = False
+            # data_values['mobile'] = False
+
+            record.write(data_values)
+
+        return True

@@ -66,6 +66,17 @@
                             <div class="oe_button_box" name="buttons"/>
                             <group name="group_contact_info" string="Contact Information">
                                 <group name="group_contact_left">
+                                    <separator/>
+                                    <button name="do_set_contact_info_unavailable"
+                                            type="object"
+                                            class="oe_stat_button, oe_edit_only"
+                                            icon="fa-ban"
+                                            string=" Set Contact Information as Unavalable"
+                                            confirm='Are you sure the Contact Information is "unavailable"?'
+                                            attrs="{'invisible': [('contact_info_unavailable', '=', True)]}"
+                                            >
+                                    </button>
+                                    <field name="contact_info_unavailable" attrs="{'invisible': [('contact_info_unavailable','=', False)]}"/>
                                     <!--field name="type"
                                            attrs="{'invisible': [('parent_id','=', False)]}"
                                            groups="base.group_no_one"
