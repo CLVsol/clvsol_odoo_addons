@@ -32,6 +32,10 @@ class Family(models.Model):
 class PersonAux(models.Model):
     _inherit = 'clv.person_aux'
 
+    family_is_unavailable = fields.Boolean(
+        string='Family is unavailable',
+        default=False,
+    )
     family_id = fields.Many2one(comodel_name='clv.family', string='Family', ondelete='restrict')
     family_code = fields.Char(string='Family Code', related='family_id.code', store=False)
 

@@ -12,6 +12,11 @@ _logger = logging.getLogger(__name__)
 class PersonAux(models.Model):
     _inherit = 'clv.person_aux'
 
+    related_person_is_unavailable = fields.Boolean(
+        string='Related Person is unavailable',
+        default=False,
+    )
+    related_address_id = fields.Many2one(comodel_name='clv.address', string='Related Address', ondelete='restrict')
     related_person_id = fields.Many2one(comodel_name='clv.person', string='Related Person', ondelete='restrict')
     related_person_name = fields.Char(string='Related Person Name', related='related_person_id.name')
     related_person_code = fields.Char(string='Related Person Code', related='related_person_id.code')
