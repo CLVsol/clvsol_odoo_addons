@@ -12,6 +12,10 @@ _logger = logging.getLogger(__name__)
 class AddressAux(models.Model):
     _inherit = 'clv.address_aux'
 
+    related_address_is_unavailable = fields.Boolean(
+        string='Related Address is unavailable',
+        default=False,
+    )
     related_address_id = fields.Many2one(comodel_name='clv.address', string='Related Address', ondelete='restrict')
     related_address_name = fields.Char(string='Related Address Name', related='related_address_id.name')
     related_address_code = fields.Char(string='Related Address Code', related='related_address_id.code')
