@@ -64,6 +64,7 @@
         <field name="priority" eval="6"/>
         <field name="arch" type="xml">
             <group name="group_top_left" position="inside">
+                <field name="ref_address_is_unavailable" attrs="{'invisible': ['&amp;',('ref_address_is_unavailable','=',False),('ref_address_id','!=',False)]}"/>
                 <field name="ref_address_id"
                     context="{'show_ref_address_only': 1}"
                     options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>

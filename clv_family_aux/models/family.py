@@ -12,6 +12,10 @@ _logger = logging.getLogger(__name__)
 class FamilyAux(models.Model):
     _inherit = 'clv.family_aux'
 
+    related_family_is_unavailable = fields.Boolean(
+        string='Related Family is unavailable',
+        default=False,
+    )
     related_family_id = fields.Many2one(comodel_name='clv.family', string='Related Family', ondelete='restrict')
     related_family_name = fields.Char(string='Related Family Name', related='related_family_id.name')
     related_family_code = fields.Char(string='Related Family Code', related='related_family_id.code')

@@ -32,6 +32,10 @@ class AddressAux(models.Model):
 class PersonAux(models.Model):
     _inherit = 'clv.family_aux'
 
+    ref_address_aux_is_unavailable = fields.Boolean(
+        string='Address (Aux) is unavailable',
+        default=False,
+    )
     ref_address_aux_id = fields.Many2one(comodel_name='clv.address_aux', string='Address (Aux)', ondelete='restrict')
     ref_address_aux_code = fields.Char(string='Address (Aux) Code', related='ref_address_aux_id.code', store=False)
 
