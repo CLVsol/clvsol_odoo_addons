@@ -40,7 +40,7 @@
                 <h1><separator string="[  Person (Aux)  ]"/></h1>
                 <field name="notes" placeholder="Notes..." colspan="4" style="color:Red; background:White;"/>
             </field>
-            <xpath expr="//group[@name='main_data']">
+            <!--xpath expr="//group[@name='main_data']">
                 <group name="main">
                     <field name="parent_id"
                            colspan="2"
@@ -48,7 +48,7 @@
                            domain="[('customer','=',True)]"
                            />
                 </group>
-            </xpath>
+            </xpath-->
             <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
                 <img name="kanban_image_default_person"
                      t-if="record.is_company.raw_value === false"
