@@ -146,6 +146,7 @@
                                            widget="many2many_tags"
                                            placeholder="Tags..."
                                            options="{'no_create_edit': True}"
+                                           invisible="True"
                                     />
                                 </group>
                                 <group name="group_contact_right">
@@ -416,7 +417,7 @@
                 <field name="country_id"/>
                 <field name="mobile"/>
                 <field name="state_id"/>
-                <field name="category_id"/>
+                <field name="category_id" invisible="True"/>
                 <!--field name="image_small"/-->
                 <field name="type"/>
                 <templates>
@@ -465,7 +466,7 @@
             <search string="Entities">
                 <field name="name"/>
                 <field name="code"/>
-                <field name="category_id"/>
+                <field name="category_id" invisible="True"/>
                 <field name="parent_id" invisible="1"/>
                 <field name="partner_id" invisible="1"/>
                 <field name="entity_code"/>
