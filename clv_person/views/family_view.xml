@@ -80,6 +80,7 @@
         <field name="priority" eval="6"/>
         <field name="arch" type="xml">
             <group name="group_top_right" position="inside">
+                <field name="family_is_unavailable" attrs="{'invisible': ['&amp;',('family_is_unavailable','=',False),('family_id','!=',False)]}"/>
                 <field name="family_id" options='{"no_open": False, "no_create": True}'/>
                 <field name="family_code" string="Family Code"/>
                 <field name="family_category_ids" string="Family Categories"/>
