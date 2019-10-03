@@ -71,11 +71,11 @@
             <tree name="verification" string="Verification Outcome"
                 decoration-muted="state in('unknown','missing')"
                 decoration-info="state=='updated'"
-                decoration-warning="state=='warned'"
-                decoration-danger="state=='failed'"
+                decoration-warning="state=='warning'"
+                decoration-danger="state=='error'"
                 decoration-success="state=='ok'"
                 decoration-it="state in('unknown','missing')"
-                decoration-bf="state in('warned','failed','ok')">
+                decoration-bf="state in('warning','error','ok')">
                 <field name="model"/>
                 <field name="res_id"/>
                 <field name="res_last_update"/>
@@ -107,8 +107,8 @@
                 <field name="id"/>
                 <separator/>
                 <filter string="Updated" name="inactive" domain="[('state','=','updated')]"/>
-                <filter string="Warned" name="inactive" domain="[('state','=','warned')]"/>
-                <filter string="Failed" name="inactive" domain="[('state','=','failed')]"/>
+                <filter string="Warned" name="inactive" domain="[('state','=','warning')]"/>
+                <filter string="Failed" name="inactive" domain="[('state','=','error')]"/>
                 <filter string="Missing" name="inactive" domain="[('state','=','missing')]"/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">

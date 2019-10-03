@@ -26,8 +26,8 @@ class VerificationOutcome(models.Model):
     state = fields.Selection(
         [('unknown', 'Unknown'),
          ('updated', 'Updated'),
-         ('warned', 'Warned'),
-         ('failed', 'Failed'),
+         ('warning', 'Warning'),
+         ('error', 'Error'),
          ('ok', 'Ok'),
          ('missing', 'Missing'),
          ], string='State', default='unknown'
