@@ -69,13 +69,13 @@
         <field name="model">clv.verification.outcome</field>
         <field name="arch" type="xml">
             <tree name="verification" string="Verification Outcome"
-                decoration-muted="state in('unknown','missing')"
-                decoration-info="state=='updated'"
-                decoration-warning="state=='warning'"
-                decoration-danger="state=='error'"
-                decoration-success="state=='ok'"
-                decoration-it="state in('unknown','missing')"
-                decoration-bf="state in('warning','error','ok')">
+                decoration-muted="state in('Unknown','Missing')"
+                decoration-info="state=='Updated'"
+                decoration-warning="state in('Warning (L0)','Warning (L1)','Warning (L2)')"
+                decoration-danger="state in('Error (L0)','Error (L1)','Error (L2)')"
+                decoration-success="state=='Ok'"
+                decoration-it="state in('Unknown','Missing')"
+                decoration-bf="state in('Warning (L0)','Error (L0)','Warning (L1)','Error (L1)','Warning (L2)','Error (L2)','Ok')">
                 <field name="model"/>
                 <field name="res_id"/>
                 <field name="res_last_update"/>
@@ -106,10 +106,14 @@
                 <field name="outcome_info"/>
                 <field name="id"/>
                 <separator/>
-                <filter string="Updated" name="inactive" domain="[('state','=','updated')]"/>
-                <filter string="Warned" name="inactive" domain="[('state','=','warning')]"/>
-                <filter string="Failed" name="inactive" domain="[('state','=','error')]"/>
-                <filter string="Missing" name="inactive" domain="[('state','=','missing')]"/>
+                <filter string="Updated" name="updated" domain="[('state','=','Updated')]"/>
+                <filter string="Warning (L0)" name="warning_l0" domain="[('state','=','Warning (L0)')]"/>
+                <filter string="Warning (L1)" name="warning_l1" domain="[('state','=','Warning (L1)')]"/>
+                <filter string="Warning (L2)" name="warning_l2" domain="[('state','=','Warning (L2)')]"/>
+                <filter string="Error (L0)" name="error_l0" domain="[('state','=','Error (L0)')]"/>
+                <filter string="Error (L1)" name="error_l1" domain="[('state','=','Error (L1)')]"/>
+                <filter string="Error (L2)" name="error_l2" domain="[('state','=','Error (L2)')]"/>
+                <filter string="Missing" name="inactive" domain="[('state','=','Missing')]"/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
                     <filter name="filter_model" string="Model Name" domain="[]" context="{'group_by':'model'}"/>

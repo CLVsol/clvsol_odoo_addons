@@ -24,13 +24,17 @@ class VerificationOutcome(models.Model):
 
     date_verification = fields.Datetime(string="Verification Date")
     state = fields.Selection(
-        [('unknown', 'Unknown'),
-         ('updated', 'Updated'),
-         ('warning', 'Warning'),
-         ('error', 'Error'),
-         ('ok', 'Ok'),
-         ('missing', 'Missing'),
-         ], string='State', default='unknown'
+        [('Error (L0)', 'Error (L0)'),
+         ('Warning (L0)', 'Warning (L0)'),
+         ('Error (L1)', 'Error (L1)'),
+         ('Warning (L1)', 'Warning (L1)'),
+         ('Error (L2)', 'Error (L2)'),
+         ('Warning (L2)', 'Warning (L2)'),
+         ('Ok', 'Ok'),
+         ('Updated', 'Updated'),
+         ('Unknown', 'Unknown'),
+         ('Missing', 'Missing'),
+         ], string='State', default='Unknown'
     )
     outcome_info = fields.Text(string='Outcome Informations')
 
@@ -104,7 +108,7 @@ class VerificationOutcome(models.Model):
 
             self.method = schedule.method
             self.action = schedule.action
-            self.state = 'unknown'
+            self.state = 'Unknown'
             self.outcome_info = False
 
             exec(action_call)
@@ -134,8 +138,8 @@ class VerificationOutcome(models.Model):
             verification_outcome_objects = VerificationOutcome.with_context({'active_test': False}).search([
                 ('model', '=', model_name),
                 ('action', '=', schedule.action),
-                ('state', '!=', 'missing'),
-                ('state', '!=', 'ok'),
+                ('state', '!=', 'Missing'),
+                ('state', '!=', 'Ok'),
             ])
             _logger.info(u'%s %s', '>>>>>>>>>> (verification_outcome_objects):', len(verification_outcome_objects))
 
@@ -178,15 +182,15 @@ class VerificationOutcome(models.Model):
                     if verification_object.date_verification is False or \
                        ((verification_object.date_verification >
                          verification_object.res_last_update) and
-                            verification_object.state != 'unknown'):
+                            verification_object.state != 'Unknown'):
 
                         update_count += 1
                         task_count += 1
 
-                        verification_object.state = 'updated'
+                        verification_object.state = 'Updated'
 
-                    if (verification_object.state == 'unknown' or
-                        verification_object.state == 'updated') and \
+                    if (verification_object.state == 'Unknown' or
+                        verification_object.state == 'Updated') and \
                        schedule.verification_disable_verification is False:
 
                         verification_count += 1
@@ -194,10 +198,10 @@ class VerificationOutcome(models.Model):
 
                         _logger.info(u'>>>>>>>>>>>>>>> %s %s', verification_count, verification_object)
 
-                        if verification_object.state == 'unknown':
+                        if verification_object.state == 'Unknown':
                             verification_include_count += 1
 
-                        if verification_object.state == 'updated':
+                        if verification_object.state == 'Updated':
                             verification_update_count += 1
 
                         verification_object._object_verify(schedule)
@@ -267,7 +271,7 @@ class VerificationOutcome(models.Model):
                 ('model', '=', model_name),
                 ('res_id', '!=', False),
                 ('action', '=', schedule.action),
-                ('state', '!=', 'missing'),
+                ('state', '!=', 'Missing'),
             ])
             _logger.info(u'%s %s', '>>>>>>>>>> (verification_outcomes):', len(verification_outcomes))
 
@@ -281,7 +285,7 @@ class VerificationOutcome(models.Model):
                         verification_outcome.model + ' (' + str(verification_outcome.res_id) + ') - ' + \
                         verification_outcome.reference_name
                     verification_outcome.res_id = 0
-                    verification_outcome.state = 'missing'
+                    verification_outcome.state = 'Missing'
                 reg_count_2 += 1
                 self.env.cr.commit()
 
@@ -336,7 +340,7 @@ class VerificationOutcome(models.Model):
                     verification_outcome_values['res_id'] = verification_object['id']
                     verification_outcome_values['res_last_update'] = verification_object['__last_update']
                     verification_outcome_values['action'] = schedule.action
-                    verification_outcome_values['state'] = 'unknown'
+                    verification_outcome_values['state'] = 'Unknown'
                     _logger.info(u'>>>>>>>>>>>>>>> %s %s', include_count, verification_outcome_values)
                     VerificationOutcome.create(verification_outcome_values)
 
@@ -352,8 +356,8 @@ class VerificationOutcome(models.Model):
 
                             verification_outcome.res_last_update = verification_object['__last_update']
 
-                            if verification_outcome.state == 'ok':
-                                verification_outcome.state = 'updated'
+                            if verification_outcome.state == 'Ok':
+                                verification_outcome.state = 'Updated'
 
                             _logger.info(u'>>>>>>>>>>>>>>> %s %s', update_count, verification_outcome)
 
@@ -389,3 +393,54 @@ class VerificationOutcome(models.Model):
             'date_last_sync: ' + str(date_last_sync) + '\n' + \
             'upmost_last_update: ' + str(upmost_last_update) + '\n\n' + \
             'Execution time: ' + str(secondsToStr(time() - start)) + '\n\n'
+
+    def _get_verification_outcome_state(self, current_state, new_state):
+
+        verification_state = current_state
+
+        if new_state == 'Error (L0)':
+            verification_state = 'Error (L0)'
+        elif (new_state == 'Warning (L0)') and \
+             (current_state not in ['Error (L0)']):
+            verification_state = 'Warning (L0)'
+        elif (new_state == 'Error (L1)') and \
+             (current_state not in ['Warning (L0)', 'Error (L0)']):
+            verification_state = 'Error (L1)'
+        elif (new_state == 'Warning (L1)') and \
+             (current_state not in ['Error (L1)', 'Warning (L0)', 'Error (L0)']):
+            verification_state = 'Warning (L1)'
+        elif (new_state == 'Error (L2)') and \
+             (current_state not in ['Warning (L1)', 'Error (L1)', 'Warning (L0)', 'Error (L0)']):
+            verification_state = 'Error (L2)'
+        elif (new_state == 'Warning (L2)') and \
+             (current_state not in ['Error (L2)', 'Warning (L1)', 'Error (L1)', 'Warning (L0)', 'Error (L0)']):
+            verification_state = 'Warning (L2)'
+        elif (new_state not in ['Warning (L2)', 'Error (L2)', 'Warning (L1)', 'Error (L1)',
+                                'Warning (L0)', 'Error (L0)']):
+            verification_state = new_state
+
+        _logger.info(u'%s %s %s', '>>>>>>>>>>xxxxxxxxxx', current_state, new_state)
+
+        return verification_state
+
+    def _object_verification_outcome_updt(
+        self, verification_outcome, state, outcome_info, date_verification, model_object
+    ):
+
+        verification_outcome_has_changed = (verification_outcome.state != state) or \
+                                           (verification_outcome.outcome_info != outcome_info)
+
+        verification_values = {}
+        verification_values['date_verification'] = date_verification
+        verification_values['outcome_info'] = outcome_info
+        verification_values['state'] = state
+        verification_outcome.write(verification_values)
+
+        if verification_outcome_has_changed:
+
+            verification_state = 'Ok'
+            for verification_outcome in model_object.verification_outcome_ids:
+                verification_state = self._get_verification_outcome_state(verification_state,
+                                                                          verification_outcome.state)
+            if model_object.verification_state != verification_state:
+                model_object.verification_state = verification_state
