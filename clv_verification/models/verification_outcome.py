@@ -415,7 +415,11 @@ class VerificationOutcome(models.Model):
         elif (new_state == 'Warning (L2)') and \
              (current_state not in ['Error (L2)', 'Warning (L1)', 'Error (L1)', 'Warning (L0)', 'Error (L0)']):
             verification_state = 'Warning (L2)'
-        elif (new_state not in ['Warning (L2)', 'Error (L2)', 'Warning (L1)', 'Error (L1)',
+        elif (new_state == 'Ok') and \
+             (current_state not in ['Warning (L2)', 'Error (L2)', 'Warning (L1)', 'Error (L1)',
+                                    'Warning (L0)', 'Error (L0)']):
+            verification_state = 'Ok'
+        elif (new_state not in ['Ok', 'Warning (L2)', 'Error (L2)', 'Warning (L1)', 'Error (L1)',
                                 'Warning (L0)', 'Error (L0)']):
             verification_state = new_state
 
@@ -438,7 +442,7 @@ class VerificationOutcome(models.Model):
 
         if verification_outcome_has_changed:
 
-            verification_state = 'Ok'
+            verification_state = 'Unknown'
             for verification_outcome in model_object.verification_outcome_ids:
                 verification_state = self._get_verification_outcome_state(verification_state,
                                                                           verification_outcome.state)
