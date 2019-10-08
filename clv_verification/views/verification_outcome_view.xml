@@ -20,7 +20,7 @@
                             <field name="res_last_update"/>
                             <field name="reference" widget="reference"/>
                             <field name="reference_name"/>
-                            <field name="method"/>
+                            <!--field name="method"/-->
                             <field name="action"/>
                         </group>
                         <group>
@@ -81,7 +81,7 @@
                 <field name="res_last_update"/>
                 <field name="reference"/>
                 <field name="reference_name"/>
-                <field name="method"/>
+                <!--field name="method"/-->
                 <field name="action"/>
                 <field name="date_verification"/>
                 <field name="state"/>
@@ -100,7 +100,7 @@
                 <field name="res_id"/>
                 <field name="reference"/>
                 <field name="reference_name"/>
-                <field name="method"/>
+                <!--field name="method"/-->
                 <field name="action"/>
                 <field name="state"/>
                 <field name="outcome_info"/>
@@ -119,7 +119,7 @@
                     <filter name="filter_model" string="Model Name" domain="[]" context="{'group_by':'model'}"/>
                     <filter name="filter_reference" string="Reference" domain="[]" context="{'group_by':'reference'}"/>
                     <filter name="filter_reference_name" string="Reference Name" domain="[]" context="{'group_by':'reference_name'}"/>
-                    <filter name="filter_method" string="Method" domain="[]" context="{'group_by':'method'}"/>
+                    <!--filter name="filter_method" string="Method" domain="[]" context="{'group_by':'method'}"/-->
                     <filter name="filter_action" string="Action" domain="[]" context="{'group_by':'action'}"/>
                     <filter name="filter_state" string="Verification Outcome Status" context="{'group_by': 'state'}"/>
                     <filter name="filter_outcome_info" string="Outcome Informations" context="{'group_by': 'outcome_info'}"/>

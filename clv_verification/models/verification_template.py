@@ -16,33 +16,33 @@ class VerificationTemplate(models.Model):
         help='Verification Template Name'
     )
 
-    verification_max_task = fields.Integer(
-        string='Max Task Registers'
-    )
+    # verification_max_task = fields.Integer(
+    #     string='Max Task Registers'
+    # )
 
-    verification_disable_identification = fields.Boolean(
-        string='Disable Identification'
-    )
+    # verification_disable_identification = fields.Boolean(
+    #     string='Disable Identification'
+    # )
 
-    verification_disable_check_missing = fields.Boolean(
-        string='Disable Check Missing'
-    )
+    # verification_disable_check_missing = fields.Boolean(
+    #     string='Disable Check Missing'
+    # )
 
-    verification_disable_inclusion = fields.Boolean(
-        string='Disable Inclusion'
-    )
+    # verification_disable_inclusion = fields.Boolean(
+    #     string='Disable Inclusion'
+    # )
 
-    verification_disable_verification = fields.Boolean(
-        string='Disable Verification'
-    )
+    # verification_disable_verification = fields.Boolean(
+    #     string='Disable Verification'
+    # )
 
-    verification_last_update_start = fields.Datetime(
-        string="Last Update (Start)"
-    )
+    # verification_last_update_start = fields.Datetime(
+    #     string="Last Update (Start)"
+    # )
 
-    verification_last_update_end = fields.Datetime(
-        string="Last Update (End)"
-    )
+    # verification_last_update_end = fields.Datetime(
+    #     string="Last Update (End)"
+    # )
 
     notes = fields.Text(string='Notes')
 
@@ -56,11 +56,11 @@ class VerificationTemplate(models.Model):
         help="Model name of the object on which the verification method to be called is located, e.g. 'res.partner'"
     )
 
-    method = fields.Char(
-        string='Method',
-        required=True,
-        help="Name of the method to be called when the verification job is processed."
-    )
+    # method = fields.Char(
+    #     string='Method',
+    #     required=True,
+    #     help="Name of the method to be called when the verification job is processed."
+    # )
 
     action = fields.Char(
         string='Action',
