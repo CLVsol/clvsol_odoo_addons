@@ -423,28 +423,26 @@ class VerificationOutcome(models.Model):
                                 'Warning (L0)', 'Error (L0)']):
             verification_state = new_state
 
-        _logger.info(u'%s %s %s', '>>>>>>>>>>xxxxxxxxxx', current_state, new_state)
-
         return verification_state
+
+    def _object_verification_outcome_model_object_verification_state_updt(self, model_object):
+
+        _logger.info(u'%s %s -> %s', '>>>>>>>>>>>>>>>>>>>>',
+                     model_object, model_object.verification_outcome_ids)
+
+        verification_state = 'Unknown'
+        for verification_outcome in model_object.verification_outcome_ids:
+            verification_state = self._get_verification_outcome_state(verification_state,
+                                                                      verification_outcome.state)
+        if model_object.verification_state != verification_state:
+            model_object.verification_state = verification_state
 
     def _object_verification_outcome_updt(
         self, verification_outcome, state, outcome_info, date_verification, model_object
     ):
-
-        verification_outcome_has_changed = (verification_outcome.state != state) or \
-                                           (verification_outcome.outcome_info != outcome_info)
 
         verification_values = {}
         verification_values['date_verification'] = date_verification
         verification_values['outcome_info'] = outcome_info
         verification_values['state'] = state
         verification_outcome.write(verification_values)
-
-        if verification_outcome_has_changed:
-
-            verification_state = 'Unknown'
-            for verification_outcome in model_object.verification_outcome_ids:
-                verification_state = self._get_verification_outcome_state(verification_state,
-                                                                          verification_outcome.state)
-            if model_object.verification_state != verification_state:
-                model_object.verification_state = verification_state
