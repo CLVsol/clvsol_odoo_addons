@@ -7,3 +7,7 @@ access_clv_verification_outcome_supmanager,clv.verification.outcome.supmanager,m
 access_clv_verification_template_user,clv.verification.template.user,model_clv_verification_template,clv_verification.group_user,1,0,0,0
 access_clv_verification_template_manager,clv.verification.manager.template,model_clv_verification_template,clv_verification.group_manager,1,1,1,0
 access_clv_verification_template_supmanager,clv.verification.template.supmanager,model_clv_verification_template,clv_verification.group_supmanager,1,1,1,1
+
+access_clv_verification_marker_user,clv.verification.marker.user,model_clv_verification_marker,clv_verification.group_user,1,0,0,0
+access_clv_verification_marker_manager,clv.verification.manager.marker,model_clv_verification_marker,clv_verification.group_manager,1,1,1,0
+access_clv_verification_marker_supmanager,clv.verification.marker.supmanager,model_clv_verification_marker,clv_verification.group_supmanager,1,1,1,1

@@ -12,3 +12,4 @@ from . import verification_template_log
 # from . import verification_batch_member
 # from . import verification_batch_log
 # from . import referenceable_model
+from . import verification_marker

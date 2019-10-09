@@ -27,6 +27,7 @@
         # 'views/verification_batch_view.xml',
         # 'views/verification_batch_log_view.xml',
         # 'views/verification_batch_member_view.xml',
+        'views/verification_marker_view.xml',
         # 'views/referenceable_model_view.xml',
         # 'data/verification_batch_member.xml',
         'wizard/verification_outcome_mass_edit_view.xml',
