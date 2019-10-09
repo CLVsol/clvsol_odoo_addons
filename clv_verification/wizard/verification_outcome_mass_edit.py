@@ -23,13 +23,17 @@ class VerificationOutcomeMassEdit(models.TransientModel):
     )
 
     state = fields.Selection(
-        [('unknown', 'Unknown'),
-         ('updated', 'Updated'),
-         ('warned', 'Warned'),
-         ('failed', 'Failed'),
-         ('ok', 'Ok'),
-         ('missing', 'Missing'),
-         ], 'State'
+        [('Error (L0)', 'Error (L0)'),
+         ('Warning (L0)', 'Warning (L0)'),
+         ('Error (L1)', 'Error (L1)'),
+         ('Warning (L1)', 'Warning (L1)'),
+         ('Error (L2)', 'Error (L2)'),
+         ('Warning (L2)', 'Warning (L2)'),
+         ('Ok', 'Ok'),
+         ('Updated', 'Updated'),
+         ('Unknown', 'Unknown'),
+         ('Missing', 'Missing'),
+         ], string='State',
     )
     state_selection = fields.Selection(
         [('set', 'Set'),
