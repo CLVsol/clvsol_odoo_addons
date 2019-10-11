@@ -15,9 +15,11 @@
             </xpath>
             <xpath expr="//field[@name='code']" position="after">
                 <!--field name="identification_code" /-->
+                <field name="is_absent"/>
                 <field name="gender"/>
                 <field name="age_years"/>
                 <field name="age_reference_years"/>
+                <field name="force_is_deceased"/>
                 <field name="is_deceased"/>
             </xpath>
         </field>
@@ -59,6 +61,7 @@
                 <page name="personal_information" string="Personal Information" groups="clv_base.group_supuser">
                     <group>
                         <group name="person_status">
+                            <field name="is_absent"/>
                             <field name="gender" widget="radio"/>
                             <field name="marital" widget="radio"/>
                         </group>
@@ -67,6 +70,7 @@
                             <field name="birthday"/>
                             <field name="date_death"/>
                             <field name="date_reference"/>
+                            <field name="force_is_deceased"/>
                             <field name="is_deceased"/>
                             <field name="age"/>
                             <field name="age_years"/>
@@ -189,6 +193,14 @@
                         domain="[]"
                         context="{'group_by':'birthdate_date'}" /-->
             </xpath>
+            <field name="entity_code" position="after">
+                <field name="is_deceased"/>
+                <field name="is_absent"/>
+            </field>
+            <filter name="filter_deactivated" position="after">
+                <filter string="Is Deceased" name="filter_is_deceased" domain="[('is_deceased','=',True)]"/>
+                <filter string="Is Absent" name="filter_is_absent" domain="[('is_absent','=',True)]"/>
+            </filter>
         </field>
     </record>
 
