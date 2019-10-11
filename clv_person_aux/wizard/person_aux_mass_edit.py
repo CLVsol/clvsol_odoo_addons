@@ -25,7 +25,7 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class PersonoFFMassEdit(models.TransientModel):
+class PersonAuxMassEdit(models.TransientModel):
     _description = 'Person (Aux) Mass Edit'
     _name = 'clv.person_aux.mass_edit'
 
