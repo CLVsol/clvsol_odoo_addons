@@ -93,15 +93,16 @@ class PersonAux(models.Model):
         for r in self:
             if r.birthday:
                 dob = datetime.strptime(str(r.birthday), '%Y-%m-%d')
-                if r.is_deceased:
+                if r.is_deceased and bool(r.date_death):
                     dod = datetime.strptime(str(r.date_death), '%Y-%m-%d')
                     delta = relativedelta(dod, dob)
                     is_deceased = _(' (deceased)')
-                    # years = False
+                elif r.is_deceased and not bool(r.date_death):
+                    delta = relativedelta(now, dob)
+                    is_deceased = _(' (deceased?)')
                 else:
                     delta = relativedelta(now, dob)
                     is_deceased = ''
-                    # years = delta.years
                 years_months_days = '%d%s %d%s %d%s%s' % (
                     delta.years, _('y'), delta.months, _('m'), delta.days, _('d'),
                     is_deceased
@@ -182,15 +183,16 @@ class PersonAux(models.Model):
                 dor = datetime.strptime(str(r.date_reference), '%Y-%m-%d')
                 if r.birthday:
                     dob = datetime.strptime(str(r.birthday), '%Y-%m-%d')
-                    if r.is_deceased:
+                    if r.is_deceased and bool(r.date_death):
                         dod = datetime.strptime(str(r.date_death), '%Y-%m-%d')
                         delta = relativedelta(dod, dob)
                         is_deceased = _(' (deceased)')
-                        # years = False
+                    elif r.is_deceased and not bool(r.date_death):
+                        delta = relativedelta(dor, dob)
+                        is_deceased = _(' (deceased?)')
                     else:
                         delta = relativedelta(dor, dob)
                         is_deceased = ''
-                        # years = delta.years
                     years_months_days = '%d%s %d%s %d%s%s' % (
                         delta.years, _('y'), delta.months, _('m'), delta.days, _('d'),
                         is_deceased
@@ -227,21 +229,30 @@ class PersonAux(models.Model):
     #             record = self.env['clv.person_aux'].search([('id', '=', r.id)])
     #             record.write({'date_reference': r.date_reference})
 
+    force_is_deceased = fields.Boolean(
+        string='Force Is Deceased',
+        default=False
+    )
     date_death = fields.Date(
         string='Deceased Date',
     )
     is_deceased = fields.Boolean(
         string='Is Deceased',
         compute='_compute_is_deceased',
-        # store=True
+        search='_search_is_deceased'
     )
 
     @api.multi
     def _compute_is_deceased(self):
         for record in self:
-
             if record.date_death:
                 record.is_deceased = bool(record.date_death)
+            record.is_deceased = bool(record.date_death) or record.force_is_deceased
+
+    def _search_is_deceased(self, operator, value):
+        if operator == 'like':
+            operator = 'ilike'
+        return ['|', ('date_death', '!=', False), ('force_is_deceased', '=', True)]
 
     # @api.multi
     # def _compute_age(self):
@@ -272,6 +283,10 @@ class PersonAux(models.Model):
     #         record.age = years_months_days
     #         if years:
     #             record.age_years = years
+
+    is_absent = fields.Boolean(
+        string='Is Absent'
+    )
 
     gender = fields.Selection(
         [('M', 'Male'),
