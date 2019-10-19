@@ -60,12 +60,12 @@ class PersonAuxAssociateToAddress(models.TransientModel):
                 ])
                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'ref_address_id:', address.id)
 
-            if address.id is not False:
+                if address.id is not False:
 
-                data_values = {}
-                data_values['ref_address_id'] = address.id
-                _logger.info(u'>>>>>>>>>> %s', data_values)
-                person_aux.write(data_values)
+                    data_values = {}
+                    data_values['ref_address_id'] = address.id
+                    _logger.info(u'>>>>>>>>>> %s', data_values)
+                    person_aux.write(data_values)
 
         # return action
         return True
