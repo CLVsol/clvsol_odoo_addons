@@ -9,6 +9,26 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
+class Address(models.Model):
+    _inherit = 'clv.address'
+
+    address_aux_ids = fields.One2many(
+        comodel_name='clv.address_aux',
+        inverse_name='related_address_id',
+        string='Addresses (Aux)'
+    )
+    count_addresses_aux = fields.Integer(
+        string='Addresses (Aux) (count)',
+        compute='_compute_count_addresses_aux',
+        # store=True
+    )
+
+    @api.depends('address_aux_ids')
+    def _compute_count_addresses_aux(self):
+        for r in self:
+            r.count_addresses_aux = len(r.address_aux_ids)
+
+
 class AddressAux(models.Model):
     _inherit = 'clv.address_aux'
 

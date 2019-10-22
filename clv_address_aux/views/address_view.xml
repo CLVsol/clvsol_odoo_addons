@@ -4,6 +4,37 @@
 
 <odoo>
         
+    <record id="clv_address_view_form_address_aux" model="ir.ui.view">
+        <field name="name">clv.address.form</field>
+        <field name="model">clv.address</field>
+        <field name="inherit_id" ref="clv_address.clv_address_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Addresses (Aux)">
+                    <group>
+                        <group>
+                            <button name="clv_address_aux.clv_address_aux_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_related_address_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_addresses_aux"/>
+                                    </span>
+                                    <span class="o_stat_text"> Person(s) (Aux)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="address_aux_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
     <record id="clv_address_aux_view_form_address" model="ir.ui.view">
         <field name="name">clv.address_aux.form</field>
         <field name="model">clv.address_aux</field>
