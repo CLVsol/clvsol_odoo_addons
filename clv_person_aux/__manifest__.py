@@ -41,6 +41,7 @@
         'wizard/person_aux_associate_to_address_aux_view.xml',
         'wizard/person_aux_associate_to_family_view.xml',
         'wizard/person_aux_associate_to_family_aux_view.xml',
+        'wizard/person_aux_associate_to_related_person_family_view.xml',
     ],
     'demo': [],
     'test': [],
