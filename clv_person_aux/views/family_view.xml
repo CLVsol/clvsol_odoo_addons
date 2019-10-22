@@ -13,9 +13,23 @@
             <page name="settings" position="before">
                 <page string="Persons (Aux)">
                     <group>
-                        <field name="count_persons_aux"/>
-                        <field name="person_aux_ids" colspan="4" nolabel="1"/>
+                        <group>
+                            <button name="clv_person_aux.clv_person_aux_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_ref_address_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_persons_aux"/>
+                                    </span>
+                                    <span class="o_stat_text"> Person(s) (Aux)</span>
+                                </div>
+                            </button>
+                        </group>
                     </group>
+                    <field name="person_aux_ids" colspan="4" nolabel="1"/>
                 </page>
             </page>
         </field>
