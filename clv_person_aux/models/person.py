@@ -9,6 +9,26 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
+class Person(models.Model):
+    _inherit = 'clv.person'
+
+    person_aux_ids = fields.One2many(
+        comodel_name='clv.person_aux',
+        inverse_name='related_person_id',
+        string='Persons (Aux)'
+    )
+    count_person_auxs = fields.Integer(
+        string='Persons (Aux) (count)',
+        compute='_compute_count_person_auxs',
+        # store=True
+    )
+
+    @api.depends('person_aux_ids')
+    def _compute_count_person_auxs(self):
+        for r in self:
+            r.count_person_auxs = len(r.person_aux_ids)
+
+
 class PersonAux(models.Model):
     _inherit = 'clv.person_aux'
 
