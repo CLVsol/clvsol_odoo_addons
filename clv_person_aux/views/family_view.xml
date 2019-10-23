@@ -91,6 +91,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
+                <field name="family_id"/>
                 <field name="family_category_ids"/>
             </field>
             <group name="group_by" position="inside">
