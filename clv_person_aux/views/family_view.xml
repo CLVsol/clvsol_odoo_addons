@@ -18,7 +18,7 @@
                                     type="action"
                                     class="oe_stat_button"
                                     icon="fa-list"
-                                    context="{'search_default_ref_address_id': id}"
+                                    context="{'search_default_family_id': id}"
                                     >
                                 <div class="o_form_field o_stat_info">
                                     <span class="o_stat_value">
