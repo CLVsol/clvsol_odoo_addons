@@ -17,16 +17,16 @@ class Address(models.Model):
         inverse_name='ref_address_id',
         string='Persons (Aux)'
     )
-    count_person_auxs = fields.Integer(
+    count_persons_aux = fields.Integer(
         string='Persons (Aux) (count)',
-        compute='_compute_count_person_auxs',
+        compute='_compute_count_persons_aux',
         # store=True
     )
 
     @api.depends('person_aux_ids')
-    def _compute_count_person_auxs(self):
+    def _compute_count_persons_aux(self):
         for r in self:
-            r.count_person_auxs = len(r.person_aux_ids)
+            r.count_persons_aux = len(r.person_aux_ids)
 
 
 class PersonAux(models.Model):
