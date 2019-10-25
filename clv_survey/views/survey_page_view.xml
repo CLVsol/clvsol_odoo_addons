@@ -29,6 +29,8 @@
                 <h1><field name="title" placeholder="Page Title"/></h1>
                 <label for="code" class="oe_edit_only"/>
                 <h3><field name="code" placeholder="Page Code"/></h3>
+                <label for="description" class="oe_edit_only"/>
+                <h3><field name="description" placeholder="Page Description"/></h3>
             </label>
             <xpath expr="//sheet" position="inside">
                 <notebook>
