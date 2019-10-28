@@ -56,7 +56,7 @@ class SurveyExportXLS(models.TransientModel):
 
     file_format = fields.Selection(
         [('draft', 'Draft'),
-         ('formated', 'Formated'),
+         ('preformatted', 'Preformatted'),
          ], string='File Format', default='draft'
     )
 
@@ -93,7 +93,7 @@ class SurveyExportXLS(models.TransientModel):
         ''')
 
         isHidden = False
-        if self.file_format == 'formated':
+        if self.file_format == 'preformatted':
             isHidden = True
 
         for survey_reg in self.survey_ids:
@@ -323,7 +323,7 @@ class SurveyExportXLS(models.TransientModel):
 
             sheet.col(0).hidden = isHidden
 
-            if self.file_format == 'formated':
+            if self.file_format == 'preformatted':
 
                 for i in range(100):
                     sheet.col(i).width = 256 * 2
