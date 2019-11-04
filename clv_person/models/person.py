@@ -130,7 +130,6 @@ class Person(models.Model):
     #             record = self.env['clv.person'].search([('id', '=', r.id)])
     #             record.write({'birthday': r.birthday})
 
-    # date_reference = fields.Date(string="Reference Date")
     date_reference = fields.Date(
         string="Reference Date",
         compute='_compute_date_reference',
@@ -139,12 +138,12 @@ class Person(models.Model):
     age_reference = fields.Char(
         string='Reference Age',
         compute='_compute_age_reference',
-        # store=True
+        store=True
     )
     age_reference_years = fields.Char(
         string="Reference Age (years old)",
         compute='_compute_age_reference',
-        # store=True
+        store=True
     )
     # age_reference_suport = fields.Char(
     #     string='Reference Age Suport',
@@ -160,7 +159,7 @@ class Person(models.Model):
             r.date_reference = date_reference
 
     @api.multi
-    # @api.depends('date_reference', 'birthday')
+    @api.depends('date_reference', 'birthday', 'force_is_deceased', 'date_death')
     def _compute_age_reference(self):
         # for r in self:
         #     if r.date_reference:
