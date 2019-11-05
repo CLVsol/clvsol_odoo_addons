@@ -185,7 +185,7 @@
             </xpath>
             <xpath expr="//field[@name='category_id']" position="after">
                 <!--field name="birthdate_date" /-->
-                <!--field name="age_years" /-->
+                <field name="age_reference_years"/>
                 <!--field name="identification_code" /-->
             </xpath>
             <xpath expr="//filter" position="after">
@@ -201,6 +201,9 @@
                 <filter string="Is Deceased" name="filter_is_deceased" domain="[('is_deceased','=',True)]"/>
                 <filter string="Is Absent" name="filter_is_absent" domain="[('is_absent','=',True)]"/>
             </filter>
+            <group name="group_by" position="inside">
+                <filter name="group_by_age_reference_years" string="Reference Age (years old)" context="{'group_by': 'age_reference_years'}"/>
+            </group>
         </field>
     </record>
 
