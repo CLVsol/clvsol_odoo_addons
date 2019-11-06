@@ -10,3 +10,5 @@ from . import processing_batch
 from . import processing_batch_member
 from . import processing_batch_log
 from . import referenceable_model
+
+from . import abstract_process
