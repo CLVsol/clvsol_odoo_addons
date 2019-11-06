@@ -30,7 +30,7 @@
         # 'wizard/processing_mass_edit_view.xml',
         # 'wizard/processing_template_mass_edit_view.xml',
         # 'wizard/processing_schedule_mass_edit_view.xml',
-        # 'wizard/processing_schedule_exec_view.xml',
+        'wizard/processing_schedule_exec_view.xml',
         # 'wizard/processing_batch_exec_view.xml',
     ],
     'demo': [],
