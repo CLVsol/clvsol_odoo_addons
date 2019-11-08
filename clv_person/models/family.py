@@ -52,25 +52,22 @@ class Person(models.Model):
 
             _logger.info(u'>>>>> %s', person.ref_address_id)
 
+            Family = self.env['clv.family']
+
             if (person.ref_address_id.id is not False):
 
                 data_values = {}
 
-                if person.ref_address_id.id is not False:
+                family = Family.search([
+                    ('ref_address_id', '=', person.ref_address_id.id),
+                ])
 
-                    data_values['ref_address_id'] = person.ref_address_id.id
+                if family.id is not False:
 
-                    data_values['street'] = person.ref_address_id.street
-                    data_values['street2'] = person.ref_address_id.street2
-                    data_values['zip'] = person.ref_address_id.zip
-                    data_values['city'] = person.ref_address_id.city
-                    data_values['state_id'] = person.ref_address_id.state_id.id
-                    data_values['country_id'] = person.ref_address_id.country_id.id
-                    # data_values['phone'] = person.ref_address_id.phone
-                    # data_values['mobile'] = person.ref_address_id.mobile
+                    data_values['family_id'] = family.id
 
                 _logger.info(u'>>>>>>>>>> %s', data_values)
 
-                # person.write(data_values)
+                person.write(data_values)
 
         return True
