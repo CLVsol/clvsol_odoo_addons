@@ -21,11 +21,11 @@ class AbstractReport(models.AbstractModel):
 
     date_report = fields.Datetime(string="Report Date")
     report_status = fields.Selection(
-        [('unknown', 'Unknown'),
-         ('failed', 'Failed'),
-         ('ok', 'Ok'),
-         ('missing', 'Missing'),
-         ], string='Report Status', default='unknown'
+        [('draft', 'Draft'),
+         ('revised', 'Revised'),
+         ('done', 'Done'),
+         ('canceled', 'Canceled'),
+         ], string='Report Status', default='draft'
     )
     report_outcomes = fields.Text(string='Report Outcomes')
 
