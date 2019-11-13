@@ -92,10 +92,10 @@
             <tree name="summaries" string="Summaries">
                 <!--field name="name"/-->
                 <!--field name="code"/-->
-                <field name="model"/>
-                <field name="res_id"/>
-                <field name="reference"/>
+                <field name="model" invisible="1"/>
+                <field name="res_id" invisible="1"/>
                 <field name="reference_name"/>
+                <field name="reference"/>
                 <!--field name="method"/-->
                 <field name="action"/>
                 <field name="date_summary"/>
@@ -123,6 +123,7 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
+                    <filter name="group_by_model" string="Model Name" domain="[]" context="{'group_by':'model'}"/>
                 </group>
             </search>
         </field>
