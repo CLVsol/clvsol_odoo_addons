@@ -10,28 +10,40 @@ from odoo import api, fields, models
 class Summary(models.Model):
     _description = 'Summary'
     _name = 'clv.summary'
-    _order = 'name'
+    _order = "reference"
+    _rec_name = 'reference'
 
-    @api.multi
-    @api.depends('name', 'code')
-    def name_get(self):
-        result = []
-        for record in self:
-            result.append(
-                (record.id,
-                 u'%s [%s]' % (record.name, record.code)
-                 ))
-        return result
-
-    name = fields.Char(string='Name', required=True)
-
-    code = fields.Char(string='Summary Code', required=False)
+    model = fields.Char(string='Model Name ', required=True)
+    res_id = fields.Integer(
+        string='Record ID',
+        help="ID of the target record in the database",
+        required=True
+    )
+    res_last_update = fields.Datetime(string="Record Last Update")
+    reference = fields.Char(
+        string='Reference ',
+        compute='_compute_reference',
+        readonly=True,
+        store=True
+    )
+    reference_name = fields.Char(
+        string='Reference Name',
+        compute='_compute_reference',
+        readonly=True,
+        store=True
+    )
 
     date_summary = fields.Datetime(
         string='Summary Date', required=False, readonly=False,
         default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
     notes = fields.Text(string='Notes')
+
+    action = fields.Char(
+        string='Action',
+        required=False,
+        help="Name of the action used to process the summary."
+    )
 
     active = fields.Boolean(string='Active', default=1)
 
@@ -41,3 +53,14 @@ class Summary(models.Model):
          u'Error! The Summary Code must be unique!'
          )
     ]
+
+    @api.depends('model', 'res_id')
+    def _compute_reference(self):
+        for record in self:
+            if (record.model is not False) and (record.res_id != 0):
+                record.reference = "%s,%s" % (record.model, record.res_id)
+                Model = self.env[record.model]
+                rec = Model.search([
+                    ('id', '=', record.res_id),
+                ])
+                record.reference_name = rec.name_get()[0][1]
