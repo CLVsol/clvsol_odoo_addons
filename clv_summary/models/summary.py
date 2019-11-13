@@ -10,8 +10,8 @@ from odoo import api, fields, models
 class Summary(models.Model):
     _description = 'Summary'
     _name = 'clv.summary'
-    _order = "reference"
-    _rec_name = 'reference'
+    _order = "reference_name"
+    _rec_name = 'reference_name'
 
     model = fields.Char(string='Model Name ', required=True)
     res_id = fields.Integer(
@@ -46,13 +46,6 @@ class Summary(models.Model):
     )
 
     active = fields.Boolean(string='Active', default=1)
-
-    _sql_constraints = [
-        ('code_uniq',
-         'UNIQUE(code)',
-         u'Error! The Summary Code must be unique!'
-         )
-    ]
 
     @api.depends('model', 'res_id')
     def _compute_reference(self):
