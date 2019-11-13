@@ -18,6 +18,7 @@
     'data': [
         'security/summary_security.xml',
         'security/ir.model.access.csv',
+        'views/summary_template_view.xml',
         'views/summary_view.xml',
         'views/summary_log_view.xml',
         'views/file_system_view.xml',
