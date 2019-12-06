@@ -17,7 +17,7 @@
                     <group>
                         <field name="create_new_person_aux"/>
                         <field name="create_new_address_aux"/>
-                        <field name="create_new_family_aux"/>
+                        <field name="create_new_family_aux" invisible="True"/>
                     </group>
                 </group>
                 <footer>
