@@ -11,7 +11,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <page name="settings" position="before">
-                <page string="Families (Aux)">
+                <page string="Families (Aux)" invisible="True">
                     <group>
                         <!--group>
                             <field name="count_families_aux"/>
