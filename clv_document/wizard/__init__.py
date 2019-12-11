@@ -8,3 +8,4 @@ from . import document_type_mass_edit
 from . import document_type_duplicate
 from . import document_type_item_setup
 from . import document_items_edit
+from . import document_items_ok_setup
