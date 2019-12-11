@@ -33,7 +33,7 @@
         'wizard/document_items_refresh_view.xml',
         'wizard/document_type_mass_edit_view.xml',
         'wizard/document_type_duplicate_view.xml',
-        'wizard/document_type_item_setup_view.xml',
+        'wizard/document_type_items_setup_view.xml',
         'wizard/document_items_edit_view.xml',
         'wizard/document_items_ok_setup_view.xml',
     ],

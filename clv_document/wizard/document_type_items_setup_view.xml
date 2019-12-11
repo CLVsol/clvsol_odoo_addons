@@ -4,9 +4,9 @@
 
 <odoo>
 
-    <record id="clv_document_type_item_setup_view_form" model="ir.ui.view">
-        <field name="name">clv.document.type.item_setup.form</field>
-        <field name="model">clv.document.type.item_setup</field>
+    <record id="clv_document_type_items_setup_view_form" model="ir.ui.view">
+        <field name="name">clv.document.type.items_setup.form</field>
+        <field name="model">clv.document.type.items_setup</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -20,8 +20,8 @@
                 <footer>
                     <button 
                         type="object"
-                        name="do_document_type_item_setup"
-                        string="Document Type Item Set Up"
+                        name="do_document_type_items_setup"
+                        string="Items Set Up"
                         class="oe_highlight"
                         />
                     <button special="cancel" string="Cancel"/>
@@ -33,10 +33,10 @@
 
     <!-- More button Action -->
     <act_window 
-        id="clv_document_type_item_setup_action"
-        name="Document Type Item Set Up"
+        id="clv_document_type_items_setup_action"
+        name="Document Type Items Set Up"
         src_model="clv.document.type"
-        res_model="clv.document.type.item_setup"
+        res_model="clv.document.type.items_setup"
         view_mode="form"
         key2="client_action_multi"
         target="new"
