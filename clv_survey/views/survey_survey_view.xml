@@ -19,6 +19,8 @@
                 <h2><field name="description" placeholder="Survey Description"/></h2>
                 <label for="code" class="oe_edit_only"/>
                 <h3><field name="code" placeholder="Survey Code"/></h3>
+                <label for="public_url" class="oe_edit_only"/>
+                <h3><field name="public_url" placeholder="Public link"/></h3>
             </label>
             <xpath expr="//notebook" position="inside">
                 <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
@@ -37,7 +39,7 @@
                                         <field name="active"
                                                widget="boolean_button"
                                                options='{"terminology": "archive"}'
-                                               />
+                                              />
                                 </button-->
                             </div>
                         </group>
@@ -60,8 +62,9 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="title" position="after">
-                <field name="description" />
-                <field name="code" />
+                <field name="description"/>
+                <field name="code"/>
+                <field name="public_url"/>
             </field>
         </field>
     </record>
