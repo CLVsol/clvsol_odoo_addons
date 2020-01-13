@@ -13,8 +13,8 @@ class ModelExportTemplateLabTestCriterion(models.Model):
     name = fields.Char(string='Alias', index=False, required=False)
 
     model_export_template_id = fields.Many2one(
-        comodel_name='clv.model_export',
-        string='Model Export',
+        comodel_name='clv.model_export.template',
+        string='Model Export Template',
         ondelete='restrict'
     )
 
