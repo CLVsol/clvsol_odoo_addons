@@ -66,6 +66,7 @@ class LabTestResult(models.Model):
     criterion_ids = fields.One2many(
         comodel_name='clv.lab_test.criterion',
         inverse_name='lab_test_result_id',
+        readonly=True,
         string='Test Cases'
     )
 
@@ -76,5 +77,6 @@ class LabTestReport(models.Model):
     criterion_ids = fields.One2many(
         comodel_name='clv.lab_test.criterion',
         inverse_name='lab_test_report_id',
+        readonly=True,
         string='Test Cases'
     )
