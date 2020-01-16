@@ -19,6 +19,7 @@
         'security/processing_security.xml',
         'security/ir.model.access.csv',
         'views/processing_host_view.xml',
+        'views/processing_host_log_view.xml',
         'views/processing_template_view.xml',
         'views/processing_template_log_view.xml',
         'views/processing_schedule_view.xml',

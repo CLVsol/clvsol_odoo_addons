@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import processing_host
+from . import processing_host_log
 from . import processing_template
 from . import processing_template_log
 from . import processing_schedule
