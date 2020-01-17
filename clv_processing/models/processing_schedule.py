@@ -23,6 +23,11 @@ class ProcessingSchedule(models.Model):
         help='Processing Schedule Name'
     )
 
+    external_host_id = fields.Many2one(
+        comodel_name='clv.processing.host',
+        string='External Host'
+    )
+
     notes = fields.Text(string='Notes')
 
     date_inclusion = fields.Datetime(
@@ -59,6 +64,7 @@ class ProcessingSchedule(models.Model):
         schedule = super().create(values)
 
         if schedule.template_id.id is not False:
+            schedule.external_host_id = schedule.template_id.external_host_id
             schedule.model = schedule.template_id.model
             schedule.method = schedule.template_id.method
 
@@ -67,6 +73,7 @@ class ProcessingSchedule(models.Model):
     @api.onchange('template_id')
     def onchange_template_id(self):
         if self.template_id.id:
+            self.external_host_id = self.template_id.external_host_id
             self.model = self.template_id.model
             self.method = self.template_id.method
 

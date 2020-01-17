@@ -23,6 +23,8 @@
                     <div name="title" class="oe_title">
                         <label for="template_id" class="oe_edit_only"/>
                         <h3><field name="template_id" placeholder="Processing Template..." options="{'no_open': False, 'no_create': True}"/></h3>
+                        <label for="external_host_id" class="oe_edit_only"/>
+                        <h3><field name="external_host_id" placeholder="External Host..." options="{'no_open': False, 'no_create': True}"/></h3>
                     </div>
                     <group name="group_top">
                         <group name="group_left">
@@ -82,6 +84,7 @@
             <tree name="events" string="Processing Schedules">
                 <field name="template_id"/>
                 <field name="name"/>
+                <field name="external_host_id"/>
                 <field name="date_inclusion"/>
                 <field name="model"/>
                 <field name="method"/>
@@ -99,6 +102,7 @@
             <search>
                 <field name="template_id"/>
                 <field name="name"/>
+                <field name="external_host_id"/>
                 <field name="date_inclusion"/>
                 <field name="model"/>
                 <field name="method"/>
@@ -106,6 +110,7 @@
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" string="Group By...">
+                    <filter name="filter_external_host_id" string="External Host" context="{'group_by': 'external_host_id'}"/>
                     <filter name="filter_template_id" string="Processing Template" context="{'group_by': 'template_id'}"/>
                     <filter name="filter_model" string="Model" context="{'group_by': 'model'}"/>
                 </group>
