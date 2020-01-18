@@ -16,6 +16,11 @@ class ProcessingTemplate(models.Model):
         help='Processing Template Name'
     )
 
+    external_host_id = fields.Many2one(
+        comodel_name='clv.processing.host',
+        string='External Host'
+    )
+
     notes = fields.Text(string='Notes')
 
     date_inclusion = fields.Datetime(
