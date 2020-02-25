@@ -16,6 +16,7 @@
         'security/ir.model.access.csv',
         'views/abstract_log_view.xml',
         'views/abstract_marker_view.xml',
+        'views/abstract_format_view.xml',
         'views/abstract_category_view.xml',
         'views/referenceable_model_view.xml',
         'views/global_settings_view.xml',
