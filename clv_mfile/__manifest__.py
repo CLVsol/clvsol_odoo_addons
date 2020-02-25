@@ -22,7 +22,7 @@
         'views/mfile_view.xml',
         'views/mfile_category_view.xml',
         'views/global_tag_view.xml',
-        # 'views/mfile_format_view.xml',
+        'views/mfile_format_view.xml',
         # 'views/mfile_annotation_view.xml',
         # 'views/mfile_kanban_view.xml',
         'views/mfile_log_view.xml',
