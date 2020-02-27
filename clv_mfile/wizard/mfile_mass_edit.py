@@ -1,4 +1,5 @@
-# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# -*- coding: utf-8 -*-
+# Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 '''
@@ -24,21 +25,19 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class MFileUpdate(models.TransientModel):
-    _name = 'clv.mfile.updt'
+class MediaFileMassEdit(models.TransientModel):
+    _description = 'Media File Mass Edit'
+    _name = 'clv.mfile.mass_edit'
 
-    def _default_mfile_ids(self):
-        return self._context.get('active_ids')
     mfile_ids = fields.Many2many(
         comodel_name='clv.mfile',
-        relation='clv_mfile_updt_rel',
-        string='Documents',
-        default=_default_mfile_ids
+        relation='clv_mfile_mass_edit_rel',
+        string='Media Files'
     )
 
     global_tag_ids = fields.Many2many(
         comodel_name='clv.global_tag',
-        relation='clv_mfile_updt_global_tag_rel',
+        relation='clv_mfile_mass_edit_global_tag_rel',
         column1='mfile_id',
         column2='global_tag_id',
         string='Global Tags'
@@ -47,12 +46,12 @@ class MFileUpdate(models.TransientModel):
         [('add', 'Add'),
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
-         ], string='Global Tags', default=False, readonly=False, required=False
+         ], string='Global Tags:', default=False, readonly=False, required=False
     )
 
     category_ids = fields.Many2many(
         comodel_name='clv.mfile.category',
-        relation='clv_mfile_updt_category_rel',
+        relation='clv_mfile_mass_edit_category_rel',
         column1='mfile_id',
         column2='category_id',
         string='Categories'
@@ -61,7 +60,21 @@ class MFileUpdate(models.TransientModel):
         [('add', 'Add'),
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
-         ], string='Categories', default=False, readonly=False, required=False
+         ], string='Categories:', default=False, readonly=False, required=False
+    )
+
+    marker_ids = fields.Many2many(
+        comodel_name='clv.mfile.marker',
+        relation='clv_mfile_mass_edit_marker_rel',
+        column1='mfile_id',
+        column2='marker_id',
+        string='Markers'
+    )
+    marker_ids_selection = fields.Selection(
+        [('add', 'Add'),
+         ('remove_m2m', 'Remove'),
+         ('set', 'Set'),
+         ], string='Markers:', default=False, readonly=False, required=False
     )
 
     parent_id = fields.Many2one(
@@ -71,16 +84,17 @@ class MFileUpdate(models.TransientModel):
     parent_id_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Parent File', default=False, readonly=False, required=False
+         ], string='Parent File:', default=False, readonly=False, required=False
     )
 
     date_inclusion = fields.Date(string='Inclusion Date', default=False, readonly=False, required=False)
     date_inclusion_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
-         ], string='Inclusion Date', default=False, readonly=False, required=False
+         ], string='Inclusion Date:', default=False, readonly=False, required=False
     )
 
+    @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -93,8 +107,17 @@ class MFileUpdate(models.TransientModel):
         }
         return action
 
+    @api.model
+    def default_get(self, field_names):
+
+        defaults = super().default_get(field_names)
+
+        defaults['mfile_ids'] = self.env.context['active_ids']
+
+        return defaults
+
     @api.multi
-    def do_mfile_updt(self):
+    def do_mfile_mass_edit(self):
         self.ensure_one()
 
         for mfile in self.mfile_ids:
@@ -149,14 +172,28 @@ class MFileUpdate(models.TransientModel):
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 mfile.category_ids = m2m_list
 
-            if self.parent_id_selection == 'set':
-                mfile.parent_id = self.parent_id.id
-            if self.parent_id_selection == 'remove':
-                mfile.parent_id = False
-
-            if self.date_inclusion_selection == 'set':
-                mfile.date_inclusion = self.date_inclusion
-            if self.date_inclusion_selection == 'remove':
-                mfile.date_inclusion = False
+            if self.marker_ids_selection == 'add':
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((4, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                mfile.marker_ids = m2m_list
+            if self.marker_ids_selection == 'remove_m2m':
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((3, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                mfile.marker_ids = m2m_list
+            if self.marker_ids_selection == 'set':
+                m2m_list = []
+                for marker_id in mfile.marker_ids:
+                    m2m_list.append((3, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                mfile.marker_ids = m2m_list
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((4, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                mfile.marker_ids = m2m_list
 
         return True
