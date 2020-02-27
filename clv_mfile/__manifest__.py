@@ -21,6 +21,7 @@
         'security/ir.model.access.csv',
         'views/mfile_view.xml',
         'views/mfile_category_view.xml',
+        'views/mfile_marker_view.xml',
         'views/global_tag_view.xml',
         'views/mfile_format_view.xml',
         # 'views/mfile_annotation_view.xml',

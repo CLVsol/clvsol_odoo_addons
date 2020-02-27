@@ -46,6 +46,7 @@
                                         </strong>
                                         <span t-if="record.format_ids.raw_value" class="o_kanban_record_subtitle"><field name="format_ids"/></span>
                                         <span t-if="record.category_ids.raw_value" class="o_kanban_record_subtitle"><field name="category_ids"/></span>
+                                        <span t-if="record.marker_ids.raw_value" class="o_kanban_record_subtitle"><field name="marker_ids"/></span>
                                         <span t-if="record.global_tag_ids.raw_value" class="o_kanban_record_subtitle"><field name="global_tag_ids"/></span>
                                     </div>
                                 </div>
