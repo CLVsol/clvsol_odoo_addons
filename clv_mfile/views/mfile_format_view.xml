@@ -81,7 +81,7 @@
         <field name="name">clv.mfile.form</field>
         <field name="model">clv.mfile</field>
         <field name="inherit_id" ref="clv_mfile_view_form"/>
-        <field name="priority" eval="8"/>
+        <field name="priority" eval="9"/>
         <field name="arch" type="xml">
             <label for="name" position="before">
                 <label for="format_ids" class="oe_edit_only"/>
