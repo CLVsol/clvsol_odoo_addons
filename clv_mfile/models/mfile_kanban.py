@@ -2,7 +2,9 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+import base64
+
+from odoo import api, fields, models
 from odoo import tools
 from odoo.modules.module import get_module_resource
 
@@ -12,9 +14,10 @@ class MediaFile(models.Model):
 
     @api.model
     def _default_image(self):
-        image_path = get_module_resource('hr', 'static/src/img', 'default_image.png')
-        return tools.image_resize_image_big(open(image_path, 'rb').read().encode('base64'))
+        image_path = get_module_resource('clv_mfile', 'static/img', 'mfile_image.png')
+        return tools.image_resize_image_big(base64.b64encode(open(image_path, 'rb').read()))
 
+    # image: all image fields are base64 encoded and PIL-supported
     image = fields.Binary(
         string='Photo',
         default=_default_image,
@@ -38,9 +41,9 @@ class MediaFile(models.Model):
     @api.model
     def create(self, vals):
         tools.image_resize_images(vals)
-        return super(MediaFile, self).create(vals)
+        return super().create(vals)
 
     @api.multi
     def write(self, vals):
         tools.image_resize_images(vals)
-        return super(MediaFile, self).write(vals)
+        return super().write(vals)

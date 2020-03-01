@@ -4,15 +4,15 @@
 
 <odoo>
 
-    <record id="clv_mfile_format_view_form" model="ir.ui.view">
-        <field name="name">clv.mfile.format.form</field>
-        <field name="model">clv.mfile.format</field>
-        <field name="inherit_id" ref="clv_base.clv_abstract_format_view_form"/>
+    <record id="clv_mfile_marker_view_form" model="ir.ui.view">
+        <field name="name">clv.mfile.marker.form</field>
+        <field name="model">clv.mfile.marker</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_marker_view_form"/>
         <field name="mode">primary</field>
         <field name="priority" eval="100"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="attributes">
-                <attribute name="string">Media File Format</attribute>
+                <attribute name="string">Media File Marker</attribute>
             </xpath>
             <page name="settings" position="before">
                 <page string="Media Files">
@@ -24,83 +24,84 @@
         </field>
     </record>
 
-    <record id="clv_mfile_format_view_tree" model="ir.ui.view">
-        <field name="name">clv.mfile.format.tree</field>
-        <field name="model">clv.mfile.format</field>
-        <field name="inherit_id" ref="clv_base.clv_abstract_format_view_tree" />
+    <record id="clv_mfile_marker_view_tree" model="ir.ui.view">
+        <field name="name">clv.mfile.marker.tree</field>
+        <field name="model">clv.mfile.marker</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_marker_view_tree" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
-                <attribute name="string">Media File Formats</attribute>
+                <attribute name="string">Media File Markers</attribute>
             </xpath>
         </field>
     </record>
 
-    <record id="clv_mfile_format_view_search" model="ir.ui.view">
-        <field name="name">clv.mfile.format.search</field>
-        <field name="model">clv.mfile.format</field>
-        <field name="inherit_id" ref="clv_base.clv_abstract_format_view_search" />
+    <record id="clv_mfile_marker_view_search" model="ir.ui.view">
+        <field name="name">clv.mfile.marker.search</field>
+        <field name="model">clv.mfile.marker</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_marker_view_search" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//search" position="attributes">
-                <attribute name="string">Media File Formats</attribute>
+                <attribute name="string">Media File Markers</attribute>
             </xpath>
         </field>
     </record>
 
-    <record id="clv_mfile_format_action" model="ir.actions.act_window">
-        <field name="name">Media File Formats</field>
+    <record id="clv_mfile_marker_action" model="ir.actions.act_window">
+        <field name="name">Media File Markers</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">clv.mfile.format</field>
+        <field name="res_model">clv.mfile.marker</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="clv_mfile_format_view_search"/>
+        <field name="search_view_id" ref="clv_mfile_marker_view_search"/>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="view_id" eval="False"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Click to add a new mfile format.
+            Click to add a new media file marker.
           </p>
         </field>
     </record>
     
-    <record id="clv_mfile_view_tree_format" model="ir.ui.view">
+    <record id="clv_mfile_view_tree_marker" model="ir.ui.view">
         <field name="name">clv.mfile.tree</field>
         <field name="model">clv.mfile</field>
         <field name="inherit_id" ref="clv_mfile_view_tree"/>
         <field name="priority" eval="20"/>
         <field name="arch" type="xml">
-            <field name="code" position="before">
-                <field name="format_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+            <field name="code" position="after">
+                <field name="marker_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
             </field>
         </field>
     </record>
 
-    <record id="clv_mfile_view_form_format" model="ir.ui.view">
+    <record id="clv_mfile_view_form_marker" model="ir.ui.view">
         <field name="name">clv.mfile.form</field>
         <field name="model">clv.mfile</field>
         <field name="inherit_id" ref="clv_mfile_view_form"/>
-        <field name="priority" eval="9"/>
+        <field name="priority" eval="7"/>
         <field name="arch" type="xml">
             <label for="name" position="before">
-                <label for="format_ids" class="oe_edit_only"/>
-                <h2><field name="format_ids" widget="many2many_tags" placeholder="Formats..." options="{'no_open': False, 'no_create': True}"/></h2>
+                <label for="marker_ids" class="oe_edit_only"/>
+                <h4><field name="marker_ids" widget="many2many_tags" placeholder="Markers..." options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/></h4>
             </label>
         </field>
     </record>
 
-    <record id="clv_mfile_view_search_format" model="ir.ui.view">
+    <record id="clv_mfile_view_search_marker" model="ir.ui.view">
         <field name="name">clv.mfile.search</field>
         <field name="model">clv.mfile</field>
         <field name="inherit_id" ref="clv_mfile_view_search"/>
         <field name="priority" eval="20"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="format_ids"/>
+                <field name="marker_ids"/>
+                <field name="marker_names"/>
             </field>
             <group name="group_by" position="inside">
-                <filter name="filter_mfile_format" string="Formats" context="{'group_by': 'format_names'}"/>
+                <filter name="filter_mfile_marker" string="Markers" context="{'group_by': 'marker_names'}"/>
             </group>
         </field>
     </record>

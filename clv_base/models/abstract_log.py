@@ -2,6 +2,8 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import copy
+
 from datetime import *
 
 from odoo import api, fields, models
@@ -87,16 +89,17 @@ class AbstractModelLog(models.AbstractModel):
     def insert_object_log(self, log_model, model, res_id, values, action, notes):
         for record in self:
             if record.active_log or 'active_log' in values:
-                if 'image_small' in values:
-                    values['image_small'] = '<image_small>'
-                if 'image_medium' in values:
-                    values['image_medium'] = '<image_medium>'
-                if 'image' in values:
-                    values['image'] = '<image>'
+                values_copy = values.copy()
+                if 'image_small' in values_copy:
+                    values_copy['image_small'] = '<image_small>'
+                if 'image_medium' in values_copy:
+                    values_copy['image_medium'] = '<image_medium>'
+                if 'image' in values_copy:
+                    values_copy['image'] = '<image>'
                 vals = {
                     'model': model,
                     'res_id': res_id,
-                    'values': values,
+                    'values': values_copy,
                     'action': action,
                     'notes': notes,
                 }

@@ -125,8 +125,11 @@ class AbstractCode02(models.AbstractModel):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_09)
                 elif (values['code_size'] == 10):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_10)
-                code_len = len(code_seq)
-                values['code'] = format_code(code_seq, code_len)
+                else:
+                    code_seq = False
+                if code_seq:
+                    code_len = len(code_seq)
+                    values['code'] = format_code(code_seq, code_len)
             return super().write(values)
 
     @api.one
