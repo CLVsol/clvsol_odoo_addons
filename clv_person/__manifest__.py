@@ -13,8 +13,8 @@
     'images': [],
     'depends': [
         'clv_base',
-        'clv_global_log',
         'clv_partner_entity',
+        'clv_global_log',
         'clv_global_tag',
         'clv_address',
         'clv_family',

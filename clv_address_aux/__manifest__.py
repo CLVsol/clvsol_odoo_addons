@@ -12,10 +12,11 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_base',
-        'clv_global_log',
+        'clv_aux',
         'clv_partner_entity',
-        'clv_address',
+        'clv_global_log',
         'clv_global_tag',
+        'clv_address',
     ],
     'data': [
         'security/address_aux_security.xml',

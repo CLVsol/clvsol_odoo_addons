@@ -12,8 +12,8 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'clv_base',
-        'clv_global_log',
         'clv_partner_entity',
+        'clv_global_log',
         'clv_global_tag',
     ],
     'data': [

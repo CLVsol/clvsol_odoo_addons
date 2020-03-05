@@ -11,6 +11,7 @@
     'license': 'AGPL-3',
     'website': 'https://github.com/CLVsol',
     'depends': [
+        'contacts',
         'clv_base',
         'clv_global_log',
     ],
