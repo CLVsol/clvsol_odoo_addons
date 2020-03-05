@@ -8,5 +8,4 @@ from . import person_associate_to_person_aux
 from . import person_aux_associate_to_address
 from . import person_aux_associate_to_address_aux
 from . import person_aux_associate_to_family
-from . import person_aux_associate_to_family_aux
 from . import person_aux_associate_to_related_person_family

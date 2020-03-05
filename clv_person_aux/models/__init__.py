@@ -12,4 +12,3 @@ from . import address
 from . import family
 from . import person
 from . import address_aux
-from . import family_aux
