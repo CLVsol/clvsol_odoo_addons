@@ -114,7 +114,8 @@ class AbstractCode02(models.AbstractModel):
                 elif (code_len == 10):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_10)
                 values['code'] = format_code(code_seq, code_len)
-            elif 'code_size' in values:
+            # elif 'code_size' in values:
+            elif 'code_size' in values and 'code' in values and values['code'] == '/':
                 if (values['code_size'] == 3):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_03)
                 elif (values['code_size'] == 4):
