@@ -24,7 +24,7 @@
                                     <span class="o_stat_value">
                                         <field name="count_addresses_aux"/>
                                     </span>
-                                    <span class="o_stat_text"> Person(s) (Aux)</span>
+                                    <span class="o_stat_text"> Address(es) (Aux)</span>
                                 </div>
                             </button>
                         </group>
