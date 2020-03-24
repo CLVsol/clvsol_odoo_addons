@@ -37,8 +37,11 @@ class AddressAux(models.Model):
     _inherit = 'clv.address_aux'
 
     def _default_phase_id(self):
-        phase_id = int(self.env['ir.config_parameter'].sudo().get_param(
-            'clv.global_settings.current_phase_id', '').strip())
+        param_value = self.env['ir.config_parameter'].sudo().get_param(
+            'clv.global_settings.current_phase_id', '').strip()
+        phase_id = False
+        if param_value:
+            phase_id = int(param_value)
         return phase_id
     phase_id = fields.Many2one(
         comodel_name='clv.phase',
