@@ -4,7 +4,6 @@
 
 import logging
 from functools import reduce
-from datetime import datetime
 
 from odoo import api, fields, models
 
@@ -81,7 +80,9 @@ class VerificationOutcome(models.Model):
                 rec = Model.search([
                     ('id', '=', record.res_id),
                 ])
-                record.reference_name = rec.name_get()[0][1]
+                record.reference_name = False
+                if rec.name_get() != []:
+                    record.reference_name = rec.name_get()[0][1]
 
     # def _object_verify(self, schedule):
 
