@@ -23,6 +23,8 @@ class ExternalSyncBatchMember(models.Model):
         default=10
     )
 
+    enabled = fields.Boolean(string='Enabled', default=True)
+
 
 class ExternalSyncBatch(models.Model):
     _inherit = 'clv.external_sync.batch'

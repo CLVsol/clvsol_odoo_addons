@@ -70,39 +70,43 @@ class ExternalSyncBatchExec(models.TransientModel):
 
             for external_sync_batch_member in batch.external_sync_batch_member_ids:
 
-                schedule = external_sync_batch_member.ref_id
+                if external_sync_batch_member.enabled:
 
-                _logger.info(u'%s %s', '>>>>>', schedule.name)
+                    schedule = external_sync_batch_member.ref_id
 
-                model = schedule.model
-                _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
+                    _logger.info(u'%s %s', '>>>>>', schedule.name)
 
-                method_call = False
-                if schedule.method == '_object_external_sync':
-                    method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
-                elif schedule.method == '_object_external_recognize':
-                    method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
+                    model = schedule.model
+                    _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
 
-                _logger.info(u'%s %s %s', '>>>>>>>>>>', schedule.method, method_call)
+                    method_call = False
+                    if schedule.method == '_object_external_sync':
+                        method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
+                    elif schedule.method == '_object_external_recognize':
+                        method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
 
-                if method_call:
+                    _logger.info(u'%s %s %s', '>>>>>>>>>>', schedule.method, method_call)
 
-                    schedule.external_sync_log = 'method: ' + str(schedule.method) + '\n\n'
-                    schedule.external_sync_log +=  \
-                        'external_host: ' + str(schedule.external_host_id.name) + '\n' + \
-                        'external_dbname: ' + str(schedule.external_host_id.external_dbname) + '\n\n' + \
-                        'external_max_task: ' + str(schedule.external_max_task) + '\n' + \
-                        'external_disable_identification: ' + str(schedule.external_disable_identification) + '\n' + \
-                        'external_disable_check_missing: ' + str(schedule.external_disable_check_missing) + '\n' + \
-                        'external_disable_inclusion: ' + str(schedule.external_disable_inclusion) + '\n' + \
-                        'external_disable_sync: ' + str(schedule.external_disable_sync) + '\n' + \
-                        'external_last_update_args: ' + str(schedule.external_last_update_args()) + '\n\n' + \
-                        'enable_sequence_code_sync: ' + str(schedule.enable_sequence_code_sync) + '\n\n'
+                    if method_call:
 
-                    exec(method_call)
+                        schedule.external_sync_log = 'method: ' + str(schedule.method) + '\n\n'
+                        schedule.external_sync_log +=  \
+                            'external_host: ' + str(schedule.external_host_id.name) + '\n' + \
+                            'external_dbname: ' + str(schedule.external_host_id.external_dbname) + '\n\n' + \
+                            'external_max_task: ' + str(schedule.external_max_task) + '\n' + \
+                            'external_disable_identification: ' + \
+                            str(schedule.external_disable_identification) + '\n' + \
+                            'external_disable_check_missing: ' + \
+                            str(schedule.external_disable_check_missing) + '\n' + \
+                            'external_disable_inclusion: ' + str(schedule.external_disable_inclusion) + '\n' + \
+                            'external_disable_sync: ' + str(schedule.external_disable_sync) + '\n' + \
+                            'external_last_update_args: ' + str(schedule.external_last_update_args()) + '\n\n' + \
+                            'enable_sequence_code_sync: ' + str(schedule.enable_sequence_code_sync) + '\n\n'
 
-                external_sync_log += '\n########## ' + schedule.name + ' ##########\n'
-                external_sync_log += schedule.external_sync_log
+                        exec(method_call)
+
+                    external_sync_log += '\n########## ' + schedule.name + ' ##########\n'
+                    external_sync_log += schedule.external_sync_log
 
             external_sync_log += '\n############################################################'
             external_sync_log +=  \
