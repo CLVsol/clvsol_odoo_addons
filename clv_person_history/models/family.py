@@ -10,7 +10,7 @@ class Family(models.Model):
 
     person_history_ids = fields.One2many(
         comodel_name='clv.person.history',
-        inverse_name='ref_family_id',
+        inverse_name='family_id',
         string='Persons (History)'
     )
     count_person_histories = fields.Integer(
@@ -27,7 +27,7 @@ class Family(models.Model):
 class PersonHistory(models.Model):
     _inherit = 'clv.person.history'
 
-    ref_family_id = fields.Many2one(
+    family_id = fields.Many2one(
         comodel_name='clv.family',
         string='Family',
         ondelete='restrict'

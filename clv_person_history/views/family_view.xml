@@ -21,7 +21,7 @@
                                     type="action"
                                     class="oe_stat_button"
                                     icon="fa-list"
-                                    context="{'search_default_ref_family_id': id}"
+                                    context="{'search_default_family_id': id}"
                                     attrs="{'invisible': [('person_history_ids', '=', [])]}"
                                     >
                                 <div class="o_form_field o_stat_info">
@@ -47,7 +47,7 @@
         <field name="arch" type="xml">
             <group name="history" position="after">
                 <group name="family">
-                    <field name="ref_family_id" options="{'no_open': False, 'no_create': True}"/>
+                    <field name="family_id" options="{'no_open': False, 'no_create': True}"/>
                 </group>
             </group>
         </field>
@@ -60,7 +60,7 @@
         <field name="priority" eval="7"/>
         <field name="arch" type="xml">
             <field name="date_sign_out" position="after">
-                <field name="ref_family_id"/>
+                <field name="family_id"/>
             </field>
         </field>
     </record>
@@ -72,10 +72,10 @@
         <field name="priority" eval="7"/>
         <field name="arch" type="xml">
             <field name="date_sign_out" position="after">
-                <field name="ref_family_id"/>
+                <field name="family_id"/>
             </field>
             <group name="group_by" position="inside">
-                <filter name="group_by_ref_family_id" string="Family" context="{'group_by': 'ref_family_id'}"/>
+                <filter name="group_by_family_id" string="Family" context="{'group_by': 'family_id'}"/>
             </group>
         </field>
     </record>
