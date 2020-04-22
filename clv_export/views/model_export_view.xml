@@ -89,6 +89,17 @@
         </field>
     </record>
     
+    <record id="clv_model_export_view_form_duplicate" model="ir.ui.view">
+        <field name="name">clv.model_export.form.duplicate</field>
+        <field name="model">clv.model_export</field>
+        <field name="inherit_id" ref="clv_model_export_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+               <attribute name="duplicate">false</attribute>
+           </xpath>
+        </field>
+    </record>
+
     <record id="clv_model_export_view_tree" model="ir.ui.view">
         <field name="name">clv.model_export.tree</field>
         <field name="model">clv.model_export</field>
