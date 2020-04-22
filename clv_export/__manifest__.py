@@ -27,6 +27,7 @@
         'views/global_settings_view.xml',
         'views/set_view.xml',
         'wizard/model_export_execute_view.xml',
+        'wizard/model_export_template_duplicate_view.xml',
     ],
     'demo': [],
     'test': [],
