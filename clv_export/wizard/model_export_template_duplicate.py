@@ -68,8 +68,8 @@ class ModelExportTemplateDuplicate(models.TransientModel):
 
         for model_export_template in self.model_export_template_ids:
 
-            _logger.info(u'%s %s', '>>>>>', model_export_template.name, model_export_template.label)
-            _logger.info(u'%s %s', '>>>>>>>>>>', self.new_name, self.new_label)
+            _logger.info(u'%s %s %s', '>>>>>', model_export_template.name, model_export_template.label)
+            _logger.info(u'%s %s %s', '>>>>>>>>>>', self.new_name, self.new_label)
 
             values = {
                 'name': self.new_name,
@@ -77,6 +77,10 @@ class ModelExportTemplateDuplicate(models.TransientModel):
                 'model_id': model_export_template.model_id.id,
                 'export_type': model_export_template.export_type,
             }
+            if hasattr(ModelExportTemplate, 'use_document_items'):
+                values['use_document_items'] = model_export_template.use_document_items
+            if hasattr(ModelExportTemplate, 'use_lab_test_criteria'):
+                values['use_lab_test_criteria'] = model_export_template.use_lab_test_criteria
             new_model_export_template = ModelExportTemplate.create(values)
 
             for model_export_template_field in model_export_template.model_export_template_field_ids:
@@ -91,5 +95,41 @@ class ModelExportTemplateDuplicate(models.TransientModel):
                     'field_id': model_export_template_field.field_id.id,
                 }
                 ModelExportTemplateField.create(values)
+
+            if hasattr(ModelExportTemplate, 'use_document_items'):
+
+                ModelExportTemplateDocumentItem = self.env['clv.model_export.template.document_item']
+                model_export_template_document_items = ModelExportTemplateDocumentItem.search([
+                    ('model_export_template_id', '=', model_export_template.id),
+                ])
+                for model_export_template_document_item in model_export_template_document_items:
+                    _logger.info(u'%s %s', '>>>>>>>>>>>>>>>',
+                                 model_export_template_document_item.document_item_id.name)
+                    values = {
+                        'sequence': model_export_template_document_item.sequence,
+                        'name': model_export_template_document_item.name,
+                        'model_export_template_id': new_model_export_template.id,
+                        'model_export_display': model_export_template_document_item.model_export_display,
+                        'document_item_id': model_export_template_document_item.document_item_id.id,
+                    }
+                    ModelExportTemplateDocumentItem.create(values)
+
+            if hasattr(ModelExportTemplate, 'use_lab_test_criteria'):
+
+                ModelExportTemplateLabTestCriterion = self.env['clv.model_export.template.lab_test_criterion']
+                model_export_template_lab_test_criteria = ModelExportTemplateLabTestCriterion.search([
+                    ('model_export_template_id', '=', model_export_template.id),
+                ])
+                for model_export_template_lab_test_criterion in model_export_template_lab_test_criteria:
+                    _logger.info(u'%s %s', '>>>>>>>>>>>>>>>',
+                                 model_export_template_lab_test_criterion.lab_test_criterion_id.name)
+                    values = {
+                        'sequence': model_export_template_lab_test_criterion.sequence,
+                        'name': model_export_template_lab_test_criterion.name,
+                        'model_export_template_id': new_model_export_template.id,
+                        'model_export_display': model_export_template_lab_test_criterion.model_export_display,
+                        'lab_test_criterion_id': model_export_template_lab_test_criterion.lab_test_criterion_id.id,
+                    }
+                    ModelExportTemplateLabTestCriterion.create(values)
 
         return True
