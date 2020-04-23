@@ -12,6 +12,7 @@ from functools import reduce
 
 from odoo import api, fields, models
 # from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+from odoo import exceptions
 
 _logger = logging.getLogger(__name__)
 
@@ -135,6 +136,10 @@ class ModelExport(models.Model):
                 model_export_field_ids += [new_model_export_template_field.id]
 
         return res
+
+    @api.multi
+    def copy(self):
+        raise exceptions.ValidationError('It is not possible to duplicate the record, please create a new one.')
 
 
 class ModelExportTemplate(models.Model):
