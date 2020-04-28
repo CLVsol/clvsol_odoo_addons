@@ -4,3 +4,4 @@
 
 from . import model_export_execute
 from . import model_export_template_duplicate
+from . import model_export_template_field_copy

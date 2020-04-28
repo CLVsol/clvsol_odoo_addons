@@ -28,6 +28,7 @@
         'views/set_view.xml',
         'wizard/model_export_execute_view.xml',
         'wizard/model_export_template_duplicate_view.xml',
+        'wizard/model_export_template_field_copy_view.xml',
     ],
     'demo': [],
     'test': [],
