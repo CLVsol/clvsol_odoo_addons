@@ -102,18 +102,36 @@
             </field>
             <page name="settings" position="before">
                 <page name="model_export_template_lab_test_criteria" string="Model Export Lab Test Criteria" attrs="{'invisible':[('use_lab_test_criteria', '!=', True)]}">
-                    <!--label for="model_export_template_lab_test_criterion_ids"/-->
-                    <field name="model_export_template_lab_test_criterion_ids" colspan="4" nolabel="1">
-                        <!--tree editable="top" string="Model Export Fields" create="false"-->
-                        <tree string="Model Export Lab Test Criteria" create="true">
-                            <field name="sequence" widget='handle'/>
-                            <field name="lab_test_criterion_code"/>
-                            <field name="lab_test_criterion_lab_test_type_id"/>
-                            <field name="lab_test_criterion_name" readonly="True"/>
-                            <field name="name"/>
-                            <field name="model_export_display" readonly="True"/>
-                        </tree>
-                    </field>
+                    <group>
+                        <!--field name="count_model_export_template_lab_test_criteria"/-->
+                        <group>
+                            <button name="clv_lab_test_export.clv_model_export_template_lab_test_criterion_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_model_export_template_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_model_export_template_lab_test_criteria"/>
+                                    </span>
+                                    <span class="o_stat_text"> Field(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                        <!--label for="model_export_template_lab_test_criterion_ids"/-->
+                        <field name="model_export_template_lab_test_criterion_ids" colspan="4" nolabel="1">
+                            <!--tree editable="top" string="Model Export Fields" create="false"-->
+                            <tree string="Model Export Lab Test Criteria" create="true">
+                                <field name="sequence" widget='handle'/>
+                                <field name="lab_test_criterion_code"/>
+                                <field name="lab_test_criterion_lab_test_type_id"/>
+                                <field name="lab_test_criterion_name" readonly="True"/>
+                                <field name="name"/>
+                                <field name="model_export_display" readonly="True"/>
+                            </tree>
+                        </field>
+                    </group>
                 </page>
             </page>
         </field>
