@@ -124,7 +124,22 @@
             <page name="settings" position="before">
                 <page name="model_export_fields" string="Model Export Fields" attrs="{'invisible':[('export_all_fields', '=', True)]}">
                     <group>
-                        <field name="count_model_export_fields"/>
+                        <!--field name="count_model_export_fields"/-->
+                        <group>
+                            <button name="clv_export.clv_model_export_field_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_model_export_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_model_export_fields"/>
+                                    </span>
+                                    <span class="o_stat_text"> Field(s)</span>
+                                </div>
+                            </button>
+                        </group>
                         <!--label for="model_export_field_ids"/-->
                         <field name="model_export_field_ids" colspan="4" nolabel="1">
                             <!--tree editable="top" string="Model Export Fields" create="false"-->
