@@ -102,18 +102,36 @@
             </field>
             <page name="settings" position="before">
                 <page name="model_export_document_items" string="Model Export Document Items" attrs="{'invisible':[('use_document_items', '!=', True)]}">
-                    <!--label for="model_export_document_item_ids"/-->
-                    <field name="model_export_document_item_ids" colspan="4" nolabel="1">
-                        <!--tree editable="top" string="Model Export Fields" create="false"-->
-                        <tree string="Model Export Document Items" create="true">
-                            <field name="sequence" widget='handle'/>
-                            <field name="document_item_code"/>
-                            <field name="document_item_document_type_id"/>
-                            <field name="document_item_name" readonly="True"/>
-                            <field name="name"/>
-                            <field name="model_export_display" readonly="True"/>
-                        </tree>
-                    </field>
+                    <group>
+                        <!--field name="count_model_export_document_items"/-->
+                        <group>
+                            <button name="clv_document_export.clv_model_export_document_item_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_model_export_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_model_export_document_items"/>
+                                    </span>
+                                    <span class="o_stat_text"> Field(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                        <!--label for="model_export_document_item_ids"/-->
+                        <field name="model_export_document_item_ids" colspan="4" nolabel="1">
+                            <!--tree editable="top" string="Model Export Fields" create="false"-->
+                            <tree string="Model Export Document Items" create="true">
+                                <field name="sequence" widget='handle'/>
+                                <field name="document_item_code"/>
+                                <field name="document_item_document_type_id"/>
+                                <field name="document_item_name" readonly="True"/>
+                                <field name="name"/>
+                                <field name="model_export_display" readonly="True"/>
+                            </tree>
+                        </field>
+                    </group>
                 </page>
             </page>
         </field>
