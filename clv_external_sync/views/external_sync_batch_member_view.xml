@@ -70,7 +70,7 @@
         </field>
     </record>
 
-    <record id="clv_external_sync_batch_member_actions" model="ir.actions.act_window">
+    <record id="clv_external_sync_batch_member_action" model="ir.actions.act_window">
         <field name="name">External Sync Batch Member</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.external_sync.batch.member</field>
@@ -96,9 +96,24 @@
             <page name="settings" position="before">
                 <page string="Members">
                     <group>
-                        <field name="count_external_sync_batch_members"/>
+                        <!--field name="count_external_sync_batch_members"/-->
+                        <group>
+                            <button name="clv_external_sync.clv_external_sync_batch_member_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_external_sync_batch_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_external_sync_batch_members"/>
+                                    </span>
+                                    <span class="o_stat_text"> Schedule(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                        <field name="external_sync_batch_member_ids" colspan="4" nolabel="1"/>
                     </group>
-                    <field name="external_sync_batch_member_ids" colspan="4" nolabel="1"/>
                 </page>
             </page>
         </field>
