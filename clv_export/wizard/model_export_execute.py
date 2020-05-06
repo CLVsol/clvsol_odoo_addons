@@ -13,8 +13,8 @@ def secondsToStr(t):
     return "%d:%02d:%02d.%03d" % reduce(lambda ll, b: divmod(ll[0], b) + ll[1:], [(t * 1000,), 1000, 60, 60])
 
 
-class ModelExportSetUp(models.TransientModel):
-    _description = 'Model Export SetUp'
+class ModelExportExecute(models.TransientModel):
+    _description = 'Model Export Execute'
     _name = 'clv.model_export.execute'
 
     def _default_model_export_ids(self):
