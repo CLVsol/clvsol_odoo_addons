@@ -6,6 +6,7 @@ from . import address
 from . import address_category
 from . import address_category_log
 from . import address_marker
+from . import address_tag
 from . import res_partner
 from . import global_tag
 from . import address_name
