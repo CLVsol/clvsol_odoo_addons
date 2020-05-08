@@ -5,9 +5,9 @@
 from openerp import api, fields, models
 
 
-class AbstractTag(models.AbstractModel):
-    _description = 'Abstract Tag'
-    _name = 'clv.abstract.tag'
+class AbstractHierarchicalTag(models.AbstractModel):
+    _description = 'Abstract Hierarchical Tag'
+    _name = 'clv.abstract.h_tag'
     _parent_store = True
     _parent_order = 'name'
     # _order = 'parent_left'
