@@ -26,6 +26,7 @@
         'views/family_category_view.xml',
         'views/family_category_log_view.xml',
         'views/family_marker_view.xml',
+        'views/family_tag_view.xml',
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
         'views/family_name_view.xml',

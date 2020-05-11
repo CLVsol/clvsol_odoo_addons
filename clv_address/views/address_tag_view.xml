@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_address_tag_view_form" model="ir.ui.view">
+        <field name="name">clv.address.tag.form</field>
+        <field name="model">clv.address.tag</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_tag_view_form"/>
+        <field name="mode">primary</field>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Address Tag</attribute>
+            </xpath>
+            <page name="settings" position="before">
+                <page string="Addresses">
+                    <group>
+                        <field name="address_ids" colspan="4" nolabel="1"/>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_address_tag_view_tree" model="ir.ui.view">
+        <field name="name">clv.address.tag.tree</field>
+        <field name="model">clv.address.tag</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_tag_view_tree" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Address Tags</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="clv_address_tag_view_search" model="ir.ui.view">
+        <field name="name">clv.address.tag.search</field>
+        <field name="model">clv.address.tag</field>
+        <field name="inherit_id" ref="clv_base.clv_abstract_tag_view_search" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="attributes">
+                <attribute name="string">Address Tags</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="clv_address_tag_action" model="ir.actions.act_window">
+        <field name="name">Address Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.address.tag</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="clv_address_tag_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new address tag.
+          </p>
+        </field>
+    </record>
+    
+    <record id="clv_address_view_tree_tag" model="ir.ui.view">
+        <field name="name">clv.address.tree</field>
+        <field name="model">clv.address</field>
+        <field name="inherit_id" ref="clv_address_view_tree"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_address_view_form_tag" model="ir.ui.view">
+        <field name="name">clv.address.form</field>
+        <field name="model">clv.address</field>
+        <field name="inherit_id" ref="clv_address_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <label for="name" position="before">
+                <label for="tag_ids" class="oe_edit_only"/>
+                <h4><field name="tag_ids" widget="many2many_tags" placeholder="Address Tags..." options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/></h4>
+            </label>
+        </field>
+    </record>
+
+    <record id="clv_address_view_search_tag" model="ir.ui.view">
+        <field name="name">clv.address.search</field>
+        <field name="model">clv.address</field>
+        <field name="inherit_id" ref="clv_address_view_search"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="tag_ids"/>
+                <field name="tag_names"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="filter_address_tag" string="Address Tags" context="{'group_by': 'tag_names'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>

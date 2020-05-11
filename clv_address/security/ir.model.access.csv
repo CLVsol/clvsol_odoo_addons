@@ -11,3 +11,7 @@ access_clv_address_category_supmanager,clv.address.category.supmanager,model_clv
 access_clv_address_marker_user,clv.address.marker.user,model_clv_address_marker,clv_address.group_user,1,0,0,0
 access_clv_address_marker_manager,clv.address.manager.marker,model_clv_address_marker,clv_address.group_manager,1,1,1,0
 access_clv_address_marker_supmanager,clv.address.marker.supmanager,model_clv_address_marker,clv_address.group_supmanager,1,1,1,1
+
+access_clv_address_tag_user,clv.address.tag.user,model_clv_address_tag,clv_address.group_user,1,0,0,0
+access_clv_address_tag_manager,clv.address.manager.tag,model_clv_address_tag,clv_address.group_manager,1,1,1,0
+access_clv_address_tag_supmanager,clv.address.tag.supmanager,model_clv_address_tag,clv_address.group_supmanager,1,1,1,1

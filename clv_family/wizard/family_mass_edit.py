@@ -32,7 +32,7 @@ class FamilyMassEdit(models.TransientModel):
     family_ids = fields.Many2many(
         comodel_name='clv.family',
         relation='clv_family_mass_edit_rel',
-        string='Familys'
+        string='Families'
     )
 
     global_tag_ids = fields.Many2many(
@@ -75,6 +75,20 @@ class FamilyMassEdit(models.TransientModel):
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
          ], string='Markers:', default=False, readonly=False, required=False
+    )
+
+    tag_ids = fields.Many2many(
+        comodel_name='clv.family.tag',
+        relation='clv_family_mass_edit_tag_rel',
+        column1='family_id',
+        column2='tag_id',
+        string='Family Tags'
+    )
+    tag_ids_selection = fields.Selection(
+        [('add', 'Add'),
+         ('remove_m2m', 'Remove'),
+         ('set', 'Set'),
+         ], string='Family Tags:', default=False, readonly=False, required=False
     )
 
     partner_entity_code_selection = fields.Selection(
@@ -184,6 +198,30 @@ class FamilyMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 family.marker_ids = m2m_list
+
+            if self.tag_ids_selection == 'add':
+                m2m_list = []
+                for tag_id in self.tag_ids:
+                    m2m_list.append((4, tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                family.tag_ids = m2m_list
+            if self.tag_ids_selection == 'remove_m2m':
+                m2m_list = []
+                for tag_id in self.tag_ids:
+                    m2m_list.append((3, tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                family.tag_ids = m2m_list
+            if self.tag_ids_selection == 'set':
+                m2m_list = []
+                for tag_id in family.tag_ids:
+                    m2m_list.append((3, tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                family.tag_ids = m2m_list
+                m2m_list = []
+                for tag_id in self.tag_ids:
+                    m2m_list.append((4, tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                family.tag_ids = m2m_list
 
             if self.partner_entity_code_selection == 'set':
                 if family.entity_code != family.code:
