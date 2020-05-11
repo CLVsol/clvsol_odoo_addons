@@ -82,13 +82,13 @@ class AddressMassEdit(models.TransientModel):
         relation='clv_address_mass_edit_tag_rel',
         column1='address_id',
         column2='tag_id',
-        string='Person Tags'
+        string='Address Tags'
     )
     tag_ids_selection = fields.Selection(
         [('add', 'Add'),
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
-         ], string='Person Tags:', default=False, readonly=False, required=False
+         ], string='Address Tags:', default=False, readonly=False, required=False
     )
 
     partner_entity_code_selection = fields.Selection(
