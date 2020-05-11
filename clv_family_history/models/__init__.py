@@ -7,4 +7,5 @@ from . import phase
 from . import family
 from . import family_category
 from . import family_marker
+from . import family_tag
 from . import address
