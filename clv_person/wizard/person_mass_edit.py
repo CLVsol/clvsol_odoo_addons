@@ -77,6 +77,20 @@ class PersonMassEdit(models.TransientModel):
          ], string='Markers:', default=False, readonly=False, required=False
     )
 
+    tag_ids = fields.Many2many(
+        comodel_name='clv.person.tag',
+        relation='clv_person_mass_edit_tag_rel',
+        column1='person_id',
+        column2='tag_id',
+        string='Person Tag'
+    )
+    tag_ids_selection = fields.Selection(
+        [('add', 'Add'),
+         ('remove_m2m', 'Remove'),
+         ('set', 'Set'),
+         ], string='Person Tag:', default=False, readonly=False, required=False
+    )
+
     partner_entity_code_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
@@ -184,6 +198,30 @@ class PersonMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person.marker_ids = m2m_list
+
+            if self.tag_ids_selection == 'add':
+                m2m_list = []
+                for tag_id in self.tag_ids:
+                    m2m_list.append((4, tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person.tag_ids = m2m_list
+            if self.tag_ids_selection == 'remove_m2m':
+                m2m_list = []
+                for tag_id in self.tag_ids:
+                    m2m_list.append((3, tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person.tag_ids = m2m_list
+            if self.tag_ids_selection == 'set':
+                m2m_list = []
+                for tag_id in person.tag_ids:
+                    m2m_list.append((3, tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person.tag_ids = m2m_list
+                m2m_list = []
+                for tag_id in self.tag_ids:
+                    m2m_list.append((4, tag_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                person.tag_ids = m2m_list
 
             if self.partner_entity_code_selection == 'set':
                 if person.entity_code != person.code:
