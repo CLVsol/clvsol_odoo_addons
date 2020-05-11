@@ -50,6 +50,7 @@
                     <field name="person_id" options="{'no_open': False, 'no_create': True}"/>
                     <field name="category_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
                     <field name="marker_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
+                    <field name="tag_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
                 </group>
                 <group name="person_2">
                     <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
@@ -70,6 +71,7 @@
                 <field name="category_names"/>
                 <field name="category_names_suport" invisible="True"/>
                 <field name="marker_names"/>
+                <field name="tag_names"/>
             </field>
         </field>
     </record>
@@ -86,11 +88,14 @@
                 <field name="category_names"/>
                 <field name="marker_ids"/>
                 <field name="marker_names"/>
+                <field name="tag_ids"/>
+                <field name="tag_names"/>
             </field>
             <group name="group_by" position="inside">
                 <filter name="group_by_person_id" string="Person" context="{'group_by': 'person_id'}"/>
                 <filter name="group_by_category_names" string="Categories" context="{'group_by': 'category_names'}"/>
                 <filter name="group_by_marker_names" string="Markers" context="{'group_by': 'marker_names'}"/>
+                <filter name="group_by_tag_names" string="Person Tags" context="{'group_by': 'tag_names'}"/>
             </group>
         </field>
     </record>
