@@ -36,6 +36,7 @@
         # 'wizard/lab_test_report_edit_view.xml',
         # 'wizard/lab_test_result_copy_to_report_view.xml',
         'views/lab_test_criterion_view.xml',
+        'views/lab_test_criterion_log_view.xml',
     ],
     'demo': [],
     'test': [],

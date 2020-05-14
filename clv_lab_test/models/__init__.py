@@ -12,4 +12,5 @@ from . import lab_test_result
 from . import lab_test_result_log
 from . import lab_test_unit
 from . import lab_test_criterion
+from . import lab_test_criterion_log
 from . import referenceable_model
