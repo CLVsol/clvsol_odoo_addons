@@ -27,6 +27,7 @@
         'views/document_category_log_view.xml',
         'views/global_tag_view.xml',
         'views/document_item_view.xml',
+        'views/document_item_log_view.xml',
         'views/referenceable_model_view.xml',
         # 'data/document_mass_editing.xml',
         'wizard/document_mass_edit_view.xml',
