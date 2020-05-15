@@ -25,6 +25,7 @@
         'views/event_category_log_view.xml',
         'views/global_tag_view.xml',
         'views/event_attendee_view.xml',
+        'views/event_attendee_log_view.xml',
         'views/referenceable_model_view.xml',
         # 'wizard/event_updt_view.xml',
     ],
