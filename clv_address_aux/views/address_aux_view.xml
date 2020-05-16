@@ -26,13 +26,10 @@
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Address (Aux)</attribute>
             </xpath>
-            <!--label for="name" position="before">
-                <h1><separator string="[  Address (Aux)  ]"/></h1>
-            </label-->
-            <field name="code" position="after">
-                <h1><separator string="[  Address (Aux)  ]"/></h1>
-                <field name="notes" placeholder="Notes..." colspan="4" style="color:Red; background:White;"/>
-            </field>
+            <div name="button_box" position="inside">
+                <h1><separator name="separator_address_aux" string="[  Address (Aux)  ]" style="color:Black; background:White;"/></h1>
+                <field name="notes" placeholder="Notes..." colspan="2" style="color:Maroon;background:White;text-align:left;"/>
+            </div>
             <!--xpath expr="//group[@name='main_data']">
                 <group name="main">
                     <field name="parent_id"
