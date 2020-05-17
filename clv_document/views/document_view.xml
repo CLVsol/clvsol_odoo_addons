@@ -88,6 +88,7 @@
                 <field name="date_foreseen"/>
                 <field name="date_deadline"/>
                 <field name="notes"/>
+                <field name="id"/>
                 <field name="active" invisible="1"/>
             </tree>
         </field>
@@ -107,6 +108,7 @@
                 <field name="date_foreseen"/>
                 <field name="date_deadline"/>
                 <field name="notes"/>
+                <field name="id"/>
                 <separator/>
                 <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                 <filter name="filter_has_base_document" string="Has Base Document" domain="[('base_document_id','!=',False)]"/>
