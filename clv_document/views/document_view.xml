@@ -15,6 +15,8 @@
                 </header>
                 <sheet>
                     <div name="button_box" class="oe_right oe_button_box">
+                        <h1><separator name="separator_document" string="[  Document  ]" style="color:Black; background:White;"/></h1>
+                        <field name="notes" placeholder="Notes..." colspan="2" style="color:Maroon;background:White;text-align:left;"/>
                     </div>
                     <div name="center" class="oe_center">
                         <label for="name" class="oe_edit_only"/>
