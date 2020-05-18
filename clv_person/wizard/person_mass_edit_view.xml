@@ -43,6 +43,11 @@
                     </group>
                     <group>
                     </group>
+                    <group>
+                        <field name="person_ref_age_refresh"/>
+                    </group>
+                    <group name="person_ref_age_refresh">
+                    </group>
                 </group>
                 <footer>
                     <button 

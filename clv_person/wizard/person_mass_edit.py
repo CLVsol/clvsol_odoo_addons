@@ -97,6 +97,10 @@ class PersonMassEdit(models.TransientModel):
          ], string='Partner Entity Code:', default=False, readonly=False, required=False
     )
 
+    person_ref_age_refresh = fields.Boolean(
+        string='Person Reference Age Refresh'
+    )
+
     @api.multi
     def _reopen_form(self):
         self.ensure_one()
@@ -233,5 +237,8 @@ class PersonMassEdit(models.TransientModel):
                     vals = {}
                     vals['entity_code'] = False
                     person.write(vals)
+
+            if self.person_ref_age_refresh:
+                person._compute_age_reference()
 
         return True
