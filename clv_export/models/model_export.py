@@ -38,6 +38,7 @@ class ModelExport(models.Model):
     _description = 'Model Export'
     _name = 'clv.model_export'
     _inherit = 'clv.abstract.model_export'
+    _order = "name"
 
     code = fields.Char(string='Model Export Code', required=False)
 
