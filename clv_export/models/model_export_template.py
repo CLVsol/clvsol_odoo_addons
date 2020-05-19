@@ -10,6 +10,7 @@ class ModelExportTemplate(models.Model):
     _description = 'Model Export Template'
     _name = 'clv.model_export.template'
     _inherit = 'clv.abstract.model_export'
+    _order = "name"
 
     code = fields.Char(string='Model Export Template Code', required=False)
 
