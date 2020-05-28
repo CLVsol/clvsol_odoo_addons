@@ -18,7 +18,7 @@
         'views/abstract_tag_view.xml',
         'views/abstract_marker_view.xml',
         'views/abstract_format_view.xml',
-        'views/abstract_category_view.xml',
+        'views/abstract_h_category_view.xml',
         'views/referenceable_model_view.xml',
         'views/global_settings_view.xml',
         'views/global_settings_filestore_view.xml',

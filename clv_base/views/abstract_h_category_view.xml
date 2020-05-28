@@ -4,9 +4,9 @@
 
 <odoo>
 
-    <record id="clv_abstract_category_view_form" model="ir.ui.view">
-        <field name="name">clv.abstract.category.form</field>
-        <field name="model">clv.abstract.category</field>
+    <record id="clv_abstract_h_category_view_form" model="ir.ui.view">
+        <field name="name">clv.abstract.h_category.form</field>
+        <field name="model">clv.abstract.h_category</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -63,9 +63,9 @@
         </field>
     </record>
     
-    <record id="clv_abstract_category_view_tree" model="ir.ui.view">
-        <field name="name">clv.abstract.category.tree</field>
-        <field name="model">clv.abstract.category</field>
+    <record id="clv_abstract_h_category_view_tree" model="ir.ui.view">
+        <field name="name">clv.abstract.h_category.tree</field>
+        <field name="model">clv.abstract.h_category</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <tree string="Categories">
@@ -77,9 +77,9 @@
         </field>
     </record>
     
-    <record id="clv_abstract_category_view_search" model="ir.ui.view">
-        <field name="name">clv.abstract.category.search</field>
-        <field name="model">clv.abstract.category</field>
+    <record id="clv_abstract_h_category_view_search" model="ir.ui.view">
+        <field name="name">clv.abstract.h_category.search</field>
+        <field name="model">clv.abstract.h_category</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <search>

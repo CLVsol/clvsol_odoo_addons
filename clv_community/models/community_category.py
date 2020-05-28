@@ -8,7 +8,7 @@ from openerp import api, fields, models
 class CommunityCategory(models.Model):
     _description = 'Community Category'
     _name = 'clv.community.category'
-    _inherit = 'clv.abstract.category'
+    _inherit = 'clv.abstract.h_category'
 
     code = fields.Char(string='Category Code', required=False)
 

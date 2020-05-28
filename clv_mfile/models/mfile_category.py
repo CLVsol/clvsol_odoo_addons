@@ -8,7 +8,7 @@ from odoo import api, models, fields
 class MediaFileCategory(models.Model):
     _description = 'Media File Category'
     _name = 'clv.mfile.category'
-    _inherit = 'clv.abstract.category'
+    _inherit = 'clv.abstract.h_category'
 
     code = fields.Char(string='Category Code', required=False)
 

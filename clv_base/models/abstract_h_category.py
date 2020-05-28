@@ -5,9 +5,9 @@
 from openerp import api, fields, models
 
 
-class AbstractCategory(models.AbstractModel):
-    _description = 'Abstract Category'
-    _name = 'clv.abstract.category'
+class AbstractHierarchicalCategory(models.AbstractModel):
+    _description = 'Abstract Hierarchical Category'
+    _name = 'clv.abstract.h_category'
     _parent_store = True
     _parent_order = 'name'
     # _order = 'parent_left'
@@ -19,13 +19,13 @@ class AbstractCategory(models.AbstractModel):
     notes = fields.Text(string='Notes')
 
     parent_id = fields.Many2one(
-        comodel_name='clv.abstract.category',
+        comodel_name='clv.abstract.h_category',
         string='Parent Category',
         index=True,
         ondelete='restrict'
     )
     child_ids = fields.One2many(
-        comodel_name='clv.abstract.category',
+        comodel_name='clv.abstract.h_category',
         inverse_name='parent_id',
         string='Child Categories'
     )
@@ -61,16 +61,16 @@ class AbstractCategory(models.AbstractModel):
 
     @api.multi
     def name_get(self):
-        """Return the category's display name, including their direct parent by default.
+        """Return the h_category's display name, including their direct parent by default.
 
-        :param dict context: the ``category_display`` key can be
+        :param dict context: the ``h_category_display`` key can be
                              used to select the short version of the
-                             category (without the direct parent),
+                             h_category (without the direct parent),
                              when set to ``'short'``. The default is
                              the long version."""
         if self._context is None:
             self._context = {}
-        if self._context.get('category_display') == 'short':
+        if self._context.get('h_category_display') == 'short':
             return super().name_get()
 
         res = []

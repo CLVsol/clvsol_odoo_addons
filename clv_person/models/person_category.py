@@ -8,7 +8,7 @@ from openerp import api, fields, models
 class PersonCategory(models.Model):
     _description = 'Person Category'
     _name = 'clv.person.category'
-    _inherit = 'clv.abstract.category'
+    _inherit = 'clv.abstract.h_category'
 
     code = fields.Char(string='Category Code', required=False)
 
