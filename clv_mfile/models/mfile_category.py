@@ -8,22 +8,22 @@ from odoo import api, models, fields
 class MediaFileCategory(models.Model):
     _description = 'Media File Category'
     _name = 'clv.mfile.category'
-    _inherit = 'clv.abstract.h_category'
+    _inherit = 'clv.abstract.category'
 
     code = fields.Char(string='Category Code', required=False)
 
-    parent_id = fields.Many2one(
-        comodel_name='clv.mfile.category',
-        string='Parent Category',
-        index=True,
-        ondelete='restrict'
-    )
+    # parent_id = fields.Many2one(
+    #     comodel_name='clv.mfile.category',
+    #     string='Parent Category',
+    #     index=True,
+    #     ondelete='restrict'
+    # )
 
-    child_ids = fields.One2many(
-        comodel_name='clv.mfile.category',
-        inverse_name='parent_id',
-        string='Child Categories'
-    )
+    # child_ids = fields.One2many(
+    #     comodel_name='clv.mfile.category',
+    #     inverse_name='parent_id',
+    #     string='Child Categories'
+    # )
 
     mfile_ids = fields.Many2many(
         comodel_name='clv.mfile',

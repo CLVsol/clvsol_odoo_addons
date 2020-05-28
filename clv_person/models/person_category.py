@@ -8,22 +8,22 @@ from openerp import api, fields, models
 class PersonCategory(models.Model):
     _description = 'Person Category'
     _name = 'clv.person.category'
-    _inherit = 'clv.abstract.h_category'
+    _inherit = 'clv.abstract.category'
 
     code = fields.Char(string='Category Code', required=False)
 
-    parent_id = fields.Many2one(
-        comodel_name='clv.person.category',
-        string='Parent Category',
-        index=True,
-        ondelete='restrict'
-    )
+    # parent_id = fields.Many2one(
+    #     comodel_name='clv.person.category',
+    #     string='Parent Category',
+    #     index=True,
+    #     ondelete='restrict'
+    # )
 
-    child_ids = fields.One2many(
-        comodel_name='clv.person.category',
-        inverse_name='parent_id',
-        string='Child Categories'
-    )
+    # child_ids = fields.One2many(
+    #     comodel_name='clv.person.category',
+    #     inverse_name='parent_id',
+    #     string='Child Categories'
+    # )
 
     person_ids = fields.Many2many(
         comodel_name='clv.person',
