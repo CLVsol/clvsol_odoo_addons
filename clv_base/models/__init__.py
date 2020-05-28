@@ -7,6 +7,7 @@ from . import abstract_tag
 from . import abstract_h_tag
 from . import abstract_marker
 from . import abstract_format
+from . import abstract_category
 from . import abstract_h_category
 from . import abstract_code
 from . import abstract_code02
