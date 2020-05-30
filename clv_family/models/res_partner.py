@@ -33,11 +33,14 @@ class ResPartner(models.Model):
     @api.multi
     def _compute_family_ids_and_count(self):
         for record in self:
-            families = self.env['clv.family'].search([
-                ('partner_id', 'child_of', record.id),
-            ])
-            record.count_families = len(families)
-            record.family_ids = [(6, 0, families.ids)]
+            try:
+                families = self.env['clv.family'].search([
+                    ('partner_id', 'child_of', record.id),
+                ])
+                record.count_families = len(families)
+                record.family_ids = [(6, 0, families.ids)]
+            except TypeError:
+                pass
 
     # @api.model
     # def create(self, vals):
