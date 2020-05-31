@@ -38,10 +38,13 @@ class MediaFile(models.Model):
          )
     ]
 
-    @api.one
+    # @api.one
     def _compute_path_str(self):
-        if self.code:
-            if self.alias:
-                self.path = self.alias
-            else:
-                self.path = self.code
+        self.ensure_one()
+
+        for record in self:
+            if record.code:
+                if record.alias:
+                    record.path = record.alias
+                else:
+                    record.path = record.code

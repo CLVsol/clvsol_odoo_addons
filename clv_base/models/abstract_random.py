@@ -40,8 +40,9 @@ class AbstractRandom(models.AbstractModel):
             values['random_field'] = random_field
         return super().write(values)
 
-    @api.one
+    # @api.one
     def copy(self, default=None):
+        self.ensure_one()
         default = dict(default or {})
         default.update({'random_field': '/', })
         return super().copy(default)

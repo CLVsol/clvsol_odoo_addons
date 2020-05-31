@@ -65,8 +65,9 @@ class AbstractCode(models.AbstractModel):
                 values['code'] = format_code(code_seq)
         return super().write(values)
 
-    @api.one
+    # @api.one
     def copy(self, default=None):
+        self.ensure_one()
         default = dict(default or {})
         default.update({'code': '/', })
         return super().copy(default)

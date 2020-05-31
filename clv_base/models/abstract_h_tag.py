@@ -80,11 +80,14 @@ class AbstractHierarchicalTag(models.AbstractModel):
         tags = self.search(args, limit=limit)
         return tags.name_get()
 
-    @api.one
+    # @api.one
     def _name_get_fnc(self):
-        self.refresh_complete_name = 0
-        complete_name = self.name_get()
-        if complete_name:
-            self.complete_name = complete_name[0][1]
-        else:
-            self.complete_name = self.name
+        self.ensure_one()
+
+        for record in self:
+            record.refresh_complete_name = 0
+            complete_name = record.name_get()
+            if complete_name:
+                record.complete_name = complete_name[0][1]
+            else:
+                record.complete_name = record.name
