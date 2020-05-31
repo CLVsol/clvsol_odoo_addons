@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 '''
-Reference: http://help.openerp.com/question/18704/hide-menu-for-existing-group/
+Reference: http://help.odoo.com/question/18704/hide-menu-for-existing-group/
 
 There are actually0-6 numbers for representing each job for a many2many/ one2many field
 

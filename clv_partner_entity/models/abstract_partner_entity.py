@@ -6,7 +6,7 @@ import threading
 import base64
 from datetime import datetime
 
-from openerp import api, fields, models, tools
+from odoo import api, fields, models, tools
 
 
 class AbstractPartnerEntity(models.AbstractModel):
