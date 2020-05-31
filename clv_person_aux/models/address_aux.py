@@ -54,7 +54,7 @@ class PersonAux(models.Model):
         related='ref_address_aux_id.category_ids'
     )
 
-    @api.multi
+    # @api.multi
     def do_person_aux_get_ref_address_aux_data(self):
 
         for person_aux in self:
@@ -85,7 +85,7 @@ class PersonAux(models.Model):
 
         return True
 
-    @api.multi
+    # @api.multi
     def do_person_aux_remove_ref_address_aux(self):
 
         for person_aux in self:

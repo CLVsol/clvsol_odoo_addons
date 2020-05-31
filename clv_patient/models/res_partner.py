@@ -3,10 +3,7 @@
 # Copyright 2016 LasLabs Inc.
 # License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
 
-from datetime import datetime
-
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
@@ -44,7 +41,7 @@ class ResPartner(models.Model):
     #                          ]
     # )
 
-    @api.multi
+    # @api.multi
     def _get_clv_entity(self):
         self.ensure_one()
         if self.type and self.type[:3] == 'clv':
@@ -52,7 +49,7 @@ class ResPartner(models.Model):
                 ('partner_id', '=', self.id),
             ])
 
-    @api.multi
+    # @api.multi
     def _compute_patient_ids_and_count(self):
         for record in self:
             patients = self.env['clv.patient'].search([

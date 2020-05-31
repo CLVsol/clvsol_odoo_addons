@@ -43,7 +43,7 @@ class Family(models.Model):
         for r in self:
             r.global_tag_names = r.global_tag_names_suport
 
-    @api.multi
+    # @api.multi
     def _compute_global_tag_names_suport(self):
         for r in self:
             global_tag_names = False

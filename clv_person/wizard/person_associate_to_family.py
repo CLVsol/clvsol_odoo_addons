@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ class PersonAssociateToFamily(models.TransientModel):
         default=False
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -41,7 +41,7 @@ class PersonAssociateToFamily(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_person_associate_to_family(self):
         self.ensure_one()
 

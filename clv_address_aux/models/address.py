@@ -45,7 +45,7 @@ class AddressAux(models.Model):
         related='related_address_id.category_ids'
     )
 
-    @api.multi
+    # @api.multi
     def do_address_aux_get_related_address_data(self):
 
         for address_aux in self:
@@ -75,7 +75,7 @@ class AddressAux(models.Model):
 
         return True
 
-    @api.multi
+    # @api.multi
     def do_address_aux_remove_related_address(self):
 
         for address_aux in self:

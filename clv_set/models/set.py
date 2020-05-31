@@ -10,7 +10,7 @@ class Set(models.Model):
     _name = 'clv.set'
     _order = 'name'
 
-    @api.multi
+    # @api.multi
     @api.depends('name', 'code')
     def name_get(self):
         result = []

@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -45,7 +45,7 @@ class SurveyExportXML(models.TransientModel):
         default='survey_jcafb_<code>.xml'
     )
 
-    @api.multi
+    # @api.multi
     def do_survey_export_xml(self):
         self.ensure_one()
 

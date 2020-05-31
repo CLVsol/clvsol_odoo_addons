@@ -37,7 +37,7 @@ class Address(models.Model):
         )
         return image_path
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         ret = super().write(values)
         for record in self:

@@ -41,7 +41,7 @@ class AddressAux(models.Model):
         )
         return image_path
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         ret = super().write(values)
         for record in self:
@@ -52,7 +52,7 @@ class AddressAux(models.Model):
                     super().write(vals)
         return ret
 
-    @api.multi
+    # @api.multi
     def do_address_aux_clear_address_data(self):
 
         for address_aux in self:

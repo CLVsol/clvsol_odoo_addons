@@ -5,7 +5,7 @@
 import logging
 import base64
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -27,7 +27,7 @@ class FileSystemDirectoryFileUpload(models.TransientModel):
     upload_file = fields.Binary(string='Upload File')
     file_name = fields.Char(string='File Name')
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -40,7 +40,7 @@ class FileSystemDirectoryFileUpload(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_file_system_directory_file_upload(self):
         self.ensure_one()
 

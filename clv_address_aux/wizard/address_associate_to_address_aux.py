@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ class AddressAssociateToAddressAux(models.TransientModel):
         readonly=False
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -41,7 +41,7 @@ class AddressAssociateToAddressAux(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_address_associate_to_address_aux(self):
         self.ensure_one()
 

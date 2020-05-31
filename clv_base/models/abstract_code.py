@@ -57,7 +57,7 @@ class AbstractCode(models.AbstractModel):
                 values['code'] = False
         return super().create(values)
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         if 'code_sequence' not in values:
             if 'code' in values and values['code'] == '/':

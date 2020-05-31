@@ -94,7 +94,7 @@ class MediaFileMassEdit(models.TransientModel):
          ], string='Inclusion Date:', default=False, readonly=False, required=False
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -116,7 +116,7 @@ class MediaFileMassEdit(models.TransientModel):
 
         return defaults
 
-    @api.multi
+    # @api.multi
     def do_mfile_mass_edit(self):
         self.ensure_one()
 

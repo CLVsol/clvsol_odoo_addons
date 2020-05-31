@@ -43,7 +43,7 @@ class MediaFile(models.Model):
         tools.image_resize_images(vals)
         return super().create(vals)
 
-    @api.multi
+    # @api.multi
     def write(self, vals):
         tools.image_resize_images(vals)
         return super().write(vals)

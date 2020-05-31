@@ -6,7 +6,7 @@ import logging
 
 import xlwt
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -60,7 +60,7 @@ class SurveyExportXLS(models.TransientModel):
          ], string='File Format', default='draft'
     )
 
-    @api.multi
+    # @api.multi
     def do_survey_export_xls(self):
         self.ensure_one()
 

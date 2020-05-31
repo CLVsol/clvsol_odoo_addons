@@ -60,7 +60,7 @@ class PersonAux(models.Model):
         related='related_person_id.ref_address_id.category_ids'
     )
 
-    @api.multi
+    # @api.multi
     def do_person_aux_get_related_person_data(self):
 
         for person_aux in self:

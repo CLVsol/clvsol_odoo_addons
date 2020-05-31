@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ class SurveyCodeRenew(models.TransientModel):
         default=_default_survey_ids
     )
 
-    @api.multi
+    # @api.multi
     def do_survey_code_renew(self):
         self.ensure_one()
 

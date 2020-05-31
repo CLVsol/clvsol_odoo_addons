@@ -63,7 +63,7 @@ class AbstractReference(models.AbstractModel):
                 record.ref_name = False
                 record.ref_code = False
 
-    @api.multi
+    # @api.multi
     def _compute_ref_suport(self):
         for record in self:
             if record.ref_id is not False:

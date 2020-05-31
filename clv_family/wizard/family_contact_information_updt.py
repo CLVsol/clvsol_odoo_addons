@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -26,7 +26,7 @@ class FamilyContactInformationUpdate(models.TransientModel):
     updt_mobile = fields.Boolean(string='Update Mobile', default=False)
     updt_email = fields.Boolean(string='Update Email', default=False)
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -39,7 +39,7 @@ class FamilyContactInformationUpdate(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_family_contact_information_updt(self):
         self.ensure_one()
 

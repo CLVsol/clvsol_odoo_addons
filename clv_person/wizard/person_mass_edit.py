@@ -101,7 +101,7 @@ class PersonMassEdit(models.TransientModel):
         string='Person Reference Age Refresh'
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -123,7 +123,7 @@ class PersonMassEdit(models.TransientModel):
 
         return defaults
 
-    @api.multi
+    # @api.multi
     def do_person_mass_edit(self):
         self.ensure_one()
 

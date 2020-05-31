@@ -8,7 +8,7 @@ from odoo import api, fields, models
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
-    @api.multi
+    # @api.multi
     @api.depends('name', 'code', 'professional_id')
     def name_get(self):
         result = []

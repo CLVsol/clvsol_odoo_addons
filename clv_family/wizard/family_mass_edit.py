@@ -97,7 +97,7 @@ class FamilyMassEdit(models.TransientModel):
          ], string='Partner Entity Code:', default=False, readonly=False, required=False
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -119,7 +119,7 @@ class FamilyMassEdit(models.TransientModel):
 
         return defaults
 
-    @api.multi
+    # @api.multi
     def do_family_mass_edit(self):
         self.ensure_one()
 

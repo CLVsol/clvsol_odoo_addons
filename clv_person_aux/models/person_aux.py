@@ -27,7 +27,7 @@ class PersonAux(models.Model):
     _description = 'Person (Aux)'
     _inherit = 'clv.abstract.partner_entity'
 
-    @api.multi
+    # @api.multi
     @api.depends('name', 'code', 'age_years')
     def name_get(self):
         result = []
@@ -78,7 +78,7 @@ class PersonAux(models.Model):
     #     store=False
     # )
 
-    @api.multi
+    # @api.multi
     @api.constrains('birthday')
     def _check_birthday(self):
         for person_aux in self:
@@ -86,7 +86,7 @@ class PersonAux(models.Model):
                 if person_aux.birthday > fields.Date.today():
                     raise UserError(u'Date of Birth must be in the past!')
 
-    @api.multi
+    # @api.multi
     # @api.depends('birthday')
     def _compute_age(self):
         now = datetime.now()
@@ -156,14 +156,14 @@ class PersonAux(models.Model):
     #     store=False
     # )
 
-    @api.multi
+    # @api.multi
     def _compute_date_reference(self):
         for r in self:
             date_reference = self.env['ir.config_parameter'].sudo().get_param(
                 'clv.global_settings.current_date_reference', '').strip()
             r.date_reference = date_reference
 
-    @api.multi
+    # @api.multi
     # @api.depends('date_reference', 'birthday')
     def _compute_age_reference(self):
         # for r in self:
@@ -242,7 +242,7 @@ class PersonAux(models.Model):
         search='_search_is_deceased'
     )
 
-    @api.multi
+    # @api.multi
     def _compute_is_deceased(self):
         for record in self:
             if record.date_death:
@@ -344,7 +344,7 @@ class PersonAux(models.Model):
     # identification_id = fields.Char(string='Person ID')
     # otherid = fields.Char(string='Other ID')
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         ret = super().write(values)
         for record in self:
@@ -355,7 +355,7 @@ class PersonAux(models.Model):
                     super().write(vals)
         return ret
 
-    @api.multi
+    # @api.multi
     def do_person_aux_clear_address_data(self):
 
         for person_aux in self:

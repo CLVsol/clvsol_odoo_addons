@@ -67,7 +67,7 @@ class EmployeeUserGroupsEdit(models.TransientModel):
         for r in self:
             r.count_employees = len(r.employee_ids)
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -80,7 +80,7 @@ class EmployeeUserGroupsEdit(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_employee_user_groups_updt(self):
         self.ensure_one()
 
@@ -118,7 +118,7 @@ class EmployeeUserGroupsEdit(models.TransientModel):
 
         return True
 
-    @api.multi
+    # @api.multi
     def get_reference_Employee_access_rights(self):
         self.ensure_one()
 
@@ -131,7 +131,7 @@ class EmployeeUserGroupsEdit(models.TransientModel):
 
         return self._reopen_form()
 
-    @api.multi
+    # @api.multi
     def do_refresh_access_rights(self):
         self.ensure_one()
 

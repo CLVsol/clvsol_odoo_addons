@@ -20,7 +20,7 @@ There are actually0-6 numbers for representing each job for a many2many/ one2man
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -65,7 +65,7 @@ class EventUpdate(models.TransientModel):
          ], string='Categories', default=False, readonly=False, required=False
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -78,7 +78,7 @@ class EventUpdate(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_event_updt(self):
         self.ensure_one()
 

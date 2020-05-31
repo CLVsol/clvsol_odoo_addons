@@ -38,7 +38,7 @@ class FileSystemFile(models.Model):
 
     active = fields.Boolean(string='Active', default=1)
 
-    @api.multi
+    # @api.multi
     def _file_read(self, fname, bin_size=False):
 
         def file_not_found(fname):
@@ -82,7 +82,7 @@ class FileSystemDirectory(models.Model):
     )
     file_count = fields.Integer(compute='_file_count', string="# Files")
 
-    @api.multi
+    # @api.multi
     def _compute_file_ids(self):
         File = self.env['clv.file_system.file']
         for directory in self:
@@ -103,12 +103,12 @@ class FileSystemDirectory(models.Model):
                     else:
                         directory.file_ids += file
 
-    @api.multi
+    # @api.multi
     def _file_count(self):
         for directory in self:
             directory.file_count = len(directory.file_ids)
 
-    @api.multi
+    # @api.multi
     def _get_directory_files(self):
 
         def get_files(directory, files):

@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -54,7 +54,7 @@ class Person(models.Model):
         related='ref_address_id.category_ids'
     )
 
-    @api.multi
+    # @api.multi
     def do_person_get_ref_address_data(self):
 
         for person in self:

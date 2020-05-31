@@ -39,7 +39,7 @@ class Address(models.Model):
 
         return record
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         ret = super().write(values)
         for record in self:

@@ -16,7 +16,7 @@ class Family(models.Model):
     _description = 'Family'
     _inherit = 'clv.abstract.partner_entity'
 
-    @api.multi
+    # @api.multi
     @api.depends('name', 'code')
     def name_get(self):
         result = []
@@ -58,7 +58,7 @@ class Family(models.Model):
         )
         return image_path
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         ret = super().write(values)
         for record in self:
@@ -69,7 +69,7 @@ class Family(models.Model):
                     super().write(vals)
         return ret
 
-    @api.multi
+    # @api.multi
     def do_family_clear_address_data(self):
 
         for address_aux in self:

@@ -47,7 +47,7 @@ class AbstractHierarchicalTag(models.AbstractModel):
          'Error! The Name must be unique for the same Parent!'),
     ]
 
-    @api.multi
+    # @api.multi
     def name_get(self):
         """Return the tag's display name, including their direct parent by default.
 

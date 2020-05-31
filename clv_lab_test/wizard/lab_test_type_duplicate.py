@@ -46,7 +46,7 @@ class LabTestTypeDuplicate(models.TransientModel):
 
         return defaults
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -59,7 +59,7 @@ class LabTestTypeDuplicate(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_lab_test_type_duplicate(self):
         self.ensure_one()
 

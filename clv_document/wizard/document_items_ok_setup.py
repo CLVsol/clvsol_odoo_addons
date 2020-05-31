@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ class DocumentItemsOkSetUp(models.TransientModel):
         default=_default_document_ids
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -35,7 +35,7 @@ class DocumentItemsOkSetUp(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_document_items_ok_setup(self):
         self.ensure_one()
 

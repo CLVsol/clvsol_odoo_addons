@@ -12,7 +12,7 @@ class Document(models.Model):
     _name = 'clv.document'
     _order = 'name'
 
-    @api.multi
+    # @api.multi
     @api.depends('name', 'code')
     def name_get(self):
         result = []

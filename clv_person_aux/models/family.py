@@ -45,7 +45,7 @@ class PersonAux(models.Model):
         store=True
     )
 
-    @api.multi
+    # @api.multi
     def do_person_aux_remove_family(self):
 
         for person_aux in self:

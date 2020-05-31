@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ class DocumentTypeMassEdit(models.TransientModel):
         default=_default_document_type_ids
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -35,7 +35,7 @@ class DocumentTypeMassEdit(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_document_type_mass_edit(self):
         self.ensure_one()
 

@@ -53,7 +53,7 @@ class DocumentTypeDuplicate(models.TransientModel):
 
         return defaults
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -66,7 +66,7 @@ class DocumentTypeDuplicate(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_document_type_duplicate(self):
         self.ensure_one()
 

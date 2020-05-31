@@ -2,8 +2,6 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import copy
-
 from datetime import *
 
 from odoo import api, fields, models
@@ -73,7 +71,7 @@ class AbstractModelLog(models.AbstractModel):
         compute='_compute_log_ids_and_count',
     )
 
-    @api.multi
+    # @api.multi
     def _compute_log_ids_and_count(self):
         for record in self:
             try:
@@ -105,7 +103,7 @@ class AbstractModelLog(models.AbstractModel):
                 }
                 record.env[log_model].create(vals)
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         action = 'write'
         notes = False

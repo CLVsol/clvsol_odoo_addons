@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -45,7 +45,7 @@ class Person(models.Model):
         store=True
     )
 
-    @api.multi
+    # @api.multi
     def do_person_associate_to_family_with_reference_address(self):
 
         for person in self:

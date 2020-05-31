@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
@@ -22,7 +22,7 @@ class ResPartner(models.Model):
         compute='_compute_family_ids_and_count',
     )
 
-    @api.multi
+    # @api.multi
     def _get_clv_entity(self):
         self.ensure_one()
         if self.type and self.type[:3] == 'clv':
@@ -30,7 +30,7 @@ class ResPartner(models.Model):
                 ('partner_id', '=', self.id),
             ])
 
-    @api.multi
+    # @api.multi
     def _compute_family_ids_and_count(self):
         for record in self:
             try:

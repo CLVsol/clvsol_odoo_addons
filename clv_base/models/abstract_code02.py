@@ -91,7 +91,7 @@ class AbstractCode02(models.AbstractModel):
             values['code'] = format_code(code_seq, code_len)
         return super().create(values)
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         if 'code_sequence_03' not in values and \
            'code_sequence_04' not in values and \

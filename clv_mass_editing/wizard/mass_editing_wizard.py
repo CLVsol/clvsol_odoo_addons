@@ -514,6 +514,6 @@ class MassEditingWizard(models.TransientModel):
                 model_rec.write(values)
         return super().create(vals)
 
-    @api.multi
+    # @api.multi
     def action_apply(self):
         return {'type': 'ir.actions.act_window_close'}

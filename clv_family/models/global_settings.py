@@ -18,7 +18,7 @@ class GlobalSettings(models.TransientModel):
         store=False,
     )
 
-    @api.multi
+    # @api.multi
     def set_values(self):
         self.ensure_one()
 

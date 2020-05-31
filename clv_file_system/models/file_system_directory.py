@@ -33,7 +33,7 @@ class FileSystemDirectory(models.Model):
 
     active = fields.Boolean(string='Active', default=1)
 
-    @api.multi
+    # @api.multi
     def get_dir(self):
         self.ensure_one()
         directory = self.directory or ''
@@ -45,11 +45,11 @@ class FileSystemDirectory(models.Model):
         if self.directory and not exists(self.directory):
             raise Warning(_('Directory does not exist'))
 
-    @api.multi
+    # @api.multi
     def reload(self):
         self.onchange_directory()
 
-    @api.multi
+    # @api.multi
     def copy(self, default=None):
         self.ensure_one()
         default = dict(default or {}, name=_("%s (copy)") % self.name)

@@ -43,7 +43,7 @@ class PersonAux(models.Model):
         for r in self:
             r.category_names = r.category_names_suport
 
-    @api.multi
+    # @api.multi
     def _compute_category_names_suport(self):
         for r in self:
             category_names = False

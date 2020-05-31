@@ -33,7 +33,7 @@ class AbstractRandom(models.AbstractModel):
             values['random_field'] = random_field
         return super().create(values)
 
-    @api.multi
+    # @api.multi
     def write(self, values):
         if 'random_field' in values and values['random_field'] == '/':
             random_field = get_random_field()
