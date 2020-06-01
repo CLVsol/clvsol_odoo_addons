@@ -66,26 +66,26 @@ class AbstractCode02(models.AbstractModel):
     code_sequence_10 = fields.Char(string='Code Sequence 10', required=False, default=False)
     code_size = fields.Selection(
         [
-            (3, 3),
-            (4, 4),
-            (6, 6),
-            (9, 9),
-            (10, 10),
-        ], string='Code Size', index=True, sort=False, default=10
+            ('3', '3'),
+            ('4', '4'),
+            ('6', '6'),
+            ('9', '9'),
+            ('10', '10'),
+        ], string='Code Size', index=True, sort=False, default='10'
     )
 
     @api.model
     def create(self, values):
         if 'code' not in values or ('code' in values and values['code'] == '/'):
-            if ('code_size' in values and values['code_size'] == 3):
+            if ('code_size' in values and values['code_size'] == '3'):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence_03'])
-            elif ('code_size' in values and values['code_size'] == 4):
+            elif ('code_size' in values and values['code_size'] == '4'):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence_04'])
-            elif ('code_size' in values and values['code_size'] == 6):
+            elif ('code_size' in values and values['code_size'] == '6'):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence_06'])
-            elif ('code_size' in values and values['code_size'] == 9):
+            elif ('code_size' in values and values['code_size'] == '9'):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence_09'])
-            elif ('code_size' in values and values['code_size'] == 10):
+            elif ('code_size' in values and values['code_size'] == '10'):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence_10'])
             code_len = len(code_seq)
             values['code'] = format_code(code_seq, code_len)
@@ -100,9 +100,9 @@ class AbstractCode02(models.AbstractModel):
            'code_sequence_10' not in values:
             if 'code' in values and values['code'] == '/':
                 if ('code_size' in values):
-                    code_len = values['code_size']
+                    code_len = int(values['code_size'])
                 else:
-                    code_len = self.code_size
+                    code_len = int(self.code_size)
                 if (code_len == 3):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_03)
                 elif (code_len == 4):
@@ -116,15 +116,15 @@ class AbstractCode02(models.AbstractModel):
                 values['code'] = format_code(code_seq, code_len)
             # elif 'code_size' in values:
             elif 'code_size' in values and 'code' in values and values['code'] == '/':
-                if (values['code_size'] == 3):
+                if (values['code_size'] == '3'):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_03)
-                elif (values['code_size'] == 4):
+                elif (values['code_size'] == '4'):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_04)
-                elif (values['code_size'] == 6):
+                elif (values['code_size'] == '6'):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_06)
-                elif (values['code_size'] == 9):
+                elif (values['code_size'] == '9'):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_09)
-                elif (values['code_size'] == 10):
+                elif (values['code_size'] == '10'):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_10)
                 else:
                     code_seq = False
