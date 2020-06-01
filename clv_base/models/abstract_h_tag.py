@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class AbstractHierarchicalTag(models.AbstractModel):
@@ -32,11 +33,17 @@ class AbstractHierarchicalTag(models.AbstractModel):
 
     color = fields.Integer('Color Index')
 
-    _constraints = [
-        (models.Model._check_recursion,
-         'Error! You can not create recursive tags.',
-         ['parent_id']),
-    ]
+    # _constraints = [
+    #     (models.Model._check_recursion,
+    #      'Error! You can not create recursive tags.',
+    #      ['parent_id']),
+    # ]
+
+    @api.constrains('parent_id')
+    def _check_category_recursion(self):
+        if not self._check_recursion():
+            raise ValidationError(_('Error ! You cannot create recursive tags.'))
+        return True
 
     _sql_constraints = [
         ('code_uniq',
