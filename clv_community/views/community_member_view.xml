@@ -68,7 +68,7 @@
         <field name="name">Community Member</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.community.member</field>
-        <field name="view_type">form</field>
+        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="clv_community_member_view_search"/>
         <field name="domain">[]</field>

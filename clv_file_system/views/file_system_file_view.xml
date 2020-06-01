@@ -97,7 +97,7 @@
         <field name="name">File System Files</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.file_system.file</field>
-        <field name="view_type">form</field>
+        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="clv_file_system_file_view_search"/>
         <field name="domain">[]</field>

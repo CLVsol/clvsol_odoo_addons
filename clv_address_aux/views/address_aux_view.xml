@@ -99,7 +99,7 @@
         <field name="name">Addresses (Aux)</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.address_aux</field>
-        <field name="view_type">form</field>
+        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,kanban,form</field>
         <field name="search_view_id" ref="clv_address_aux_view_search"/>
         <field name="domain">[]</field>

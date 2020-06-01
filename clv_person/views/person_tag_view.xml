@@ -52,7 +52,7 @@
         <field name="name">Person Tags</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.person.tag</field>
-        <field name="view_type">form</field>
+        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="clv_person_tag_view_search"/>
         <field name="domain">[]</field>

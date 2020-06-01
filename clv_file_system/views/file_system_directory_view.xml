@@ -94,7 +94,7 @@
         <field name="name">File System Directories</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.file_system.directory</field>
-        <field name="view_type">form</field>
+        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="clv_file_system_directory_view_search"/>
         <field name="domain">[]</field>

@@ -93,7 +93,7 @@
         <field name="name">Event Attendee</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.event.attendee</field>
-        <field name="view_type">form</field>
+        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="clv_event_attendee_view_search"/>
         <field name="domain">[]</field>

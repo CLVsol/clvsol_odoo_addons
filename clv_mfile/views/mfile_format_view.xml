@@ -52,7 +52,7 @@
         <field name="name">Media File Formats</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.mfile.format</field>
-        <field name="view_type">form</field>
+        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="clv_mfile_format_view_search"/>
         <field name="domain">[]</field>
