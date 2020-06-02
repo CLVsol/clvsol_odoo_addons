@@ -2,7 +2,7 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
 
@@ -89,7 +89,7 @@ class AbstractHierarchicalTag(models.AbstractModel):
 
     # @api.one
     def _name_get_fnc(self):
-        self.ensure_one()
+        # self.ensure_one()
 
         for record in self:
             record.refresh_complete_name = 0
