@@ -31,7 +31,6 @@
                     <button special="cancel" string="Cancel"/>
                 </footer>
             </form>
-
         </field>
     </record>
 
@@ -39,7 +38,7 @@
     <act_window 
         id="clv_file_system_directory_file_upload_action"
         name="File Upload"
-        src_model="clv.file_system.directory"
+        binding_model="clv.file_system.directory"
         res_model="clv.file_system.directory.file_upload"
         view_mode="form, tree"
         target="new"

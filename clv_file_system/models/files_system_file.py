@@ -86,7 +86,7 @@ class FileSystemDirectory(models.Model):
     def _compute_file_ids(self):
         File = self.env['clv.file_system.file']
         for directory in self:
-            # directory.file_ids = None
+            directory.file_ids = None
             if directory.get_dir():
                 for file_name in directory._get_directory_files():
                     file = File.search([
