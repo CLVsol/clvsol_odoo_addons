@@ -35,10 +35,9 @@
     <act_window 
         id="clv_document_items_refresh_action"
         name="Document Items Refresh"
-        src_model="clv.document"
+        binding_model="clv.document"
         res_model="clv.document.items_refresh"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

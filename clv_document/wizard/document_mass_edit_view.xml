@@ -81,10 +81,9 @@
     <act_window 
         id="clv_document_mass_edit_action"
         name="Document Mass Edit"
-        src_model="clv.document"
+        binding_model="clv.document"
         res_model="clv.document.mass_edit"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

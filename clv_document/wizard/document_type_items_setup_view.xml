@@ -35,10 +35,9 @@
     <act_window 
         id="clv_document_type_items_setup_action"
         name="Document Type Items Set Up"
-        src_model="clv.document.type"
+        binding_model="clv.document.type"
         res_model="clv.document.type.items_setup"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

@@ -37,7 +37,7 @@
     <act_window 
         id="clv_document_items_edit_action"
         name="Document Items Edit"
-        src_model="clv.document"
+        binding_model="clv.document"
         res_model="clv.document.items_edit"
         view_mode="form"
         target="new"

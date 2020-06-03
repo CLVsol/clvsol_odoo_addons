@@ -33,10 +33,9 @@
     <act_window 
         id="clv_document_type_mass_edit_action"
         name="Document Type Mass Edit"
-        src_model="clv.document.type"
+        binding_model="clv.document.type"
         res_model="clv.document.type.mass_edit"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

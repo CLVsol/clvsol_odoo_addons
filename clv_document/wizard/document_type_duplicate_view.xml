@@ -38,7 +38,7 @@
     <act_window 
         id="clv_document_type_duplicate_action"
         name="Document Type Duplicate"
-        src_model="clv.document.type"
+        binding_model="clv.document.type"
         res_model="clv.document.type.duplicate"
         view_mode="form"
         target="new"
