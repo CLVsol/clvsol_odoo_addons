@@ -76,14 +76,14 @@
                                             attrs="{'invisible': [('contact_info_is_unavailable', '=', True)]}"
                                             >
                                     </button-->
-                                    <field name="contact_info_is_unavailable" attrs="{'invisible': ['&amp;',('contact_info_is_unavailable','=',False),('street','!=',False)]}"/>
+                                    <field name="contact_info_is_unavailable" attrs="{'invisible': ['&amp;',('contact_info_is_unavailable','=',False),('street_name','!=',False)]}"/>
                                     <!--field name="contact_info_is_unavailable" attrs="{'invisible': [('contact_info_is_unavailable','=', False)]}"/>
                                     <field name="type"
                                            attrs="{'invisible': [('parent_id','=', False)]}"
                                            groups="base.group_no_one"
                                     /-->
                                     <field name="type" invisible="True"/>
-                                    <label for="street" string="Address"/>
+                                    <label for="street_name" string="Address"/>
                                     <div class="o_address_format">
                                         <!--div class="oe_edit_only">
                                             <button name="open_parent"
@@ -95,7 +95,7 @@
                                                             }"
                                             />
                                         </div-->
-                                        <field name="street"
+                                        <field name="street_name"
                                                placeholder="Street..."
                                                class="o_address_street"
                                                attrs="{'readonly': [('type', '=', 'contact'),
@@ -171,7 +171,7 @@
                             <field name="child_ids"
                                    mode="kanban"
                                    context="{'default_parent_id': active_id,
-                                             'default_street': street,
+                                             'default_street': street_name,
                                              'default_street2': street2,
                                              'default_city': city,
                                              'default_state_id': state_id,
@@ -189,7 +189,7 @@
                                     <field name="is_company"/>
                                     <field name="function"/>
                                     <field name="phone"/>
-                                    <field name="street"/>
+                                    <field name="street_name"/>
                                     <field name="street2"/>
                                     <field name="zip"/>
                                     <field name="city"/>
@@ -273,7 +273,7 @@
                                                 <label for="street" string="Address"/>
                                                 <div>
                                                     <div class="o_address_format" name="div_address">
-                                                        <field name="street"
+                                                        <field name="street_name"
                                                                placeholder="Street..."
                                                                class="o_address_street"
                                                         />
@@ -410,7 +410,7 @@
                 <field name="is_company"/>
                 <field name="function"/>
                 <field name="phone"/>
-                <field name="street"/>
+                <field name="street_name"/>
                 <field name="street2"/>
                 <field name="zip"/>
                 <field name="city"/>

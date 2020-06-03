@@ -92,7 +92,7 @@ class AbstractPartnerEntity(models.AbstractModel):
     def _create_vals(self, vals):
         """ Override this in child classes in order to add default values. """
         if self._allow_image_create(vals):
-            vals['image'] = self._get_default_image_encoded(vals)
+            vals['image_1920'] = self._get_default_image_encoded(vals)
         return vals
 
     # @api.model_cr_context
@@ -108,7 +108,7 @@ class AbstractPartnerEntity(models.AbstractModel):
          child that chooses to provide custom rules shall also adhere to this
          context, unless there is a documented reason to not do so.
         """
-        if vals.get('image'):
+        if vals.get('image_1920'):
             return False
         if any((getattr(threading.currentThread(), 'testing', False),
                 self._context.get('install_mode'))):
