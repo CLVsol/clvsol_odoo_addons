@@ -92,8 +92,8 @@ class AbstractModelLog(models.AbstractModel):
                     values_copy['image_small'] = '<image_small>'
                 if 'image_medium' in values_copy:
                     values_copy['image_medium'] = '<image_medium>'
-                if 'image' in values_copy:
-                    values_copy['image'] = '<image>'
+                if 'image_1920' in values_copy:
+                    values_copy['image_1920'] = '<image_1920>'
                 vals = {
                     'model': model,
                     'res_id': res_id,
