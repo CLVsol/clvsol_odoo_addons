@@ -45,10 +45,9 @@
     <act_window 
         id="clv_lab_test_request_mass_edit_action"
         name="Lab Test Request Mass Edit"
-        src_model="clv.lab_test.request"
+        binding_model="clv.lab_test.request"
         res_model="clv.lab_test.request.mass_edit"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 
