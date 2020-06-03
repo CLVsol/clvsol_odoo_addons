@@ -43,8 +43,8 @@
                             <label for="code" class="oe_edit_only"/>
                             <field name="code" placeholder="Code..."/>
                             <field name="is_company" invisible="True"/>
-                            <field name="supplier" invisible="True"/>
-                            <field name="customer" invisible="True"/>
+                            <!--field name="supplier" invisible="True"/-->
+                            <!--field name="customer" invisible="True"/-->
                             <field name="parent_id" invisible="True"/>
                         </h3>
                     </div>
@@ -196,7 +196,7 @@
                                     <field name="country_id"/>
                                     <field name="mobile"/>
                                     <field name="state_id"/>
-                                    <field name="image"/>
+                                    <field name="image_1920"/>
                                     <field name="lang"/>
                                     <templates>
                                         <t t-name="kanban-box">
@@ -207,10 +207,10 @@
                                             <div t-attf-class="{{ color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') }} oe_kanban_global_click">
                                                 <a t-if="!read_only_mode" type="delete" class="fa fa-times pull-right"/>
                                                 <div class="o_kanban_image" name="contact_kanban_image">
-                                                    <img t-if="record.image.raw_value"
-                                                         t-attf-src="data:image/png;base64,{{ record.image.raw_value }}"
+                                                    <img t-if="record.image_1920.raw_value"
+                                                         t-attf-src="data:image/png;base64,{{ record.image_1920.raw_value }}"
                                                     />
-                                                    <t t-if="!record.image.raw_value" name="kanban_image_default">
+                                                    <t t-if="!record.image_1920.raw_value" name="kanban_image_default">
                                                         <img name="kanban_image_default_delivery"
                                                              t-if="record.type.raw_value === 'delivery'"
                                                              t-attf-src='{{ _s }}/base/static/src/img/truck.png'
@@ -322,10 +322,10 @@
                                                 <field name="comment" placeholder="Internal Note..."/>
                                             </group>
                                         </group>
-                                        <field name="supplier" invisible="True"/>
-                                        <field name="customer" invisible="True"/>
+                                        <!--field name="supplier" invisible="True"/-->
+                                        <!--field name="customer" invisible="True"/-->
                                         <field name="lang" invisible="True"/>
-                                        <field name="image" invisible="True"/>
+                                        <field name="image_1920" invisible="True"/>
                                     </sheet>
                                 </form>
                             </field>
