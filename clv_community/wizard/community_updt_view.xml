@@ -45,10 +45,9 @@
     <act_window 
         id="clv_event_updt_action"
         name="Event Update"
-        src_model="clv.event"
+        binding_model="clv.event"
         res_model="clv.event.updt"
         view_mode="form, tree"
-        key2="client_action_multi"
         target="new"
     />
 
