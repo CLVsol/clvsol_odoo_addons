@@ -36,10 +36,9 @@
     <act_window 
         id="clv_person_aux_associate_to_address_action"
         name="Person (Aux) Associate to Address"
-        src_model="clv.person_aux"
+        binding_model="clv.person_aux"
         res_model="clv.person_aux.associate_to_address"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

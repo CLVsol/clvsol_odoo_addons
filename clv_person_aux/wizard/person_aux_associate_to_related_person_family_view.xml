@@ -35,10 +35,9 @@
     <act_window 
         id="clv_person_aux_associate_to_related_person_family_action"
         name="Person (Aux) Associate to Related Person Family"
-        src_model="clv.person_aux"
+        binding_model="clv.person_aux"
         res_model="clv.person_aux.associate_to_related_person_family"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 
