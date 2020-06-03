@@ -33,10 +33,9 @@
     <act_window 
         id="clv_survey_code_renew_action"
         name="Survey Code Renew"
-        src_model="survey.survey"
+        binding_model="survey.survey"
         res_model="clv.survey.code_renew"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

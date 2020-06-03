@@ -4,30 +4,17 @@
 
 <odoo>
 
-    <record id="survey_page_view_form_question" model="ir.ui.view">
-        <field name="name">survey.page.form</field>
-        <field name="model">survey.page</field>
-        <field name="inherit_id" ref="survey.survey_page_form"/>
-        <field name="priority" eval="8"/>
-        <field name="arch" type="xml">
-            <field name="question" position="before">
-                <field name="code"/>
-                <field name="parameter"/>
-            </field>
-        </field>
-    </record>
-
     <record id="survey_question_view_form" model="ir.ui.view">
         <field name="name">survey.question.form</field>
         <field name="model">survey.question</field>
         <field name="inherit_id" ref="survey.survey_question_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="question" position="replace">
+            <field name="title" position="replace">
             </field>
-            <label for="question" position="replace">
-                <label for="question" string="Question name" class="oe_edit_only"/>
-                <h1><field name="question" colspan="4" placeholder="Question Name"/></h1>
+            <label for="title" position="replace">
+                <label for="title" string="Question name" class="oe_edit_only"/>
+                <h1><field name="title" colspan="4" placeholder="Question Name"/></h1>
                 <label for="code" class="oe_edit_only"/>
                 <h3><field name="code" placeholder="Question Code"/></h3>
                 <label for="parameter" class="oe_edit_only"/>

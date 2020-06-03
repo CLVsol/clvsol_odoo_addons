@@ -18,7 +18,6 @@
     'data': [
         'security/survey_security.xml',
         'views/survey_survey_view.xml',
-        'views/survey_page_view.xml',
         'views/survey_question_view.xml',
         'views/survey_label_view.xml',
         'wizard/survey_duplicate_view.xml',

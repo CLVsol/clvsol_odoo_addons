@@ -38,7 +38,7 @@
     <act_window 
         id="survey_survey_duplicate_action"
         name="Survey Duplicate"
-        src_model="survey.survey"
+        binding_model="survey.survey"
         res_model="survey.survey.duplicate"
         view_mode="form"
         target="new"

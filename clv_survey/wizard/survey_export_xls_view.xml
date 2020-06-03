@@ -37,10 +37,9 @@
     <act_window 
         id="clv_survey_export_xls_action"
         name="Survey Export XLS"
-        src_model="survey.survey"
+        binding_model="survey.survey"
         res_model="clv.survey.export_xls"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 
