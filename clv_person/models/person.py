@@ -302,15 +302,15 @@ class Person(models.Model):
     @api.model
     def _create_vals(self, vals):
         vals = super()._create_vals(vals)
-        vals.update({
-            'customer': True,
-        })
+        # vals.update({
+        #     'customer': True,
+        # })
         vals.update({
             'type': self._name,
         })
         return vals
 
-    @api.model_cr_context
+    # @api.model_cr_context
     def _get_default_image_path(self, vals):
         res = super()._get_default_image_path(vals)
         if res:

@@ -37,10 +37,9 @@
     <act_window 
         id="clv_person_associate_to_family_action"
         name="Person Associate to Family"
-        src_model="clv.person"
+        binding_model="clv.person"
         res_model="clv.person.associate_to_family"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 
