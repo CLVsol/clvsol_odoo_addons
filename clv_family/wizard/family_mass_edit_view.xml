@@ -62,10 +62,9 @@
     <act_window 
         id="clv_family_mass_edit_action"
         name="Family Mass Edit"
-        src_model="clv.family"
+        binding_model="clv.family"
         res_model="clv.family.mass_edit"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

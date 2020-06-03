@@ -19,11 +19,11 @@ class Family(models.Model):
         default=True
     )
 
-    @api.depends('street', 'street2')
+    @api.depends('street_name', 'street2')
     def _get_suggested_name(self):
         for record in self:
-            if record.street:
-                address_name = record.street
+            if record.street_name:
+                address_name = record.street_name
                 if record.street2:
                     address_name = address_name + ' - ' + record.street2
                 family_name_format = self.env['ir.config_parameter'].sudo().get_param(

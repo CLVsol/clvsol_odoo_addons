@@ -40,15 +40,15 @@ class Family(models.Model):
     @api.model
     def _create_vals(self, vals):
         vals = super()._create_vals(vals)
-        vals.update({
-            'customer': True,
-        })
+        # vals.update({
+        #     'customer': True,
+        # })
         vals.update({
             'type': self._name,
         })
         return vals
 
-    @api.model_cr_context
+    # @api.model_cr_context
     def _get_default_image_path(self, vals):
         res = super()._get_default_image_path(vals)
         if res:
@@ -80,7 +80,7 @@ class Family(models.Model):
 
             data_values = {}
 
-            data_values['street'] = False
+            data_values['street_name'] = False
             data_values['street2'] = False
             data_values['zip'] = False
             data_values['city'] = False

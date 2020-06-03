@@ -38,10 +38,9 @@
     <act_window 
         id="clv_family_contact_information_updt_action"
         name="Family Contact Information Update"
-        src_model="clv.family"
+        binding_model="clv.family"
         res_model="clv.family.contact_information_updt"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 
