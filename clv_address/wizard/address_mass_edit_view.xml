@@ -62,10 +62,9 @@
     <act_window 
         id="clv_address_mass_edit_action"
         name="Address Mass Edit"
-        src_model="clv.address"
+        binding_model="clv.address"
         res_model="clv.address.mass_edit"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 
