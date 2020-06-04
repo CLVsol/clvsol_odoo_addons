@@ -42,10 +42,14 @@
         <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <span t-if="record.job_id.raw_value" position="before">
+            <!--span t-if="record.job_id.raw_value" position="before">
                 <span t-if="record.code.raw_value" class="o_kanban_record_subtitle"><field name="code"/></span>
                 <span t-if="record.professional_id.raw_value" class="o_kanban_record_subtitle"><field name="professional_id"/></span>
-            </span>
+            </span-->
+            <field name="category_ids" position="before">
+                <span t-if="record.code.raw_value" class="o_kanban_record_subtitle"><field name="code"/></span>
+                <span t-if="record.professional_id.raw_value" class="o_kanban_record_subtitle"><field name="professional_id"/></span>
+            </field>
         </field>
     </record>
 

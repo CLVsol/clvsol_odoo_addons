@@ -10,7 +10,7 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
-            <button name="toggle_active" position="replace"/>
+            <!--button name="toggle_active" position="replace"/-->
             <page name="hr_settings" position="after">
                 <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                     <group name="settings_top">

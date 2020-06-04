@@ -51,10 +51,9 @@
     <act_window 
         id="hr_employee_mass_edit_action"
         name="Employee Mass Edit"
-        src_model="hr.employee"
+        binding_model="hr.employee"
         res_model="hr.employee.mass_edit"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

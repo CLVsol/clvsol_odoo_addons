@@ -55,10 +55,9 @@
         <act_window 
             id="hr_employee_user_groups_updt_action"
             name="Employee User Groups Update"
-            src_model="hr.employee"
+            binding_model="hr.employee"
             res_model="hr.employee.user_groups_updt"
             view_mode="form"
-            key2="client_action_multi"
             target="new"
         />
 
