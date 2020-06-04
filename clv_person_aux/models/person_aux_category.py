@@ -49,9 +49,9 @@ class PersonAux(models.Model):
             category_names = False
             for category in r.category_ids:
                 if category_names is False:
-                    category_names = category.complete_name
+                    category_names = category.name
                 else:
-                    category_names = category_names + ', ' + category.complete_name
+                    category_names = category_names + ', ' + category.name
             r.category_names_suport = category_names
             if r.category_names != category_names:
                 record = self.env['clv.person_aux'].search([('id', '=', r.id)])
