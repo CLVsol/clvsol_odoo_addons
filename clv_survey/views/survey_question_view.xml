@@ -60,9 +60,28 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="sequence" position="after">
+                <field name="survey_id" />
+                <field name="page_id" />
+                <field name="is_page" />
                 <field name="code" />
                 <field name="parameter" />
             </field>
+        </field>
+    </record>
+
+    <record id="survey_question_view_search" model="ir.ui.view">
+        <field name="name">survey.question.search</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="survey_id" position="after">
+                <field name="page_id" />
+            </field>
+            <filter name="group_by_type" position="before">
+                <filter name="group_by_survey_id" string="Survey" domain="[]"  context="{'group_by':'survey_id'}"/>
+                <filter name="group_by_pate_id" string="Page" domain="[]"  context="{'group_by':'page_id'}"/>
+            </filter>
         </field>
     </record>
 
