@@ -33,11 +33,11 @@ class PersonCategory(models.Model):
         string='Persons'
     )
 
-    _sql_constraints = [
-        ('code_uniq',
-         'UNIQUE (code)',
-         u'Error! The Code must be unique!'),
-    ]
+    # _sql_constraints = [
+    #     ('code_uniq',
+    #      'UNIQUE (code)',
+    #      u'Error! The Code must be unique!'),
+    # ]
 
 
 class Person(models.Model):
