@@ -54,5 +54,6 @@ class Person(models.Model):
                     global_tag_names = global_tag_names + ', ' + global_tag.complete_name
             r.global_tag_names_suport = global_tag_names
             if r.global_tag_names != global_tag_names:
-                record = self.env['clv.person'].search([('id', '=', r.id)])
-                record.write({'global_tag_ids': r.global_tag_ids})
+                if isinstance(r.id, int):
+                    record = self.env['clv.person'].search([('id', '=', r.id)])
+                    record.write({'global_tag_ids': r.global_tag_ids})
