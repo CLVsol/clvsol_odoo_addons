@@ -33,11 +33,11 @@ class FamilyCategory(models.Model):
         string='Families'
     )
 
-    _sql_constraints = [
-        ('code_uniq',
-         'UNIQUE (code)',
-         u'Error! The Code must be unique!'),
-    ]
+    # _sql_constraints = [
+    #     ('code_uniq',
+    #      'UNIQUE (code)',
+    #      u'Error! The Code must be unique!'),
+    # ]
 
 
 class Family(models.Model):
@@ -55,19 +55,33 @@ class Family(models.Model):
         compute='_compute_category_names',
         store=True
     )
-    category_names_suport = fields.Char(
-        string='Category Names Suport',
-        compute='_compute_category_names_suport',
-        store=False
-    )
+    # category_names_suport = fields.Char(
+    #     string='Category Names Suport',
+    #     compute='_compute_category_names_suport',
+    #     store=False
+    # )
+
+    # @api.depends('category_ids')
+    # def _compute_category_names(self):
+    #     for r in self:
+    #         r.category_names = r.category_names_suport
+
+    # # @api.multi
+    # def _compute_category_names_suport(self):
+    #     for r in self:
+    #         category_names = False
+    #         for category in r.category_ids:
+    #             if category_names is False:
+    #                 category_names = category.name
+    #             else:
+    #                 category_names = category_names + ', ' + category.name
+    #         r.category_names_suport = category_names
+    #         if r.category_names != category_names:
+    #             record = self.env['clv.family'].search([('id', '=', r.id)])
+    #             record.write({'category_ids': r.category_ids})
 
     @api.depends('category_ids')
     def _compute_category_names(self):
-        for r in self:
-            r.category_names = r.category_names_suport
-
-    # @api.multi
-    def _compute_category_names_suport(self):
         for r in self:
             category_names = False
             for category in r.category_ids:
@@ -75,7 +89,4 @@ class Family(models.Model):
                     category_names = category.name
                 else:
                     category_names = category_names + ', ' + category.name
-            r.category_names_suport = category_names
-            if r.category_names != category_names:
-                record = self.env['clv.family'].search([('id', '=', r.id)])
-                record.write({'category_ids': r.category_ids})
+            r.category_names = category_names
