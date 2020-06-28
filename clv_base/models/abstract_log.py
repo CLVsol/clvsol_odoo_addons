@@ -41,8 +41,6 @@ class AbstractModelLog(models.AbstractModel):
     _description = 'Abstract Model Log'
     _name = 'clv.abstract.model.log'
 
-    # reference = fields.Char(string='Reference', compute='_compute_object_reference', store=False)
-
     object_model = fields.Char(string='Object Model', compute='_compute_object_reference', store=False)
     object_res_id = fields.Char(string='Object Record ID', compute='_compute_object_reference', store=False)
     object_reference = fields.Char(string='Object Reference', compute='_compute_object_reference', store=False)
@@ -71,7 +69,6 @@ class AbstractModelLog(models.AbstractModel):
         compute='_compute_log_ids_and_count',
     )
 
-    # @api.multi
     def _compute_log_ids_and_count(self):
         for record in self:
             try:
@@ -86,7 +83,8 @@ class AbstractModelLog(models.AbstractModel):
     @api.depends('model', 'res_id')
     def insert_object_log(self, log_model, model, res_id, values, action, notes):
         for record in self:
-            if record.active_log or 'active_log' in values:
+            # if record.active_log or 'active_log' in values:
+            if record.active_log or (('active_log' in values) and (values['active_log'] is True)):
                 values_copy = values.copy()
                 if 'image_small' in values_copy:
                     values_copy['image_small'] = '<image_small>'
@@ -103,7 +101,6 @@ class AbstractModelLog(models.AbstractModel):
                 }
                 record.env[log_model].create(vals)
 
-    # @api.multi
     def write(self, values):
         action = 'write'
         notes = False
