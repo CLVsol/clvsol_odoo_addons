@@ -20,6 +20,7 @@
         'views/res_partner_view.xml',
         'views/res_partner_log_view.xml',
         'views/abstract_partner_entity_view.xml',
+        'data/global_log_client.xml',
     ],
     'demo': [],
     'test': [],
