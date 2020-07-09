@@ -37,6 +37,7 @@
         'wizard/document_type_items_setup_view.xml',
         'wizard/document_items_edit_view.xml',
         'wizard/document_items_ok_setup_view.xml',
+        'data/global_log_client.xml',
     ],
     'demo': [],
     'test': [],
