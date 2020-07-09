@@ -83,7 +83,15 @@ class PersonAuxMassEdit(models.TransientModel):
          ], string='Partner Entity Code:', default=False, readonly=False, required=False
     )
 
-    # @api.multi
+    active_log = fields.Boolean(
+        string='Active Log'
+    )
+    active_log_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Active Log:', default=False, readonly=False, required=False
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -105,7 +113,6 @@ class PersonAuxMassEdit(models.TransientModel):
 
         return defaults
 
-    # @api.multi
     def do_person_aux_mass_edit(self):
         self.ensure_one()
 
@@ -195,5 +202,10 @@ class PersonAuxMassEdit(models.TransientModel):
                     vals = {}
                     vals['entity_code'] = False
                     person_aux.write(vals)
+
+            if self.active_log_selection == 'set':
+                person_aux.active_log = self.active_log
+            if self.active_log_selection == 'remove':
+                person_aux.active_log = False
 
         return True
