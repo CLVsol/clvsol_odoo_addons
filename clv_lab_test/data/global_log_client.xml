@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_global_log_client_clv_lab_test_type" model="clv.global_log.client">
+		<field name="model_name" eval="&quot;&quot;&quot;clv.lab_test.type&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_global_log_client_clv_lab_test_request" model="clv.global_log.client">
+		<field name="model_name" eval="&quot;&quot;&quot;clv.lab_test.request&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_global_log_client_clv_lab_test_result" model="clv.global_log.client">
+		<field name="model_name" eval="&quot;&quot;&quot;clv.lab_test.result&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_global_log_client_clv_lab_test_report" model="clv.global_log.client">
+		<field name="model_name" eval="&quot;&quot;&quot;clv.lab_test.report&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_global_log_client_clv_lab_test_criterion" model="clv.global_log.client">
+		<field name="model_name" eval="&quot;&quot;&quot;clv.lab_test.criterion&quot;&quot;&quot;"/>
+	</record>
+	 
+</odoo>
