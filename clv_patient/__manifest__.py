@@ -25,6 +25,7 @@
         'views/patient_category_log_view.xml',
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
+        'data/global_log_client.xml',
     ],
     'demo': [],
     'test': [],
