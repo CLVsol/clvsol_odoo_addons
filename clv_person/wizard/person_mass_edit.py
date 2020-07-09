@@ -101,7 +101,15 @@ class PersonMassEdit(models.TransientModel):
         string='Person Reference Age Refresh'
     )
 
-    # @api.multi
+    active_log = fields.Boolean(
+        string='Active Log'
+    )
+    active_log_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Active Log:', default=False, readonly=False, required=False
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -123,7 +131,6 @@ class PersonMassEdit(models.TransientModel):
 
         return defaults
 
-    # @api.multi
     def do_person_mass_edit(self):
         self.ensure_one()
 
@@ -240,5 +247,10 @@ class PersonMassEdit(models.TransientModel):
 
             if self.person_ref_age_refresh:
                 person._compute_age_reference()
+
+            if self.active_log_selection == 'set':
+                person.active_log = self.active_log
+            if self.active_log_selection == 'remove':
+                person.active_log = False
 
         return True

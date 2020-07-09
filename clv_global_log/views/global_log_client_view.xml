@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="clv_global_log_client_view_form" model="ir.ui.view">
+        <field name="name">clv.global_log.client.form</field>
+        <field name="model">clv.global_log.client</field>
+        <field name="arch" type="xml">
+            <form string="Global Log Client">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model_name"/>
+                        </group>
+                        <group>
+                            <field name="notes" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="clv_global_log_client_view_tree" model="ir.ui.view">
+        <field name="name">clv.global_log.client.tree</field>
+        <field name="model">clv.global_log.client</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <tree string="Global Log Client">
+                <field name="model_name"/>
+                <field name="notes"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="clv_global_log_client_view_search" model="ir.ui.view">
+        <field name="name">clv.global_log.client.search</field>
+        <field name="model">clv.global_log.client</field>
+        <field name="arch" type="xml">
+            <search string="Global Log Clients">
+                <field name="model_name"/>
+                <field name="notes"/>
+                <group name="group_by" expand="0" string="Group By...">
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clv_global_log_client_action">
+        <field name="name">Global Log Clients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.global_log.client</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

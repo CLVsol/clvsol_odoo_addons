@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_global_log_client_mass_edit_view_form" model="ir.ui.view">
+        <field name="name">clv.global_log.client.mass_edit.form</field>
+        <field name="model">clv.global_log.client.mass_edit</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="global_log_client_ids"/>
+                <field name="global_log_client_ids"/>
+                <group>
+                    <group>
+                        <field name="active_log_selection"/>
+                    </group>
+                    <group name="active_log">
+                        <field name="active_log" nolabel='1'/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_global_log_client_mass_edit"
+                        string="Mass Edit"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <act_window 
+        id="clv_global_log_client_mass_edit_action"
+        name="Global Log Client Mass Edit"
+        binding_model="clv.global_log.client"
+        res_model="clv.global_log.client.mass_edit"
+        view_mode="form"
+        target="new"
+    />
+
+</odoo>

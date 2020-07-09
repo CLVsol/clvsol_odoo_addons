@@ -72,7 +72,15 @@ class EmployeeMassEdit(models.TransientModel):
          ], string='Global Tags:', default=False, readonly=False, required=False
     )
 
-    # @api.multi
+    active_log = fields.Boolean(
+        string='Active Log'
+    )
+    active_log_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Active Log:', default=False, readonly=False, required=False
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -85,7 +93,6 @@ class EmployeeMassEdit(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_employee_mass_edit(self):
         self.ensure_one()
 
@@ -126,5 +133,10 @@ class EmployeeMassEdit(models.TransientModel):
                     m2m_list.append((4, global_tag_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 employee.global_tag_ids = m2m_list
+
+            if self.active_log_selection == 'set':
+                employee.active_log = self.active_log
+            if self.active_log_selection == 'remove':
+                employee.active_log = False
 
         return True

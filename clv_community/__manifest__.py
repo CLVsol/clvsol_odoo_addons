@@ -27,6 +27,7 @@
         'views/community_member_view.xml',
         'views/referenceable_model_view.xml',
         # 'wizard/community_updt_view.xml',
+        'data/global_log_client.xml',
     ],
     'demo': [],
     'test': [],

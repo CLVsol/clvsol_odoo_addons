@@ -28,6 +28,7 @@
         'views/mfile_kanban_view.xml',
         'views/mfile_log_view.xml',
         'wizard/mfile_mass_edit_view.xml',
+        'data/global_log_client.xml',
     ],
     'demo': [],
     'test': [],

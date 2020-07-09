@@ -26,6 +26,7 @@
         'views/hr_employee_menu_view.xml',
         'wizard/hr_employee_mass_edit_view.xml',
         'wizard/hr_employee_user_groups_updt_view.xml',
+        'data/global_log_client.xml',
     ],
     'demo': [],
     'test': [],
