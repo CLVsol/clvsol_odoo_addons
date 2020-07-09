@@ -32,6 +32,7 @@
         'views/address_view.xml',
         'wizard/address_aux_mass_edit_view.xml',
         'wizard/address_associate_to_address_aux_view.xml',
+        'data/global_log_client.xml',
     ],
     'demo': [],
     'test': [],
