@@ -26,6 +26,7 @@
         'views/global_tag_view.xml',
         'views/set_element_view.xml',
         'views/referenceable_model_view.xml',
+        'data/global_log_client.xml',
     ],
     'demo': [],
     'test': [],
