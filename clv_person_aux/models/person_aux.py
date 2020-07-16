@@ -366,7 +366,7 @@ class PersonAux(models.Model):
 
             data_values = {}
 
-            data_values['street'] = False
+            data_values['street_name'] = False
             data_values['street2'] = False
             data_values['zip'] = False
             data_values['city'] = False

@@ -40,7 +40,6 @@ class PersonAssociateToPersonAux(models.TransientModel):
         readonly=False
     )
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -111,7 +110,7 @@ class PersonAssociateToPersonAux(models.TransientModel):
                     if self.create_new_address_aux:
 
                         values = {}
-                        values['street'] = new_person_aux.ref_address_id.street
+                        values['street_name'] = new_person_aux.ref_address_id.street_name
 
                         _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                         new_address_aux = AddressAux.create(values)
@@ -131,79 +130,79 @@ class PersonAssociateToPersonAux(models.TransientModel):
                     _logger.info(u'>>>>>>>>>> %s', data_values)
                     new_person_aux.write(data_values)
 
-            if person.family_id.id is not False:
+            # if person.family_id.id is not False:
 
-                new_family_aux = False
+            #     new_family_aux = False
 
-                FamilyAux = self.env['clv.family_aux']
-                family_aux = FamilyAux.search([
-                    ('related_family_id', '=', person.family_id.id),
-                ])
-                _logger.info(u'%s %s %s', '>>>>>>>>>>', 'family_aux_id:', family_aux.id)
+            #     FamilyAux = self.env['clv.family_aux']
+            #     family_aux = FamilyAux.search([
+            #         ('related_family_id', '=', person.family_id.id),
+            #     ])
+            #     _logger.info(u'%s %s %s', '>>>>>>>>>>', 'family_aux_id:', family_aux.id)
 
-                if family_aux.id is not False:
+            #     if family_aux.id is not False:
 
-                    new_family_aux = family_aux
+            #         new_family_aux = family_aux
 
-                else:
+            #     else:
 
-                    if self.create_new_family_aux:
+            #         if self.create_new_family_aux:
 
-                        values = {}
-                        values['street'] = new_person_aux.family_id.street
+            #             values = {}
+            #             values['street_name'] = new_person_aux.family_id.street_name
 
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                        new_family_aux = FamilyAux.create(values)
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_family_aux:', new_family_aux)
+            #             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+            #             new_family_aux = FamilyAux.create(values)
+            #             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_family_aux:', new_family_aux)
 
-                        values = {}
-                        values['related_family_id'] = new_person_aux.family_id.id
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                        new_family_aux.write(values)
+            #             values = {}
+            #             values['related_family_id'] = new_person_aux.family_id.id
+            #             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+            #             new_family_aux.write(values)
 
-                        new_family_aux.do_family_aux_get_related_family_data()
+            #             new_family_aux.do_family_aux_get_related_family_data()
 
-                if new_family_aux is not False:
+            #     if new_family_aux is not False:
 
-                    data_values = {}
-                    data_values['family_aux_id'] = new_family_aux.id
-                    _logger.info(u'>>>>>>>>>> %s', data_values)
-                    new_person_aux.write(data_values)
+            #         data_values = {}
+            #         data_values['family_aux_id'] = new_family_aux.id
+            #         _logger.info(u'>>>>>>>>>> %s', data_values)
+            #         new_person_aux.write(data_values)
 
-                    AddressAux = self.env['clv.address_aux']
-                    address_aux = AddressAux.search([
-                        ('related_address_id', '=', new_family_aux.ref_address_id.id),
-                    ])
-                    _logger.info(u'%s %s %s', '>>>>>>>>>>', 'address_aux_id:', address_aux.id)
+            #         AddressAux = self.env['clv.address_aux']
+            #         address_aux = AddressAux.search([
+            #             ('related_address_id', '=', new_family_aux.ref_address_id.id),
+            #         ])
+            #         _logger.info(u'%s %s %s', '>>>>>>>>>>', 'address_aux_id:', address_aux.id)
 
-                    if address_aux.id is not False:
+            #         if address_aux.id is not False:
 
-                        new_address_aux = address_aux
+            #             new_address_aux = address_aux
 
-                    else:
+            #         else:
 
-                        if self.create_new_address_aux:
+            #             if self.create_new_address_aux:
 
-                            values = {}
-                            values['street'] = new_family_aux.ref_address_id.street
+            #                 values = {}
+            #                 values['street_name'] = new_family_aux.ref_address_id.street_name
 
-                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                            new_address_aux = AddressAux.create(values)
-                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_address_aux:', new_address_aux)
+            #                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+            #                 new_address_aux = AddressAux.create(values)
+            #                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_address_aux:', new_address_aux)
 
-                            values = {}
-                            values['related_address_id'] = new_family_aux.ref_address_id.id
-                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                            new_address_aux.write(values)
+            #                 values = {}
+            #                 values['related_address_id'] = new_family_aux.ref_address_id.id
+            #                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+            #                 new_address_aux.write(values)
 
-                            new_address_aux.do_address_aux_get_related_address_data()
+            #                 new_address_aux.do_address_aux_get_related_address_data()
 
-                    if new_address_aux is not False:
+            #         if new_address_aux is not False:
 
-                        data_values = {}
-                        data_values['ref_address_aux_id'] = new_address_aux.id
-                        _logger.info(u'>>>>>>>>>> %s', data_values)
-                        new_family_aux.write(data_values)
+            #             data_values = {}
+            #             data_values['ref_address_aux_id'] = new_address_aux.id
+            #             _logger.info(u'>>>>>>>>>> %s', data_values)
+            #             new_family_aux.write(data_values)
 
         if person_count == 1:
 

@@ -49,7 +49,7 @@ class PersonAuxContactInformationUpdate(models.TransientModel):
 
             if person_aux.ref_address_id is not False:
 
-                person_aux.street = person_aux.ref_address_id.street
+                person_aux.street_name = person_aux.ref_address_id.street_name
                 person_aux.street2 = person_aux.ref_address_id.street2
                 person_aux.country_id = person_aux.ref_address_id.country_id
                 person_aux.state_id = person_aux.ref_address_id.state_id

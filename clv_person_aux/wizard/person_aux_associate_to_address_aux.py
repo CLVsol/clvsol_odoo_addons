@@ -69,7 +69,7 @@ class PersonAuxAssociateToAddressAux(models.TransientModel):
                 if self.create_new_address_aux:
 
                     values = {}
-                    values['street'] = person_aux.ref_address_id.street
+                    values['street_name'] = person_aux.ref_address_id.street_name
 
                     _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                     new_address_aux = AddressAux.create(values)
