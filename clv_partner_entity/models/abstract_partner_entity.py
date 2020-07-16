@@ -191,7 +191,7 @@ class AbstractPartnerEntity(models.AbstractModel):
 
     #         data_values['contact_info_is_unavailable'] = True
 
-    #         data_values['street'] = False
+    #         data_values['street_name'] = False
     #         data_values['street2'] = False
     #         data_values['zip'] = False
     #         data_values['city'] = False
