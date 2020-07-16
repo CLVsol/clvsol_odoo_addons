@@ -54,7 +54,7 @@ class PersonContactInformationUpdate(models.TransientModel):
 
                 values = {}
 
-                values['street'] = person.ref_address_id.street
+                values['street_name'] = person.ref_address_id.street_name
                 values['street2'] = person.ref_address_id.street2
                 values['country_id'] = person.ref_address_id.country_id.id
                 values['state_id'] = person.ref_address_id.state_id.id
