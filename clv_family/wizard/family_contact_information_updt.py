@@ -54,7 +54,7 @@ class FamilyContactInformationUpdate(models.TransientModel):
 
                 values = {}
 
-                values['street'] = family.ref_address_id.street
+                values['street_name'] = family.ref_address_id.street_name
                 values['street2'] = family.ref_address_id.street2
                 values['country_id'] = family.ref_address_id.country_id.id
                 values['state_id'] = family.ref_address_id.state_id.id

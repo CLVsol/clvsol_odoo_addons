@@ -69,7 +69,7 @@ class Family(models.Model):
 
                     data_values['ref_address_id'] = family.ref_address_id.id
 
-                    data_values['street'] = family.ref_address_id.street
+                    data_values['street_name'] = family.ref_address_id.street_name
                     data_values['street2'] = family.ref_address_id.street2
                     data_values['zip'] = family.ref_address_id.zip
                     data_values['city'] = family.ref_address_id.city
