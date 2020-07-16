@@ -60,7 +60,7 @@ class AddressAux(models.Model):
                 # data_values['name'] = address_aux.related_address_id.name
                 data_values['code'] = address_aux.related_address_id.code
 
-                data_values['street'] = address_aux.related_address_id.street
+                data_values['street_name'] = address_aux.related_address_id.street_name
                 data_values['street2'] = address_aux.related_address_id.street2
                 data_values['zip'] = address_aux.related_address_id.zip
                 data_values['city'] = address_aux.related_address_id.city
