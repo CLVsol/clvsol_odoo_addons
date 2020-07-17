@@ -97,6 +97,15 @@ class FamilyMassEdit(models.TransientModel):
          ], string='Partner Entity Code:', default=False, readonly=False, required=False
     )
 
+    automatic_set_name = fields.Boolean(
+        string='Automatic Name'
+    )
+    automatic_set_name_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Automatic Name:', default=False, readonly=False, required=False
+    )
+
     active_log = fields.Boolean(
         string='Active Log'
     )
@@ -240,6 +249,11 @@ class FamilyMassEdit(models.TransientModel):
                     vals = {}
                     vals['entity_code'] = False
                     family.write(vals)
+
+            if self.automatic_set_name_selection == 'set':
+                family.automatic_set_name = self.automatic_set_name
+            if self.automatic_set_name_selection == 'remove':
+                family.automatic_set_name = False
 
             if self.active_log_selection == 'set':
                 family.active_log = self.active_log
