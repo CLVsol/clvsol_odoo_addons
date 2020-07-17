@@ -79,6 +79,7 @@ class PersonAssociateToPersonAux(models.TransientModel):
 
                     values = {}
                     values['name'] = person.name
+                    values['street_name'] = person.street_name
 
                     _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                     new_person_aux = PersonAux.create(values)
