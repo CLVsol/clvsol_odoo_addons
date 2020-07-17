@@ -78,7 +78,7 @@
         <field name="arch" type="xml">
             <field name="code" position="before">
                 <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                <field name="category_names_suport" invisible="True"/>
+                <!--field name="category_names_suport" invisible="True"/-->
             </field>
         </field>
     </record>
@@ -119,7 +119,7 @@
         <field name="arch" type="xml">
             <field name="code" position="before">
                 <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                <field name="category_names_suport" invisible="True"/>
+                <!--field name="category_names_suport" invisible="True"/-->
             </field>
         </field>
     </record>

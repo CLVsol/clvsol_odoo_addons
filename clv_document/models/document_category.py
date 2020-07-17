@@ -69,13 +69,27 @@ class Document(models.Model):
         store=False
     )
 
+    # @api.depends('category_ids')
+    # def _compute_category_names(self):
+    #     for r in self:
+    #         r.category_names = r.category_names_suport
+
+    # # @api.multi
+    # def _compute_category_names_suport(self):
+    #     for r in self:
+    #         category_names = False
+    #         for category in r.category_ids:
+    #             if category_names is False:
+    #                 category_names = category.name
+    #             else:
+    #                 category_names = category_names + ', ' + category.name
+    #         r.category_names_suport = category_names
+    #         if r.category_names != category_names:
+    #             record = self.env['clv.document'].search([('id', '=', r.id)])
+    #             record.write({'category_ids': r.category_ids})
+
     @api.depends('category_ids')
     def _compute_category_names(self):
-        for r in self:
-            r.category_names = r.category_names_suport
-
-    # @api.multi
-    def _compute_category_names_suport(self):
         for r in self:
             category_names = False
             for category in r.category_ids:
@@ -83,10 +97,7 @@ class Document(models.Model):
                     category_names = category.name
                 else:
                     category_names = category_names + ', ' + category.name
-            r.category_names_suport = category_names
-            if r.category_names != category_names:
-                record = self.env['clv.document'].search([('id', '=', r.id)])
-                record.write({'category_ids': r.category_ids})
+            r.category_names = category_names
 
 
 class DocumentType(models.Model):
@@ -110,13 +121,27 @@ class DocumentType(models.Model):
         store=False
     )
 
+    # @api.depends('category_ids')
+    # def _compute_category_names(self):
+    #     for r in self:
+    #         r.category_names = r.category_names_suport
+
+    # # @api.multi
+    # def _compute_category_names_suport(self):
+    #     for r in self:
+    #         category_names = False
+    #         for category in r.category_ids:
+    #             if category_names is False:
+    #                 category_names = category.name
+    #             else:
+    #                 category_names = category_names + ', ' + category.name
+    #         r.category_names_suport = category_names
+    #         if r.category_names != category_names:
+    #             record = self.env['clv.document.type'].search([('id', '=', r.id)])
+    #             record.write({'category_ids': r.category_ids})
+
     @api.depends('category_ids')
     def _compute_category_names(self):
-        for r in self:
-            r.category_names = r.category_names_suport
-
-    # @api.multi
-    def _compute_category_names_suport(self):
         for r in self:
             category_names = False
             for category in r.category_ids:
@@ -124,7 +149,4 @@ class DocumentType(models.Model):
                     category_names = category.name
                 else:
                     category_names = category_names + ', ' + category.name
-            r.category_names_suport = category_names
-            if r.category_names != category_names:
-                record = self.env['clv.document.type'].search([('id', '=', r.id)])
-                record.write({'category_ids': r.category_ids})
+            r.category_names = category_names
