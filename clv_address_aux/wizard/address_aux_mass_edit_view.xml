@@ -38,6 +38,12 @@
                     <group>
                     </group>
                     <group>
+                        <field name="automatic_set_name_selection"/>
+                    </group>
+                    <group name="automatic_set_name">
+                        <field name="automatic_set_name" nolabel='1'/>
+                    </group>
+                    <group>
                         <field name="active_log_selection"/>
                     </group>
                     <group name="active_log">

@@ -83,6 +83,15 @@ class AddressAuxMassEdit(models.TransientModel):
          ], string='Partner Entity Code:', default=False, readonly=False, required=False
     )
 
+    automatic_set_name = fields.Boolean(
+        string='Automatic Name'
+    )
+    automatic_set_name_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Automatic Name:', default=False, readonly=False, required=False
+    )
+
     active_log = fields.Boolean(
         string='Active Log'
     )
@@ -202,6 +211,11 @@ class AddressAuxMassEdit(models.TransientModel):
                     vals = {}
                     vals['entity_code'] = False
                     address_aux.write(vals)
+
+            if self.automatic_set_name_selection == 'set':
+                address_aux.automatic_set_name = self.automatic_set_name
+            if self.automatic_set_name_selection == 'remove':
+                address_aux.automatic_set_name = False
 
             if self.active_log_selection == 'set':
                 address_aux.active_log = self.active_log
