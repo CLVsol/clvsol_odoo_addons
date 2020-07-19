@@ -87,9 +87,13 @@ class PersonAux(models.Model):
                 # data_values['phone'] = person_aux.related_person_id.phone
                 # data_values['mobile'] = person_aux.related_person_id.mobile
 
+                data_values['ref_address_is_unavailable'] = person_aux.related_person_id.ref_address_is_unavailable
+
                 if self.related_person_id.ref_address_id.id is not False:
 
                     data_values['ref_address_id'] = person_aux.related_person_id.ref_address_id.id
+
+                data_values['family_is_unavailable'] = person_aux.related_person_id.family_is_unavailable
 
                 if person_aux.related_person_id.family_id.id is not False:
 
