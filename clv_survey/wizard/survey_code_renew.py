@@ -22,9 +22,10 @@ class SurveyCodeRenew(models.TransientModel):
         default=_default_survey_ids
     )
 
-    # @api.multi
     def do_survey_code_renew(self):
         self.ensure_one()
+
+        SurveyQuestion = self.env['survey.question']
 
         for survey in self.survey_ids:
 
@@ -33,30 +34,37 @@ class SurveyCodeRenew(models.TransientModel):
 
             new_survey_code = 'x' + survey.code
 
-            new_page_sequence = 0
-            for page in survey.page_ids:
+            pages = SurveyQuestion.search([
+                ('survey_id', '=', survey.id),
+                ('is_page', '=', True),
+            ])
 
-                new_page_sequence += 10
-                if new_page_sequence < 100:
-                    new_page_code = new_survey_code + '_0' + str(int(new_page_sequence / 10))
+            new_page_sequence = 0
+            for page in pages:
+
+                new_page_sequence += 10000
+                if new_page_sequence < 100000:
+                    new_page_code = new_survey_code + '_0' + str(int(new_page_sequence / 10000))
                 else:
-                    new_page_code = new_survey_code + '_' + str(int(new_page_sequence / 10))
+                    new_page_code = new_survey_code + '_' + str(int(new_page_sequence / 10000))
 
                 _logger.info(
                     u'%s %s: %s, %s: %s',
                     '>>>>>>>>>>', page.code, page.sequence, new_page_code[1:], new_page_sequence
                 )
 
-                new_question_sequence = 0
+                new_question_sequence = new_page_sequence
                 for question in page.question_ids:
 
-                    _type_ = question.type
+                    question_type = question.question_type
 
                     new_question_sequence += 10
-                    if new_question_sequence < 100:
-                        new_question_code = new_page_code + '_0' + str(int(new_question_sequence / 10))
+                    if (new_question_sequence - new_page_sequence) < 100:
+                        new_question_code = \
+                            new_page_code + '_0' + str(int((new_question_sequence - new_page_sequence) / 10))
                     else:
-                        new_question_code = new_page_code + '_' + str(int(new_question_sequence / 10))
+                        new_question_code = \
+                            new_page_code + '_' + str(int((new_question_sequence - new_page_sequence) / 10))
 
                     _logger.info(
                         u'%s %s: %s, %s: %s',
@@ -64,11 +72,11 @@ class SurveyCodeRenew(models.TransientModel):
                         question.code, question.sequence, new_question_code[1:], new_question_sequence
                     )
 
-                    if _type_ == 'free_text' or _type_ == 'textbox' or _type_ == 'datetime':
+                    if question_type == 'free_text' or question_type == 'textbox' or question_type == 'datetime':
 
                         pass
 
-                    if _type_ == 'simple_choice':
+                    if question_type == 'simple_choice':
 
                         new_label_sequence = 0
                         for label in question.labels_ids:
@@ -88,7 +96,7 @@ class SurveyCodeRenew(models.TransientModel):
                             label.sequence = new_label_sequence
                             label.code = new_label_code
 
-                    if _type_ == 'multiple_choice':
+                    if question_type == 'multiple_choice':
 
                         new_label_sequence = 0
                         for label in question.labels_ids:
@@ -108,7 +116,7 @@ class SurveyCodeRenew(models.TransientModel):
                             label.sequence = new_label_sequence
                             label.code = new_label_code
 
-                    if _type_ == 'matrix':
+                    if question_type == 'matrix':
 
                         new_label_sequence = 0
                         for label in question.labels_ids_2:
@@ -151,13 +159,24 @@ class SurveyCodeRenew(models.TransientModel):
                 page.sequence = new_page_sequence
                 page.code = new_page_code
 
-            for page in survey.page_ids:
+            self.env.cr.commit()
+
+            pages = SurveyQuestion.search([
+                ('survey_id', '=', survey.id),
+                ('is_page', '=', True),
+            ])
+
+            for page in pages:
+                _logger.info(u'%s %s', '>>>>> (page.code[1:])', page.code[1:])
                 page.code = page.code[1:]
                 for question in page.question_ids:
+                    _logger.info(u'%s %s', '>>>>> (question.code[1:])', question.code[1:])
                     question.code = question.code[1:]
                     for label in question.labels_ids_2:
+                        _logger.info(u'%s %s', '>>>>> (label.code[1:])', label.code[1:])
                         label.code = label.code[1:]
                     for label in question.labels_ids:
+                        _logger.info(u'%s %s', '>>>>> (label.code[1:])', label.code[1:])
                         label.code = label.code[1:]
 
         return True
