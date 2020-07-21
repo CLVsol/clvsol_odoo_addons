@@ -138,6 +138,13 @@ class PersonAssociateToPersonAux(models.TransientModel):
                     _logger.info(u'>>>>>>>>>> %s', data_values)
                     new_person_aux.write(data_values)
 
+            else:
+
+                data_values = {}
+                data_values['ref_address_aux_is_unavailable'] = True
+                _logger.info(u'>>>>>>>>>> %s', data_values)
+                new_person_aux.write(data_values)
+
             # if person.family_id.id is not False:
 
             #     new_family_aux = False
