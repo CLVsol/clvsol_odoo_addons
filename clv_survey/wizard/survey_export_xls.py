@@ -60,7 +60,6 @@ class SurveyExportXLS(models.TransientModel):
          ], string='File Format', default='draft'
     )
 
-    # @api.multi
     def do_survey_export_xls(self):
         self.ensure_one()
 
@@ -96,6 +95,8 @@ class SurveyExportXLS(models.TransientModel):
         if self.file_format == 'preformatted':
             isHidden = True
 
+        SurveyQuestion = self.env['survey.question']
+
         for survey_reg in self.survey_ids:
 
             file_path = self.dir_path + '/' + \
@@ -123,10 +124,18 @@ class SurveyExportXLS(models.TransientModel):
             row.write(2, _description_)
             row_nr += 2
 
-            for page in survey_reg.page_ids:
+            pages = SurveyQuestion.search([
+                ('survey_id', '=', survey_reg.id),
+                ('is_page', '=', True),
+            ])
+
+            # for page in survey_reg.page_ids:
+            for page in pages:
 
                 _title_ = page.title
-                _description_ = page.description.replace('<p>', '').replace('</p>', '')
+                _description_ = False
+                if page.description is not False:
+                    _description_ = page.description.replace('<p>', '').replace('</p>', '')
 
                 row = sheet.row(row_nr)
                 row.write(0, '[' + page.code + ']')
@@ -139,14 +148,14 @@ class SurveyExportXLS(models.TransientModel):
 
                 for question in page.question_ids:
 
-                    _type_ = question.type
+                    question_type = question.question_type
                     _question_ = question.question
                     if question.comments_message is not False:
                         _comments_message_ = question.comments_message
                     if question.comments_allowed is False:
                         _comments_message_ = ''
 
-                    if _type_ == 'free_text' or _type_ == 'textbox' or _type_ == 'datetime':
+                    if question_type == 'free_text' or question_type == 'textbox' or question_type == 'datetime':
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -154,10 +163,10 @@ class SurveyExportXLS(models.TransientModel):
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _type_)
+                        row.write(4, question_type)
                         row.hidden = isHidden
                         row_nr += 2
-                        if _type_ == 'free_text':
+                        if question_type == 'free_text':
                             row = sheet.row(row_nr)
                             row.write(0, '[' + question.code + ']')
                             row.write(4, '.', style=style_dot)
@@ -197,7 +206,7 @@ class SurveyExportXLS(models.TransientModel):
                             row_nr += 1
                         row_nr += 1
 
-                    if _type_ == 'simple_choice':
+                    if question_type == 'simple_choice':
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -205,7 +214,7 @@ class SurveyExportXLS(models.TransientModel):
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _type_)
+                        row.write(4, question_type)
                         row.hidden = isHidden
                         row_nr += 2
 
@@ -235,7 +244,7 @@ class SurveyExportXLS(models.TransientModel):
                         else:
                             row_nr += 1
 
-                    if _type_ == 'multiple_choice':
+                    if question_type == 'multiple_choice':
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -243,7 +252,7 @@ class SurveyExportXLS(models.TransientModel):
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _type_)
+                        row.write(4, question_type)
                         row.hidden = isHidden
                         row_nr += 2
 
@@ -273,7 +282,7 @@ class SurveyExportXLS(models.TransientModel):
                         else:
                             row_nr += 1
 
-                    if _type_ == 'matrix':
+                    if question_type == 'matrix':
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -281,7 +290,7 @@ class SurveyExportXLS(models.TransientModel):
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _type_ + '_' + question.matrix_subtype)
+                        row.write(4, question_type + '_' + question.matrix_subtype)
                         row.hidden = isHidden
                         row_nr += 1
 
