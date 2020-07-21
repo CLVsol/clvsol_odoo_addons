@@ -18,6 +18,8 @@
                         <field name="new_title"/>
                         <field name="new_code"/>
                         <field name="new_description"/>
+                        <field name="new_access_token"/>
+                        <field name="phase_id"/>
                     </group>
                 </sheet>
                 <footer>

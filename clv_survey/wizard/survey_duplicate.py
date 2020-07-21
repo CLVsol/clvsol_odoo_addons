@@ -34,6 +34,16 @@ class SurveyDuplicate(models.TransientModel):
         required=True
     )
 
+    new_access_token = fields.Char(
+        string='New Access Token',
+        required=True
+    )
+
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
+
     @api.model
     def default_get(self, field_names):
 
@@ -49,10 +59,14 @@ class SurveyDuplicate(models.TransientModel):
         defaults['new_title'] = survey.title
         defaults['new_description'] = survey.description
         defaults['new_code'] = survey.code
+        defaults['new_access_token'] = survey.access_token
+
+        phase_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'clv.global_settings.current_phase_id', '').strip())
+        defaults['phase_id'] = phase_id
 
         return defaults
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -65,12 +79,10 @@ class SurveyDuplicate(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_survey_duplicate(self):
         self.ensure_one()
 
         SurveySurvey = self.env['survey.survey']
-        SurveyPage = self.env['survey.page']
         SurveyQuestion = self.env['survey.question']
         SurveyLabel = self.env['survey.label']
 
@@ -82,15 +94,25 @@ class SurveyDuplicate(models.TransientModel):
             values = {
                 'title': self.new_title,
                 'code': self.new_code,
-                'stage_id': survey.stage_id.id,
-                'auth_required': survey.auth_required,
+                'access_token': self.new_access_token,
+                'users_login_required': survey.users_login_required,
+                'attempts_limit': survey.attempts_limit,
                 'users_can_go_back': survey.users_can_go_back,
                 'description': self.new_description,
                 'thank_you_message': survey.thank_you_message,
+                'questions_layout': survey.questions_layout,
+                # 'auth_required': survey.auth_required,
+                # 'stage_id': survey.stage_id.id,
+                'phase_id': self.phase_id.id,
             }
             new_survey = SurveySurvey.create(values)
 
-            for page in survey.page_ids:
+            pages = SurveyQuestion.search([
+                ('survey_id', '=', survey.id),
+                ('is_page', '=', True),
+            ])
+
+            for page in pages:
 
                 new_page_code = page.code.replace(survey.code, self.new_code)
 
@@ -98,12 +120,30 @@ class SurveyDuplicate(models.TransientModel):
 
                 values = {
                     'title': page.title,
+                    'is_page': page.is_page,
+                    'page_id': page.page_id,
                     'code': new_page_code,
+                    'parameter': page.parameter,
+                    'question_type': page.question_type,
                     'survey_id': new_survey.id,
                     'sequence': page.sequence,
                     'description': page.description,
+                    'constr_mandatory': page.constr_mandatory,
+                    'constr_error_msg': page.constr_error_msg,
+                    'display_mode': page.display_mode,
+                    'column_nb': page.column_nb,
+                    'comments_allowed': page.comments_allowed,
+                    'comments_message': page.comments_message,
+                    'comment_count_as_answer': page.comment_count_as_answer,
+                    'matrix_subtype': page.matrix_subtype,
                 }
-                new_page = SurveyPage.create(values)
+                new_page = SurveyQuestion.create(values)
+
+                # questions = SurveyQuestion.search([
+                #     ('survey_id', '=', survey.id),
+                #     ('page_id', '=', page.id),
+                #     ('is_page', '=', False),
+                # ])
 
                 for question in page.question_ids:
 
@@ -112,20 +152,22 @@ class SurveyDuplicate(models.TransientModel):
                     _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>>>>>>', new_question_code, question.question)
 
                     values = {
-                        'question': question.question,
+                        'title': question.title,
+                        'is_page': question.is_page,
+                        'page_id': new_page.id,
                         'code': new_question_code,
                         'parameter': question.parameter,
-                        'type': question.type,
-                        'page_id': new_page.id,
+                        'question_type': question.question_type,
+                        'survey_id': new_survey.id,
                         'sequence': question.sequence,
+                        'description': question.description,
                         'constr_mandatory': question.constr_mandatory,
                         'constr_error_msg': question.constr_error_msg,
-
                         'display_mode': question.display_mode,
                         'column_nb': question.column_nb,
                         'comments_allowed': question.comments_allowed,
                         'comments_message': question.comments_message,
-
+                        'comment_count_as_answer': question.comment_count_as_answer,
                         'matrix_subtype': question.matrix_subtype,
                     }
                     new_question = SurveyQuestion.create(values)
