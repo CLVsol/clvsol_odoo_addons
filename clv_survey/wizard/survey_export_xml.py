@@ -45,9 +45,10 @@ class SurveyExportXML(models.TransientModel):
         default='survey_jcafb_<code>.xml'
     )
 
-    # @api.multi
     def do_survey_export_xml(self):
         self.ensure_one()
+
+        SurveyQuestion = self.env['survey.question']
 
         for survey_reg in self.survey_ids:
 
@@ -72,7 +73,7 @@ class SurveyExportXML(models.TransientModel):
             xml_file.write('            <field name="title">%s</field>\n' % (survey_reg.title))
             xml_file.write('            <field name="code">%s</field>\n' % (survey_reg.code))
             xml_file.write('            <field name="stage_id" ref="%s"/>\n' % (_stage_id_))
-            xml_file.write('            <field name="auth_required" eval="%s"/>\n' % (survey_reg.auth_required))
+            # xml_file.write('            <field name="auth_required" eval="%s"/>\n' % (survey_reg.auth_required))
             xml_file.write('            <field name="users_can_go_back" eval="%s"/>\n' %
                            (survey_reg.users_can_go_back))
             xml_file.write('            <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' % (_description_))
@@ -81,11 +82,19 @@ class SurveyExportXML(models.TransientModel):
             xml_file.write('        </record>\n')
             xml_file.write('\n')
 
-            for page in survey_reg.page_ids:
+            pages = SurveyQuestion.search([
+                ('survey_id', '=', survey_reg.id),
+                ('is_page', '=', True),
+            ])
+
+            # for page in survey_reg.page_ids:
+            for page in pages:
 
                 _title_ = page.title
                 _model_ = 'survey.page'
-                _description_ = page.description.replace('<p>', '').replace('</p>', '')
+                _description_ = False
+                if page.description is not False:
+                    _description_ = page.description.replace('<p>', '').replace('</p>', '')
 
                 xml_file.write('            <!-- %s -->\n' % (_title_))
                 xml_file.write('            <record model="%s" id="%s">\n' % (_model_, page.code))
@@ -100,7 +109,7 @@ class SurveyExportXML(models.TransientModel):
 
                 for question in page.question_ids:
 
-                    _type_ = question.type
+                    question_type = question.question_type
                     _question_ = question.question
                     _model_ = 'survey.question'
                     if question.comments_message is not False:
@@ -108,7 +117,7 @@ class SurveyExportXML(models.TransientModel):
                     if question.comments_allowed is False:
                         _comments_message_ = ''
 
-                    if _type_ == 'free_text' or _type_ == 'textbox' or _type_ == 'datetime':
+                    if question_type == 'free_text' or question_type == 'textbox' or question_type == 'datetime':
 
                         xml_file.write('                <!-- %s -->\n' % (_question_))
                         xml_file.write('                <record model="%s" id="%s">\n' % (_model_, question.code))
@@ -117,7 +126,7 @@ class SurveyExportXML(models.TransientModel):
                         if question.parameter:
                             xml_file.write('                    <field name="parameter">%s</field>\n' %
                                            (question.parameter))
-                        xml_file.write('                    <field name="type">%s</field>\n' % (_type_))
+                        xml_file.write('                    <field name="type">%s</field>\n' % (question_type))
                         xml_file.write('                    <field name="page_id" ref="%s"/>\n' % (page.code))
                         xml_file.write('                    <field name="sequence" eval="%s"/>\n' %
                                        (question.sequence))
@@ -128,7 +137,7 @@ class SurveyExportXML(models.TransientModel):
                         xml_file.write('                </record>\n')
                         xml_file.write('\n')
 
-                    if _type_ == 'simple_choice':
+                    if question_type == 'simple_choice':
 
                         xml_file.write('                <!-- %s -->\n' % (_question_))
                         xml_file.write('                <record model="%s" id="%s">\n' % (_model_, question.code))
@@ -137,7 +146,7 @@ class SurveyExportXML(models.TransientModel):
                         if question.parameter:
                             xml_file.write('                    <field name="parameter">%s</field>\n' %
                                            (question.parameter))
-                        xml_file.write('                    <field name="type">%s</field>\n' % (_type_))
+                        xml_file.write('                    <field name="type">%s</field>\n' % (question_type))
                         xml_file.write('                    <field name="page_id" ref="%s"/>\n' % (page.code))
                         xml_file.write('                    <field name="sequence" eval="%s"/>\n' %
                                        (question.sequence))
@@ -171,7 +180,7 @@ class SurveyExportXML(models.TransientModel):
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
 
-                    if _type_ == 'multiple_choice':
+                    if question_type == 'multiple_choice':
 
                         xml_file.write('                <!-- %s -->\n' % (_question_))
                         xml_file.write('                <record model="%s" id="%s">\n' % (_model_, question.code))
@@ -180,7 +189,7 @@ class SurveyExportXML(models.TransientModel):
                         if question.parameter:
                             xml_file.write('                    <field name="parameter">%s</field>\n' %
                                            (question.parameter))
-                        xml_file.write('                    <field name="type">%s</field>\n' % (_type_))
+                        xml_file.write('                    <field name="type">%s</field>\n' % (question_type))
                         xml_file.write('                    <field name="page_id" ref="%s"/>\n' % (page.code))
                         xml_file.write('                    <field name="sequence" eval="%s"/>\n' %
                                        (question.sequence))
@@ -212,7 +221,7 @@ class SurveyExportXML(models.TransientModel):
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
 
-                    if _type_ == 'matrix':
+                    if question_type == 'matrix':
 
                         xml_file.write('                <!-- %s -->\n' % (_question_))
                         xml_file.write('                <record model="%s" id="%s">\n' % (_model_, question.code))
@@ -221,7 +230,7 @@ class SurveyExportXML(models.TransientModel):
                         if question.parameter:
                             xml_file.write('                    <field name="parameter">%s</field>\n' %
                                            (question.parameter))
-                        xml_file.write('                    <field name="type">%s</field>\n' % (_type_))
+                        xml_file.write('                    <field name="type">%s</field>\n' % (question_type))
                         xml_file.write('                    <field name="matrix_subtype">%s</field>\n' %
                                        (question.matrix_subtype))
                         xml_file.write('                    <field name="page_id" ref="%s"/>\n' % (page.code))
