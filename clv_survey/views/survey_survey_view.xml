@@ -22,6 +22,9 @@
                 <label for="public_url" class="oe_edit_only"/>
                 <h3><field name="public_url" placeholder="Public link"/></h3>
             </label>
+            <field name="question_type" position="before">
+                <field name="code"/>
+            </field>
             <xpath expr="//notebook" position="inside">
                 <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                     <group name="settings_top">
