@@ -19,6 +19,8 @@
                 <h3><field name="code" placeholder="Question Code"/></h3>
                 <label for="parameter" class="oe_edit_only"/>
                 <h3><field name="parameter" placeholder="Related Parameter"/></h3>
+                <label for="description" class="oe_edit_only"/>
+                <h3><field name="description" placeholder="Description"/></h3>
             </label>
             <xpath expr="//notebook" position="inside">
                 <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
@@ -60,11 +62,11 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="sequence" position="after">
-                <field name="survey_id" />
-                <field name="page_id" />
-                <field name="is_page" />
-                <field name="code" />
-                <field name="parameter" />
+                <field name="survey_id"/>
+                <field name="page_id"/>
+                <field name="is_page"/>
+                <field name="code"/>
+                <field name="parameter"/>
             </field>
         </field>
     </record>
@@ -76,12 +78,27 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="survey_id" position="after">
-                <field name="page_id" />
+                <field name="page_id"/>
             </field>
             <filter name="group_by_type" position="before">
                 <filter name="group_by_survey_id" string="Survey" domain="[]"  context="{'group_by':'survey_id'}"/>
                 <filter name="group_by_pate_id" string="Page" domain="[]"  context="{'group_by':'page_id'}"/>
             </filter>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="survey.action_survey_question_form">
+        <field name="name">Questions</field>
+        <field name="res_model">survey.question</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="survey.survey_question_search"/>
+        <field name="context">{'search_default_group_by_page': True}</field>
+        <!--field name="domain">[('is_page', '=', False)]</field-->
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_empty_folder">
+            No questions found
+          </p>
         </field>
     </record>
 
