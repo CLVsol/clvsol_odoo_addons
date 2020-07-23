@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
+from odoo import exceptions
 
 
 class SurveySurvey(models.Model):
@@ -16,3 +17,6 @@ class SurveySurvey(models.Model):
          'UNIQUE (code)',
          u'Error! The Survey Code must be unique!'),
     ]
+
+    def copy(self):
+        raise exceptions.ValidationError('It is not possible to duplicate the record, please create a new one.')

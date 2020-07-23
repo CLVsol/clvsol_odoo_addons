@@ -58,6 +58,17 @@
         </field>
     </record>
 
+    <record id="survey_survey_view_form_duplicate" model="ir.ui.view">
+        <field name="name">survey.survey.form.duplicate</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+               <attribute name="duplicate">false</attribute>
+           </xpath>
+        </field>
+    </record>
+
     <record id="survey_survey_view_tree" model="ir.ui.view">
         <field name="name">survey.survey.tree</field>
         <field name="model">survey.survey</field>
