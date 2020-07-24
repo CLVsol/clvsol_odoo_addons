@@ -38,10 +38,10 @@ class SurveyUserInput(models.Model):
 
         value = False
 
-        if survey_question_search.type == 'textbox':
+        if survey_question_search.question_type == 'textbox':
             value = survey_user_input_line_search.value_text
 
-        if survey_question_search.type == 'simple_choice':
+        if survey_question_search.question_type == 'simple_choice':
             value = ''
             if question_code[11:13] == '_C':
                 for survey_user_input_line_reg in survey_user_input_line_search:
@@ -58,7 +58,7 @@ class SurveyUserInput(models.Model):
                         #     value = value + '; False'
                 # value = survey_user_input_line_search.value_suggested.value
 
-        if survey_question_search.type == 'multiple_choice':
+        if survey_question_search.question_type == 'multiple_choice':
             value = ''
             if question_code[11:13] == '_C':
                 for survey_user_input_line_reg in survey_user_input_line_search:
@@ -74,7 +74,7 @@ class SurveyUserInput(models.Model):
                         # else:
                         #     value = value + '; False'
 
-        if survey_question_search.type == 'matrix':
+        if survey_question_search.question_type == 'matrix':
             value = ''
             for survey_user_input_line_reg in survey_user_input_line_search:
                 if value == '':
