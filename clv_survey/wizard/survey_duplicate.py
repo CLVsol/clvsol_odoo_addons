@@ -16,7 +16,7 @@ class SurveyDuplicate(models.TransientModel):
     survey_ids = fields.Many2many(
         comodel_name='survey.survey',
         relation='survey_survey_duplicate_rel',
-        string='Lab Test Types'
+        string='Surveys'
     )
 
     new_title = fields.Char(
