@@ -19,7 +19,7 @@
                         <field name="new_code"/>
                         <field name="new_description"/>
                         <field name="new_access_token"/>
-                        <field name="phase_id"/>
+                        <field name="phase_id" options='{"no_open": False, "no_create": True}'/>
                     </group>
                 </sheet>
                 <footer>
