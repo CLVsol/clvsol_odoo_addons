@@ -10,9 +10,6 @@
         <field name="inherit_id" ref="survey.survey_question_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="sequence" position="after">
-                <field name="code"/>
-            </field>
             <field name="labels_ids_2" position="replace">
                 <field name="labels_ids_2" context="{'default_question_id_2': active_id}" attrs="{'invisible': [('question_type', '!=', 'matrix')]}">
                     <tree editable="bottom">
