@@ -43,6 +43,7 @@
         binding_model="survey.survey"
         res_model="survey.survey.duplicate"
         view_mode="form"
+        binding_views="form"
         target="new"
     />
 
