@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="survey_question_duplicate_view_form" model="ir.ui.view">
+        <field name="name">survey.question.duplicate.form</field>
+        <field name="model">survey.question.duplicate</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_right">
+                    </div>
+                    <label for="question_ids"/>
+                    <field name="question_ids"/>
+                    <group  name="group_top">
+                        <field name="survey_id" options='{"no_open": False, "no_create": True}'/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_question_duplicate"
+                        string="Duplicate"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <act_window 
+        id="survey_question_duplicate_action"
+        name="Question Duplicate"
+        binding_model="survey.question"
+        res_model="survey.question.duplicate"
+        view_mode="form"
+        binding_views="form"
+        target="new"
+    />
+
+</odoo>
