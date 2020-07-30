@@ -23,6 +23,7 @@
         'views/document_log_view.xml',
         'views/document_type_view.xml',
         'views/document_type_log_view.xml',
+        'views/document_type_parameter_view.xml',
         'views/document_category_view.xml',
         'views/document_category_log_view.xml',
         'views/global_tag_view.xml',
