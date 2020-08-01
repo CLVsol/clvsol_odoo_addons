@@ -24,3 +24,6 @@ access_clv_lab_test_criterion_user,clv.lab_test.criterion.user,model_clv_lab_tes
 access_clv_lab_test_criterion_manager,clv.lab_test.criterion.manager,model_clv_lab_test_criterion,clv_lab_test.group_manager,1,1,1,0
 access_clv_lab_test_criterion_supmanager,clv.lab_test.criterion.supmanager,model_clv_lab_test_criterion,clv_lab_test.group_supmanager,1,1,1,1
 
+access_clv_lab_test_type_parameter_user,clv.lab_test.type.parameter.user,model_clv_lab_test_type_parameter,clv_lab_test.group_user,1,0,0,0
+access_clv_lab_test_type_parameter_manager,clv.lab_test.manager.parameter,model_clv_lab_test_type_parameter,clv_lab_test.group_manager,1,1,1,0
+access_clv_lab_test_type_parameter_supmanager,clv.lab_test.type.parameter.supmanager,model_clv_lab_test_type_parameter,clv_lab_test.group_supmanager,1,1,1,1
