@@ -46,20 +46,6 @@ class LabTestTypeDuplicate(models.TransientModel):
 
         return defaults
 
-    # @api.multi
-    def _reopen_form(self):
-        self.ensure_one()
-        action = {
-            'type': 'ir.actions.act_window',
-            'res_model': self._name,
-            'res_id': self.id,
-            'view_type': 'form',
-            'view_mode': 'form',
-            'target': 'new',
-        }
-        return action
-
-    # @api.multi
     def do_lab_test_type_duplicate(self):
         self.ensure_one()
 
@@ -79,26 +65,26 @@ class LabTestTypeDuplicate(models.TransientModel):
             }
             new_lab_test_type = LabTestType.create(values)
 
-            criteria = []
-            for criterion in lab_test_type.criterion_ids:
+            # criteria = []
+            # for criterion in lab_test_type.criterion_ids:
 
-                criterion_code = False
-                if criterion.code is not False:
-                    criterion_code = criterion.code.replace(lab_test_type.code, self.new_code)
-                criteria.append((0, 0, {'code': criterion_code,
-                                        'name': criterion.name,
-                                        'unit_id': criterion.unit_id.id,
-                                        'result': criterion.result,
-                                        'normal_range': criterion.normal_range,
-                                        # 'lab_test_type_id': criterion.lab_test_type_id.id,
-                                        'sequence': criterion.sequence,
-                                        'result_display': criterion.result_display,
-                                        'report_display': criterion.report_display,
-                                        }))
+            #     criterion_code = False
+            #     if criterion.code is not False:
+            #         criterion_code = criterion.code.replace(lab_test_type.code, self.new_code)
+            #     criteria.append((0, 0, {'code': criterion_code,
+            #                             'name': criterion.name,
+            #                             'unit_id': criterion.unit_id.id,
+            #                             'result': criterion.result,
+            #                             'normal_range': criterion.normal_range,
+            #                             # 'lab_test_type_id': criterion.lab_test_type_id.id,
+            #                             'sequence': criterion.sequence,
+            #                             'result_display': criterion.result_display,
+            #                             'report_display': criterion.report_display,
+            #                             }))
 
-            new_lab_test_type.criterion_ids = criteria
+            # new_lab_test_type.criterion_ids = criteria
 
-            _logger.info(u'%s %s', '>>>>>>>>>>>>>>>', criteria)
+            # _logger.info(u'%s %s', '>>>>>>>>>>>>>>>', criteria)
 
         if lab_test_type_count == 1:
 
@@ -125,4 +111,3 @@ class LabTestTypeDuplicate(models.TransientModel):
             }
 
         return action
-        # return True
