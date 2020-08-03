@@ -15,7 +15,10 @@ class DocumentTypeParameter(models.Model):
 
     item_type = fields.Char(sring='Item Type', required=True)
 
-    document_type_id = fields.Many2one(comodel_name='clv.document.type', string='Document Type', required=True)
+    document_type_id = fields.Many2one(
+        comodel_name='clv.document.type',
+        string='Document Type',
+        required=False)
 
     active = fields.Boolean(string='Active', default=1)
 
