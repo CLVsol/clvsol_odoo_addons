@@ -15,7 +15,10 @@ class LabTestTypeParameter(models.Model):
 
     criterion_type = fields.Char(sring='Criterion Type', required=True)
 
-    lab_test_type_id = fields.Many2one(comodel_name='clv.lab_test.type', string='Lab Test Type', required=True)
+    lab_test_type_id = fields.Many2one(
+        comodel_name='clv.lab_test.type',
+        string='Lab Test Type',
+        required=False)
 
     active = fields.Boolean(string='Active', default=1)
 
