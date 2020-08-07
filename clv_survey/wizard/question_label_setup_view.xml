@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="survey_question_label_setup_view_form" model="ir.ui.view">
+        <field name="name">survey.question.label_setup.form</field>
+        <field name="model">survey.question.label_setup</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_right">
+                    </div>
+                    <label for="question_ids"/>
+                    <field name="question_ids"/>
+                    <group  name="group_top">
+                        <field name="clear_current_labels"/>
+                        <field name="use_set_elements"/>
+                        <field name="set_id" options="{'no_open': False, 'no_create': True}" attrs="{'invisible':[('use_set_elements', '!=', True)]}"/>
+                        <field name="count_set_elements" attrs="{'invisible':[('use_set_elements', '!=', True)]}"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_question_label_setup"
+                        string="Label SetUp"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <act_window 
+        id="survey_question_label_setup_action"
+        name="Question Label SetUp"
+        binding_model="survey.question"
+        res_model="survey.question.label_setup"
+        view_mode="form"
+        binding_views="form"
+        target="new"
+    />
+
+</odoo>

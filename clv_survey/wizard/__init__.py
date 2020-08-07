@@ -7,3 +7,4 @@ from . import survey_code_renew
 from . import survey_export_xls
 from . import survey_export_xml
 from . import question_duplicate
+from . import question_label_setup

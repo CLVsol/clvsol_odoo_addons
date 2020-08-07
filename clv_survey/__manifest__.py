@@ -25,6 +25,7 @@
         'wizard/survey_export_xls_view.xml',
         'wizard/survey_export_xml_view.xml',
         'wizard/question_duplicate_view.xml',
+        'wizard/question_label_setup_view.xml',
     ],
     'demo': [],
     'test': [],
