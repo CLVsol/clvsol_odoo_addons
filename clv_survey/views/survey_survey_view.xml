@@ -25,6 +25,22 @@
             <field name="question_type" position="before">
                 <field name="code"/>
             </field>
+            <field name="question_and_page_ids" position="before">
+                <group>
+                    <group>
+                        <button name="survey.action_survey_question_form"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-list"
+                                context="{'search_default_survey_id': id}"
+                                >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text"> Question(s)</span>
+                            </div>
+                        </button>
+                    </group>
+                </group>
+            </field>
             <xpath expr="//notebook" position="inside">
                 <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                     <group name="settings_top">
