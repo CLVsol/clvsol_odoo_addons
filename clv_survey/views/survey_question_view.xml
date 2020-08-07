@@ -22,6 +22,9 @@
                 <label for="description" class="oe_edit_only"/>
                 <h3><field name="description" placeholder="Description"/></h3>
             </label>
+            <field name="is_correct" position="before">
+                <field name="code"/>
+            </field>
             <xpath expr="//notebook" position="inside">
                 <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                     <group name="settings_top">
