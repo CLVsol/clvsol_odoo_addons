@@ -23,6 +23,7 @@
         'views/referenceable_model_view.xml',
         'views/global_settings_view.xml',
         'views/global_settings_filestore_view.xml',
+        'views/default_value_view.xml',
     ],
     'demo': [],
     'test': [],

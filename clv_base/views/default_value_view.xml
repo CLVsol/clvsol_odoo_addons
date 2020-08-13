@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_default_value_view_form" model="ir.ui.view">
+        <field name="name">clv.default_value.form</field>
+        <field name="model">clv.default_value</field>
+        <field name="arch" type="xml">
+            <form string="Default Value">
+                <header name="header">
+                    <!-- To add buttons and status widget -->
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model"/>
+                            <field name="parameter"/>
+                            <field name="method"/>
+                            <field name="method_args"/>
+                            <field name="enabled"/>
+                        </group>
+                        <group>
+                            <field name="value"/>
+                            <field name="ref_id"  options="{'no_open': False, 'no_create': True}"/>
+                            <field name="ref_model"/>
+                            <field name="ref_name"/>
+                            <field name="ref_code"/>
+                            <field name="ref_suport" invisible="True"/>
+                        </group>
+                    </group>
+                    <!--field name="outcome_info" placeholder="Outcome Informations..." colspan="4"/-->
+                    <notebook>
+                        <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
+                            <group name="settings_top">
+                                <group name="settings_left">
+                                    <field name="id"/>
+                                </group>
+                                <group name='settings_right'>
+                                    <div class="oe_button_box" name="settings_buttons">
+                                        <button name="toggle_active"
+                                                    type="object"
+                                                    class="oe_stat_button"
+                                                    icon="fa-archive"
+                                                    groups="clv_base.group_reguser"
+                                                    >
+                                                <field name="active"
+                                                       widget="boolean_button"
+                                                       options='{"terminology": "archive"}'
+                                                       />
+                                        </button>
+                                    </div>
+                                </group>
+                                <group name="settings_left_3">
+                                </group>
+                                <group name='settings_right_3'>
+                                    <div class="oe_button_box" name="settings_buttons_3">
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="clv_default_value_view_tree" model="ir.ui.view">
+        <field name="name">clv.default_value.tree</field>
+        <field name="model">clv.default_value</field>
+        <field name="arch" type="xml">
+            <tree name="verification" string="Default Value">
+                <field name="model"/>
+                <field name="parameter"/>
+                <field name="method"/>
+                <field name="value"/>
+                <field name="ref_id"/>
+                <field name="ref_suport" invisible="True"/>
+                <field name="enabled"/>
+                <field name="id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="clv_default_value_view_search" model="ir.ui.view">
+        <field name="name">clv.default_value.search</field>
+        <field name="model">clv.default_value</field>
+        <field name="arch" type="xml">
+            <search string="Default Value">
+                <field name="model"/>
+                <field name="parameter"/>
+                <field name="method"/>
+                <field name="ref_id"/>
+                <field name="ref_model"/>
+                <field name="ref_name"/>
+                <field name="ref_code"/>
+                <field name="enabled"/>
+                <field name="id"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                <group name="group_by" expand="0" string="Group By...">
+                    <filter name="filter_model" string="Model Name" domain="[]" context="{'group_by':'model'}"/>
+                    <filter name="filter_method" string="Method" context="{'group_by': 'method'}"/>
+                    <filter name="filter_ref_model" string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
+                    <filter name="filter_ref_name" string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
+                    <filter name="filter_enabled" string="Enabled" domain="[]" context="{'group_by':'enabled'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clv_default_value_action">
+        <field name="name">Default Values</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.default_value</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
