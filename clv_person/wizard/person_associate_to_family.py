@@ -99,7 +99,7 @@ class PersonAssociateToFamily(models.TransientModel):
                         new_family.write(values)
 
                         values = {}
-                        values['family_id'] = family.id
+                        values['family_id'] = new_family.id
                         _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                         person.write(values)
 
@@ -114,7 +114,7 @@ class PersonAssociateToFamily(models.TransientModel):
 
                                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'other_person:', other_person)
                                 values = {}
-                                values['family_id'] = family.id
+                                values['family_id'] = new_family.id
                                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                                 other_person.write(values)
 
