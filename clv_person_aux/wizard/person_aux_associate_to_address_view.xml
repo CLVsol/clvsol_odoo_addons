@@ -15,7 +15,7 @@
                 <field name="person_aux_ids"/>
                 <group>
                     <group>
-                        <!--field name="create_new_address"/-->
+                        <field name="person_aux_verification_exec"/>
                     </group>
                 </group>
                 <footer>

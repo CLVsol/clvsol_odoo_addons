@@ -22,13 +22,11 @@ class PersonAuxAssociateToAddress(models.TransientModel):
         default=_default_person_aux_ids
     )
 
-    # create_address = fields.Boolean(
-    #     string='Create new Address',
-    #     default=True,
-    #     readonly=False
-    # )
+    person_aux_verification_exec = fields.Boolean(
+        string='Person (Aux) Verification Execute',
+        default=True,
+    )
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -41,7 +39,6 @@ class PersonAuxAssociateToAddress(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_person_aux_associate_to_address(self):
         self.ensure_one()
 
@@ -66,6 +63,9 @@ class PersonAuxAssociateToAddress(models.TransientModel):
                     data_values['ref_address_id'] = address.id
                     _logger.info(u'>>>>>>>>>> %s', data_values)
                     person_aux.write(data_values)
+
+            if self.person_aux_verification_exec:
+                person_aux._person_aux_verification_exec()
 
         # return action
         return True
