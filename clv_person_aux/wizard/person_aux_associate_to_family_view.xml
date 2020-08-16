@@ -15,7 +15,10 @@
                 <field name="person_aux_ids"/>
                 <group>
                     <group>
-                        <!--field name="create_new_family"/-->
+                        <field name="create_new_family"/>
+                        <field name="associate_all_persons_from_ref_address"/>
+                        <field name="family_verification_exec"/>
+                        <field name="person_aux_verification_exec"/>
                     </group>
                 </group>
                 <footer>

@@ -22,13 +22,22 @@ class PersonAuxAssociateToFamily(models.TransientModel):
         default=_default_person_aux_ids
     )
 
-    # create_family = fields.Boolean(
-    #     string='Create new Family',
-    #     default=True,
-    #     readonly=False
-    # )
+    create_new_family = fields.Boolean(string='Create new Family', default=False)
+    associate_all_persons_from_ref_address = fields.Boolean(
+        string='Associate all Persons form Reference Address',
+        default=False
+    )
 
-    # @api.multi
+    family_verification_exec = fields.Boolean(
+        string='Family Verification Execute',
+        default=True,
+    )
+
+    person_aux_verification_exec = fields.Boolean(
+        string='Person (Aux) Verification Execute',
+        default=True,
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -41,7 +50,6 @@ class PersonAuxAssociateToFamily(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_person_aux_associate_to_family(self):
         self.ensure_one()
 
@@ -54,42 +62,85 @@ class PersonAuxAssociateToFamily(models.TransientModel):
 
             Family = self.env['clv.family']
             family = False
+
             if person_aux.ref_address_id.id is not False:
                 family = Family.search([
                     ('ref_address_id', '=', person_aux.ref_address_id.id),
                 ])
                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'family_id:', family.id)
 
-            if family is not False:
+                if family.id is not False:
 
-                data_values = {}
-                data_values['family_id'] = family.id
-                _logger.info(u'>>>>>>>>>> %s', data_values)
-                person_aux.write(data_values)
+                    data_values = {}
+                    data_values['family_id'] = family.id
+                    _logger.info(u'>>>>>>>>>> %s', data_values)
+                    person_aux.write(data_values)
 
-        # if person_aux_count == 1:
+                else:
 
-        #     action = {
-        #         'type': 'ir.actions.act_window',
-        #         'name': 'Families',
-        #         'res_model': 'clv.family',
-        #         'res_id': family.id,
-        #         'view_type': 'form',
-        #         'view_mode': 'tree,kanban,form',
-        #         'target': 'current',
-        #         'context': {'search_default_name': family.name},
-        #     }
+                    if self.create_new_family:
 
-        # else:
+                        values = {}
+                        values['name'] = person_aux.ref_address_id.name
 
-        #     action = {
-        #         'type': 'ir.actions.act_window',
-        #         'name': 'Families',
-        #         'res_model': 'clv.family',
-        #         'view_type': 'form',
-        #         'view_mode': 'tree,kanban,form',
-        #         'target': 'current',
-        #     }
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                        new_family = Family.create(values)
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_family:', new_family)
+
+                        values = {}
+                        values['code'] = '/'
+                        values['phase_id'] = person_aux.phase_id.id
+                        values['street_name'] = person_aux.ref_address_id.street_name
+                        values['street2'] = person_aux.ref_address_id.street2
+                        values['country_id'] = person_aux.ref_address_id.country_id.id
+                        values['state_id'] = person_aux.ref_address_id.state_id.id
+                        values['city'] = person_aux.ref_address_id.city
+                        values['zip'] = person_aux.ref_address_id.zip
+                        # values['phone'] = person_aux.ref_address_id.phone
+                        # values['mobile'] = person_aux.ref_address_id.mobile
+                        # values['email'] = person_aux.ref_address_id.email
+
+                        values['street_number'] = person_aux.ref_address_id.street_number
+                        values['district'] = person_aux.ref_address_id.district
+                        values['city_id'] = person_aux.ref_address_id.city_id.id
+
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                        new_family.write(values)
+
+                        values = {}
+                        values['ref_address_id'] = person_aux.ref_address_id.id
+                        values['state'] = person_aux.ref_address_id.state
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                        new_family.write(values)
+
+                        values = {}
+                        values['family_id'] = new_family.id
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                        person_aux.write(values)
+
+                        if self.associate_all_persons_from_ref_address:
+
+                            Person = self.env['clv.person']
+                            persons = Person.search([
+                                ('ref_address_id', '=', person_aux.ref_address_id.id),
+                            ])
+
+                            for other_person in persons:
+
+                                _logger.info(u'%s %s %s', '>>>>>>>>>>', 'other_person:', other_person)
+                                values = {}
+                                values['family_id'] = new_family.id
+                                _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                                other_person.write(values)
+
+            if self.family_verification_exec:
+                if person_aux.family_id.id is not False:
+                    person_aux.family_id._family_verification_exec()
+
+            if self.person_aux_verification_exec:
+                if person_aux.related_person_id.id is not False:
+                    person_aux.related_person_id._person_verification_exec()
+                person_aux._person_aux_verification_exec()
 
         # return action
         return True
