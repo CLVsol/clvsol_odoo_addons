@@ -67,71 +67,77 @@ class PersonAuxAssociateToFamily(models.TransientModel):
                 family = Family.search([
                     ('ref_address_id', '=', person_aux.ref_address_id.id),
                 ])
-                _logger.info(u'%s %s %s', '>>>>>>>>>>', 'family_id:', family.id)
 
-                if family.id is not False:
+                if len(family) < 2:
 
-                    data_values = {}
-                    data_values['family_id'] = family.id
-                    _logger.info(u'>>>>>>>>>> %s', data_values)
-                    person_aux.write(data_values)
+                    _logger.info(u'%s %s %s', '>>>>>>>>>>', 'family_id:', family.id)
 
-                else:
+                    if family.id is not False:
 
-                    if self.create_new_family:
+                        data_values = {}
+                        data_values['family_id'] = family.id
+                        _logger.info(u'>>>>>>>>>> %s', data_values)
+                        person_aux.write(data_values)
+                        person_aux.related_person_id.write(data_values)
 
-                        values = {}
-                        values['name'] = person_aux.ref_address_id.name
+                    else:
 
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                        new_family = Family.create(values)
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_family:', new_family)
+                        if self.create_new_family:
 
-                        values = {}
-                        values['code'] = '/'
-                        values['phase_id'] = person_aux.phase_id.id
-                        values['street_name'] = person_aux.ref_address_id.street_name
-                        values['street2'] = person_aux.ref_address_id.street2
-                        values['country_id'] = person_aux.ref_address_id.country_id.id
-                        values['state_id'] = person_aux.ref_address_id.state_id.id
-                        values['city'] = person_aux.ref_address_id.city
-                        values['zip'] = person_aux.ref_address_id.zip
-                        # values['phone'] = person_aux.ref_address_id.phone
-                        # values['mobile'] = person_aux.ref_address_id.mobile
-                        # values['email'] = person_aux.ref_address_id.email
+                            values = {}
+                            values['name'] = person_aux.ref_address_id.name
 
-                        values['street_number'] = person_aux.ref_address_id.street_number
-                        values['district'] = person_aux.ref_address_id.district
-                        values['city_id'] = person_aux.ref_address_id.city_id.id
+                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                            new_family = Family.create(values)
+                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_family:', new_family)
 
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                        new_family.write(values)
+                            values = {}
+                            values['code'] = '/'
+                            values['phase_id'] = person_aux.phase_id.id
+                            values['street_name'] = person_aux.ref_address_id.street_name
+                            values['street2'] = person_aux.ref_address_id.street2
+                            values['country_id'] = person_aux.ref_address_id.country_id.id
+                            values['state_id'] = person_aux.ref_address_id.state_id.id
+                            values['city'] = person_aux.ref_address_id.city
+                            values['zip'] = person_aux.ref_address_id.zip
+                            # values['phone'] = person_aux.ref_address_id.phone
+                            # values['mobile'] = person_aux.ref_address_id.mobile
+                            # values['email'] = person_aux.ref_address_id.email
 
-                        values = {}
-                        values['ref_address_id'] = person_aux.ref_address_id.id
-                        values['state'] = person_aux.ref_address_id.state
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                        new_family.write(values)
+                            values['street_number'] = person_aux.ref_address_id.street_number
+                            values['district'] = person_aux.ref_address_id.district
+                            values['city_id'] = person_aux.ref_address_id.city_id.id
 
-                        values = {}
-                        values['family_id'] = new_family.id
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                        person_aux.write(values)
+                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                            new_family.write(values)
 
-                        if self.associate_all_persons_from_ref_address:
+                            values = {}
+                            values['ref_address_id'] = person_aux.ref_address_id.id
+                            values['reg_state'] = 'revised'
+                            values['state'] = person_aux.ref_address_id.state
+                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                            new_family.write(values)
 
-                            Person = self.env['clv.person']
-                            persons = Person.search([
-                                ('ref_address_id', '=', person_aux.ref_address_id.id),
-                            ])
+                            values = {}
+                            values['family_id'] = new_family.id
+                            _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                            person_aux.write(values)
+                            person_aux.related_person_id.write(values)
 
-                            for other_person in persons:
+                            if self.associate_all_persons_from_ref_address:
 
-                                _logger.info(u'%s %s %s', '>>>>>>>>>>', 'other_person:', other_person)
-                                values = {}
-                                values['family_id'] = new_family.id
-                                _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
-                                other_person.write(values)
+                                Person = self.env['clv.person']
+                                persons = Person.search([
+                                    ('ref_address_id', '=', person_aux.ref_address_id.id),
+                                ])
+
+                                for other_person in persons:
+
+                                    _logger.info(u'%s %s %s', '>>>>>>>>>>', 'other_person:', other_person)
+                                    values = {}
+                                    values['family_id'] = new_family.id
+                                    _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
+                                    other_person.write(values)
 
             if self.family_verification_exec:
                 if person_aux.family_id.id is not False:
