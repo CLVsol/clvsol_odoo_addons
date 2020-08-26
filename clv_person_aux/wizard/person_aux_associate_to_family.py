@@ -24,7 +24,7 @@ class PersonAuxAssociateToFamily(models.TransientModel):
 
     create_new_family = fields.Boolean(string='Create new Family', default=False)
     associate_all_persons_from_ref_address = fields.Boolean(
-        string='Associate all Persons form Reference Address',
+        string='Associate all Persons from Reference Address',
         default=False
     )
 
