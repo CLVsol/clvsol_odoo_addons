@@ -93,6 +93,8 @@
             <field name="code" position="after">
                 <field name="family_id"/>
                 <field name="family_category_ids"/>
+                <filter name="filter_family_is_unavailable" string="Family is missing"
+                        domain="[('family_is_unavailable', '=', True)]"/>
             </field>
             <group name="group_by" position="inside">
                 <filter name="group_by_family_id" string="Family" context="{'group_by': 'family_id'}"/>
