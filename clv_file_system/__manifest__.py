@@ -21,6 +21,7 @@
         'views/file_system_directory_view.xml',
         'views/file_system_file_view.xml',
         'wizard/file_system_directory_file_upload_view.xml',
+        'views/file_system_menu_view.xml',
     ],
     'demo': [],
     'test': [],
