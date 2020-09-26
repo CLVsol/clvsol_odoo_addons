@@ -10,8 +10,8 @@
         <field name="inherit_id" ref="survey.survey_question_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="labels_ids_2" position="replace">
-                <field name="labels_ids_2" context="{'default_question_id_2': active_id}" attrs="{'invisible': [('question_type', '!=', 'matrix')]}">
+            <field name="matrix_row_ids" position="replace">
+                <field name="matrix_row_ids" context="{'default_question_id_2': active_id}" attrs="{'invisible': [('question_type', '!=', 'matrix')]}">
                     <tree editable="bottom">
                         <field name="sequence" widget="handle"/>
                         <field name="code"/>
@@ -22,10 +22,10 @@
         </field>
     </record>
 
-    <record id="survey_label_view_tree" model="ir.ui.view">
-        <field name="name">survey.label.tree</field>
-        <field name="model">survey.label</field>
-        <field name="inherit_id" ref="survey.survey_label_tree"/>
+    <record id="survey_question_answer_view_tree" model="ir.ui.view">
+        <field name="name">survey.question.answer.tree</field>
+        <field name="model">survey.question.answer</field>
+        <field name="inherit_id" ref="survey.survey_question_answer_view_tree"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="sequence" position="after">

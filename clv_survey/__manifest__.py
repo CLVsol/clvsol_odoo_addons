@@ -17,9 +17,10 @@
     ],
     'data': [
         'security/survey_security.xml',
+        'security/ir.model.access.csv',
         'views/survey_survey_view.xml',
         'views/survey_question_view.xml',
-        'views/survey_label_view.xml',
+        'views/survey_question_answer_view.xml',
         'wizard/survey_duplicate_view.xml',
         'wizard/survey_code_renew_view.xml',
         'wizard/survey_export_xls_view.xml',

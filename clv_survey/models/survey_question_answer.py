@@ -5,13 +5,13 @@
 from odoo import fields, models
 
 
-class SurveyLabel(models.Model):
-    _inherit = 'survey.label'
+class SurveyQuestionAnswer(models.Model):
+    _inherit = 'survey.question.answer'
 
-    code = fields.Char(string='Label Code', required=False)
+    code = fields.Char(string='Question Answer Code', required=False)
 
     _sql_constraints = [
         ('code_uniq',
          'UNIQUE (code)',
-         u'Error! The Label Code must be unique!'),
+         u'Error! The Question Answer Code must be unique!'),
     ]

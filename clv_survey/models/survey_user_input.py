@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 class SurveyUserInput(models.Model):
     _inherit = 'survey.user_input'
 
-    _rec_name = 'token'
+    _rec_name = 'access_token'
 
     def get_value(self, question_code):
 
