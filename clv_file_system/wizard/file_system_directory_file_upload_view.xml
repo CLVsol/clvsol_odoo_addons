@@ -35,7 +35,7 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
+    <!--act_window 
         id="clv_file_system_directory_file_upload_action"
         name="File Upload"
         binding_model="clv.file_system.directory"
@@ -43,6 +43,16 @@
         view_mode="form, tree"
         target="new"
         groups="clv_file_system.group_manager"
-    />
+    /-->
+
+    <record id="clv_file_system_directory_file_upload_action" model="ir.actions.act_window">
+        <field name="name">File Upload</field>
+        <field name="binding_model_id" ref="model_clv_file_system_directory"/>
+        <field name="res_model">clv.file_system.directory.file_upload</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <!--field name="groups">clv_file_system.group_manager</field-->
+        <!--field name="group_ids" eval="[(4, ref('clv_file_system.group_manager'))]"/-->
+    </record>
 
 </odoo>
