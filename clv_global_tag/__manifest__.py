@@ -19,6 +19,7 @@
         'security/ir.model.access.csv',
         'views/global_tag_view.xml',
         'views/global_tag_log_view.xml',
+        'views/global_tag_menu_view.xml',
         'data/global_log_client.xml',
     ],
     'demo': [],
