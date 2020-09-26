@@ -27,7 +27,7 @@
         parent="menu_hr_root_employees"
         groups="base.group_user"
         sequence="20"
-        action="hr.open_module_tree_department"/>
+        action="hr.hr_department_tree_action"/>
 
     <menuitem name="Jobs" id="menu_hr_root_employees_jobs"
         parent="menu_hr_root_employees"
