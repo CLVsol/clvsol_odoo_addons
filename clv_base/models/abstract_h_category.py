@@ -66,7 +66,6 @@ class AbstractHierarchicalCategory(models.AbstractModel):
          'Error! The Name must be unique for the same Parent!'),
     ]
 
-    # @api.multi
     def name_get(self):
         """Return the h_category's display name, including their direct parent by default.
 
@@ -99,12 +98,10 @@ class AbstractHierarchicalCategory(models.AbstractModel):
         categories = self.search(args, limit=limit)
         return categories.name_get()
 
-    # @api.one
     def _name_get_fnc(self):
         self.ensure_one()
 
         for record in self:
-            record.refresh_complete_name = 0
             complete_name = record.name_get()
             if complete_name:
                 record.complete_name = complete_name[0][1]

@@ -15,6 +15,8 @@ class ReferenceableModel(models.Model):
     model = fields.Char(string='Referenceable Model', required=True)
     priority = fields.Integer(string='Priority', default=10)
 
+    active = fields.Boolean(string='Active', default=True)
+
 
 class AbstractReference(models.AbstractModel):
     _description = 'Abstract Reference'
