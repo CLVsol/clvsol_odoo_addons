@@ -18,6 +18,7 @@
         'clv_global_tag',
     ],
     'data': [
+        'security/employee_security.xml',
         'security/ir.model.access.csv',
         'views/hr_employee_view.xml',
         'views/hr_employee_log_view.xml',

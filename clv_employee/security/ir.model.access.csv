@@ -1,1 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_hr_employee_mass_edit_user,hr.employee.mass_edit.user,model_hr_employee_mass_edit,clv_employee.group_user,1,0,0,0
+access_hr_employee_mass_edit_manager,hr.employee.mass_edit.manager,model_hr_employee_mass_edit,clv_employee.group_manager,1,1,1,0
+access_hr_employee_mass_edit_supmanager,hr.employee.mass_edit.supmanager,model_hr_employee_mass_edit,clv_employee.group_supmanager,1,1,1,1
+
+access_hr_employee_user_groups_updt_user,hr.employee.user_groups_updt.user,model_hr_employee_user_groups_updt,clv_employee.group_user,1,0,0,0
+access_hr_employee_user_groups_updt_manager,hr.employee.user_groups_updt.manager,model_hr_employee_user_groups_updt,clv_employee.group_manager,1,1,1,0
+access_hr_employee_user_groups_updt_supmanager,hr.employee.user_groups_updt.supmanager,model_hr_employee_user_groups_updt,clv_employee.group_supmanager,1,1,1,1
