@@ -7,3 +7,7 @@ access_clv_global_log_supmanager,clv.global_log.supmanager,model_clv_global_log,
 access_clv_global_log_client_user,clv.global_log.client.user,model_clv_global_log_client,clv_base.group_user,1,0,0,0
 access_clv_global_log_client_manager,clv.global_log.client.manager,model_clv_global_log_client,clv_base.group_manager,1,1,1,0
 access_clv_global_log_client_supmanager,clv.global_log.client.supmanager,model_clv_global_log_client,clv_base.group_supmanager,1,1,1,1
+
+access_clv_global_log_client_mass_edit_user,clv.global_log.client.mass_edit.user,model_clv_global_log_client_mass_edit,clv_base.group_user,1,0,0,0
+access_clv_global_log_client_mass_edit_manager,clv.global_log.client.mass_edit.manager,model_clv_global_log_client_mass_edit,clv_base.group_manager,1,1,1,0
+access_clv_global_log_client_mass_edit_supmanager,clv.global_log.client.mass_edit.supmanager,model_clv_global_log_client_mass_edit,clv_base.group_supmanager,1,1,1,1

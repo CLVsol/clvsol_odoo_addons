@@ -18,6 +18,7 @@
         'views/global_log_view.xml',
         'views/global_log_client_view.xml',
         'wizard/global_log_client_mass_edit_view.xml',
+        'views/global_log_menu_view.xml',
     ],
     'demo': [],
     'test': [],

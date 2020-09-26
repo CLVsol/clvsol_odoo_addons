@@ -36,13 +36,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_global_log_client_mass_edit_action"
-        name="Global Log Client Mass Edit"
-        binding_model="clv.global_log.client"
-        res_model="clv.global_log.client.mass_edit"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_global_log_client_mass_edit_action" model="ir.actions.act_window">
+        <field name="name">Global Log Client Mass Edit</field>
+        <field name="binding_model_id" ref="model_clv_global_log_client"/>
+        <field name="res_model">clv.global_log.client.mass_edit</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
