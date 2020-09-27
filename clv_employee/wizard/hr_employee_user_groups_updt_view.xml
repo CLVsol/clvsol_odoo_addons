@@ -51,15 +51,14 @@
             </field>
         </record>
 
-        <!-- More button Action -->
-        <act_window 
-            id="hr_employee_user_groups_updt_action"
-            name="Employee User Groups Update"
-            binding_model="hr.employee"
-            res_model="hr.employee.user_groups_updt"
-            view_mode="form"
-            target="new"
-        />
+    <!-- More button Action -->
+    <record id="hr_employee_user_groups_updt_action" model="ir.actions.act_window">
+        <field name="name">Employee User Groups Update</field>
+        <field name="binding_model_id" ref="model_hr_employee"/>
+        <field name="res_model">hr.employee.user_groups_updt</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
     </data>
 </odoo>
