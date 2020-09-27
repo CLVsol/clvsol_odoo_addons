@@ -12,6 +12,7 @@
     'website': 'https://github.com/CLVsol',
     'depends': [
         'contacts',
+        'base_address_city',
         'base_address_extended',
         'clv_base',
         'clv_global_log',
