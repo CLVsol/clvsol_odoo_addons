@@ -15,3 +15,15 @@ access_clv_person_marker_supmanager,clv.person.marker.supmanager,model_clv_perso
 access_clv_person_tag_user,clv.person.tag.user,model_clv_person_tag,clv_person.group_user,1,0,0,0
 access_clv_person_tag_manager,clv.person.manager.tag,model_clv_person_tag,clv_person.group_manager,1,1,1,0
 access_clv_person_tag_supmanager,clv.person.tag.supmanager,model_clv_person_tag,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_mass_edit_user,clv.person.mass_edit.user,model_clv_person_mass_edit,clv_person.group_user,1,0,0,0
+access_clv_person_mass_edit_manager,clv.person.mass_edit.manager,model_clv_person_mass_edit,clv_person.group_manager,1,1,1,0
+access_clv_person_mass_edit_supmanager,clv.person.mass_edit.supmanager,model_clv_person_mass_edit,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_contact_information_updt_user,clv.person.contact_information_updt.user,model_clv_person_contact_information_updt,clv_person.group_user,1,0,0,0
+access_clv_person_contact_information_updt_manager,clv.person.contact_information_updt.manager,model_clv_person_contact_information_updt,clv_person.group_manager,1,1,1,0
+access_clv_person_contact_information_updt_supmanager,clv.person.contact_information_updt.supmanager,model_clv_person_contact_information_updt,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_associate_to_family_user,clv.person.associate_to_family.user,model_clv_person_associate_to_family,clv_person.group_user,1,0,0,0
+access_clv_person_associate_to_family_manager,clv.person.associate_to_family.manager,model_clv_person_associate_to_family,clv_person.group_manager,1,1,1,0
+access_clv_person_associate_to_family_supmanager,clv.person.associate_to_family.supmanager,model_clv_person_associate_to_family,clv_person.group_supmanager,1,1,1,1

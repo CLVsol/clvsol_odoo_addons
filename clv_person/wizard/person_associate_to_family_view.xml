@@ -34,13 +34,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_person_associate_to_family_action"
-        name="Person Associate to Family"
-        binding_model="clv.person"
-        res_model="clv.person.associate_to_family"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_person_associate_to_family_action" model="ir.actions.act_window">
+        <field name="name">Person Associate to Family</field>
+        <field name="binding_model_id" ref="model_clv_person"/>
+        <field name="res_model">clv.person.associate_to_family</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

@@ -39,21 +39,6 @@
                 <h1><separator name="separator_person" string="[  Person  ]" style="color:Black; background:White;"/></h1>
                 <field name="notes" placeholder="Notes..." colspan="2" style="color:Maroon;background:White;text-align:left;"/>
             </div>
-            <!--xpath expr="//group[@name='main_data']">
-                <group name="main">
-                    <field name="parent_id"
-                           colspan="2"
-                           string="Legal Representative"
-                           domain="[('customer','=',True)]"
-                           />
-                </group>
-            </xpath-->
-            <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
-                <img name="kanban_image_default_person"
-                     t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv_person/static/src/img/person-avatar.png'
-                />
-            </xpath>
             <page name="page_general_info" position="after">
                 <page name="personal_information" string="Personal Information" groups="clv_base.group_supuser">
                     <group>
@@ -91,83 +76,6 @@
                     </group>
                 </page>
             </page>
-            <!--xpath expr="//notebook" position="inside">
-                <page name="clv_person" string="Person" autofocus="True">
-                    <group name="group_clv_buttons" class="oe_button_box" col="6">
-                        <button name="toggle_is_pregnant"
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-venus"
-                            >
-                            <field name="is_pregnant"
-                                   widget="boolean_button"
-                                   options='{"terminology": {"string_true": "Pregnant",
-                                                             "string_hover_true": "Switch to Not Pregnant",
-                                                             "string_false": "Not Pregnant",
-                                                             "string_hover_false": "Switch to Pregnant"}}'
-                            />
-                        </button>
-                    </group>
-                    <group name="group_clv_general" string="General">
-                        <group name="group_clv_general_left">
-                            <field name="identification_code" />
-                            <field name="gender" />
-                        </group>
-                        <group name="group_clv_general_right">
-                            <field name="birthdate_date" />
-                            <field name="date_death" />
-                            <field name="age" />
-                        </group>
-                    </group>
-                </page>
-            </xpath-->
-            <!--xpath expr="//field[@name='age']" position="after">
-                <label for="weight"/>
-                <div>
-                    <field name='weight' class="oe_inline"/>
-                    <field name='weight_uom'
-                           class="oe_inline"
-                           placeholder="UoM"/>
-                </div>
-            </xpath-->
-        </field>
-    </record>
-
-    <record id="clv_person_view_kanban" model="ir.ui.view">
-        <field name="name">clv.person.kanban</field>
-        <field name="model">clv.person</field>
-        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_kanban"/>
-        <field name="mode">primary</field>
-        <field name="priority" eval="100"/>
-        <field name="arch" type="xml">
-            <xpath expr="//kanban" position="attributes">
-                <attribute name="string">Persons</attribute>
-            </xpath>
-            <xpath expr="//templates" position="before">
-                <!--field name="birthdate_date" /-->
-            </xpath>
-            <xpath expr="//ul[@name='entity_details']/li" position="before">
-                <!--li name="field_dob" t-if="record.birthdate_date.raw_value">
-                    <strong>DOB:</strong> <field name="birthdate_date"/>
-                </li-->
-                <!--li name="field_age_gender" t-if="record.birthdate_date.raw_value &amp;&amp; record.gender.raw_value">
-                    <field name="age"/> - <field name="gender"/>
-                </li-->
-                <!--li name="field_gender" t-if="! record.birthdate_date.raw_value &amp;&amp; record.gender.raw_value">
-                    <field name="gender"/>
-                </li-->
-            </xpath>
-            <!--xpath expr="//img[@name='kanban_image_entity']" position="replace">
-                <img name="kanban_image_entity"
-                     t-att-src="kanban_image('clv.person', 'image_small', record.id.raw_value)" alt="Person Image"
-                />
-            </xpath>
-            <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
-                <img name="kanban_image_default_person"
-                     t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv/static/src/img/person-avatar.png' alt="Person Image"
-                />
-            </xpath-->
         </field>
     </record>
 

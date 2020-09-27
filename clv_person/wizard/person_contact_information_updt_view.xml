@@ -35,13 +35,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_person_contact_information_updt_action"
-        name="Person Contact Information Update"
-        binding_model="clv.person"
-        res_model="clv.person.contact_information_updt"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_person_contact_information_updt_action" model="ir.actions.act_window">
+        <field name="name">Person Contact Information Update</field>
+        <field name="binding_model_id" ref="model_clv_person"/>
+        <field name="res_model">clv.person.contact_information_updt</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
