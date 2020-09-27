@@ -29,6 +29,7 @@
         'views/global_tag_view.xml',
         'views/address_name_view.xml',
         'wizard/address_mass_edit_view.xml',
+        'views/address_menu_view.xml',
         'data/global_log_client.xml',
     ],
     'demo': [],

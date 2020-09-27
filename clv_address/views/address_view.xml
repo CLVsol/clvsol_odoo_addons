@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- # Copyright 2008 Luis Falcon <lfalcon@gnusolidario.org>
-     Copyright 2016 LasLabs Inc.
-     License GPL-3.0 or later (http://www.gnu.org/licenses/gpl). -->
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
 
@@ -31,45 +30,6 @@
                 <h1><separator name="separator_address" string="[  Address  ]" style="color:Black; background:White;"/></h1>
                 <field name="notes" placeholder="Notes..." colspan="2" style="color:Maroon;background:White;text-align:left;"/>
             </div>
-            <!--xpath expr="//group[@name='main_data']">
-                <group name="main">
-                    <field name="parent_id"
-                           colspan="2"
-                           string="Legal Representative"
-                           domain="[('customer','=',True)]"
-                           />
-                </group>
-            </xpath-->
-            <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
-                <img name="kanban_image_default_person"
-                     t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv_address/static/src/img/address-avatar.png'
-                />
-            </xpath>
-        </field>
-    </record>
-
-    <record id="clv_address_view_kanban" model="ir.ui.view">
-        <field name="name">clv.address.kanban</field>
-        <field name="model">clv.address</field>
-        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_kanban"/>
-        <field name="mode">primary</field>
-        <field name="priority" eval="100"/>
-        <field name="arch" type="xml">
-            <xpath expr="//kanban" position="attributes">
-                <attribute name="string">Addresses</attribute>
-            </xpath>
-            <!--xpath expr="//img[@name='kanban_image_entity']" position="replace">
-                <img name="kanban_image_entity"
-                     t-att-src="kanban_image('clv.address', 'image_small', record.id.raw_value)" alt="Address Image"
-                />
-            </xpath>
-            <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
-                <img name="kanban_image_default_person"
-                     t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv/static/src/img/address-avatar.png' alt="Address Image"
-                />
-            </xpath-->
         </field>
     </record>
 

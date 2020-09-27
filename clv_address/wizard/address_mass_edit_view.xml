@@ -71,13 +71,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_address_mass_edit_action"
-        name="Address Mass Edit"
-        binding_model="clv.address"
-        res_model="clv.address.mass_edit"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_address_mass_edit_action" model="ir.actions.act_window">
+        <field name="name">Address Mass Edit</field>
+        <field name="binding_model_id" ref="model_clv_address"/>
+        <field name="res_model">clv.address.mass_edit</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

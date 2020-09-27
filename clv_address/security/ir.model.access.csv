@@ -15,3 +15,7 @@ access_clv_address_marker_supmanager,clv.address.marker.supmanager,model_clv_add
 access_clv_address_tag_user,clv.address.tag.user,model_clv_address_tag,clv_address.group_user,1,0,0,0
 access_clv_address_tag_manager,clv.address.manager.tag,model_clv_address_tag,clv_address.group_manager,1,1,1,0
 access_clv_address_tag_supmanager,clv.address.tag.supmanager,model_clv_address_tag,clv_address.group_supmanager,1,1,1,1
+
+access_clv_address_mass_edit_user,clv.address.mass_edit.user,model_clv_address_mass_edit,clv_address.group_user,1,0,0,0
+access_clv_address_mass_edit_manager,clv.address.mass_edit.manager,model_clv_address_mass_edit,clv_address.group_manager,1,1,1,0
+access_clv_address_mass_edit_supmanager,clv.address.mass_edit.supmanager,model_clv_address_mass_edit,clv_address.group_supmanager,1,1,1,1
