@@ -17,6 +17,7 @@
         'views/aux_instance_view.xml',
         'views/aux_code_view.xml',
         'views/referenceable_model_view.xml',
+        'views/aux_menu_view.xml',
     ],
     'demo': [],
     'test': [],
