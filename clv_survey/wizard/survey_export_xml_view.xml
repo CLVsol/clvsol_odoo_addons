@@ -32,13 +32,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_survey_export_xml_action"
-        name="Survey Export XML"
-        binding_model="survey.survey"
-        res_model="clv.survey.export_xml"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_survey_export_xml_action" model="ir.actions.act_window">
+        <field name="name">Survey Export XML</field>
+        <field name="binding_model_id" ref="model_survey_survey"/>
+        <field name="res_model">clv.survey.export_xml</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

@@ -33,14 +33,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="survey_question_duplicate_action"
-        name="Question Duplicate"
-        binding_model="survey.question"
-        res_model="survey.question.duplicate"
-        view_mode="form"
-        binding_views="form"
-        target="new"
-    />
+    <record id="survey_question_duplicate_action" model="ir.actions.act_window">
+        <field name="name">Question Duplicate</field>
+        <field name="binding_model_id" ref="model_survey_question"/>
+        <field name="res_model">survey.question.duplicate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

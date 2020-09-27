@@ -39,10 +39,10 @@ class SurveyDuplicate(models.TransientModel):
         required=True
     )
 
-    phase_id = fields.Many2one(
-        comodel_name='clv.phase',
-        string='Phase'
-    )
+    # phase_id = fields.Many2one(
+    #     comodel_name='clv.phase',
+    #     string='Phase'
+    # )
 
     @api.model
     def default_get(self, field_names):
@@ -61,9 +61,9 @@ class SurveyDuplicate(models.TransientModel):
         defaults['new_code'] = survey.code
         defaults['new_access_token'] = survey.access_token
 
-        phase_id = int(self.env['ir.config_parameter'].sudo().get_param(
-            'clv.global_settings.current_phase_id', '').strip())
-        defaults['phase_id'] = phase_id
+        # phase_id = int(self.env['ir.config_parameter'].sudo().get_param(
+        #     'clv.global_settings.current_phase_id', '').strip())
+        # defaults['phase_id'] = phase_id
 
         return defaults
 
@@ -103,7 +103,7 @@ class SurveyDuplicate(models.TransientModel):
                 'questions_layout': survey.questions_layout,
                 # 'auth_required': survey.auth_required,
                 # 'stage_id': survey.stage_id.id,
-                'phase_id': self.phase_id.id,
+                # 'phase_id': self.phase_id.id,
             }
             new_survey = SurveySurvey.create(values)
 

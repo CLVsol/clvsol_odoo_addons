@@ -30,13 +30,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_survey_code_renew_action"
-        name="Survey Code Renew"
-        binding_model="survey.survey"
-        res_model="clv.survey.code_renew"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_survey_code_renew_action" model="ir.actions.act_window">
+        <field name="name">Survey Code Renew</field>
+        <field name="binding_model_id" ref="model_survey_survey"/>
+        <field name="res_model">clv.survey.code_renew</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
