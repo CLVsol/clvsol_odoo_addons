@@ -30,21 +30,6 @@
                 <h1><separator name="separator_family" string="[  Family  ]" style="color:Black; background:White;"/></h1>
                 <field name="notes" placeholder="Notes..." colspan="2" style="color:Maroon;background:White;text-align:left;"/>
             </div>
-            <!--xpath expr="//group[@name='main_data']">
-                <group name="main">
-                    <field name="parent_id"
-                           colspan="2"
-                           string="Legal Representative"
-                           domain="[('customer','=',True)]"
-                           />
-                </group>
-            </xpath-->
-            <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
-                <img name="kanban_image_default_person"
-                     t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv_family/static/src/img/family-avatar.png'
-                />
-            </xpath>
             <field name="type" position="before">
                 <separator/>
                 <button name="do_family_clear_address_data"
@@ -56,30 +41,6 @@
                         >
                 </button>
             </field>
-        </field>
-    </record>
-
-    <record id="clv_family_view_kanban" model="ir.ui.view">
-        <field name="name">clv.family.kanban</field>
-        <field name="model">clv.family</field>
-        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_kanban"/>
-        <field name="mode">primary</field>
-        <field name="priority" eval="100"/>
-        <field name="arch" type="xml">
-            <xpath expr="//kanban" position="attributes">
-                <attribute name="string">Families</attribute>
-            </xpath>
-            <!--xpath expr="//img[@name='kanban_image_entity']" position="replace">
-                <img name="kanban_image_entity"
-                     t-att-src="kanban_image('clv.family', 'image_small', record.id.raw_value)" alt="Family Image"
-                />
-            </xpath>
-            <xpath expr="//img[@name='kanban_image_default_person']" position="replace">
-                <img name="kanban_image_default_person"
-                     t-if="record.is_company.raw_value === false"
-                     t-attf-src='{{ _s }}/clv/static/src/img/family-avatar.png' alt="Family Image"
-                />
-            </xpath-->
         </field>
     </record>
 

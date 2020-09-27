@@ -15,3 +15,11 @@ access_clv_family_marker_supmanager,clv.family.marker.supmanager,model_clv_famil
 access_clv_family_tag_user,clv.family.tag.user,model_clv_family_tag,clv_family.group_user,1,0,0,0
 access_clv_family_tag_manager,clv.family.manager.tag,model_clv_family_tag,clv_family.group_manager,1,1,1,0
 access_clv_family_tag_supmanager,clv.family.tag.supmanager,model_clv_family_tag,clv_family.group_supmanager,1,1,1,1
+
+access_clv_family_mass_edit_user,clv.family.mass_edit.user,model_clv_family_mass_edit,clv_family.group_user,1,0,0,0
+access_clv_family_mass_edit_manager,clv.family.mass_edit.manager,model_clv_family_mass_edit,clv_family.group_manager,1,1,1,0
+access_clv_family_mass_edit_supmanager,clv.family.mass_edit.supmanager,model_clv_family_mass_edit,clv_family.group_supmanager,1,1,1,1
+
+access_clv_family_contact_information_updt_user,clv.family.contact_information_updt.user,model_clv_family_contact_information_updt,clv_family.group_user,1,0,0,0
+access_clv_family_contact_information_updt_manager,clv.family.contact_information_updt.manager,model_clv_family_contact_information_updt,clv_family.group_manager,1,1,1,0
+access_clv_family_contact_information_updt_supmanager,clv.family.contact_information_updt.supmanager,model_clv_family_contact_information_updt,clv_family.group_supmanager,1,1,1,1

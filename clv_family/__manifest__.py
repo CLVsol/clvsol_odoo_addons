@@ -34,6 +34,7 @@
         'views/address_view.xml',
         'wizard/family_mass_edit_view.xml',
         'wizard/family_contact_information_updt_view.xml',
+        'views/family_menu_view.xml',
         'data/global_log_client.xml',
     ],
     'demo': [],

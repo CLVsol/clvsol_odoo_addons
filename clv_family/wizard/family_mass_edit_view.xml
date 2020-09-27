@@ -71,13 +71,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_family_mass_edit_action"
-        name="Family Mass Edit"
-        binding_model="clv.family"
-        res_model="clv.family.mass_edit"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_family_mass_edit_action" model="ir.actions.act_window">
+        <field name="name">Family Mass Edit</field>
+        <field name="binding_model_id" ref="model_clv_family"/>
+        <field name="res_model">clv.family.mass_edit</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
