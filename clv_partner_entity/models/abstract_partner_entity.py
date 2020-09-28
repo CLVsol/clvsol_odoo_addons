@@ -5,8 +5,10 @@
 import threading
 import base64
 from datetime import datetime
+import re
 
-from odoo import api, fields, models, tools
+from odoo import _, api, fields, models, tools
+from odoo.exceptions import UserError
 
 
 class AbstractPartnerEntity(models.AbstractModel):
