@@ -19,13 +19,17 @@ class Address(models.Model):
         default=True
     )
 
-    @api.depends('street_name', 'street2')
+    @api.depends('street_name', 'street_number', 'street_number2', 'street2')
     def _get_suggested_name(self):
         for record in self:
             if record.street_name:
                 record.suggested_name = record.street_name
+                if record.street_number:
+                    record.suggested_name = record.suggested_name + ', ' + record.street_number
+                if record.street_number2:
+                    record.suggested_name = record.suggested_name + '/' + record.street_number2
                 if record.street2:
-                    record.suggested_name = record.suggested_name + ' - ' + record.street2
+                    record.suggested_name = record.suggested_name + ' (' + record.street2 + ')'
             else:
                 record.suggested_name = 'Address Name...'
 
