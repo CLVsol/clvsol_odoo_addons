@@ -39,7 +39,8 @@ class ResPartner(models.Model):
                 record.count_persons_aux = len(persons_aux)
                 record.person_aux_ids = [(6, 0, persons_aux.ids)]
             except TypeError:
-                pass
+                record.count_persons_aux = False
+                record.person_aux_ids = False
 
     # @api.model
     # def create(self, vals):

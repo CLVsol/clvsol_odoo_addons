@@ -39,17 +39,19 @@
                 <h1><separator name="separator_person_aux" string="[  Person (Aux)  ]" style="color:Black; background:White;"/></h1>
                 <field name="notes" placeholder="Notes..." colspan="2" style="color:Maroon;background:White;text-align:left;"/>
             </div>
-            <field name="type" position="before">
-                <separator/>
-                <button name="do_person_aux_clear_address_data"
-                        type="object"
-                        class="oe_stat_button, oe_edit_only"
-                        icon="fa-eraser"
-                        string=" Clear Address Data"
-                        confirm="Are you sure you want to clear the 'Address' data?"
-                        >
-                </button>
-            </field>
+            <group name="group_contact_right" position="after">
+                <group name="group_clear_address_data">
+                    <!--separator/-->
+                    <button name="do_person_aux_clear_address_data"
+                            type="object"
+                            class="oe_stat_button, oe_edit_only"
+                            icon="fa-eraser"
+                            string=" Clear Address Data"
+                            confirm="Are you sure you want to clear the 'Address' data?"
+                            >
+                    </button>
+                </group>
+            </group>
             <page name="page_general_info" position="after">
                 <page name="person_auxal_information" string="Personal Information" groups="clv_base.group_supuser">
                     <group>
