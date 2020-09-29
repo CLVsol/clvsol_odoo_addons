@@ -35,13 +35,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_document_type_duplicate_action"
-        name="Document Type Duplicate"
-        binding_model="clv.document.type"
-        res_model="clv.document.type.duplicate"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_document_type_duplicate_action" model="ir.actions.act_window">
+        <field name="name">Document Type Duplicate</field>
+        <field name="binding_model_id" ref="model_clv_document_type"/>
+        <field name="res_model">clv.document.type.duplicate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

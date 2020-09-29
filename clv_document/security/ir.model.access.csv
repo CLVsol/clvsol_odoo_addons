@@ -9,7 +9,7 @@ access_clv_document_category_manager,clv.document.manager.category,model_clv_doc
 access_clv_document_category_supmanager,clv.document.category.supmanager,model_clv_document_category,clv_document.group_supmanager,1,1,1,1
 
 access_clv_document_type_user,clv.document.type.user,model_clv_document_type,clv_document.group_user,1,0,0,0
-access_clv_document_type_manager,clv.document.manager.type,model_clv_document_type,clv_document.group_manager,1,1,1,0
+access_clv_document_type_manager,clv.document.type.manager,model_clv_document_type,clv_document.group_manager,1,1,1,0
 access_clv_document_type_supmanager,clv.document.type.supmanager,model_clv_document_type,clv_document.group_supmanager,1,1,1,1
 
 access_clv_document_item_user,clv.document.item.user,model_clv_document_item,clv_document.group_user,1,0,0,0
@@ -17,5 +17,33 @@ access_clv_document_item_manager,clv.document.manager.item,model_clv_document_it
 access_clv_document_item_supmanager,clv.document.item.supmanager,model_clv_document_item,clv_document.group_supmanager,1,1,1,1
 
 access_clv_document_type_parameter_user,clv.document.type.parameter.user,model_clv_document_type_parameter,clv_document.group_user,1,0,0,0
-access_clv_document_type_parameter_manager,clv.document.manager.parameter,model_clv_document_type_parameter,clv_document.group_manager,1,1,1,0
+access_clv_document_type_parameter_manager,clv.document.parameter.manager,model_clv_document_type_parameter,clv_document.group_manager,1,1,1,0
 access_clv_document_type_parameter_supmanager,clv.document.type.parameter.supmanager,model_clv_document_type_parameter,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_type_mass_edit_user,clv.document.type.mass_edit.user,model_clv_document_type_mass_edit,clv_document.group_user,1,0,0,0
+access_clv_document_type_mass_edit_manager,clv.document.type.mass_edit.manager,model_clv_document_type_mass_edit,clv_document.group_manager,1,1,1,0
+access_clv_document_type_mass_edit_supmanager,clv.document.type.mass_edit.supmanager,model_clv_document_type_mass_edit,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_type_items_setup_user,clv.document.type.items_setup.user,model_clv_document_type_items_setup,clv_document.group_user,1,0,0,0
+access_clv_document_type_items_setup_manager,clv.document.type.items_setup.manager,model_clv_document_type_items_setup,clv_document.group_manager,1,1,1,0
+access_clv_document_type_items_setup_supmanager,clv.document.type.items_setup.supmanager,model_clv_document_type_items_setup,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_type_duplicate_user,clv.document.type.duplicate.user,model_clv_document_type_duplicate,clv_document.group_user,1,0,0,0
+access_clv_document_type_duplicate_manager,clv.document.type.duplicate.manager,model_clv_document_type_duplicate,clv_document.group_manager,1,1,1,0
+access_clv_document_type_duplicate_supmanager,clv.document.type.duplicate.supmanager,model_clv_document_type_duplicate,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_mass_edit_user,clv.document.mass_edit.user,model_clv_document_mass_edit,clv_document.group_user,1,0,0,0
+access_clv_document_mass_edit_manager,clv.document.mass_edit.manager,model_clv_document_mass_edit,clv_document.group_manager,1,1,1,0
+access_clv_document_mass_edit_supmanager,clv.document.mass_edit.supmanager,model_clv_document_mass_edit,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_items_refresh_user,clv.document.items_refresh.user,model_clv_document_items_refresh,clv_document.group_user,1,0,0,0
+access_clv_document_items_refresh_manager,clv.document.items_refresh.manager,model_clv_document_items_refresh,clv_document.group_manager,1,1,1,0
+access_clv_document_items_refresh_supmanager,clv.document.items_refresh.supmanager,model_clv_document_items_refresh,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_items_ok_setup_user,clv.document.items_ok_setup.user,model_clv_document_items_ok_setup,clv_document.group_user,1,0,0,0
+access_clv_document_items_ok_setup_manager,clv.document.items_ok_setup.manager,model_clv_document_items_ok_setup,clv_document.group_manager,1,1,1,0
+access_clv_document_items_ok_setup_supmanager,clv.document.items_ok_setup.supmanager,model_clv_document_items_ok_setup,clv_document.group_supmanager,1,1,1,1
+
+access_clv_document_items_edit_user,clv.document.items_edit.user,model_clv_document_items_edit,clv_document.group_user,1,0,0,0
+access_clv_document_items_edit_manager,clv.document.items_edit.manager,model_clv_document_items_edit,clv_document.group_manager,1,1,1,0
+access_clv_document_items_edit_supmanager,clv.document.items_edit.supmanager,model_clv_document_items_edit,clv_document.group_supmanager,1,1,1,1
