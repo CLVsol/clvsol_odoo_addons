@@ -29,6 +29,7 @@
         'views/referenciable_model_menu_view.xml',
         'views/global_settings_menu_view.xml',
         'views/default_value_menu_view.xml',
+        'views/health_menu_view.xml',
     ],
     'demo': [],
     'test': [],
