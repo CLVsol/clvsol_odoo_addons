@@ -32,13 +32,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_lab_test_result_criteria_refresh_action"
-        name="Lab Test Result Criteria Refresh"
-        binding_model="clv.lab_test.result"
-        res_model="clv.lab_test.result.criteria_refresh"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_lab_test_result_criteria_refresh_action" model="ir.actions.act_window">
+        <field name="name">Lab Test Result Criteria Refresh</field>
+        <field name="binding_model_id" ref="model_clv_lab_test_result"/>
+        <field name="res_model">clv.lab_test.result.criteria_refresh</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

@@ -42,13 +42,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_lab_test_request_mass_edit_action"
-        name="Lab Test Request Mass Edit"
-        binding_model="clv.lab_test.request"
-        res_model="clv.lab_test.request.mass_edit"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_lab_test_request_mass_edit_action" model="ir.actions.act_window">
+        <field name="name">Lab Test Request Mass Edit</field>
+        <field name="binding_model_id" ref="model_clv_lab_test_request"/>
+        <field name="res_model">clv.lab_test.request.mass_edit</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

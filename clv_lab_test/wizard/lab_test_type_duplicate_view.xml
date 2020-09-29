@@ -34,13 +34,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_lab_test_type_duplicate_action"
-        name="Lab Test Type Duplicate"
-        binding_model="clv.lab_test.type"
-        res_model="clv.lab_test.type.duplicate"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_lab_test_type_duplicate_action" model="ir.actions.act_window">
+        <field name="name">Lab Test Type Duplicate</field>
+        <field name="binding_model_id" ref="model_clv_lab_test_type"/>
+        <field name="res_model">clv.lab_test.type.duplicate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

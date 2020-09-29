@@ -40,6 +40,7 @@
         # 'wizard/lab_test_result_copy_to_report_view.xml',
         'views/lab_test_criterion_view.xml',
         'views/lab_test_criterion_log_view.xml',
+        'views/lab_test_menu_view.xml',
         'data/global_log_client.xml',
     ],
     'demo': [],
