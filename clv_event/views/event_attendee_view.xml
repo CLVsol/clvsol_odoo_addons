@@ -25,7 +25,6 @@
                     </div>
                     <notebook>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
-                        <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                             <group name="settings_top">
                                 <group name="settings_left">
                                     <field name="id"/>
@@ -52,7 +51,6 @@
                                     </div>
                                 </group>
                             </group>
-                        </page>
                         </page>
                     </notebook>
                 </sheet>
