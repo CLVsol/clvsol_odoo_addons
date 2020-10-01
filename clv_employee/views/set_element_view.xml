@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="hr_employee_view_form_log_set_element" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="clv_employee.hr_employee_view_form_log"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Sets">
+                    <group>
+                        <field name="count_sets"/>
+                    </group>
+                    <field name="set_element_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="hr_employee_view_tree_set_element" model="ir.ui.view">
+        <field name="name">hr.employee.tree</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="clv_employee.hr_employee_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="before">
+                <field name="count_sets"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

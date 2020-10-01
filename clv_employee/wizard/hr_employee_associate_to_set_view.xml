@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="hr_employee_associate_to_set_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.associate_to_set.form</field>
+        <field name="model">hr.employee.associate_to_set</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="employee_ids"/>
+                <field name="employee_ids"/>
+                <group>
+                    <group>
+                        <field name="create_new_set"/>
+                        <field name="set_id" options="{'no_open': False, 'no_create': True}"  attrs="{'invisible':[('create_new_set','=',True)]}"/>
+                        <field name="set_name"  attrs="{'invisible':[('create_new_set','=',False)]}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_employee_associate_to_set"
+                        string="Associate to Set"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="hr_employee_associate_to_set_action" model="ir.actions.act_window">
+        <field name="name">Employee Associate to Set</field>
+        <field name="binding_model_id" ref="model_hr_employee"/>
+        <field name="res_model">hr.employee.associate_to_set</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

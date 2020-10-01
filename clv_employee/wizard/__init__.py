@@ -4,3 +4,4 @@
 
 from . import hr_employee_mass_edit
 from . import hr_employee_user_groups_updt
+from . import hr_employee_associate_to_set
