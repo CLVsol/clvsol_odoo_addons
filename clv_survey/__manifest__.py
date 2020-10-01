@@ -14,6 +14,7 @@
     'depends': [
         'survey',
         'clv_base',
+        'clv_set',
     ],
     'data': [
         'security/survey_security.xml',
