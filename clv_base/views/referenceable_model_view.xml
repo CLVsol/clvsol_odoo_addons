@@ -16,13 +16,13 @@
                         </button-->
                     </div>
                     <div name="title" class="oe_title">
-                        <label for="base_model" class="oe_edit_only"/>
+                        <label for="base_model"/>
                         <h3><field name="base_model" default_focus="1" placeholder="Base Model..."/></h3>
-                        <label for="name" class="oe_edit_only"/>
+                        <label for="name"/>
                         <h3><field name="name" default_focus="1" placeholder="Name..."/></h3>
-                        <label for="model" class="oe_edit_only"/>
+                        <label for="model"/>
                         <h3><field name="model" placeholder="Referenceable Model..."/></h3>
-                        <label for="priority" class="oe_edit_only"/>
+                        <label for="priority"/>
                         <h3><field name="priority" placeholder="Priority..."/></h3>
                     </div>
                     <notebook>
