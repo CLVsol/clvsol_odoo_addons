@@ -16,6 +16,7 @@
         'clv_base',
         'clv_global_log',
         'clv_global_tag',
+        'clv_phase',
         'clv_set',
     ],
     'data': [
@@ -25,6 +26,7 @@
         'views/hr_employee_log_view.xml',
         'views/hr_job_view.xml',
         'views/global_tag_view.xml',
+        'views/phase_view.xml',
         'views/set_element_view.xml',
         'wizard/hr_employee_mass_edit_view.xml',
         'wizard/hr_employee_user_groups_updt_view.xml',

@@ -6,4 +6,5 @@ from . import hr_employee
 from . import hr_employee_log
 from . import hr_job
 from . import global_tag
+from . import phase
 from . import set_element
