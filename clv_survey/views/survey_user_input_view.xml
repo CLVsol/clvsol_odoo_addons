@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="survey.survey_user_input_view_tree">
+        <field name="name">survey_user_input_view_tree</field>
+        <field name="model">survey.user_input</field>
+        <field name="arch" type="xml">
+            <tree name="survey_user_inputs"  string="Survey User inputs" decoration-muted="test_entry == True" create="false">
+                <field name="survey_id"/>
+                <field name="create_date"/>
+                <field name="deadline"/>
+                <field name="partner_id"/>
+                <field name="email"/>
+                <field name="attempts_number"/>
+                <field name="state"/>
+                <field name="test_entry" invisible="True"/>
+                <field name="scoring_success"/>
+                <field name="scoring_percentage"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_form" model="ir.ui.view">
+        <field name="name">survey.user_input.form</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="access_token" position="after">
+                <field name="survey_url" widget="url"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_tree" model="ir.ui.view">
+        <field name="name">survey.user_input.tree</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="create_date" position="after">
+                <field name="survey_url" widget="url"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_form_state_2" model="ir.ui.view">
+        <field name="name">survey.user_input.form</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="state_2" widget="statusbar"
+                       statusbar_visible="checked,validated,imported,archived"/>
+                <button name="action_new" type="object"
+                        string="New"
+                        confirm="Change Media File State to 'New'?"
+                        attrs="{'invisible':[('state_2','not in',['discarded'])]}"
+                        groups="clv_survey.group_manager"/>
+                <button name="action_returned" type="object"
+                        string="Returned"
+                        attrs="{'invisible':[('state_2','not in',['new'])]}"
+                        confirm="Change Media File State to 'Returned'?"
+                        groups="clv_survey.group_manager"/>
+                <button name="action_checked" type="object"
+                        string="Checked"
+                        confirm="Change Media File State to 'Checked'?"
+                        attrs="{'invisible':[('state_2','not in',['returned'])]}"
+                        groups="clv_survey.group_manager"/>
+                <button name="action_validated" type="object"
+                        string="Validated"
+                        confirm="Change Media File State to 'Validated'?"
+                        attrs="{'invisible':[('state_2','not in',['returned','checked'])]}"
+                        groups="clv_survey.group_manager"/>
+                <button name="action_discarded" type="object"
+                        string="Discarded"
+                        confirm="Change Media File State to 'Discarded'?"
+                        attrs="{'invisible':[('state_2','not in',['new','returned','checked','validated'])]}"
+                        groups="clv_survey.group_manager"/>
+           </field>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_tree_state_2" model="ir.ui.view">
+        <field name="name">survey.user_input.tree</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="create_date" position="after">
+                <field name="state_2"/>
+            </field>
+            <tree name="survey_user_inputs" position="attributes">
+                <attribute name="decoration-muted">state_2=='new'</attribute>
+                <attribute name="decoration-success">state_2 in('validated')</attribute>
+                <attribute name="decoration-primary">state_2 in('checked')</attribute>
+                <attribute name="decoration-danger">state_2=='discarded'</attribute>
+                <attribute name="decoration-it">state_2 in('new','discarded')</attribute>
+                <attribute name="decoration-bf">state_2 in('validated')</attribute>
+            </tree>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_search_state_2" model="ir.ui.view">
+        <field name="name">survey.user_input.search</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+           <field name="partner_id" position="after">
+                <field name="state_2"/>
+            </field>
+            <filter name="group_by_survey" position="after">
+                <filter name="group_by_state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                <filter name="group_by_state_2" string="Survey User Input State" domain="[]" context="{'group_by':'state_2'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

@@ -19,8 +19,10 @@
                 <h2><field name="description" placeholder="Survey Description"/></h2>
                 <label for="code" class="oe_edit_only"/>
                 <h3><field name="code" placeholder="Survey Code"/></h3>
-                <label for="session_link" class="oe_edit_only"/>
-                <h3><field name="session_link" placeholder="Public link"/></h3>
+                <!--label for="session_link" class="oe_edit_only"/>
+                <h3><field name="session_link" placeholder="Session link"/></h3-->
+                <label for="public_url" class="oe_edit_only"/>
+                <h3><field name="public_url" placeholder="Public link" widget="url"/></h3>
             </label>
             <field name="question_type" position="before">
                 <field name="code"/>
