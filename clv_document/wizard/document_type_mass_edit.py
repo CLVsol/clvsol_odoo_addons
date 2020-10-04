@@ -22,7 +22,16 @@ class DocumentTypeMassEdit(models.TransientModel):
         default=_default_document_type_ids
     )
 
-    # @api.multi
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
+    phase_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Phase:', default=False, readonly=False, required=False
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -35,12 +44,16 @@ class DocumentTypeMassEdit(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_document_type_mass_edit(self):
         self.ensure_one()
 
         for document_type in self.document_type_ids:
 
             _logger.info(u'%s %s', '>>>>>', document_type.name)
+
+            if self.phase_id_selection == 'set':
+                document_type.phase_id = self.phase_id
+            if self.phase_id_selection == 'remove':
+                document_type.phase_id = False
 
         return True

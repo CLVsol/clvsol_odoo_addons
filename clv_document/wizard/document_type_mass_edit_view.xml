@@ -14,6 +14,12 @@
                 <label for="document_type_ids"/>
                 <field name="document_type_ids"/>
                 <group name="group_main">
+                    <group>
+                        <field name="phase_id_selection"/>
+                    </group>
+                    <group name="phase_id">
+                        <field name="phase_id" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
+                    </group>
                 </group>
                 <footer>
                     <button 
