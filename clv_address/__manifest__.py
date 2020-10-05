@@ -15,6 +15,7 @@
         'clv_partner_entity',
         'clv_global_log',
         'clv_global_tag',
+        'clv_phase',
     ],
     'data': [
         'security/address_security.xml',
@@ -28,6 +29,7 @@
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
         'views/address_name_view.xml',
+        'views/phase_view.xml',
         'wizard/address_mass_edit_view.xml',
         'views/address_menu_view.xml',
         'data/global_log_client.xml',
