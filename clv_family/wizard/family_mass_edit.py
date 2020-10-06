@@ -77,6 +77,16 @@ class FamilyMassEdit(models.TransientModel):
          ], string='Markers:', default=False, readonly=False, required=False
     )
 
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
+    phase_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Phase:', readonly=False, required=False
+    )
+
     tag_ids = fields.Many2many(
         comodel_name='clv.family.tag',
         relation='clv_family_mass_edit_tag_rel',
@@ -133,6 +143,21 @@ class FamilyMassEdit(models.TransientModel):
         defaults = super().default_get(field_names)
 
         defaults['family_ids'] = self.env.context['active_ids']
+
+        param_value = self.env['ir.config_parameter'].sudo().get_param(
+            'clv.global_settings.current_phase_id', '').strip()
+        phase_id = False
+        if param_value:
+            phase_id = int(param_value)
+
+        phase_id_selection = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.family'),
+            ('parameter', '=', 'mass_edit_phase_id_selection'),
+            ('enabled', '=', True),
+        ]).value
+
+        defaults['phase_id'] = phase_id
+        defaults['phase_id_selection'] = phase_id_selection
 
         return defaults
 
@@ -214,6 +239,11 @@ class FamilyMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 family.marker_ids = m2m_list
+
+            if self.phase_id_selection == 'set':
+                family.phase_id = self.phase_id
+            if self.phase_id_selection == 'remove':
+                family.phase_id = False
 
             if self.tag_ids_selection == 'add':
                 m2m_list = []
