@@ -5,15 +5,15 @@ access_clv_person_manager,clv.person.manager,model_clv_person,clv_person.group_m
 access_clv_person_supmanager,clv.person.supmanager,model_clv_person,clv_person.group_supmanager,1,1,1,1
 
 access_clv_person_category_user,clv.person.category.user,model_clv_person_category,clv_person.group_user,1,0,0,0
-access_clv_person_category_manager,clv.person.manager.category,model_clv_person_category,clv_person.group_manager,1,1,1,0
+access_clv_person_category_manager,clv.person.category.manager,model_clv_person_category,clv_person.group_manager,1,1,1,0
 access_clv_person_category_supmanager,clv.person.category.supmanager,model_clv_person_category,clv_person.group_supmanager,1,1,1,1
 
 access_clv_person_marker_user,clv.person.marker.user,model_clv_person_marker,clv_person.group_user,1,0,0,0
-access_clv_person_marker_manager,clv.person.manager.marker,model_clv_person_marker,clv_person.group_manager,1,1,1,0
+access_clv_person_marker_manager,clv.person.marker.manager,model_clv_person_marker,clv_person.group_manager,1,1,1,0
 access_clv_person_marker_supmanager,clv.person.marker.supmanager,model_clv_person_marker,clv_person.group_supmanager,1,1,1,1
 
 access_clv_person_tag_user,clv.person.tag.user,model_clv_person_tag,clv_person.group_user,1,0,0,0
-access_clv_person_tag_manager,clv.person.manager.tag,model_clv_person_tag,clv_person.group_manager,1,1,1,0
+access_clv_person_tag_manager,clv.person.tag.manager,model_clv_person_tag,clv_person.group_manager,1,1,1,0
 access_clv_person_tag_supmanager,clv.person.tag.supmanager,model_clv_person_tag,clv_person.group_supmanager,1,1,1,1
 
 access_clv_person_mass_edit_user,clv.person.mass_edit.user,model_clv_person_mass_edit,clv_person.group_user,1,0,0,0

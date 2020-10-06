@@ -77,6 +77,16 @@ class PersonMassEdit(models.TransientModel):
          ], string='Markers:', default=False, readonly=False, required=False
     )
 
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
+    phase_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Phase:', default=False, readonly=False, required=False
+    )
+
     tag_ids = fields.Many2many(
         comodel_name='clv.person.tag',
         relation='clv_person_mass_edit_tag_rel',
@@ -209,6 +219,11 @@ class PersonMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person.marker_ids = m2m_list
+
+            if self.phase_id_selection == 'set':
+                person.phase_id = self.phase_id
+            if self.phase_id_selection == 'remove':
+                person.phase_id = False
 
             if self.tag_ids_selection == 'add':
                 m2m_list = []
