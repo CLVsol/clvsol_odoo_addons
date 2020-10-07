@@ -15,3 +15,4 @@ from . import lab_test_unit
 from . import lab_test_criterion
 from . import lab_test_criterion_log
 from . import referenceable_model
+from . import phase

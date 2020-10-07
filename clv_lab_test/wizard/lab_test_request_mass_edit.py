@@ -45,6 +45,16 @@ class LabTestRequestMassEdit(models.TransientModel):
          ], string='Date of the Request:', default=False, readonly=False, required=False
     )
 
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
+    phase_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Phase:', default=False, readonly=False, required=False
+    )
+
     @api.model
     def referenceable_models(self):
         return [(ref.model, ref.name) for ref in self.env['clv.referenceable.model'].search([
@@ -60,7 +70,6 @@ class LabTestRequestMassEdit(models.TransientModel):
          ], string='Refers to:', default=False, readonly=False, required=False
     )
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -73,7 +82,6 @@ class LabTestRequestMassEdit(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_lab_test_request_mass_edit(self):
         self.ensure_one()
 
@@ -85,6 +93,11 @@ class LabTestRequestMassEdit(models.TransientModel):
                 lab_test_request.date_request = self.date_request
             if self.date_request_selection == 'remove':
                 lab_test_request.date_request = False
+
+            if self.phase_id_selection == 'set':
+                lab_test_request.phase_id = self.phase_id
+            if self.phase_id_selection == 'remove':
+                lab_test_request.phase_id = False
 
             if self.ref_id_selection == 'set':
                 lab_test_request.ref_id = self.ref_id
