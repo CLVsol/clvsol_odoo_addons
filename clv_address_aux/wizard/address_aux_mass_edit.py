@@ -77,6 +77,16 @@ class AddressAuxMassEdit(models.TransientModel):
          ], string='Markers:', default=False, readonly=False, required=False
     )
 
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
+    phase_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Phase:', readonly=False, required=False
+    )
+
     partner_entity_code_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
@@ -119,6 +129,21 @@ class AddressAuxMassEdit(models.TransientModel):
         defaults = super().default_get(field_names)
 
         defaults['address_aux_ids'] = self.env.context['active_ids']
+
+        param_value = self.env['ir.config_parameter'].sudo().get_param(
+            'clv.global_settings.current_phase_id', '').strip()
+        phase_id = False
+        if param_value:
+            phase_id = int(param_value)
+
+        phase_id_selection = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.address_aux'),
+            ('parameter', '=', 'mass_edit_phase_id_selection'),
+            ('enabled', '=', True),
+        ]).value
+
+        defaults['phase_id'] = phase_id
+        defaults['phase_id_selection'] = phase_id_selection
 
         return defaults
 
@@ -200,6 +225,11 @@ class AddressAuxMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 address_aux.marker_ids = m2m_list
+
+            if self.phase_id_selection == 'set':
+                address_aux.phase_id = self.phase_id
+            if self.phase_id_selection == 'remove':
+                address_aux.phase_id = False
 
             if self.partner_entity_code_selection == 'set':
                 if address_aux.entity_code != address_aux.code:
