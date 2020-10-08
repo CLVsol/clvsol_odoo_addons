@@ -26,6 +26,7 @@
         'views/default_value_view.xml',
         'views/base_menu_view.xml',
         'views/community_menu_view.xml',
+        'views/aux_menu_view.xml',
         'views/referenciable_model_menu_view.xml',
         'views/global_settings_menu_view.xml',
         'views/default_value_menu_view.xml',
