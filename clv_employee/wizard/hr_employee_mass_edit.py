@@ -72,6 +72,16 @@ class EmployeeMassEdit(models.TransientModel):
          ], string='Global Tags:', default=False, readonly=False, required=False
     )
 
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
+    phase_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Phase:', default=False, readonly=False, required=False
+    )
+
     active_log = fields.Boolean(
         string='Active Log'
     )
@@ -133,6 +143,11 @@ class EmployeeMassEdit(models.TransientModel):
                     m2m_list.append((4, global_tag_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 employee.global_tag_ids = m2m_list
+
+            if self.phase_id_selection == 'set':
+                employee.phase_id = self.phase_id
+            if self.phase_id_selection == 'remove':
+                employee.phase_id = False
 
             if self.active_log_selection == 'set':
                 employee.active_log = self.active_log
