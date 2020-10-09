@@ -91,6 +91,16 @@ class AddressMassEdit(models.TransientModel):
          ], string='Address Tags:', default=False, readonly=False, required=False
     )
 
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
+    phase_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Phase:', default=False, readonly=False, required=False
+    )
+
     partner_entity_code_selection = fields.Selection(
         [('set', 'Set'),
          ('remove', 'Remove'),
@@ -238,6 +248,11 @@ class AddressMassEdit(models.TransientModel):
                     m2m_list.append((4, tag_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 address.tag_ids = m2m_list
+
+            if self.phase_id_selection == 'set':
+                address.phase_id = self.phase_id
+            if self.phase_id_selection == 'remove':
+                address.phase_id = False
 
             if self.partner_entity_code_selection == 'set':
                 if address.entity_code != address.code:
