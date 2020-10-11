@@ -95,18 +95,17 @@ class PersonAuxAssociateToFamily(models.TransientModel):
                             values['code'] = '/'
                             values['phase_id'] = person_aux.phase_id.id
                             values['street_name'] = person_aux.ref_address_id.street_name
+                            values['street_number'] = person_aux.ref_address_id.street_number
+                            values['street_number2'] = person_aux.ref_address_id.street_number2
                             values['street2'] = person_aux.ref_address_id.street2
                             values['country_id'] = person_aux.ref_address_id.country_id.id
                             values['state_id'] = person_aux.ref_address_id.state_id.id
+                            values['city_id'] = person_aux.ref_address_id.city_id.id
                             values['city'] = person_aux.ref_address_id.city
                             values['zip'] = person_aux.ref_address_id.zip
                             # values['phone'] = person_aux.ref_address_id.phone
                             # values['mobile'] = person_aux.ref_address_id.mobile
                             # values['email'] = person_aux.ref_address_id.email
-
-                            values['street_number'] = person_aux.ref_address_id.street_number
-                            values['district'] = person_aux.ref_address_id.district
-                            values['city_id'] = person_aux.ref_address_id.city_id.id
 
                             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                             new_family.write(values)

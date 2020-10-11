@@ -71,9 +71,12 @@ class PersonAux(models.Model):
                     data_values['ref_address_aux_id'] = person_aux.ref_address_aux_id.id
 
                     data_values['street_name'] = person_aux.ref_address_aux_id.street_name
+                    data_values['street_number'] = person_aux.ref_address_aux_id.street_number
+                    data_values['street_number2'] = person_aux.ref_address_aux_id.street_number2
                     data_values['street2'] = person_aux.ref_address_aux_id.street2
                     data_values['zip'] = person_aux.ref_address_aux_id.zip
                     data_values['city'] = person_aux.ref_address_aux_id.city
+                    data_values['city_id'] = person_aux.ref_address_aux_id.city_id.id
                     data_values['state_id'] = person_aux.ref_address_aux_id.state_id.id
                     data_values['country_id'] = person_aux.ref_address_aux_id.country_id.id
                     # data_values['phone'] = person_aux.ref_address_aux_id.phone

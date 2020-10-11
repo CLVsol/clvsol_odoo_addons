@@ -26,7 +26,6 @@ class PersonAuxContactInformationUpdate(models.TransientModel):
     updt_mobile = fields.Boolean(string='Update Mobile', default=False)
     updt_email = fields.Boolean(string='Update Email', default=False)
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -39,7 +38,6 @@ class PersonAuxContactInformationUpdate(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_person_aux_contact_information_updt(self):
         self.ensure_one()
 
@@ -50,9 +48,12 @@ class PersonAuxContactInformationUpdate(models.TransientModel):
             if person_aux.ref_address_id is not False:
 
                 person_aux.street_name = person_aux.ref_address_id.street_name
+                person_aux.street_number = person_aux.ref_address_id.street_number
+                person_aux.street_number2 = person_aux.ref_address_id.street_number2
                 person_aux.street2 = person_aux.ref_address_id.street2
                 person_aux.country_id = person_aux.ref_address_id.country_id
                 person_aux.state_id = person_aux.ref_address_id.state_id
+                person_aux.city_id = person_aux.ref_address_id.city_id
                 person_aux.city = person_aux.ref_address_id.city
                 person_aux.zip = person_aux.ref_address_id.zip
                 if self.updt_phone:
