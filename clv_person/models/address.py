@@ -70,9 +70,12 @@ class Person(models.Model):
                     data_values['ref_address_id'] = person.ref_address_id.id
 
                     data_values['street_name'] = person.ref_address_id.street_name
+                    data_values['street_number'] = person.ref_address_id.street_number
+                    data_values['street_number2'] = person.ref_address_id.street_number2
                     data_values['street2'] = person.ref_address_id.street2
                     data_values['zip'] = person.ref_address_id.zip
                     data_values['city'] = person.ref_address_id.city
+                    data_values['city_id'] = person.ref_address_id.city_id.id
                     data_values['state_id'] = person.ref_address_id.state_id.id
                     data_values['country_id'] = person.ref_address_id.country_id.id
                     # data_values['phone'] = person.ref_address_id.phone

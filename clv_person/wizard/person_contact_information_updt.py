@@ -55,9 +55,12 @@ class PersonContactInformationUpdate(models.TransientModel):
                 values = {}
 
                 values['street_name'] = person.ref_address_id.street_name
+                values['street_number'] = person.ref_address_id.street_number
+                values['street_number2'] = person.ref_address_id.street_number2
                 values['street2'] = person.ref_address_id.street2
                 values['country_id'] = person.ref_address_id.country_id.id
                 values['state_id'] = person.ref_address_id.state_id.id
+                values['city_id'] = person.ref_address_id.city_id.id
                 values['city'] = person.ref_address_id.city
                 values['zip'] = person.ref_address_id.zip
                 if self.updt_phone:
