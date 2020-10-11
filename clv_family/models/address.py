@@ -54,7 +54,6 @@ class Family(models.Model):
         related='ref_address_id.category_ids'
     )
 
-    # @api.multi
     def do_family_get_ref_address_data(self):
 
         for family in self:
@@ -70,13 +69,20 @@ class Family(models.Model):
                     data_values['ref_address_id'] = family.ref_address_id.id
 
                     data_values['street_name'] = family.ref_address_id.street_name
+                    data_values['street_number'] = family.ref_address_id.street_number
+                    data_values['street_number2'] = family.ref_address_id.street_number2
                     data_values['street2'] = family.ref_address_id.street2
                     data_values['zip'] = family.ref_address_id.zip
                     data_values['city'] = family.ref_address_id.city
+                    data_values['city_id'] = family.ref_address_id.city_id.id
                     data_values['state_id'] = family.ref_address_id.state_id.id
                     data_values['country_id'] = family.ref_address_id.country_id.id
-                    # data_values['phone'] = family.ref_address_id.phone
-                    # data_values['mobile'] = family.ref_address_id.mobile
+                    if self.updt_phone:
+                        data_values['phone'] = family.ref_address_id.phone
+                    if self.updt_mobile:
+                        data_values['mobile'] = family.ref_address_id.mobile
+                    if self.updt_email:
+                        data_values['email'] = family.ref_address_id.email
 
                 _logger.info(u'>>>>>>>>>> %s', data_values)
 
