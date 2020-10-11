@@ -31,7 +31,6 @@ class AddressAux(models.Model):
         })
         return vals
 
-    # @api.model_cr_context
     def _get_default_image_path(self, vals):
         res = super()._get_default_image_path(vals)
         if res:
@@ -41,7 +40,6 @@ class AddressAux(models.Model):
         )
         return image_path
 
-    # @api.multi
     def write(self, values):
         ret = super().write(values)
         for record in self:
@@ -52,7 +50,6 @@ class AddressAux(models.Model):
                     super().write(vals)
         return ret
 
-    # @api.multi
     def do_address_aux_clear_address_data(self):
 
         for address_aux in self:
@@ -64,9 +61,12 @@ class AddressAux(models.Model):
             data_values = {}
 
             data_values['street_name'] = False
+            data_values['street_number'] = False
+            data_values['street_number2'] = False
             data_values['street2'] = False
             data_values['zip'] = False
             data_values['city'] = False
+            data_values['city_id'] = False
             data_values['state_id'] = False
             data_values['country_id'] = False
             # data_values['phone'] = False
