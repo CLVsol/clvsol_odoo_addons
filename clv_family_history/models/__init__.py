@@ -9,3 +9,4 @@ from . import family_category
 from . import family_marker
 from . import family_tag
 from . import address
+from . import family_history_reg_state
