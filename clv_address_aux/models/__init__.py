@@ -10,3 +10,4 @@ from . import global_tag
 from . import address_aux_name
 from . import address
 from . import phase
+from . import address_aux_reg_state

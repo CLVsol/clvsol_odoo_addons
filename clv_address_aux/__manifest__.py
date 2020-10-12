@@ -29,6 +29,7 @@
         'views/address_aux_name_view.xml',
         'views/address_view.xml',
         'views/phase_view.xml',
+        'views/address_aux_reg_state_view.xml',
         'wizard/address_aux_mass_edit_view.xml',
         'wizard/address_associate_to_address_aux_view.xml',
         'views/address_aux_menu_view.xml',
