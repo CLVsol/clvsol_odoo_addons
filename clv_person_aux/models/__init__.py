@@ -12,3 +12,4 @@ from . import family
 from . import person
 from . import address_aux
 from . import phase
+from . import person_aux_reg_state
