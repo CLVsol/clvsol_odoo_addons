@@ -34,6 +34,7 @@
         'views/family_view.xml',
         'views/global_settings_view.xml',
         'views/phase_view.xml',
+        'views/person_reg_state_view.xml',
         'wizard/person_mass_edit_view.xml',
         'wizard/person_contact_information_updt_view.xml',
         'wizard/person_associate_to_family_view.xml',
