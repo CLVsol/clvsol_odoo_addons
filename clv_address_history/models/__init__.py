@@ -8,3 +8,4 @@ from . import address
 from . import address_category
 from . import address_marker
 from . import address_tag
+from . import address_history_reg_state
