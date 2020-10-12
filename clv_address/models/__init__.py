@@ -11,3 +11,4 @@ from . import res_partner
 from . import global_tag
 from . import address_name
 from . import phase
+from . import address_reg_state
