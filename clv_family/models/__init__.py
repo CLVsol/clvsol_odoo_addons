@@ -13,3 +13,4 @@ from . import family_name
 from . import global_settings
 from . import address
 from . import phase
+from . import family_reg_state
