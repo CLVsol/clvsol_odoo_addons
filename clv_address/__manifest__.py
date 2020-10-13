@@ -16,6 +16,7 @@
         'clv_global_log',
         'clv_global_tag',
         'clv_phase',
+        'clv_employee',
     ],
     'data': [
         'security/address_security.xml',
@@ -31,6 +32,8 @@
         'views/address_name_view.xml',
         'views/phase_view.xml',
         'views/address_reg_state_view.xml',
+        'views/address_state_view.xml',
+        'views/employee_view.xml',
         'wizard/address_mass_edit_view.xml',
         'views/address_menu_view.xml',
         'data/global_log_client.xml',
