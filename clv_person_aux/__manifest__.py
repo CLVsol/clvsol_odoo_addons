@@ -35,6 +35,7 @@
         'views/address_aux_view.xml',
         'views/phase_view.xml',
         'views/person_aux_reg_state_view.xml',
+        'views/person_aux_state_view.xml',
         'wizard/person_aux_mass_edit_view.xml',
         'wizard/person_aux_contact_information_updt_view.xml',
         'wizard/person_associate_to_person_aux_view.xml',

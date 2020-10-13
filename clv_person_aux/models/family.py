@@ -66,3 +66,12 @@ class PersonAux(models.Model):
                 person_aux.write(data_values)
 
         return True
+
+class PersonAux_2(models.Model):
+    _inherit = 'clv.person_aux'
+
+    family_state = fields.Selection(
+        string='Family State',
+        related='family_id.state',
+        store=False
+    )

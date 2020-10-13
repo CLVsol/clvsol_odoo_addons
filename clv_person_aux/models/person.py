@@ -60,7 +60,6 @@ class PersonAux(models.Model):
         related='related_person_id.ref_address_id.category_ids'
     )
 
-    # @api.multi
     def do_person_aux_get_related_person_data(self):
 
         for person_aux in self:
@@ -109,3 +108,13 @@ class PersonAux(models.Model):
                 person_aux.write(data_values)
 
         return True
+
+
+class PersonAux_2(models.Model):
+    _inherit = 'clv.person_aux'
+
+    related_person_state = fields.Selection(
+        string='Related Person State',
+        related='related_person_id.state',
+        store=False
+    )

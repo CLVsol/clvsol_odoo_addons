@@ -104,3 +104,13 @@ class PersonAux(models.Model):
                 person_aux.write(data_values)
 
         return True
+
+
+class PersonAux_2(models.Model):
+    _inherit = 'clv.person_aux'
+
+    ref_address_state = fields.Selection(
+        string='Address State',
+        related='ref_address_id.state',
+        store=False
+    )
