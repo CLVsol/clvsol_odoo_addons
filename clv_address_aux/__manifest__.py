@@ -16,6 +16,7 @@
         'clv_global_log',
         'clv_global_tag',
         'clv_address',
+        'clv_employee',
     ],
     'data': [
         'security/address_aux_security.xml',
@@ -30,6 +31,8 @@
         'views/address_view.xml',
         'views/phase_view.xml',
         'views/address_aux_reg_state_view.xml',
+        'views/address_aux_state_view.xml',
+        'views/employee_view.xml',
         'wizard/address_aux_mass_edit_view.xml',
         'wizard/address_associate_to_address_aux_view.xml',
         'views/address_aux_menu_view.xml',
