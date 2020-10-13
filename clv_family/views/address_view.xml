@@ -130,4 +130,16 @@
         </field>
     </record>
 
+    <record id="clv_family_view_form_address_2" model="ir.ui.view">
+        <field name="name">clv.family.form</field>
+        <field name="model">clv.family</field>
+        <field name="inherit_id" ref="clv_family.clv_family_view_form"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <group name="group_top_left" position="inside">
+                <field name="ref_address_state" string="Address State"/>
+            </group>
+        </field>
+    </record>
+
 </odoo>
