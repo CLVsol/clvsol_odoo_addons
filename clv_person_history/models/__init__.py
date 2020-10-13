@@ -11,3 +11,5 @@ from . import person_tag
 from . import address
 from . import family
 from . import person_history_reg_state
+from . import person_history_state
+from . import employee

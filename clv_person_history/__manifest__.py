@@ -22,6 +22,8 @@
         'views/address_view.xml',
         'views/family_view.xml',
         'views/person_history_reg_state_view.xml',
+        'views/person_history_state_view.xml',
+        'views/employee_view.xml',
         'views/person_history_menu_view.xml',
     ],
     'demo': [],
