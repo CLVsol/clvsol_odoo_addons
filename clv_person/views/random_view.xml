@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="clv_person_view_form_random" model="ir.ui.view">
+        <field name="name">clv.person.form</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person.clv_person_view_form"/>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <group name="group_bottom_left" position="inside">
+                <field name="random_field"/>
+            </group>
+        </field>
+    </record>
+   
+    <record id="clv_person_view_tree_ramndom" model="ir.ui.view">
+        <field name="name">clv.person.tree</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person.clv_person_view_tree"/>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="random_field"/>
+            </field>
+        </field>
+    </record>
+   
+    <record id="clv_person_view_search_random" model="ir.ui.view">
+        <field name="name">clv.person.search</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person.clv_person_view_search"/>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="random_field"/>
+            </field>
+        </field>
+    </record>
+   
+</odoo>

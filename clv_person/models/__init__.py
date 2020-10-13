@@ -14,3 +14,6 @@ from . import family
 from . import global_settings
 from . import phase
 from . import person_reg_state
+from . import person_state
+from . import employee
+from . import random

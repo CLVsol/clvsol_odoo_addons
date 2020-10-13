@@ -129,4 +129,16 @@
         </field>
     </record>
 
+    <record id="clv_person_view_form_family_2" model="ir.ui.view">
+        <field name="name">clv.person.form</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person.clv_person_view_form"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <group name="group_top_right" position="inside">
+                <field name="family_state" string="Family State"/>
+            </group>
+        </field>
+    </record>
+
 </odoo>

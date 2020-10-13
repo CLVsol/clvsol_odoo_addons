@@ -71,3 +71,13 @@ class Person(models.Model):
                 person.write(data_values)
 
         return True
+
+
+class Person_2(models.Model):
+    _inherit = 'clv.person'
+
+    family_state = fields.Selection(
+        string='Family State',
+        related='family_id.state',
+        store=False
+    )
