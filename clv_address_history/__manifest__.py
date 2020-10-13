@@ -19,6 +19,8 @@
         'views/phase_view.xml',
         'views/address_view.xml',
         'views/address_history_reg_state_view.xml',
+        'views/address_history_state_view.xml',
+        'views/employee_view.xml',
         'views/address_history_menu_view.xml',
     ],
     'demo': [],

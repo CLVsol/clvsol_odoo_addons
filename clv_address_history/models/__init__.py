@@ -9,3 +9,5 @@ from . import address_category
 from . import address_marker
 from . import address_tag
 from . import address_history_reg_state
+from . import address_history_state
+from . import employee
