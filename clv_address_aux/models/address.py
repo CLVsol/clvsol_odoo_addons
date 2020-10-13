@@ -96,3 +96,13 @@ class AddressAux(models.Model):
                 address_aux.write(data_values)
 
         return True
+
+
+class AddressAux_2(models.Model):
+    _inherit = 'clv.address_aux'
+
+    related_address_state = fields.Selection(
+        string='Related Address State',
+        related='related_address_id.state',
+        store=False
+    )
