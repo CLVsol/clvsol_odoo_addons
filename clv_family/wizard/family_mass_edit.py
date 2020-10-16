@@ -35,6 +35,33 @@ class FamilyMassEdit(models.TransientModel):
         string='Families'
     )
 
+    reg_state = fields.Selection(
+        [('draft', 'Draft'),
+         ('revised', 'Revised'),
+         ('done', 'Done'),
+         ('canceled', 'Canceled')
+         ], string='Register State', readonly=False, required=False
+    )
+    reg_state_selection = fields.Selection(
+        [('set', 'Set'),
+         ], string='Register State:', readonly=False, required=False
+    )
+
+    state = fields.Selection(
+        [('new', 'New'),
+         ('available', 'Available'),
+         ('waiting', 'Waiting'),
+         ('selected', 'Selected'),
+         ('unselected', 'Unselected'),
+         ('unavailable', 'Unavailable'),
+         ('unknown', 'Unknown')
+         ], string='State', readonly=False, required=False
+    )
+    state_selection = fields.Selection(
+        [('set', 'Set'),
+         ], string='State:', readonly=False, required=False
+    )
+
     global_tag_ids = fields.Many2many(
         comodel_name='clv.global_tag',
         relation='clv_family_mass_edit_global_tag_rel',
@@ -159,6 +186,36 @@ class FamilyMassEdit(models.TransientModel):
         defaults['phase_id'] = phase_id
         defaults['phase_id_selection'] = phase_id_selection
 
+        reg_state = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.family'),
+            ('parameter', '=', 'mass_edit_reg_state'),
+            ('enabled', '=', True),
+        ]).value
+
+        reg_state_selection = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.family'),
+            ('parameter', '=', 'mass_edit_reg_state_selection'),
+            ('enabled', '=', True),
+        ]).value
+
+        defaults['reg_state'] = reg_state
+        defaults['reg_state_selection'] = reg_state_selection
+
+        state = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.family'),
+            ('parameter', '=', 'mass_edit_state'),
+            ('enabled', '=', True),
+        ]).value
+
+        state_selection = self.env['clv.default_value'].search([
+            ('model', '=', 'clv.family'),
+            ('parameter', '=', 'mass_edit_state_selection'),
+            ('enabled', '=', True),
+        ]).value
+
+        defaults['state'] = state
+        defaults['state_selection'] = state_selection
+
         return defaults
 
     def do_family_mass_edit(self):
@@ -167,6 +224,16 @@ class FamilyMassEdit(models.TransientModel):
         for family in self.family_ids:
 
             _logger.info(u'%s %s', '>>>>>', family.name)
+
+            if self.reg_state_selection == 'set':
+                family.reg_state = self.reg_state
+            if self.reg_state_selection == 'remove':
+                family.reg_state = False
+
+            if self.state_selection == 'set':
+                family.state = self.state
+            if self.state_selection == 'remove':
+                family.state = False
 
             if self.global_tag_ids_selection == 'add':
                 m2m_list = []
