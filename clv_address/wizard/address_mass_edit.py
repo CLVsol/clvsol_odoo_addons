@@ -35,6 +35,33 @@ class AddressMassEdit(models.TransientModel):
         string='Addresses'
     )
 
+    reg_state = fields.Selection(
+        [('draft', 'Draft'),
+         ('revised', 'Revised'),
+         ('done', 'Done'),
+         ('canceled', 'Canceled')
+         ], string='Register State', default=False, readonly=False, required=False
+    )
+    reg_state_selection = fields.Selection(
+        [('set', 'Set'),
+         ], string='Register State:', default=False, readonly=False, required=False
+    )
+
+    state = fields.Selection(
+        [('new', 'New'),
+         ('available', 'Available'),
+         ('waiting', 'Waiting'),
+         ('selected', 'Selected'),
+         ('unselected', 'Unselected'),
+         ('unavailable', 'Unavailable'),
+         ('unknown', 'Unknown')
+         ], string='State', default=False, readonly=False, required=False
+    )
+    state_selection = fields.Selection(
+        [('set', 'Set'),
+         ], string='State:', default=False, readonly=False, required=False
+    )
+
     global_tag_ids = fields.Many2many(
         comodel_name='clv.global_tag',
         relation='clv_address_mass_edit_global_tag_rel',
@@ -75,6 +102,16 @@ class AddressMassEdit(models.TransientModel):
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
          ], string='Markers:', default=False, readonly=False, required=False
+    )
+
+    employee_id = fields.Many2one(
+        comodel_name='hr.employee',
+        string='Responsible Empĺoyee'
+    )
+    employee_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Responsible Empĺoyee:', default=False, readonly=False, required=False
     )
 
     tag_ids = fields.Many2many(
@@ -153,6 +190,16 @@ class AddressMassEdit(models.TransientModel):
 
             _logger.info(u'%s %s', '>>>>>', address.name)
 
+            if self.reg_state_selection == 'set':
+                address.reg_state = self.reg_state
+            if self.reg_state_selection == 'remove':
+                address.reg_state = False
+
+            if self.state_selection == 'set':
+                address.state = self.state
+            if self.state_selection == 'remove':
+                address.state = False
+
             if self.global_tag_ids_selection == 'add':
                 m2m_list = []
                 for global_tag_id in self.global_tag_ids:
@@ -224,6 +271,11 @@ class AddressMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 address.marker_ids = m2m_list
+
+            if self.employee_id_selection == 'set':
+                address.employee_id = self.employee_id
+            if self.employee_id_selection == 'remove':
+                address.employee_id = False
 
             if self.tag_ids_selection == 'add':
                 m2m_list = []
