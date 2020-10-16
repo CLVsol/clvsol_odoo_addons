@@ -4,3 +4,4 @@
 
 from . import address_aux_mass_edit
 from . import address_associate_to_address_aux
+from . import address_aux_set_code

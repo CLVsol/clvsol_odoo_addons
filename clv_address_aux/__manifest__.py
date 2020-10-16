@@ -35,6 +35,7 @@
         'views/employee_view.xml',
         'wizard/address_aux_mass_edit_view.xml',
         'wizard/address_associate_to_address_aux_view.xml',
+        'wizard/address_aux_set_code_view.xml',
         'views/address_aux_menu_view.xml',
         'data/global_log_client.xml',
         'data/default_value.xml',

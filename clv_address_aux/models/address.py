@@ -45,7 +45,6 @@ class AddressAux(models.Model):
         related='related_address_id.category_ids'
     )
 
-    # @api.multi
     def do_address_aux_get_related_address_data(self):
 
         for address_aux in self:
@@ -60,10 +59,15 @@ class AddressAux(models.Model):
                 # data_values['name'] = address_aux.related_address_id.name
                 data_values['code'] = address_aux.related_address_id.code
 
+                data_values['state'] = address_aux.related_address_id.state
+
                 data_values['street_name'] = address_aux.related_address_id.street_name
+                data_values['street_number'] = address_aux.related_address_id.street_number
+                data_values['street_number2'] = address_aux.related_address_id.street_number2
                 data_values['street2'] = address_aux.related_address_id.street2
                 data_values['zip'] = address_aux.related_address_id.zip
                 data_values['city'] = address_aux.related_address_id.city
+                data_values['city_id'] = address_aux.related_address_id.city_id.id
                 data_values['state_id'] = address_aux.related_address_id.state_id.id
                 data_values['country_id'] = address_aux.related_address_id.country_id.id
                 data_values['phone'] = address_aux.related_address_id.phone
@@ -75,7 +79,6 @@ class AddressAux(models.Model):
 
         return True
 
-    # @api.multi
     def do_address_aux_remove_related_address(self):
 
         for address_aux in self:
