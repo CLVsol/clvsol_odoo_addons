@@ -17,3 +17,4 @@ from . import person_reg_state
 from . import person_state
 from . import employee
 from . import random
+from . import set_element

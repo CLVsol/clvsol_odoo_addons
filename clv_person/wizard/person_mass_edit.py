@@ -35,6 +35,33 @@ class PersonMassEdit(models.TransientModel):
         string='Persons'
     )
 
+    reg_state = fields.Selection(
+        [('draft', 'Draft'),
+         ('revised', 'Revised'),
+         ('done', 'Done'),
+         ('canceled', 'Canceled')
+         ], string='Register State', default=False, readonly=False, required=False
+    )
+    reg_state_selection = fields.Selection(
+        [('set', 'Set'),
+         ], string='Register State:', default=False, readonly=False, required=False
+    )
+
+    state = fields.Selection(
+        [('new', 'New'),
+         ('available', 'Available'),
+         ('waiting', 'Waiting'),
+         ('selected', 'Selected'),
+         ('unselected', 'Unselected'),
+         ('unavailable', 'Unavailable'),
+         ('unknown', 'Unknown')
+         ], string='State', default=False, readonly=False, required=False
+    )
+    state_selection = fields.Selection(
+        [('set', 'Set'),
+         ], string='State:', default=False, readonly=False, required=False
+    )
+
     global_tag_ids = fields.Many2many(
         comodel_name='clv.global_tag',
         relation='clv_person_mass_edit_global_tag_rel',
@@ -75,6 +102,16 @@ class PersonMassEdit(models.TransientModel):
          ('remove_m2m', 'Remove'),
          ('set', 'Set'),
          ], string='Markers:', default=False, readonly=False, required=False
+    )
+
+    random_field = fields.Char(
+        string='Random ID', default=False,
+        help='Use "/" to get an automatic new Random ID.'
+    )
+    random_field_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Random ID:', default=False, readonly=False, required=False
     )
 
     phase_id = fields.Many2one(
@@ -148,6 +185,16 @@ class PersonMassEdit(models.TransientModel):
 
             _logger.info(u'%s %s', '>>>>>', person.name)
 
+            if self.reg_state_selection == 'set':
+                person.reg_state = self.reg_state
+            if self.reg_state_selection == 'remove':
+                person.reg_state = False
+
+            if self.state_selection == 'set':
+                person.state = self.state
+            if self.state_selection == 'remove':
+                person.state = False
+
             if self.global_tag_ids_selection == 'add':
                 m2m_list = []
                 for global_tag_id in self.global_tag_ids:
@@ -219,6 +266,11 @@ class PersonMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person.marker_ids = m2m_list
+
+            if self.random_field_selection == 'set':
+                person.random_field = self.random_field
+            if self.random_field_selection == 'remove':
+                person.random_field = False
 
             if self.phase_id_selection == 'set':
                 person.phase_id = self.phase_id
