@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_family_history_updt_view_form" model="ir.ui.view">
+        <field name="name">clv.family.history_updt.form</field>
+        <field name="model">clv.family.history_updt</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="family_ids"/>
+                <field name="family_ids"/>
+                <group>
+                    <group>
+                        <field name="date_sign_out"/>
+                    </group>
+                    <group>
+                        <field name="date_sign_in"/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_family_history_updt"
+                        string="Family History Update"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_family_history_updt_action" model="ir.actions.act_window">
+        <field name="name">Family History Update</field>
+        <field name="binding_model_id" ref="clv_family.model_clv_family"/>
+        <field name="res_model">clv.family.history_updt</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

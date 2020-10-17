@@ -23,6 +23,7 @@
         'views/family_history_reg_state_view.xml',
         'views/family_history_state_view.xml',
         'views/employee_view.xml',
+        'wizard/family_history_updt_view.xml',
         'views/family_history_menu_view.xml',
     ],
     'demo': [],

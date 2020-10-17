@@ -3,3 +3,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_clv_family_history_user,clv.family.history.user,model_clv_family_history,clv_family.group_user,1,0,0,0
 access_clv_family_history_manager,clv.family.history.manager,model_clv_family_history,clv_family.group_manager,1,1,1,0
 access_clv_family_history_supmanager,clv.family.history.supmanager,model_clv_family_history,clv_family.group_supmanager,1,1,1,1
+
+access_clv_family_history_updt_user,clv.family.history_updt.user,model_clv_family_history_updt,clv_family.group_user,1,0,0,0
+access_clv_family_history_updt_manager,clv.family.history_updt.manager,model_clv_family_history_updt,clv_family.group_manager,1,1,1,0
+access_clv_family_history_updt_supmanager,clv.family.history_updt.supmanager,model_clv_family_history_updt,clv_family.group_supmanager,1,1,1,1
