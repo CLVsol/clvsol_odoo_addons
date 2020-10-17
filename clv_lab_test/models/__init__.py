@@ -16,3 +16,8 @@ from . import lab_test_criterion
 from . import lab_test_criterion_log
 from . import referenceable_model
 from . import phase
+from . import lab_test_request_state
+from . import lab_test_result_reg_state
+from . import lab_test_result_state
+from . import lab_test_report_reg_state
+from . import lab_test_report_state
