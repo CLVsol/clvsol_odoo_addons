@@ -28,6 +28,7 @@
         'views/event_attendee_log_view.xml',
         'views/referenceable_model_view.xml',
         'views/phase_view.xml',
+        'views/event_state_view.xml',
         # 'wizard/event_updt_view.xml',
         'views/event_menu_view.xml',
         'data/global_log_client.xml',

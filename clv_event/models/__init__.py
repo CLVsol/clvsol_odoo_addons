@@ -11,3 +11,4 @@ from . import event_attendee
 from . import event_attendee_log
 from . import referenceable_model
 from . import phase
+from . import event_state
