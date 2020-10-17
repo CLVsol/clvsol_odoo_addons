@@ -38,6 +38,32 @@ class DocumentMassEdit(models.TransientModel):
         default=_default_document_ids
     )
 
+    reg_state = fields.Selection(
+        [('draft', 'Draft'),
+         ('revised', 'Revised'),
+         ('done', 'Done'),
+         ('cancelled', 'Cancelled')
+         ], string='Register State', default=False, readonly=False, required=False
+    )
+    reg_state_selection = fields.Selection(
+        [('set', 'Set'),
+         ], string='Register State:', default=False, readonly=False, required=False
+    )
+
+    state = fields.Selection(
+        [('new', 'New'),
+         ('available', 'Available'),
+         ('waiting', 'Waiting'),
+         ('returned', 'Returned'),
+         ('archived', 'Archived'),
+         ('discarded', 'Discarded')
+         ], string='Document State', default=False, readonly=False, required=False
+    )
+    state_selection = fields.Selection(
+        [('set', 'Set'),
+         ], string='Document State:', default=False, readonly=False, required=False
+    )
+
     global_tag_ids = fields.Many2many(
         comodel_name='clv.global_tag',
         relation='clv_document_mass_edit_global_tag_rel',
@@ -150,6 +176,16 @@ class DocumentMassEdit(models.TransientModel):
         for document in self.document_ids:
 
             _logger.info(u'%s %s', '>>>>>', document.name)
+
+            if self.reg_state_selection == 'set':
+                document.reg_state = self.reg_state
+            if self.reg_state_selection == 'remove':
+                document.reg_state = False
+
+            if self.state_selection == 'set':
+                document.state = self.state
+            if self.state_selection == 'remove':
+                document.state = False
 
             if self.global_tag_ids_selection == 'add':
                 m2m_list = []

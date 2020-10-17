@@ -14,3 +14,5 @@ from . import document_item
 from . import document_item_log
 from . import referenceable_model
 from . import phase
+from . import document_reg_state
+from . import document_state

@@ -14,6 +14,18 @@
                 <label for="document_ids"/>
                 <field name="document_ids"/>
                 <group>
+                    <group name="reg_state_selection">
+                        <field name="reg_state_selection"/>
+                    </group>
+                    <group>
+                        <field name="reg_state" nolabel='1'/>
+                    </group>
+                    <group>
+                        <field name="state_selection"/>
+                    </group>
+                    <group>
+                        <field name="state" nolabel='1'/>
+                    </group>
                     <group name="global_tag_ids_selection">
                         <field name="global_tag_ids_selection"/>
                     </group>

@@ -31,6 +31,8 @@
         'views/document_item_log_view.xml',
         'views/referenceable_model_view.xml',
         'views/phase_view.xml',
+        'views/document_reg_state_view.xml',
+        'views/document_state_view.xml',
         # 'data/document_mass_editing.xml',
         'wizard/document_mass_edit_view.xml',
         'wizard/document_items_refresh_view.xml',
