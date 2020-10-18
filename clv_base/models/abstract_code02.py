@@ -5,52 +5,6 @@
 from odoo import models, fields, api
 
 
-def format_code(code_seq, code_len):
-    code = list(map(int, str(code_seq)))
-    while len(code) < 10:
-        code.insert(0, 0)
-    while len(code) < 12:
-        n = sum([(len(code) + 1 - i) * v for i, v in enumerate(code)]) % 11
-        if n > 1:
-            f = 11 - n
-        else:
-            f = 0
-        code.append(f)
-    if code_len == 3:
-        code_str = "%s%s" % (
-            str(code[7]) + str(code[8]) + str(code[9]),
-            str(code[10]) + str(code[11])
-        )
-    elif code_len == 4:
-        code_str = "%s%s%s" % (
-            str(code[6]),
-            str(code[7]) + str(code[8]) + str(code[9]),
-            str(code[10]) + str(code[11])
-        )
-    elif code_len == 6:
-        code_str = "%s%s%s" % (
-            str(code[4]) + str(code[5]) + str(code[6]),
-            str(code[7]) + str(code[8]) + str(code[9]),
-            str(code[10]) + str(code[11])
-        )
-    elif code_len == 9:
-        code_str = "%s%s%s%s" % (
-            str(code[1]) + str(code[2]) + str(code[3]),
-            str(code[4]) + str(code[5]) + str(code[6]),
-            str(code[7]) + str(code[8]) + str(code[9]),
-            str(code[10]) + str(code[11])
-        )
-    elif code_len == 10:
-        code_str = "%s%s%s%s%s" % (
-            str(code[0]),
-            str(code[1]) + str(code[2]) + str(code[3]),
-            str(code[4]) + str(code[5]) + str(code[6]),
-            str(code[7]) + str(code[8]) + str(code[9]),
-            str(code[10]) + str(code[11])
-        )
-    return code_str
-
-
 class AbstractCode02(models.AbstractModel):
     _description = 'Abstract Code 02'
     _name = 'clv.abstract.code02'
@@ -75,6 +29,52 @@ class AbstractCode02(models.AbstractModel):
     )
 
     @api.model
+    def format_code(self, code_seq, code_len):
+        code = list(map(int, str(code_seq)))
+        while len(code) < 10:
+            code.insert(0, 0)
+        while len(code) < 12:
+            n = sum([(len(code) + 1 - i) * v for i, v in enumerate(code)]) % 11
+            if n > 1:
+                f = 11 - n
+            else:
+                f = 0
+            code.append(f)
+        if code_len == 3:
+            code_str = "%s%s" % (
+                str(code[7]) + str(code[8]) + str(code[9]),
+                str(code[10]) + str(code[11])
+            )
+        elif code_len == 4:
+            code_str = "%s%s%s" % (
+                str(code[6]),
+                str(code[7]) + str(code[8]) + str(code[9]),
+                str(code[10]) + str(code[11])
+            )
+        elif code_len == 6:
+            code_str = "%s%s%s" % (
+                str(code[4]) + str(code[5]) + str(code[6]),
+                str(code[7]) + str(code[8]) + str(code[9]),
+                str(code[10]) + str(code[11])
+            )
+        elif code_len == 9:
+            code_str = "%s%s%s%s" % (
+                str(code[1]) + str(code[2]) + str(code[3]),
+                str(code[4]) + str(code[5]) + str(code[6]),
+                str(code[7]) + str(code[8]) + str(code[9]),
+                str(code[10]) + str(code[11])
+            )
+        elif code_len == 10:
+            code_str = "%s%s%s%s%s" % (
+                str(code[0]),
+                str(code[1]) + str(code[2]) + str(code[3]),
+                str(code[4]) + str(code[5]) + str(code[6]),
+                str(code[7]) + str(code[8]) + str(code[9]),
+                str(code[10]) + str(code[11])
+            )
+        return code_str
+
+    @api.model
     def create(self, values):
         if 'code' not in values or ('code' in values and values['code'] == '/'):
             if ('code_size' in values and values['code_size'] == '3'):
@@ -88,10 +88,9 @@ class AbstractCode02(models.AbstractModel):
             elif ('code_size' in values and values['code_size'] == '10'):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence_10'])
             code_len = len(code_seq)
-            values['code'] = format_code(code_seq, code_len)
+            values['code'] = self.format_code(code_seq, code_len)
         return super().create(values)
 
-    # @api.multi
     def write(self, values):
         if 'code_sequence_03' not in values and \
            'code_sequence_04' not in values and \
@@ -113,8 +112,7 @@ class AbstractCode02(models.AbstractModel):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_09)
                 elif (code_len == 10):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_10)
-                values['code'] = format_code(code_seq, code_len)
-            # elif 'code_size' in values:
+                values['code'] = self.format_code(code_seq, code_len)
             elif 'code_size' in values and 'code' in values and values['code'] == '/':
                 if (values['code_size'] == '3'):
                     code_seq = self.env['ir.sequence'].next_by_code(self.code_sequence_03)
@@ -130,10 +128,9 @@ class AbstractCode02(models.AbstractModel):
                     code_seq = False
                 if code_seq:
                     code_len = len(code_seq)
-                    values['code'] = format_code(code_seq, code_len)
+                    values['code'] = self.format_code(code_seq, code_len)
             return super().write(values)
 
-    # @api.one
     def copy(self, default=None):
         self.ensure_one()
         default = dict(default or {})
