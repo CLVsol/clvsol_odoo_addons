@@ -29,10 +29,18 @@ class AddressAuxMassEdit(models.TransientModel):
     _description = 'Address (Aux) Mass Edit'
     _name = 'clv.address_aux.mass_edit'
 
+    # address_aux_ids = fields.Many2many(
+    #     comodel_name='clv.address_aux',
+    #     relation='clv_address_aux_mass_edit_rel',
+    #     string='Addresses (Aux)'
+    # )
+    def _default_address_aux_ids(self):
+        return self._context.get('active_ids')
     address_aux_ids = fields.Many2many(
         comodel_name='clv.address_aux',
         relation='clv_address_aux_mass_edit_rel',
-        string='Addresses (Aux)'
+        string='Addresses (Aux)',
+        default=_default_address_aux_ids
     )
 
     reg_state = fields.Selection(
@@ -167,7 +175,7 @@ class AddressAuxMassEdit(models.TransientModel):
 
         defaults = super().default_get(field_names)
 
-        defaults['address_aux_ids'] = self.env.context['active_ids']
+        # defaults['address_aux_ids'] = self.env.context['active_ids']
 
         param_value = self.env['ir.config_parameter'].sudo().get_param(
             'clv.global_settings.current_phase_id', '').strip()
