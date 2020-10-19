@@ -48,7 +48,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="reg_state"/>
+                <field name="reg_state" string="Reg State"/>
             </field>
             <tree name="partner_entities" position="attributes">
                 <attribute name="decoration-muted">reg_state=='draft'</attribute>

@@ -28,7 +28,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="email" position="before">
-                <field name="count_sets"/>
+                <field name="count_sets" invisible="True"/>
             </field>
         </field>
     </record>

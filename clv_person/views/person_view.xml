@@ -15,12 +15,12 @@
             </xpath>
             <xpath expr="//field[@name='code']" position="after">
                 <!--field name="identification_code" /-->
-                <field name="is_absent"/>
+                <field name="is_absent" invisible="True"/>
                 <field name="gender"/>
-                <field name="age_years"/>
-                <field name="age_reference_years"/>
-                <field name="force_is_deceased"/>
-                <field name="is_deceased"/>
+                <field name="age_years" invisible="True"/>
+                <field name="age_reference_years" string="Age"/>
+                <field name="force_is_deceased" invisible="True"/>
+                <field name="is_deceased" invisible="True"/>
             </xpath>
         </field>
     </record>
