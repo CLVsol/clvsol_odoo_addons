@@ -29,10 +29,18 @@ class FamilyMassEdit(models.TransientModel):
     _description = 'Family Mass Edit'
     _name = 'clv.family.mass_edit'
 
+    # family_ids = fields.Many2many(
+    #     comodel_name='clv.family',
+    #     relation='clv_family_mass_edit_rel',
+    #     string='Families'
+    # )
+    def _default_family_ids(self):
+        return self._context.get('active_ids')
     family_ids = fields.Many2many(
         comodel_name='clv.family',
         relation='clv_family_mass_edit_rel',
-        string='Families'
+        string='Families',
+        default=_default_family_ids
     )
 
     reg_state = fields.Selection(
@@ -169,7 +177,7 @@ class FamilyMassEdit(models.TransientModel):
 
         defaults = super().default_get(field_names)
 
-        defaults['family_ids'] = self.env.context['active_ids']
+        # defaults['family_ids'] = self.env.context['active_ids']
 
         param_value = self.env['ir.config_parameter'].sudo().get_param(
             'clv.global_settings.current_phase_id', '').strip()
