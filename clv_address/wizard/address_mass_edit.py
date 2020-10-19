@@ -29,10 +29,18 @@ class AddressMassEdit(models.TransientModel):
     _description = 'Address Mass Edit'
     _name = 'clv.address.mass_edit'
 
+    # address_ids = fields.Many2many(
+    #     comodel_name='clv.address',
+    #     relation='clv_address_mass_edit_rel',
+    #     string='Addresses'
+    # )
+    def _default_address_ids(self):
+        return self._context.get('active_ids')
     address_ids = fields.Many2many(
         comodel_name='clv.address',
         relation='clv_address_mass_edit_rel',
-        string='Addresses'
+        string='Addresses',
+        default=_default_address_ids
     )
 
     reg_state = fields.Selection(
@@ -179,7 +187,7 @@ class AddressMassEdit(models.TransientModel):
 
         defaults = super().default_get(field_names)
 
-        defaults['address_ids'] = self.env.context['active_ids']
+        # defaults['address_ids'] = self.env.context['active_ids']
 
         return defaults
 
