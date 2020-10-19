@@ -29,10 +29,18 @@ class PersonAuxMassEdit(models.TransientModel):
     _description = 'Person (Aux) Mass Edit'
     _name = 'clv.person_aux.mass_edit'
 
+    # person_aux_ids = fields.Many2many(
+    #     comodel_name='clv.person_aux',
+    #     relation='clv_person_aux_mass_edit_rel',
+    #     string='Persons (Aux)'
+    # )
+    def _default_person_aux_ids(self):
+        return self._context.get('active_ids')
     person_aux_ids = fields.Many2many(
         comodel_name='clv.person_aux',
         relation='clv_person_aux_mass_edit_rel',
-        string='Persons (Aux)'
+        string='Persons (Aux)',
+        default=_default_person_aux_ids
     )
 
     reg_state = fields.Selection(
@@ -148,7 +156,7 @@ class PersonAuxMassEdit(models.TransientModel):
 
         defaults = super().default_get(field_names)
 
-        defaults['person_aux_ids'] = self.env.context['active_ids']
+        # defaults['person_aux_ids'] = self.env.context['active_ids']
 
         param_value = self.env['ir.config_parameter'].sudo().get_param(
             'clv.global_settings.current_phase_id', '').strip()
