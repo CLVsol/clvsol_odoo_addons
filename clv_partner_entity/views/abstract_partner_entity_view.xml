@@ -8,7 +8,7 @@
         <field name="name">clv.abstract.partner_entity.tree</field>
         <field name="model">clv.abstract.partner_entity</field>
         <field name="arch" type="xml">
-            <tree name="partner_entities" string="Partner Entity">
+            <tree name="partner_entities" string="Partner Entity" limit="40">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="email" invisible="True"/>
