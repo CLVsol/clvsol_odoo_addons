@@ -29,10 +29,18 @@ class PersonMassEdit(models.TransientModel):
     _description = 'Person Mass Edit'
     _name = 'clv.person.mass_edit'
 
+    # person_ids = fields.Many2many(
+    #     comodel_name='clv.person',
+    #     relation='clv_person_mass_edit_rel',
+    #     string='Persons'
+    # )
+    def _default_person_ids(self):
+        return self._context.get('active_ids')
     person_ids = fields.Many2many(
         comodel_name='clv.person',
         relation='clv_person_mass_edit_rel',
-        string='Persons'
+        string='Persons',
+        default=_default_person_ids
     )
 
     reg_state = fields.Selection(
@@ -174,7 +182,7 @@ class PersonMassEdit(models.TransientModel):
 
         defaults = super().default_get(field_names)
 
-        defaults['person_ids'] = self.env.context['active_ids']
+        # defaults['person_ids'] = self.env.context['active_ids']
 
         return defaults
 
