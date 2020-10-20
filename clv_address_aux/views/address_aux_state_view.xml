@@ -121,7 +121,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="state"/>
+                <field name="state" string="State"/>
             </field>
             <!--tree name="partner_entities" position="attributes">
                 <attribute name="decoration-muted">state=='new'</attribute>
