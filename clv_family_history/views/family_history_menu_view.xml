@@ -4,15 +4,10 @@
 
 <odoo>
 
-    <menuitem name="Family" id="clv_family.menu_community_history_family" 
+    <menuitem name="Family Histories" id="clv_family.menu_community_history_family_histories" 
         parent="clv_base.menu_community_history"
         groups="clv_family.group_user"
-        sequence="90"/>
-
-    <menuitem name="Histories" id="clv_family.menu_community_history_family_histories" 
-        parent="clv_family.menu_community_history_family"
-        groups="clv_family.group_user"
-        sequence="10"
+        sequence="90"
         action="clv_family_history.clv_family_history_action"/>
 
 </odoo>
