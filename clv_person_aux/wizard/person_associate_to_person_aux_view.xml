@@ -36,7 +36,7 @@
 
     <!-- More button Action -->
     <record id="clv_person_associate_to_person_aux_action" model="ir.actions.act_window">
-        <field name="name">Employee Mass Edit</field>
+        <field name="name">Person Associate to Person (Aux)</field>
         <field name="binding_model_id" ref="model_clv_person"/>
         <field name="res_model">clv.person.associate_to_person_aux</field>
         <field name="view_mode">form</field>
