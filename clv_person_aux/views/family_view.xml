@@ -42,7 +42,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="count_persons_aux" sum="Total Number of Persons (Aux)"/>
+                <field name="count_persons_aux" string="Persons (Aux)" sum="Total Number of Persons (Aux)"/>
             </field>
         </field>
     </record>
