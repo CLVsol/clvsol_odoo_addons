@@ -108,7 +108,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="ref_address_category_ids" string="Address Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
+                <field name="ref_address_category_ids" string="Address Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}" invisible="True"/>
             </field>
         </field>
     </record>

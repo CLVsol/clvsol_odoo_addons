@@ -72,7 +72,7 @@
         <field name="priority" eval="20"/>
         <field name="arch" type="xml">
             <field name="code" position="after">
-                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="tag_ids" string="Tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
             </field>
         </field>
     </record>
