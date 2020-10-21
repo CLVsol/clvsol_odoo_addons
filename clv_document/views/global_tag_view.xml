@@ -24,7 +24,7 @@
         <field name="inherit_id" ref="clv_document_view_form"/>
         <field name="priority" eval="6"/>
         <field name="arch" type="xml">
-            <label for="name" position="before">
+            <label for="code" position="before">
                 <label for="global_tag_ids"  groups="clv_global_tag.group_user" class="oe_edit_only"/>
                 <h4><field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'color_field': 'color', 'no_open': False, 'no_create': True}" groups="clv_global_tag.group_user"/></h4>
             </label>
