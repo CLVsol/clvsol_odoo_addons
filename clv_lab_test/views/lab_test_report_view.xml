@@ -28,7 +28,6 @@
                     <group name="group_top">
                         <group name="group_left">
                             <field name="lab_test_request_id" default_focus="1" placeholder="Lab Test Request..." options="{'no_open': False, 'no_create': True}"/>
-                            <field name="date_report"/>
                         </group>
                         <group name="group_right">
                         </group>
@@ -83,7 +82,6 @@
                 <field name="code"/>
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_request_id"/>
-                <field name="date_report"/>
             </tree>
         </field>
     </record>
@@ -97,7 +95,6 @@
                 <field name="code"/>
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_request_id"/>
-                <field name="date_report"/>
                 <separator/>
                 <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
@@ -112,7 +109,6 @@
         <field name="name">Lab Test Reports</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.lab_test.report</field>
-        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="clv_lab_test_report_view_search"/>
         <field name="domain">[]</field>

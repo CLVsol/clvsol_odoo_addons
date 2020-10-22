@@ -24,14 +24,11 @@
                         <h3>
                             <field name="lab_test_type_id" default_focus="1" placeholder="Lab Test Type..." options="{'no_open': False, 'no_create': True}"/> (<field name="lab_test_type_code"/>)
                         </h3>
-                        <label for="date_analysis" class="oe_edit_only"/>
-                        <h3><field name="date_analysis" placeholder="Analysis Date..."/></h3>
                     </div>
                     <group name="group_top">
                         <group name="group_left">
                             <field name="lab_test_request_id" default_focus="1" placeholder="Lab Test Request..." options="{'no_open': False, 'no_create': True}"/>
                             <field name="lab_test_report_id" default_focus="1" placeholder="Lab Test Report..." options="{'no_open': False, 'no_create': True}"/>
-                            <field name="date_result"/>
                         </group>
                         <group name="group_right">
                         </group>
@@ -43,12 +40,6 @@
                         </group>
                     </group>
                     <notebook>
-                        <page name="extra_info" string="Extra Info">
-                            <group>
-	                            <field name="results"></field>
-	                            <field name="diagnosis"></field>
-                            </group>
-                        </page>
                         <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
                             <group name="settings_top">
                                 <group name="settings_left">
@@ -93,8 +84,6 @@
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_request_id"/>
                 <field name="lab_test_report_id"/>
-                <field name="date_analysis"/>
-                <field name="date_result"/>
             </tree>
         </field>
     </record>
@@ -109,8 +98,6 @@
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_request_id"/>
                 <field name="lab_test_report_id"/>
-                <field name="date_analysis"/>
-                <field name="date_result"/>
                 <separator/>
                 <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
