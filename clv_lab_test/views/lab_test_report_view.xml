@@ -28,6 +28,7 @@
                     <group name="group_top">
                         <group name="group_left">
                             <field name="lab_test_request_id" default_focus="1" placeholder="Lab Test Request..." options="{'no_open': False, 'no_create': True}"/>
+                            <field name="lab_test_result_id" default_focus="1" placeholder="Lab Test Result..." options="{'no_open': False, 'no_create': True}"/>
                         </group>
                         <group name="group_right">
                         </group>
@@ -82,6 +83,7 @@
                 <field name="code"/>
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_request_id"/>
+                <field name="lab_test_result_id"/>
             </tree>
         </field>
     </record>
@@ -95,11 +97,13 @@
                 <field name="code"/>
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_request_id"/>
+                <field name="lab_test_result_id"/>
                 <separator/>
                 <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
                     <filter name="filter_lab_test_type_id" string="Lab Test Type" domain="[]" context="{'group_by': 'lab_test_type_id'}"/>
                     <filter name="filter_lab_test_request_id" string="Lab Test Request" domain="[]" context="{'group_by': 'lab_test_request_id'}"/>
+                    <filter name="filter_lab_test_result_id" string="Lab Test Result" domain="[]" context="{'group_by': 'lab_test_result_id'}"/>
                 </group>
             </search>
         </field>

@@ -74,7 +74,7 @@
         <field name="inherit_id" ref="clv_lab_test.clv_lab_test_result_view_tree"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="lab_test_report_id" position="after">
+            <field name="lab_test_request_id" position="after">
                 <field name="ref_id"/>
             </field>
         </field>

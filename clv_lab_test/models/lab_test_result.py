@@ -16,7 +16,7 @@ class LabTestResult(models.Model):
     lab_test_type_id = fields.Many2one(comodel_name='clv.lab_test.type', string='Lab Test Type')
     lab_test_type_code = fields.Char(string='Lab Test Type Code', related='lab_test_type_id.code', store=False)
     lab_test_request_id = fields.Many2one(comodel_name='clv.lab_test.request', string='Lab Test Request')
-    lab_test_report_id = fields.Many2one(comodel_name='clv.lab_test.report', string='Lab Test Report')
+    # lab_test_report_id = fields.Many2one(comodel_name='clv.lab_test.report', string='Lab Test Report')
 
     active = fields.Boolean(string='Active', default=1)
 
@@ -47,11 +47,11 @@ class LabTestRequest(models.Model):
     )
 
 
-class LabTestReport(models.Model):
-    _inherit = 'clv.lab_test.report'
+# class LabTestReport(models.Model):
+#     _inherit = 'clv.lab_test.report'
 
-    lab_test_result_ids = fields.One2many(
-        comodel_name='clv.lab_test.result',
-        inverse_name='lab_test_report_id',
-        string='Lab Test Results'
-    )
+#     lab_test_result_ids = fields.One2many(
+#         comodel_name='clv.lab_test.result',
+#         inverse_name='lab_test_report_id',
+#         string='Lab Test Results'
+#     )
