@@ -127,12 +127,14 @@
         <field name="inherit_id" ref="clv_document_view_form"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <label for="base_document_id" position="before">
+            <!--label for="base_document_id" position="before"-->
+            <div name="title" position="inside">
                 <label for="document_type_id" class="oe_edit_only"/>
                 <h3><field name="document_type_id" placeholder="Document Type..." options="{'no_open': False, 'no_create': True}"/></h3>
                 <label for="document_type_description" class="oe_edit_only"/>
                 <h3><field name="document_type_description" placeholder="Document Type Description..." /></h3>
-            </label>
+            <!--/label-->
+            </div>
         </field>
     </record>
 
