@@ -28,7 +28,6 @@
                     <group name="group_top">
                         <group name="group_left">
                             <field name="lab_test_request_id" default_focus="1" placeholder="Lab Test Request..." options="{'no_open': False, 'no_create': True}"/>
-                            <!--field name="lab_test_report_id" default_focus="1" placeholder="Lab Test Report..." options="{'no_open': False, 'no_create': True}"/-->
                         </group>
                         <group name="group_right">
                         </group>
@@ -83,7 +82,6 @@
                 <field name="code"/>
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_request_id"/>
-                <!--field name="lab_test_report_id"/-->
             </tree>
         </field>
     </record>
@@ -97,13 +95,11 @@
                 <field name="code"/>
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_request_id"/>
-                <!--field name="lab_test_report_id"/-->
                 <separator/>
                 <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
                     <filter name="filter_lab_test_type_id" string="Lab Test Type" domain="[]" context="{'group_by': 'lab_test_type_id'}"/>
                     <filter name="filter_lab_test_request_id" string="Lab Test Request" domain="[]" context="{'group_by': 'lab_test_request_id'}"/>
-                    <!--filter name="filter_lab_test_report_id" string="Lab Test Result" domain="[]" context="{'group_by': 'lab_test_report_id'}"/-->
                 </group>
             </search>
         </field>
@@ -113,7 +109,6 @@
         <field name="name">Lab Test Results</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.lab_test.result</field>
-        <!--*field name="view_type">form</field-->
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="clv_lab_test_result_view_search"/>
         <field name="domain">[]</field>
@@ -156,21 +151,5 @@
             </page>
         </field>
     </record>
-
-    <!--record id="clv_lab_test_report_view_form_result" model="ir.ui.view">
-        <field name="name">clv.lab_test.report.form</field>
-        <field name="model">clv.lab_test.report</field>
-        <field name="inherit_id" ref="clv_lab_test.clv_lab_test_report_view_form"/>
-        <field name="priority" eval="8"/>
-        <field name="arch" type="xml">
-            <page name="settings" position="before">
-                <page string="Lab Test Results">
-                    <group>
-                        <field name="lab_test_result_ids" colspan="4" nolabel="1"/>
-                    </group>
-                </page>
-            </page>
-        </field>
-    </record-->
 
 </odoo>
