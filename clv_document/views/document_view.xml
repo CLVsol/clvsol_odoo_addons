@@ -23,8 +23,6 @@
                         <h3><field name="code" placeholder="Document Code..."/></h3>
                     </div>
                     <div name="title" class="oe_title">
-                        <!--label for="base_document_id" class="oe_edit_only"/>
-                        <h3><field name="base_document_id" placeholder="Base Document..." options="{'no_open': False, 'no_create': True}"/></h3-->
                     </div>
                     <group name="group_top">
                         <group name="group_left">
@@ -76,9 +74,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <tree name="documents" string="Documents">
-                <!--field name="name"/-->
                 <field name="code"/>
-                <!--field name="base_document_id"/-->
                 <field name="date_inclusion"/>
                 <field name="date_document"/>
                 <field name="notes" invisible = "True"/>
@@ -95,21 +91,17 @@
         <field name="arch" type="xml">
             <search>
                 <field name="code"/>
-                <!--field name="base_document_id"/-->
                 <field name="date_inclusion"/>
                 <field name="date_document"/>
                 <field name="notes"/>
                 <field name="id"/>
                 <separator/>
                 <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
-                <!--filter name="filter_has_base_document" string="Has Base Document" domain="[('base_document_id','!=',False)]"/-->
-                <!--filter name="filter_has_not_base_document" string="Has Not Base Document" domain="[('base_document_id','=',False)]"/-->
                 <group name="group_by" string="Group By...">
                     <filter name="filter_date_inclusion_year" string="Inclusion Date (Year)" domain="[]" context="{'group_by': 'date_inclusion:year'}"/>
                     <filter name="filter_date_inclusion_month" string="Inclusion Date (Month)" domain="[]" context="{'group_by': 'date_inclusion:month'}"/>
                     <filter name="filter_date_inclusion_day" string="Inclusion Date (Day)" domain="[]" context="{'group_by': 'date_inclusion:day'}"/>
                     <filter name="filter_date_document" string="Document Date" domain="[]" context="{'group_by': 'date_document'}"/>
-                    <!--filter name="filter_base_document_id" string="Base Document" context="{'group_by': 'base_document_id'}"/-->
                 </group>
             </search>
         </field>

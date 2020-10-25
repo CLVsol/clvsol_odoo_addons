@@ -180,7 +180,6 @@
             <field name="date_document" position="after">
                 <field name="items_ok"/>
             </field>
-            <!--filter name="filter_has_not_base_document" position="after"-->
             <filter name="inactive" position="after">
                 <filter name="filter_items_ok" string="Items Ok" domain="[('items_ok','=',True)]"/>
                 <filter name="filter_items_not_ok" string="Items not Ok" domain="[('items_ok','=',False)]"/>

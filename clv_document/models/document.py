@@ -15,13 +15,6 @@ class Document(models.Model):
 
     code = fields.Char(string='Document Code', required=False)
 
-    # base_document_id = fields.Many2one(
-    #     comodel_name='clv.document',
-    #     string='Base Document',
-    #     required=False,
-    #     help="Base Document"
-    # )
-
     notes = fields.Text(string='Notes')
 
     date_inclusion = fields.Date(
