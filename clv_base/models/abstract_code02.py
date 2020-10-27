@@ -25,7 +25,8 @@ class AbstractCode02(models.AbstractModel):
             ('6', '6'),
             ('9', '9'),
             ('10', '10'),
-        ], string='Code Size', index=True, sort=False, default='10'
+            # ], string='Code Size', index=True, sort=False, default='10'
+        ], string='Code Size', index=True, default='10'
     )
 
     @api.model
