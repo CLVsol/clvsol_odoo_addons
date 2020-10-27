@@ -13,7 +13,7 @@ class DocumentItem(models.Model):
     code = fields.Char(string='Item Code')
     name = fields.Char(string='Item')
 
-    value = fields.Char(sring='Value')
+    value = fields.Char(string='Value')
 
     document_type_id = fields.Many2one(comodel_name='clv.document.type', string='Document Type')
 

@@ -13,7 +13,7 @@ class DocumentTypeParameter(models.Model):
     name = fields.Char(string='Parameter', required=True)
     item_code = fields.Char(string='Item Code', required=True)
 
-    item_type = fields.Char(sring='Item Type', required=True)
+    item_type = fields.Char(string='Item Type', required=True)
 
     document_type_id = fields.Many2one(
         comodel_name='clv.document.type',
