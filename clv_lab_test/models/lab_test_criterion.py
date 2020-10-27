@@ -14,7 +14,7 @@ class LabTestTypeCriterion(models.Model):
     name = fields.Char(string='Test')
 
     # result = fields.Text('Results')
-    result = fields.Char(sring='Results')
+    result = fields.Char(string='Results')
     unit_id = fields.Many2one(comodel_name='clv.lab_test.unit', string='Unit')
     normal_range = fields.Text(string='Normal Range')
 

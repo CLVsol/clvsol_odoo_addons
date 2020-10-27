@@ -13,7 +13,7 @@ class LabTestTypeParameter(models.Model):
     name = fields.Char(string='Parameter', required=True)
     criterion_code = fields.Char(string='Criterion Code', required=True)
 
-    criterion_type = fields.Char(sring='Criterion Type', required=True)
+    criterion_type = fields.Char(string='Criterion Type', required=True)
 
     lab_test_type_id = fields.Many2one(
         comodel_name='clv.lab_test.type',
