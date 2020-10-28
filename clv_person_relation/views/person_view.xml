@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--record id="view_res_person_filter" model="ir.ui.view">
+        <field name="name">person_multi_relation.view_person_filter</field>
+        <field name="inherit_id" ref="base.view_res_person_filter" />
+        <field name="model">clv.person</field>
+        <field type="xml" name="arch">
+            <field name="parent_id" position="after">
+                <field name="search_relation_person_id" />
+                <field name="search_relation_type_id" />
+                <field name="search_relation_date" />
+                <field name="search_relation_person_category_id" />
+            </field>
+        </field>
+    </record-->
+
+    <record id="view_person_form" model="ir.ui.view">
+        <field name="name">person_multi_relation.view_person_form</field>
+        <field name="inherit_id" ref="clv_person.clv_person_view_form" />
+        <field name="model">clv.person</field>
+        <field type="xml" name="arch">
+            <page name="personal_information" position="inside">
+                <button
+                    name="action_view_relations"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-users"
+                >
+                    <field name="relation_count" widget="statinfo" string="Relations" />
+                </button>
+            </page>
+        </field>
+    </record>
+
+    <act_window
+        id="action_show_person_multi_relation"
+        name="Show person's relations"
+        binding_model="clv.person"
+        res_model="clv.person.relation.all"
+        domain="[('this_person_id', 'in', active_ids)]"
+    />
+
+</odoo>

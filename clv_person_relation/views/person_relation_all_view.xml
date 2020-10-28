@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="tree_clv_person_relation_all" model="ir.ui.view">
+        <field name="model">clv.person.relation.all</field>
+        <field name="arch" type="xml">
+            <tree string="Person Relations" editable="top">
+                <field
+                    name="this_person_id"
+                    required="True"
+                    options="{'no_create': True}"
+                />
+                <field
+                    name="type_selection_id"
+                    required="True"
+                    options="{'no_create': True}"
+                />
+                <field
+                    name="other_person_id"
+                    required="True"
+                    options="{'no_create': True}"
+                />
+                <field name="date_start" />
+                <field name="date_end" />
+                <field name="active" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="search_clv_person_relation_all" model="ir.ui.view">
+        <field name="model">clv.person.relation.all</field>
+        <field name="arch" type="xml">
+            <search string="Search Relations">
+                <field name="any_person_id" widget="many2one" />
+                <field name="this_person_id" />
+                <field name="other_person_id" />
+                <field name="type_selection_id" />
+                <filter
+                    name="left_to_right"
+                    string="Left to right"
+                    domain="[('is_inverse', '=', False)]"
+                />
+                <filter
+                    name="right_to_left"
+                    string="Right to left"
+                    domain="[('is_inverse', '=', True)]"
+                />
+                <filter
+                    name="include_part_records"
+                    string="Include past records"
+                    context="{'active_test': False}"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_by_this_person_id"
+                        string="One Person"
+                        context="{'group_by': 'this_person_id'}"
+                    />
+                    <filter
+                        name="group_by_type_selection_id"
+                        string="Relationship Type"
+                        context="{'group_by': 'type_selection_id'}"
+                    />
+                    <filter
+                        name="group_by_other_person_id"
+                        string="Other Person"
+                        context="{'group_by': 'other_person_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="clv_person_relation_action" model="ir.actions.act_window">
+        <field name="name">Relations</field>
+        <field name="res_model">clv.person.relation.all</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="tree_clv_person_relation_all" />
+        <field name="search_view_id" ref="search_clv_person_relation_all" />
+        <field name="context">{'active_test': 0}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Record and track your persons' relations. Relations may
+                be linked to other persons with a type either directly
+                or inversely.
+            </p>
+        </field>
+    </record>
+
+</odoo>
