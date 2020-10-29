@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -13,10 +13,13 @@ class GlobalLogCrientMassEdit(models.TransientModel):
     _description = 'Global Log Crient Mass Edit'
     _name = 'clv.global_log.client.mass_edit'
 
+    def _default_global_log_client_ids(self):
+        return self._context.get('active_ids')
     global_log_client_ids = fields.Many2many(
         comodel_name='clv.global_log.client',
         relation='clv_global_log_client_mass_edit_rel',
-        string='Global Log Clients'
+        string='Global Log Clients',
+        default=_default_global_log_client_ids
     )
 
     active_log = fields.Boolean(
@@ -40,14 +43,14 @@ class GlobalLogCrientMassEdit(models.TransientModel):
         }
         return action
 
-    @api.model
-    def default_get(self, field_names):
+    # @api.model
+    # def default_get(self, field_names):
 
-        defaults = super().default_get(field_names)
+    #     defaults = super().default_get(field_names)
 
-        defaults['global_log_client_ids'] = self.env.context['active_ids']
+    #     defaults['global_log_client_ids'] = self.env.context['active_ids']
 
-        return defaults
+    #     return defaults
 
     def do_global_log_client_mass_edit(self):
         self.ensure_one()
