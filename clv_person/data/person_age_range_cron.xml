@@ -2,7 +2,9 @@
 <!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
+<!--odoo noupdate="1"-->
 <odoo>
+
     <record id="ir_cron_person_age_range" model="ir.cron">
         <field name="name">Person: Update Age Range</field>
         <field name="model_id" ref="model_clv_person" />
