@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
 <odoo>
 
     <!--record id="view_res_person_filter" model="ir.ui.view">
@@ -33,12 +36,12 @@
         </field>
     </record>
 
-    <act_window
-        id="action_show_person_multi_relation"
-        name="Show person's relations"
-        binding_model="clv.person"
-        res_model="clv.person.relation.all"
-        domain="[('this_person_id', 'in', active_ids)]"
-    />
+    <!-- More button Action -->
+    <record id="action_show_person_multi_relation" model="ir.actions.act_window">
+        <field name="name">Show person's relations</field>
+        <field name="binding_model_id" ref="model_clv_person"/>
+        <field name="res_model">clv.person.relation.all</field>
+        <field name="domain">[('this_person_id', 'in', active_ids)]</field>
+    </record>
 
 </odoo>

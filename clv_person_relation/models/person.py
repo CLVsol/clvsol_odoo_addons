@@ -1,6 +1,9 @@
-# Copyright 2013-2017 Therp BV <http://therp.nl>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# -*- coding: utf-8 -*-
+# Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 """Support connections between persons."""
+
 import numbers
 
 from odoo import _, api, exceptions, fields, models
