@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_person_age_range_view_form" model="ir.ui.view">
+        <field name="name">clv.person.age_range.form</field>
+        <field name="model">clv.person.age_range</field>
+        <field name="arch" type="xml">
+            <form string="Person Age Range">
+                <sheet>
+                    <group col="4">
+                        <field name="name" />
+                        <field name="age_from" />
+                        <field name="age_to" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="clv_person_age_range_view_tree" model="ir.ui.view">
+        <field name="name">clv.person.age_range.tree</field>
+        <field name="model">clv.person.age_range</field>
+        <field name="arch" type="xml">
+            <tree string="Person Age Range" editable="bottom">
+                <field name="name" />
+                <field name="age_from" />
+                <field name="age_to" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="clv_person_age_range_action" model="ir.actions.act_window">
+        <field name="name">Age Ranges</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.person.age_range</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help">
+            Manage the person age range you want to have available in your system.
+            For eg: 0-10, 11-20
+        </field>
+    </record>
+
+    <record id="clv_person_view_form_age_range" model="ir.ui.view">
+        <field name="name">clv.person.form</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <label for="name" position="before">
+                <label for="age_range_id" class="oe_edit_only"/>
+                <h4><field name="age_range_id" options="{'no_open': True}"/></h4>
+            </label>
+        </field>
+    </record>
+
+    <record id="clv_person_view_tree_age_range" model="ir.ui.view">
+        <field name="name">clv.person.tree</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person.clv_person_view_tree" />
+        <field name="arch" type="xml">
+            <field name="is_deceased" position="after">
+                <field
+                    name="age_range_id"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_person_view_search_age_range" model="ir.ui.view">
+        <field name="name">clv.person.search</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person_view_search"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="age_range_id"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="filter_age_range_id" string="Age Ranges" context="{'group_by': 'age_range_id'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>

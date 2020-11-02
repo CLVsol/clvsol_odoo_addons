@@ -27,3 +27,7 @@ access_clv_person_contact_information_updt_supmanager,clv.person.contact_informa
 access_clv_person_associate_to_family_user,clv.person.associate_to_family.user,model_clv_person_associate_to_family,clv_person.group_user,1,0,0,0
 access_clv_person_associate_to_family_manager,clv.person.associate_to_family.manager,model_clv_person_associate_to_family,clv_person.group_manager,1,1,1,0
 access_clv_person_associate_to_family_supmanager,clv.person.associate_to_family.supmanager,model_clv_person_associate_to_family,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_age_range_user,clv.person.age_range.user,model_clv_person_age_range,clv_person.group_user,1,0,0,0
+access_clv_person_age_range_manager,clv.person.age_range.manager,model_clv_person_age_range,clv_person.group_manager,1,1,1,0
+access_clv_person_age_range_supmanager,clv.person.age_range.supmanager,model_clv_person_age_range,clv_person.group_supmanager,1,1,1,1
