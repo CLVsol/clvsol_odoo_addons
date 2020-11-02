@@ -37,6 +37,6 @@
         parent="clv_person.menu_community_config_person"
         groups="clv_person.group_user"
         sequence="40"
-        action="clv_person.action_partner_age_range"/>
+        action="clv_person.clv_person_age_range_action"/>
 
 </odoo>

@@ -78,10 +78,10 @@ class Person(models.Model):
                 record.age_range_id = age_range and age_range.id or age_range
 
     @api.model
-    def _cron_person_update_age_range_id(self):
+    def _person_update_age_range_id_cron(self):
         """
         This method is called from a cron job.
         It is used to update age range on contact
         """
-        partners = self.search([("birthday", "!=", False)])
-        partners._compute_age_range_id()
+        persons = self.search([("birthday", "!=", False)])
+        persons._compute_age_range_id()
