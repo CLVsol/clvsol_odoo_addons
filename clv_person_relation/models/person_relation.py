@@ -60,9 +60,7 @@ class PersonRelation(models.Model):
         """
         for record in self:
             if (
-                record.date_start
-                and record.date_end
-                and record.date_start > record.date_end
+                record.date_start and record.date_end and record.date_start > record.date_end
             ):
                 raise ValidationError(
                     _("The starting date cannot be after the ending date.")
@@ -92,15 +90,7 @@ class PersonRelation(models.Model):
         """
         for record in self:
             assert side in ["left", "right"]
-            ptype = getattr(record.type_id, "contact_type_%s" % side)
             person = getattr(record, "%s_person_id" % side)
-            if (ptype == "c" and not person.is_company) or (
-                ptype == "p" and person.is_company
-            ):
-                raise ValidationError(
-                    _("The %s person is not applicable for this " "relation type.")
-                    % side
-                )
             category = getattr(record.type_id, "person_category_%s" % side)
             if category and category.id not in person.category_id.ids:
                 raise ValidationError(

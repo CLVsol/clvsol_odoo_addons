@@ -31,24 +31,11 @@ class PersonRelationTypeSelection(models.Model):
     _log_access = False
     _order = "name asc"
 
-    @api.model
-    def get_person_types(self):
-        """Partner types are defined by model clv.person.relation.type."""
-        # pylint: disable=no-self-use
-        rprt_model = self.env["clv.person.relation.type"]
-        return rprt_model.get_person_types()
-
     type_id = fields.Many2one(comodel_name="clv.person.relation.type", string="Type")
     name = fields.Char("Name")
-    contact_type_this = fields.Selection(
-        selection="get_person_types", string="Current record's person type"
-    )
     is_inverse = fields.Boolean(
         string="Is reverse type?",
         help="Inverse relations are from right to left person.",
-    )
-    contact_type_other = fields.Selection(
-        selection="get_person_types", string="Other record's person type"
     )
     person_category_this = fields.Many2one(
         comodel_name="clv.person.category", string="Current record's category"
@@ -88,8 +75,6 @@ CREATE OR REPLACE VIEW %(table)s AS
      id AS type_id,
      name AS name,
      False AS is_inverse,
-     contact_type_left AS contact_type_this,
-     contact_type_right AS contact_type_other,
      person_category_left AS person_category_this,
      person_category_right AS person_category_other
  FROM %(underlying_table)s
@@ -98,8 +83,6 @@ CREATE OR REPLACE VIEW %(table)s AS
      id,
      name_inverse,
      True,
-     contact_type_right,
-     contact_type_left,
      person_category_right,
      person_category_left
      FROM %(underlying_table)s

@@ -25,12 +25,6 @@ class PersonRelationType(models.Model):
 
     name = fields.Char(string="Name", required=True, translate=True)
     name_inverse = fields.Char(string="Inverse name", required=True, translate=True)
-    contact_type_left = fields.Selection(
-        selection="get_person_types", string="Left person type"
-    )
-    contact_type_right = fields.Selection(
-        selection="get_person_types", string="Right person type"
-    )
     person_category_left = fields.Many2one(
         comodel_name="clv.person.category", string="Left person category"
     )
@@ -60,12 +54,6 @@ class PersonRelationType(models.Model):
     )
 
     @api.model
-    def get_person_types(self):
-        """A person can be an organisation or an individual."""
-        # pylint: disable=no-self-use
-        return [("c", _("Organisation")), ("p", _("Person"))]
-
-    @api.model
     def _end_active_relations(self, relations):
         """End the relations that are active.
 
@@ -90,19 +78,6 @@ class PersonRelationType(models.Model):
         """Check wether records exist that do not fit new criteria."""
         relation_model = self.env["clv.person.relation"]
 
-        def get_type_condition(vals, side):
-            """Add if needed check for contact type."""
-            fieldname1 = "contact_type_%s" % side
-            fieldname2 = "%s_person_id.is_company" % side
-            contact_type = fieldname1 in vals and vals[fieldname1] or False
-            if contact_type == "c":
-                # Records that are not companies are invalid:
-                return [(fieldname2, "=", False)]
-            if contact_type == "p":
-                # Records that are companies are invalid:
-                return [(fieldname2, "=", True)]
-            return []
-
         def get_category_condition(vals, side):
             """Add if needed check for person category."""
             fieldname1 = "person_category_%s" % side
@@ -123,9 +98,6 @@ class PersonRelationType(models.Model):
                 continue
             invalid_conditions = []
             for side in ["left", "right"]:
-                invalid_conditions = OR(
-                    [invalid_conditions, get_type_condition(vals, side)]
-                )
                 invalid_conditions = OR(
                     [invalid_conditions, get_category_condition(vals, side)]
                 )

@@ -14,7 +14,6 @@
                     <group>
                         <group string="Left side of relation" name="left">
                             <field name="name"/>
-                            <field name="contact_type_left"/>
                             <field name="person_category_left"/>
                         </group>
                         <group
@@ -26,7 +25,6 @@
                                 name="name_inverse"
                                 attrs="{'required': [('is_symmetric', '=', False)]}"
                            />
-                            <field name="contact_type_right"/>
                             <field name="person_category_right"/>
                         </group>
                     </group>
@@ -48,8 +46,6 @@
             <tree>
                 <field name="name"/>
                 <field name="name_inverse"/>
-                <field name="contact_type_left"/>
-                <field name="contact_type_right"/>
                 <field name="allow_self"/>
                 <field name="is_symmetric"/>
             </tree>

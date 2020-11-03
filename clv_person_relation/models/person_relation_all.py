@@ -257,17 +257,9 @@ CREATE OR REPLACE VIEW %%(table)s AS
 
         this_person_domain = []
         other_person_domain = []
-        if self.type_selection_id.contact_type_this:
-            this_person_domain.append(
-                ("is_company", "=", self.type_selection_id.contact_type_this == "c")
-            )
         if self.type_selection_id.person_category_this:
             this_person_domain.append(
                 ("category_id", "in", self.type_selection_id.person_category_this.ids)
-            )
-        if self.type_selection_id.contact_type_other:
-            other_person_domain.append(
-                ("is_company", "=", self.type_selection_id.contact_type_other == "c")
             )
         if self.type_selection_id.person_category_other:
             other_person_domain.append(
@@ -334,17 +326,11 @@ CREATE OR REPLACE VIEW %%(table)s AS
         if self.this_person_id:
             type_selection_domain += [
                 "|",
-                ("contact_type_this", "=", False),
-                ("contact_type_this", "=", self.this_person_id.get_person_type()),
-                "|",
                 ("person_category_this", "=", False),
                 ("person_category_this", "in", self.this_person_id.category_id.ids),
             ]
         if self.other_person_id:
             type_selection_domain += [
-                "|",
-                ("contact_type_other", "=", False),
-                ("contact_type_other", "=", self.other_person_id.get_person_type()),
                 "|",
                 ("person_category_other", "=", False),
                 ("person_category_other", "in", self.other_person_id.category_id.ids),

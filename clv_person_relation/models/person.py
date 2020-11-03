@@ -143,9 +143,7 @@ class Person(models.Model):
         date_args = []
         for arg in args:
             if (
-                is_leaf(arg)
-                and isinstance(arg[0], str)
-                and arg[0].startswith("search_relation")
+                is_leaf(arg) and isinstance(arg[0], str) and arg[0].startswith("search_relation")
             ):
                 if arg[0] == "search_relation_date":
                     date_args = []
@@ -157,9 +155,7 @@ class Person(models.Model):
         if self.env.context.get("active_test", True):
             for arg in args:
                 if (
-                    is_leaf(arg)
-                    and isinstance(arg[0], str)
-                    and arg[0].startswith("search_relation")
+                    is_leaf(arg) and isinstance(arg[0], str) and arg[0].startswith("search_relation")
                 ):
                     active_args = [("relation_all_ids.active", "=", True)]
                     break
