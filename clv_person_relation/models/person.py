@@ -15,8 +15,6 @@ class Person(models.Model):
     in various ways.
     """
 
-    # pylint: disable=invalid-name
-    # pylint: disable=no-member
     _inherit = "clv.person"
 
     relation_count = fields.Integer(
@@ -110,13 +108,11 @@ class Person(models.Model):
     @api.model
     def _search_related_person_id(self, operator, value):
         """Find person based on relation with other person."""
-        # pylint: disable=no-self-use
         return [("relation_all_ids.other_person_id", operator, value)]
 
     @api.model
     def _search_relation_date(self, operator, value):
         """Look only for relations valid at date of search."""
-        # pylint: disable=no-self-use
         return [
             "&",
             "|",
@@ -130,7 +126,6 @@ class Person(models.Model):
     @api.model
     def _search_related_person_category_id(self, operator, value):
         """Search for person related to a person with search category."""
-        # pylint: disable=no-self-use
         return [("relation_all_ids.other_person_id.category_id", operator, value)]
 
     @api.model
@@ -138,8 +133,6 @@ class Person(models.Model):
         """Inject searching for current relation date if we search for
         relation properties and no explicit date was given.
         """
-        # pylint: disable=arguments-differ
-        # pylint: disable=no-value-for-parameter
         date_args = []
         for arg in args:
             if (

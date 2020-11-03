@@ -2,8 +2,6 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-# pylint: disable=method-required-super
-
 import collections
 import logging
 
@@ -210,7 +208,6 @@ CREATE OR REPLACE VIEW %%(table)s AS
     @api.model
     def _search_any_person_id(self, operator, value):
         """Search relation with person, no matter on which side."""
-        # pylint: disable=no-self-use
         return [
             "|",
             ("this_person_id", operator, value),
@@ -397,9 +394,7 @@ CREATE OR REPLACE VIEW %%(table)s AS
                 is_inverse = vals.get("is_inverse")
                 type_selection_id = type_id * 2 + (is_inverse and 1 or 0)
         return (
-            type_selection_id
-            and self.type_selection_id.browse(type_selection_id)
-            or False
+            type_selection_id and self.type_selection_id.browse(type_selection_id) or False
         )
 
     def write(self, vals):

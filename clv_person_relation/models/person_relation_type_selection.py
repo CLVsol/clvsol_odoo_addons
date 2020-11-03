@@ -111,9 +111,7 @@ CREATE OR REPLACE VIEW %(table)s AS
         return [
             (
                 this.id,
-                this.is_inverse
-                and this.type_id.name_inverse
-                or this.type_id.display_name,
+                this.is_inverse and this.type_id.name_inverse or this.type_id.display_name,
             )
             for this in self
         ]
@@ -121,13 +119,11 @@ CREATE OR REPLACE VIEW %(table)s AS
     @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
         """Search for name or inverse name in underlying model."""
-        # pylint: disable=no-value-for-parameter
         return self.search(
             [
                 "|",
                 ("type_id.name", operator, name),
                 ("type_id.name_inverse", operator, name),
-            ]
-            + (args or []),
+            ] + (args or []),
             limit=limit,
         ).name_get()

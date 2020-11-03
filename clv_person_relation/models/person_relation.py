@@ -120,8 +120,6 @@ class PersonRelation(models.Model):
 
         :raises ValidationError: When constraint is violated
         """
-        # pylint: disable=no-member
-        # pylint: disable=no-value-for-parameter
         for record in self:
             domain = [
                 ("type_id", "=", record.type_id.id),

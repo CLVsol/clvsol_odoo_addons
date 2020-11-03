@@ -90,9 +90,7 @@ class PersonRelationType(models.Model):
 
         for this in self:
             handling = (
-                "handle_invalid_onchange" in vals
-                and vals["handle_invalid_onchange"]
-                or this.handle_invalid_onchange
+                "handle_invalid_onchange" in vals and vals["handle_invalid_onchange"] or this.handle_invalid_onchange
             )
             if handling == "ignore":
                 continue
