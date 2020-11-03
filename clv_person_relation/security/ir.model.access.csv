@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_person_relation_type_user,clv.person.relation.type.user,model_clv_person_relation_type,clv_person.group_user,1,0,0,0
+access_clv_person_relation_type_manager,clv.person.relation.type.manager,model_clv_person_relation_type,clv_person.group_manager,1,1,1,0
+access_clv_person_relation_type_supmanager,clv.person.relation.type.supmanager,model_clv_person_relation_type,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_relation_user,clv.person.relation.user,model_clv_person_relation,clv_person.group_user,1,0,0,0
+access_clv_person_relation_manager,clv.person.relation.manager,model_clv_person_relation,clv_person.group_manager,1,1,1,0
+access_clv_person_relation_supmanager,clv.person.relation.supmanager,model_clv_person_relation,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_relation_all_user,clv.person.relation.all.user,model_clv_person_relation_all,clv_person.group_user,1,0,0,0
+access_clv_person_relation_all_manager,clv.person.relation.all.manager,model_clv_person_relation_all,clv_person.group_manager,1,1,1,0
+access_clv_person_relation_all_supmanager,clv.person.relation.all.supmanager,model_clv_person_relation_all,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_relation_type_selection_user,clv.person.relation.type.selection.user,model_clv_person_relation_type_selection,clv_person.group_user,1,0,0,0
+access_clv_person_relation_type_selection_manager,clv.person.relation.type.selection.manager,model_clv_person_relation_type_selection,clv_person.group_manager,1,1,1,0
+access_clv_person_relation_type_selection_supmanager,clv.person.relation.type.selection.supmanager,model_clv_person_relation_type_selection,clv_person.group_supmanager,1,1,1,1

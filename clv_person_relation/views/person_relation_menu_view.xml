@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <menuitem name="Relation Types" id="clv_person.menu_community_config_person_relation_types" 
+        parent="clv_person.menu_community_config_person"
+        groups="clv_person.group_user"
+        sequence="30"
+        action="clv_person_relation.clv_person_relation_type_action"/>
+
+    <menuitem name="Relations" id="clv_person.menu_community_config_person_relations" 
+        parent="clv_person.menu_community_config_person"
+        groups="clv_person.group_user"
+        sequence="40"
+        action="clv_person_relation.clv_person_relation_action"/>
+
+</odoo>
