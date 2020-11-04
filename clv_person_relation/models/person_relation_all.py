@@ -67,10 +67,10 @@ class PersonRelationAll(models.Model):
         help="The id of the object in the model this relation is based on.",
     )
     this_person_id = fields.Many2one(
-        comodel_name="clv.person", string="One Partner", required=True
+        comodel_name="clv.person", string="One Person", required=True
     )
     other_person_id = fields.Many2one(
-        comodel_name="clv.person", string="Other Partner", required=True
+        comodel_name="clv.person", string="Other Person", required=True
     )
     type_id = fields.Many2one(
         comodel_name="clv.person.relation.type",
@@ -97,7 +97,7 @@ class PersonRelationAll(models.Model):
     )
     any_person_id = fields.Many2many(
         comodel_name="clv.person",
-        string="Partner",
+        string="Person",
         compute=lambda self: self.update({"any_person_id": None}),
         search="_search_any_person_id",
     )
