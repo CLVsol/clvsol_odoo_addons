@@ -231,3 +231,10 @@ class Person(models.Model):
                     vals['entity_code'] = values['code']
                     super().write(vals)
         return ret
+
+    @api.model
+    def _person_compute_age_reference_cron(self):
+
+        persons = self.search([("birthday", "!=", False)])
+        persons._compute_age_reference()
+        persons._compute_age_range_id()

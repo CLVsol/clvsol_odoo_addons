@@ -322,6 +322,7 @@ class PersonMassEdit(models.TransientModel):
 
             if self.person_ref_age_refresh:
                 person._compute_age_reference()
+                person._compute_age_range_id()
 
             if self.active_log_selection == 'set':
                 person.active_log = self.active_log

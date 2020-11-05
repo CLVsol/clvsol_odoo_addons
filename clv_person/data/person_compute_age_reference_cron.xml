@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="1">
+
+    <record id="clv_person_compute_age_reference_cron" model="ir.cron">
+        <field name="name">Person: Compute Age Reference</field>
+        <field name="model_id" ref="model_clv_person" />
+        <field name="state">code</field>
+        <field name="code">model._person_compute_age_reference_cron()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+    </record>
+
+</odoo>
