@@ -72,13 +72,11 @@ class PersonAux(models.Model):
                 data_values = {}
                 data_values['name'] = person_aux.related_person_id.name
                 data_values['code'] = person_aux.related_person_id.code
+                data_values['is_absent'] = person_aux.related_person_id.is_absent
                 data_values['gender'] = person_aux.related_person_id.gender
                 data_values['birthday'] = person_aux.related_person_id.birthday
-                data_values['responsible_id'] = person_aux.related_person_id.responsible_id.id
-                data_values['caregiver_id'] = person_aux.related_person_id.caregiver_id.id
-
-                data_values['force_is_deceased'] = person_aux.related_person_id.force_is_deceased
                 data_values['date_death'] = person_aux.related_person_id.date_death
+                data_values['force_is_deceased'] = person_aux.related_person_id.force_is_deceased
 
                 data_values['contact_info_is_unavailable'] = person_aux.related_person_id.contact_info_is_unavailable
 
@@ -91,8 +89,8 @@ class PersonAux(models.Model):
                 data_values['city_id'] = person_aux.related_person_id.city_id.id
                 data_values['state_id'] = person_aux.related_person_id.state_id.id
                 data_values['country_id'] = person_aux.related_person_id.country_id.id
-                # data_values['phone'] = person_aux.related_person_id.phone
-                # data_values['mobile'] = person_aux.related_person_id.mobile
+                data_values['phone'] = person_aux.related_person_id.phone
+                data_values['mobile'] = person_aux.related_person_id.mobile
 
                 data_values['ref_address_is_unavailable'] = person_aux.related_person_id.ref_address_is_unavailable
 
@@ -105,6 +103,8 @@ class PersonAux(models.Model):
                 if person_aux.related_person_id.family_id.id is not False:
 
                     data_values['family_id'] = person_aux.related_person_id.family_id.id
+
+                data_values['state'] = person_aux.related_person_id.state
 
                 _logger.info(u'>>>>>>>>>> %s', data_values)
 
