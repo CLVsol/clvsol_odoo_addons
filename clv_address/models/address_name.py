@@ -26,8 +26,11 @@ class Address(models.Model):
                 record.suggested_name = record.street_name
                 if record.street_number:
                     record.suggested_name = record.suggested_name + ', ' + record.street_number
-                if record.street_number2:
-                    record.suggested_name = record.suggested_name + '/' + record.street_number2
+                    if record.street_number2:
+                        record.suggested_name = record.suggested_name + '/' + record.street_number2
+                else:
+                    if record.street_number2:
+                        record.suggested_name = record.suggested_name + ', ' + record.street_number2
                 if record.street2:
                     record.suggested_name = record.suggested_name + ' (' + record.street2 + ')'
             else:
