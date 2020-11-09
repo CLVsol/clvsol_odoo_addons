@@ -26,8 +26,11 @@ class Family(models.Model):
                 address_name = record.street_name
                 if record.street_number:
                     address_name = address_name + ', ' + record.street_number
-                if record.street_number2:
-                    address_name = address_name + ' - ' + record.street_number2
+                    if record.street_number2:
+                        address_name = address_name + '/' + record.street_number2
+                else:
+                    if record.street_number2:
+                        address_name = address_name + ', ' + record.street_number2
                 if record.street2:
                     address_name = address_name + ' (' + record.street2 + ')'
                 family_name_format = self.env['ir.config_parameter'].sudo().get_param(
