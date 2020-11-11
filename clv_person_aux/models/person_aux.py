@@ -367,9 +367,11 @@ class PersonAux(models.Model):
             data_values = {}
 
             data_values['street_name'] = False
+            data_values['street_number'] = False
+            data_values['street_number2'] = False
             data_values['street2'] = False
             data_values['zip'] = False
-            data_values['city'] = False
+            data_values['city_id'] = False
             data_values['state_id'] = False
             data_values['country_id'] = False
             # data_values['phone'] = False
