@@ -68,7 +68,7 @@ class PersonAux(models.Model):
 
                 if person_aux.ref_address_aux_id.id is not False:
 
-                    data_values['ref_address_aux_id'] = person_aux.ref_address_aux_id.id
+                    # data_values['ref_address_aux_id'] = person_aux.ref_address_aux_id.id
 
                     data_values['street_name'] = person_aux.ref_address_aux_id.street_name
                     data_values['street_number'] = person_aux.ref_address_aux_id.street_number
