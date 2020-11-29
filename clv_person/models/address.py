@@ -54,7 +54,6 @@ class Person(models.Model):
         related='ref_address_id.category_ids'
     )
 
-    # @api.multi
     def do_person_get_ref_address_data(self):
 
         for person in self:
@@ -67,7 +66,7 @@ class Person(models.Model):
 
                 if person.ref_address_id.id is not False:
 
-                    data_values['ref_address_id'] = person.ref_address_id.id
+                    # data_values['ref_address_id'] = person.ref_address_id.id
 
                     data_values['street_name'] = person.ref_address_id.street_name
                     data_values['street_number'] = person.ref_address_id.street_number
