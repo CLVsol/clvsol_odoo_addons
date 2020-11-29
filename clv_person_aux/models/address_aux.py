@@ -54,15 +54,15 @@ class PersonAux(models.Model):
         related='ref_address_aux_id.category_ids'
     )
 
-    # @api.multi
     def do_person_aux_get_ref_address_aux_data(self):
 
         for person_aux in self:
 
             _logger.info(u'>>>>> %s', person_aux.ref_address_aux_id)
 
-            if (person_aux.reg_state in ['draft', 'revised']) and \
-               (person_aux.ref_address_aux_id.id is not False):
+            # if (person_aux.reg_state in ['draft', 'revised']) and \
+            #    (person_aux.ref_address_aux_id.id is not False):
+            if person_aux.ref_address_aux_id.id is not False:
 
                 data_values = {}
 
@@ -88,15 +88,15 @@ class PersonAux(models.Model):
 
         return True
 
-    # @api.multi
     def do_person_aux_remove_ref_address_aux(self):
 
         for person_aux in self:
 
             _logger.info(u'>>>>> %s', person_aux.ref_address_aux_id)
 
-            if (person_aux.reg_state in ['draft', 'revised']) and \
-               (person_aux.ref_address_aux_id.id is not False):
+            # if (person_aux.reg_state in ['draft', 'revised']) and \
+            #    (person_aux.ref_address_aux_id.id is not False):
+            if person_aux.ref_address_aux_id.id is not False:
 
                 data_values = {}
 
