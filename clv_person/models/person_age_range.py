@@ -74,8 +74,11 @@ class Person(models.Model):
                         lambda age_range: age_range.age_from <= age_reference <= age_range.age_to
                     ) or False
                 )
-            if record.age_range_id != age_range:
-                record.age_range_id = age_range and age_range.id or age_range
+            if record.is_deceased is not True:
+                if record.age_range_id != age_range:
+                    record.age_range_id = age_range and age_range.id or age_range
+            else:
+                record.age_range_id = False
 
     @api.model
     def _person_update_age_range_id_cron(self):
