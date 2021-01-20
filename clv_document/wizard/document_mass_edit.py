@@ -175,7 +175,7 @@ class DocumentMassEdit(models.TransientModel):
 
         for document in self.document_ids:
 
-            _logger.info(u'%s %s', '>>>>>', document.name)
+            _logger.info(u'%s %s', '>>>>>', document.code)
 
             if self.reg_state_selection == 'set':
                 document.reg_state = self.reg_state
