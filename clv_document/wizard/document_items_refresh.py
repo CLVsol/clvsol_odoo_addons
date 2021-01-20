@@ -22,7 +22,6 @@ class DocumentItemsRefresh(models.TransientModel):
         default=_default_document_ids
     )
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -35,7 +34,6 @@ class DocumentItemsRefresh(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_document_items_refresh(self):
         self.ensure_one()
 
