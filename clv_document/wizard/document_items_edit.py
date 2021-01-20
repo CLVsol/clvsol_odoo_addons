@@ -51,7 +51,6 @@ class DocumentItemsEdit(models.TransientModel):
         default=_default_document_type_id
     )
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -64,7 +63,6 @@ class DocumentItemsEdit(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_document_updt(self):
         self.ensure_one()
 
