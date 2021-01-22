@@ -95,7 +95,7 @@
     </record>
     
     <record id="clv_lab_test_type_parameter_action" model="ir.actions.act_window">
-        <field name="name">Lab Test Type Parameter</field>
+        <field name="name">Lab Test Type Parameters</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clv.lab_test.type.parameter</field>
         <field name="view_mode">tree,form</field>
