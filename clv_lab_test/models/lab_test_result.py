@@ -44,3 +44,26 @@ class LabTestRequest(models.Model):
         inverse_name='lab_test_request_id',
         string='Lab Test Results'
     )
+
+    count_lab_test_results = fields.Integer(
+        string='Lab Test Results (count)',
+        compute='_compute_lab_test_result_ids_and_count',
+    )
+    count_lab_test_results_2 = fields.Integer(
+        string='Lab Test Results 2 (count)',
+        compute='_compute_lab_test_result_ids_and_count',
+    )
+
+    def _compute_lab_test_result_ids_and_count(self):
+        for record in self:
+
+            search_domain = [
+                ('lab_test_request_id', '=', record.id),
+            ]
+            lab_test_results_2 = self.env['clv.lab_test.result'].search(search_domain)
+
+            lab_test_results = self.env['clv.lab_test.result'].search(search_domain)
+
+            record.count_lab_test_results = len(lab_test_results)
+            record.count_lab_test_results_2 = len(lab_test_results_2)
+            record.lab_test_result_ids = [(6, 0, lab_test_results.ids)]

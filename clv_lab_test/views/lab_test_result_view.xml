@@ -145,8 +145,27 @@
             <page name="settings" position="before">
                 <page string="Lab Test Results">
                     <group>
-                        <field name="lab_test_result_ids" colspan="4" nolabel="1"/>
+                        <group>
+                            <field name="count_lab_test_results"/>
+                        </group>
+                        <group>
+                            <button name="clv_lab_test.clv_lab_test_result_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_lab_test_request_id': id}"
+                                    attrs="{'invisible': [('count_lab_test_results_2', '=', 0)]}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_lab_test_results_2"/>
+                                    </span>
+                                    <span class="o_stat_text"> Lab Test Result(s)</span>
+                                </div>
+                            </button>
+                        </group>
                     </group>
+                    <field name="lab_test_result_ids" colspan="4" nolabel="1"/>
                 </page>
             </page>
         </field>
