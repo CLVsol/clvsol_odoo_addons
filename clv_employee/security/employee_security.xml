@@ -5,23 +5,23 @@
 <odoo noupdate="0">
 
     <record id="module_employee_category" model="ir.module.category">
-        <field name="name">Family</field>
+        <field name="name">Employee</field>
     </record>
 
     <record id="clv_employee.group_user" model="res.groups">
-        <field name="name">User (Family)</field>
+        <field name="name">User (Employee)</field>
         <field name="category_id" ref="module_employee_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
     
     <record id="clv_employee.group_manager" model="res.groups">
-        <field name="name">Manager (Family)</field>
+        <field name="name">Manager (Employee)</field>
         <field name="category_id" ref="module_employee_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_employee.group_user'))]"/>
     </record>
     
     <record id="clv_employee.group_supmanager" model="res.groups">
-        <field name="name">Super Manager (Family)</field>
+        <field name="name">Super Manager (Employee)</field>
         <field name="category_id" ref="module_employee_category"/>
         <field name="implied_ids" eval="[(4, ref('clv_employee.group_manager'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')),
