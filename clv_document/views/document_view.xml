@@ -75,8 +75,8 @@
         <field name="arch" type="xml">
             <tree name="documents" string="Documents">
                 <field name="code"/>
-                <field name="date_inclusion"/>
-                <field name="date_document"/>
+                <field name="date_inclusion" invisible = "True"/>
+                <field name="date_document" invisible = "True"/>
                 <field name="notes" invisible = "True"/>
                 <field name="id"/>
                 <field name="active" invisible="1"/>
