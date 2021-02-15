@@ -10,10 +10,9 @@
         <field name="inherit_id" ref="clv_person.clv_person_view_form"/>
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
-            <div name="title"  position="inside">
-                <label for="employee_id" class="oe_edit_only"/>
-                <h3><field name="employee_id" placeholder="Responsible Empĺoyee..." options="{'no_open': False, 'no_create': True}"/></h3>
-            </div>
+            <group name="group_bottom_left" position="inside">
+                <field name="employee_id" placeholder="Responsible Empĺoyee..." options="{'no_open': False, 'no_create': True}"/>
+            </group>
         </field>
     </record>
    
