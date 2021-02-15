@@ -11,6 +11,8 @@ class Family(models.Model):
     employee_id = fields.Many2one(
         comodel_name='hr.employee',
         string='Responsible Empĺoyee',
-        related='ref_address_id.employee_id',
-        store=True
+        # related='ref_address_id.employee_id',
+        # store=True
+        required=False,
+        readonly=False
     )
