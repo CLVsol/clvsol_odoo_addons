@@ -9,11 +9,11 @@ class Person(models.Model):
     _inherit = 'clv.person'
 
     address_name = fields.Char(
-        string="Address Suggested Name",
+        string="Address Name",
         required=False,
         store=True,
         compute="_get_address_name",
-        help='Address Suggested Name for the Address.'
+        help='Address Name for the Address.'
     )
 
     @api.depends('street_name', 'street_number', 'street_number2', 'street2')
