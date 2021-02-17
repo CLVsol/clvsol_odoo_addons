@@ -7,6 +7,7 @@ from . import person_aux_marker
 from . import person_aux_category
 from . import res_partner
 from . import global_tag
+from . import address_name
 from . import address
 from . import family
 from . import person
