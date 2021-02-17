@@ -112,6 +112,16 @@ class PersonMassEdit(models.TransientModel):
          ], string='Markers:', default=False, readonly=False, required=False
     )
 
+    employee_id = fields.Many2one(
+        comodel_name='hr.employee',
+        string='Responsible Empĺoyee'
+    )
+    employee_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Responsible Empĺoyee:', default=False, readonly=False, required=False
+    )
+
     random_field = fields.Char(
         string='Random ID', default=False,
         help='Use "/" to get an automatic new Random ID.'
@@ -274,6 +284,11 @@ class PersonMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 person.marker_ids = m2m_list
+
+            if self.employee_id_selection == 'set':
+                person.employee_id = self.employee_id
+            if self.employee_id_selection == 'remove':
+                person.employee_id = False
 
             if self.random_field_selection == 'set':
                 person.random_field = self.random_field
