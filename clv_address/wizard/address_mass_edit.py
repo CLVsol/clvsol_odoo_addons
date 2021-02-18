@@ -121,6 +121,9 @@ class AddressMassEdit(models.TransientModel):
          ('remove', 'Remove'),
          ], string='Responsible Empĺoyee:', default=False, readonly=False, required=False
     )
+    get_employee_id = fields.Boolean(
+        string='Get Responsible Empĺoyee'
+    )
 
     tag_ids = fields.Many2many(
         comodel_name='clv.address.tag',
@@ -284,6 +287,11 @@ class AddressMassEdit(models.TransientModel):
                 address.employee_id = self.employee_id
             if self.employee_id_selection == 'remove':
                 address.employee_id = False
+
+            if self.get_employee_id:
+                for person in address.person_ids:
+                    if person.employee_id.id is not False:
+                        address.employee_id = person.employee_id.id
 
             if self.tag_ids_selection == 'add':
                 m2m_list = []

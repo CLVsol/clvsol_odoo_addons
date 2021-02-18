@@ -57,6 +57,11 @@
                         <field name="employee_id" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
                     </group>
                     <group>
+                        <field name="get_employee_id"/>
+                    </group>
+                    <group name="get_employee_id">
+                    </group>
+                    <group>
                         <field name="phase_id_selection"/>
                     </group>
                     <group name="phase_id">
