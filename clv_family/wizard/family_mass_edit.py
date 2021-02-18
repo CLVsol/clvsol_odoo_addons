@@ -122,6 +122,19 @@ class FamilyMassEdit(models.TransientModel):
          ], string='Phase:', readonly=False, required=False
     )
 
+    employee_id = fields.Many2one(
+        comodel_name='hr.employee',
+        string='Responsible Empĺoyee'
+    )
+    employee_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Responsible Empĺoyee:', default=False, readonly=False, required=False
+    )
+    get_employee_id = fields.Boolean(
+        string='Get Responsible Empĺoyee'
+    )
+
     tag_ids = fields.Many2many(
         comodel_name='clv.family.tag',
         relation='clv_family_mass_edit_tag_rel',
@@ -314,6 +327,15 @@ class FamilyMassEdit(models.TransientModel):
                     m2m_list.append((4, marker_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 family.marker_ids = m2m_list
+
+            if self.employee_id_selection == 'set':
+                family.employee_id = self.employee_id
+            if self.employee_id_selection == 'remove':
+                family.employee_id = False
+
+            if self.get_employee_id:
+                if family.ref_address_id.employee_id.id is not False:
+                    family.employee_id = family.ref_address_id.employee_id.id
 
             if self.phase_id_selection == 'set':
                 family.phase_id = self.phase_id
