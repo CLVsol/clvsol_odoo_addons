@@ -121,6 +121,9 @@ class PersonMassEdit(models.TransientModel):
          ('remove', 'Remove'),
          ], string='Responsible Empĺoyee:', default=False, readonly=False, required=False
     )
+    get_employee_id = fields.Boolean(
+        string='Get Responsible Empĺoyee'
+    )
 
     random_field = fields.Char(
         string='Random ID', default=False,
@@ -289,6 +292,10 @@ class PersonMassEdit(models.TransientModel):
                 person.employee_id = self.employee_id
             if self.employee_id_selection == 'remove':
                 person.employee_id = False
+
+            if self.get_employee_id:
+                if person.ref_address_id.employee_id.id is not False:
+                    person.employee_id = person.ref_address_id.employee_id.id
 
             if self.random_field_selection == 'set':
                 person.random_field = self.random_field
