@@ -39,7 +39,7 @@
         'views/patient_reg_state_view.xml',
         'views/patient_state_view.xml',
         'views/employee_view.xml',
-        # 'views/random_view.xml',
+        'views/random_view.xml',
         # 'views/set_element_view.xml',
         # 'views/patient_age_range_view.xml',
         # 'wizard/patient_mass_edit_view.xml',
