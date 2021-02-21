@@ -4,7 +4,7 @@
 
 from . import patient
 from . import patient_marker
-# from . import patient_tag
+from . import patient_tag
 from . import patient_category
 from . import patient_category_log
 from . import res_partner

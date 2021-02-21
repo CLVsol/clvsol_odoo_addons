@@ -32,4 +32,10 @@
         sequence="20"
         action="clv_patient.clv_patient_marker_action"/>
 
+    <menuitem name="Tags" id="clv_patient.menu_health_config_patient_tags" 
+        parent="clv_patient.menu_health_config_patient"
+        groups="clv_patient.group_user"
+        sequence="30"
+        action="clv_patient.clv_patient_tag_action"/>
+
 </odoo>
