@@ -13,7 +13,7 @@ from . import address_name
 # from . import address
 # from . import family
 from . import global_settings
-# from . import phase
+from . import phase
 # from . import patient_reg_state
 # from . import patient_state
 # from . import employee
