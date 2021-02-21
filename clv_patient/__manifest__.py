@@ -31,7 +31,7 @@
         'views/patient_tag_view.xml',
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',
-        # 'views/address_name_view.xml',
+        'views/address_name_view.xml',
         # 'views/address_view.xml',
         # 'views/family_view.xml',
         # 'views/global_settings_view.xml',

@@ -9,7 +9,7 @@ from . import patient_category
 from . import patient_category_log
 from . import res_partner
 from . import global_tag
-# from . import address_name
+from . import address_name
 # from . import address
 # from . import family
 # from . import global_settings
