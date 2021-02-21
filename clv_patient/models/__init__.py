@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import patient
-# from . import patient_marker
+from . import patient_marker
 # from . import patient_tag
 from . import patient_category
 from . import patient_category_log

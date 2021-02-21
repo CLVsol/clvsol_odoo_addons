@@ -27,7 +27,7 @@
         'views/patient_log_view.xml',
         'views/patient_category_view.xml',
         'views/patient_category_log_view.xml',
-        # 'views/patient_marker_view.xml',
+        'views/patient_marker_view.xml',
         # 'views/patient_tag_view.xml',
         'views/res_partner_view.xml',
         'views/global_tag_view.xml',

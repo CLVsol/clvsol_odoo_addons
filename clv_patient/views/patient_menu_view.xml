@@ -26,4 +26,10 @@
         sequence="10"
         action="clv_patient.clv_patient_category_action"/>
 
+    <menuitem name="Markers" id="clv_patient.menu_health_config_patient_markers" 
+        parent="clv_patient.menu_health_config_patient"
+        groups="clv_patient.group_user"
+        sequence="20"
+        action="clv_patient.clv_patient_marker_action"/>
+
 </odoo>
