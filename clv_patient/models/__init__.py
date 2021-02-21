@@ -12,7 +12,7 @@ from . import global_tag
 from . import address_name
 # from . import address
 # from . import family
-# from . import global_settings
+from . import global_settings
 # from . import phase
 # from . import patient_reg_state
 # from . import patient_state

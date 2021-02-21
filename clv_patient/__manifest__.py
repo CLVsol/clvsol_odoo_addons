@@ -34,7 +34,7 @@
         'views/address_name_view.xml',
         # 'views/address_view.xml',
         # 'views/family_view.xml',
-        # 'views/global_settings_view.xml',
+        'views/global_settings_view.xml',
         # 'views/phase_view.xml',
         # 'views/patient_reg_state_view.xml',
         # 'views/patient_state_view.xml',
