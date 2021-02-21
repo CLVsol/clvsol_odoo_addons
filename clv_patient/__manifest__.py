@@ -43,7 +43,7 @@
         'views/random_view.xml',
         'views/set_element_view.xml',
         'views/patient_age_range_view.xml',
-        # 'wizard/patient_mass_edit_view.xml',
+        'wizard/patient_mass_edit_view.xml',
         # 'wizard/patient_contact_information_updt_view.xml',
         # 'wizard/patient_associate_to_family_view.xml',
         'views/patient_menu_view.xml',
