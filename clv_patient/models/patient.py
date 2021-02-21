@@ -1,117 +1,206 @@
 # -*- coding: utf-8 -*-
-# Copyright 2008 Luis Falcon <lfalcon@gnusolidario.org>
-# Copyright 2016 LasLabs Inc.
-# License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+# Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import date, datetime
+from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.modules import get_module_resource
-# from odoo.exceptions import ValidationError, UserError
 from odoo.exceptions import UserError
-
 
 class Patient(models.Model):
 
     _name = 'clv.patient'
     _description = 'Patient'
-    _inherit = 'clv.abstract.entity'
+    _inherit = 'clv.abstract.partner_entity'
+
+    @api.depends('name', 'code', 'age_years')
+    def name_get(self):
+        result = []
+        for record in self:
+            if record.code and record.age_years:
+                result.append(
+                    (record.id,
+                     u'%s [%s] (%s)' % (record.name, record.code, record.age_years)
+                     ))
+            else:
+                if record.code:
+                    result.append(
+                        (record.id,
+                         u'%s [%s]' % (record.name, record.code)
+                         ))
+                elif record.age_years:
+                    result.append(
+                        (record.id,
+                         u'%s (%s)' % (record.name, record.age_years)
+                         ))
+                else:
+                    result.append(
+                        (record.id,
+                         u'%s' % (record.name)
+                         ))
+        return result
 
     code = fields.Char(string='Patient Code', required=False)
 
-    # age = fields.Char(
-    #     compute='_compute_age',
-    # )
-    # age_years = fields.Integer(
-    #     string="Age (years old)",
-    #     compute='_compute_age',
-    #     search='_search_age',
-    # )
-    # identification_code = fields.Char(
-    #     string='Internal Identification',
-    #     help='Patient Identifier provided by the Health Center.'
-    #          '(different from the Social Security Number)',
-    # )
-    # general_info = fields.Text(
-    #     string='General Information',
-    # )
-    # is_deceased = fields.Boolean(
-    #     compute='_compute_is_deceased',
-    # )
-    # marital_status = fields.Selection([
-    #     ('s', 'Single'),
-    #     ('m', 'Married'),
-    #     ('w', 'Widowed'),
-    #     ('d', 'Divorced'),
-    #     ('x', 'Separated'),
-    #     ('z', 'law marriage'),
-    # ], )
-    # # is_pregnant = fields.Boolean(
-    #     help='Check this if the patient if pregnant',
-    # )
-    # date_death = fields.Datetime(
-    #     string='Deceased Date',
-    # )
+    notes = fields.Text(string='Notes:')
 
-    # @api.multi
-    # def _compute_age(self):
-    #     """ Age computed depending based on the birth date in the
-    #      membership request.
-    #     """
-    #     now = datetime.now()
-    #     for record in self:
-    #         if record.birthdate_date:
-    #             birthdate_date = fields.Datetime.from_string(
-    #                 record.birthdate_date,
-    #             )
-    #             if record.is_deceased:
-    #                 date_death = fields.Datetime.from_string(record.date_death)
-    #                 delta = relativedelta(date_death, birthdate_date)
-    #                 is_deceased = _(' (deceased)')
-    #             else:
-    #                 delta = relativedelta(now, birthdate_date)
-    #                 is_deceased = ''
-    #             years_months_days = '%d%s %d%s %d%s%s' % (
-    #                 delta.years, _('y'), delta.months, _('m'),
-    #                 delta.days, _('d'), is_deceased
-    #             )
-    #             years = delta.years
-    #         else:
-    #             years_months_days = _('No DoB')
-    #             years = False
-    #         record.age = years_months_days
-    #         if years:
-    #             record.age_years = years
+    estimated_age = fields.Char(string='Estimated Age', required=False)
 
-    # @api.multi
-    # def _compute_is_deceased(self):
-    #     for record in self:
-    #         record.is_deceased = bool(record.date_death)
+    birthday = fields.Date(string="Date of Birth")
+    age = fields.Char(
+        string='Age',
+        compute='_compute_age',
+    )
+    age_years = fields.Char(
+        string="Age (years old)",
+        compute='_compute_age',
+    )
 
-    # @api.multi
-    # @api.constrains('is_pregnant', 'gender')
-    # def _check_is_pregnant(self):
-    #     for record in self:
-    #         if record.is_pregnant and record.gender != 'female':
-    #             raise ValidationError(_(
-    #                 'Invalid selection - Only a `Female` may be pregnant.',
-    #             ))
+    @api.constrains('birthday')
+    def _check_birthday(self):
+        for patient in self:
+            if patient.birthday:
+                if patient.birthday > fields.Date.today():
+                    raise UserError(u'Date of Birth must be in the past!')
+
+    def _compute_age(self):
+        now = datetime.now()
+        for r in self:
+            if r.birthday:
+                dob = datetime.strptime(str(r.birthday), '%Y-%m-%d')
+                if r.is_deceased and bool(r.date_death):
+                    dod = datetime.strptime(str(r.date_death), '%Y-%m-%d')
+                    delta = relativedelta(dod, dob)
+                    is_deceased = _(' (deceased)')
+                elif r.is_deceased and not bool(r.date_death):
+                    delta = relativedelta(now, dob)
+                    is_deceased = _(' (deceased?)')
+                else:
+                    delta = relativedelta(now, dob)
+                    is_deceased = ''
+                years_months_days = '%d%s %d%s %d%s%s' % (
+                    delta.years, _('y'), delta.months, _('m'), delta.days, _('d'),
+                    is_deceased
+                )
+                years = '%d%s%s' % (
+                    delta.years, _('y'),
+                    is_deceased
+                )
+                r.age = years_months_days
+                r.age_years = years
+            else:
+                r.age = "No Date of Birth!"
+                r.age_years = False
+
+    date_reference = fields.Date(
+        string="Reference Date",
+        compute='_compute_date_reference',
+    )
+    age_reference = fields.Char(
+        string='Reference Age',
+        compute='_compute_age_reference',
+        store=True
+    )
+    age_reference_years = fields.Char(
+        string="Reference Age (years old)",
+        compute='_compute_age_reference',
+        store=True
+    )
+
+    def _compute_date_reference(self):
+        for r in self:
+            date_reference = self.env['ir.config_parameter'].sudo().get_param(
+                'clv.global_settings.current_date_reference', '').strip()
+            r.date_reference = date_reference
+
+    @api.depends('date_reference', 'birthday', 'force_is_deceased', 'date_death')
+    def _compute_age_reference(self):
+        for r in self:
+            if r.date_reference:
+                dor = datetime.strptime(str(r.date_reference), '%Y-%m-%d')
+                if r.birthday:
+                    dob = datetime.strptime(str(r.birthday), '%Y-%m-%d')
+                    if r.is_deceased and bool(r.date_death):
+                        dod = datetime.strptime(str(r.date_death), '%Y-%m-%d')
+                        delta = relativedelta(dod, dob)
+                        is_deceased = _(' (deceased)')
+                    elif r.is_deceased and not bool(r.date_death):
+                        delta = relativedelta(dor, dob)
+                        is_deceased = _(' (deceased?)')
+                    else:
+                        delta = relativedelta(dor, dob)
+                        is_deceased = ''
+                    years_months_days = '%d%s %d%s %d%s%s' % (
+                        delta.years, _('y'), delta.months, _('m'), delta.days, _('d'),
+                        is_deceased
+                    )
+                    years = '%d%s%s' % (
+                        delta.years, _('y'),
+                        is_deceased
+                    )
+                    r.age_reference = years_months_days
+                    r.age_reference_years = years
+                else:
+                    r.age_reference = "No Date of Birth!"
+                    r.age_reference_years = False
+            else:
+                r.age_reference = "No Date of Reference!"
+                r.age_reference_years = False
+
+    force_is_deceased = fields.Boolean(
+        string='Force Is Deceased',
+        default=False
+    )
+    date_death = fields.Date(
+        string='Deceased Date',
+    )
+    is_deceased = fields.Boolean(
+        string='Is Deceased',
+        compute='_compute_is_deceased',
+        search='_search_is_deceased'
+    )
+
+    def _compute_is_deceased(self):
+        for record in self:
+            if record.date_death:
+                record.is_deceased = bool(record.date_death)
+            record.is_deceased = bool(record.date_death) or record.force_is_deceased
+
+    def _search_is_deceased(self, operator, value):
+        if operator == 'like':
+            operator = 'ilike'
+        return ['|', ('date_death', '!=', False), ('force_is_deceased', '=', True)]
+
+    is_absent = fields.Boolean(
+        string='Is Absent'
+    )
+
+    gender = fields.Selection(
+        [('M', 'Male'),
+         ('F', 'Female'),
+         ('O', 'Other'),
+         ], string='Gender'
+    )
+    marital = fields.Selection(
+        [('single', 'Single'),
+         ('married', 'Married'),
+         ('widower', 'Widower'),
+         ('divorced', 'Divorced'),
+         ('separated', 'Separated'),
+         ('law marriage', 'law marriage'),
+         ], string='Marital Status'
+    )
 
     @api.model
     def _create_vals(self, vals):
         vals = super()._create_vals(vals)
-        # if not vals.get('identification_code'):
-        #     Seq = self.env['ir.sequence']
-        #     vals['identification_code'] = Seq.sudo().next_by_code(
-        #         self._name,
-        #     )
         vals.update({
-            'customer': True,
+            'type': self._name,
         })
         return vals
 
-    @api.model_cr_context
     def _get_default_image_path(self, vals):
         res = super()._get_default_image_path(vals)
         if res:
@@ -121,36 +210,19 @@ class Patient(models.Model):
         )
         return image_path
 
-    # def _search_age(self, operator, value):
-    #     if operator not in ('ilike', '=', '>=', '>', '<', '<='):
-    #         raise UserError(_('Invalid operator: %s' % (operator,)))
+    def write(self, values):
+        ret = super().write(values)
+        for record in self:
+            if ('code' in values):
+                if record.entity_code != values['code']:
+                    vals = {}
+                    vals['entity_code'] = values['code']
+                    super().write(vals)
+        return ret
 
-    #     current_date = date.today()
-    #     last_birthdate = current_date + relativedelta(years=value * -1)
-    #     first_birthdate = current_date + relativedelta(
-    #         years=(value + 1) * -1,
-    #         days=1,
-    #     )
-    #     last_possible_birthdate = fields.Datetime.to_string(last_birthdate)
-    #     first_possible_birthdate = fields.Datetime.to_string(first_birthdate)
+    @api.model
+    def _patient_compute_age_reference_cron(self):
 
-    #     if operator == '=' or operator == 'ilike':
-    #         return ['&', ('birthdate_date', '>=', first_possible_birthdate),
-    #                 ('birthdate_date', '<=', last_possible_birthdate)]
-    #     elif operator == '>=':
-    #         return [('birthdate_date', '<=', last_possible_birthdate)]
-    #     elif operator == '>':
-    #         return [('birthdate_date', '<', first_possible_birthdate)]
-    #     elif operator == '<=':
-    #         return [('birthdate_date', '>=', first_possible_birthdate)]
-    #     elif operator == '<':
-    #         return [('birthdate_date', '>', last_possible_birthdate)]
-
-    # def toggle_is_pregnant(self):
-    #     self.toggle('is_pregnant')
-
-    # def toggle_safety_cap_yn(self):
-    #     self.toggle('safety_cap_yn')
-
-    # def toggle_counseling_yn(self):
-    #     self.toggle('counseling_yn')
+        patients = self.search([("birthday", "!=", False)])
+        patients._compute_age_reference()
+        patients._compute_age_range_id()

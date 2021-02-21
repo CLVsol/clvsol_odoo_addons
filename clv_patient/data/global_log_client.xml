@@ -4,12 +4,12 @@
 
 <odoo noupdate="0">
  
-	<record id="clv_global_log_client_clv_patient_category" model="clv.global_log.client">
-		<field name="model_name" eval="&quot;&quot;&quot;clv.patient.category&quot;&quot;&quot;"/>
+	<record id="clv_global_log_client_clv_person_category" model="clv.global_log.client">
+		<field name="model_name" eval="&quot;&quot;&quot;clv.person.category&quot;&quot;&quot;"/>
 	</record>
 	 
-	<record id="clv_global_log_client_clv_patient" model="clv.global_log.client">
-		<field name="model_name" eval="&quot;&quot;&quot;clv.patient&quot;&quot;&quot;"/>
+	<record id="clv_global_log_client_clv_person" model="clv.global_log.client">
+		<field name="model_name" eval="&quot;&quot;&quot;clv.person&quot;&quot;&quot;"/>
 	</record>
 	 
 </odoo>

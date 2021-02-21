@@ -11,7 +11,6 @@
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
             <page name="settings" position="after">
-                <!--page string="Log" groups="clv_base.group_loguser" attrs="{'invisible': ['|', ('active_log', '=', False)]}"-->
                 <page string="Log" groups="clv_base.group_loguser">
                     <group name="record_log">
                         <group name="creation">
@@ -24,12 +23,14 @@
                         </group>
                         <group name="log_model">
                             <field name="log_model" readonly="True"/>
-                            <field name="reference"/>
+                            <field name="object_model" invisible="True"/>
+                            <field name="object_res_id" invisible="True"/>
+                            <field name="object_reference"/>
                             <button name="clv_global_log.clv_global_log_action"
                                     type="action"
                                     class="oe_stat_button"
                                     icon="fa-list"
-                                    context="{'search_default_reference': reference}"
+                                    context="{'search_default_reference': object_reference, 'search_default_model': object_model, 'search_default_res_id': object_res_id}"
                                     target='new'
                                     >
                                 <div class="o_form_field o_stat_info">
@@ -41,7 +42,7 @@
                             </button>
                         </group>
                         <field name="log_ids" colspan="4" nolabel="1">
-                            <tree string="Patient Category Log">
+                            <tree string="Person Category Log">
                                 <field name="user_id"/>
                                 <field name="date_log"/>
                                 <field name="values"/>
