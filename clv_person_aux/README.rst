@@ -3,9 +3,9 @@
    :alt: License: AGPL-3
 
 ============
-Person (Off)
+Person (Aux)
 ============
 
-Person (Off) Module used by CLVsol Solutions.
+Person (Aux) Module used by CLVsol Solutions.
 
 Developed by `CLVsol <https://github.com/CLVsol>`_.
