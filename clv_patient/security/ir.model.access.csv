@@ -15,3 +15,7 @@ access_clv_patient_marker_supmanager,clv.patient.marker.supmanager,model_clv_pat
 access_clv_patient_tag_user,clv.patient.tag.user,model_clv_patient_tag,clv_patient.group_user,1,0,0,0
 access_clv_patient_tag_manager,clv.patient.tag.manager,model_clv_patient_tag,clv_patient.group_manager,1,1,1,0
 access_clv_patient_tag_supmanager,clv.patient.tag.supmanager,model_clv_patient_tag,clv_patient.group_supmanager,1,1,1,1
+
+access_clv_patient_age_range_user,clv.patient.age_range.user,model_clv_patient_age_range,clv_patient.group_user,1,0,0,0
+access_clv_patient_age_range_manager,clv.patient.age_range.manager,model_clv_patient_age_range,clv_patient.group_manager,1,1,1,0
+access_clv_patient_age_range_supmanager,clv.patient.age_range.supmanager,model_clv_patient_age_range,clv_patient.group_supmanager,1,1,1,1
