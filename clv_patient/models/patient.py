@@ -189,7 +189,7 @@ class Patient(models.Model):
          ('widower', 'Widower'),
          ('divorced', 'Divorced'),
          ('separated', 'Separated'),
-         ('law marriage', 'law marriage'),
+         ('law marriage', 'Law Marriage'),
          ], string='Marital Status'
     )
 
