@@ -18,7 +18,8 @@
         'clv_global_tag',
         # 'clv_address',
         # 'clv_family',
-        # 'clv_employee',
+        'clv_employee',
+        'clv_set',
     ],
     'data': [
         'security/patient_security.xml',
@@ -40,7 +41,7 @@
         'views/patient_state_view.xml',
         'views/employee_view.xml',
         'views/random_view.xml',
-        # 'views/set_element_view.xml',
+        'views/set_element_view.xml',
         # 'views/patient_age_range_view.xml',
         # 'wizard/patient_mass_edit_view.xml',
         # 'wizard/patient_contact_information_updt_view.xml',
