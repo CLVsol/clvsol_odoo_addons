@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_patient_associate_to_patient_aux_view_form" model="ir.ui.view">
+        <field name="name">clv.patient.associate_to_patient_aux.form</field>
+        <field name="model">clv.patient.associate_to_patient_aux</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="patient_ids"/>
+                <field name="patient_ids"/>
+                <group>
+                    <group>
+                        <field name="create_new_patient_aux"/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_patient_associate_to_patient_aux"
+                        string="Associate to Patient (Aux)"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_patient_associate_to_patient_aux_action" model="ir.actions.act_window">
+        <field name="name">Patient Associate to Patient (Aux)</field>
+        <field name="binding_model_id" ref="model_clv_patient"/>
+        <field name="res_model">clv.patient.associate_to_patient_aux</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

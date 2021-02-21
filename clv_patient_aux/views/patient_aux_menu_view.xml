@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <menuitem name="Patients (Aux)" id="clv_patient_aux.menu_health_health_patient_patient_auxs"
+        parent="clv_patient.menu_health_health_patient"
+        groups="clv_patient_aux.group_user"
+        sequence="10"
+        action="clv_patient_aux.clv_patient_aux_action"/>
+
+</odoo>

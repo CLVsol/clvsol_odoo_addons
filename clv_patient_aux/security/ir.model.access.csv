@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_patient_aux_user,clv.patient_aux.user,model_clv_patient_aux,clv_patient_aux.group_user,1,0,0,0
+access_clv_patient_aux_manager,clv.patient_aux.manager,model_clv_patient_aux,clv_patient_aux.group_manager,1,1,1,0
+access_clv_patient_aux_supmanager,clv.patient_aux.supmanager,model_clv_patient_aux,clv_patient_aux.group_supmanager,1,1,1,1
+
+access_clv_patient_aux_mass_edit_user,clv.patient_aux.mass_edit.user,model_clv_patient_aux_mass_edit,clv_patient_aux.group_user,1,0,0,0
+access_clv_patient_aux_mass_edit_manager,clv.patient_aux.mass_edit.manager,model_clv_patient_aux_mass_edit,clv_patient_aux.group_manager,1,1,1,0
+access_clv_patient_aux_mass_edit_supmanager,clv.patient_aux.mass_edit.supmanager,model_clv_patient_aux_mass_edit,clv_patient_aux.group_supmanager,1,1,1,1
+
+access_clv_patient_associate_to_patient_aux_user,clv.patient.associate_to_patient_aux.user,model_clv_patient_associate_to_patient_aux,clv_patient.group_user,1,0,0,0
+access_clv_patient_associate_to_patient_aux_manager,clv.patient.associate_to_patient_aux.manager,model_clv_patient_associate_to_patient_aux,clv_patient.group_manager,1,1,1,0
+access_clv_patient_associate_to_patient_aux_supmanager,clv.patient.associate_to_patient_aux.supmanager,model_clv_patient_associate_to_patient_aux,clv_patient.group_supmanager,1,1,1,1
