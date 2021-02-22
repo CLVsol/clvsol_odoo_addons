@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="clv_person_view_form_patient" model="ir.ui.view">
+        <field name="name">clv.person.form</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person.clv_person_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Patients">
+                    <group>
+                        <group>
+                            <field name="is_patient"/>
+                        </group>
+                        <group>
+                            <button name="clv_patient.clv_patient_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_related_person_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_patients"/>
+                                    </span>
+                                    <span class="o_stat_text"> Patient(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="patient_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_patient_view_form_person" model="ir.ui.view">
+        <field name="name">clv.patient.form</field>
+        <field name="model">clv.patient</field>
+        <field name="inherit_id" ref="clv_patient.clv_patient_view_form"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page name="patient_information" string="Related Person">
+                    <group name="group_bottom" string="Related Person">
+                        <group name="group_bottom_left">
+                            <field name="related_person_is_unavailable" attrs="{'invisible': ['&amp;',('related_person_is_unavailable','=',False),('related_person_id','!=',False)]}"/>
+                            <field name="related_person_id" options='{"no_open": False, "no_create": True}'/>
+                            <field name="related_person_name" invisible="True"/>
+                            <field name="related_person_code" invisible="True"/>
+                            <field name="related_person_category_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
+                            <field name="related_person_state" string="Related Person State"/>
+                        </group>
+                        <group>
+                            <field name="related_person_ref_address_id"/>
+                            <field name="related_person_ref_address_code"/>
+                            <field name="related_person_ref_address_category_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
+                        </group>
+                        <group name="group_bottom_right">
+                            <button name="do_patient_get_related_person_data"
+                                    type="object"
+                                    class="oe_stat_button, oe_edit_only"
+                                    icon="fa-download"
+                                    string=" Get Related Person Data"
+                                    confirm="Are you sure you want to copy the 'Related Person' data?"
+                                    attrs="{'invisible': [('related_person_id', '=', False)]}"
+                                    >
+                            </button>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_patient_view_tree_person" model="ir.ui.view">
+        <field name="name">clv.patient.tree</field>
+        <field name="model">clv.patient</field>
+        <field name="inherit_id" ref="clv_patient.clv_patient_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="related_person_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_patient_view_search_person" model="ir.ui.view">
+        <field name="name">clv.patient.search</field>
+        <field name="model">clv.patient</field>
+        <field name="inherit_id" ref="clv_patient.clv_patient_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="related_person_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
