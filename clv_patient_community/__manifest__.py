@@ -17,6 +17,7 @@
     ],
     'data': [
         'views/person_view.xml',
+        'wizard/person_mass_edit_view.xml',
     ],
     'demo': [],
     'test': [],
