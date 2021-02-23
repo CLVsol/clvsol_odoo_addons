@@ -38,6 +38,21 @@
         </field>
     </record>
 
+    <record id="clv_person_view_search_patient" model="ir.ui.view">
+        <field name="name">clv.person.search</field>
+        <field name="model">clv.person</field>
+        <field name="inherit_id" ref="clv_person.clv_person_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="is_patient"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_is_patient" string="Is Patient" context="{'group_by': 'is_patient'}"/>
+            </group>
+        </field>
+    </record>
+
     <record id="clv_patient_view_form_person" model="ir.ui.view">
         <field name="name">clv.patient.form</field>
         <field name="model">clv.patient</field>
