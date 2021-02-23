@@ -16,8 +16,10 @@
         'clv_person',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/person_view.xml',
         'wizard/person_mass_edit_view.xml',
+        'wizard/person_associate_to_patient_view.xml',
     ],
     'demo': [],
     'test': [],
