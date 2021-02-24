@@ -24,7 +24,7 @@
                                 <span class="o_stat_value">
                                     <field name="count_persons_aux"/>
                                 </span>
-                                <span class="o_stat_text"> Family(ies) (Aux)</span>
+                                <span class="o_stat_text"> Person(s) (Aux)</span>
                             </div>
                         </button>
                     </group>

@@ -5,5 +5,21 @@ access_clv_patient_manager,clv.patient.manager,model_clv_patient,clv_patient.gro
 access_clv_patient_supmanager,clv.patient.supmanager,model_clv_patient,clv_patient.group_supmanager,1,1,1,1
 
 access_clv_patient_category_user,clv.patient.category.user,model_clv_patient_category,clv_patient.group_user,1,0,0,0
-access_clv_patient_category_manager,clv.patient.manager.category,model_clv_patient_category,clv_patient.group_manager,1,1,1,0
+access_clv_patient_category_manager,clv.patient.category.manager,model_clv_patient_category,clv_patient.group_manager,1,1,1,0
 access_clv_patient_category_supmanager,clv.patient.category.supmanager,model_clv_patient_category,clv_patient.group_supmanager,1,1,1,1
+
+access_clv_patient_marker_user,clv.patient.marker.user,model_clv_patient_marker,clv_patient.group_user,1,0,0,0
+access_clv_patient_marker_manager,clv.patient.marker.manager,model_clv_patient_marker,clv_patient.group_manager,1,1,1,0
+access_clv_patient_marker_supmanager,clv.patient.marker.supmanager,model_clv_patient_marker,clv_patient.group_supmanager,1,1,1,1
+
+access_clv_patient_tag_user,clv.patient.tag.user,model_clv_patient_tag,clv_patient.group_user,1,0,0,0
+access_clv_patient_tag_manager,clv.patient.tag.manager,model_clv_patient_tag,clv_patient.group_manager,1,1,1,0
+access_clv_patient_tag_supmanager,clv.patient.tag.supmanager,model_clv_patient_tag,clv_patient.group_supmanager,1,1,1,1
+
+access_clv_patient_age_range_user,clv.patient.age_range.user,model_clv_patient_age_range,clv_patient.group_user,1,0,0,0
+access_clv_patient_age_range_manager,clv.patient.age_range.manager,model_clv_patient_age_range,clv_patient.group_manager,1,1,1,0
+access_clv_patient_age_range_supmanager,clv.patient.age_range.supmanager,model_clv_patient_age_range,clv_patient.group_supmanager,1,1,1,1
+
+access_clv_patient_mass_edit_user,clv.patient.mass_edit.user,model_clv_patient_mass_edit,clv_patient.group_user,1,0,0,0
+access_clv_patient_mass_edit_manager,clv.patient.mass_edit.manager,model_clv_patient_mass_edit,clv_patient.group_manager,1,1,1,0
+access_clv_patient_mass_edit_supmanager,clv.patient.mass_edit.supmanager,model_clv_patient_mass_edit,clv_patient.group_supmanager,1,1,1,1

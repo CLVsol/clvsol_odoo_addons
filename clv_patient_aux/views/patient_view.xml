@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="clv_patient_view_form_patient_aux" model="ir.ui.view">
+        <field name="name">clv.patient.form</field>
+        <field name="model">clv.patient</field>
+        <field name="inherit_id" ref="clv_patient.clv_patient_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Patients (Aux)">
+                    <group>
+                        <group>
+                            <button name="clv_patient_aux.clv_patient_aux_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_related_patient_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_patients_aux"/>
+                                    </span>
+                                    <span class="o_stat_text"> Patient(s) (Aux)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="patient_aux_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_patient_aux_view_form_patient" model="ir.ui.view">
+        <field name="name">clv.patient_aux.form</field>
+        <field name="model">clv.patient_aux</field>
+        <field name="inherit_id" ref="clv_patient_aux.clv_patient_aux_view_form"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <group name="group_top" position="after">
+                <group name="group_bottom" string="Related Patient">
+                    <group name="group_bottom_left">
+                        <field name="related_patient_is_unavailable" attrs="{'invisible': ['&amp;',('related_patient_is_unavailable','=',False),('related_patient_id','!=',False)]}"/>
+                        <field name="related_patient_id" options='{"no_open": False, "no_create": True}'/>
+                        <field name="related_patient_name" invisible="True"/>
+                        <field name="related_patient_code" invisible="True"/>
+                        <field name="related_patient_category_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
+                    </group>
+                    <group name="group_bottom_right">
+                        <button name="do_patient_aux_get_related_patient_data"
+                                type="object"
+                                class="oe_stat_button, oe_edit_only"
+                                icon="fa-download"
+                                string=" Get Related Patient Data"
+                                confirm="Are you sure you want to copy the 'Related Patient' data?"
+                                attrs="{'invisible': [('related_patient_id', '=', False)]}"
+                                >
+                        </button>
+                    </group>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="clv_patient_aux_view_tree_patient" model="ir.ui.view">
+        <field name="name">clv.patient_aux.tree</field>
+        <field name="model">clv.patient_aux</field>
+        <field name="inherit_id" ref="clv_patient_aux_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="related_patient_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_patient_aux_view_search_patient" model="ir.ui.view">
+        <field name="name">clv.patient_aux.search</field>
+        <field name="model">clv.patient_aux</field>
+        <field name="inherit_id" ref="clv_patient_aux.clv_patient_aux_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="related_patient_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_patient_aux_view_form_patient_2" model="ir.ui.view">
+        <field name="name">clv.patient_aux.form</field>
+        <field name="model">clv.patient_aux</field>
+        <field name="inherit_id" ref="clv_patient_aux_view_form_patient"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <field name="related_patient_category_ids" position="after">
+                <field name="related_patient_state" string="Related Patient State"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -3,9 +3,9 @@
    :alt: License: AGPL-3
 
 =======
-Patinet
+Patient
 =======
 
-Patinet Module used by CLVsol Solutions.
+Patient Module used by CLVsol Solutions.
 
 Developed by `CLVsol <https://github.com/CLVsol>`_.

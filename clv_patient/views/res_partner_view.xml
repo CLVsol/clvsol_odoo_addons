@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2016 LasLabs Inc.
-     License GPL-3.0 or later (http://www.gnu.org/licenses/gpl). -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
 
@@ -20,10 +20,9 @@
                         attrs="{'invisible': [('patient_ids', '=', [])]}"
                         >
                     <div class="o_form_field o_stat_info">
-                        <span class="o_stat_value">
-                            <field name="count_patients" />
+                        <span class="o_stat_text">
+                            <field name="type"/>
                         </span>
-                        <span class="o_stat_text">Patient(s)</span>
                     </div>
                 </button>
             </xpath>
