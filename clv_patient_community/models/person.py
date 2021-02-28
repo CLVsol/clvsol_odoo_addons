@@ -104,6 +104,20 @@ class Patient(models.Model):
 
                 data_values['state'] = patient.related_person_id.state
 
+                data_values['phase_id'] = patient.related_person_id.phase_id.id
+                data_values['random_field'] = patient.related_person_id.random_field
+
+                PatientCategory = self.env['clv.patient.category']
+                m2m_list = []
+                for person_category_id in patient.related_person_id.category_ids:
+                    patient_category = PatientCategory.search([
+                        ('name', '=', person_category_id.name),
+                    ])
+                    m2m_list.append((4, patient_category.id))
+                data_values['category_ids'] = m2m_list
+
+                data_values['employee_id'] = patient.related_person_id.employee_id.id
+
                 _logger.info(u'>>>>>>>>>> %s', data_values)
 
                 patient.write(data_values)
