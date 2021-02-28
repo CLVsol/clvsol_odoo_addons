@@ -79,6 +79,15 @@ class PatientAux(models.Model):
 
                 data_values['state'] = patient_aux.related_patient_id.state
 
+                PatientCategory = self.env['clv.patient.category']
+                m2m_list = []
+                for patient_category_id in patient_aux.related_patient_id.category_ids:
+                    patient_category = PatientCategory.search([
+                        ('name', '=', patient_category_id.name),
+                    ])
+                    m2m_list.append((4, patient_category.id))
+                data_values['category_ids'] = m2m_list
+
                 _logger.info(u'>>>>>>>>>> %s', data_values)
 
                 patient_aux.write(data_values)
