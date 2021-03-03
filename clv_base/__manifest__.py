@@ -33,6 +33,7 @@
         'views/health_menu_view.xml',
         'views/processing_menu_view.xml',
         'views/export_menu_view.xml',
+        'views/report_menu_view.xml',
     ],
     'demo': [],
     'test': [],
