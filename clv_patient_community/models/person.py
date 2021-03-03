@@ -118,6 +118,15 @@ class Patient(models.Model):
 
                 data_values['employee_id'] = patient.related_person_id.employee_id.id
 
+                PatientMarker = self.env['clv.patient.marker']
+                m2m_list = []
+                for person_marker_id in patient.related_person_id.marker_ids:
+                    patient_marker = PatientMarker.search([
+                        ('name', '=', person_marker_id.name),
+                    ])
+                    m2m_list.append((4, patient_marker.id))
+                data_values['marker_ids'] = m2m_list
+
                 _logger.info(u'>>>>>>>>>> %s', data_values)
 
                 patient.write(data_values)
