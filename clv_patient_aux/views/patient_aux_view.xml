@@ -52,7 +52,7 @@
                 </group>
             </group>
             <page name="page_general_info" position="after">
-                <page name="patient_auxal_information" string="Patiental Information" groups="clv_base.group_supuser">
+                <page name="patient_auxal_information" string="Personal Information" groups="clv_base.group_supuser">
                     <group>
                         <group name="patient_aux_status">
                             <field name="is_absent"/>
