@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <!--record id="clv_residence.clv_residence_action_residence" model="ir.actions.act_window">
+        <field name="name">Residences</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.residence</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="clv_residence.clv_residence_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new residence.
+          </p>
+        </field>
+    </record-->
+    
+    <record id="clv_address_view_form_residence" model="ir.ui.view">
+        <field name="name">clv.address.form</field>
+        <field name="model">clv.address</field>
+        <field name="inherit_id" ref="clv_address.clv_address_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Residences">
+                    <group>
+                        <group>
+                            <field name="is_residence"/>
+                        </group>
+                        <group>
+                            <button name="clv_residence.clv_residence_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_ref_address_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_residences"/>
+                                    </span>
+                                    <span class="o_stat_text"> Residence(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="residence_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!--record id="clv_address_view_tree_residence" model="ir.ui.view">
+        <field name="name">clv.address.tree</field>
+        <field name="model">clv.address</field>
+        <field name="inherit_id" ref="clv_address.clv_address_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="count_residences" string="Residences" sum="Total Number of Residences"/>
+            </field>
+        </field>
+    </record-->
+
+    <record id="clv_address_view_search_residence" model="ir.ui.view">
+        <field name="name">clv.address.search</field>
+        <field name="model">clv.address</field>
+        <field name="inherit_id" ref="clv_address.clv_address_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="is_residence"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_is_residence" string="Is Residence" context="{'group_by': 'is_residence'}"/>
+            </group>
+        </field>
+    </record>
+
+    <record id="clv_residence_view_form_address" model="ir.ui.view">
+        <field name="name">clv.residence.form</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_residence.clv_residence_view_form"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page name="residence_information" string="Related Address">
+                    <group name="group_bottom" string="Related Address">
+                        <group name="group_bottom_left">
+                            <field name="ref_address_is_unavailable" attrs="{'invisible': ['&amp;',('ref_address_is_unavailable','=',False),('ref_address_id','!=',False)]}"/>
+                            <field name="ref_address_id"
+                                context="{'show_ref_address_only': 1}"
+                                options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
+                            <field name="ref_address_code" string="Address Code"/>
+                            <field name="ref_address_category_names" string="Address Category Names" invisible="True"/>
+                            <field name="ref_address_category_ids" string="Address Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}"/>
+                            <button name="do_residence_get_ref_address_data"
+                                    type="object"
+                                    class="oe_stat_button, oe_edit_only"
+                                    icon="fa-download"
+                                    string=" Get Reference Address Data"
+                                    confirm="Are you sure you want to copy the 'Reference Address' data?"
+                                    attrs="{'invisible': [('ref_address_id', '=', False)]}"
+                                    >
+                            </button>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_residence_view_tree_address" model="ir.ui.view">
+        <field name="name">clv.residence.tree</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_residence.clv_residence_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="ref_address_id"/>
+                <field name="ref_address_category_ids" string="Address Categories" widget="many2many_tags" options="{'color_field': 'color', 'no_open': False, 'no_create': True}" invisible="True"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_residence_view_search_address" model="ir.ui.view">
+        <field name="name">clv.residence.search</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_residence.clv_residence_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="ref_address_category_names"/>
+                <field name="ref_address_id"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_ref_address_id" string="Address" context="{'group_by': 'ref_address_id'}"/>
+                <filter name="group_by_ref_address_category_names" string="Address Categories" context="{'group_by': 'ref_address_category_names'}"/>
+            </group>
+        </field>
+    </record>
+
+    <!--record id="clv_residence_view_form_address_2" model="ir.ui.view">
+        <field name="name">clv.residence.form</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_residence.clv_residence_view_form"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <group name="group_top_left" position="inside">
+                <field name="ref_address_state" string="Address State"/>
+            </group>
+        </field>
+    </record-->
+
+</odoo>
