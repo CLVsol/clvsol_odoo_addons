@@ -18,6 +18,7 @@
         'clv_global_tag',
         'clv_employee',
         'clv_set',
+        'clv_residence',
     ],
     'data': [
         'security/patient_security.xml',
@@ -39,6 +40,7 @@
         'views/random_view.xml',
         'views/set_element_view.xml',
         'views/patient_age_range_view.xml',
+        'views/residence_view.xml',
         'wizard/patient_mass_edit_view.xml',
         'views/patient_menu_view.xml',
         'data/global_log_client.xml',

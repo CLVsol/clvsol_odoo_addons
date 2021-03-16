@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="clv_patient.clv_patient_action_residence" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.patient</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="clv_patient.clv_patient_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new patient.
+          </p>
+        </field>
+    </record>
+    
+    <record id="clv_residence_view_form_patient" model="ir.ui.view">
+        <field name="name">clv.residence.form</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_residence.clv_residence_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Patients">
+                    <group>
+                        <!--group>
+                            <field name="count_patients"/>
+                        </group-->
+                        <group>
+                            <!--button name="clv_patient.clv_patient_action_residence"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_residence_id': id}"
+                                    attrs="{'invisible': [('patient_ids', '=', [])]}"
+                                    -->
+                            <button name="clv_patient.clv_patient_action_residence"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_residence_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_patients"/>
+                                    </span>
+                                    <span class="o_stat_text"> Patient(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="patient_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_residence_view_tree_patient" model="ir.ui.view">
+        <field name="name">clv.residence.tree</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_residence.clv_residence_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="count_patients" string="Patients" sum="Total Number of Patients"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_patient_view_form_residence" model="ir.ui.view">
+        <field name="name">clv.patient.form</field>
+        <field name="model">clv.patient</field>
+        <field name="inherit_id" ref="clv_patient.clv_patient_view_form"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <group name="group_top_left" position="inside">
+                <field name="residence_is_unavailable" attrs="{'invisible': ['&amp;',('residence_is_unavailable','=',False),('residence_id','!=',False)]}"/>
+                <field name="residence_id" options='{"no_open": False, "no_create": True}'/>
+                <field name="residence_code" string="Residence Code"/>
+                <field name="residence_category_ids" string="Residence Categories"/>
+                <field name="residence_state" string="Residence State"/>
+                <!--field name="patient_residence_role_id" options='{"no_open": False, "no_create": True}'/-->
+                <!--button name="do_patient_associate_to_residence"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-download"
+                        string=" Associate to Residence"
+                        confirm="Are you sure you want to associete the Patient to a Residence?"
+                        attrs="{'invisible': [('ref_address_id', '=', False)]}"
+                        >
+                </button-->
+                <button name="do_patient_associate_to_residence"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-download"
+                        string=" Associate to Residence"
+                        confirm="Are you sure you want to associete the Patient to a Residence?"
+                        >
+                </button>
+            </group>
+        </field>
+    </record>
+
+    <record id="clv_patient_view_tree_residence" model="ir.ui.view">
+        <field name="name">clv.patient.tree</field>
+        <field name="model">clv.patient</field>
+        <field name="inherit_id" ref="clv_patient_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="residence_category_ids" string="Residence Categories" invisible="True"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_patient_view_search_residence" model="ir.ui.view">
+        <field name="name">clv.patient.search</field>
+        <field name="model">clv.patient</field>
+        <field name="inherit_id" ref="clv_patient.clv_patient_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="residence_id"/>
+                <field name="residence_category_ids"/>
+                <filter name="filter_residence_is_unavailable" string="Residence is missing"
+                        domain="[('residence_is_unavailable', '=', True)]"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_residence_id" string="Residence" context="{'group_by': 'residence_id'}"/>
+                <filter name="group_by_residence_category_ids" string="Residence Categories" context="{'group_by': 'residence_category_ids'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
