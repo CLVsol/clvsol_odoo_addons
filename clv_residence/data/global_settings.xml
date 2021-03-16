@@ -6,7 +6,8 @@
 
     <record id="clv_global_settings_residence_name_format" model="ir.config_parameter">
         <field name="key" eval="&quot;&quot;&quot;clv.global_settings.current_residence_name_format&quot;&quot;&quot;"/>
-        <field name="value" eval="&quot;&quot;&quot;[R] &lt;address_name&gt;&quot;&quot;&quot;"/>
+        <!--field name="value" eval="&quot;&quot;&quot;[R] &lt;address_name&gt;&quot;&quot;&quot;"/-->
+        <field name="value" eval="&quot;&quot;&quot;&lt;address_name&gt;&quot;&quot;&quot;"/>
     </record>
 
 </odoo>
