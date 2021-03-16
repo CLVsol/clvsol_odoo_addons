@@ -15,9 +15,10 @@
         'clv_address',
     ],
     'data': [
-        # 'security/residence_security.xml',
+        'security/ir.model.access.csv',
         'views/address_view.xml',
         'wizard/address_mass_edit_view.xml',
+        'wizard/address_associate_to_residence_view.xml',
     ],
     'demo': [],
     'test': [],
