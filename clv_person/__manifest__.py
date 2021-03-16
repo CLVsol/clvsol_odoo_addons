@@ -45,6 +45,7 @@
         'wizard/person_mass_edit_view.xml',
         'wizard/person_contact_information_updt_view.xml',
         'wizard/person_associate_to_family_view.xml',
+        'wizard/person_address_mass_edit_view.xml',
         'views/person_menu_view.xml',
         'data/global_log_client.xml',
         "data/person_compute_age_reference_cron.xml",

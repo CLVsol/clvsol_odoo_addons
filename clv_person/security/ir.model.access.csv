@@ -31,3 +31,8 @@ access_clv_person_associate_to_family_supmanager,clv.person.associate_to_family.
 access_clv_person_age_range_user,clv.person.age_range.user,model_clv_person_age_range,clv_person.group_user,1,0,0,0
 access_clv_person_age_range_manager,clv.person.age_range.manager,model_clv_person_age_range,clv_person.group_manager,1,1,1,0
 access_clv_person_age_range_supmanager,clv.person.age_range.supmanager,model_clv_person_age_range,clv_person.group_supmanager,1,1,1,1
+
+access_clv_person_address_mass_edit_user,clv.person.address_mass_edit.user,model_clv_person_address_mass_edit,clv_person.group_user,1,0,0,0
+access_clv_person_address_mass_edit_manager,clv.person.address_mass_edit.manager,model_clv_person_address_mass_edit,clv_person.group_manager,1,1,1,0
+access_clv_person_address_mass_edit_supmanager,clv.person.address_mass_edit.supmanager,model_clv_person_address_mass_edit,clv_person.group_supmanager,1,1,1,1
+
