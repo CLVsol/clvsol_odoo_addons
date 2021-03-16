@@ -19,7 +19,7 @@ class Address(models.Model):
 
     residence_ids = fields.One2many(
         comodel_name='clv.residence',
-        inverse_name='ref_address_id',
+        inverse_name='related_address_id',
         string='Residences'
     )
     count_residences = fields.Integer(
@@ -37,57 +37,74 @@ class Address(models.Model):
 class Residence(models.Model):
     _inherit = 'clv.residence'
 
-    ref_address_is_unavailable = fields.Boolean(
-        string='Address is unavailable',
+    related_address_is_unavailable = fields.Boolean(
+        string='Related Address is unavailable',
         default=False,
     )
-    ref_address_id = fields.Many2one(comodel_name='clv.address', string='Address', ondelete='restrict')
-    ref_address_code = fields.Char(string='Address Code', related='ref_address_id.code', store=False)
+    related_address_id = fields.Many2one(comodel_name='clv.address', string='Related Address', ondelete='restrict')
+    related_address_code = fields.Char(string='Related Address Code', related='related_address_id.code', store=False)
 
-    ref_address_phone = fields.Char(string='Address Phone', related='ref_address_id.phone')
-    ref_address_mobile_phone = fields.Char(string='Address Mobile', related='ref_address_id.mobile')
-    ref_address_email = fields.Char(string='Address Email', related='ref_address_id.email')
-
-    ref_address_category_names = fields.Char(
-        string='Address Category Names',
-        related='ref_address_id.category_ids.name',
+    related_address_category_names = fields.Char(
+        string='Related Address Category Names',
+        related='related_address_id.category_ids.name',
         store=True
     )
-    ref_address_category_ids = fields.Many2many(
+    related_address_category_ids = fields.Many2many(
         comodel_name='clv.address.category',
-        string='Address Categories',
-        related='ref_address_id.category_ids'
+        string='Related Address Categories',
+        related='related_address_id.category_ids'
     )
 
-    def do_residence_get_ref_address_data(self):
+    def do_residence_get_related_address_data(self):
 
         for residence in self:
 
-            _logger.info(u'>>>>> %s', residence.ref_address_id)
+            _logger.info(u'>>>>> %s', residence.related_address_id)
 
-            if (residence.ref_address_id.id is not False):
+            if (residence.reg_state in ['draft', 'revised']) and \
+               (residence.related_address_id.id is not False):
 
                 data_values = {}
+                data_values['name'] = residence.related_address_id.name
+                data_values['code'] = residence.related_address_id.code
 
-                if residence.ref_address_id.id is not False:
+                data_values['contact_info_is_unavailable'] = residence.related_address_id.contact_info_is_unavailable
 
-                    data_values['ref_address_id'] = residence.ref_address_id.id
+                data_values['street_name'] = residence.related_address_id.street_name
+                data_values['street_number'] = residence.related_address_id.street_number
+                data_values['street_number2'] = residence.related_address_id.street_number2
+                data_values['street2'] = residence.related_address_id.street2
+                data_values['zip'] = residence.related_address_id.zip
+                data_values['city'] = residence.related_address_id.city
+                data_values['city_id'] = residence.related_address_id.city_id.id
+                data_values['state_id'] = residence.related_address_id.state_id.id
+                data_values['country_id'] = residence.related_address_id.country_id.id
+                data_values['phone'] = residence.related_address_id.phone
+                data_values['mobile'] = residence.related_address_id.mobile
 
-                    data_values['street_name'] = residence.ref_address_id.street_name
-                    data_values['street_number'] = residence.ref_address_id.street_number
-                    data_values['street_number2'] = residence.ref_address_id.street_number2
-                    data_values['street2'] = residence.ref_address_id.street2
-                    data_values['zip'] = residence.ref_address_id.zip
-                    data_values['city'] = residence.ref_address_id.city
-                    data_values['city_id'] = residence.ref_address_id.city_id.id
-                    data_values['state_id'] = residence.ref_address_id.state_id.id
-                    data_values['country_id'] = residence.ref_address_id.country_id.id
-                    if self.updt_phone:
-                        data_values['phone'] = residence.ref_address_id.phone
-                    if self.updt_mobile:
-                        data_values['mobile'] = residence.ref_address_id.mobile
-                    if self.updt_email:
-                        data_values['email'] = residence.ref_address_id.email
+                data_values['state'] = residence.related_address_id.state
+
+                data_values['phase_id'] = residence.related_address_id.phase_id.id
+
+                PatientCategory = self.env['clv.residence.category']
+                m2m_list = []
+                for address_category_id in residence.related_address_id.category_ids:
+                    residence_category = PatientCategory.search([
+                        ('name', '=', address_category_id.name),
+                    ])
+                    m2m_list.append((4, residence_category.id))
+                data_values['category_ids'] = m2m_list
+
+                data_values['employee_id'] = residence.related_address_id.employee_id.id
+
+                PatientMarker = self.env['clv.residence.marker']
+                m2m_list = []
+                for address_marker_id in residence.related_address_id.marker_ids:
+                    residence_marker = PatientMarker.search([
+                        ('name', '=', address_marker_id.name),
+                    ])
+                    m2m_list.append((4, residence_marker.id))
+                data_values['marker_ids'] = m2m_list
 
                 _logger.info(u'>>>>>>>>>> %s', data_values)
 
@@ -99,8 +116,8 @@ class Residence(models.Model):
 class Residence_2(models.Model):
     _inherit = 'clv.residence'
 
-    ref_address_state = fields.Selection(
+    related_address_state = fields.Selection(
         string='Address State',
-        related='ref_address_id.state',
+        related='related_address_id.state',
         store=False
     )
