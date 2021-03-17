@@ -4,3 +4,4 @@
 
 from . import person_mass_edit
 from . import person_associate_to_patient
+from . import patient_associate_to_residence
