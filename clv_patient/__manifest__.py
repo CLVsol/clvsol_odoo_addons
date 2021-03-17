@@ -42,6 +42,7 @@
         'views/patient_age_range_view.xml',
         'views/residence_view.xml',
         'wizard/patient_mass_edit_view.xml',
+        'wizard/patient_associate_to_residence_view.xml',
         'views/patient_menu_view.xml',
         'data/global_log_client.xml',
         "data/patient_compute_age_reference_cron.xml",
