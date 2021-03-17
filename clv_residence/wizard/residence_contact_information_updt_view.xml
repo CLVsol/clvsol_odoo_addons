@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_residence_contact_information_updt_view_form" model="ir.ui.view">
+        <field name="name">clv.residence.contact_information_updt.form</field>
+        <field name="model">clv.residence.contact_information_updt</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="residence_ids"/>
+                <field name="residence_ids"/>
+                <group>
+                    <group>
+                        <field name="updt_phone"/>
+                        <field name="updt_mobile"/>
+                        <field name="updt_email"/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_residence_contact_information_updt"
+                        string="Contact Information Update"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_residence_contact_information_updt_action" model="ir.actions.act_window">
+        <field name="name">Residence Contact Information Update</field>
+        <field name="binding_model_id" ref="model_clv_residence"/>
+        <field name="res_model">clv.residence.contact_information_updt</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

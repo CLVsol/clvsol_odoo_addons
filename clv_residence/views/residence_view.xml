@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_residence_view_tree" model="ir.ui.view">
+        <field name="name">clv.residence.tree</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_tree"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Residences</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="clv_residence_view_form" model="ir.ui.view">
+        <field name="name">clv.residence.form</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_form"/>
+        <field name="mode">primary</field>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Residence</attribute>
+            </xpath>
+            <div name="button_box" position="inside">
+                <h1><separator name="separator_residence" string="[  Residence  ]" style="color:Black; background:White;"/></h1>
+                <field name="notes" placeholder="Notes..." colspan="2" style="color:Maroon;background:White;text-align:left;"/>
+            </div>
+            <field name="type" position="before">
+                <separator/>
+                <button name="do_residence_clear_address_data"
+                        type="object"
+                        class="oe_stat_button, oe_edit_only"
+                        icon="fa-eraser"
+                        string=" Clear Address Data"
+                        confirm="Are you sure you want to clear the 'Address' data?"
+                        >
+                </button>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_residence_view_search" model="ir.ui.view">
+        <field name="name">clv.residence.search</field>
+        <field name="model">clv.residence</field>
+        <field name="inherit_id" ref="clv_partner_entity.clv_abstract_partner_entity_view_search"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="attributes">
+                <attribute name="string">Residences</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="clv_residence_action" model="ir.actions.act_window">
+        <field name="name">Residences</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.residence</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="clv_residence_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new residence.
+          </p>
+        </field>
+    </record>
+
+</odoo>

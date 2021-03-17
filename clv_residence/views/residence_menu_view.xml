@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <menuitem name="Residence" id="clv_residence.menu_health_health_residence"
+        parent="clv_base.menu_health_health"
+        groups="clv_residence.group_user"
+        sequence="15"/>
+
+    <menuitem name="Residences" id="clv_residence.menu_health_health_residence_residences"
+        parent="clv_residence.menu_health_health_residence"
+        groups="clv_residence.group_user"
+        sequence="10"
+        action="clv_residence.clv_residence_action"/>
+
+    <menuitem name="Residence" id="clv_residence.menu_health_config_residence" 
+        parent="clv_base.menu_health_config"
+        groups="clv_residence.group_user"
+        sequence="15"/>
+
+    <menuitem name="Categories" id="clv_residence.menu_health_config_residence_categories" 
+        parent="clv_residence.menu_health_config_residence"
+        groups="clv_residence.group_user"
+        sequence="10"
+        action="clv_residence.clv_residence_category_action"/>
+
+    <menuitem name="Markers" id="clv_residence.menu_health_config_residence_markers" 
+        parent="clv_residence.menu_health_config_residence"
+        groups="clv_residence.group_user"
+        sequence="20"
+        action="clv_residence.clv_residence_marker_action"/>
+
+    <menuitem name="Tags" id="clv_residence.menu_health_config_residence_tags" 
+        parent="clv_residence.menu_health_config_residence"
+        groups="clv_residence.group_user"
+        sequence="30"
+        action="clv_residence.clv_residence_tag_action"/>
+
+</odoo>

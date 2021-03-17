@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_address_associate_to_residence_user,clv.address.associate_to_residence.user,model_clv_address_associate_to_residence,clv_residence.group_user,1,0,0,0
+access_clv_address_associate_to_residence_manager,clv.address.associate_to_residence.manager,model_clv_address_associate_to_residence,clv_residence.group_manager,1,1,1,0
+access_clv_address_associate_to_residence_supmanager,clv.address.associate_to_residence.supmanager,model_clv_address_associate_to_residence,clv_residence.group_supmanager,1,1,1,1
