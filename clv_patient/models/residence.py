@@ -51,29 +51,34 @@ class Patient(models.Model):
         store=False
     )
 
-    def do_patient_associate_to_residence(self):
+    def do_patient_get_residence_data(self):
 
         for patient in self:
 
-            # _logger.info(u'>>>>> %s', patient.ref_address_id)
-            _logger.info(u'>>>>> %s', patient.name)
+            _logger.info(u'>>>>> %s', patient.residence_id)
 
-            # Residence = self.env['clv.residence']
+            if (patient.residence_id.id is not False):
 
-            # if (patient.ref_address_id.id is not False):
+                data_values = {}
 
-            #     data_values = {}
+                if patient.residence_id.id is not False:
 
-            #     residence = Residence.search([
-            #         ('ref_address_id', '=', patient.ref_address_id.id),
-            #     ])
+                    data_values['street_name'] = patient.residence_id.street_name
+                    data_values['street_number'] = patient.residence_id.street_number
+                    data_values['street_number2'] = patient.residence_id.street_number2
+                    data_values['street2'] = patient.residence_id.street2
+                    data_values['zip'] = patient.residence_id.zip
+                    data_values['city'] = patient.residence_id.city
+                    data_values['city_id'] = patient.residence_id.city_id.id
+                    data_values['state_id'] = patient.residence_id.state_id.id
+                    data_values['country_id'] = patient.residence_id.country_id.id
 
-            #     if residence.id is not False:
+                    data_values['phone'] = patient.residence_id.phone
+                    data_values['mobile'] = patient.residence_id.mobile
+                    data_values['email'] = patient.residence_id.email
 
-            #         data_values['residence_id'] = residence.id
+                _logger.info(u'>>>>>>>>>> %s', data_values)
 
-            #     _logger.info(u'>>>>>>>>>> %s', data_values)
-
-            #     patient.write(data_values)
+                patient.write(data_values)
 
         return True

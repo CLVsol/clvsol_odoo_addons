@@ -84,22 +84,13 @@
                 <field name="residence_code" string="Residence Code"/>
                 <field name="residence_category_ids" string="Residence Categories"/>
                 <field name="residence_state" string="Residence State"/>
-                <!--field name="patient_residence_role_id" options='{"no_open": False, "no_create": True}'/-->
-                <!--button name="do_patient_associate_to_residence"
+                <button name="do_patient_get_residence_data"
                         type="object"
                         class="oe_stat_button, oe_edit_only"
                         icon="fa-download"
-                        string=" Associate to Residence"
-                        confirm="Are you sure you want to associete the Patient to a Residence?"
-                        attrs="{'invisible': [('ref_address_id', '=', False)]}"
-                        >
-                </button-->
-                <button name="do_patient_associate_to_residence"
-                        type="object"
-                        class="oe_stat_button, oe_edit_only"
-                        icon="fa-download"
-                        string=" Associate to Residence"
-                        confirm="Are you sure you want to associete the Patient to a Residence?"
+                        string=" Get Residence Data"
+                        confirm="Are you sure you want to get the Residence data?"
+                        attrs="{'invisible': [('residence_id', '=', False)]}"
                         >
                 </button>
             </group>
