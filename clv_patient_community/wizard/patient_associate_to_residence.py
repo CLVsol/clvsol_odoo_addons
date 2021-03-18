@@ -67,6 +67,7 @@ class PatientAssociateToResidence(models.TransientModel):
                             values['code'] = address.code
                             values['phase_id'] = address.phase_id.id
                             values['street_name'] = address.street_name
+                            values['street'] = address.street
                             values['street2'] = address.street2
                             values['country_id'] = address.country_id.id
                             values['state_id'] = address.state_id.id
@@ -109,6 +110,7 @@ class PatientAssociateToResidence(models.TransientModel):
                             values['phase_id'] = patient.phase_id.id
                             values['street_name'] = patient.street_name
                             values['street2'] = patient.street2
+                            values['street'] = patient.street
                             values['country_id'] = patient.country_id.id
                             values['state_id'] = patient.state_id.id
                             values['city'] = patient.city
