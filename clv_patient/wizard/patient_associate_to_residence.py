@@ -80,6 +80,7 @@ class PatientAssociateToResidence(models.TransientModel):
                         # values['code'] = '/'
                         values['phase_id'] = patient.phase_id.id
                         values['street_name'] = patient.street_name
+                        values['street'] = patient.street
                         values['street2'] = patient.street2
                         values['country_id'] = patient.country_id.id
                         values['state_id'] = patient.state_id.id
