@@ -28,6 +28,16 @@ class AddressAssociateToResidence(models.TransientModel):
         readonly=False
     )
 
+    address_verification_exec = fields.Boolean(
+        string='Address Verification Execute',
+        default=True,
+    )
+
+    residence_verification_exec = fields.Boolean(
+        string='Residence Verification Execute',
+        default=True,
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -78,6 +88,12 @@ class AddressAssociateToResidence(models.TransientModel):
                     new_residence.write(values)
 
                     new_residence.do_residence_get_related_address_data()
+
+            if self.address_verification_exec:
+                address._address_verification_exec()
+
+            if self.residence_verification_exec:
+                new_residence._residence_verification_exec()
 
         if address_count == 1:
 
