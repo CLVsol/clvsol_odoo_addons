@@ -22,7 +22,20 @@ class PatientAssociateToResidence(models.TransientModel):
         default=_default_patient_ids
     )
 
-    create_new_residence = fields.Boolean(string='Create new Residence', default=False)
+    create_new_residence = fields.Boolean(
+        string='Create new Residence',
+        default=False
+    )
+
+    residence_verification_exec = fields.Boolean(
+        string='Residence Verification Execute',
+        default=True,
+    )
+
+    patient_verification_exec = fields.Boolean(
+        string='Patient Verification Execute',
+        default=True,
+    )
 
     def _reopen_form(self):
         self.ensure_one()
@@ -100,5 +113,11 @@ class PatientAssociateToResidence(models.TransientModel):
                         values['residence_is_unavailable'] = False
                         _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                         patient.write(values)
+
+            if self.residence_verification_exec:
+                new_residence._residence_verification_exec()
+
+            if self.patient_verification_exec:
+                patient._patient_verification_exec()
 
         return True
