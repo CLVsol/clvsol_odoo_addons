@@ -39,7 +39,7 @@ class Residence(models.Model):
 
     related_address_is_unavailable = fields.Boolean(
         string='Related Address is unavailable',
-        default=False,
+        default=True,
     )
     related_address_id = fields.Many2one(comodel_name='clv.address', string='Related Address', ondelete='restrict')
     related_address_code = fields.Char(string='Related Address Code', related='related_address_id.code', store=False)

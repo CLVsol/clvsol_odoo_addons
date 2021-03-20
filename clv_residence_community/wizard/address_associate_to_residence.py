@@ -87,6 +87,7 @@ class AddressAssociateToResidence(models.TransientModel):
                     _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                     new_residence.write(values)
 
+                    new_residence.related_address_is_unavailable = False
                     new_residence.do_residence_get_related_address_data()
 
             if self.address_verification_exec:
