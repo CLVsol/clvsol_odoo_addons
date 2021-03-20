@@ -28,6 +28,16 @@ class PersonAssociateToPatient(models.TransientModel):
         readonly=False
     )
 
+    person_verification_exec = fields.Boolean(
+        string='Person Verification Execute',
+        default=True,
+    )
+
+    patient_verification_exec = fields.Boolean(
+        string='Patient Verification Execute',
+        default=True,
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -77,7 +87,14 @@ class PersonAssociateToPatient(models.TransientModel):
                     _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                     new_patient.write(values)
 
+                    new_patient.related_person_is_unavailable = False
                     new_patient.do_patient_get_related_person_data()
+
+            if self.person_verification_exec:
+                person._person_verification_exec()
+
+            if self.patient_verification_exec:
+                new_patient._patient_verification_exec()
 
         if person_count == 1:
 
