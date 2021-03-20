@@ -18,6 +18,16 @@
                         <field name="create_new_patient_aux"/>
                     </group>
                 </group>
+                <group>
+                    <group>
+                        <field name="patient_verification_exec"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="patient_aux_verification_exec"/>
+                    </group>
+                </group>
                 <footer>
                     <button 
                         type="object"

@@ -28,6 +28,16 @@ class PatientAssociateToPatientAux(models.TransientModel):
         readonly=False
     )
 
+    patient_verification_exec = fields.Boolean(
+        string='Patient Verification Execute',
+        default=True,
+    )
+
+    patient_aux_verification_exec = fields.Boolean(
+        string='Patient (Aux) Verification Execute',
+        default=True,
+    )
+
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -78,6 +88,12 @@ class PatientAssociateToPatientAux(models.TransientModel):
                     new_patient_aux.write(values)
 
                     new_patient_aux.do_patient_aux_get_related_patient_data()
+
+            if self.patient_verification_exec:
+                patient._patient_verification_exec()
+
+            if self.patient_aux_verification_exec:
+                new_patient_aux._patient_aux_verification_exec()
 
         if patient_count == 1:
 
