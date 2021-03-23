@@ -91,7 +91,7 @@ class PatientAssociateToResidence(models.TransientModel):
 
                         values = {}
                         # values['code'] = '/'
-                        values['phase_id'] = patient.phase_id.id
+                        # values['phase_id'] = patient.phase_id.id
                         values['street_name'] = patient.street_name
                         values['street'] = patient.street
                         values['street2'] = patient.street2
