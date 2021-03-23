@@ -65,7 +65,7 @@ class PatientAssociateToResidence(models.TransientModel):
 
                             values = {}
                             values['code'] = address.code
-                            values['phase_id'] = address.phase_id.id
+                            # values['phase_id'] = address.phase_id.id
                             values['street_name'] = address.street_name
                             values['street'] = address.street
                             values['street2'] = address.street2
@@ -107,7 +107,7 @@ class PatientAssociateToResidence(models.TransientModel):
 
                             values = {}
                             # values['code'] = '/'
-                            values['phase_id'] = patient.phase_id.id
+                            # values['phase_id'] = patient.phase_id.id
                             values['street_name'] = patient.street_name
                             values['street2'] = patient.street2
                             values['street'] = patient.street
