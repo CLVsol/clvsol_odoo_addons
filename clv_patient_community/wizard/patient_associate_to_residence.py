@@ -41,6 +41,8 @@ class PatientAssociateToResidence(models.TransientModel):
                     _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                     patient.write(values)
 
+                    new_residence = residence
+
                 else:
 
                     if self.create_new_residence:
@@ -81,6 +83,8 @@ class PatientAssociateToResidence(models.TransientModel):
                             values['city_id'] = address.city_id.id
 
                             values['related_address_id'] = address.id
+
+                            values['related_address_is_unavailable'] = False
 
                             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                             new_residence.write(values)
@@ -129,5 +133,11 @@ class PatientAssociateToResidence(models.TransientModel):
                             values['residence_is_unavailable'] = False
                             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                             patient.write(values)
+
+            if self.residence_verification_exec:
+                new_residence._residence_verification_exec()
+
+            if self.patient_verification_exec:
+                patient._patient_verification_exec()
 
         return True
