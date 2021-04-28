@@ -5,7 +5,7 @@
 {
     'name': 'Document',
     'summary': 'Document Module used by CLVsol Solutions.',
-    'version': '12.0.4.0',
+    'version': '14.0.5.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
@@ -39,7 +39,6 @@
         'wizard/document_type_mass_edit_view.xml',
         'wizard/document_type_duplicate_view.xml',
         'wizard/document_type_items_setup_view.xml',
-        'wizard/document_items_edit_view.xml',
         'wizard/document_items_ok_setup_view.xml',
         'views/document_menu_view.xml',
         'data/global_log_client.xml',
