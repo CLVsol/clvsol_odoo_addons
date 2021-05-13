@@ -33,6 +33,7 @@
     <record id="clv_survey_code_renew_action" model="ir.actions.act_window">
         <field name="name">Survey Code Renew</field>
         <field name="binding_model_id" ref="model_survey_survey"/>
+        <field name="binding_view_types">form</field>
         <field name="res_model">clv.survey.code_renew</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

@@ -78,80 +78,92 @@ class SurveyCodeRenew(models.TransientModel):
 
                     if question_type == 'simple_choice':
 
-                        new_label_sequence = 0
-                        for label in question.labels_ids:
+                        new_suggested_answer_sequence = 0
+                        for suggested_answer in question.suggested_answer_ids:
 
-                            new_label_sequence += 10
-                            if new_label_sequence < 100:
-                                new_label_code = new_question_code + '_0' + str(int(new_label_sequence / 10))
+                            new_suggested_answer_sequence += 10
+                            if new_suggested_answer_sequence < 100:
+                                new_suggested_answer_code = \
+                                    new_question_code + '_0' + str(int(new_suggested_answer_sequence / 10))
                             else:
-                                new_label_code = new_question_code + '_' + str(int(new_label_sequence / 10))
+                                new_suggested_answer_code = \
+                                    new_question_code + '_' + str(int(new_suggested_answer_sequence / 10))
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
                                 '>>>>>>>>>>>>>>>>>>>>',
-                                label.code, label.sequence, new_label_code[1:], new_label_sequence
+                                suggested_answer.code, suggested_answer.sequence,
+                                new_suggested_answer_code[1:], new_suggested_answer_sequence
                             )
 
-                            label.sequence = new_label_sequence
-                            label.code = new_label_code
+                            suggested_answer.sequence = new_suggested_answer_sequence
+                            suggested_answer.code = new_suggested_answer_code
 
                     if question_type == 'multiple_choice':
 
-                        new_label_sequence = 0
-                        for label in question.labels_ids:
+                        new_suggested_answer_sequence = 0
+                        for suggested_answer in question.suggested_answer_ids:
 
-                            new_label_sequence += 10
-                            if new_label_sequence < 100:
-                                new_label_code = new_question_code + '_0' + str(int(new_label_sequence / 10))
+                            new_suggested_answer_sequence += 10
+                            if new_suggested_answer_sequence < 100:
+                                new_suggested_answer_code = \
+                                    new_question_code + '_0' + str(int(new_suggested_answer_sequence / 10))
                             else:
-                                new_label_code = new_question_code + '_' + str(int(new_label_sequence / 10))
+                                new_suggested_answer_code = \
+                                    new_question_code + '_' + str(int(new_suggested_answer_sequence / 10))
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
                                 '>>>>>>>>>>>>>>>>>>>>',
-                                label.code, label.sequence, new_label_code[1:], new_label_sequence
+                                suggested_answer.code, suggested_answer.sequence,
+                                new_suggested_answer_code[1:], new_suggested_answer_sequence
                             )
 
-                            label.sequence = new_label_sequence
-                            label.code = new_label_code
+                            suggested_answer.sequence = new_suggested_answer_sequence
+                            suggested_answer.code = new_suggested_answer_code
 
                     if question_type == 'matrix':
 
-                        new_label_sequence = 0
-                        for label in question.labels_ids_2:
+                        new_matrix_row_sequence = 0
+                        for matrix_row in question.matrix_row_ids:
 
-                            new_label_sequence += 10
-                            if new_label_sequence < 100:
-                                new_label_code = new_question_code + '_0' + str(int(new_label_sequence / 10))
+                            new_matrix_row_sequence += 10
+                            if new_matrix_row_sequence < 100:
+                                new_matrix_row_code = \
+                                    new_question_code + '_0' + str(int(new_matrix_row_sequence / 10))
                             else:
-                                new_label_code = new_question_code + '_' + str(int(new_label_sequence / 10))
+                                new_matrix_row_code = \
+                                    new_question_code + '_' + str(int(new_matrix_row_sequence / 10))
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
                                 '>>>>>>>>>>>>>>>>>>>>',
-                                label.code, label.sequence, new_label_code[1:], new_label_sequence
+                                matrix_row.code, matrix_row.sequence,
+                                new_matrix_row_code[1:], new_matrix_row_sequence
                             )
 
-                            label.sequence = new_label_sequence
-                            label.code = new_label_code
+                            matrix_row.sequence = new_matrix_row_sequence
+                            matrix_row.code = new_matrix_row_code
 
-                        for label in question.labels_ids:
+                        for suggested_answer in question.suggested_answer_ids:
 
-                            new_label_sequence += 10
-                            if new_label_sequence < 100:
-                                new_label_code = new_question_code + '_0' + str(int(new_label_sequence / 10))
+                            new_suggested_answer_sequence += 10
+                            if new_suggested_answer_sequence < 100:
+                                new_suggested_answer_code = \
+                                    new_question_code + '_0' + str(int(new_suggested_answer_sequence / 10))
                             else:
-                                new_label_code = new_question_code + '_' + str(int(new_label_sequence / 10))
+                                new_suggested_answer_code = \
+                                    new_question_code + '_' + str(int(new_suggested_answer_sequence / 10))
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
                                 '>>>>>>>>>>>>>>>>>>>>',
-                                label.code, label.sequence, new_label_code[1:], new_label_sequence
+                                suggested_answer.code, suggested_answer.sequence,
+                                new_suggested_answer_code[1:], new_suggested_answer_sequence
                             )
 
-                            label.sequence = new_label_sequence
-                            label.code = new_label_code
+                            suggested_answer.sequence = new_suggested_answer_sequence
+                            suggested_answer.code = new_suggested_answer_code
 
                     question.sequence = new_question_sequence
                     question.code = new_question_code
@@ -172,11 +184,11 @@ class SurveyCodeRenew(models.TransientModel):
                 for question in page.question_ids:
                     _logger.info(u'%s %s', '>>>>> (question.code[1:])', question.code[1:])
                     question.code = question.code[1:]
-                    for label in question.labels_ids_2:
-                        _logger.info(u'%s %s', '>>>>> (label.code[1:])', label.code[1:])
-                        label.code = label.code[1:]
-                    for label in question.labels_ids:
-                        _logger.info(u'%s %s', '>>>>> (label.code[1:])', label.code[1:])
-                        label.code = label.code[1:]
+                    for matrix_row in question.matrix_row_ids:
+                        _logger.info(u'%s %s', '>>>>> (suggested_answer.code[1:])', matrix_row.code[1:])
+                        matrix_row.code = matrix_row.code[1:]
+                    for suggested_answer in question.suggested_answer_ids:
+                        _logger.info(u'%s %s', '>>>>> (suggested_answer.code[1:])', suggested_answer.code[1:])
+                        suggested_answer.code = suggested_answer.code[1:]
 
         return True

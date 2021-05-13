@@ -5,7 +5,7 @@
 {
     'name': 'Survey',
     'summary': 'Survey Module used by CLVsol Solutions.',
-    'version': '12.0.4.0',
+    'version': '14.0.5.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
@@ -26,7 +26,7 @@
         'views/survey_user_input_view.xml',
         'views/phase_view.xml',
         # 'wizard/survey_duplicate_view.xml',
-        # 'wizard/survey_code_renew_view.xml',
+        'wizard/survey_code_renew_view.xml',
         # 'wizard/survey_export_xls_view.xml',
         # 'wizard/survey_export_xml_view.xml',
         # 'wizard/question_duplicate_view.xml',
