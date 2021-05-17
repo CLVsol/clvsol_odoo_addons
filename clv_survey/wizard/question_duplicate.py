@@ -13,10 +13,13 @@ class QuestionDuplicate(models.TransientModel):
     _description = 'Question Duplicate'
     _name = 'survey.question.duplicate'
 
+    def _default_question_ids(self):
+        return self._context.get('active_ids')
     question_ids = fields.Many2many(
         comodel_name='survey.question',
         relation='survey_question_duplicate_rel',
-        string='Questions'
+        string='Questions',
+        default=_default_question_ids
     )
 
     survey_id = fields.Many2one(
@@ -29,7 +32,7 @@ class QuestionDuplicate(models.TransientModel):
 
         defaults = super(QuestionDuplicate, self).default_get(field_names)
 
-        defaults['question_ids'] = self.env.context['active_ids']
+        # defaults['question_ids'] = self.env.context['active_ids']
 
         Question = self.env['survey.question']
         question_id = self._context.get('active_id')
@@ -42,10 +45,10 @@ class QuestionDuplicate(models.TransientModel):
 
     def _create_question(self, dest_survey, new_page, question, sequence):
 
-        _logger.info(u'%s %s', '>>>>>>>>>>>>>>>>>>>>', question.question)
+        _logger.info(u'%s %s', '>>>>>>>>>>>>>>>>>>>>', question.title)
 
         SurveyQuestion = self.env['survey.question']
-        SurveyLabel = self.env['survey.label']
+        SurveyQuestionAnswer = self.env['survey.question.answer']
 
         values = {
             'title': question.title,
@@ -58,7 +61,7 @@ class QuestionDuplicate(models.TransientModel):
             'description': question.description,
             'constr_mandatory': question.constr_mandatory,
             'constr_error_msg': question.constr_error_msg,
-            'display_mode': question.display_mode,
+            # 'display_mode': question.display_mode,
             'column_nb': question.column_nb,
             'comments_allowed': question.comments_allowed,
             'comments_message': question.comments_message,
@@ -67,27 +70,27 @@ class QuestionDuplicate(models.TransientModel):
         }
         new_question = SurveyQuestion.create(values)
 
-        for label in question.labels_ids:
+        for suggested_answer in question.suggested_answer_ids:
 
-            _logger.info(u'%s %s', '>>>>>>>>>>>>>>>>>>>>>>>>>', label.value)
+            _logger.info(u'%s %s', '>>>>>>>>>>>>>>>>>>>>>>>>>', suggested_answer.value)
 
             values = {
-                'value': label.value,
+                'value': suggested_answer.value,
                 'question_id': new_question.id,
-                'sequence': label.sequence,
+                'sequence': suggested_answer.sequence,
             }
-            SurveyLabel.create(values)
+            SurveyQuestionAnswer.create(values)
 
-        for label in question.labels_ids_2:
+        for matrix_row in question.matrix_row_ids:
 
-            _logger.info(u'%s %s', '>>>>>>>>>>>>>>>>>>>>>>>>>', label.value)
+            _logger.info(u'%s %s', '>>>>>>>>>>>>>>>>>>>>>>>>>', matrix_row.value)
 
             values = {
-                'value': label.value,
-                'question_id_2': new_question.id,
-                'sequence': label.sequence,
+                'value': matrix_row.value,
+                'matrix_question_id_2': new_question.id,
+                'sequence': matrix_row.sequence,
             }
-            SurveyLabel.create(values)
+            SurveyQuestionAnswer.create(values)
 
         return new_question
 
@@ -123,7 +126,7 @@ class QuestionDuplicate(models.TransientModel):
                     'description': ref_question.description,
                     'constr_mandatory': ref_question.constr_mandatory,
                     'constr_error_msg': ref_question.constr_error_msg,
-                    'display_mode': ref_question.display_mode,
+                    # 'display_mode': ref_question.display_mode,
                     'column_nb': ref_question.column_nb,
                     'comments_allowed': ref_question.comments_allowed,
                     'comments_message': ref_question.comments_message,

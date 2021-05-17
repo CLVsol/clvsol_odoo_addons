@@ -7,3 +7,7 @@ access_survey_user_input_mass_edit_supmanager,survey.user_input.mass_edit.supman
 access_clv_survey_code_renew_user,clv.survey.code_renew.user,model_clv_survey_code_renew,clv_survey.group_user,1,0,0,0
 access_clv_survey_code_renew_manager,clv.survey.code_renew.manager,model_clv_survey_code_renew,clv_survey.group_manager,1,1,1,0
 access_clv_survey_code_renew_supmanager,clv.survey.code_renew.supmanager,model_clv_survey_code_renew,clv_survey.group_supmanager,1,1,1,1
+
+access_survey_question_duplicate_user,survey.question.duplicate.user,model_survey_question_duplicate,clv_survey.group_user,1,0,0,0
+access_survey_question_duplicate_manager,survey.question.duplicate.manager,model_survey_question_duplicate,clv_survey.group_manager,1,1,1,0
+access_survey_question_duplicate_supmanager,survey.question.duplicate.supmanager,model_survey_question_duplicate,clv_survey.group_supmanager,1,1,1,1
