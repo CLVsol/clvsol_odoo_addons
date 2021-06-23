@@ -15,3 +15,7 @@ access_clv_mfile_marker_supmanager,clv.mfile.marker.supmanager,model_clv_mfile_m
 access_clv_mfile_format_user,clv.mfile.format.user,model_clv_mfile_format,clv_mfile.group_user,1,0,0,0
 access_clv_mfile_format_manager,clv.mfile.manager.format,model_clv_mfile_format,clv_mfile.group_manager,1,1,1,0
 access_clv_mfile_format_supmanager,clv.mfile.format.supmanager,model_clv_mfile_format,clv_mfile.group_supmanager,1,1,1,1
+
+access_clv_mfile_mass_edit_user,clv.mfile.mass_edit.user,model_clv_mfile_mass_edit,clv_mfile.group_user,1,0,0,0
+access_clv_mfile_mass_edit_manager,clv.mfile.mass_edit.manager,model_clv_mfile_mass_edit,clv_mfile.group_manager,1,1,1,0
+access_clv_mfile_mass_edit_supmanager,clv.mfile.mass_edit.supmanager,model_clv_mfile_mass_edit,clv_mfile.group_supmanager,1,1,1,1

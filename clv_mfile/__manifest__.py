@@ -5,7 +5,7 @@
 {
     'name': 'Media File',
     'summary': 'Media File Module used by CLVsol Solutions.',
-    'version': '12.0.4.0',
+    'version': '14.0.4.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
@@ -27,6 +27,7 @@
         # 'views/mfile_annotation_view.xml',
         'views/mfile_kanban_view.xml',
         'views/mfile_log_view.xml',
+        'views/mfile_menu_view.xml',
         'wizard/mfile_mass_edit_view.xml',
         'data/global_log_client.xml',
     ],
