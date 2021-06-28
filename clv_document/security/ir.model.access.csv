@@ -43,7 +43,3 @@ access_clv_document_items_refresh_supmanager,clv.document.items_refresh.supmanag
 access_clv_document_items_ok_setup_user,clv.document.items_ok_setup.user,model_clv_document_items_ok_setup,clv_document.group_user,1,0,0,0
 access_clv_document_items_ok_setup_manager,clv.document.items_ok_setup.manager,model_clv_document_items_ok_setup,clv_document.group_manager,1,1,1,0
 access_clv_document_items_ok_setup_supmanager,clv.document.items_ok_setup.supmanager,model_clv_document_items_ok_setup,clv_document.group_supmanager,1,1,1,1
-
-access_clv_document_items_edit_user,clv.document.items_edit.user,model_clv_document_items_edit,clv_document.group_user,1,0,0,0
-access_clv_document_items_edit_manager,clv.document.items_edit.manager,model_clv_document_items_edit,clv_document.group_manager,1,1,1,0
-access_clv_document_items_edit_supmanager,clv.document.items_edit.supmanager,model_clv_document_items_edit,clv_document.group_supmanager,1,1,1,1
