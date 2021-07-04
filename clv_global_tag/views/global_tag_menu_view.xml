@@ -3,9 +3,9 @@
     <data>
 
     <menuitem
-        id="clv_global_tag.menu_base_base_tags"
+        id="clv_global_tag.menu_base_config_tags"
         name="Global Tags"
-        parent="clv_base.menu_base_base"
+        parent="clv_base.menu_base_config"
         groups="clv_global_tag.group_user"
         sequence="10"
         action="clv_global_tag.clv_global_tag_action"/>
