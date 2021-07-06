@@ -13,15 +13,15 @@
         groups="clv_base.group_user"
         sequence="10"/>
 
-    <menuitem name="History" id="clv_base.menu_community_history"  
+    <!--menuitem name="History" id="clv_base.menu_community_history"  
         parent="clv_base.menu_community"
         groups="clv_base.group_manager"
-        sequence="20"/>
+        sequence="20"/-->
 
-    <menuitem name="Auxiliary" id="clv_base.menu_community_aux"  
+    <!--menuitem name="Auxiliary" id="clv_base.menu_community_aux"  
         parent="clv_base.menu_community"
         groups="clv_base.group_user"
-        sequence="25"/>
+        sequence="25"/-->
 
     <menuitem name="Configuration" id="clv_base.menu_community_config"  
         parent="clv_base.menu_community"
