@@ -5,7 +5,7 @@
 {
     'name': 'Person',
     'summary': 'Person Module used by CLVsol Solutions.',
-    'version': '12.0.4.0',
+    'version': '14.0.5.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
