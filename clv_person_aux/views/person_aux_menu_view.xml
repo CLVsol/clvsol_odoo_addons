@@ -4,10 +4,10 @@
 
 <odoo>
 
-    <menuitem name="Persons (Aux)" id="clv_person_aux.menu_community_aux_person_auxs"
-        parent="clv_base.menu_community_aux"
+    <menuitem name="Persons (Aux)" id="clv_person_aux.menu_community_community_person_persons_aux"
+        parent="clv_person.menu_community_community_person"
         groups="clv_person_aux.group_user"
-        sequence="10"
+        sequence="20"
         action="clv_person_aux.clv_person_aux_action"/>
 
 </odoo>
