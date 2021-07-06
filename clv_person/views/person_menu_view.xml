@@ -4,8 +4,13 @@
 
 <odoo>
 
-    <menuitem name="Persons" id="clv_person.menu_community_community_persons"
+    <menuitem name="Person" id="clv_person.menu_community_community_person"
         parent="clv_base.menu_community_community"
+        groups="clv_person.group_user"
+        sequence="10"/>
+
+    <menuitem name="Persons" id="clv_person.menu_community_community_persons"
+        parent="clv_person.menu_community_community_person"
         groups="clv_person.group_user"
         sequence="10"
         action="clv_person.clv_person_action"/>
