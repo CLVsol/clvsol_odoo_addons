@@ -4,10 +4,10 @@
 
 <odoo>
 
-    <menuitem name="Addresses (Aux)" id="clv_address.menu_community_aux_addresses_aux"
-        parent="clv_base.menu_community_aux"
+    <menuitem name="Addresses (Aux)" id="clv_address.menu_community_community_address_addresses_aux"
+        parent="clv_address.menu_community_community_address"
         groups="clv_address_aux.group_user"
-        sequence="90"
+        sequence="20"
         action="clv_address_aux.clv_address_aux_action"/>
 
 </odoo>
