@@ -4,10 +4,10 @@
 
 <odoo>
 
-    <menuitem name="Address Histories" id="clv_address.menu_community_history_address_histories" 
-        parent="clv_base.menu_community_history"
+    <menuitem name="Address Histories" id="clv_address.menu_community_community_address_address_histories" 
+        parent="clv_address.menu_community_community_address"
         groups="clv_address.group_user"
-        sequence="100"
+        sequence="30"
         action="clv_address_history.clv_address_history_action"/>
 
 </odoo>
