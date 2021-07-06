@@ -4,10 +4,10 @@
 
 <odoo>
 
-    <menuitem name="Person Histories" id="clv_person.menu_community_history_person_histories" 
-        parent="clv_base.menu_community_history"
+    <menuitem name="Person Histories" id="clv_person.menu_community_community_person_person_histories" 
+        parent="clv_person.menu_community_community_person"
         groups="clv_person.group_user"
-        sequence="10"
+        sequence="30"
         action="clv_person_history.clv_person_history_action"/>
 
 </odoo>
