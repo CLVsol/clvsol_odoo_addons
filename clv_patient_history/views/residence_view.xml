@@ -21,7 +21,7 @@
                                     type="action"
                                     class="oe_stat_button"
                                     icon="fa-list"
-                                    context="{'search_default_ref_residence_id': id}"
+                                    context="{'search_default_residence_id': id}"
                                     attrs="{'invisible': [('patient_history_ids', '=', [])]}"
                                     >
                                 <div class="o_form_field o_stat_info">
@@ -47,7 +47,7 @@
         <field name="arch" type="xml">
             <group name="history" position="after">
                 <group name="residence">
-                    <field name="ref_residence_id" options="{'no_open': False, 'no_create': True}"/>
+                    <field name="residence_id" options="{'no_open': False, 'no_create': True}"/>
                 </group>
             </group>
         </field>
@@ -60,7 +60,7 @@
         <field name="priority" eval="7"/>
         <field name="arch" type="xml">
             <field name="date_sign_out" position="after">
-                <field name="ref_residence_id"/>
+                <field name="residence_id"/>
             </field>
         </field>
     </record>
@@ -72,10 +72,10 @@
         <field name="priority" eval="7"/>
         <field name="arch" type="xml">
             <field name="date_sign_out" position="after">
-                <field name="ref_residence_id"/>
+                <field name="residence_id"/>
             </field>
             <group name="group_by" position="inside">
-                <filter name="group_by_ref_residence_id" string="Residence" context="{'group_by': 'ref_residence_id'}"/>
+                <filter name="group_by_residence_id" string="Residence" context="{'group_by': 'residence_id'}"/>
             </group>
         </field>
     </record>
