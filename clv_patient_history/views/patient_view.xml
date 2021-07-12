@@ -52,10 +52,6 @@
                     <field name="marker_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
                     <field name="tag_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
                 </group>
-                <group name="patient_2">
-                    <field name="responsible_id" options="{'no_open': False, 'no_create': True}"/>
-                    <field name="caregiver_id" options="{'no_open': False, 'no_create': True}"/>
-                </group>
             </group>
         </field>
     </record>

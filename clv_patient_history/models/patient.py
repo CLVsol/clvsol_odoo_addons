@@ -14,16 +14,16 @@ class PatientHistory(models.Model):
         ondelete='restrict'
     )
 
-    responsible_id = fields.Many2one(
-        comodel_name='clv.patient',
-        string='Responsible',
-        ondelete='restrict'
-    )
-    caregiver_id = fields.Many2one(
-        comodel_name='clv.patient',
-        string='Caregiver',
-        ondelete='restrict'
-    )
+    # responsible_id = fields.Many2one(
+    #     comodel_name='clv.patient',
+    #     string='Responsible',
+    #     ondelete='restrict'
+    # )
+    # caregiver_id = fields.Many2one(
+    #     comodel_name='clv.patient',
+    #     string='Caregiver',
+    #     ondelete='restrict'
+    # )
 
 
 class Patient(models.Model):
