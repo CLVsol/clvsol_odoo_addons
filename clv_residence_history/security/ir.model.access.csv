@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_residence_history_user,clv.residence.history.user,model_clv_residence_history,clv_residence.group_user,1,0,0,0
+access_clv_residence_history_manager,clv.residence.history.manager,model_clv_residence_history,clv_residence.group_manager,1,1,1,0
+access_clv_residence_history_supmanager,clv.residence.history.supmanager,model_clv_residence_history,clv_residence.group_supmanager,1,1,1,1
+
+access_clv_residence_history_updt_user,clv.residence.history_updt.user,model_clv_residence_history_updt,clv_residence.group_user,1,0,0,0
+access_clv_residence_history_updt_manager,clv.residence.history_updt.manager,model_clv_residence_history_updt,clv_residence.group_manager,1,1,1,0
+access_clv_residence_history_updt_supmanager,clv.residence.history_updt.supmanager,model_clv_residence_history_updt,clv_residence.group_supmanager,1,1,1,1
