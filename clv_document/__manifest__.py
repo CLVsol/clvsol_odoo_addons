@@ -26,6 +26,7 @@
         'views/document_type_parameter_view.xml',
         'views/document_category_view.xml',
         'views/document_category_log_view.xml',
+        'views/document_marker_view.xml',
         'views/global_tag_view.xml',
         'views/document_item_view.xml',
         'views/document_item_log_view.xml',

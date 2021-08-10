@@ -92,6 +92,20 @@ class DocumentMassEdit(models.TransientModel):
          ], string='Categories:', default=False, readonly=False, required=False
     )
 
+    marker_ids = fields.Many2many(
+        comodel_name='clv.document.marker',
+        relation='clv_document_mass_edit_marker_rel',
+        column1='document_id',
+        column2='marker_id',
+        string='Markers'
+    )
+    marker_ids_selection = fields.Selection(
+        [('add', 'Add'),
+         ('remove_m2m', 'Remove'),
+         ('set', 'Set'),
+         ], string='Markers:', default=False, readonly=False, required=False
+    )
+
     document_type_id = fields.Many2one(
         comodel_name='clv.document.type',
         string='Documnent Type'
@@ -234,6 +248,30 @@ class DocumentMassEdit(models.TransientModel):
                     m2m_list.append((4, category_id.id))
                 _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
                 document.category_ids = m2m_list
+
+            if self.marker_ids_selection == 'add':
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((4, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                document.marker_ids = m2m_list
+            if self.marker_ids_selection == 'remove_m2m':
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((3, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                document.marker_ids = m2m_list
+            if self.marker_ids_selection == 'set':
+                m2m_list = []
+                for marker_id in document.marker_ids:
+                    m2m_list.append((3, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                document.marker_ids = m2m_list
+                m2m_list = []
+                for marker_id in self.marker_ids:
+                    m2m_list.append((4, marker_id.id))
+                _logger.info(u'%s %s', '>>>>>>>>>>', m2m_list)
+                document.marker_ids = m2m_list
 
             if self.document_type_id_selection == 'set':
                 document.document_type_id = self.document_type_id.id
