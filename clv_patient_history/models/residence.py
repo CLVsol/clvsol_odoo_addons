@@ -11,10 +11,10 @@ class Residence(models.Model):
     patient_history_ids = fields.One2many(
         comodel_name='clv.patient.history',
         inverse_name='residence_id',
-        string='Persons (History)'
+        string='Patients (History)'
     )
     count_patient_histories = fields.Integer(
-        string='Persons (History) (count)',
+        string='Patients (History) (count)',
         compute='_compute_count_patient_historiess',
     )
 
@@ -24,7 +24,7 @@ class Residence(models.Model):
             r.count_patient_histories = len(r.patient_history_ids)
 
 
-class PersonHistory(models.Model):
+class PatientHistory(models.Model):
     _inherit = 'clv.patient.history'
 
     # ref_residence_id = fields.Many2one(

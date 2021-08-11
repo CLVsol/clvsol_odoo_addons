@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="clv_address_history_view_form_residence_history" model="ir.ui.view">
+        <field name="name">clv.address.history.form</field>
+        <field name="model">clv.address.history</field>
+        <field name="inherit_id" ref="clv_address_history.clv_address_history_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Residence Histories">
+                    <group>
+                        <group>
+                            <field name="is_residence_history"/>
+                        </group>
+                        <group>
+                            <button name="clv_residence_history.clv_residence_history_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_related_address_history_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_residence_histories"/>
+                                    </span>
+                                    <span class="o_stat_text"> Residence History(ies)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="residence_history_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_address_history_view_search_residence_history" model="ir.ui.view">
+        <field name="name">clv.address.history.search</field>
+        <field name="model">clv.address.history</field>
+        <field name="inherit_id" ref="clv_address_history.clv_address_history_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="date_sign_in" position="after">
+                <field name="is_residence_history"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_is_residence_history" string="Is Residence History" context="{'group_by': 'is_residence_history'}"/>
+            </group>
+        </field>
+    </record>
+
+    <record id="clv_residence_history_view_form_address_history" model="ir.ui.view">
+        <field name="name">clv.residence.history.form</field>
+        <field name="model">clv.residence.history</field>
+        <field name="inherit_id" ref="clv_residence_history.clv_residence_history_view_form"/>
+        <field name="priority" eval="6"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page name="residence_history_information" string="Related Address">
+                    <group name="group_bottom" string="Related Address">
+                        <group name="group_bottom_left">
+                            <field name="related_address_history_is_unavailable" attrs="{'invisible': ['&amp;',('related_address_history_is_unavailable','=',False),('related_address_history_id','!=',False)]}"/>
+                            <field name="related_address_history_id"
+                                context="{'show_related_address_history_only': 1}"
+                                options='{"always_reload": True, "highlight_first_line": True, "no_open": False, "no_create": True}'/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_residence_history_view_tree_address_history" model="ir.ui.view">
+        <field name="name">clv.residence.history.tree</field>
+        <field name="model">clv.residence.history</field>
+        <field name="inherit_id" ref="clv_residence_history.clv_residence_history_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="date_sign_in" position="after">
+                <field name="related_address_history_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_residence_history_view_search_address_history" model="ir.ui.view">
+        <field name="name">clv.residence.history.search</field>
+        <field name="model">clv.residence.history</field>
+        <field name="inherit_id" ref="clv_residence_history.clv_residence_history_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="date_sign_in" position="after">
+                <field name="related_address_history_id"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_related_address_history_id" string="Address" context="{'group_by': 'related_address_history_id'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
