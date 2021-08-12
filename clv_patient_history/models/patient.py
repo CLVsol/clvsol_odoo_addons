@@ -14,6 +14,11 @@ class PatientHistory(models.Model):
         ondelete='restrict'
     )
 
+    address_name = fields.Char(
+        string="Address Name", required=False,
+        help='Address Name for the Patient.'
+    )
+
     # responsible_id = fields.Many2one(
     #     comodel_name='clv.patient',
     #     string='Responsible',

@@ -49,6 +49,7 @@
                 <group name="patient">
                     <field name="patient_id" options="{'no_open': False, 'no_create': True}"/>
                     <field name="category_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
+                    <field name="address_name"/>
                     <field name="marker_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
                     <field name="tag_ids" widget="many2many_tags" options="{'no_open': False, 'no_create': True}"/>
                 </group>
@@ -65,6 +66,7 @@
             <field name="date_sign_out" position="after">
                 <field name="patient_id"/>
                 <field name="category_names"/>
+                <field name="address_name"/>
                 <!--field name="category_names_suport" invisible="True"/-->
                 <field name="marker_names"/>
                 <field name="tag_names"/>
@@ -82,6 +84,7 @@
                 <field name="patient_id"/>
                 <field name="category_ids"/>
                 <field name="category_names"/>
+                <field name="address_name"/>
                 <field name="marker_ids"/>
                 <field name="marker_names"/>
                 <field name="tag_ids"/>
@@ -89,6 +92,7 @@
             </field>
             <group name="group_by" position="inside">
                 <filter name="group_by_patient_id" string="Patient" context="{'group_by': 'patient_id'}"/>
+                <filter name="group_by_address_name" string="Address Name" context="{'group_by': 'address_name'}"/>
                 <filter name="group_by_category_names" string="Categories" context="{'group_by': 'category_names'}"/>
                 <filter name="group_by_marker_names" string="Markers" context="{'group_by': 'marker_names'}"/>
                 <filter name="group_by_tag_names" string="Patient Tags" context="{'group_by': 'tag_names'}"/>
