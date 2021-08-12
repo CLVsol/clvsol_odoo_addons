@@ -21,6 +21,12 @@
         sequence="10"
         action="clv_document.clv_document_category_action"/>
 
+    <menuitem name="Markers" id="clv_document.menu_base_config_document_markers" 
+        parent="clv_document.menu_base_config_document"
+        groups="clv_document.group_user"
+        sequence="15"
+        action="clv_document.clv_document_marker_action"/>
+
     <menuitem name="Types" id="clv_document.menu_base_config_document_types"
         parent="clv_document.menu_base_config_document"
         groups="clv_document.group_user"
