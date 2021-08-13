@@ -122,4 +122,53 @@
         </field>
     </record>
         
+    <record id="clv_document_view_form_childs" model="ir.ui.view">
+        <field name="name">clv.document.form</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document.clv_document_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="date_inclusion" position="before">
+                <field name="parent_id" placeholder="Parent Document..." options="{'no_open': False, 'no_create': True}"/>
+            </field>
+            <page name="settings" position="before">
+                <page name="child_documents"  string="Child Documents">
+                    <group>
+                        <group>
+                            <button name="clv_document.clv_document_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_parent_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_children"/>
+                                    </span>
+                                    <span class="o_stat_text"> Document(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="child_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_document_view_search_childs" model="ir.ui.view">
+        <field name="name">clv.document.search</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document.clv_document_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="date_document" position="after">
+                <field name="parent_id"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="filter_parent_id" string="Parent Diocument" domain="[]" context="{'group_by':'parent_id'}"/>
+            </group>
+        </field>
+    </record>
+
 </odoo>
