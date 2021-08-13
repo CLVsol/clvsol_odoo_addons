@@ -116,6 +116,16 @@ class DocumentMassEdit(models.TransientModel):
          ], string='Documnent Type:', default=False, readonly=False, required=False
     )
 
+    parent_id = fields.Many2one(
+        comodel_name='clv.document',
+        string='Parent Document'
+    )
+    parent_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='Parent Document:', default=False, readonly=False, required=False
+    )
+
     base_document_id = fields.Many2one(
         comodel_name='clv.document',
         string='Base Document'
@@ -277,6 +287,11 @@ class DocumentMassEdit(models.TransientModel):
                 document.document_type_id = self.document_type_id.id
             if self.document_type_id_selection == 'remove':
                 document.document_type_id = False
+
+            if self.parent_id_selection == 'set':
+                document.parent_id = self.parent_id.id
+            if self.parent_id_selection == 'remove':
+                document.parent_id = False
 
             if self.base_document_id_selection == 'set':
                 document.base_document_id = self.base_document_id.id
