@@ -153,3 +153,14 @@ class SurveyUserInput_2(models.Model):
     def action_discarded(self):
         for survey_user_input in self:
             survey_user_input.change_state_2('discarded')
+
+
+class SurveyUserInput_3(models.Model):
+    _inherit = 'survey.user_input'
+
+    notes = fields.Text(string='Notes')
+
+    parameter_1 = fields.Char(string='Parameter 1', required=False)
+    parameter_2 = fields.Char(string='Parameter 2', required=False)
+    parameter_3 = fields.Char(string='Parameter 3', required=False)
+    parameter_4 = fields.Char(string='Parameter 4', required=False)

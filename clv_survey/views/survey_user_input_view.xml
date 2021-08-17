@@ -14,11 +14,11 @@
                 <field name="deadline"/>
                 <field name="partner_id"/>
                 <field name="email"/>
-                <field name="attempts_number"/>
+                <!--field name="attempts_number"/-->
                 <field name="state"/>
                 <field name="test_entry" invisible="True"/>
-                <field name="scoring_success"/>
-                <field name="scoring_percentage"/>
+                <!--field name="scoring_success"/-->
+                <!--field name="scoring_percentage"/-->
             </tree>
         </field>
     </record>
@@ -30,6 +30,11 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="access_token" position="after">
+                <field name="parameter_1"/>
+                <field name="parameter_2"/>
+                <field name="parameter_3"/>
+                <field name="parameter_4"/>
+                <field name="notes"/>
                 <field name="survey_url" widget="url"/>
             </field>
         </field>
@@ -42,6 +47,11 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
             <field name="create_date" position="after">
+                <field name="parameter_1"/>
+                <field name="parameter_2"/>
+                <field name="parameter_3"/>
+                <field name="parameter_4"/>
+                <field name="notes"/>
                 <field name="survey_url" widget="url"/>
             </field>
         </field>
@@ -112,11 +122,17 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
            <field name="partner_id" position="after">
+                <field name="notes"/>
+                <field name="parameter_1"/>
+                <field name="parameter_2"/>
+                <field name="parameter_3"/>
+                <field name="parameter_4"/>
                 <field name="state_2"/>
             </field>
             <filter name="group_by_survey" position="after">
                 <filter name="group_by_state" string="Status" domain="[]" context="{'group_by':'state'}"/>
                 <filter name="group_by_state_2" string="Survey User Input State" domain="[]" context="{'group_by':'state_2'}"/>
+                <filter name="group_by_notes" string="Survey User Input Notes" domain="[]" context="{'group_by':'notes'}"/>
             </filter>
         </field>
     </record>

@@ -4,7 +4,7 @@
 
 from werkzeug import urls
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo import exceptions
 
 
@@ -15,6 +15,16 @@ class SurveySurvey(models.Model):
     code = fields.Char(string='Survey Code', required=False)
 
     public_url = fields.Char("Public link", compute="_compute_survey_url")
+
+    @api.model
+    def referenceable_models(self):
+        return [(ref.model, ref.name) for ref in self.env['clv.referenceable.model'].search([
+            ('base_model', '=', self._name),
+        ])]
+
+    ref_model = fields.Selection(
+        referenceable_models, string='Reference Model', default=False, readonly=False, required=False
+    )
 
     _sql_constraints = [
         ('code_uniq',
