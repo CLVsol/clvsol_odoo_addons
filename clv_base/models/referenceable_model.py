@@ -58,8 +58,15 @@ class AbstractReference(models.AbstractModel):
             try:
                 if record.ref_id:
                     record.ref_model = record.ref_id._name
-                    record.ref_name = record.ref_id.name
+                    try:
+                        record.ref_name = record.ref_id.name
+                    except AttributeError:
+                        record.ref_name = False
                     record.ref_code = record.ref_id.code
+                else:
+                    record.ref_model = False
+                    record.ref_name = False
+                    record.ref_code = False
             except Exception:
                 record.ref_model = False
                 record.ref_name = False
@@ -69,10 +76,15 @@ class AbstractReference(models.AbstractModel):
         for record in self:
             record.ref_suport = False
             if record.ref_id is not False and record.ref_id is not None:
-                ref_name = record.ref_id.name
+                try:
+                    ref_name = record.ref_id.name
+                except AttributeError:
+                    ref_name = False
                 ref_code = record.ref_id.code
                 record.ref_suport = record.ref_id._name + ',' + str(record.ref_id.id)
-                if record.ref_name is False or record.ref_name != ref_name or \
+                # if record.ref_name is False or record.ref_name != ref_name or \
+                #    record.ref_code is False or record.ref_code != ref_code:
+                if (record.ref_name is not False and record.ref_name != ref_name) or \
                    record.ref_code is False or record.ref_code != ref_code:
                     record = self.env[self._name].search([('id', '=', record.id)])
                     record.write({'ref_id': record.ref_suport})
