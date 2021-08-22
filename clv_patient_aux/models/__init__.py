@@ -12,3 +12,4 @@ from . import patient
 from . import phase
 from . import patient_aux_reg_state
 from . import patient_aux_state
+from . import patient_aux_age_range
