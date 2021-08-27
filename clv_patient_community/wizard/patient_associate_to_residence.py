@@ -112,7 +112,8 @@ class PatientAssociateToResidence(models.TransientModel):
                             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_residence:', new_residence)
 
                             values = {}
-                            # values['code'] = '/'
+                            if new_residence.code is False:
+                                values['code'] = '/'
                             # values['phase_id'] = patient.phase_id.id
                             values['street_name'] = patient.street_name
                             values['street2'] = patient.street2
