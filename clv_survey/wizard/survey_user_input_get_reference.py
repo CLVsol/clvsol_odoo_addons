@@ -116,19 +116,19 @@ class SurveyUserInputGetReference(models.TransientModel):
 
                                     survey_user_input.ref_id = model._name + ',' + str(model.id)
 
-                        elif len(models) == 0:
+                        # elif len(models) == 0:
 
-                            models = Model.search([
-                                ('code', '=', survey_user_input.parameter_1),
-                            ])
+                        #     models = Model.search([
+                        #         ('code', '=', survey_user_input.parameter_1),
+                        #     ])
 
-                            _logger.info(u'%s %s (%s)', '>>>>>', models, len(models))
+                        #     _logger.info(u'%s %s (%s)', '>>>>>', models, len(models))
 
-                            for model in models:
+                        #     for model in models:
 
-                                if model.code == survey_user_input.parameter_1:
+                        #         if model.code == survey_user_input.parameter_1:
 
-                                    survey_user_input.ref_id = model._name + ',' + str(model.id)
-                                    model.survey_user_input_id = survey_user_input.id
+                        #             survey_user_input.ref_id = model._name + ',' + str(model.id)
+                        #             model.survey_user_input_id = survey_user_input.id
 
         return True
