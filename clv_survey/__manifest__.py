@@ -34,6 +34,7 @@
         # 'wizard/question_label_setup_view.xml',
         'wizard/survey_user_input_mass_edit_view.xml',
         'wizard/survey_user_input_get_reference_view.xml',
+        'wizard/survey_user_input_refresh_view.xml',
     ],
     'demo': [],
     'test': [],
