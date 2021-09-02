@@ -101,6 +101,7 @@
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
                     <filter name="filter_model" string="Model Name" domain="[]" context="{'group_by':'model'}"/>
+                    <filter name="filter_parameter" string="Parameter" domain="[]" context="{'group_by':'parameter'}"/>
                     <filter name="filter_method" string="Method" context="{'group_by': 'method'}"/>
                     <filter name="filter_ref_model" string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
                     <filter name="filter_ref_name" string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>

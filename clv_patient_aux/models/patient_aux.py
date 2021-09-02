@@ -258,3 +258,10 @@ class PatientAux(models.Model):
             _logger.info(u'>>>>>>>>>> %s', data_values)
 
             patient_aux.write(data_values)
+
+    @api.model
+    def _patient_aux_compute_age_reference_cron(self):
+
+        patients_aux = self.search([("birthday", "!=", False)])
+        patients_aux._compute_age_reference()
+        patients_aux._compute_age_range_id()

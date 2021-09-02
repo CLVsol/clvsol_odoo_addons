@@ -10,3 +10,5 @@ from . import question_duplicate
 # from . import question_label_setup
 from . import survey_user_input_mass_edit
 from . import survey_user_input_get_reference
+from . import survey_user_input_refresh
+from . import survey_user_input_validate

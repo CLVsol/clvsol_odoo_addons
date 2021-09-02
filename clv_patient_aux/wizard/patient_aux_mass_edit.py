@@ -130,6 +130,10 @@ class PatientAuxMassEdit(models.TransientModel):
          ], string='Partner Entity Code:', default=False, readonly=False, required=False
     )
 
+    patient_aux_ref_age_refresh = fields.Boolean(
+        string='Patient (Aux) Reference Age Refresh'
+    )
+
     active_log = fields.Boolean(
         string='Active Log'
     )
@@ -309,6 +313,10 @@ class PatientAuxMassEdit(models.TransientModel):
                     vals = {}
                     vals['entity_code'] = False
                     patient_aux.write(vals)
+
+            if self.patient_aux_ref_age_refresh:
+                patient_aux._compute_age_reference()
+                patient_aux._compute_age_range_id()
 
             if self.active_log_selection == 'set':
                 patient_aux.active_log = self.active_log

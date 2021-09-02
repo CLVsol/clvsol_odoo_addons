@@ -33,6 +33,8 @@ class PatientAssociateToResidence(models.TransientModel):
                 ])
                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'residence_id:', residence.id)
 
+                new_residence = False
+
                 if residence.id is not False:
 
                     values = {}
@@ -110,7 +112,8 @@ class PatientAssociateToResidence(models.TransientModel):
                             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'new_residence:', new_residence)
 
                             values = {}
-                            # values['code'] = '/'
+                            if new_residence.code is False:
+                                values['code'] = '/'
                             # values['phase_id'] = patient.phase_id.id
                             values['street_name'] = patient.street_name
                             values['street2'] = patient.street2
@@ -134,10 +137,12 @@ class PatientAssociateToResidence(models.TransientModel):
                             _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                             patient.write(values)
 
-            if self.residence_verification_exec:
-                new_residence._residence_verification_exec()
+            if new_residence is not False:
 
-            if self.patient_verification_exec:
-                patient._patient_verification_exec()
+                if self.residence_verification_exec:
+                    new_residence._residence_verification_exec()
+
+                if self.patient_verification_exec:
+                    patient._patient_verification_exec()
 
         return True

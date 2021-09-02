@@ -56,6 +56,11 @@
                     <group>
                     </group>
                     <group>
+                        <field name="patient_aux_ref_age_refresh"/>
+                    </group>
+                    <group name="patient_aux_ref_age_refresh">
+                    </group>
+                    <group>
                         <field name="active_log_selection"/>
                     </group>
                     <group name="active_log">
