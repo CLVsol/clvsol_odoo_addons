@@ -82,7 +82,8 @@
             <tree name="lab_test_requests" string="Test Requests">
                 <field name="code"/>
                 <field name="date_request"/>
-                <field name="lab_test_type_ids"/>
+                <field name="lab_test_type_ids" invisible="True"/>
+                <field name="lab_test_type_names"/>
             </tree>
         </field>
     </record>
