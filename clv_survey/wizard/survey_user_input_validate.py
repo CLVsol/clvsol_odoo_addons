@@ -39,49 +39,51 @@ class SurveyUserInputValidate(models.TransientModel):
 
         for survey_user_input in self.survey_user_input_ids:
 
-            _logger.info(u'%s %s %s', '>>>>>',
-                         survey_user_input._name, survey_user_input.access_token)
+            survey_user_input._survey_user_input_validate()
 
-            if survey_user_input.state in ['new', 'in_progress']:
+            # _logger.info(u'%s %s %s', '>>>>>',
+            #              survey_user_input._name, survey_user_input.access_token)
 
-                survey_user_input.state_2 = 'returned'
-                if survey_user_input.notes is False:
-                    survey_user_input.notes = \
-                        u'Erro: A Entrada de Respostas ainda não foi concluída!'
-                else:
-                    survey_user_input.notes += \
-                        u'\nErro: A Entrada de Respostas ainda não foi concluída!'
+            # if survey_user_input.state in ['new', 'in_progress']:
 
-            elif survey_user_input.state_2 in ['checked', 'validated']:
+            #     survey_user_input.state_2 = 'returned'
+            #     if survey_user_input.notes is False:
+            #         survey_user_input.notes = \
+            #             u'Erro: A Entrada de Respostas ainda não foi concluída!'
+            #     else:
+            #         survey_user_input.notes += \
+            #             u'\nErro: A Entrada de Respostas ainda não foi concluída!'
 
-                if survey_user_input.ref_id.survey_user_input_id.id is not False:
+            # elif survey_user_input.state_2 in ['checked', 'validated']:
 
-                    if survey_user_input.ref_id.survey_user_input_id.id != survey_user_input.id:
+            #     if survey_user_input.ref_id.survey_user_input_id.id is not False:
 
-                        survey_user_input.state_2 = 'returned'
-                        if survey_user_input.notes is False:
-                            survey_user_input.notes = \
-                                u'Erro: O Documento já está associado a outra Entrada de Respostas!'
-                        else:
-                            survey_user_input.notes += \
-                                u'\nErro: O Documento já está associado a outra Entrada de Respostas!'
+            #         if survey_user_input.ref_id.survey_user_input_id.id != survey_user_input.id:
 
-                    else:
+            #             survey_user_input.state_2 = 'returned'
+            #             if survey_user_input.notes is False:
+            #                 survey_user_input.notes = \
+            #                     u'Erro: O Documento já está associado a outra Entrada de Respostas!'
+            #             else:
+            #                 survey_user_input.notes += \
+            #                     u'\nErro: O Documento já está associado a outra Entrada de Respostas!'
 
-                        survey_user_input.state_2 = 'validated'
-                        survey_user_input.ref_id.reg_state = 'revised'
-                        # survey_user_input.ref_id.state = 'waiting'
-                        survey_user_input.ref_id.state = 'available'
-                        survey_user_input.ref_id.items_ok = False
+            #         else:
 
-                else:
+            #             survey_user_input.state_2 = 'validated'
+            #             survey_user_input.ref_id.reg_state = 'revised'
+            #             # survey_user_input.ref_id.state = 'waiting'
+            #             survey_user_input.ref_id.state = 'available'
+            #             survey_user_input.ref_id.items_ok = False
 
-                    survey_user_input.ref_id.survey_user_input_id = survey_user_input.id
-                    survey_user_input.ref_id.reg_state = 'revised'
-                    survey_user_input.state_2 = 'validated'
-                    # survey_user_input.ref_id.state = 'waiting'
-                    survey_user_input.ref_id.state = 'available'
-                    survey_user_input.ref_id.items_ok = False
+            #     else:
+
+            #         survey_user_input.ref_id.survey_user_input_id = survey_user_input.id
+            #         survey_user_input.ref_id.reg_state = 'revised'
+            #         survey_user_input.state_2 = 'validated'
+            #         # survey_user_input.ref_id.state = 'waiting'
+            #         survey_user_input.ref_id.state = 'available'
+            #         survey_user_input.ref_id.items_ok = False
 
         return True
 
