@@ -41,50 +41,6 @@ class SurveyUserInputValidate(models.TransientModel):
 
             survey_user_input._survey_user_input_validate()
 
-            # _logger.info(u'%s %s %s', '>>>>>',
-            #              survey_user_input._name, survey_user_input.access_token)
-
-            # if survey_user_input.state in ['new', 'in_progress']:
-
-            #     survey_user_input.state_2 = 'returned'
-            #     if survey_user_input.notes is False:
-            #         survey_user_input.notes = \
-            #             u'Erro: A Entrada de Respostas ainda não foi concluída!'
-            #     else:
-            #         survey_user_input.notes += \
-            #             u'\nErro: A Entrada de Respostas ainda não foi concluída!'
-
-            # elif survey_user_input.state_2 in ['checked', 'validated']:
-
-            #     if survey_user_input.ref_id.survey_user_input_id.id is not False:
-
-            #         if survey_user_input.ref_id.survey_user_input_id.id != survey_user_input.id:
-
-            #             survey_user_input.state_2 = 'returned'
-            #             if survey_user_input.notes is False:
-            #                 survey_user_input.notes = \
-            #                     u'Erro: O Documento já está associado a outra Entrada de Respostas!'
-            #             else:
-            #                 survey_user_input.notes += \
-            #                     u'\nErro: O Documento já está associado a outra Entrada de Respostas!'
-
-            #         else:
-
-            #             survey_user_input.state_2 = 'validated'
-            #             survey_user_input.ref_id.reg_state = 'revised'
-            #             # survey_user_input.ref_id.state = 'waiting'
-            #             survey_user_input.ref_id.state = 'available'
-            #             survey_user_input.ref_id.items_ok = False
-
-            #     else:
-
-            #         survey_user_input.ref_id.survey_user_input_id = survey_user_input.id
-            #         survey_user_input.ref_id.reg_state = 'revised'
-            #         survey_user_input.state_2 = 'validated'
-            #         # survey_user_input.ref_id.state = 'waiting'
-            #         survey_user_input.ref_id.state = 'available'
-            #         survey_user_input.ref_id.items_ok = False
-
         return True
 
     def do_populate_all_survey_user_inputs(self):
