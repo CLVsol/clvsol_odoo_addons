@@ -15,6 +15,9 @@
                 <label for="survey_user_input_ids"/>
                 <field name="survey_user_input_ids"/>
                 <group>
+                    <group>
+                        <field name="survey_user_input_reflesh_exec"/>
+                    </group>
                 </group>
                 <footer>
                     <button 
