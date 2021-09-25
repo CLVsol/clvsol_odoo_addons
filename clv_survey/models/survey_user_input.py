@@ -87,6 +87,9 @@ class SurveyUserInput(models.Model):
         if survey_question_search.question_type == 'char_box':
             value = survey_user_input_line_search.value_char_box
 
+        if survey_question_search.question_type == 'text_box':
+            value = survey_user_input_line_search.value_text_box
+
         if survey_question_search.question_type == 'date':
             value = survey_user_input_line_search.value_date
 
