@@ -87,7 +87,7 @@ class QuestionDuplicate(models.TransientModel):
 
             values = {
                 'value': matrix_row.value,
-                'matrix_question_id_2': new_question.id,
+                'matrix_question_id': new_question.id,
                 'sequence': matrix_row.sequence,
             }
             SurveyQuestionAnswer.create(values)
