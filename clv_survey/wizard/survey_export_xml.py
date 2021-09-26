@@ -64,21 +64,25 @@ class SurveyExportXML(models.TransientModel):
             xml_file.write('\n')
 
             _model_ = 'survey.survey'
-            _stage_id_ = 'survey.stage_in_progress'
-            _description_ = survey_reg.description.replace('<p>', '').replace('</p>', '')
-            _thank_you_message_ = survey_reg.thank_you_message.replace('<p>', '').replace('</p>', '')
-
+            _state_ = 'open'
             xml_file.write('        <!-- %s -->\n' % (survey_reg.title))
             xml_file.write('        <record model="%s" id="%s">\n' % (_model_, survey_reg.code))
             xml_file.write('            <field name="title">%s</field>\n' % (survey_reg.title))
             xml_file.write('            <field name="code">%s</field>\n' % (survey_reg.code))
-            xml_file.write('            <field name="stage_id" ref="%s"/>\n' % (_stage_id_))
-            # xml_file.write('            <field name="auth_required" eval="%s"/>\n' % (survey_reg.auth_required))
+            xml_file.write('            <field name="state">%s</field>\n' % (survey_reg.state))
+            xml_file.write('            <field name="users_login_required" eval="%s"/>\n' % (survey_reg.users_login_required))
+            xml_file.write('            <field name="attempts_limit" eval="%s"/>\n' % (survey_reg.attempts_limit))
             xml_file.write('            <field name="users_can_go_back" eval="%s"/>\n' %
                            (survey_reg.users_can_go_back))
-            xml_file.write('            <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' % (_description_))
-            xml_file.write('            <field name="thank_you_message">&lt;p&gt;%s&lt;/p&gt;</field>\n' %
-                           (_thank_you_message_))
+            if survey_reg.description is not False and survey_reg.description != '<p><br></p>':
+                _description_ = survey_reg.description.replace('<p>', '').replace('</p>', '')
+                xml_file.write('            <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' % (_description_))
+            xml_file.write('            <field name="questions_layout">%s</field>\n' % (survey_reg.questions_layout))
+            # xml_file.write('            <field name="phase_id" eval="%s"/>\n' % (survey_reg.phase_id))
+            # xml_file.write('            <field name="ref_model" eval="%s"/>\n' % (survey_reg.ref_model))
+            xml_file.write('            <field name="progression_mode">%s</field>\n' % (survey_reg.progression_mode))
+            xml_file.write('            <field name="is_time_limited" eval="%s"/>\n' % (survey_reg.is_time_limited))
+            xml_file.write('            <field name="questions_selection">%s</field>\n' % (survey_reg.questions_selection))
             xml_file.write('        </record>\n')
             xml_file.write('\n')
 
@@ -87,49 +91,51 @@ class SurveyExportXML(models.TransientModel):
                 ('is_page', '=', True),
             ])
 
-            # for page in survey_reg.page_ids:
             for page in pages:
 
                 _title_ = page.title
-                _model_ = 'survey.page'
-                _description_ = False
-                if page.description is not False:
-                    _description_ = page.description.replace('<p>', '').replace('</p>', '')
+                _model_ = 'survey.question'
 
                 xml_file.write('            <!-- %s -->\n' % (_title_))
                 xml_file.write('            <record model="%s" id="%s">\n' % (_model_, page.code))
                 xml_file.write('                <field name="title">%s</field>\n' % (_title_))
+                xml_file.write('                <field name="is_page" eval="%s"/>\n' % (page.is_page))
                 xml_file.write('                <field name="code">%s</field>\n' % (page.code))
+                xml_file.write('                <field name="parameter">%s</field>\n' % (page.parameter))
                 xml_file.write('                <field name="survey_id" ref="%s"/>\n' % (survey_reg.code))
                 xml_file.write('                <field name="sequence" eval="%s"/>\n' % (page.sequence))
-                xml_file.write('                <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' %
-                               (_description_))
+                if page.description is not False and page.description != '<p><br></p>':
+                    _description_ = page.description.replace('<p>', '').replace('</p>', '')
+                    xml_file.write('                <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' % (_description_))
                 xml_file.write('            </record>' + '\n')
                 xml_file.write('\n')
 
                 for question in page.question_ids:
 
                     question_type = question.question_type
-                    _question_ = question.question
+                    _question_ = question.title
                     _model_ = 'survey.question'
                     if question.comments_message is not False:
                         _comments_message_ = question.comments_message
                     if question.comments_allowed is False:
                         _comments_message_ = ''
 
-                    if question_type == 'free_text' or question_type == 'textbox' or question_type == 'datetime':
+                    if question_type == 'char_box' or question_type == 'text_box' or question_type == 'datetime':
 
                         xml_file.write('                <!-- %s -->\n' % (_question_))
                         xml_file.write('                <record model="%s" id="%s">\n' % (_model_, question.code))
-                        xml_file.write('                    <field name="question">%s</field>\n' % (_question_))
+                        xml_file.write('                    <field name="title">%s</field>\n' % (_question_))
+                        xml_file.write('                    <field name="is_page" eval="%s"/>\n' % (question.is_page))
                         xml_file.write('                    <field name="code">%s</field>\n' % (question.code))
                         if question.parameter:
-                            xml_file.write('                    <field name="parameter">%s</field>\n' %
-                                           (question.parameter))
-                        xml_file.write('                    <field name="type">%s</field>\n' % (question_type))
-                        xml_file.write('                    <field name="page_id" ref="%s"/>\n' % (page.code))
-                        xml_file.write('                    <field name="sequence" eval="%s"/>\n' %
-                                       (question.sequence))
+                            xml_file.write('                    <field name="parameter">%s</field>\n' % (question.parameter))
+                        xml_file.write('                    <field name="question_type">%s</field>\n' % (question_type))
+                        xml_file.write('                    <field name="survey_id" ref="%s"/>\n' % (survey_reg.code))
+                        xml_file.write('                    <field name="sequence" eval="%s"/>\n' % (question.sequence))
+                        if question.description is not False and question.description != '<p><br></p>':
+                            _description_ = question.description.replace('<p>', '').replace('</p>', '')
+                            xml_file.write('                    <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' %
+                                           (_description_))
                         xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
                                        (question.constr_mandatory))
                         xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
@@ -141,17 +147,18 @@ class SurveyExportXML(models.TransientModel):
 
                         xml_file.write('                <!-- %s -->\n' % (_question_))
                         xml_file.write('                <record model="%s" id="%s">\n' % (_model_, question.code))
-                        xml_file.write('                    <field name="question">%s</field>\n' % (_question_))
+                        xml_file.write('                    <field name="title">%s</field>\n' % (_question_))
+                        xml_file.write('                    <field name="is_page" eval="%s"/>\n' % (question.is_page))
                         xml_file.write('                    <field name="code">%s</field>\n' % (question.code))
                         if question.parameter:
-                            xml_file.write('                    <field name="parameter">%s</field>\n' %
-                                           (question.parameter))
-                        xml_file.write('                    <field name="type">%s</field>\n' % (question_type))
-                        xml_file.write('                    <field name="page_id" ref="%s"/>\n' % (page.code))
-                        xml_file.write('                    <field name="sequence" eval="%s"/>\n' %
-                                       (question.sequence))
-                        xml_file.write('                    <field name="display_mode">%s</field>\n' %
-                                       (question.display_mode))
+                            xml_file.write('                    <field name="parameter">%s</field>\n' % (question.parameter))
+                        xml_file.write('                    <field name="question_type">%s</field>\n' % (question_type))
+                        xml_file.write('                    <field name="survey_id" ref="%s"/>\n' % (survey_reg.code))
+                        xml_file.write('                    <field name="sequence" eval="%s"/>\n' % (question.sequence))
+                        if question.description is not False and question.description != '<p><br></p>':
+                            _description_ = question.description.replace('<p>', '').replace('</p>', '')
+                            xml_file.write('                    <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' %
+                                           (_description_))
                         xml_file.write('                    <field name="column_nb">%s</field>\n' %
                                        (question.column_nb))
                         xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
@@ -162,21 +169,25 @@ class SurveyExportXML(models.TransientModel):
                                        (question.comments_allowed))
                         xml_file.write('                    <field name="comments_message">%s</field>\n' %
                                        (_comments_message_))
+                        xml_file.write('                    <field name="comment_count_as_answer">%s</field>\n' %
+                                       (question.comment_count_as_answer))
                         xml_file.write('                </record>\n')
                         xml_file.write('\n')
 
-                        for label in question.labels_ids:
+                        for question_answer in question.suggested_answer_ids:
 
-                            _model_ = 'survey.label'
+                            _model_ = 'survey.question.answer'
 
-                            xml_file.write('                    <record model="%s" id="%s">\n' % (_model_, label.code))
+                            xml_file.write(
+                                '                    <record model="%s" id="%s">\n' % (_model_, question_answer.code)
+                            )
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (label.value))
-                            xml_file.write('                        <field name="code">%s</field>\n' % (label.code))
+                                           (question_answer.value))
+                            xml_file.write('                        <field name="code">%s</field>\n' % (question_answer.code))
                             xml_file.write('                        <field name="question_id" ref="%s"/>\n' %
                                            (question.code))
                             xml_file.write('                        <field name="sequence" eval="%s"/>\n' %
-                                           (label.sequence))
+                                           (question_answer.sequence))
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
 
@@ -184,15 +195,18 @@ class SurveyExportXML(models.TransientModel):
 
                         xml_file.write('                <!-- %s -->\n' % (_question_))
                         xml_file.write('                <record model="%s" id="%s">\n' % (_model_, question.code))
-                        xml_file.write('                    <field name="question">%s</field>\n' % (_question_))
+                        xml_file.write('                    <field name="title">%s</field>\n' % (_question_))
+                        xml_file.write('                    <field name="is_page" eval="%s"/>\n' % (question.is_page))
                         xml_file.write('                    <field name="code">%s</field>\n' % (question.code))
                         if question.parameter:
-                            xml_file.write('                    <field name="parameter">%s</field>\n' %
-                                           (question.parameter))
-                        xml_file.write('                    <field name="type">%s</field>\n' % (question_type))
-                        xml_file.write('                    <field name="page_id" ref="%s"/>\n' % (page.code))
-                        xml_file.write('                    <field name="sequence" eval="%s"/>\n' %
-                                       (question.sequence))
+                            xml_file.write('                    <field name="parameter">%s</field>\n' % (question.parameter))
+                        xml_file.write('                    <field name="question_type">%s</field>\n' % (question_type))
+                        xml_file.write('                    <field name="survey_id" ref="%s"/>\n' % (survey_reg.code))
+                        xml_file.write('                    <field name="sequence" eval="%s"/>\n' % (question.sequence))
+                        if question.description is not False and question.description != '<p><br></p>':
+                            _description_ = question.description.replace('<p>', '').replace('</p>', '')
+                            xml_file.write('                    <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' %
+                                           (_description_))
                         xml_file.write('                    <field name="column_nb">%s</field>\n' %
                                        (question.column_nb))
                         xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
@@ -203,21 +217,25 @@ class SurveyExportXML(models.TransientModel):
                                        (question.comments_allowed))
                         xml_file.write('                    <field name="comments_message">%s</field>\n' %
                                        (_comments_message_))
+                        xml_file.write('                    <field name="comment_count_as_answer">%s</field>\n' %
+                                       (question.comment_count_as_answer))
                         xml_file.write('                </record>\n')
                         xml_file.write('\n')
 
-                        for label in question.labels_ids:
+                        for question_answer in question.suggested_answer_ids:
 
-                            _model_ = 'survey.label'
+                            _model_ = 'survey.question.answer'
 
-                            xml_file.write('                    <record model="%s" id="%s">\n' % (_model_, label.code))
+                            xml_file.write(
+                                '                    <record model="%s" id="%s">\n' % (_model_, question_answer.code)
+                            )
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (label.value))
-                            xml_file.write('                        <field name="code">%s</field>\n' % (label.code))
+                                           (question_answer.value))
+                            xml_file.write('                        <field name="code">%s</field>\n' % (question_answer.code))
                             xml_file.write('                        <field name="question_id" ref="%s"/>\n' %
                                            (question.code))
                             xml_file.write('                        <field name="sequence" eval="%s"/>\n' %
-                                           (label.sequence))
+                                           (question_answer.sequence))
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
 
@@ -225,17 +243,20 @@ class SurveyExportXML(models.TransientModel):
 
                         xml_file.write('                <!-- %s -->\n' % (_question_))
                         xml_file.write('                <record model="%s" id="%s">\n' % (_model_, question.code))
-                        xml_file.write('                    <field name="question">%s</field>\n' % (_question_))
+                        xml_file.write('                    <field name="title">%s</field>\n' % (_question_))
+                        xml_file.write('                    <field name="is_page" eval="%s"/>\n' % (question.is_page))
                         xml_file.write('                    <field name="code">%s</field>\n' % (question.code))
                         if question.parameter:
-                            xml_file.write('                    <field name="parameter">%s</field>\n' %
-                                           (question.parameter))
-                        xml_file.write('                    <field name="type">%s</field>\n' % (question_type))
+                            xml_file.write('                    <field name="parameter">%s</field>\n' % (question.parameter))
+                        xml_file.write('                    <field name="question_type">%s</field>\n' % (question_type))
                         xml_file.write('                    <field name="matrix_subtype">%s</field>\n' %
                                        (question.matrix_subtype))
-                        xml_file.write('                    <field name="page_id" ref="%s"/>\n' % (page.code))
-                        xml_file.write('                    <field name="sequence" eval="%s"/>\n' %
-                                       (question.sequence))
+                        xml_file.write('                    <field name="survey_id" ref="%s"/>\n' % (survey_reg.code))
+                        xml_file.write('                    <field name="sequence" eval="%s"/>\n' % (question.sequence))
+                        if question.description is not False and question.description != '<p><br></p>':
+                            _description_ = question.description.replace('<p>', '').replace('</p>', '')
+                            xml_file.write('                    <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' %
+                                           (_description_))
                         xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
                                        (question.constr_mandatory))
                         xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
@@ -243,33 +264,37 @@ class SurveyExportXML(models.TransientModel):
                         xml_file.write('                </record>\n')
                         xml_file.write('\n')
 
-                        for label in question.labels_ids_2:
+                        for matrix_row in question.matrix_row_ids:
 
-                            _model_ = 'survey.label'
+                            _model_ = 'survey.question.answer'
 
-                            xml_file.write('                    <record model="%s" id="%s">\n' % (_model_, label.code))
+                            xml_file.write(
+                                '                    <record model="%s" id="%s">\n' % (_model_, matrix_row.code)
+                            )
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (label.value))
-                            xml_file.write('                        <field name="code">%s</field>\n' % (label.code))
-                            xml_file.write('                        <field name="question_id_2" ref="%s"/>\n' %
+                                           (matrix_row.value))
+                            xml_file.write('                        <field name="code">%s</field>\n' % (matrix_row.code))
+                            xml_file.write('                        <field name="matrix_question_id" ref="%s"/>\n' %
                                            (question.code))
                             xml_file.write('                        <field name="sequence" eval="%s"/>\n' %
-                                           (label.sequence))
+                                           (matrix_row.sequence))
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
 
-                        for label in question.labels_ids:
+                        for question_answer in question.suggested_answer_ids:
 
-                            _model_ = 'survey.label'
+                            _model_ = 'survey.question.answer'
 
-                            xml_file.write('                    <record model="%s" id="%s">\n' % (_model_, label.code))
+                            xml_file.write(
+                                '                    <record model="%s" id="%s">\n' % (_model_, question_answer.code)
+                            )
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (label.value))
-                            xml_file.write('                        <field name="code">%s</field>\n' % (label.code))
+                                           (question_answer.value))
+                            xml_file.write('                        <field name="code">%s</field>\n' % (question_answer.code))
                             xml_file.write('                        <field name="question_id" ref="%s"/>\n' %
                                            (question.code))
                             xml_file.write('                        <field name="sequence" eval="%s"/>\n' %
-                                           (label.sequence))
+                                           (question_answer.sequence))
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
 
