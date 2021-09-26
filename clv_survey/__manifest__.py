@@ -26,7 +26,7 @@
         'views/survey_user_input_view.xml',
         'views/phase_view.xml',
         'views/referenceable_model_view.xml',
-        # 'wizard/survey_duplicate_view.xml',
+        'wizard/survey_duplicate_view.xml',
         'wizard/survey_code_renew_view.xml',
         # 'wizard/survey_export_xls_view.xml',
         # 'wizard/survey_export_xml_view.xml',

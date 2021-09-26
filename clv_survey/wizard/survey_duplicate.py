@@ -13,10 +13,13 @@ class SurveyDuplicate(models.TransientModel):
     _description = 'Survey Duplicate'
     _name = 'survey.survey.duplicate'
 
+    def _default_survey_ids(self):
+        return self._context.get('active_ids')
     survey_ids = fields.Many2many(
         comodel_name='survey.survey',
         relation='survey_survey_duplicate_rel',
-        string='Surveys'
+        string='Surveys',
+        default=_default_survey_ids
     )
 
     new_title = fields.Char(
@@ -39,17 +42,17 @@ class SurveyDuplicate(models.TransientModel):
         required=True
     )
 
-    # phase_id = fields.Many2one(
-    #     comodel_name='clv.phase',
-    #     string='Phase'
-    # )
+    phase_id = fields.Many2one(
+        comodel_name='clv.phase',
+        string='Phase'
+    )
 
     @api.model
     def default_get(self, field_names):
 
         defaults = super(SurveyDuplicate, self).default_get(field_names)
 
-        defaults['survey_ids'] = self.env.context['active_ids']
+        # defaults['survey_ids'] = self.env.context['active_ids']
 
         Survey = self.env['survey.survey']
         survey_id = self._context.get('active_id')
@@ -61,9 +64,9 @@ class SurveyDuplicate(models.TransientModel):
         defaults['new_code'] = survey.code
         defaults['new_access_token'] = survey.access_token
 
-        # phase_id = int(self.env['ir.config_parameter'].sudo().get_param(
-        #     'clv.global_settings.current_phase_id', '').strip())
-        # defaults['phase_id'] = phase_id
+        phase_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'clv.global_settings.current_phase_id', '').strip())
+        defaults['phase_id'] = phase_id
 
         return defaults
 
@@ -84,7 +87,7 @@ class SurveyDuplicate(models.TransientModel):
 
         SurveySurvey = self.env['survey.survey']
         SurveyQuestion = self.env['survey.question']
-        SurveyLabel = self.env['survey.label']
+        SurveyQuestionAnswer = self.env['survey.question.answer']
 
         for survey in self.survey_ids:
 
@@ -99,11 +102,12 @@ class SurveyDuplicate(models.TransientModel):
                 'attempts_limit': survey.attempts_limit,
                 'users_can_go_back': survey.users_can_go_back,
                 'description': self.new_description,
-                'thank_you_message': survey.thank_you_message,
                 'questions_layout': survey.questions_layout,
-                # 'auth_required': survey.auth_required,
-                # 'stage_id': survey.stage_id.id,
-                # 'phase_id': self.phase_id.id,
+                'phase_id': self.phase_id.id,
+                'ref_model': survey.ref_model,
+                'progression_mode': survey.progression_mode,
+                'is_time_limited': survey.is_time_limited,
+                'questions_selection': survey.questions_selection,
             }
             new_survey = SurveySurvey.create(values)
 
@@ -130,7 +134,6 @@ class SurveyDuplicate(models.TransientModel):
                     'description': page.description,
                     'constr_mandatory': page.constr_mandatory,
                     'constr_error_msg': page.constr_error_msg,
-                    'display_mode': page.display_mode,
                     'column_nb': page.column_nb,
                     'comments_allowed': page.comments_allowed,
                     'comments_message': page.comments_message,
@@ -139,17 +142,11 @@ class SurveyDuplicate(models.TransientModel):
                 }
                 new_page = SurveyQuestion.create(values)
 
-                # questions = SurveyQuestion.search([
-                #     ('survey_id', '=', survey.id),
-                #     ('page_id', '=', page.id),
-                #     ('is_page', '=', False),
-                # ])
-
                 for question in page.question_ids:
 
                     new_question_code = question.code.replace(survey.code, self.new_code)
 
-                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>>>>>>', new_question_code, question.question)
+                    _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>>>>>>', new_question_code, question.title)
 
                     values = {
                         'title': question.title,
@@ -163,7 +160,6 @@ class SurveyDuplicate(models.TransientModel):
                         'description': question.description,
                         'constr_mandatory': question.constr_mandatory,
                         'constr_error_msg': question.constr_error_msg,
-                        'display_mode': question.display_mode,
                         'column_nb': question.column_nb,
                         'comments_allowed': question.comments_allowed,
                         'comments_message': question.comments_message,
@@ -172,32 +168,32 @@ class SurveyDuplicate(models.TransientModel):
                     }
                     new_question = SurveyQuestion.create(values)
 
-                    for label in question.labels_ids:
+                    for suggested_answer in question.suggested_answer_ids:
 
-                        new_label_code = label.code.replace(survey.code, self.new_code)
+                        new_suggested_answer_code = suggested_answer.code.replace(survey.code, self.new_code)
 
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>>>>>>>>>>>', new_label_code, label.value)
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>>>>>>>>>>>', new_suggested_answer_code, suggested_answer.value)
 
                         values = {
-                            'value': label.value,
-                            'code': new_label_code,
+                            'value': suggested_answer.value,
+                            'code': new_suggested_answer_code,
                             'question_id': new_question.id,
-                            'sequence': label.sequence,
+                            'sequence': suggested_answer.sequence,
                         }
-                        SurveyLabel.create(values)
+                        SurveyQuestionAnswer.create(values)
 
-                    for label in question.labels_ids_2:
+                    for matrix_row in question.matrix_row_ids:
 
-                        new_label_code = label.code.replace(survey.code, self.new_code)
+                        new_suggested_answer_code = matrix_row.code.replace(survey.code, self.new_code)
 
-                        _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>>>>>>>>>>>', new_label_code, label.value)
+                        _logger.info(u'%s %s %s', '>>>>>>>>>>>>>>>>>>>>>>>>>', new_suggested_answer_code, matrix_row.value)
 
                         values = {
-                            'value': label.value,
-                            'code': new_label_code,
-                            'question_id_2': new_question.id,
-                            'sequence': label.sequence,
+                            'value': matrix_row.value,
+                            'code': new_suggested_answer_code,
+                            'matrix_question_id': new_question.id,
+                            'sequence': matrix_row.sequence,
                         }
-                        SurveyLabel.create(values)
+                        SurveyQuestionAnswer.create(values)
 
         return True

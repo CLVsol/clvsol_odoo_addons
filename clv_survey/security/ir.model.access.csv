@@ -1,5 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
+access_survey_survey_duplicate_user,survey.survey.duplicate.user,model_survey_survey_duplicate,clv_survey.group_user,1,0,0,0
+access_survey_survey_duplicate_manager,survey.survey.duplicate.manager,model_survey_survey_duplicate,clv_survey.group_manager,1,1,1,0
+access_survey_survey_duplicate_supmanager,survey.survey.duplicate.supmanager,model_survey_survey_duplicate,clv_survey.group_supmanager,1,1,1,1
+
 access_survey_user_input_mass_edit_user,survey.user_input.mass_edit.user,model_survey_user_input_mass_edit,clv_survey.group_user,1,0,0,0
 access_survey_user_input_mass_edit_manager,survey.user_input.mass_edit.manager,model_survey_user_input_mass_edit,clv_survey.group_manager,1,1,1,0
 access_survey_user_input_mass_edit_supmanager,survey.user_input.mass_edit.supmanager,model_survey_user_input_mass_edit,clv_survey.group_supmanager,1,1,1,1

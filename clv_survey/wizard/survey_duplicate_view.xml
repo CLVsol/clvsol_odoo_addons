@@ -19,7 +19,7 @@
                         <field name="new_code"/>
                         <field name="new_description"/>
                         <field name="new_access_token"/>
-                        <!--field name="phase_id" options='{"no_open": False, "no_create": True}'/-->
+                        <field name="phase_id" options='{"no_open": False, "no_create": True}'/>
                     </group>
                 </sheet>
                 <footer>
@@ -40,6 +40,7 @@
     <record id="survey_survey_duplicate_action" model="ir.actions.act_window">
         <field name="name">Survey Duplicate</field>
         <field name="binding_model_id" ref="model_survey_survey"/>
+        <field name="binding_view_types">form</field>
         <field name="res_model">survey.survey.duplicate</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
