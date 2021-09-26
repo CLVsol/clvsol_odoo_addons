@@ -69,7 +69,7 @@ class SurveyExportXML(models.TransientModel):
             xml_file.write('        <record model="%s" id="%s">\n' % (_model_, survey_reg.code))
             xml_file.write('            <field name="title">%s</field>\n' % (survey_reg.title))
             xml_file.write('            <field name="code">%s</field>\n' % (survey_reg.code))
-            xml_file.write('            <field name="state">%s</field>\n' % (survey_reg.state))
+            xml_file.write('            <field name="state">%s</field>\n' % (_state_))
             xml_file.write('            <field name="users_login_required" eval="%s"/>\n' % (survey_reg.users_login_required))
             xml_file.write('            <field name="attempts_limit" eval="%s"/>\n' % (survey_reg.attempts_limit))
             xml_file.write('            <field name="users_can_go_back" eval="%s"/>\n' %
