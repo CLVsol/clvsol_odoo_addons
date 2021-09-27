@@ -149,17 +149,17 @@ class SurveyExportXLS(models.TransientModel):
                 for question in page.question_ids:
 
                     question_type = question.question_type
-                    _question_ = question.question
+                    _title_ = question.title
                     if question.comments_message is not False:
                         _comments_message_ = question.comments_message
                     if question.comments_allowed is False:
                         _comments_message_ = ''
 
-                    if question_type == 'free_text' or question_type == 'textbox' or question_type == 'datetime':
+                    if question_type == 'char_box' or question_type == 'text_box' or question_type == 'datetime':
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _question_)
+                        row.write(4, _title_)
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -210,7 +210,7 @@ class SurveyExportXLS(models.TransientModel):
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _question_)
+                        row.write(4, _title_)
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -218,12 +218,12 @@ class SurveyExportXLS(models.TransientModel):
                         row.hidden = isHidden
                         row_nr += 2
 
-                        for label in question.labels_ids:
+                        for question_answer in question.suggested_answer_ids:
 
-                            _value_ = label.value
+                            _value_ = question_answer.value
 
                             row = sheet.row(row_nr)
-                            row.write(0, '[' + label.code + ']')
+                            row.write(0, '[' + question_answer.code + ']')
                             row.write(4, '.', style=style_dot)
                             row.write(5, None, style=style_choice_thin)
                             row.write(6, _value_)
@@ -248,7 +248,7 @@ class SurveyExportXLS(models.TransientModel):
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _question_)
+                        row.write(4, _title_)
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -256,12 +256,12 @@ class SurveyExportXLS(models.TransientModel):
                         row.hidden = isHidden
                         row_nr += 2
 
-                        for label in question.labels_ids:
+                        for question_answer in question.suggested_answer_ids:
 
-                            _value_ = label.value
+                            _value_ = question_answer.value
 
                             row = sheet.row(row_nr)
-                            row.write(0, '[' + label.code + ']')
+                            row.write(0, '[' + question_answer.code + ']')
                             row.write(4, '.', style=style_dot)
                             row.write(5, None, style=style_choice_dotted)
                             row.write(6, _value_)
@@ -286,7 +286,7 @@ class SurveyExportXLS(models.TransientModel):
 
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
-                        row.write(4, _question_)
+                        row.write(4, _title_)
                         row_nr += 1
                         row = sheet.row(row_nr)
                         row.write(0, '[' + question.code + ']')
@@ -304,22 +304,22 @@ class SurveyExportXLS(models.TransientModel):
                         row_matrix_col.write(0, '[]')
                         sheet.row(matrix_col_row_nr).hidden = isHidden
 
-                        for label in question.labels_ids_2:
+                        for matrix_row in question.matrix_row_ids:
 
-                            _value_ = label.value
+                            _value_ = matrix_row.value
 
                             row = sheet.row(row_nr)
-                            row.write(0, '[' + label.code + ']')
+                            row.write(0, '[' + matrix_row.code + ']')
                             row.write(5, _value_)
                             matrix_row_nrs = matrix_row_nrs + [row_nr]
                             row_nr += 2
 
-                        for label in question.labels_ids:
+                        for question_answer in question.suggested_answer_ids:
 
-                            _value_ = label.value
+                            _value_ = question_answer.value
 
                             row = sheet.row(matrix_col_row_nr)
-                            row.write(matrix_col_nr, '[' + label.code + ']')
+                            row.write(matrix_col_nr, '[' + question_answer.code + ']')
                             row = sheet.row(matrix_col_row_nr + 1)
                             row.write(matrix_col_nr + 1, _value_)
                             for matrix_row_nr in matrix_row_nrs:

@@ -31,3 +31,7 @@ access_survey_user_input_refresh_supmanager,survey.user_input.refresh.supmanager
 access_clv_survey_export_xml_user,clv.survey.export_xml.user,model_clv_survey_export_xml,clv_survey.group_user,1,0,0,0
 access_clv_survey_export_xml_manager,clv.survey.export_xml.manager,model_clv_survey_export_xml,clv_survey.group_manager,1,1,1,0
 access_clv_survey_export_xml_supmanager,clv.survey.export_xml.supmanager,model_clv_survey_export_xml,clv_survey.group_supmanager,1,1,1,1
+
+access_clv_survey_export_xls_user,clv.survey.export_xls.user,model_clv_survey_export_xls,clv_survey.group_user,1,0,0,0
+access_clv_survey_export_xls_manager,clv.survey.export_xls.manager,model_clv_survey_export_xls,clv_survey.group_manager,1,1,1,0
+access_clv_survey_export_xls_supmanager,clv.survey.export_xls.supmanager,model_clv_survey_export_xls,clv_survey.group_supmanager,1,1,1,1
