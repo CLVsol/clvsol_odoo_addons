@@ -17,6 +17,10 @@
                     <field name="dir_path"/>
                     <field name="file_name"/>
                 </group>
+                <group>
+                    <field name="export_xml"/>
+                    <field name="export_yaml"/>
+                </group>
                 <footer>
                     <button 
                         type="object"
