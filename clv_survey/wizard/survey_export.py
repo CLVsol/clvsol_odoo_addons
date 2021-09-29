@@ -57,6 +57,12 @@ class SurveyExport(models.TransientModel):
         readonly=False
     )
 
+    export_txt = fields.Boolean(
+        string='TXT File Export',
+        default=False,
+        readonly=False
+    )
+
     def do_survey_export(self):
         self.ensure_one()
 
@@ -78,6 +84,12 @@ class SurveyExport(models.TransientModel):
                 yaml_file_path = self.dir_path + '/' + \
                     self.file_name.replace('<code>', survey_reg.code).replace('.xml', '.yaml')
                 # _logger.info(u'%s %s', '>>>>>', yaml_file_path)
+
+            if self.export_txt is True:
+
+                txt_file_path = self.dir_path + '/' + \
+                    self.file_name.replace('<code>', survey_reg.code).replace('.xml', '.txt')
+                # _logger.info(u'%s %s', '>>>>>', txt_file_path)
 
             survey_reg.survey_survey_export(
                 yaml_filepath=yaml_file_path,

@@ -20,6 +20,7 @@
                 <group>
                     <field name="export_xml"/>
                     <field name="export_yaml"/>
+                    <field name="export_txt"/>
                 </group>
                 <footer>
                     <button 
