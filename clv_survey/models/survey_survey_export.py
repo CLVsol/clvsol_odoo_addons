@@ -56,7 +56,7 @@ class SurveySurvey(models.Model):
             _survey_attempts_limit_ = self.attempts_limit
             _survey_users_can_go_back_ = self.users_can_go_back
             _survey_description_ = False
-            if self.description is not False and self.description != '<p><br></p>':
+            if self.description is not False and self.description != '<p><br></p>' and self.description != '<br>':
                 _survey_description_ = self.description.replace('<p>', '').replace('</p>', '')
             _survey_questions_layout_ = self.questions_layout
             _survey_progression_mode_ = self.progression_mode
@@ -71,7 +71,7 @@ class SurveySurvey(models.Model):
                 _is_page_ = page.is_page
                 _page_parameter_ = page.parameter
                 _page_sequence_ = page.sequence
-                if page.description is not False and page.description != '<p><br></p>':
+                if page.description is not False and page.description != '<p><br></p>' and self.description != '<br>':
                     _page_description_ = page.description.replace('<p>', '').replace('</p>', '')
 
                 def survey_question(question):
@@ -80,67 +80,85 @@ class SurveySurvey(models.Model):
                     _question_title_ = question.title
                     _question_model_ = 'survey.question'
                     if question.comments_message is not False:
-                        _comments_message_ = question.comments_message
+                        _question_comments_message_ = question.comments_message
                     if question.comments_allowed is False:
-                        _comments_message_ = ''
+                        _question_comments_message_ = ''
 
                     _is_page_ = question.is_page
                     _question_code_ = question.code
                     _question_parameter_ = question.parameter
                     _question_sequence_ = question.sequence
                     _question_description_ = False
-                    if question.description is not False:
+                    if question.description is not False and question.description != '<p><br></p>' \
+                       and question.description != '<br>':
                         _question_description_ = question.description.replace('<p>', '').replace('</p>', '')
                     _question_constr_mandatory_ = question.constr_mandatory
                     _question_constr_error_msg_ = question.constr_error_msg
                     _question_comment_count_as_answer_ = question.comment_count_as_answer
                     _question_column_nb_ = question.column_nb
+                    _question_comments_allowed_ = question.comments_allowed
                     _question_matrix_subtype_ = question.matrix_subtype
 
                     def survey_question_answer(question_answer):
 
                         _question_answer_model_ = 'survey.question.answer'
+                        _question_answer_code_ = question_answer.code
+                        _question_answer_value_ = question_answer.value
+                        _question_answer_sequence_ = question_answer.sequence
 
                         if export_xml:
 
                             xml_file.write('                    <record model="%s" id="%s">\n' %
-                                           (_question_answer_model_, question_answer.code))
+                                           (_question_answer_model_, _question_answer_code_))
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (question_answer.value))
+                                           (_question_answer_value_))
                             xml_file.write('                        <field name="code">%s</field>\n' %
-                                           (question_answer.code))
+                                           (_question_answer_code_))
                             xml_file.write('                        <field name="question_id" ref="%s"/>\n' %
                                            (_question_code_))
                             xml_file.write('                        <field name="sequence" eval="%s"/>\n' %
-                                           (question_answer.sequence))
+                                           (_question_answer_sequence_))
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
 
                         if export_yaml:
 
-                            pass
+                            yaml_file.write('            %s:\n' % (_question_answer_code_))
+                            yaml_file.write('                model: %s\n' % (_question_answer_model_))
+                            yaml_file.write('                value: \'%s\'\n' % (_question_answer_value_))
+                            yaml_file.write('                code: \'%s\'\n' % (_question_answer_code_))
+                            yaml_file.write('                question_id: %s\n' % (_question_code_))
+                            yaml_file.write('                sequence: %s\n' % (_question_answer_sequence_))
 
                     def survey_question_matrix_row(question_matrix_row):
 
                         _question_answer_model_ = 'survey.question.answer'
+                        _matrix_row_code_ = matrix_row.code
+                        _matrix_row_value_ = matrix_row.value
+                        _matrix_row_sequence_ = matrix_row.sequence
 
                         if export_xml:
 
                             xml_file.write('                    <record model="%s" id="%s">\n' %
-                                           (_question_answer_model_, matrix_row.code))
+                                           (_question_answer_model_, _matrix_row_code_))
                             xml_file.write('                        <field name="value">%s</field>\n' %
-                                           (matrix_row.value))
-                            xml_file.write('                        <field name="code">%s</field>\n' % (matrix_row.code))
-                            xml_file.write('                        <field name="matrix_question_titleid" ref="%s"/>\n' %
+                                           (_matrix_row_value_))
+                            xml_file.write('                        <field name="code">%s</field>\n' % (_matrix_row_code_))
+                            xml_file.write('                        <field name="matrix_question_id" ref="%s"/>\n' %
                                            (_question_code_))
                             xml_file.write('                        <field name="sequence" eval="%s"/>\n' %
-                                           (matrix_row.sequence))
+                                           (_matrix_row_sequence_))
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
 
                         if export_yaml:
 
-                            pass
+                            yaml_file.write('            %s:\n' % (_matrix_row_code_))
+                            yaml_file.write('                model: %s\n' % (_question_answer_model_))
+                            yaml_file.write('                value: \'%s\'\n' % (_matrix_row_value_))
+                            yaml_file.write('                code: \'%s\'\n' % (_matrix_row_code_))
+                            yaml_file.write('                matrix_question_id: %s\n' % (_question_code_))
+                            yaml_file.write('                sequence: %s\n' % (_matrix_row_sequence_))
 
                     if _question_type_ == 'char_box' or _question_type_ == 'text_box' or _question_type_ == 'datetime':
 
@@ -176,9 +194,9 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            code: \'%s\'\n' % (_question_code_))
                             if question.parameter:
                                 yaml_file.write('            parameter: \'%s\'\n' % (_question_parameter_))
-                            yaml_file.write('            question_type: \'%s\'\n' % (question.question_type))
+                            yaml_file.write('            question_type: \'%s\'\n' % (_question_type_))
                             yaml_file.write('            survey_id: %s\n' % (_survey_code_))
-                            yaml_file.write('            sequence: %s\n' % (page.sequence))
+                            yaml_file.write('            sequence: %s\n' % (_question_sequence_))
                             if _question_description_ is not False:
                                 yaml_file.write('            description: \'%s\'\n' % (_question_description_))
                             yaml_file.write('            constr_mandatory: %s\n' % (_question_constr_mandatory_))
@@ -210,9 +228,9 @@ class SurveySurvey(models.Model):
                             xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
                                            (_question_constr_error_msg_))
                             xml_file.write('                    <field name="comments_allowed">%s</field>\n' %
-                                           (question.comments_allowed))
+                                           (_question_comments_allowed_))
                             xml_file.write('                    <field name="comments_message">%s</field>\n' %
-                                           (_comments_message_))
+                                           (_question_comments_message_))
                             xml_file.write('                    <field name="comment_count_as_answer">%s</field>\n' %
                                            (_question_comment_count_as_answer_))
                             xml_file.write('                </record>\n')
@@ -220,7 +238,25 @@ class SurveySurvey(models.Model):
 
                         if export_yaml:
 
-                            pass
+                            yaml_file.write('        %s:\n' % (_question_code_))
+                            yaml_file.write('            model: %s\n' % (_question_model_))
+                            yaml_file.write('            title: \'%s\'\n' % (_question_title_))
+                            yaml_file.write('            is_page: %s\n' % (_is_page_))
+                            yaml_file.write('            code: \'%s\'\n' % (_question_code_))
+                            if question.parameter:
+                                yaml_file.write('            parameter: \'%s\'\n' % (_question_parameter_))
+                            yaml_file.write('            question_type: \'%s\'\n' % (_question_type_))
+                            yaml_file.write('            survey_id: %s\n' % (_survey_code_))
+                            yaml_file.write('            sequence: %s\n' % (_question_sequence_))
+                            if _question_description_ is not False:
+                                yaml_file.write('            description: \'%s\'\n' % (_question_description_))
+                            yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
+                            yaml_file.write('            constr_mandatory: %s\n' % (_question_constr_mandatory_))
+                            yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
+                            yaml_file.write('            comments_allowed: %s\n' % (_question_comments_allowed_))
+                            yaml_file.write('            comments_message: \'%s\'\n' % (_question_comments_message_))
+                            yaml_file.write('            comment_count_as_answer: %s\n' % (_question_comment_count_as_answer_))
+                            yaml_file.write('\n')
 
                         for question_answer in question.suggested_answer_ids:
 
@@ -253,7 +289,7 @@ class SurveySurvey(models.Model):
                             xml_file.write('                    <field name="comments_allowed">%s</field>\n' %
                                            (question.comments_allowed))
                             xml_file.write('                    <field name="comments_message">%s</field>\n' %
-                                           (_comments_message_))
+                                           (_question_comments_message_))
                             xml_file.write('                    <field name="comment_count_as_answer">%s</field>\n' %
                                            (_question_comment_count_as_answer_))
                             xml_file.write('                </record>\n')
@@ -261,7 +297,25 @@ class SurveySurvey(models.Model):
 
                         if export_yaml:
 
-                            pass
+                            yaml_file.write('        %s:\n' % (_question_code_))
+                            yaml_file.write('            model: %s\n' % (_question_model_))
+                            yaml_file.write('            title: \'%s\'\n' % (_question_title_))
+                            yaml_file.write('            is_page: %s\n' % (_is_page_))
+                            yaml_file.write('            code: \'%s\'\n' % (_question_code_))
+                            if question.parameter:
+                                yaml_file.write('            parameter: \'%s\'\n' % (_question_parameter_))
+                            yaml_file.write('            question_type: \'%s\'\n' % (_question_type_))
+                            yaml_file.write('            survey_id: %s\n' % (_survey_code_))
+                            yaml_file.write('            sequence: %s\n' % (_question_sequence_))
+                            if _question_description_ is not False:
+                                yaml_file.write('            description: \'%s\'\n' % (_question_description_))
+                            yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
+                            yaml_file.write('            constr_mandatory: %s\n' % (_question_constr_mandatory_))
+                            yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
+                            yaml_file.write('            comments_allowed: %s\n' % (_question_comments_allowed_))
+                            yaml_file.write('            comments_message: \'%s\'\n' % (_question_comments_message_))
+                            yaml_file.write('            comment_count_as_answer: %s\n' % (_question_comment_count_as_answer_))
+                            yaml_file.write('\n')
 
                         for question_answer in question.suggested_answer_ids:
 
@@ -296,7 +350,23 @@ class SurveySurvey(models.Model):
 
                         if export_yaml:
 
-                            pass
+                            yaml_file.write('        %s:\n' % (_question_code_))
+                            yaml_file.write('            model: %s\n' % (_question_model_))
+                            yaml_file.write('            title: \'%s\'\n' % (_question_title_))
+                            yaml_file.write('            is_page: %s\n' % (_is_page_))
+                            yaml_file.write('            code: \'%s\'\n' % (_question_code_))
+                            if question.parameter:
+                                yaml_file.write('            parameter: \'%s\'\n' % (_question_parameter_))
+                            yaml_file.write('            question_type: \'%s\'\n' % (_question_type_))
+                            yaml_file.write('            matrix_subtype: \'%s\'\n' % (_question_matrix_subtype_))
+                            yaml_file.write('            survey_id: %s\n' % (_survey_code_))
+                            yaml_file.write('            sequence: %s\n' % (_question_sequence_))
+                            if _question_description_ is not False:
+                                yaml_file.write('            description: \'%s\'\n' % (_question_description_))
+                            yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
+                            yaml_file.write('            constr_mandatory: %s\n' % (_question_constr_mandatory_))
+                            yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
+                            yaml_file.write('\n')
 
                         for question_answer in question.suggested_answer_ids:
 
@@ -337,7 +407,6 @@ class SurveySurvey(models.Model):
                     yaml_file.write('\n')
 
                 for question in page.question_ids:
-
                     survey_question(question)
 
             if export_xml:
@@ -378,7 +447,6 @@ class SurveySurvey(models.Model):
                 yaml_file.write('    attempts_limit: %s\n' % (_survey_attempts_limit_))
                 yaml_file.write('    users_can_go_back: %s\n' % (_survey_users_can_go_back_))
                 if _survey_description_ is not False:
-                    _survey_description_ = self.description.replace('<p>', '').replace('</p>', '')
                     yaml_file.write('    description: \'%s\'\n' % (_survey_description_))
                 yaml_file.write('    questions_layout: \'%s\'\n' % (_survey_questions_layout_))
                 yaml_file.write('    progression_mode: \'%s\'\n' % (_survey_progression_mode_))
@@ -392,17 +460,14 @@ class SurveySurvey(models.Model):
             ])
 
             for page in pages:
-
                 survey_page(page)
 
             if export_xml:
-
                 xml_file.write('    </data>\n')
                 xml_file.write('</odoo>\n')
                 xml_file.close()
 
             if export_yaml:
-
                 yaml_file.close()
 
         survey()
