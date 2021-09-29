@@ -18,6 +18,7 @@
         'clv_set',
     ],
     'data': [
+        # 'data/survey_jcafb_QAN22.xml',
         'security/survey_security.xml',
         'security/ir.model.access.csv',
         'views/survey_survey_view.xml',
