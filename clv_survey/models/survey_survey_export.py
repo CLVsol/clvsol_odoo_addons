@@ -130,6 +130,10 @@ class SurveySurvey(models.Model):
                             yaml_file.write('                question_id: %s\n' % (_question_code_))
                             yaml_file.write('                sequence: %s\n' % (_question_answer_sequence_))
 
+                        if export_txt:
+
+                            txt_file.write('            %s\n' % (_question_answer_value_))
+
                     def survey_question_matrix_row(question_matrix_row):
 
                         _question_answer_model_ = 'survey.question.answer'
@@ -159,6 +163,10 @@ class SurveySurvey(models.Model):
                             yaml_file.write('                code: \'%s\'\n' % (_matrix_row_code_))
                             yaml_file.write('                matrix_question_id: %s\n' % (_question_code_))
                             yaml_file.write('                sequence: %s\n' % (_matrix_row_sequence_))
+
+                        if export_txt:
+
+                            txt_file.write('            %s\n' % (_matrix_row_value_))
 
                     if _question_type_ == 'char_box' or _question_type_ == 'text_box' or _question_type_ == 'datetime':
 
@@ -202,6 +210,23 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            constr_mandatory: %s\n' % (_question_constr_mandatory_))
                             yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
                             yaml_file.write('\n')
+
+                        if export_txt:
+
+                            txt_file.write('        %s\n' % (_question_title_))
+                            if _question_description_ is not False:
+                                txt_file.write('        %s\n\n' % (_question_description_))
+                            else:
+                                txt_file.write('\n')
+                            txt_file.write('            (%s)\n' % (_question_type_))
+                            if _question_type_ == 'text_box':
+                                txt_file.write('            ' + '____________________________________\n' +
+                                               '            ' + '____________________________________\n' +
+                                               '            ' + '____________________________________\n' +
+                                               '            ' + '____________________________________\n')
+                            else:
+                                txt_file.write('            ' + '____________________________________\n')
+                            txt_file.write('\n')
 
                     if _question_type_ == 'simple_choice':
 
@@ -258,9 +283,26 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            comment_count_as_answer: %s\n' % (_question_comment_count_as_answer_))
                             yaml_file.write('\n')
 
+                        if export_txt:
+
+                            txt_file.write('        %s\n' % (_question_title_))
+                            if _question_description_ is not False:
+                                txt_file.write('        %s\n\n' % (_question_description_))
+                            else:
+                                txt_file.write('\n')
+                            txt_file.write('            (%s)\n' % (_question_type_))
+
                         for question_answer in question.suggested_answer_ids:
 
                             survey_question_answer(question_answer)
+
+                        if export_txt:
+
+                            if _question_comments_allowed_ == 'True':
+                                txt_file.write('            %s____________________________________\n\n' %
+                                               (_question_comments_message_))
+                            else:
+                                txt_file.write('\n')
 
                     if _question_type_ == 'multiple_choice':
 
@@ -317,9 +359,26 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            comment_count_as_answer: %s\n' % (_question_comment_count_as_answer_))
                             yaml_file.write('\n')
 
+                        if export_txt:
+
+                            txt_file.write('        %s\n' % (_question_title_))
+                            if _question_description_ is not False:
+                                txt_file.write('        %s\n\n' % (_question_description_))
+                            else:
+                                txt_file.write('\n')
+                            txt_file.write('            (%s)\n' % (_question_type_))
+
                         for question_answer in question.suggested_answer_ids:
 
                             survey_question_answer(question_answer)
+
+                        if export_txt:
+
+                            if _question_comments_allowed_ == 'True':
+                                txt_file.write('            %s____________________________________\n\n' %
+                                               (_question_comments_message_))
+                            else:
+                                txt_file.write('\n')
 
                     if _question_type_ == 'matrix':
 
@@ -368,13 +427,30 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
                             yaml_file.write('\n')
 
+                        if export_txt:
+
+                            txt_file.write('        %s\n' % (_question_title_))
+                            if _question_description_ is not False:
+                                txt_file.write('        %s\n\n' % (_question_description_))
+                            else:
+                                txt_file.write('\n')
+                            txt_file.write('            (%s -  %s)\n\n' % (_question_type_, _question_matrix_subtype_))
+
                         for question_answer in question.suggested_answer_ids:
 
                             survey_question_answer(question_answer)
 
+                        if export_txt:
+
+                            txt_file.write('\n')
+
                         for matrix_row in question.matrix_row_ids:
 
                             survey_question_matrix_row(matrix_row)
+
+                        if export_txt:
+
+                            txt_file.write('\n')
 
                 if export_xml:
 
@@ -405,6 +481,14 @@ class SurveySurvey(models.Model):
                     if _page_description_ is not False:
                         yaml_file.write('        description: \'%s\'\n' % (_page_description_))
                     yaml_file.write('\n')
+
+                if export_txt:
+
+                    txt_file.write('    %s\n' % (_page_title_))
+                    if _page_description_ is not False:
+                        txt_file.write('        %s\n\n' % (_page_description_))
+                    else:
+                        txt_file.write('\n')
 
                 for question in page.question_ids:
                     survey_question(question)
@@ -453,6 +537,14 @@ class SurveySurvey(models.Model):
                 yaml_file.write('    is_time_limited: %s\n' % (_survey_is_time_limited_))
                 yaml_file.write('    questions_selection: \'%s\'\n' % (_survey_questions_selection_))
                 yaml_file.write('\n')
+
+            if export_txt:
+
+                txt_file.write('%s\n' % (_survey_title_))
+                if _survey_description_ is not False:
+                    txt_file.write('%s\n\n' % (_survey_description_))
+                else:
+                    txt_file.write('\n')
 
             pages = SurveyQuestion.search([
                 ('survey_id', '=', self.id),
