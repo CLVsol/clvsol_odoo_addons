@@ -4,6 +4,8 @@
 
 import logging
 
+import xlwt
+
 from odoo import models
 
 _logger = logging.getLogger(__name__)
@@ -12,8 +14,43 @@ _logger = logging.getLogger(__name__)
 class SurveySurvey(models.Model):
     _inherit = 'survey.survey'
 
-    def survey_survey_export(self, yaml_filepath=False, xml_filepath=False, txt_filepath=False, xls_filepath=False):
+    def survey_survey_export(
+        self, yaml_filepath=False, xml_filepath=False, txt_filepath=False,
+        xls_filepath=False, file_format=False, password=False
+    ):
         self.ensure_one()
+
+        style_text_locked = xlwt.easyxf('''
+            border: bottom THIN;
+        ''')
+
+        style_text_unlocked = xlwt.easyxf('''
+            border: bottom THIN;
+            protection: cell_locked false;
+            font: bold on;
+        ''')
+
+        style_choice_thin = xlwt.easyxf('''
+            font: bold on;
+            borders: left THIN, right THIN, top THIN, bottom THIN;
+            align: vertical center, horizontal center;
+            protection: cell_locked false;
+        ''')
+
+        style_choice_dotted = xlwt.easyxf('''
+            font: bold on;
+            borders: left DOTTED, right DOTTED, top DOTTED, bottom DOTTED;
+            align: vertical center, horizontal center;
+            protection: cell_locked false;
+        ''')
+
+        style_dot = xlwt.easyxf('''
+            align: vertical center, horizontal right;
+        ''')
+
+        isHidden = False
+        if file_format == 'preformatted':
+            isHidden = True
 
         export_yaml = False
         export_txt = False
@@ -24,6 +61,8 @@ class SurveySurvey(models.Model):
         txt_file = False
         xml_file = False
         # xls_file = False
+        book = False
+        row_nr = 0
 
         if yaml_filepath:
             export_yaml = True
@@ -42,7 +81,8 @@ class SurveySurvey(models.Model):
 
         if xls_filepath:
             _logger.info(u'%s %s', '>>>>>', xls_filepath)
-            export_xls = False
+            export_xls = True
+            book = xlwt.Workbook()
 
         def survey():
 
@@ -71,6 +111,7 @@ class SurveySurvey(models.Model):
                 _is_page_ = page.is_page
                 _page_parameter_ = page.parameter
                 _page_sequence_ = page.sequence
+                _page_description_ = False
                 if page.description is not False and page.description != '<p><br></p>' and self.description != '<br>':
                     _page_description_ = page.description.replace('<p>', '').replace('</p>', '')
 
@@ -168,6 +209,8 @@ class SurveySurvey(models.Model):
 
                             txt_file.write('            %s\n' % (_matrix_row_value_))
 
+                    nonlocal row_nr
+
                     if _question_type_ == 'char_box' or _question_type_ == 'text_box' or _question_type_ == 'datetime':
 
                         if export_xml:
@@ -227,6 +270,57 @@ class SurveySurvey(models.Model):
                             else:
                                 txt_file.write('            ' + '____________________________________\n')
                             txt_file.write('\n')
+
+                        if export_xls:
+
+                            row = sheet.row(row_nr)
+                            row.write(0, '[' + _question_code_ + ']')
+                            row.write(4, _question_title_)
+                            row_nr += 1
+                            row = sheet.row(row_nr)
+                            row.write(0, '[' + _question_code_ + ']')
+                            row.write(4, _question_type_)
+                            row.hidden = isHidden
+                            row_nr += 2
+                            if _question_type_ == 'text_box':
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(4, '.', style=style_dot)
+                                row.write(5, None, style=style_text_unlocked)
+                                for i in range(6, 15):
+                                    row.write(i, None, style=style_text_locked)
+                                row_nr += 1
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(4, '.', style=style_dot)
+                                row.write(5, None, style=style_text_unlocked)
+                                for i in range(6, 15):
+                                    row.write(i, None, style=style_text_locked)
+                                row_nr += 1
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(4, '.', style=style_dot)
+                                row.write(5, None, style=style_text_unlocked)
+                                for i in range(6, 15):
+                                    row.write(i, None, style=style_text_locked)
+                                row_nr += 1
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(4, '.', style=style_dot)
+                                row.write(5, None, style=style_text_unlocked)
+                                for i in range(6, 15):
+                                    row.write(i, None, style=style_text_locked)
+                                row_nr += 1
+                            else:
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(4, '.', style=style_dot)
+
+                                row.write(5, None, style=style_text_unlocked)
+                                for i in range(6, 15):
+                                    row.write(i, None, style=style_text_locked)
+                                row_nr += 1
+                            row_nr += 1
 
                     if _question_type_ == 'simple_choice':
 
@@ -296,6 +390,10 @@ class SurveySurvey(models.Model):
 
                             survey_question_answer(question_answer)
 
+                        if export_yaml:
+
+                            yaml_file.write('\n')
+
                         if export_txt:
 
                             if _question_comments_allowed_ == 'True':
@@ -303,6 +401,45 @@ class SurveySurvey(models.Model):
                                                (_question_comments_message_))
                             else:
                                 txt_file.write('\n')
+
+                        if export_xls:
+
+                            row = sheet.row(row_nr)
+                            row.write(0, '[' + _question_code_ + ']')
+                            row.write(4, _question_title_)
+                            row_nr += 1
+                            row = sheet.row(row_nr)
+                            row.write(0, '[' + _question_code_ + ']')
+                            row.write(4, _question_type_)
+                            row.hidden = isHidden
+                            row_nr += 2
+
+                            for question_answer in question.suggested_answer_ids:
+
+                                _question_answer_code_ = question_answer.code
+                                _question_answer_value_ = question_answer.value
+
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_answer_code_ + ']')
+                                row.write(4, '.', style=style_dot)
+                                row.write(5, None, style=style_choice_thin)
+                                row.write(6, _question_answer_value_)
+                                row_nr += 1
+
+                            if question.comments_allowed is True:
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(6, _question_comments_message_)
+                                row_nr += 2
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(6, '.', style=style_dot)
+                                row.write(7, None, style=style_text_unlocked)
+                                for i in range(8, 17):
+                                    row.write(i, None, style=style_text_locked)
+                                row_nr += 2
+                            else:
+                                row_nr += 1
 
                     if _question_type_ == 'multiple_choice':
 
@@ -372,6 +509,10 @@ class SurveySurvey(models.Model):
 
                             survey_question_answer(question_answer)
 
+                        if export_yaml:
+
+                            yaml_file.write('\n')
+
                         if export_txt:
 
                             if _question_comments_allowed_ == 'True':
@@ -379,6 +520,45 @@ class SurveySurvey(models.Model):
                                                (_question_comments_message_))
                             else:
                                 txt_file.write('\n')
+
+                        if export_xls:
+
+                            row = sheet.row(row_nr)
+                            row.write(0, '[' + _question_code_ + ']')
+                            row.write(4, _question_title_)
+                            row_nr += 1
+                            row = sheet.row(row_nr)
+                            row.write(0, '[' + _question_code_ + ']')
+                            row.write(4, _question_type_)
+                            row.hidden = isHidden
+                            row_nr += 2
+
+                            for question_answer in question.suggested_answer_ids:
+
+                                _question_answer_code_ = question_answer.code
+                                _question_answer_value_ = question_answer.value
+
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_answer_code_ + ']')
+                                row.write(4, '.', style=style_dot)
+                                row.write(5, None, style=style_choice_dotted)
+                                row.write(6, _question_answer_value_)
+                                row_nr += 1
+
+                            if question.comments_allowed is True:
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(6, _question_comments_message_)
+                                row_nr += 2
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _question_code_ + ']')
+                                row.write(6, '.', style=style_dot)
+                                row.write(7, None, style=style_text_unlocked)
+                                for i in range(8, 17):
+                                    row.write(i, None, style=style_text_locked)
+                                row_nr += 2
+                            else:
+                                row_nr += 1
 
                     if _question_type_ == 'matrix':
 
@@ -440,6 +620,10 @@ class SurveySurvey(models.Model):
 
                             survey_question_answer(question_answer)
 
+                        if export_yaml:
+
+                            yaml_file.write('\n')
+
                         if export_txt:
 
                             txt_file.write('\n')
@@ -448,9 +632,62 @@ class SurveySurvey(models.Model):
 
                             survey_question_matrix_row(matrix_row)
 
+                        if export_yaml:
+
+                            yaml_file.write('\n')
+
                         if export_txt:
 
                             txt_file.write('\n')
+
+                        if export_xls:
+
+                            row = sheet.row(row_nr)
+                            row.write(0, '[' + _question_code_ + ']')
+                            row.write(4, _question_title_)
+                            row_nr += 1
+                            row = sheet.row(row_nr)
+                            row.write(0, '[' + _question_code_ + ']')
+                            row.write(4, _question_type_ + '_' + _question_matrix_subtype_)
+                            row.hidden = isHidden
+                            row_nr += 1
+
+                            row_nr += 1
+                            matrix_col_row_nr = row_nr
+                            matrix_col_nr = 8
+                            matrix_row_nrs = []
+                            row_nr += 3
+
+                            row_matrix_col = sheet.row(matrix_col_row_nr)
+                            row_matrix_col.write(0, '[]')
+                            sheet.row(matrix_col_row_nr).hidden = isHidden
+
+                            for matrix_row in question.matrix_row_ids:
+
+                                _matrix_row_code_ = matrix_row.code
+                                _matrix_row_value_ = matrix_row.value
+
+                                row = sheet.row(row_nr)
+                                row.write(0, '[' + _matrix_row_code_ + ']')
+                                row.write(5, _matrix_row_value_)
+                                matrix_row_nrs = matrix_row_nrs + [row_nr]
+                                row_nr += 2
+
+                            for question_answer in question.suggested_answer_ids:
+
+                                _value_ = question_answer.value
+
+                                row = sheet.row(matrix_col_row_nr)
+                                row.write(matrix_col_nr, '[' + question_answer.code + ']')
+                                row = sheet.row(matrix_col_row_nr + 1)
+                                row.write(matrix_col_nr + 1, _value_)
+                                for matrix_row_nr in matrix_row_nrs:
+                                    row = sheet.row(matrix_row_nr)
+                                    row.write(matrix_col_nr, '.', style=style_dot)
+                                    row.write(matrix_col_nr + 1, None, style=style_choice_thin)
+                                matrix_col_nr += 3
+
+                            row_nr += 1
 
                 if export_xml:
 
@@ -490,7 +727,22 @@ class SurveySurvey(models.Model):
                     else:
                         txt_file.write('\n')
 
+                if export_xls:
+
+                    nonlocal row_nr
+
+                    row = sheet.row(row_nr)
+                    row.write(0, '[' + page.code + ']')
+                    row.write(3, _page_title_)
+                    # row_nr += 1
+                    row_nr = row_nr + 1
+                    row = sheet.row(row_nr)
+                    row.write(0, '[' + page.code + ']')
+                    row.write(3, _page_description_)
+                    row_nr += 2
+
                 for question in page.question_ids:
+
                     survey_question(question)
 
             if export_xml:
@@ -546,21 +798,59 @@ class SurveySurvey(models.Model):
                 else:
                     txt_file.write('\n')
 
+            if export_xls:
+
+                nonlocal row_nr
+
+                # _title_ = survey_reg.title
+                # _description_ = survey_reg.description.replace('<p>', '').replace('</p>', '')
+
+                sheet = book.add_sheet(_survey_code_)
+                row = sheet.row(row_nr)
+                row.write(0, '[' + _survey_code_ + ']')
+                row_nr += 1
+
+                row = sheet.row(row_nr)
+                row.write(0, '[' + _survey_code_ + ']')
+                row.write(2, _survey_title_)
+                row_nr += 1
+                row = sheet.row(row_nr)
+                row.write(0, '[' + _survey_code_ + ']')
+                row.write(2, _survey_description_)
+                row_nr += 2
+
             pages = SurveyQuestion.search([
                 ('survey_id', '=', self.id),
                 ('is_page', '=', True),
             ])
 
             for page in pages:
+
                 survey_page(page)
 
             if export_xml:
+
                 xml_file.write('    </data>\n')
                 xml_file.write('</odoo>\n')
                 xml_file.close()
 
             if export_yaml:
+
                 yaml_file.close()
+
+            if export_xls:
+
+                sheet.col(0).hidden = isHidden
+
+                if file_format == 'preformatted':
+
+                    for i in range(100):
+                        sheet.col(i).width = 256 * 2
+
+                    sheet.protect = True
+                    sheet.password = password
+
+                book.save(xls_filepath)
 
         survey()
 
