@@ -15,12 +15,18 @@
                 <field name="survey_ids"/>
                 <group>
                     <field name="dir_path"/>
-                    <field name="file_name"/>
                 </group>
                 <group>
                     <field name="export_xml"/>
                     <field name="export_yaml"/>
                     <field name="export_txt"/>
+                    <field name="file_name"/>
+                </group>
+                <group>
+                    <field name="export_xls"/>
+                    <field name="xls_file_name"/>
+                    <field name="password"/>
+                    <field name="file_format"/>
                 </group>
                 <footer>
                     <button 

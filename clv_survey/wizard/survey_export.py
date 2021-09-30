@@ -63,6 +63,32 @@ class SurveyExport(models.TransientModel):
         readonly=False
     )
 
+    export_xls = fields.Boolean(
+        string='XLS File Export',
+        default=False,
+        readonly=False
+    )
+
+    xls_file_name = fields.Char(
+        string='File Name (XLS)',
+        required=True,
+        help="File Name (XLS)",
+        default='<code>_template_<file_format>.xls'
+    )
+
+    password = fields.Char(
+        string='Password',
+        required=True,
+        help="Password to protec the sheet",
+        default='OpenSesame'
+    )
+
+    file_format = fields.Selection(
+        [('draft', 'Draft'),
+         ('preformatted', 'Preformatted'),
+         ], string='File Format', default='draft'
+    )
+
     def do_survey_export(self):
         self.ensure_one()
 
@@ -91,11 +117,19 @@ class SurveyExport(models.TransientModel):
                     self.file_name.replace('<code>', survey_reg.code).replace('.xml', '.txt')
                 # _logger.info(u'%s %s', '>>>>>', txt_file_path)
 
+            if self.export_xls is True:
+
+                xls_file_path = self.dir_path + '/' + \
+                    self.xls_file_name.replace('<code>', survey_reg.code).replace('<file_format>', self.file_format)
+                # _logger.info(u'%s %s', '>>>>>', txt_file_path)
+
             survey_reg.survey_survey_export(
                 yaml_filepath=yaml_file_path,
                 xml_filepath=xml_file_path,
                 txt_filepath=txt_file_path,
-                xls_filepath=xls_file_path
+                xls_filepath=xls_file_path,
+                file_format=self.file_format,
+                password=self.password
             )
 
         return True
