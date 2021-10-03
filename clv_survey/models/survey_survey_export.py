@@ -164,12 +164,14 @@ class SurveySurvey(models.Model):
 
                         if export_yaml:
 
-                            yaml_file.write('            %s:\n' % (_question_answer_code_))
-                            yaml_file.write('                model: %s\n' % (_question_answer_model_))
-                            yaml_file.write('                value: \'%s\'\n' % (_question_answer_value_))
-                            yaml_file.write('                code: \'%s\'\n' % (_question_answer_code_))
-                            yaml_file.write('                question_id: %s\n' % (_question_code_))
-                            yaml_file.write('                sequence: %s\n' % (_question_answer_sequence_))
+                            if _question_type_ != 'matrix':
+
+                                yaml_file.write('            %s:\n' % (_question_answer_code_))
+                                yaml_file.write('                model: %s\n' % (_question_answer_model_))
+                                yaml_file.write('                value: \'%s\'\n' % (_question_answer_value_))
+                                yaml_file.write('                code: \'%s\'\n' % (_question_answer_code_))
+                                yaml_file.write('                question_id: %s\n' % (_question_code_))
+                                yaml_file.write('                sequence: %s\n' % (_question_answer_sequence_))
 
                         if export_txt:
 
@@ -195,15 +197,6 @@ class SurveySurvey(models.Model):
                                            (_matrix_row_sequence_))
                             xml_file.write('                    </record>\n')
                             xml_file.write('\n')
-
-                        if export_yaml:
-
-                            yaml_file.write('            %s:\n' % (_matrix_row_code_))
-                            yaml_file.write('                model: %s\n' % (_question_answer_model_))
-                            yaml_file.write('                value: \'%s\'\n' % (_matrix_row_value_))
-                            yaml_file.write('                code: \'%s\'\n' % (_matrix_row_code_))
-                            yaml_file.write('                matrix_question_id: %s\n' % (_question_code_))
-                            yaml_file.write('                sequence: %s\n' % (_matrix_row_sequence_))
 
                         if export_txt:
 
@@ -587,6 +580,35 @@ class SurveySurvey(models.Model):
                             xml_file.write('                </record>\n')
                             xml_file.write('\n')
 
+                            for question_answer in question.suggested_answer_ids:
+
+                                survey_question_answer(question_answer)
+
+                            for matrix_row in question.matrix_row_ids:
+
+                                survey_question_matrix_row(matrix_row)
+
+                        if export_txt:
+
+                            txt_file.write('        %s\n' % (_question_title_))
+                            if _question_description_ is not False:
+                                txt_file.write('        %s\n\n' % (_question_description_))
+                            else:
+                                txt_file.write('\n')
+                            txt_file.write('            (%s -  %s)\n\n' % (_question_type_, _question_matrix_subtype_))
+
+                            for question_answer in question.suggested_answer_ids:
+
+                                survey_question_answer(question_answer)
+
+                            txt_file.write('\n')
+
+                            for matrix_row in question.matrix_row_ids:
+
+                                survey_question_matrix_row(matrix_row)
+
+                            txt_file.write('\n')
+
                         if export_yaml:
 
                             yaml_file.write('        %s:\n' % (_question_code_))
@@ -607,38 +629,37 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
                             yaml_file.write('\n')
 
-                        if export_txt:
+                            for matrix_row in question.matrix_row_ids:
 
-                            txt_file.write('        %s\n' % (_question_title_))
-                            if _question_description_ is not False:
-                                txt_file.write('        %s\n\n' % (_question_description_))
-                            else:
-                                txt_file.write('\n')
-                            txt_file.write('            (%s -  %s)\n\n' % (_question_type_, _question_matrix_subtype_))
+                                _question_answer_model_ = 'survey.question.answer'
+                                _matrix_row_code_ = matrix_row.code
+                                _matrix_row_value_ = matrix_row.value
+                                _matrix_row_sequence_ = matrix_row.sequence
 
-                        for question_answer in question.suggested_answer_ids:
-
-                            survey_question_answer(question_answer)
-
-                        if export_yaml:
-
-                            yaml_file.write('\n')
-
-                        if export_txt:
-
-                            txt_file.write('\n')
-
-                        for matrix_row in question.matrix_row_ids:
-
-                            survey_question_matrix_row(matrix_row)
-
-                        if export_yaml:
+                                yaml_file.write('            %s:\n' % (_matrix_row_code_))
+                                yaml_file.write('                model: %s\n' % (_question_answer_model_))
+                                yaml_file.write('                value: \'%s\'\n' % (_matrix_row_value_))
+                                yaml_file.write('                code: \'%s\'\n' % (_matrix_row_code_))
+                                yaml_file.write('                matrix_question_id: %s\n' % (_question_code_))
+                                yaml_file.write('                sequence: %s\n' % (_matrix_row_sequence_))
 
                             yaml_file.write('\n')
 
-                        if export_txt:
+                            for question_answer in question.suggested_answer_ids:
 
-                            txt_file.write('\n')
+                                _question_answer_model_ = 'survey.question.answer'
+                                _question_answer_code_ = question_answer.code
+                                _question_answer_value_ = question_answer.value
+                                _question_answer_sequence_ = question_answer.sequence
+
+                                yaml_file.write('            %s:\n' % (_question_answer_code_))
+                                yaml_file.write('                model: %s\n' % (_question_answer_model_))
+                                yaml_file.write('                value: \'%s\'\n' % (_question_answer_value_))
+                                yaml_file.write('                code: \'%s\'\n' % (_question_answer_code_))
+                                yaml_file.write('                question_id: %s\n' % (_question_code_))
+                                yaml_file.write('                sequence: %s\n' % (_question_answer_sequence_))
+
+                            yaml_file.write('\n')
 
                         if export_xls:
 
