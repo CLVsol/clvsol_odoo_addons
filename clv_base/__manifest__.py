@@ -14,7 +14,9 @@
     'data': [
         'security/base_security.xml',
         'security/ir.model.access.csv',
+        'views/global_settings_view.xml',
         'views/base_menu_view.xml',
+        'views/global_settings_menu_view.xml',
         'views/health_menu_view.xml',
     ],
     'demo': [],
