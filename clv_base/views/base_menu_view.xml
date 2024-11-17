@@ -6,7 +6,7 @@
 
     <menuitem name="Base" id="clv_base.menu_base" 
         groups="clv_base.group_user"
-        sequence="11"/>
+        sequence="4"/>
 
     <menuitem name="Base" id="clv_base.menu_base_base"  
         parent="clv_base.menu_base"

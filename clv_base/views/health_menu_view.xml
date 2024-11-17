@@ -6,7 +6,7 @@
 
     <menuitem name="Health" id="clv_base.menu_health" 
         groups="clv_base.group_user"
-        sequence="15"/>
+        sequence="8"/>
 
     <menuitem name="Health" id="clv_base.menu_health_health"  
         parent="clv_base.menu_health"
