@@ -17,6 +17,7 @@
         'views/global_settings_view.xml',
         'views/global_settings_filestore_view.xml',
         'views/referenceable_model_view.xml',
+        'views/abstract_tag_view.xml',
         'views/base_menu_view.xml',
         'views/global_settings_menu_view.xml',
         'views/referenciable_model_menu_view.xml',
