@@ -4,3 +4,4 @@
 
 from . import global_settings
 from . import global_settings_filestore
+from . import referenceable_model
