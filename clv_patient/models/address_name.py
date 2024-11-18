@@ -21,15 +21,6 @@ class Patient(models.Model):
         for record in self:
             if record.street_name:
                 record.address_name = record.street_name
-                # if record.street_number:
-                #     record.address_name = record.address_name + ', ' + record.street_number
-                #     if record.street_number2:
-                #         record.address_name = record.address_name + '/' + record.street_number2
-                # else:
-                #     if record.street_number2:
-                #         record.address_name = record.address_name + ', ' + record.street_number2
-                # if record.street2:
-                #     record.address_name = record.address_name + ' (' + record.street2 + ')'
                 if record.street_number:
                     record.address_name = record.address_name + ', ' + record.street_number
                     if record.street2:
