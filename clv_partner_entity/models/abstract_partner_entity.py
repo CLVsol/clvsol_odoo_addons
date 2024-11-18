@@ -61,10 +61,15 @@ class AbstractPartnerEntity(models.AbstractModel):
          u'Error! The Code must be unique!'),
     ]
 
-    @api.model
-    @api.returns('self', lambda value: value.id)
-    def create(self, vals):
-        vals = self._create_vals(vals)
+    # @api.model
+    @api.model_create_multi
+    # @api.returns('self', lambda value: value.id)
+    # def create(self, vals):
+    def create(self, vals_list):
+        # vals = self._create_vals(vals)
+        # return super().create(vals)
+        for vals in vals_list:
+            vals = self._create_vals(vals)
         return super().create(vals)
 
     def toggle_active(self):
@@ -103,7 +108,8 @@ class AbstractPartnerEntity(models.AbstractModel):
         """
         if vals.get('image_1920'):
             return False
-        if any((getattr(threading.currentThread(), 'testing', False),
+        # if any((getattr(threading.currentThread(), 'testing', False),
+        if any((getattr(threading.current_thread(), 'testing', False),
                 self._context.get('install_mode'))):
             if not self.env.context.get('__image_create_allow'):
                 return False
