@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_survey_code_renew_view_form" model="ir.ui.view">
+        <field name="name">clv.survey.code_renew.form</field>
+        <field name="model">clv.survey.code_renew</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="survey_ids"/>
+                <field name="survey_ids"/>
+                <group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_survey_code_renew"
+                        string="Code Renew"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_survey_code_renew_action" model="ir.actions.act_window">
+        <field name="name">Survey Code Renew</field>
+        <field name="binding_model_id" ref="model_survey_survey"/>
+        <field name="binding_view_types">form</field>
+        <field name="res_model">clv.survey.code_renew</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

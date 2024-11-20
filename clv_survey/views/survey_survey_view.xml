@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="survey_survey_view_form" model="ir.ui.view">
+        <field name="name">survey.survey.view.form</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <div class="oe_title" position="inside">
+                <label for="description" class="oe_edit_only"/>
+                <h2><field name="description" placeholder="Survey Description"/></h2>
+                <label for="code" class="oe_edit_only"/>
+                <h3><field name="code" placeholder="Survey Code"/></h3>
+                <label for="phase_id" class="oe_edit_only"/>
+                <h2><field name="phase_id" placeholder="Phase" ptions='{"no_open": True, "no_create": True}'/></h2>
+                <label for="public_url" class="oe_edit_only"/>
+                <h3><field name="public_url" placeholder="Public link" widget="url"/></h3>
+            </div>
+            <field name="question_type" position="before">
+                <field name="code"/>
+            </field>
+            <field name="question_and_page_ids" position="before">
+                <group>
+                    <group>
+                        <button name="survey.action_survey_question_form"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-list"
+                                context="{'search_default_survey_id': id}"
+                                >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text"> Question(s)</span>
+                            </div>
+                        </button>
+                    </group>
+                </group>
+            </field>
+            <xpath expr="//notebook" position="inside">
+                <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
+                    <group name="settings_top">
+                        <group name="settings_left">
+                            <field name="id"/>
+                        </group>
+                        <group name='settings_right'>
+                            <div class="oe_button_box" name="settings_buttons">
+                            </div>
+                        </group>
+                        <group name="settings_left_3">
+                        </group>
+                        <group name='settings_right_3'>
+                            <div class="oe_button_box" name="settings_buttons_3">
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="survey_survey_view_form_duplicate" model="ir.ui.view">
+        <field name="name">survey.survey.view.form.duplicate</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+               <attribute name="duplicate">false</attribute>
+           </xpath>
+        </field>
+    </record>
+
+    <record id="survey_survey_view_tree" model="ir.ui.view">
+        <field name="name">survey.survey.view.tree</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="title" position="after">
+                <field name="description"/>
+                <field name="code"/>
+                <field name="phase_id" />
+                <field name="session_link"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_survey_view_search_phase" model="ir.ui.view">
+        <field name="name">survey.survey.search</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="title" position="after">
+                <field name="phase_id"/>
+            </field>
+            <filter name="inactive" position="after">
+                <group name="group_by" expand="0" string="Group By...">
+                    <filter name="filter_phase_id" string="Phase" context="{'group_by': 'phase_id'}"/>
+                </group>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

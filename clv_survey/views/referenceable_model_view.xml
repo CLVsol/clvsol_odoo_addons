@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="survey_user_input_view_form_referenceable_model" model="ir.ui.view">
+        <field name="name">survey.user_input.form</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="access_token" position="after">
+                <field name="ref_id"  options="{'no_open': False, 'no_create': True}"/>
+                <field name="ref_model"/>
+                <field name="ref_name"/>
+                <field name="ref_code"/>
+                <field name="ref_suport" invisible="True"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_tree_referenceable_model" model="ir.ui.view">
+        <field name="name">survey.user_input.tree</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="create_date" position="after">
+                <field name="ref_id"/>
+                <field name="ref_suport" invisible="True"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_search_referenceable_model" model="ir.ui.view">
+        <field name="name">survey.user_input.search</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+           <field name="partner_id" position="after">
+                <field name="ref_id"/>
+                <field name="ref_model"/>
+                <field name="ref_name"/>
+                <field name="ref_code"/>
+            </field>
+            <filter name="group_by_survey" position="after">
+                <filter name="filter_ref_model" string="Refers to (Model)" context="{'group_by': 'ref_model'}"/>
+                <filter name="filter_ref_name" string="Refers to (Name)" context="{'group_by': 'ref_name'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

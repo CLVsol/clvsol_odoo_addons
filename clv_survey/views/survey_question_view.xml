@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="survey_question_view_form" model="ir.ui.view">
+        <field name="name">survey.question.form</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="title" position="replace">
+            </field>
+            <label for="title" position="replace">
+                <label for="title" string="Question name" class="oe_edit_only"/>
+                <h1><field name="title" colspan="4" placeholder="Question Name"/></h1>
+                <label for="code" class="oe_edit_only"/>
+                <h3><field name="code" placeholder="Question Code"/></h3>
+                <label for="parameter" class="oe_edit_only"/>
+                <h3><field name="parameter" placeholder="Related Parameter"/></h3>
+                <label for="description" class="oe_edit_only"/>
+                <h3><field name="description" placeholder="Description"/></h3>
+            </label>
+            <field name="is_correct" position="before">
+                <field name="code"/>
+            </field>
+            <xpath expr="//notebook" position="inside">
+                <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
+                    <group name="settings_top">
+                        <group name="settings_left">
+                            <field name="id"/>
+                        </group>
+                        <group name='settings_right'>
+                            <div class="oe_button_box" name="settings_buttons">
+                            </div>
+                        </group>
+                        <group name="settings_left_3">
+                        </group>
+                        <group name='settings_right_3'>
+                            <div class="oe_button_box" name="settings_buttons_3">
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="survey_question_view_tree" model="ir.ui.view">
+        <field name="name">survey.question.tree</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="after">
+                <field name="survey_id"/>
+                <field name="page_id"/>
+                <field name="is_page"/>
+                <field name="code"/>
+                <field name="parameter"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_question_view_search" model="ir.ui.view">
+        <field name="name">survey.question.search</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="survey_id" position="after">
+                <field name="page_id"/>
+            </field>
+            <filter name="group_by_type" position="before">
+                <filter name="group_by_survey_id" string="Survey" domain="[]"  context="{'group_by':'survey_id'}"/>
+                <filter name="group_by_pate_id" string="Page" domain="[]"  context="{'group_by':'page_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="survey.action_survey_question_form">
+        <field name="name">Questions</field>
+        <field name="res_model">survey.question</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="survey.survey_question_search"/>
+        <field name="context">{'search_default_group_by_page': True}</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_empty_folder">
+            No questions found
+          </p>
+        </field>
+    </record>
+
+</odoo>
