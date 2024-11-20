@@ -27,7 +27,7 @@
         <field name="inherit_id" ref="clv_patient.clv_patient_view_tree"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="email" position="before">
+            <field name="id" position="before">
                 <field name="count_sets" invisible="True"/>
             </field>
         </field>
