@@ -25,6 +25,7 @@ class PatientAgeRange(models.Model):
         string="From", required=True, default=lambda self: self._default_age_from()
     )
     age_to = fields.Integer(string="To", required=True)
+    description = fields.Char(string='Description')
 
     _sql_constraints = [("name_uniq", "unique (name)", "A name must be unique !")]
 

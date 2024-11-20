@@ -21,6 +21,9 @@
                     </group>
                 </page>
             </page>
+            <group name="settings_left" position="inside">
+                <field name="id"/>
+            </group>
         </field>
     </record>
 
@@ -33,6 +36,9 @@
             <xpath expr="//tree" position="attributes">
                 <attribute name="string">Patient Markers</attribute>
             </xpath>
+            <field name="notes" position="after">
+                <field name="id"/>
+            </field>
         </field>
     </record>
 

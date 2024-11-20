@@ -14,6 +14,7 @@
                         <field name="name" />
                         <field name="age_from" />
                         <field name="age_to" />
+                        <field name="description" />
                     </group>
                 </sheet>
             </form>
@@ -25,9 +26,11 @@
         <field name="model">clv.patient.age_range</field>
         <field name="arch" type="xml">
             <tree string="Patient Age Range" editable="bottom">
+            <!--tree string="Patient Age Range"-->
                 <field name="name" />
                 <field name="age_from" />
                 <field name="age_to" />
+                <field name="description" />
             </tree>
         </field>
     </record>
