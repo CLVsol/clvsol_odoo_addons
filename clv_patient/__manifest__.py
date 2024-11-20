@@ -15,7 +15,7 @@
         'clv_base',
         'clv_partner_entity',
         'clv_global_tag',
-        # 'clv_employee',
+        'clv_employee',
         'clv_set',
         # 'clv_residence',
     ],
