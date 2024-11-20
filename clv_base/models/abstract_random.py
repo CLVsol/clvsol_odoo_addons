@@ -26,11 +26,18 @@ class AbstractRandom(models.AbstractModel):
         help='Use "/" to get an automatic new Random ID.'
     )
 
-    @api.model
-    def create(self, values):
-        if 'random_field' not in values or ('random_field' in values and values['random_field'] == '/'):
-            random_field = get_random_field()
-            values['random_field'] = random_field
+    # @api.model
+    @api.model_create_multi
+    # def create(self, values):
+    def create(self, vals_list):
+        # if 'random_field' not in values or ('random_field' in values and values['random_field'] == '/'):
+        #     random_field = get_random_field()
+        #     values['random_field'] = random_field
+        # return super().create(values)
+        for values in vals_list:
+            if 'random_field' not in values or ('random_field' in values and values['random_field'] == '/'):
+                random_field = get_random_field()
+                values['random_field'] = random_field
         return super().create(values)
 
     # @api.multi
