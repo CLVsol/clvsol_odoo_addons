@@ -1,0 +1,150 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="survey_question_survey_question_1_template" model="clv.external_sync.template">
+		<field name="name" eval="&quot;&quot;&quot;survey.question (survey.question) [1] [Sync]&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;survey.question&quot;&quot;&quot;"/>
+		<field name="method" eval="&quot;&quot;&quot;_object_external_sync&quot;&quot;&quot;"/>
+		<field name="external_model" eval="&quot;&quot;&quot;survey.question&quot;&quot;&quot;"/>
+		<field name="apply_domain_filter" eval="True"/>
+		<field name="domain_filter" eval="&quot;&quot;&quot;[('is_page', '=', True)]&quot;&quot;&quot;"/>
+		<field name="enable_check_missing" eval="False"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_title" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;title&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;title&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_is_page" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;is_page&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;is_page&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_page_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;page_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;page_id&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_code" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;code&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;code&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_parameter" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;parameter&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;parameter&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_description" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;description&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;description&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_question_type" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;question_type&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;question_type&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_survey_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;survey_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;survey_id&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_sequence" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;sequence&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;sequence&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_constr_mandatory" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;constr_mandatory&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;constr_mandatory&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_constr_error_msg" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;constr_error_msg&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;constr_error_msg&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_column_nb" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;column_nb&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;column_nb&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_comments_allowed" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;comments_allowed&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;comments_allowed&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_comments_message" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;comments_message&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;comments_message&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_template_object_field_matrix_subtype" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;matrix_subtype&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;matrix_subtype&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_1_schedule" model="clv.external_sync.schedule">
+		<field name="name" eval="&quot;&quot;&quot;survey.question (survey.question) [1] [Sync]&quot;&quot;&quot;"/>
+		<field name="template_id" eval="survey_question_survey_question_1_template"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_member_survey_question_1" model="clv.external_sync.batch.member">
+		<field name="external_sync_batch_id" ref="clv_external_sync.clv_external_sync_batch_default_00"/>
+		<field name="ref_id" ref="survey_question_survey_question_1_schedule"/>
+	</record>
+	 
+</odoo>
