@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="global_settings_sync_current_phase_id_template" model="clv.external_sync.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.global_settings (current_phase_id) [Sync]&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;ir.config_parameter&quot;&quot;&quot;"/>
+		<field name="method" eval="&quot;&quot;&quot;_global_settings_sync&quot;&quot;&quot;"/>
+		<field name="method_args" eval="&quot;&quot;&quot;{'ir.config_parameter.key': 'clv.global_settings.current_phase_id'}&quot;&quot;&quot;"/>
+		<field name="external_model" eval="&quot;&quot;&quot;-&quot;&quot;&quot;"/>
+		<field name="enable_identification" eval="False"/>
+		<field name="enable_check_missing" eval="False"/>
+		<field name="enable_inclusion" eval="False"/>
+	</record>
+	 
+	<record id="global_settings_sync_current_phase_id_schedule" model="clv.external_sync.schedule">
+		<field name="name" eval="&quot;&quot;&quot;clv.global_settings (current_phase_id) [Sync]&quot;&quot;&quot;"/>
+		<field name="template_id" eval="global_settings_sync_current_phase_id_template"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_member_global_settings_sync_current_phase_id" model="clv.external_sync.batch.member">
+		<field name="external_sync_batch_id" ref="clv_external_sync.clv_external_sync_batch_default_00"/>
+		<field name="ref_id" ref="global_settings_sync_current_phase_id_schedule"/>
+	</record>
+	 
+</odoo>
