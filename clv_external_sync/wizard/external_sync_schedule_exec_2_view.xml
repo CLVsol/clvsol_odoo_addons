@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_external_sync_schedule_exec_2_view_form" model="ir.ui.view">
+        <field name="name">clv.external_sync.schedule.exec_2.form</field>
+        <field name="model">clv.external_sync.schedule.exec_2</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="external_sync_batch_member_ids" class="oe_edit_only"/>
+                <field name="external_sync_batch_member_ids">
+                </field>
+                <group>
+                    <group>
+                        <field name="count_schedules"/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_external_sync_schedule_exec_2"
+                        string="External Sync Schedule Exec (2)"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_external_sync_schedule_exec_2_action" model="ir.actions.act_window">
+        <field name="name">External Sync Schedule Exec (2)</field>
+        <field name="binding_model_id" ref="model_clv_external_sync_batch_member"/>
+        <field name="res_model">clv.external_sync.schedule.exec_2</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

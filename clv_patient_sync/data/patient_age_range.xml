@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_patient-age_range_0_2" model="clv.patient.age_range">
+		<field name="name" eval="&quot;&quot;&quot;0-2 anos&quot;&quot;&quot;"/>
+		<field name="age_from" eval="0"/>
+		<field name="age_to" eval="2"/>
+	</record>
+	 
+	<record id="clv_patient-age_range_3_10" model="clv.patient.age_range">
+		<field name="name" eval="&quot;&quot;&quot;3-10 anos&quot;&quot;&quot;"/>
+		<field name="age_from" eval="3"/>
+		<field name="age_to" eval="10"/>
+	</record>
+	 
+	<record id="clv_patient-age_range_11_17" model="clv.patient.age_range">
+		<field name="name" eval="&quot;&quot;&quot;11-17 anos&quot;&quot;&quot;"/>
+		<field name="age_from" eval="11"/>
+		<field name="age_to" eval="17"/>
+	</record>
+	 
+	<record id="clv_patient-age_range_18_59" model="clv.patient.age_range">
+		<field name="name" eval="&quot;&quot;&quot;18-59 anos&quot;&quot;&quot;"/>
+		<field name="age_from" eval="18"/>
+		<field name="age_to" eval="59"/>
+	</record>
+	 
+	<record id="clv_patient-age_range_60mais" model="clv.patient.age_range">
+		<field name="name" eval="&quot;&quot;&quot;60+ anos&quot;&quot;&quot;"/>
+		<field name="age_from" eval="60"/>
+		<field name="age_to" eval="120"/>
+	</record>
+	 
+</odoo>
