@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import abstract_external_sync
-# from . import external_sync_host
+from . import external_sync_host
 from . import external_sync
 from . import external_sync_template
 from . import external_sync_schedule

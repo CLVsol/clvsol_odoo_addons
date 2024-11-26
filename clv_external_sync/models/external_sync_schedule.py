@@ -23,10 +23,10 @@ class ExternalSyncSchedule(models.Model):
         help='External Sync Schedule Name'
     )
 
-    # external_host_id = fields.Many2one(
-    #     comodel_name='clv.external_sync.host',
-    #     string='External Host'
-    # )
+    external_host_id = fields.Many2one(
+        comodel_name='clv.external_sync.host',
+        string='External Host'
+    )
 
     max_task = fields.Integer(
         string='Max Task Registers'

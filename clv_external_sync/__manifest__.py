@@ -17,7 +17,7 @@
     'data': [
         'security/external_sync_security.xml',
         'security/ir.model.access.csv',
-        # 'views/external_sync_host_view.xml',
+        'views/external_sync_host_view.xml',
         'views/external_sync_view.xml',
         'views/external_sync_template_view.xml',
         'views/external_sync_schedule_view.xml',

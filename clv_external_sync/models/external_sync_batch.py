@@ -51,145 +51,74 @@ class ExternalSyncBatch(models.Model):
          u'Error! The Code must be unique!'),
     ]
 
-    # @api.model
-    # def _external_sync_batch_exec(self, batch_name):
+    @api.model
+    def _external_sync_batch_exec(self, batch_name):
 
-    #     from time import time
-    #     start = time()
+        from time import time
+        start = time()
 
-    #     ExternalSyncBatch = self.env['clv.external_sync.batch']
-    #     batch = ExternalSyncBatch.search([
-    #         ('name', '=', batch_name),
-    #     ])
+        ExternalSyncBatch = self.env['clv.external_sync.batch']
+        batch = ExternalSyncBatch.search([
+            ('name', '=', batch_name),
+        ])
 
-    #     sync_log = False
+        sync_log = False
 
-    #     _logger.info(u'%s %s', '>>>>>', batch.name)
+        _logger.info(u'%s %s', '>>>>>', batch.name)
 
-    #     if sync_log is False:
-    #         sync_log = '########## ' + batch.name + ' ##########\n'
-    #     else:
-    #         sync_log += '\n########## ' + batch.name + ' ##########\n'
+        if sync_log is False:
+            sync_log = '########## ' + batch.name + ' ##########\n'
+        else:
+            sync_log += '\n########## ' + batch.name + ' ##########\n'
 
-    #     for external_sync_batch_member in batch.external_sync_batch_member_ids:
+        for external_sync_batch_member in batch.external_sync_batch_member_ids:
 
-    #         if external_sync_batch_member.enabled:
+            if external_sync_batch_member.enabled:
 
-    #             schedule = external_sync_batch_member.ref_id
+                schedule = external_sync_batch_member.ref_id
 
-    #             _logger.info(u'%s %s', '>>>>>', schedule.name)
+                _logger.info(u'%s %s', '>>>>>', schedule.name)
 
-    #             model = schedule.model
-    #             _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
+                model = schedule.model
+                _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
 
-    #             method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
+                method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
 
-    #             _logger.info(u'%s %s %s', '>>>>>>>>>>', schedule.method, method_call)
+                _logger.info(u'%s %s %s', '>>>>>>>>>>', schedule.method, method_call)
 
-    #             if method_call:
+                if method_call:
 
-    #                 schedule.sync_log = 'method: ' + str(schedule.method) + '\n\n'
-    #                 schedule.sync_log +=  \
-    #                     'external_host: ' + str(schedule.external_host_id.name) + '\n' + \
-    #                     'external_dbname: ' + str(schedule.external_host_id.external_dbname) + '\n\n' + \
-    #                     'max_task: ' + str(schedule.max_task) + '\n' + \
-    #                     'enable_identification: ' + \
-    #                     str(schedule.enable_identification) + '\n' + \    # @api.model
-    # def _external_sync_batch_exec(self, batch_name):
+                    schedule.sync_log = 'method: ' + str(schedule.method) + '\n\n'
+                    schedule.sync_log +=  \
+                        'external_host: ' + str(schedule.external_host_id.name) + '\n' + \
+                        'external_dbname: ' + str(schedule.external_host_id.external_dbname) + '\n\n' + \
+                        'max_task: ' + str(schedule.max_task) + '\n' + \
+                        'enable_identification: ' + \
+                        str(schedule.enable_identification) + '\n' + \
+                        'enable_check_missing: ' + \
+                        str(schedule.enable_check_missing) + '\n' + \
+                        'enable_inclusion: ' + str(schedule.enable_inclusion) + '\n' + \
+                        'enable_sync: ' + str(schedule.enable_sync) + '\n' + \
+                        'external_last_update_args: ' + str(schedule.external_last_update_args()) + '\n\n' + \
+                        'enable_sequence_code_sync: ' + str(schedule.enable_sequence_code_sync) + '\n\n'
 
-    #     from time import time
-    #     start = time()
+                    exec(method_call)
 
-    #     ExternalSyncBatch = self.env['clv.external_sync.batch']
-    #     batch = ExternalSyncBatch.search([
-    #         ('name', '=', batch_name),
-    #     ])
+                sync_log += '\n########## ' + schedule.name + ' ##########\n'
+                sync_log += schedule.sync_log
 
-    #     sync_log = False
+                self.env.cr.commit()
 
-    #     _logger.info(u'%s %s', '>>>>>', batch.name)
+        sync_log += '\n############################################################'
+        sync_log +=  \
+            '\nExecution time: ' + str(secondsToStr(time() - start)) + '\n'
 
-    #     if sync_log is False:
-    #         sync_log = '########## ' + batch.name + ' ##########\n'
-    #     else:
-    #         sync_log += '\n########## ' + batch.name + ' ##########\n'
+        batch.sync_log = sync_log
 
-    #     for external_sync_batch_member in batch.external_sync_batch_member_ids:
+        _logger.info(u'%s %s', '>>>>> Execution time: ', secondsToStr(time() - start))
 
-    #         if external_sync_batch_member.enabled:
+    @api.model
+    def _external_sync_batch_exec_cron(self, batch_name):
 
-    #             schedule = external_sync_batch_member.ref_id
-
-    #             _logger.info(u'%s %s', '>>>>>', schedule.name)
-
-    #             model = schedule.model
-    #             _logger.info(u'%s %s [%s]', '>>>>>', schedule.name, model)
-
-    #             method_call = 'self.env["clv.external_sync"].' + schedule.method + '(schedule)'
-
-    #             _logger.info(u'%s %s %s', '>>>>>>>>>>', schedule.method, method_call)
-
-    #             if method_call:
-
-    #                 schedule.sync_log = 'method: ' + str(schedule.method) + '\n\n'
-    #                 schedule.sync_log +=  \
-    #                     'external_host: ' + str(schedule.external_host_id.name) + '\n' + \
-    #                     'external_dbname: ' + str(schedule.external_host_id.external_dbname) + '\n\n' + \
-    #                     'max_task: ' + str(schedule.max_task) + '\n' + \
-    #                     'enable_identification: ' + \
-    #                     str(schedule.enable_identification) + '\n' + \
-    #                     'enable_check_missing: ' + \
-    #                     str(schedule.enable_check_missing) + '\n' + \
-    #                     'enable_inclusion: ' + str(schedule.enable_inclusion) + '\n' + \
-    #                     'enable_sync: ' + str(schedule.enable_sync) + '\n' + \
-    #                     'external_last_update_args: ' + str(schedule.external_last_update_args()) + '\n\n' + \
-    #                     'enable_sequence_code_sync: ' + str(schedule.enable_sequence_code_sync) + '\n\n'
-
-    #                 exec(method_call)
-
-    #             sync_log += '\n########## ' + schedule.name + ' ##########\n'
-    #             sync_log += schedule.sync_log
-
-    #             self.env.cr.commit()
-
-    #     sync_log += '\n############################################################'
-    #     sync_log +=  \
-    #         '\nExecution time: ' + str(secondsToStr(time() - start)) + '\n'
-
-    #     batch.sync_log = sync_log
-
-    #     _logger.info(u'%s %s', '>>>>> Execution time: ', secondsToStr(time() - start))
-
-    # @api.model
-    # def _external_sync_batch_exec_cron(self, batch_name):
-
-    #     ExternalSyncBatch = self.env['clv.external_sync.batch']
-    #     ExternalSyncBatch._external_sync_batch_exec(batch_name)
-
-    #                     'enable_check_missing: ' + \
-    #                     str(schedule.enable_check_missing) + '\n' + \
-    #                     'enable_inclusion: ' + str(schedule.enable_inclusion) + '\n' + \
-    #                     'enable_sync: ' + str(schedule.enable_sync) + '\n' + \
-    #                     'external_last_update_args: ' + str(schedule.external_last_update_args()) + '\n\n' + \
-    #                     'enable_sequence_code_sync: ' + str(schedule.enable_sequence_code_sync) + '\n\n'
-
-    #                 exec(method_call)
-
-    #             sync_log += '\n########## ' + schedule.name + ' ##########\n'
-    #             sync_log += schedule.sync_log
-
-    #             self.env.cr.commit()
-
-    #     sync_log += '\n############################################################'
-    #     sync_log +=  \
-    #         '\nExecution time: ' + str(secondsToStr(time() - start)) + '\n'
-
-    #     batch.sync_log = sync_log
-
-    #     _logger.info(u'%s %s', '>>>>> Execution time: ', secondsToStr(time() - start))
-
-    # @api.model
-    # def _external_sync_batch_exec_cron(self, batch_name):
-
-    #     ExternalSyncBatch = self.env['clv.external_sync.batch']
-    #     ExternalSyncBatch._external_sync_batch_exec(batch_name)
+        ExternalSyncBatch = self.env['clv.external_sync.batch']
+        ExternalSyncBatch._external_sync_batch_exec(batch_name)

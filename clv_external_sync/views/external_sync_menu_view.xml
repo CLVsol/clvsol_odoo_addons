@@ -46,11 +46,11 @@
         groups="clv_external_sync.group_user"
         sequence="10"/>
 
-    <!--menuitem name="Hosts" id="clv_external_sync.menu_external_sync_config_external_sync_hosts" 
+    <menuitem name="Hosts" id="clv_external_sync.menu_external_sync_config_external_sync_hosts" 
         parent="clv_external_sync.menu_external_sync_config_external_sync"
         groups="clv_external_sync.group_user"
         sequence="10"
-        action="clv_external_sync.clv_external_sync_host_action"/-->
+        action="clv_external_sync.clv_external_sync_host_action"/>
 
     <menuitem name="Templates" id="clv_external_sync.menu_external_sync_config_external_sync_templates" 
         parent="clv_external_sync.menu_external_sync_config_external_sync"

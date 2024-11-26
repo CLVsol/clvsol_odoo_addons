@@ -30,15 +30,15 @@ class ExternalSypnScheduleMassEdit2(models.TransientModel):
         default=_default_external_sync_schedule_ids
     )
 
-    # external_host_id = fields.Many2one(
-    #     comodel_name='clv.external_sync.host',
-    #     string='External Host'
-    # )
-    # external_host_id_selection = fields.Selection(
-    #     [('set', 'Set'),
-    #      ('remove', 'Remove'),
-    #      ], string='External Host:', default=False, readonly=False, required=False
-    # )
+    external_host_id = fields.Many2one(
+        comodel_name='clv.external_sync.host',
+        string='External Host'
+    )
+    external_host_id_selection = fields.Selection(
+        [('set', 'Set'),
+         ('remove', 'Remove'),
+         ], string='External Host:', default=False, readonly=False, required=False
+    )
 
     max_task = fields.Integer(
         string='Max Task Registers'
