@@ -31,12 +31,13 @@ class ExternalSync(models.Model):
 
             method_args = literal_eval(schedule.method_args)
 
-            remote_object_fields = ['id', 'name', 'partner_id', 'company_id', 'tz', 'lang',
+            remote_object_fields = ['id', 'name', 'partner_id', 'company_id', 'country_id', 'tz', 'lang',
                                     'login', 'password', 'image_1920', 'groups_id', 'active']
 
             AbstractExternalSync = self.env['clv.abstract.external_sync']
             ResUsers = self.env['res.users']
             ResCompany = self.env['res.company']
+            ResCountry = self.env['res.country']
             ResPartner = self.env['res.partner']
 
             external_host = schedule.external_host_id.name
@@ -79,6 +80,7 @@ class ExternalSync(models.Model):
                     else:
 
                         company = ResCompany.search([('name', 'in', remote_object['company_id'])])
+                        country = ResCountry.search([('name', 'in', remote_object['country_id'])])
                         parent = ResPartner.search([('name', 'in', remote_object['company_id'])])
 
                         res_user_record = {}
@@ -102,6 +104,7 @@ class ExternalSync(models.Model):
                         res_partner_record['email'] = remote_object['login']
                         res_partner_record['parent_id'] = parent.id
                         res_partner_record['company_id'] = company.id
+                        res_partner_record['country_id'] = country.id
                         new_partner.write(res_partner_record)
 
             _logger.info(u'%s %s', '>>>>>>>>>> date_last_sync: ', date_last_sync)
