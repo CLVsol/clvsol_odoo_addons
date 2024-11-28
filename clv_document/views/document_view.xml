@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_document_view_form" model="ir.ui.view">
+        <field name="name">clv.document.form</field>
+        <field name="model">clv.document</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form>
+                <header name="header">
+                    <!-- To add buttons and status widget -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_right oe_button_box">
+                        <h1><separator name="separator_document" string="[  Document  ]" style="color:Black; background:White;"/></h1>
+                        <field name="notes" placeholder="Notes..." colspan="2" style="color:Maroon;background:White;text-align:left;"/>
+                    </div>
+                    <div name="center" class="oe_center">
+                        <label for="code" class="oe_edit_only"/>
+                        <h3><field name="code" placeholder="Document Code..."/></h3>
+                    </div>
+                    <div name="title" class="oe_title">
+                    </div>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <field name="date_inclusion"/>
+                            <field name="date_document"/>
+                        </group>
+                        <group name="group_right">
+                        </group>
+                    </group>
+                    <field name="notes" placeholder="Notes..." colspan="4"/>
+                    <notebook>
+                        <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
+                            <group name="settings_top">
+                                <group name="settings_left">
+                                    <field name="id"/>
+                                </group>
+                                <group name='settings_right'>
+                                    <div class="oe_button_box" name="settings_buttons">
+                                        <button name="toggle_active"
+                                                    type="object"
+                                                    class="oe_stat_button"
+                                                    icon="fa-archive"
+                                                    groups="clv_base.group_reguser"
+                                                    >
+                                                <field name="active"
+                                                       widget="boolean_button"
+                                                       options='{"terminology": "archive"}'
+                                                       />
+                                        </button>
+                                    </div>
+                                </group>
+                                <group name="settings_left_3">
+                                </group>
+                                <group name='settings_right_3'>
+                                    <div class="oe_button_box" name="settings_buttons_3">
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="clv_document_view_tree" model="ir.ui.view">
+        <field name="name">clv.document.tree</field>
+        <field name="model">clv.document</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <tree name="documents" string="Documents">
+                <field name="code"/>
+                <field name="date_inclusion" invisible = "True"/>
+                <field name="date_document" invisible = "True"/>
+                <field name="notes" invisible = "True"/>
+                <field name="id"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="clv_document_view_search" model="ir.ui.view">
+        <field name="name">clv.document.search</field>
+        <field name="model">clv.document</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="date_inclusion"/>
+                <field name="date_document"/>
+                <field name="notes"/>
+                <field name="id"/>
+                <separator/>
+                <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
+                <group name="group_by" string="Group By...">
+                    <filter name="filter_date_inclusion_year" string="Inclusion Date (Year)" domain="[]" context="{'group_by': 'date_inclusion:year'}"/>
+                    <filter name="filter_date_inclusion_month" string="Inclusion Date (Month)" domain="[]" context="{'group_by': 'date_inclusion:month'}"/>
+                    <filter name="filter_date_inclusion_day" string="Inclusion Date (Day)" domain="[]" context="{'group_by': 'date_inclusion:day'}"/>
+                    <filter name="filter_date_document" string="Document Date" domain="[]" context="{'group_by': 'date_document'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="clv_document_action" model="ir.actions.act_window">
+        <field name="name">Documents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="clv_document_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new document.
+          </p>
+        </field>
+    </record>
+        
+    <record id="clv_document_view_form_childs" model="ir.ui.view">
+        <field name="name">clv.document.form</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document.clv_document_view_form"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <field name="date_inclusion" position="before">
+                <field name="parent_id" placeholder="Parent Document..." options="{'no_open': False, 'no_create': True}"/>
+            </field>
+            <page name="settings" position="before">
+                <page name="child_documents"  string="Child Documents">
+                    <group>
+                        <group>
+                            <button name="clv_document.clv_document_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_parent_id': id}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_children"/>
+                                    </span>
+                                    <span class="o_stat_text"> Document(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="child_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_document_view_search_childs" model="ir.ui.view">
+        <field name="name">clv.document.search</field>
+        <field name="model">clv.document</field>
+        <field name="inherit_id" ref="clv_document.clv_document_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="date_document" position="after">
+                <field name="parent_id"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="filter_parent_id" string="Parent Diocument" domain="[]" context="{'group_by':'parent_id'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
