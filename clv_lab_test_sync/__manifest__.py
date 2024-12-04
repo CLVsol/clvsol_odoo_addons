@@ -5,7 +5,7 @@
 {
     'name': 'Lab Test External Sync',
     'summary': 'Lab Test External Sync Module used by CLVsol Solutions.',
-    'version': '16.0.0.0',
+    'version': '16.0.7.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',

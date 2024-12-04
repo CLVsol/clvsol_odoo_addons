@@ -5,7 +5,7 @@
 {
     'name': 'Event External Sync',
     'summary': 'Event External Sync Module used by CLVsol Solutions.',
-    'version': '16.0.6.0',
+    'version': '16.0.7.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
