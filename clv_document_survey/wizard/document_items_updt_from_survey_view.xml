@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_document_items_updt_from_survey_view_form" model="ir.ui.view">
+        <field name="name">clv.document.items_updt_from_survey.form</field>
+        <field name="model">clv.document.items_updt_from_survey</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_right">
+                    </div>
+                    <label for="document_ids"/>
+                    <field name="document_ids"/>
+                    <group  name="group_top">
+                    </group>
+                </sheet>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_document_items_updt_from_survey"
+                        string="Update from Survey"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_document_items_updt_from_survey_action" model="ir.actions.act_window">
+        <field name="name">Document Items Update from Survey</field>
+        <field name="binding_model_id" ref="model_clv_document"/>
+        <field name="res_model">clv.document.items_updt_from_survey</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

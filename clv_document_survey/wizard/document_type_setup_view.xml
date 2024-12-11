@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="clv_document_type_setup_view_form" model="ir.ui.view">
+        <field name="name">clv.document.type_setup.form</field>
+        <field name="model">clv.document.type_setup</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_right">
+                    </div>
+                    <label for="document_ids"/>
+                    <field name="document_ids"/>
+                    <group  name="group_top">
+                    </group>
+                </sheet>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_document_type_setup"
+                        string="Document Type Set Up"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_document_type_setup_action" model="ir.actions.act_window">
+        <field name="name">Document Type Set Up</field>
+        <field name="binding_model_id" ref="model_clv_document"/>
+        <field name="res_model">clv.document.type_setup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
