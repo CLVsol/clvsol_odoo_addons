@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_document_clv_document_3_template_object_field_survey_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;survey_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;survey_id&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" ref="clv_document_sync.clv_document_clv_document_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_document_clv_document_3_template_object_field_survey_user_input_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;survey_user_input_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;survey_user_input_id&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" ref="clv_document_sync.clv_document_clv_document_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_document_clv_document_3_schedule_object_field_survey_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;survey_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;survey_id&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="schedule_id" ref="clv_document_sync.clv_document_clv_document_3_schedule"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_document_clv_document_3_schedule_object_field_survey_user_input_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;survey_user_input_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;survey_user_input_id&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="schedule_id" ref="clv_document_sync.clv_document_clv_document_3_schedule"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+</odoo>
