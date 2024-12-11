@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_lab_test_result_view_form_survey" model="ir.ui.view">
+        <field name="name">clv.lab_test.result.form</field>
+        <field name="model">clv.lab_test.result</field>
+        <field name="inherit_id" ref="clv_lab_test.clv_lab_test_result_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <div name="title" position="inside">
+                <label for="survey_id" class="oe_edit_only"/>
+                <h3><field name="survey_id" placeholder="Survey Type..." options="{'no_open': False, 'no_create': True}"/></h3>
+                <label for="survey_user_input_id" class="oe_edit_only"/>
+                <!--h3><field name="survey_user_input_id" placeholder="Survey User Input..." options="{'no_open': False, 'no_create': True}"/></h3-->
+                <h3><label for="survey_user_input_id"/>: <field name="survey_user_input_id" placeholder="Survey User Input..." options="{'no_open': False, 'no_create': True}"/> [<field name="survey_user_input_state"/>] [<field name="survey_user_input_state_2"/>]</h3>
+                <label for="survey_url" class="oe_edit_only"/>
+                <h3><field name="survey_url" placeholder="Survey User Input..." widget="url"/></h3>
+            </div>
+        </field>
+    </record>
+
+    <record id="clv_lab_test_result_view_search_survey" model="ir.ui.view">
+        <field name="name">clv.lab_test.result.search</field>
+        <field name="model">clv.lab_test.result</field>
+        <field name="inherit_id" ref="clv_lab_test.clv_lab_test_result_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <group name="group_by" position="before">
+                <filter name="filter_has_not_user_input" string="Has Not User Input" domain="[('survey_user_input_id','=',False)]"/>
+                <filter name="filter_has_user_input" string="Has User Input" domain="[('survey_user_input_id','!=',False)]"/>
+            </group>
+            <group name="group_by" position="inside">
+                <filter name="filter_survey_id" string="Survey Type" context="{'group_by': 'survey_id'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
