@@ -160,18 +160,7 @@
                                     <field name="id"/>
                                 </group>
                                 <group name='settings_right'>
-                                    <div class="oe_button_box" name="settings_buttons">
-                                        <button name="toggle_active"
-                                                    type="object"
-                                                    class="oe_stat_button"
-                                                    icon="fa-archive"
-                                                    >
-                                                <field name="active"
-                                                       widget="boolean_button"
-                                                       options='{"terminology": "archive"}'
-                                                       />
-                                        </button>
-                                    </div>
+                                    <field name="active" widget="boolean_toggle"/>
                                 </group>
                                 <group name="settings_left_2">
                                     <field name="related_partner_id"/>
