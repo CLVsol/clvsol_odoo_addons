@@ -12,6 +12,7 @@
 		<field name="apply_domain_filter" eval="True"/>
 		<field name="domain_filter" eval="&quot;&quot;&quot;[('is_page', '=', True)]&quot;&quot;&quot;"/>
 		<field name="enable_check_missing" eval="False"/>
+		<field name="method_args" eval="&quot;&quot;&quot;{'local_constants': {'question_type': False}}&quot;&quot;&quot;"/>
 	</record>
 	 
 	<record id="survey_question_survey_question_1_template_object_field_title" model="clv.external_sync.object_field">
@@ -69,6 +70,7 @@
 		<field name="external_object_field" eval="&quot;&quot;&quot;question_type&quot;&quot;&quot;"/>
 		<field name="local_object_field" eval="&quot;&quot;&quot;question_type&quot;&quot;&quot;"/>
 		<field name="synchronization" eval="True"/>
+		<field name="adaptation" eval="True"/>
 		<field name="template_id" eval="survey_question_survey_question_1_template"/>
 		<field name="sequence" eval="10"/>
 	</record>
