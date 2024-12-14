@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_patient_rec_user,clv.patient_rec.user,model_clv_patient_rec,clv_patient_rec.group_user,1,0,0,0
+access_clv_patient_rec_manager,clv.patient_rec.manager,model_clv_patient_rec,clv_patient_rec.group_manager,1,1,1,0
+access_clv_patient_rec_supmanager,clv.patient_rec.supmanager,model_clv_patient_rec,clv_patient_rec.group_supmanager,1,1,1,1
+
+access_clv_patient_rec_mass_edit_user,clv.patient_rec.mass_edit.user,model_clv_patient_rec_mass_edit,clv_patient_rec.group_user,1,0,0,0
+access_clv_patient_rec_mass_edit_manager,clv.patient_rec.mass_edit.manager,model_clv_patient_rec_mass_edit,clv_patient_rec.group_manager,1,1,1,0
+access_clv_patient_rec_mass_edit_supmanager,clv.patient_rec.mass_edit.supmanager,model_clv_patient_rec_mass_edit,clv_patient_rec.group_supmanager,1,1,1,1

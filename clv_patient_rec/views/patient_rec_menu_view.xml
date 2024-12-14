@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <menuitem name="Patients (Rec)" id="clv_patient_rec.menu_health_config_patient_patients_rec"
+        parent="clv_patient.menu_health_config_patient"
+        groups="clv_patient_rec.group_user"
+        sequence="60"
+        action="clv_patient_rec.clv_patient_rec_action"/>
+
+</odoo>
