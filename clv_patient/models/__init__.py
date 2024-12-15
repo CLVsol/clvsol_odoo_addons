@@ -17,4 +17,4 @@ from . import employee
 from . import random
 from . import set_element
 from . import patient_age_range
-# from . import residence
+from . import residence
