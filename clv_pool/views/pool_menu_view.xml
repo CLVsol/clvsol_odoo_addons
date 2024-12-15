@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <menuitem name="Pools" id="clv_pool.menu_base_base_pools"
+        parent="clv_base.menu_base_base"
+        groups="clv_pool.group_user"
+        sequence="45"/>
+
+    <menuitem name="Pool" id="clv_pool.menu_base_config_pool" 
+        parent="clv_base.menu_base_config"
+        groups="clv_pool.group_user"
+        sequence="45"/>
+
+</odoo>
