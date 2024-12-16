@@ -16,7 +16,7 @@ class Patient(models.Model):
         help='Address Name for the Address.'
     )
 
-    @api.depends('street_name', 'street_number', 'street_number2', 'street2')
+    @api.depends('street_name', 'street_number', 'street2', 'district')
     def _get_address_name(self):
         for record in self:
             if record.street_name:
