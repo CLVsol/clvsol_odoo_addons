@@ -89,9 +89,9 @@
 	<record id="clv_residence_clv_residence_1_inc_template_object_field_street_name" model="clv.external_sync.object_field">
 		<field name="external_object_field" eval="&quot;&quot;&quot;street_name&quot;&quot;&quot;"/>
 		<field name="local_object_field" eval="&quot;&quot;&quot;street_name&quot;&quot;&quot;"/>
-		<field name="synchronization" eval="True"/>
 		<field name="inclusion" eval="True"/>
 		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_residence_clv_residence_1_inc_template"/>
 		<field name="sequence" eval="10"/>
 	</record>
 	 
