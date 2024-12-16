@@ -16,19 +16,19 @@ class PatientRec(models.Model):
         help='Address Name for the Address.'
     )
 
-    @api.depends('street_name', 'street_number', 'street_number2', 'street2')
+    @api.depends('street_name', 'street_number', 'street2', 'district')
     def _get_address_name(self):
         for record in self:
             if record.street_name:
                 record.address_name = record.street_name
                 if record.street_number:
                     record.address_name = record.address_name + ', ' + record.street_number
-                    if record.street_number2:
-                        record.address_name = record.address_name + '/' + record.street_number2
+                    if record.street2:
+                        record.address_name = record.address_name + '/' + record.street2
                 else:
-                    if record.street_number2:
-                        record.address_name = record.address_name + ', ' + record.street_number2
-                if record.street2:
-                    record.address_name = record.address_name + ' (' + record.street2 + ')'
+                    if record.street2:
+                        record.address_name = record.address_name + ', ' + record.street2
+                if record.district:
+                    record.address_name = record.address_name + ' (' + record.district + ')'
             else:
                 record.address_name = 'Address Name...'
