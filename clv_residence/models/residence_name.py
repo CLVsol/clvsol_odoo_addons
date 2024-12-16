@@ -19,20 +19,20 @@ class Residence(models.Model):
         default=True
     )
 
-    @api.depends('street_name', 'street_number', 'street_number2', 'street2')
+    @api.depends('street_name', 'street_number', 'street2', 'district')
     def _get_suggested_name(self):
         for record in self:
             if record.street_name:
                 address_name = record.street_name
                 if record.street_number:
                     address_name = address_name + ', ' + record.street_number
-                    if record.street_number2:
-                        address_name = address_name + '/' + record.street_number2
+                    if record.street2:
+                        address_name = address_name + '/' + record.street2
                 else:
-                    if record.street_number2:
-                        address_name = address_name + ', ' + record.street_number2
-                if record.street2:
-                    address_name = address_name + ' (' + record.street2 + ')'
+                    if record.street2:
+                        address_name = address_name + ', ' + record.street2
+                if record.district:
+                    address_name = address_name + ' (' + record.district + ')'
                 residence_name_format = self.env['ir.config_parameter'].sudo().get_param(
                     'clv.global_settings.current_residence_name_format', '').strip()
                 residence_name = residence_name_format.replace('<address_name>', address_name)
