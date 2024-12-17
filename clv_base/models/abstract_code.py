@@ -46,8 +46,20 @@ class AbstractCode(models.AbstractModel):
             code_form = code_str[14 - code_len:21]
         return code_form
 
-    @api.model
-    def create(self, values):
+    # @api.model
+    @api.model_create_multi
+    # def create(self, values):
+    def create(self, vals_list):
+        # if 'code_sequence' in values:
+        #     if 'code' not in values or ('code' in values and values['code'] == '/'):
+        #         code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence'])
+        #         values['code'] = self.format_code(code_seq)
+        # else:
+        #     if 'code' not in values or ('code' in values and values['code'] == '/'):
+        #         values['code'] = False
+        # return super().create(values)
+        for values in vals_list:
+            values = self._create_vals(values)
         if 'code_sequence' in values:
             if 'code' not in values or ('code' in values and values['code'] == '/'):
                 code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence'])
