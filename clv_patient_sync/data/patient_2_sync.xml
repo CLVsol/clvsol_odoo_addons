@@ -70,6 +70,14 @@
 		<field name="sequence" eval="10"/>
 	</record>
 	 
+	<record id="clv_patient_clv_patient_2_sync_template_object_field_tag_ids" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;tag_ids&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;tag_ids&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_patient_clv_patient_2_sync_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
 	<record id="clv_patient_clv_patient_2_sync_template_object_field_global_tag_ids" model="clv.external_sync.object_field">
 		<field name="external_object_field" eval="&quot;&quot;&quot;global_tag_ids&quot;&quot;&quot;"/>
 		<field name="local_object_field" eval="&quot;&quot;&quot;global_tag_ids&quot;&quot;&quot;"/>

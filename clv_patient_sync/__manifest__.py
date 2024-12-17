@@ -19,6 +19,7 @@
         'data/patient_age_range_sync.xml',
         'data/patient_category_sync.xml',
         'data/patient_marker_sync.xml',
+        'data/patient_tag_sync.xml',
         'data/patient_1_inc.xml',
         'data/patient_2_sync.xml',
     ],
