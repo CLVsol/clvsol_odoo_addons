@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="1">
+
+    <record id="clv_external_sync_batch_exec_cron_default_batch_10" model="ir.cron">
+        <field name="name">External Sync Batch: Execute [Default Batch [10]]</field>
+        <field name="model_id" ref="clv_external_sync.model_clv_external_sync_batch"/>
+        <field name="state">code</field>
+        <field name="code">model._external_sync_batch_exec_cron("Default Batch [10]")</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="clv_external_sync_batch_exec_cron_default_batch_20" model="ir.cron">
+        <field name="name">External Sync Batch: Execute [Default Batch [20]]</field>
+        <field name="model_id" ref="clv_external_sync.model_clv_external_sync_batch"/>
+        <field name="state">code</field>
+        <field name="code">model._external_sync_batch_exec_cron("Default Batch [20]")</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="clv_external_sync_batch_exec_cron_default_batch_30" model="ir.cron">
+        <field name="name">External Sync Batch: Execute [Default Batch [30]]</field>
+        <field name="model_id" ref="clv_external_sync.model_clv_external_sync_batch"/>
+        <field name="state">code</field>
+        <field name="code">model._external_sync_batch_exec_cron("Default Batch [30]")</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="clv_external_sync_batch_exec_cron_default_batch_30" model="ir.cron">
+        <field name="name">External Sync Batch: Execute [Default Batch [30]]</field>
+        <field name="model_id" ref="clv_external_sync.model_clv_external_sync_batch"/>
+        <field name="state">code</field>
+        <field name="code">model._external_sync_batch_exec_cron("Default Batch [30]")</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="clv_external_sync_batch_exec_cron_default_batch_40" model="ir.cron">
+        <field name="name">External Sync Batch: Execute [Default Batch [40]]</field>
+        <field name="model_id" ref="clv_external_sync.model_clv_external_sync_batch"/>
+        <field name="state">code</field>
+        <field name="code">model._external_sync_batch_exec_cron("Default Batch [40]")</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="clv_external_sync_batch_exec_cron_default_batch_50" model="ir.cron">
+        <field name="name">External Sync Batch: Execute [Default Batch [50]]</field>
+        <field name="model_id" ref="clv_external_sync.model_clv_external_sync_batch"/>
+        <field name="state">code</field>
+        <field name="code">model._external_sync_batch_exec_cron("Default Batch [50]")</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="False"/>
+    </record>
+
+</odoo>

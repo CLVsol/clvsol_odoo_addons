@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_external_sync_batch_default_06" model="clv.external_sync.batch">
+		<field name="name" eval="&quot;&quot;&quot;Default Batch [06]&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_default_08" model="clv.external_sync.batch">
+		<field name="name" eval="&quot;&quot;&quot;Default Batch [08]&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_default_40" model="clv.external_sync.batch">
+		<field name="name" eval="&quot;&quot;&quot;Default Batch [40]&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_default_50" model="clv.external_sync.batch">
+		<field name="name" eval="&quot;&quot;&quot;Default Batch [50]&quot;&quot;&quot;"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_default_60" model="clv.external_sync.batch">
+		<field name="name" eval="&quot;&quot;&quot;Default Batch [60]&quot;&quot;&quot;"/>
+	</record>
+	 
+</odoo>
