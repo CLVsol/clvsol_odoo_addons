@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_patient_event_setup_view_form" model="ir.ui.view">
+        <field name="name">clv.patient.event_setup.form</field>
+        <field name="model">clv.patient.event_setup</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="patient_ids"/>
+                <field name="patient_ids" options="{'no_open': False, 'no_create': True}"/>
+                <label for="event_ids"/>
+                <field name="event_ids" options="{'no_open': False, 'no_create': True}" context="{'search_default_phase_id': phase_id}"/>
+                <label for="document_type_ids"/>
+                <field name="document_type_ids" options="{'no_open': False, 'no_create': True}" context="{'search_default_phase_id': phase_id}"/>
+                <group>
+                    <group>
+                        <field name="category_id" options="{'no_open': False, 'no_create': True}"/>
+                    </group>
+                </group>
+                <label for="lab_test_type_ids"/>
+                <field name="lab_test_type_ids" options="{'no_open': False, 'no_create': True}" context="{'search_default_phase_id': phase_id}"/>
+                <group>
+                    <group>
+                        <field name="phase_id" options="{'no_open': False, 'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_patient_event_setup"
+                        string="Event Set Up"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_patient_event_setup_action" model="ir.actions.act_window">
+        <field name="name">Event Set Up [Patient]</field>
+        <field name="binding_model_id" ref="model_clv_patient"/>
+        <field name="res_model">clv.patient.event_setup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
