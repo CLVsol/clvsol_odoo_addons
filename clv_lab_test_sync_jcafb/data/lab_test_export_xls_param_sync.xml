@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template" model="clv.external_sync.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.lab_test.export_xls.param (clv.lab_test.export_xls.param)&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;clv.lab_test.export_xls.param&quot;&quot;&quot;"/>
+		<field name="method" eval="&quot;&quot;&quot;_object_external_sync&quot;&quot;&quot;"/>
+		<field name="external_model" eval="&quot;&quot;&quot;clv.lab_test.export_xls.param&quot;&quot;&quot;"/>
+		<field name="enable_check_missing" eval="False"/>
+		<field name="enable_inclusion" eval="False"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template_object_field_lab_test_type_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;lab_test_type_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;lab_test_type_id&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template_object_field_display" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;display&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;display&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template_object_field_parameter_type" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;parameter_type&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;parameter_type&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template_object_field_parameter" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;parameter&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;parameter&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template_object_field_cell" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;cell&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;cell&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template_object_field_col_nr" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;col_nr&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;col_nr&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template_object_field_row_nr" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;row_nr&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;row_nr&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template_object_field_active" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_schedule" model="clv.external_sync.schedule">
+		<field name="name" eval="&quot;&quot;&quot;clv.lab_test.export_xls.param (clv.lab_test.export_xls.param)&quot;&quot;&quot;"/>
+		<field name="template_id" eval="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_template"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_member_clv_lab_test_export_xls_param" model="clv.external_sync.batch.member">
+		<!--field name="external_sync_batch_id" ref="clv_external_sync.clv_external_sync_batch_default_08"/-->
+		<field name="external_sync_batch_id" ref="clv_external_sync.clv_external_sync_batch_default_00"/>
+		<field name="ref_id" ref="clv_lab_test_export_xls_param_clv_lab_test_export_xls_param_schedule"/>
+	</record>
+	 
+</odoo>
