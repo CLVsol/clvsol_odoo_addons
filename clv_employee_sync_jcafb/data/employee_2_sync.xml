@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_employee_sync.hr_employee_hr_employee_2_template" model="clv.external_sync.template">
+		<field name="sequence_code" eval="&quot;&quot;&quot;hr.employee.code&quot;&quot;&quot;"/>
+		<field name="enable_sequence_code_sync" eval="True"/>
+	</record>
+	 
+	<record id="clv_employee_sync.hr_employee_hr_employee_2_schedule" model="clv.external_sync.schedule">
+		<field name="sequence_code" eval="&quot;&quot;&quot;hr.employee.code&quot;&quot;&quot;"/>
+		<field name="enable_sequence_code_sync" eval="True"/>
+	</record>
+	 
+	<record id="hr_employee_hr_employee_2_template_object_field_token" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;token&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;token&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" ref="clv_employee_sync.hr_employee_hr_employee_2_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="hr_employee_hr_employee_2_schedule_object_field_token" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;token&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;token&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="schedule_id" ref="clv_employee_sync.hr_employee_hr_employee_2_schedule"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+</odoo>
