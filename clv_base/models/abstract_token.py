@@ -25,12 +25,19 @@ class AbstractToken(models.AbstractModel):
         help='Use "/" to get an automatic new Token.'
     )
 
-    @api.model
-    def create(self, values):
-        if 'token' not in values or ('token' in values and values['token'] == '/'):
-            token = get_token()
-            values['token'] = token
-        return super().create(values)
+    # @api.model
+    @api.model_create_multi
+    # def create(self, values):
+    def create(self, vals_list):
+        # if 'token' not in values or ('token' in values and values['token'] == '/'):
+        #     token = get_token()
+        #     values['token'] = token
+        # return super().create(values)
+        for values in vals_list:
+            if 'token' not in values or ('token' in values and values['token'] == '/'):
+                token = get_token()
+                values['token'] = token
+        return super().create(vals_list)
 
     def write(self, values):
         if 'token' in values and values['token'] == '/':

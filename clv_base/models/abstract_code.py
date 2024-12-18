@@ -59,15 +59,14 @@ class AbstractCode(models.AbstractModel):
         #         values['code'] = False
         # return super().create(values)
         for values in vals_list:
-            values = self._create_vals(values)
-        if 'code_sequence' in values:
-            if 'code' not in values or ('code' in values and values['code'] == '/'):
-                code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence'])
-                values['code'] = self.format_code(code_seq)
-        else:
-            if 'code' not in values or ('code' in values and values['code'] == '/'):
-                values['code'] = False
-        return super().create(values)
+            if 'code_sequence' in values:
+                if 'code' not in values or ('code' in values and values['code'] == '/'):
+                    code_seq = self.env['ir.sequence'].next_by_code(values['code_sequence'])
+                    values['code'] = self.format_code(code_seq)
+            else:
+                if 'code' not in values or ('code' in values and values['code'] == '/'):
+                    values['code'] = False
+        return super().create(vals_list)
 
     def write(self, values):
         if 'code_sequence' not in values:
