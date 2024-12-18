@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_lab_test_export_xls_param_pattern_result_variable_name_date_received" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;result&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;date_received&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_result_variable_name_received_by_code" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;result&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;received_by_code&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_result_variable_name_received_by_name" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;result&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;received_by_name&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_result_variable_name_reference_code" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;result&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;reference_code&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_result_variable_name_reference_name" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;result&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;reference_name&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_result_variable_name_lab_test_result_code" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;result&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;lab_test_result_code&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_result_variable_name_lab_test_request_code" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;result&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;lab_test_request_code&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_report_variable_name_professional_id" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;report&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;professional_id&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_report_variable_name_professional_name" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;report&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;professional_name&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_report_variable_name_professional_name" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;report&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;professional_name&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_report_variable_name_lab_test_request_code" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;report&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;lab_test_request_code&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_report_variable_name_reference_code" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;report&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;reference_code&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_report_variable_name_reference_name" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;report&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;reference_name&quot;&quot;&quot;"/>
+	</record>
+
+	<record id="clv_lab_test_export_xls_param_pattern_report_variable_name_date_approved" model="clv.lab_test.export_xls.param.pattern">
+		<field name="display" eval="&quot;&quot;&quot;report&quot;&quot;&quot;"/>
+		<field name="parameter_type" eval="&quot;&quot;&quot;variable_name&quot;&quot;&quot;"/>
+		<field name="parameter" eval="&quot;&quot;&quot;date_approved&quot;&quot;&quot;"/>
+	</record>
+
+</odoo>

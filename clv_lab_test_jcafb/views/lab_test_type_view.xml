@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_lab_test_type_view_form_jcafb" model="ir.ui.view">
+        <field name="name">clv.lab_test.type.form</field>
+        <field name="model">clv.lab_test.type</field>
+        <field name="inherit_id" ref="clv_lab_test.clv_lab_test_type_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <group name="group_left" position="inside">
+                <field name="template_file_name_result" placeholder="Template File Name (Result)..."/>
+                <field name="template_file_name_report" placeholder="Template File Name (Report)..."/>
+            </group>
+        </field>
+    </record>
+
+</odoo>

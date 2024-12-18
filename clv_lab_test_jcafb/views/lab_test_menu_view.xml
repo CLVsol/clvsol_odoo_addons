@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <menuitem name="Export XLS Parameters" id="clv_lab_test.menu_health_config_lab_test_export_xls_parameters"
+        parent="clv_lab_test.menu_health_config_lab_test"
+        groups="clv_lab_test.group_user"
+        sequence="50"
+        action="clv_lab_test_jcafb.clv_lab_test_export_xls_param_action"/>
+
+    <menuitem name="Export XLS Parameter Patterns" id="clv_lab_test.menu_health_config_lab_test_export_xls_parameter_patterns"
+        parent="clv_lab_test.menu_health_config_lab_test"
+        groups="clv_lab_test.group_user"
+        sequence="60"
+        action="clv_lab_test_jcafb.clv_lab_test_export_xls_param_pattern_action"/>
+
+</odoo>
