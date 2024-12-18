@@ -40,14 +40,9 @@ class Residence(models.Model):
             else:
                 record.suggested_name = 'Residence Name...'
 
-    # @api.model
     @api.model_create_multi
-    # def create(self, values):
     def create(self, vals_list):
-        # record = super().create(values)
-        for vals in vals_list:
-            vals = self._create_vals(vals)
-        record = super().create(vals)
+        record = super().create(vals_list)
 
         if record.automatic_set_name:
             if record.name != record.suggested_name:
