@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_document_sync.clv_document_clv_document_2_inc_template" model="clv.external_sync.template">
+		<field name="sequence_code" eval="&quot;&quot;&quot;clv.document.code&quot;&quot;&quot;"/>
+		<field name="enable_sequence_code_sync" eval="True"/>
+	</record>
+	 
+	<record id="clv_document_sync.clv_document_clv_document_2_inc_schedule" model="clv.external_sync.schedule">
+		<field name="sequence_code" eval="&quot;&quot;&quot;clv.document.code&quot;&quot;&quot;"/>
+		<field name="enable_sequence_code_sync" eval="True"/>
+	</record>
+	 
+</odoo>
