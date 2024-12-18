@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_residence_document_setup_2_view_form" model="ir.ui.view">
+        <field name="name">clv.residence.document_setup_2.form</field>
+        <field name="model">clv.residence.document_setup_2</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="residence_ids"/>
+                <field name="residence_ids" options="{'no_open': False, 'no_create': True}"/>
+                <!--label for="document_type_ids"/>
+                <field name="document_type_ids" options="{'no_open': False, 'no_create': True}" context="{'search_default_phase_id': phase_id}"/-->
+                <label for="document_type_id"/>
+                <field name="document_type_id" options="{'no_open': False, 'no_create': True}" context="{'search_default_phase_id': phase_id}"/>
+                <group>
+                    <group>
+                        <field name="document_code"/>
+                        <field name="category_id" options="{'no_open': False, 'no_create': True}"/>
+                        <field name="phase_id" options="{'no_open': False, 'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_residence_document_setup_2"
+                        string="Document Set Up"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_residence_document_setup_2_action" model="ir.actions.act_window">
+        <field name="name">Document Set Up 2 [Residence]</field>
+        <field name="binding_model_id" ref="model_clv_residence"/>
+        <field name="binding_view_types">form</field>
+        <field name="res_model">clv.residence.document_setup_2</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
