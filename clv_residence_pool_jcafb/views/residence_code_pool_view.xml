@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_residence_code_pool_view_form" model="ir.ui.view">
+        <field name="name">clv.residence.code_pool.form</field>
+        <field name="model">clv.residence.code_pool</field>
+        <field name="inherit_id" ref="clv_pool.clv_abstract_pool_view_form"/>
+        <field name="mode">primary</field>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Residence Code Pool</attribute>
+            </xpath>
+            <div name="title" position="inside">
+                <label for="code_sequence" class="oe_edit_only"/>
+                <h3><field name="code_sequence" placeholder="Code Sequence..."/></h3>
+            </div>
+            <group name="settings_left" position="inside">
+                <field name="id"/>
+            </group>
+        </field>
+    </record>
+
+    <record id="clv_residence_code_pool_view_tree" model="ir.ui.view">
+        <field name="name">clv.residence.code_pool.tree</field>
+        <field name="model">clv.residence.code_pool</field>
+        <field name="inherit_id" ref="clv_pool.clv_abstract_pool_view_tree" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Residence Code Pools</attribute>
+            </xpath>
+            <field name="notes" position="before">
+                <field name="code_sequence"/>
+            </field>
+            <field name="notes" position="after">
+                <field name="id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_residence_code_pool_view_search" model="ir.ui.view">
+        <field name="name">clv.residence.code_pool.search</field>
+        <field name="model">clv.residence.code_pool</field>
+        <field name="inherit_id" ref="clv_pool.clv_abstract_pool_view_search" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="attributes">
+                <attribute name="string">Residence Code Pools</attribute>
+            </xpath>
+            <field name="notes" position="after">
+                <field name="code_sequence"/>
+                <field name="id"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="filter_code_sequence" string="Code Sequence" context="{'group_by': 'code_sequence'}"/>
+            </group>
+        </field>
+    </record>
+
+    <record id="clv_residence_code_pool_action" model="ir.actions.act_window">
+        <field name="name">Residence Code Pools</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.residence.code_pool</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="clv_residence_code_pool_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new residence code_pool.
+          </p>
+        </field>
+    </record>
+    
+</odoo>
