@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_lab_test_result_code_pool_item_get_view_form" model="ir.ui.view">
+        <field name="name">clv.lab_test.result.code_pool.item_get.form</field>
+        <field name="model">clv.lab_test.result.code_pool.item_get</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="lab_test_result_code_pool_ids"/>
+                <field name="lab_test_result_code_pool_ids" options="{'no_open': False, 'no_create': True}"/>
+                <group>
+                    <group>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_lab_test_result_code_pool_item_get"
+                        string="Code Pool Item Get"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_lab_test_result_code_pool_item_get_action" model="ir.actions.act_window">
+        <field name="name">Lab Test Result Code Pool Item Get</field>
+        <field name="binding_model_id" ref="model_clv_lab_test_result_code_pool"/>
+        <field name="res_model">clv.lab_test.result.code_pool.item_get</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
