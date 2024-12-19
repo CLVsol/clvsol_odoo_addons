@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_patient_summary_setup_view_form" model="ir.ui.view">
+        <field name="name">clv.patient.summary_setup.form</field>
+        <field name="model">clv.patient.summary_setup</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                    <button type="object" name="do_populate_all_patients" string="Get All Patients"/>
+                </div>
+                <label for="patient_ids"/>
+                <field name="patient_ids"/>
+                <group>
+                    <field name="dir_path"/>
+                    <field name="file_name"/>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_patient_summary_setup"
+                        string="Patients Summary Set Up"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_patient_summary_setup_action" model="ir.actions.act_window">
+        <field name="name">Patient Summary Set Up</field>
+        <field name="binding_model_id" ref="model_clv_patient"/>
+        <field name="res_model">clv.patient.summary_setup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

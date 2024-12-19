@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_clv_patient_summary_setup_user,clv.patient.summary_setup.user,model_clv_patient_summary_setup,clv_summary.group_user,1,0,0,0
+access_clv_patient_summary_setup_manager,clv.patient.summary_setup.manager,model_clv_patient_summary_setup,clv_summary.group_manager,1,1,1,0
+access_clv_patient_summary_setup_supmanager,clv.patient.summary_setup.supmanager,model_clv_patient_summary_setup,clv_summary.group_supmanager,1,1,1,1
