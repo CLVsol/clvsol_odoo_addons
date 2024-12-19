@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_patient_code_pool_item_mass_edit_view_form" model="ir.ui.view">
+        <field name="name">clv.patient.code_pool.item.mass_edit.form</field>
+        <field name="model">clv.patient.code_pool.item.mass_edit</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="patient_code_pool_item_ids"/>
+                <field name="patient_code_pool_item_ids"/>
+                <group>
+                    <group>
+                        <field name="patient_code_pool_id_selection"/>
+                    </group>
+                    <group name="patient_code_pool_id">
+                        <field name="patient_code_pool_id" options="{'no_open': False, 'no_create': True}" nolabel='1'/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_patient_code_pool_item_mass_edit"
+                        string="Mass Edit"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_patient_code_pool_item_mass_edit_action" model="ir.actions.act_window">
+        <field name="name">Patient Code Pool Item Mass Edit</field>
+        <field name="binding_model_id" ref="model_clv_patient_code_pool_item"/>
+        <field name="res_model">clv.patient.code_pool.item.mass_edit</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

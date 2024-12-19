@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_patient_code_pool_item_view_form" model="ir.ui.view">
+        <field name="name">clv.patient.code_pool.item.form</field>
+        <field name="model">clv.patient.code_pool.item</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div name="button_box" class="oe_right oe_button_box">
+                    </div>
+                    <div name="title" class="oe_title">
+                        <group>
+                            <field name="patient_code_pool_id" options="{'no_open': False, 'no_create': True}"/>
+                            <field name="code"/>
+                            <field name="code_sequence"/>
+                            <field name="patient_id"/>
+                        </group>
+                        <label for="notes" class="oe_edit_only"/>
+                        <field name="notes" setholder="Notes..."/>
+                    </div>
+                    <notebook>
+                        <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
+                            <group name="settings">
+                                <field name="id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="clv_patient_code_pool_item_view_tree" model="ir.ui.view">
+        <field name="name">clv.patient.code_pool.item.tree</field>
+        <field name="model">clv.patient.code_pool.item</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_code_pool_id"/>
+                <field name="code"/>
+                <field name="code_sequence"/>
+                <field name="patient_id"/>
+                <field name="notes"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="clv_patient_code_pool_item_view_search" model="ir.ui.view">
+        <field name="name">clv.patient.code_pool.item.search</field>
+        <field name="model">clv.patient.code_pool.item</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="patient_code_pool_id"/>
+                <field name="code"/>
+                <field name="code_sequence"/>
+                <field name="patient_id"/>
+                <field name="notes"/>
+                <newline/>
+                <group name="group_by" expand="0" string="Group By...">
+                    <filter name="filter_patient_code_pool_id" string="Patient Code Pool" domain="[]" context="{'group_by':'patient_code_pool_id'}"/>
+                    <filter name="filter_notes" string="Notes" domain="[]" context="{'group_by':'notes'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="clv_patient_code_pool_item_action" model="ir.actions.act_window">
+        <field name="name">Item</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.patient.code_pool.item</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="clv_patient_code_pool_item_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new item.
+          </p>
+        </field>
+    </record>
+    
+    <record id="clv_patient_code_pool_view_form_set_element" model="ir.ui.view">
+        <field name="name">clv.patient.code_pool.form</field>
+        <field name="model">clv.patient.code_pool</field>
+        <field name="inherit_id" ref="clv_patient_pool_jcafb.clv_patient_code_pool_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Items">
+                    <group>
+                        <group>
+                            <field name="count_items"/>
+                        </group>
+                        <group>
+                            <button name="clv_patient_pool_jcafb.clv_patient_code_pool_item_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_patient_code_pool_id': id}"
+                                    attrs="{'invisible': [('count_items', '=', 0)]}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_items"/>
+                                    </span>
+                                    <span class="o_stat_text"> Items(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="item_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_patient_code_pool_view_tree_set_element" model="ir.ui.view">
+        <field name="name">clv.patient.code_pool.tree</field>
+        <field name="model">clv.patient.code_pool</field>
+        <field name="inherit_id" ref="clv_patient_pool_jcafb.clv_patient_code_pool_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="count_items"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
+
