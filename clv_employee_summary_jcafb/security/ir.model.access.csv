@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_hr_employee_summary_setup_user,hr.employee.summary_setup.user,model_hr_employee_summary_setup,clv_summary.group_user,1,0,0,0
+access_hr_employee_summary_setup_manager,hr.employee.summary_setup.manager,model_hr_employee_summary_setup,clv_summary.group_manager,1,1,1,0
+access_hr_employee_summary_setup_supmanager,hr.employee.summary_setup.supmanager,model_hr_employee_summary_setup,clv_summary.group_supmanager,1,1,1,1
