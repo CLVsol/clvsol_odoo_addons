@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <menuitem name="Document Code Pool" id="clv_pool.menu_base_base_pools_document_code_pool" 
+        parent="clv_pool.menu_base_base_pools"
+        groups="clv_pool.group_user"
+        sequence="10"
+        action="clv_document_pool_jcafb.clv_document_code_pool_action"/>
+
+    <menuitem name="Document Code Pool Items" id="clv_pool.menu_base_config_pool_document_code_pool_items" 
+        parent="clv_pool.menu_base_config_pool"
+        groups="clv_pool.group_user"
+        sequence="10"
+        action="clv_document_pool_jcafb.clv_document_code_pool_item_action"/>
+
+</odoo>
