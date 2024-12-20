@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_partner_entity_street_pattern_match_view_form" model="ir.ui.view">
+        <field name="name">clv.partner_entity.street_pattern.match.form</field>
+        <field name="model">clv.partner_entity.street_pattern.match</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form>
+                <header name="header">
+                    <!-- To add buttons and status widget -->
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_right oe_button_box">
+                    </div>
+                    <div name="title" class="oe_title">
+                        <group>
+                            <field name="street_pattern_id" options="{'no_open': False, 'no_create': True}"/>
+                        </group>
+                        <label for="notes" class="oe_edit_only"/>
+                        <field name="notes" eventholder="Notes..."/>
+                    </div>
+                    <notebook>
+                        <page name="settings" string="Settings" groups="clv_base.group_reguser" invisible="False">
+                            <group name="settings_top">
+                                <group name="settings_left">
+                                    <field name="id"/>
+                                </group>
+                                <group name='settings_right'>
+                                    <div class="oe_button_box" name="settings_buttons">
+                                    </div>
+                                </group>
+                                <group name="settings_left_3">
+                                </group>
+                                <group name='settings_right_3'>
+                                    <div class="oe_button_box" name="settings_buttons_3">
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="clv_partner_entity_street_pattern_match_view_tree" model="ir.ui.view">
+        <field name="name">clv.partner_entity.street_pattern.match.tree</field>
+        <field name="model">clv.partner_entity.street_pattern.match</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <tree name="street_pattern_matches">
+                <field name="street_pattern_id"/>
+                <field name="notes"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="clv_partner_entity_street_pattern_match_view_search" model="ir.ui.view">
+        <field name="name">clv.partner_entity.street_pattern.match.search</field>
+        <field name="model">clv.partner_entity.street_pattern.match</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="street_pattern_id"/>
+                <field name="notes"/>
+                <newline/>
+                <group name="group_by" expand="0" string="Group By...">
+                    <filter name="filter_street_pattern_id" string="Street Pattern" domain="[]" context="{'group_by':'street_pattern_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="clv_partner_entity_street_pattern_match_action" model="ir.actions.act_window">
+        <field name="name">Street Pattern Match</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">clv.partner_entity.street_pattern.match</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="clv_partner_entity_street_pattern_match_view_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new street pattern match.
+          </p>
+        </field>
+    </record>
+    
+    <record id="clv_partner_entity_street_pattern_view_form_street_pattern_match" model="ir.ui.view">
+        <field name="name">clv.partner_entity.street_pattern.form</field>
+        <field name="model">clv.partner_entity.street_pattern</field>
+        <field name="inherit_id" ref="clv_partner_entity_street_pattern_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <page name="settings" position="before">
+                <page string="Matches">
+                    <group>
+                        <field name="count_street_pattern_matches"/>
+                    </group>
+                    <field name="street_pattern_match_ids" colspan="4" nolabel="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_partner_entity_street_pattern_view_tree_street_pattern_match" model="ir.ui.view">
+        <field name="name">clv.partner_entity.street_pattern.tree</field>
+        <field name="model">clv.partner_entity.street_pattern</field>
+        <field name="inherit_id" ref="clv_partner_entity_street_pattern_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="street2" position="after">
+                <field name="count_street_pattern_matches"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_partner_entity_street_pattern_view_search_street_pattern_match" model="ir.ui.view">
+        <field name="name">clv.partner_entity.street_pattern.search</field>
+        <field name="model">clv.partner_entity.street_pattern</field>
+        <field name="inherit_id" ref="clv_partner_entity_street_pattern_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="street2" position="after">
+                <field name="count_street_pattern_matches"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_count_street_pattern_matches" string="Number of Matches" context="{'group_by': 'count_street_pattern_matches'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <menuitem name="Partner Entity" id="clv_base.partner_entity" 
+        parent="clv_base.menu_base_config"
+        groups="clv_base.group_user"
+        sequence="200"/>
+
+    <menuitem name="Street Patterns" id="clv_base.partner_entity_street_patterns" 
+        parent="clv_base.partner_entity"
+        groups="clv_base.group_user"
+        sequence="10"
+        action="clv_partner_entity_street_pattern_action"/>
+
+    <menuitem name="Street Pattern Matches" id="clv_base.partner_entity_street_pattern_matches" 
+        parent="clv_base.partner_entity"
+        groups="clv_base.group_user"
+        sequence="12"
+        action="clv_partner_entity_street_pattern_match_action"/>
+
+    <menuitem name="Contact Information Patterns" id="clv_base.partner_entity_contact_information_patterns" 
+        parent="clv_base.partner_entity"
+        groups="clv_base.group_user"
+        sequence="20"
+        action="clv_partner_entity_contact_information_pattern_action"/>
+
+    <menuitem name="Contact Information Pattern Matches" id="clv_base.partner_entity_contact_information_pattern_matches" 
+        parent="clv_base.partner_entity"
+        groups="clv_base.group_user"
+        sequence="22"
+        action="clv_partner_entity_contact_information_pattern_match_action"/>
+
+</odoo>
