@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="1">
+ 
+	<record id="clv_patient_verification_related_patient_rec_template" model="clv.verification.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.patient [_patient_verification_related_patient_rec]&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;clv.patient&quot;&quot;&quot;"/>
+		<field name="action" eval="&quot;&quot;&quot;_patient_verification_related_patient_rec&quot;&quot;&quot;"/>
+	</record>
+	 
+</odoo>
