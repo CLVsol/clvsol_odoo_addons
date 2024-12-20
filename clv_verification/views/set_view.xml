@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_verification_schedule_view_form_person" model="ir.ui.view">
+        <field name="name">clv.verification.schedule.form</field>
+        <field name="model">clv.verification.schedule</field>
+        <field name="inherit_id" ref="clv_verification.clv_verification_schedule_view_form"/>
+        <field name="priority" eval="7"/>
+        <field name="arch" type="xml">
+            <field name="model_items" position="after">
+                <field name="verification_set_elements" attrs="{'invisible':[('verify_all_items', '=', True)]}"/>
+                <field name="verification_set_id" options="{'no_open': False, 'no_create': True}" attrs="{'invisible':['|', ('verification_set_elements', '!=', True), ('verify_all_items', '=', True)]}"/>
+                <field name="count_verification_set_elements" attrs="{'invisible':['|', ('verification_set_elements', '!=', True), ('verify_all_items', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
