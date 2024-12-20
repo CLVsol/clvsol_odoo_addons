@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="clv_residence_verification_exec_view_form" model="ir.ui.view">
+        <field name="name">clv.residence.verification_exec.form</field>
+        <field name="model">clv.residence.verification_exec</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="oe_right">
+                </div>
+                <label for="residence_ids" class="oe_edit_only"/>
+                <field name="residence_ids">
+                </field>
+                <group>
+                    <group>
+                        <field name="count_residences"/>
+                    </group>
+                </group>
+                <footer>
+                    <button 
+                        type="object"
+                        name="do_residence_verification_exec"
+                        string="Residence Verification Execute"
+                        class="oe_highlight"
+                        />
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <!-- More button Action -->
+    <record id="clv_residence_verification_exec_action" model="ir.actions.act_window">
+        <field name="name">Residence Verification Execute</field>
+        <field name="binding_model_id" ref="model_clv_residence"/>
+        <field name="res_model">clv.residence.verification_exec</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
