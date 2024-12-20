@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+        
+    <record id="clv_lab_test_export_xls_param_view_form_verification_outcome" model="ir.ui.view">
+        <field name="name">clv.lab_test.export_xls.param.form</field>
+        <field name="model">clv.lab_test.export_xls.param</field>
+        <field name="inherit_id" ref="clv_lab_test_jcafb.clv_lab_test_export_xls_param_view_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <group name='param_id' position="before">
+                <group name='param_verification'>
+                    <field name="verification_state" style="color:blue; background:White;"/>
+                    <field name="verification_outcome_infos"/>
+                </group>
+            </group>
+            <page name="settings" position="before">
+                <page string="Verification Outcomes">
+                    <group>
+                        <group>
+                            <field name="count_verification_outcomes"/>
+                        </group>
+                        <group>
+                            <button name="clv_verification.clv_verification_outcome_action"
+                                    type="action"
+                                    class="oe_stat_button"
+                                    icon="fa-list"
+                                    context="{'search_default_model': 'clv.lab_test.export_xls.param', 'search_default_res_id': id}"
+                                    attrs="{'invisible': [('verification_outcome_ids', '=', [])]}"
+                                    >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="count_verification_outcomes_2"/>
+                                    </span>
+                                    <span class="o_stat_text"> Verification Outcome(s)</span>
+                                </div>
+                            </button>
+                        </group>
+                    </group>
+                    <field name="verification_outcome_ids" colspan="4" nolabel="1">
+                        <tree name="verification" string="Verification Outcome"
+                            decoration-muted="state in('Unknown','Missing')"
+                            decoration-info="state=='Updated'"
+                            decoration-warning="state in('Warning (L0)','Warning (L1)','Warning (L2)')"
+                            decoration-danger="state in('Error (L0)','Error (L1)','Error (L2)')"
+                            decoration-success="state=='Ok'"
+                            decoration-it="state in('Unknown','Missing')"
+                            decoration-bf="state in('Warning (L0)','Error (L0)','Warning (L1)','Error (L1)','Warning (L2)','Error (L2)','Ok')">
+                            <!--field name="model"/-->
+                            <!--field name="res_id"/-->
+                            <field name="res_last_update"/>
+                            <!--field name="reference"/-->
+                            <!--field name="reference_name"/-->
+                            <!--field name="method"/-->
+                            <field name="action"/>
+                            <field name="date_verification"/>
+                            <field name="state"/>
+                            <field name="outcome_info"/>
+                            <!--field name="id"/-->
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="clv_lab_test_export_xls_param_view_tree_verification_outcome" model="ir.ui.view">
+        <field name="name">clv.lab_test.export_xls.param.tree</field>
+        <field name="model">clv.lab_test.export_xls.param</field>
+        <field name="inherit_id" ref="clv_lab_test_jcafb.clv_lab_test_export_xls_param_view_tree"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="row_nr" position="after">
+                <field name="verification_state" string="Verification"/>
+                <!--field name="verification_marker_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/-->
+                <field name="verification_outcome_infos" invisible="True"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="clv_lab_test_export_xls_param_view_search_verification_outcome" model="ir.ui.view">
+        <field name="name">clv.lab_test.export_xls.param.search</field>
+        <field name="model">clv.lab_test.export_xls.param</field>
+        <field name="inherit_id" ref="clv_lab_test_jcafb.clv_lab_test_export_xls_param_view_search"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <field name="row_nr" position="after">
+                <field name="verification_state"/>
+                <!--field name="verification_marker_ids"/>
+                <field name="verification_marker_names"/-->
+                <field name="verification_outcome_infos"/>
+            </field>
+            <group name="group_by" position="inside">
+                <filter name="group_by_verification_state" string="Verification State" context="{'group_by': 'verification_state'}"/>
+                <!--filter name="filter_verification_marker" string="Verification Markers" context="{'group_by': 'verification_marker_names'}"/-->
+                <filter name="grkoup_by_verification_outcome_infos" string="Verification Outcome Informations" context="{'group_by': 'verification_outcome_infos'}"/>
+            </group>
+        </field>
+    </record>
+
+</odoo>
