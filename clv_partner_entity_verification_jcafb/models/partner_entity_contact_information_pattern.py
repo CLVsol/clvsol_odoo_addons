@@ -12,13 +12,13 @@ class PartnerEntityContactInformationPattern(models.Model):
 
     name = fields.Char(string='Address Name', required=False, help="Address Name")
 
-    street = fields.Char(string='Street')
+    street_name = fields.Char(string='Street Name')
 
     street_number = fields.Char(string='Street Number')
 
-    street_number2 = fields.Char(string='Street Number 2')
+    street2 = fields.Char(string='Complement')
 
-    street2 = fields.Char(string='Street 2')
+    district = fields.Char(string='District')
 
     notes = fields.Text(string='Notes')
 
@@ -26,7 +26,7 @@ class PartnerEntityContactInformationPattern(models.Model):
 
     _sql_constraints = [
         ('pattern_uniq',
-         'UNIQUE(street, street_number, street_number2, street2)',
+         'UNIQUE(street_name, street_number, street2, district)',
          u'Error! The Pattern must be unique!'
          ),
     ]
@@ -37,20 +37,20 @@ class PartnerEntityContactInformationPattern(models.Model):
         help='Suggested Name for the Address.'
     )
 
-    @api.depends('street', 'street_number', 'street_number2', 'street2')
+    @api.depends('street_name', 'street_number', 'street2', 'district')
     def _get_suggested_name(self):
         for record in self:
-            if record.street:
-                record.suggested_name = record.street
+            if record.street_name:
+                record.suggested_name = record.street_name
                 if record.street_number:
                     record.suggested_name = record.suggested_name + ', ' + record.street_number
-                    if record.street_number2:
-                        record.suggested_name = record.suggested_name + '/' + record.street_number2
+                    if record.street2:
+                        record.suggested_name = record.suggested_name + '/' + record.street2
                 else:
-                    if record.street_number2:
-                        record.suggested_name = record.suggested_name + ', ' + record.street_number2
-                if record.street2:
-                    record.suggested_name = record.suggested_name + ' (' + record.street2 + ')'
+                    if record.street2:
+                        record.suggested_name = record.suggested_name + ', ' + record.street2
+                if record.district:
+                    record.suggested_name = record.suggested_name + ' (' + record.district + ')'
             else:
                 record.suggested_name = 'Address Name...'
 
