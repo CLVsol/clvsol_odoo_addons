@@ -82,14 +82,14 @@ class EmployeeMassEdit(models.TransientModel):
          ], string='Phase:', default=False, readonly=False, required=False
     )
 
-    active_log = fields.Boolean(
-        string='Active Log'
-    )
-    active_log_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Active Log:', default=False, readonly=False, required=False
-    )
+    # active_log = fields.Boolean(
+    #     string='Active Log'
+    # )
+    # active_log_selection = fields.Selection(
+    #     [('set', 'Set'),
+    #      ('remove', 'Remove'),
+    #      ], string='Active Log:', default=False, readonly=False, required=False
+    # )
 
     def do_employee_mass_edit(self):
         self.ensure_one()
@@ -137,9 +137,9 @@ class EmployeeMassEdit(models.TransientModel):
             if self.phase_id_selection == 'remove':
                 employee.phase_id = False
 
-            if self.active_log_selection == 'set':
-                employee.active_log = self.active_log
-            if self.active_log_selection == 'remove':
-                employee.active_log = False
+            # if self.active_log_selection == 'set':
+            #     employee.active_log = self.active_log
+            # if self.active_log_selection == 'remove':
+            #     employee.active_log = False
 
         return True
