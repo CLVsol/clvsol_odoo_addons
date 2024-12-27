@@ -161,14 +161,14 @@ class PatientMassEdit(models.TransientModel):
         string='Patient Reference Age Refresh'
     )
 
-    active_log = fields.Boolean(
-        string='Active Log'
-    )
-    active_log_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Active Log:', default=False, readonly=False, required=False
-    )
+    # active_log = fields.Boolean(
+    #     string='Active Log'
+    # )
+    # active_log_selection = fields.Selection(
+    #     [('set', 'Set'),
+    #      ('remove', 'Remove'),
+    #      ], string='Active Log:', default=False, readonly=False, required=False
+    # )
 
     @api.model
     def default_get(self, field_names):
@@ -320,9 +320,9 @@ class PatientMassEdit(models.TransientModel):
                 patient._compute_age_reference()
                 patient._compute_age_range_id()
 
-            if self.active_log_selection == 'set':
-                patient.active_log = self.active_log
-            if self.active_log_selection == 'remove':
-                patient.active_log = False
+            # if self.active_log_selection == 'set':
+            #     patient.active_log = self.active_log
+            # if self.active_log_selection == 'remove':
+            #     patient.active_log = False
 
         return True
