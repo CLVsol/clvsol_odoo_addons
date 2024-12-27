@@ -78,12 +78,12 @@
                     <group name="automatic_set_name">
                         <field name="automatic_set_name" nolabel='1'/>
                     </group>
-                    <group>
+                    <!--group>
                         <field name="active_log_selection"/>
                     </group>
                     <group name="active_log">
                         <field name="active_log" nolabel='1'/>
-                    </group>
+                    </group-->
                 </group>
                 <footer>
                     <button 

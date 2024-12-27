@@ -159,14 +159,14 @@ class ResidenceMassEdit(models.TransientModel):
          ], string='Automatic Name:', default=False, readonly=False, required=False
     )
 
-    active_log = fields.Boolean(
-        string='Active Log'
-    )
-    active_log_selection = fields.Selection(
-        [('set', 'Set'),
-         ('remove', 'Remove'),
-         ], string='Active Log:', default=False, readonly=False, required=False
-    )
+    # active_log = fields.Boolean(
+    #     string='Active Log'
+    # )
+    # active_log_selection = fields.Selection(
+    #     [('set', 'Set'),
+    #      ('remove', 'Remove'),
+    #      ], string='Active Log:', default=False, readonly=False, required=False
+    # )
 
     @api.model
     def default_get(self, field_names):
@@ -363,9 +363,9 @@ class ResidenceMassEdit(models.TransientModel):
             if self.automatic_set_name_selection == 'remove':
                 residence.automatic_set_name = False
 
-            if self.active_log_selection == 'set':
-                residence.active_log = self.active_log
-            if self.active_log_selection == 'remove':
-                residence.active_log = False
+            # if self.active_log_selection == 'set':
+            #     residence.active_log = self.active_log
+            # if self.active_log_selection == 'remove':
+            #     residence.active_log = False
 
         return True
