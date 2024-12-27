@@ -10,7 +10,8 @@
         <field name="inherit_id" ref="clv_employee.hr_employee_mass_edit_view_form"/>
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
-            <group name="active_log" position="after">
+            <!--group name="active_log" position="after"-->
+            <group name="phase_id" position="after">
                 <group>
                     <field name="summary_id_selection"/>
                 </group>
