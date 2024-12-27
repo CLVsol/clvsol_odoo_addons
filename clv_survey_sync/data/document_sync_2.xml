@@ -8,7 +8,7 @@
 		<field name="name" eval="&quot;&quot;&quot;clv.document (clv.document) [2]&quot;&quot;&quot;"/>
 		<field name="model" eval="&quot;&quot;&quot;clv.document&quot;&quot;&quot;"/>
 		<field name="method" eval="&quot;&quot;&quot;_object_external_sync&quot;&quot;&quot;"/>
-		<field name="method_args" eval="&quot;&quot;&quot;{'local_constants': {'active_log': False}}&quot;&quot;&quot;"/>
+		<!--field name="method_args" eval="&quot;&quot;&quot;{'local_constants': {'active_log': False}}&quot;&quot;&quot;"/-->
 		<field name="sequence_code" eval="&quot;&quot;&quot;clv.document.code&quot;&quot;&quot;"/>
 		<field name="external_model" eval="&quot;&quot;&quot;clv.document&quot;&quot;&quot;"/>
 		<field name="sequence_code" eval="&quot;&quot;&quot;clv.document.code&quot;&quot;&quot;"/>
@@ -163,12 +163,12 @@
 		<field name="sequence" eval="10"/>
 	</record>
 	 
-	<record id="clv_document_clv_document_2_template_object_field_active_log" model="clv.external_sync.object_field">
+	<!--record id="clv_document_clv_document_2_template_object_field_active_log" model="clv.external_sync.object_field">
 		<field name="local_object_field" eval="&quot;&quot;&quot;active_log&quot;&quot;&quot;"/>
 		<field name="adaptation" eval="True"/>
 		<field name="template_id" eval="clv_document_clv_document_2_template"/>
 		<field name="sequence" eval="10"/>
-	</record>
+	</record-->
 	 
 	<record id="clv_document_clv_document_2_schedule" model="clv.external_sync.schedule">
 		<field name="name" eval="&quot;&quot;&quot;clv.document (clv.document) [2]&quot;&quot;&quot;"/>
