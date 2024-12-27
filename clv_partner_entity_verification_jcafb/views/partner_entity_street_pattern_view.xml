@@ -13,8 +13,8 @@
                     </div>
                     <group>
                         <group>
-                            <field name="street"/>
-                            <field name="street2"/>
+                            <field name="street_name"/>
+                            <field name="district"/>
                             <field name="notes" placeholder="Notes..." colspan="4"/>
                         </group>
                     </group>
@@ -46,8 +46,8 @@
         <field name="model">clv.partner_entity.street_pattern</field>
         <field name="arch" type="xml">
             <tree string='Street Pattern'>
-                <field name="street"/>
-                <field name="street2"/>
+                <field name="street_name"/>
+                <field name="district"/>
             </tree>
         </field>
     </record>
@@ -57,13 +57,13 @@
         <field name="model">clv.partner_entity.street_pattern</field>
         <field name="arch" type="xml">
             <search string="Search Street Pattern">
-                <field name="street"/>
-                <field name="street2"/>
+                <field name="street_name"/>
+                <field name="district"/>
                 <separator/>
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group name="group_by" expand="0" string="Group By...">
-                    <filter name="group_by_street" string="Street" domain="[]" context="{'group_by': 'street'}"/>
-                    <filter name="group_by_street2" string="District" domain="[]" context="{'group_by': 'street2'}"/>
+                    <filter name="group_by_street" string="Street Name" domain="[]" context="{'group_by': 'street_name'}"/>
+                    <filter name="group_by_district" string="District" domain="[]" context="{'group_by': 'district'}"/>
                 </group>
             </search>
         </field>

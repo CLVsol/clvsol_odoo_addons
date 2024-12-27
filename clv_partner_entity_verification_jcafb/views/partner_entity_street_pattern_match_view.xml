@@ -113,7 +113,7 @@
         <field name="inherit_id" ref="clv_partner_entity_street_pattern_view_tree"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="street2" position="after">
+            <field name="district" position="after">
                 <field name="count_street_pattern_matches"/>
             </field>
         </field>
@@ -125,7 +125,7 @@
         <field name="inherit_id" ref="clv_partner_entity_street_pattern_view_search"/>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <field name="street2" position="after">
+            <field name="district" position="after">
                 <field name="count_street_pattern_matches"/>
             </field>
             <group name="group_by" position="inside">
