@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template" model="clv.external_sync.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.partner_entity.street_pattern (clv.partner_entity.street_pattern)&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;clv.partner_entity.street_pattern&quot;&quot;&quot;"/>
+		<field name="method" eval="&quot;&quot;&quot;_object_external_sync&quot;&quot;&quot;"/>
+		<field name="external_model" eval="&quot;&quot;&quot;clv.partner_entity.street_pattern&quot;&quot;&quot;"/>
+		<field name="enable_check_missing" eval="False"/>
+	</record>
+	 
+	<record id="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template_object_field_street_name" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;street_name&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;street_name&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template_object_field_district" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;district&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;district&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template_object_field_notes" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;notes&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;notes&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template_object_field_active" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_schedule" model="clv.external_sync.schedule">
+		<field name="name" eval="&quot;&quot;&quot;clv.partner_entity.street_pattern (clv.partner_entity.street_pattern)&quot;&quot;&quot;"/>
+		<field name="template_id" eval="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_template"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_member_clv_partner_entity_street_pattern" model="clv.external_sync.batch.member">
+		<field name="external_sync_batch_id" ref="clv_external_sync.clv_external_sync_batch_default_00"/>
+		<field name="ref_id" ref="clv_partner_entity_street_pattern_clv_partner_entity_street_pattern_schedule"/>
+	</record>
+	 
+</odoo>

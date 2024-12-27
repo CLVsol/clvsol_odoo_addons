@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template" model="clv.external_sync.template">
+		<field name="name" eval="&quot;&quot;&quot;clv.verification.outcome (clv.verification.outcome) [3]&quot;&quot;&quot;"/>
+		<field name="model" eval="&quot;&quot;&quot;clv.verification.outcome&quot;&quot;&quot;"/>
+		<field name="method" eval="&quot;&quot;&quot;_object_external_sync&quot;&quot;&quot;"/>
+		<field name="external_model" eval="&quot;&quot;&quot;clv.verification.outcome&quot;&quot;&quot;"/>
+		<field name="method_args" eval="&quot;&quot;&quot;{'local_constants': {'active_log': False}}&quot;&quot;&quot;"/>
+		<field name="apply_domain_filter" eval="True"/>
+		<field name="domain_filter" eval="&quot;&quot;&quot;[('model', '=', 'clv.patient_rec')]&quot;&quot;&quot;"/>
+		<field name="force_inclusion" eval="True"/>
+		<field name="enable_check_missing" eval="False"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_model" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;model&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;model&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_res_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;res_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;res_id&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_res_last_update" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;res_last_update&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;res_last_update&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_action" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;action&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;action&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_outcome_info" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;outcome_info&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;outcome_info&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_date_verification" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;date_verification&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;date_verification&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_state" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;state&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;state&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_active" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_template_object_field_active_log" model="clv.external_sync.object_field">
+		<field name="local_object_field" eval="&quot;&quot;&quot;active_log&quot;&quot;&quot;"/>
+		<field name="adaptation" eval="True"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_verification_outcome_clv_verification_outcome_3_schedule" model="clv.external_sync.schedule">
+		<field name="name" eval="&quot;&quot;&quot;clv.verification.outcome (clv.verification.outcome) [3]&quot;&quot;&quot;"/>
+		<field name="template_id" eval="clv_verification_outcome_clv_verification_outcome_3_template"/>
+	</record>
+	 
+	<record id="clv_external_sync_batch_member_clv_verification_outcome_3" model="clv.external_sync.batch.member">
+		<field name="external_sync_batch_id" ref="clv_external_sync.clv_external_sync_batch_default_00"/>
+		<field name="ref_id" ref="clv_verification_outcome_clv_verification_outcome_3_schedule"/>
+	</record>
+	 
+</odoo>
