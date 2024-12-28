@@ -22,7 +22,7 @@
 	</record>
 	 
 	<record id="clv_partner_entity_contact_information_pattern_clv_partner_entity_contact_information_pattern_template_object_field_street_name" model="clv.external_sync.object_field">
-		<field name="external_object_field" eval="&quot;&quot;&quot;street_name&quot;&quot;&quot;"/>
+		<field name="external_object_field" eval="&quot;&quot;&quot;street&quot;&quot;&quot;"/>
 		<field name="local_object_field" eval="&quot;&quot;&quot;street_name&quot;&quot;&quot;"/>
 		<field name="inclusion" eval="True"/>
 		<field name="synchronization" eval="True"/>
@@ -40,7 +40,7 @@
 	</record>
 	 
 	<record id="clv_partner_entity_contact_information_pattern_clv_partner_entity_contact_information_pattern_template_object_field_street2" model="clv.external_sync.object_field">
-		<field name="external_object_field" eval="&quot;&quot;&quot;street2&quot;&quot;&quot;"/>
+		<field name="external_object_field" eval="&quot;&quot;&quot;street_number2&quot;&quot;&quot;"/>
 		<field name="local_object_field" eval="&quot;&quot;&quot;street2&quot;&quot;&quot;"/>
 		<field name="inclusion" eval="True"/>
 		<field name="synchronization" eval="True"/>
@@ -49,7 +49,7 @@
 	</record>
 	 
 	<record id="clv_partner_entity_contact_information_pattern_clv_partner_entity_contact_information_pattern_template_object_field_district" model="clv.external_sync.object_field">
-		<field name="external_object_field" eval="&quot;&quot;&quot;district&quot;&quot;&quot;"/>
+		<field name="external_object_field" eval="&quot;&quot;&quot;street2&quot;&quot;&quot;"/>
 		<field name="local_object_field" eval="&quot;&quot;&quot;district&quot;&quot;&quot;"/>
 		<field name="inclusion" eval="True"/>
 		<field name="synchronization" eval="True"/>
