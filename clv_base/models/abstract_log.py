@@ -108,10 +108,18 @@ class AbstractModelLog(models.AbstractModel):
             record.insert_object_log(record.log_model, record._name, record.id, values, action, notes)
         return super().write(values)
 
-    @api.model
-    def create(self, values):
+    # @api.model
+    @api.model_create_multi
+    # def create(self, values):
+    def create(self, vals_list):
+        # action = 'create'
+        # notes = False
+        # record = super().create(values)
+        # record.insert_object_log(record.log_model, record._name, record.id, values, action, notes)
+        # return record
         action = 'create'
         notes = False
-        record = super().create(values)
-        record.insert_object_log(record.log_model, record._name, record.id, values, action, notes)
+        record = super().create(vals_list)
+        for values in vals_list:
+            record.insert_object_log(record.log_model, record._name, record.id, values, action, notes)
         return record
