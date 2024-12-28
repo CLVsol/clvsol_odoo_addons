@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="0">
+ 
+	<record id="clv_residence_clv_residence_1_inc_template_object_field_verification_state" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;verification_state&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;verification_state&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" ref="clv_residence_sync.clv_residence_clv_residence_1_inc_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_residence_clv_residence_1_inc_schedule_object_field_verification_state" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;verification_state&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;verification_state&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="schedule_id" ref="clv_residence_sync.clv_residence_clv_residence_1_inc_schedule"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_residence_clv_residence_1_inc_template_object_field_verification_marker_ids" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;verification_marker_ids&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;verification_marker_ids&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" ref="clv_residence_sync.clv_residence_clv_residence_1_inc_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_residence_clv_residence_1_inc_schedule_object_field_verification_marker_ids" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;verification_marker_ids&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;verification_marker_ids&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="schedule_id" ref="clv_residence_sync.clv_residence_clv_residence_1_inc_schedule"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_residence_clv_residence_1_inc_template_object_field_verification_outcome_infos" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;verification_outcome_infos&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;verification_outcome_infos&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" ref="clv_residence_sync.clv_residence_clv_residence_1_inc_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_residence_clv_residence_1_inc_schedule_object_field_verification_outcome_infos" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;verification_outcome_infos&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;verification_outcome_infos&quot;&quot;&quot;"/>
+		<field name="inclusion" eval="True"/>
+		<field name="synchronization" eval="True"/>
+		<field name="schedule_id" ref="clv_residence_sync.clv_residence_clv_residence_1_inc_schedule"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+</odoo>
