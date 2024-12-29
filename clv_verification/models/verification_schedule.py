@@ -95,17 +95,20 @@ class VerificationSchedule(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
 
-        schedule = super().create(vals_list)
+        # schedule = super().create(vals_list)
+        schedules = super().create(vals_list)
 
-        if schedule.template_id.id is not False:
+        for schedule in schedules:
 
-            schedule.model = schedule.template_id.model
-            schedule.method = schedule.template_id.method
-            schedule.method_args = schedule.template_id.method_args
-            schedule.action = schedule.template_id.action
-            schedule.action_args = schedule.template_id.action_args
+            if schedule.template_id.id is not False:
 
-        return schedule
+                schedule.model = schedule.template_id.model
+                schedule.method = schedule.template_id.method
+                schedule.method_args = schedule.template_id.method_args
+                schedule.action = schedule.template_id.action
+                schedule.action_args = schedule.template_id.action_args
+
+        return schedules
 
     @api.onchange('template_id')
     def onchange_template_id(self):
