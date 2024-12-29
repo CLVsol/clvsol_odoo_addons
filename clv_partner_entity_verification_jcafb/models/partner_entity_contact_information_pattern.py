@@ -56,12 +56,13 @@ class PartnerEntityContactInformationPattern(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        record = super().create(vals_list)
+        records = super().create(vals_list)
 
-        if record.name != record.suggested_name:
-            record['name'] = record.suggested_name
+        for record in records:
+            if record.name != record.suggested_name:
+                record['name'] = record.suggested_name
 
-        return record
+        return records
 
     def write(self, values):
         ret = super().write(values)
