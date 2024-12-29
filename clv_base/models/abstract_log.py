@@ -121,5 +121,5 @@ class AbstractModelLog(models.AbstractModel):
         notes = False
         records = super().create(vals_list)
         for record in records:
-            record.insert_object_log(record.log_model, record._name, record.id, values, action, notes)
+            record.insert_object_log(record.log_model, record._name, record.id, vals_list, action, notes)
         return records
