@@ -82,15 +82,17 @@ class LabTestTypeExportXlsParam(models.Model):
         #     record['col_nr'] = record.suggested_col_nr
 
         # return record
-        record = super().create(vals_list)
+        records = super().create(vals_list)
 
-        if record.row_nr != record.suggested_row_nr:
-            record['row_nr'] = record.suggested_row_nr
+        for record in records:
 
-        if record.col_nr != record.suggested_col_nr:
-            record['col_nr'] = record.suggested_col_nr
+            if record.row_nr != record.suggested_row_nr:
+                record['row_nr'] = record.suggested_row_nr
 
-        return record
+            if record.col_nr != record.suggested_col_nr:
+                record['col_nr'] = record.suggested_col_nr
+
+        return records
 
     def write(self, values):
         ret = super().write(values)
