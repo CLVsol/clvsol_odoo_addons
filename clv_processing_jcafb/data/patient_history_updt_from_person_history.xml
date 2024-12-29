@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<!--odoo noupdate="1"-->
+<odoo noupdate="0">
+
+    <record id="clv_processing_template_do_patient_history_updt_from_person_history" model="clv.processing.template">
+        <field name="name">Patient History updt_from Person History</field>
+        <field name="model">clv.abstract.process</field>
+        <field name="method">_do_patient_history_updt_from_person_history</field>
+        <field name="method_args" eval="&quot;&quot;&quot;{}&quot;&quot;&quot;"/>
+    </record>
+
+    <record id="clv_processing_schedule_do_patient_history_updt_from_person_history" model="clv.processing.schedule">
+        <field name="name">Patient History updt_from Person History</field>
+        <field name="template_id" eval="clv_processing_template_do_patient_history_updt_from_person_history"/>
+    </record>
+
+</odoo>
