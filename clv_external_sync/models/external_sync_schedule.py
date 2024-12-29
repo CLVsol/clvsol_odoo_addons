@@ -141,7 +141,7 @@ class ExternalSyncSchedule(models.Model):
     def create(self, vals_list):
 
         # schedule = super().create(values)
-        schedule = super().create(vals_list)
+        schedules = super().create(vals_list)
 
         # if schedule.template_id.id is not False:
         #     schedule.external_host_id = schedule.template_id.external_host_id
@@ -178,7 +178,7 @@ class ExternalSyncSchedule(models.Model):
         #     ExternalSyncObjectField.create(values)
 
         # return schedule
-        for values in vals_list:
+        for schedule in schedules:
 
             if schedule.template_id.id is not False:
                 # schedule.external_host_id = schedule.template_id.external_host_id
@@ -214,7 +214,7 @@ class ExternalSyncSchedule(models.Model):
                 }
                 ExternalSyncObjectField.create(values)
 
-        return schedule
+        return schedules
 
     @api.onchange('template_id')
     def onchange_template_id(self):
