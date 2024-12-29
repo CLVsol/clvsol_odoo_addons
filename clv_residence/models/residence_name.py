@@ -42,13 +42,14 @@ class Residence(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        record = super().create(vals_list)
+        records = super().create(vals_list)
 
-        if record.automatic_set_name:
-            if record.name != record.suggested_name:
-                record['name'] = record.suggested_name
+        for record in records:
+            if record.automatic_set_name:
+                if record.name != record.suggested_name:
+                    record['name'] = record.suggested_name
 
-        return record
+        return records
 
     def write(self, values):
         ret = super().write(values)
