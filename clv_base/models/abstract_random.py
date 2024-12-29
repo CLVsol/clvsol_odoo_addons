@@ -34,10 +34,10 @@ class AbstractRandom(models.AbstractModel):
         #     random_field = get_random_field()
         #     values['random_field'] = random_field
         # return super().create(values)
-        for values in vals_list:
-            if 'random_field' not in values or ('random_field' in values and values['random_field'] == '/'):
+        for vals in vals_list:
+            if 'random_field' not in vals or ('random_field' in vals and vals['random_field'] == '/'):
                 random_field = get_random_field()
-                values['random_field'] = random_field
+                vals['random_field'] = random_field
         return super().create(vals_list)
 
     # @api.multi
