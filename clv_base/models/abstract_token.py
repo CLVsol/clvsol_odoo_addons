@@ -33,10 +33,10 @@ class AbstractToken(models.AbstractModel):
         #     token = get_token()
         #     values['token'] = token
         # return super().create(values)
-        for values in vals_list:
-            if 'token' not in values or ('token' in values and values['token'] == '/'):
+        for vals in vals_list:
+            if 'token' not in vals or ('token' in vals and vals['token'] == '/'):
                 token = get_token()
-                values['token'] = token
+                vals['token'] = token
         return super().create(vals_list)
 
     def write(self, values):
