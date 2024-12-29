@@ -70,7 +70,8 @@ class AbstractPartnerEntity(models.AbstractModel):
         # return super().create(vals)
         for vals in vals_list:
             vals = self._create_vals(vals)
-        return super().create(vals)
+        # return super().create(vals)
+        return super().create(vals_list)
 
     def toggle_active(self):
         """ It toggles entity and partner activation. """
