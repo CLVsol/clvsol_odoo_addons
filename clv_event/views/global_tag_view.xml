@@ -39,7 +39,6 @@
         <field name="arch" type="xml">
             <field name="code" position="before">
                 <field name="global_tag_ids" widget="many2many_tags" placeholder="Global Tags..." options="{'color_field': 'color'}" groups="clv_global_tag.group_user"/>
-                <field name="global_tag_names_suport" invisible="True"/>
             </field>
         </field>
     </record>
