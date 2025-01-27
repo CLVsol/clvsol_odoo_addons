@@ -15,6 +15,8 @@ _logger = logging.getLogger(__name__)
 def format_code(code):
     code = re.sub("\D", "", code)
     code_len = len(code) - 2
+    if code_len > 9:
+        return code
     while len(code) < 16:
         code = '0' + code
     code_str = "%s.%s.%s.%s.%s-%s" % (str(code[0]) + str(code[1]),
