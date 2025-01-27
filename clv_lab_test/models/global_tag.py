@@ -8,22 +8,22 @@ from odoo import api, models, fields
 class GlobalTag(models.Model):
     _inherit = 'clv.global_tag'
 
-    patient_rec_ids = fields.Many2many(
-        comodel_name='clv.patient_rec',
-        relation='clv_patient_rec_global_tag_rel',
+    lab_test_result_ids = fields.Many2many(
+        comodel_name='clv.lab_test.result',
+        relation='clv_lab_test_result_global_tag_rel',
         column1='global_tag_id',
-        column2='patient_rec_id',
-        string='Patients (Rec)'
+        column2='lab_test_result_id',
+        string='Lab Test Results'
     )
 
 
-class PatientRec(models.Model):
-    _inherit = 'clv.patient_rec'
+class LabTestResult(models.Model):
+    _inherit = 'clv.lab_test.result'
 
     global_tag_ids = fields.Many2many(
         comodel_name='clv.global_tag',
-        relation='clv_patient_rec_global_tag_rel',
-        column1='patient_rec_id',
+        relation='clv_lab_test_result_global_tag_rel',
+        column1='lab_test_result_id',
         column2='global_tag_id',
         string='Global Tags'
     )

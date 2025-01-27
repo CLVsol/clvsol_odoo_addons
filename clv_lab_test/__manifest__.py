@@ -22,6 +22,7 @@
         'views/lab_test_type_parameter_view.xml',
         'views/lab_test_result_view.xml',
         'views/referenceable_model_view.xml',
+        'views/global_tag_view.xml',
         'views/lab_test_criterion_view.xml',
         'views/phase_view.xml',
         'views/lab_test_result_reg_state_view.xml',

@@ -6,6 +6,7 @@ from . import lab_test_type
 from . import lab_test_type_parameter
 from . import lab_test_request
 from . import lab_test_result
+from . import global_tag
 from . import lab_test_criterion
 from . import referenceable_model
 from . import phase
