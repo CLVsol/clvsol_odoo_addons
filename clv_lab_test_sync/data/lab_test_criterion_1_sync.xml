@@ -70,8 +70,8 @@
 		<field name="local_object_field" eval="&quot;&quot;&quot;lab_test_report_id&quot;&quot;&quot;"/>
 		<field name="synchronization" eval="True"/>
 		<field name="template_id" eval="clv_lab_test_criterion_clv_lab_test_criterion_1_template"/>
-		<field name="sequence" eval="10"/-->
-	</record>
+		<field name="sequence" eval="10"/>
+	</record-->
 	 
 	<record id="clv_lab_test_criterion_clv_lab_test_criterion_1_template_object_field_active" model="clv.external_sync.object_field">
 		<field name="external_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
