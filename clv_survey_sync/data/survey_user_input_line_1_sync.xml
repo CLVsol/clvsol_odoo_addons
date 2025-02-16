@@ -13,7 +13,8 @@
 		<field name="enable_inclusion" eval="True"/>
 		<field name="enable_sync" eval="True"/>
 		<field name="apply_domain_filter" eval="True"/>
-		<field name="domain_filter" eval="&quot;&quot;&quot;[('id', '>', 0), ('id', '&lt;=', 20000)]&quot;&quot;&quot;"/>
+		<!--field name="domain_filter" eval="&quot;&quot;&quot;[('id', '>', 0), ('id', '&lt;=', 20000)]&quot;&quot;&quot;"/-->
+		<field name="domain_filter" eval="&quot;&quot;&quot;[('id', '&lt;=', 70000)]&quot;&quot;&quot;"/>
 		<field name="force_inclusion" eval="True"/>
 		<field name="enable_check_missing" eval="False"/>
 	</record>
