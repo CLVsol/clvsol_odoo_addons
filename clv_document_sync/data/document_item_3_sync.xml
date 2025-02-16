@@ -10,7 +10,7 @@
 		<field name="method" eval="&quot;&quot;&quot;_object_external_sync&quot;&quot;&quot;"/>
 		<field name="external_model" eval="&quot;&quot;&quot;clv.document.item&quot;&quot;&quot;"/>
 		<field name="apply_domain_filter" eval="True"/>
-		<field name="domain_filter" eval="&quot;&quot;&quot;[('document_phase_id', '=', 2)]&quot;&quot;&quot;"/>
+		<field name="domain_filter" eval="&quot;&quot;&quot;[('id', '>', 30000), ('id', '&lt;=', 60000)]&quot;&quot;&quot;"/>
 		<field name="force_inclusion" eval="True"/>
 		<field name="enable_check_missing" eval="False"/>
 	</record>
