@@ -22,6 +22,7 @@
         'data/lab_test_result_2_sync.xml',
         'data/lab_test_criterion_1_sync.xml',
         'data/lab_test_criterion_2_sync.xml',
+        'data/lab_test_criterion_3_sync.xml',
     ],
     'demo': [],
     'test': [],

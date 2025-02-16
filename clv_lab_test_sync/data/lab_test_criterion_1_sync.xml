@@ -10,7 +10,7 @@
 		<field name="method" eval="&quot;&quot;&quot;_object_external_sync&quot;&quot;&quot;"/>
 		<field name="external_model" eval="&quot;&quot;&quot;clv.lab_test.criterion&quot;&quot;&quot;"/>
 		<field name="apply_domain_filter" eval="True"/>
-		<field name="domain_filter" eval="&quot;&quot;&quot;[('lab_test_type_id', '!=', False)]&quot;&quot;&quot;"/>
+		<field name="domain_filter" eval="&quot;&quot;&quot;[('id', '&lt;=', 20000)]&quot;&quot;&quot;"/>
 		<field name="enable_check_missing" eval="False"/>
 		<field name="force_inclusion" eval="True"/>
 	</record>
