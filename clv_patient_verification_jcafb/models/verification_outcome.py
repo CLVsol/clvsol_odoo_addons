@@ -218,14 +218,14 @@ class VerificationOutcome(models.Model):
             if model_object.validate_contact_information is True:
 
                 street_patern = PartnerEntityStreetPattern.search([
-                    ('street', '=', model_object.street_name),
-                    ('street2', '=', model_object.street2),
+                    ('street_name', '=', model_object.street_name),
+                    ('district', '=', model_object.district),
                 ])
 
-                if street_patern.street is False:
+                if street_patern.street_name is False:
 
                     outcome_info += _('"Street Pattern" was not recognised.') + \
-                        ' (' + str(model_object.street_name) + ' [' + str(model_object.street2) + '])\n'
+                        ' (' + str(model_object.street_name) + ' [' + str(model_object.district) + '])\n'
                     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
                 else:
@@ -238,7 +238,7 @@ class VerificationOutcome(models.Model):
 
                 if (model_object.zip is False) or \
                    (model_object.street_name is False) or \
-                   (model_object.street2 is False) or \
+                   (model_object.district is False) or \
                    (model_object.country_id is False) or \
                    (model_object.state_id is False) or \
                    (model_object.city_id is False):
@@ -249,8 +249,8 @@ class VerificationOutcome(models.Model):
                 # if (model_object.zip is False) or \
                 #    (model_object.street_name is False) or \
                 #    (model_object.street_number is False) or \
-                #    (model_object.street_number2 is False) or \
                 #    (model_object.street2 is False) or \
+                #    (model_object.district is False) or \
                 #    (model_object.country_id is False) or \
                 #    (model_object.state_id is False) or \
                 #    (model_object.city_id is False):
@@ -259,31 +259,31 @@ class VerificationOutcome(models.Model):
                 #     state = self._get_verification_outcome_state(state, 'Warning (L0)')
 
                 # contact_information_patern = PartnerEntityContactInformationPattern.search([
-                #     ('street', '=', model_object.street_name),
+                #     ('street_name', '=', model_object.street_name),
                 #     ('street_number', '=', model_object.street_number),
-                #     ('street_number2', '=', model_object.street_number2),
                 #     ('street2', '=', model_object.street2),
+                #     ('district', '=', model_object.district),
                 # ])
 
-                if (model_object.street_number2 is False) or (model_object.street_number2 == ''):
+                if (model_object.street2 is False) or (model_object.street2 == ''):
                     contact_information_patern = PartnerEntityContactInformationPattern.search([
-                        ('street', '=', model_object.street_name),
+                        ('street_name', '=', model_object.street_name),
                         ('street_number', '=', model_object.street_number),
-                        # ('street_number2', '=', model_object.street_number2),
+                        # ('street2', '=', model_object.street2),
                         '|',
-                        ('street_number2', '=', False),
-                        ('street_number2', '=', ''),
-                        ('street2', '=', model_object.street2),
+                        ('street2', '=', False),
+                        ('street2', '=', ''),
+                        ('district', '=', model_object.district),
                     ])
                 else:
                     contact_information_patern = PartnerEntityContactInformationPattern.search([
-                        ('street', '=', model_object.street_name),
+                        ('street_name', '=', model_object.street_name),
                         ('street_number', '=', model_object.street_number),
-                        ('street_number2', '=', model_object.street_number2),
                         ('street2', '=', model_object.street2),
+                        ('district', '=', model_object.district),
                     ])
 
-                if contact_information_patern.street is False:
+                if contact_information_patern.street_name is False:
 
                     outcome_info += _('"Contact Information Pattern" was not recognised.') + \
                         ' (' + str(model_object.address_name) + ')\n'
@@ -309,38 +309,6 @@ class VerificationOutcome(models.Model):
 
                 outcome_info += _('"Date of Birth" is missing.\n')
                 state = self._get_verification_outcome_state(state, 'Warning (L0)')
-
-        if outcome_info == '':
-            outcome_info = False
-
-        self._object_verification_outcome_updt(
-            verification_outcome, state, outcome_info, date_verification, model_object
-        )
-
-        verification_values = {}
-        verification_values['date_verification'] = date_verification
-        verification_values['outcome_info'] = outcome_info
-        verification_values['state'] = state
-        verification_outcome.write(verification_values)
-
-    def _patient_verification_patient_aux(self, verification_outcome, model_object):
-
-        _logger.info(u'%s %s', '>>>>>>>>>>>>>>> (model_object):', model_object.name)
-
-        date_verification = datetime.now()
-
-        state = 'Ok'
-        outcome_info = ''
-
-        patient_aux_ids = model_object.patient_aux_ids
-
-        # if len(patient_aux_ids) == 0:
-        #     outcome_info = _('Missing related "Patient (Aux)" register.')
-        #     state = self._get_verification_outcome_state(state, 'Error (L1)')
-
-        if len(patient_aux_ids) > 1:
-            outcome_info = _('There are more than one related "Patient (Aux)" register.')
-            state = self._get_verification_outcome_state(state, 'Error (L1)')
 
         if outcome_info == '':
             outcome_info = False
@@ -383,8 +351,8 @@ class VerificationOutcome(models.Model):
                 if (model_object.zip != residence.zip) or \
                    (model_object.street_name != residence.street_name) or \
                    (model_object.street_number != residence.street_number) or \
-                   (model_object.street_number2 != residence.street_number2) or \
                    (model_object.street2 != residence.street2) or \
+                   (model_object.district != residence.district) or \
                    (model_object.country_id != residence.country_id) or \
                    (model_object.state_id != residence.state_id) or \
                    (model_object.city_id != residence.city_id):
