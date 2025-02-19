@@ -262,6 +262,38 @@
 		<field name="sequence" eval="10"/>
 	</record>
 	 
+	<record id="clv_patient_clv_patient_2_sync_template_object_field_related_patient_rec_is_unavailable" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;related_patient_rec_is_unavailable&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;related_patient_rec_is_unavailable&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_patient_clv_patient_2_sync_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_patient_clv_patient_2_sync_template_object_field_related_patient_rec_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;related_patient_rec_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;related_patient_rec_id&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_patient_clv_patient_2_sync_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_patient_clv_patient_2_sync_template_object_field_employee_id" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;employee_id&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;employee_id&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_patient_clv_patient_2_sync_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="clv_patient_clv_patient_2_sync_template_object_field_validate_contact_information" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;validate_contact_information&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;validate_contact_information&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="clv_patient_clv_patient_2_sync_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
 	<record id="clv_patient_clv_patient_2_sync_template_object_field_active" model="clv.external_sync.object_field">
 		<field name="external_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
 		<field name="local_object_field" eval="&quot;&quot;&quot;active&quot;&quot;&quot;"/>
