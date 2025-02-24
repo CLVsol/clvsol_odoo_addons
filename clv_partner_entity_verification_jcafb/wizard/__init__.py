@@ -3,3 +3,4 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import res_partner_street_pattern_search
+from . import res_partner_contact_information_pattern_search

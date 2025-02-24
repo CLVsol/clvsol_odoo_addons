@@ -22,6 +22,7 @@
         'views/referenceable_model_view.xml',
         'views/partner_entity_menu_view.xml',
         'wizard/res_partner_street_pattern_search_view.xml',
+        'wizard/res_partner_contact_information_pattern_search_view.xml',
     ],
     'demo': [],
     'test': [],
