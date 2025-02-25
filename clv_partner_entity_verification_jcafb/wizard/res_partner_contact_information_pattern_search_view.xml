@@ -13,12 +13,11 @@
                 </div>
                 <label for="res_partner_ids"/>
                 <field name="res_partner_ids"/>
-                <!--group>
+                <group>
                     <group>
-                        <field name="employee_id" options='{"no_open": True, "no_create": True}'/>
-                        <field name="date_received"/>
+                        <field name="contact_information_pattern_id" options='{"no_open": True, "no_create": True}'/>
                     </group>
-                </group-->
+                </group>
                 <footer>
                     <button 
                         type="object"

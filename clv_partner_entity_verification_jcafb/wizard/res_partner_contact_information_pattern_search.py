@@ -24,45 +24,26 @@ class PartnerContactInformaationPatterntSearch(models.TransientModel):
         default=_default_res_partner_ids
     )
 
-    # def _default_employee_id(self):
-    #     HrEmployee = self.env['hr.employee']
-    #     employee = HrEmployee.search([
-    #         ('user_id', '=', self.env.uid),
-    #     ])
-    #     if employee.id is not False:
-    #         return employee.id
-    #     return False
-    # employee_id = fields.Many2one(
-    #     comodel_name='hr.employee',
-    #     string='Searchd by',
-    #     required=True,
-    #     default=_default_employee_id
-    # )
-
-    # date_searchd = fields.Datetime(
-    #     string='Searchd Date',
-    #     required=True,
-    #     default=lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    # )
+    contact_information_pattern_id = fields.Many2one(
+        comodel_name='clv.partner_entity.contact_information_pattern',
+        string='Partner Entity Contact_Information Pattern',
+    )
 
     def do_res_partner_contact_information_pattern_search(self):
         self.ensure_one()
 
-        # current_phase_id = int(self.env['ir.config_parameter'].sudo().get_param(
-        #     'clv.global_settings.current_phase_id', '').strip())
+        for res_partner in self.res_partner_ids:
 
-        # for res_partner in self.res_partner_ids:
+            _logger.info(u'%s %s %s %s %s', '>>>>>',
+                         self.contact_information_pattern_id.street_name,
+                         self.contact_information_pattern_id.street_number,
+                         self.contact_information_pattern_id.street2,
+                         self.contact_information_pattern_id.district
+                         )
 
-        #     _logger.info(u'%s %s %s', '>>>>>', res_partner.phase_id.id, res_partner.ref_name)
-
-        #     if (res_partner.phase_id.id == current_phase_id) and \
-        #        (res_partner.state == 'new'):
-
-        #         _logger.info(u'%s %s %s', '>>>>>', self.employee_id.name, self.date_searchd)
-
-        #         res_partner.employee_id_request = self.employee_id
-        #         res_partner.date_searchd = self.date_searchd
-        #         res_partner.state = 'searchd'
-        #         res_partner.reg_state = 'revised'
+            res_partner.street_name = self.contact_information_pattern_id.street_name
+            res_partner.street_number = self.contact_information_pattern_id.street_number
+            res_partner.street2 = self.contact_information_pattern_id.street2
+            res_partner.district = self.contact_information_pattern_id.district
 
         return True
