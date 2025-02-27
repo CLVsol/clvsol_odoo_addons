@@ -15,6 +15,7 @@
         'clv_external_sync',
     ],
     'data': [
+        'data/global_settings_sync.xml',
         # 'data/patient_age_range.xml',
         'data/patient_age_range_sync.xml',
         'data/patient_category_sync.xml',
