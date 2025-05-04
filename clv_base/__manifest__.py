@@ -17,7 +17,7 @@
         'views/global_settings_view.xml',
         'views/referenceable_model_view.xml',
         # 'views/default_value_view.xml',
-        'views/abstract_log_view.xml',
+        # 'views/abstract_log_view.xml',
         'views/abstract_tag_view.xml',
         'views/abstract_category_view.xml',
         'views/abstract_marker_view.xml',
