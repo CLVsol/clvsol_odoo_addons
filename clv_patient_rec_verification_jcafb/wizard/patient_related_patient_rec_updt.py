@@ -98,10 +98,6 @@ class PatientRelatePatienRectUpdt(models.TransientModel):
 
                     vals['code'] = patient.code
 
-                if (patient.is_absent != related_patient_rec.is_absent):
-
-                    vals['is_absent'] = patient.is_absent
-
                 if (patient.gender != related_patient_rec.gender):
 
                     vals['gender'] = patient.gender
@@ -151,6 +147,10 @@ class PatientRelatePatienRectUpdt(models.TransientModel):
                     if (patient.street2 != related_patient_rec.street2):
 
                         vals['street2'] = patient.street2
+
+                    if (patient.district != related_patient_rec.district):
+
+                        vals['district'] = patient.district
 
                     if (patient.country_id != related_patient_rec.country_id):
 
