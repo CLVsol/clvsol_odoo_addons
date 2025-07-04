@@ -64,6 +64,10 @@ class PatientRelatePatientRecCreate(models.TransientModel):
 
                             vals['phase_id'] = patient.phase_id.id
 
+                        else:
+
+                            vals['phase_id'] = False
+
                         if (patient.state is not False):
 
                             vals['state'] = patient.state
@@ -71,10 +75,6 @@ class PatientRelatePatientRecCreate(models.TransientModel):
                         if (patient.name is not False):
 
                             vals['name'] = patient.name
-
-                        if (patient.is_absent is not False):
-
-                            vals['is_absent'] = patient.is_absent
 
                         if (patient.gender is not False):
 
@@ -117,6 +117,10 @@ class PatientRelatePatientRecCreate(models.TransientModel):
                         if (patient.street2 is not False):
 
                             vals['street2'] = patient.street2
+
+                        if (patient.district is not False):
+
+                            vals['district'] = patient.district
 
                         if (patient.country_id.id is not False):
 
