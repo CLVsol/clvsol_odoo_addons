@@ -32,7 +32,7 @@ class Phase(models.Model):
             record.residence_ids = [(6, 0, residences.ids)]
 
 
-class Family(models.Model):
+class Residence(models.Model):
     _inherit = 'clv.residence'
 
     phase_id = fields.Many2one(
