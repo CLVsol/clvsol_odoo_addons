@@ -103,6 +103,38 @@
 		<field name="sequence" eval="10"/>
 	</record>
 	 
+	<record id="survey_question_survey_question_2_template_object_field_validation_required" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;validation_required&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;validation_required&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_2_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_2_template_object_field_validation_min_date" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;validation_min_date&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;validation_min_date&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_2_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_2_template_object_field_validation_max_date" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;validation_max_date&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;validation_max_date&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_2_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
+	<record id="survey_question_survey_question_2_template_object_field_validation_error_msg" model="clv.external_sync.object_field">
+		<field name="external_object_field" eval="&quot;&quot;&quot;validation_error_msg&quot;&quot;&quot;"/>
+		<field name="local_object_field" eval="&quot;&quot;&quot;validation_error_msg&quot;&quot;&quot;"/>
+		<field name="synchronization" eval="True"/>
+		<field name="template_id" eval="survey_question_survey_question_2_template"/>
+		<field name="sequence" eval="10"/>
+	</record>
+	 
 	<!--record id="survey_question_survey_question_2_template_object_field_column_nb" model="clv.external_sync.object_field">
 		<field name="external_object_field" eval="&quot;&quot;&quot;column_nb&quot;&quot;&quot;"/>
 		<field name="local_object_field" eval="&quot;&quot;&quot;column_nb&quot;&quot;&quot;"/>
