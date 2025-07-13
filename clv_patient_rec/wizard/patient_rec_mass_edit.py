@@ -143,50 +143,50 @@ class PatientRecMassEdit(models.TransientModel):
 
         defaults = super().default_get(field_names)
 
-        param_value = self.env['ir.config_parameter'].sudo().get_param(
-            'clv.global_settings.current_phase_id', '').strip()
-        phase_id = False
-        if param_value:
-            phase_id = int(param_value)
+        # param_value = self.env['ir.config_parameter'].sudo().get_param(
+        #     'clv.global_settings.current_phase_id', '').strip()
+        # phase_id = False
+        # if param_value:
+        #     phase_id = int(param_value)
 
-        phase_id_selection = self.env['clv.default_value'].search([
-            ('model', '=', 'clv.patient_rec'),
-            ('parameter', '=', 'mass_edit_phase_id_selection'),
-            ('enabled', '=', True),
-        ]).value
+        # phase_id_selection = self.env['clv.default_value'].search([
+        #     ('model', '=', 'clv.patient_rec'),
+        #     ('parameter', '=', 'mass_edit_phase_id_selection'),
+        #     ('enabled', '=', True),
+        # ]).value
 
-        defaults['phase_id'] = phase_id
-        defaults['phase_id_selection'] = phase_id_selection
+        # defaults['phase_id'] = phase_id
+        # defaults['phase_id_selection'] = phase_id_selection
 
-        reg_state = self.env['clv.default_value'].search([
-            ('model', '=', 'clv.patient_rec'),
-            ('parameter', '=', 'mass_edit_reg_state'),
-            ('enabled', '=', True),
-        ]).value
+        # reg_state = self.env['clv.default_value'].search([
+        #     ('model', '=', 'clv.patient_rec'),
+        #     ('parameter', '=', 'mass_edit_reg_state'),
+        #     ('enabled', '=', True),
+        # ]).value
 
-        reg_state_selection = self.env['clv.default_value'].search([
-            ('model', '=', 'clv.patient_rec'),
-            ('parameter', '=', 'mass_edit_reg_state_selection'),
-            ('enabled', '=', True),
-        ]).value
+        # reg_state_selection = self.env['clv.default_value'].search([
+        #     ('model', '=', 'clv.patient_rec'),
+        #     ('parameter', '=', 'mass_edit_reg_state_selection'),
+        #     ('enabled', '=', True),
+        # ]).value
 
-        defaults['reg_state'] = reg_state
-        defaults['reg_state_selection'] = reg_state_selection
+        # defaults['reg_state'] = reg_state
+        # defaults['reg_state_selection'] = reg_state_selection
 
-        state = self.env['clv.default_value'].search([
-            ('model', '=', 'clv.patient_rec'),
-            ('parameter', '=', 'mass_edit_state'),
-            ('enabled', '=', True),
-        ]).value
+        # state = self.env['clv.default_value'].search([
+        #     ('model', '=', 'clv.patient_rec'),
+        #     ('parameter', '=', 'mass_edit_state'),
+        #     ('enabled', '=', True),
+        # ]).value
 
-        state_selection = self.env['clv.default_value'].search([
-            ('model', '=', 'clv.patient_rec'),
-            ('parameter', '=', 'mass_edit_state_selection'),
-            ('enabled', '=', True),
-        ]).value
+        # state_selection = self.env['clv.default_value'].search([
+        #     ('model', '=', 'clv.patient_rec'),
+        #     ('parameter', '=', 'mass_edit_state_selection'),
+        #     ('enabled', '=', True),
+        # ]).value
 
-        defaults['state'] = state
-        defaults['state_selection'] = state_selection
+        # defaults['state'] = state
+        # defaults['state_selection'] = state_selection
 
         return defaults
 
