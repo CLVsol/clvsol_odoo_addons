@@ -66,6 +66,9 @@
                             <group name="group_contact_info" string="Contact Information">
                                 <group name="group_contact_left">
                                     <field name="address_name"/>
+                                    <field name="country_id" invisible="True"/>
+                                    <field name="city_id" readonly="True"/>
+                                    <field name="state_id" readonly="True"/>
                                     <field name="type" invisible="True"/>
                                     <field name="street_name" invisible="True"/>
                                     <field name="contact_info_is_unavailable" widget="boolean_toggle" attrs="{'invisible': ['&amp;',('contact_info_is_unavailable','=',False),('street_name','!=',False)]}"/>
