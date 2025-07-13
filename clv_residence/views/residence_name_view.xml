@@ -12,6 +12,9 @@
         <field name="arch" type="xml">
             <field name="type" position="before">
                 <field name="suggested_name"/>
+                <field name="country_id" invisible="True"/>
+                <field name="city_id" readonly="True"/>
+                <field name="state_id" readonly="True"/>
             </field>
             <group name="settings_left_3" position="inside">
                 <field name="automatic_set_name"/>
