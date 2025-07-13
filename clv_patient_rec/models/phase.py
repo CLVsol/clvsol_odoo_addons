@@ -35,16 +35,16 @@ class Phase(models.Model):
 class PatientRec(models.Model):
     _inherit = 'clv.patient_rec'
 
-    def _default_phase_id(self):
-        param_value = self.env['ir.config_parameter'].sudo().get_param(
-            'clv.global_settings.current_phase_id', '').strip()
-        phase_id = False
-        if param_value:
-            phase_id = int(param_value)
-        return phase_id
+    # def _default_phase_id(self):
+    #     param_value = self.env['ir.config_parameter'].sudo().get_param(
+    #         'clv.global_settings.current_phase_id', '').strip()
+    #     phase_id = False
+    #     if param_value:
+    #         phase_id = int(param_value)
+    #     return phase_id
     phase_id = fields.Many2one(
         comodel_name='clv.phase',
         string='Phase',
-        default=_default_phase_id,
+        # default=_default_phase_id,
         ondelete='restrict'
     )
