@@ -47,16 +47,16 @@ class PatientRecMassEdit(models.TransientModel):
 
         defaults = super().default_get(field_names)
 
-        value = self.env['clv.default_value'].search([
-            ('model', '=', 'clv.patient_rec'),
-            ('parameter', '=', 'mass_edit_patient_rec_verification_exec'),
-            ('enabled', '=', True),
-        ]).value
-        patient_rec_verification_exec = False
-        if value == 'True':
-            patient_rec_verification_exec = True
+        # value = self.env['clv.default_value'].search([
+        #     ('model', '=', 'clv.patient_rec'),
+        #     ('parameter', '=', 'mass_edit_patient_rec_verification_exec'),
+        #     ('enabled', '=', True),
+        # ]).value
+        # patient_rec_verification_exec = False
+        # if value == 'True':
+        #     patient_rec_verification_exec = True
 
-        defaults['patient_rec_verification_exec'] = patient_rec_verification_exec
+        # defaults['patient_rec_verification_exec'] = patient_rec_verification_exec
 
         return defaults
 
