@@ -135,7 +135,7 @@ class SurveySurvey(models.Model):
                     _question_constr_mandatory_ = question.constr_mandatory
                     _question_constr_error_msg_ = question.constr_error_msg
                     _question_comment_count_as_answer_ = question.comment_count_as_answer
-                    _question_column_nb_ = question.column_nb
+                    # _question_column_nb_ = question.column_nb
                     _question_comments_allowed_ = question.comments_allowed
                     _question_matrix_subtype_ = question.matrix_subtype
 
@@ -335,8 +335,8 @@ class SurveySurvey(models.Model):
                             if _question_description_ is not False:
                                 xml_file.write('                    <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' %
                                                (_question_description_))
-                            xml_file.write('                    <field name="column_nb">%s</field>\n' %
-                                           (_question_column_nb_))
+                            # xml_file.write('                    <field name="column_nb">%s</field>\n' %
+                            #                (_question_column_nb_))
                             xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
                                            (_question_constr_mandatory_))
                             xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
@@ -364,7 +364,7 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            sequence: %s\n' % (_question_sequence_))
                             if _question_description_ is not False:
                                 yaml_file.write('            description: \'%s\'\n' % (_question_description_))
-                            yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
+                            # yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
                             yaml_file.write('            constr_mandatory: %s\n' % (_question_constr_mandatory_))
                             yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
                             yaml_file.write('            comments_allowed: %s\n' % (_question_comments_allowed_))
@@ -454,8 +454,8 @@ class SurveySurvey(models.Model):
                             if _question_description_ is not False:
                                 xml_file.write('                    <field name="description">&lt;p&gt;%s&lt;/p&gt;</field>\n' %
                                                (_question_description_))
-                            xml_file.write('                    <field name="column_nb">%s</field>\n' %
-                                           (_question_column_nb_))
+                            # xml_file.write('                    <field name="column_nb">%s</field>\n' %
+                            #                (_question_column_nb_))
                             xml_file.write('                    <field name="constr_mandatory">%s</field>\n' %
                                            (_question_constr_mandatory_))
                             xml_file.write('                    <field name="constr_error_msg">%s</field>\n' %
@@ -483,7 +483,7 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            sequence: %s\n' % (_question_sequence_))
                             if _question_description_ is not False:
                                 yaml_file.write('            description: \'%s\'\n' % (_question_description_))
-                            yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
+                            # yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
                             yaml_file.write('            constr_mandatory: %s\n' % (_question_constr_mandatory_))
                             yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
                             yaml_file.write('            comments_allowed: %s\n' % (_question_comments_allowed_))
@@ -626,7 +626,7 @@ class SurveySurvey(models.Model):
                             yaml_file.write('            sequence: %s\n' % (_question_sequence_))
                             if _question_description_ is not False:
                                 yaml_file.write('            description: \'%s\'\n' % (_question_description_))
-                            yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
+                            # yaml_file.write('            column_nb: %s\n' % (_question_column_nb_))
                             yaml_file.write('            constr_mandatory: %s\n' % (_question_constr_mandatory_))
                             yaml_file.write('            constr_error_msg: \'%s\'\n' % (_question_constr_error_msg_))
                             yaml_file.write('\n')
