@@ -18,4 +18,4 @@ from . import abstract_random
 # from . import abstract_h_tag
 # from . import abstract_h_category
 # from . import abstract_annotation
-# from . import export_xls
+from . import export_xls
