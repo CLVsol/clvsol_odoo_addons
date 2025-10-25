@@ -137,7 +137,7 @@ class SurveyCodeRenew(models.TransientModel):
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
-                                '>>>>>>>>>>>>>>>>>>>>',
+                                '>>>>>>>>>>>>>>>>>>>>(row)',
                                 matrix_row.code, matrix_row.sequence,
                                 new_matrix_row_code[1:], new_matrix_row_sequence
                             )
@@ -145,6 +145,7 @@ class SurveyCodeRenew(models.TransientModel):
                             matrix_row.sequence = new_matrix_row_sequence
                             matrix_row.code = new_matrix_row_code
 
+                        new_suggested_answer_sequence = new_matrix_row_sequence
                         for suggested_answer in question.suggested_answer_ids:
 
                             new_suggested_answer_sequence += 10
@@ -157,7 +158,7 @@ class SurveyCodeRenew(models.TransientModel):
 
                             _logger.info(
                                 u'%s %s: %s, %s: %s',
-                                '>>>>>>>>>>>>>>>>>>>>',
+                                '>>>>>>>>>>>>>>>>>>>>(answer)',
                                 suggested_answer.code, suggested_answer.sequence,
                                 new_suggested_answer_code[1:], new_suggested_answer_sequence
                             )
