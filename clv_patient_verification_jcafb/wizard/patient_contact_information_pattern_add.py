@@ -51,19 +51,26 @@ class PatientContactInformationPatternAdd(models.TransientModel):
             _logger.info(u'%s %s', '>>>>>>>>>>>>>>> (patient):', patient.name)
 
             street_patern = PartnerEntityContactInformationPattern.search([
-                ('street', '=', patient.street_name),
+                # ('street', '=', patient.street_name),
+                ('street_name', '=', patient.street_name),
                 ('street_number', '=', patient.street_number),
-                ('street_number2', '=', patient.street_number2),
+                # ('street_number2', '=', patient.street_number2),
                 ('street2', '=', patient.street2),
+                # ('street2', '=', patient.street2),
+                ('district', '=', patient.district),
             ])
 
-            if street_patern.street is False:
+            # if street_patern.street is False:
+            if street_patern.street_name is False:
 
                 values = {}
-                values['street'] = patient.street_name
+                # values['street'] = patient.street_name
+                values['street_name'] = patient.street_name
                 values['street_number'] = patient.street_number
-                values['street_number2'] = patient.street_number2
+                # values['street_number2'] = patient.street_number2
                 values['street2'] = patient.street2
+                # values['street2'] = patient.street2
+                values['district'] = patient.district
                 values['active'] = True
                 PartnerEntityContactInformationPattern.create(values)
 
