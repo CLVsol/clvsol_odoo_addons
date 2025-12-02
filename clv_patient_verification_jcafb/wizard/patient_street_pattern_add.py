@@ -51,15 +51,19 @@ class PatientStreetPatternAdd(models.TransientModel):
             _logger.info(u'%s %s', '>>>>>>>>>>>>>>> (patient):', patient.name)
 
             street_patern = PartnerEntityStreetPattern.search([
-                ('street', '=', patient.street_name),
-                ('street2', '=', patient.street2),
+                # ('street', '=', patient.street_name),
+                ('street_name', '=', patient.street_name),
+                # ('street2', '=', patient.street2),
+                ('district', '=', patient.district),
             ])
 
-            if street_patern.street is False:
+            if street_patern.street_name is False:
 
                 values = {}
-                values['street'] = patient.street_name
-                values['street2'] = patient.street2
+                # values['street'] = patient.street_name
+                values['street_name'] = patient.street_name
+                # values['street2'] = patient.street2
+                values['district'] = patient.district
                 values['active'] = True
                 PartnerEntityStreetPattern.create(values)
 
