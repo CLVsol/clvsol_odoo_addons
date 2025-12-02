@@ -24,9 +24,11 @@
         <field name="arch" type="xml">
             <field name="code" position="after">
                 <field name="address_name"/>
+                <field name="district"/>
             </field>
             <group name="group_by" position="inside">
                 <filter name="group_by_address_name" string="Address Name" context="{'group_by': 'address_name'}"/>
+                <filter name="group_by_district" string="Bairro" context="{'group_by': 'district'}"/>
             </group>
         </field>
     </record>
