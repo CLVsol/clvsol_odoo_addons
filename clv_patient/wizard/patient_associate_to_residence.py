@@ -51,10 +51,13 @@ class PatientAssociateToResidence(models.TransientModel):
 
                 Residence = self.env['clv.residence']
                 residence = Residence.search([
-                    ('street', '=', patient.street),
-                    ('street2', '=', patient.street2),
+                    # ('street', '=', patient.street),
+                    ('street_name', '=', patient.street_name),
+                    # ('street2', '=', patient.street2),
+                    ('district', '=', patient.district),
                     ('street_number', '=', patient.street_number),
-                    ('street_number2', '=', patient.street_number2),
+                    # ('street_number2', '=', patient.street_number2),
+                    ('street2', '=', patient.street2),
                 ])
                 _logger.info(u'%s %s %s', '>>>>>>>>>>', 'residence_id:', residence.id)
 
@@ -85,8 +88,9 @@ class PatientAssociateToResidence(models.TransientModel):
                         if new_residence.code is False:
                             values['code'] = '/'
                         values['street_name'] = patient.street_name
-                        values['street'] = patient.street
-                        values['street2'] = patient.street2
+                        # values['street'] = patient.street
+                        # values['street2'] = patient.street2
+                        values['district'] = patient.district
                         values['country_id'] = patient.country_id.id
                         values['state_id'] = patient.state_id.id
                         values['city'] = patient.city
@@ -95,7 +99,8 @@ class PatientAssociateToResidence(models.TransientModel):
                         values['mobile'] = patient.mobile
                         values['email'] = patient.email
                         values['street_number'] = patient.street_number
-                        values['street_number2'] = patient.street_number2
+                        # values['street_number2'] = patient.street_number2
+                        values['street2'] = patient.street2
                         values['city_id'] = patient.city_id.id
                         _logger.info(u'%s %s %s', '>>>>>>>>>>', 'values:', values)
                         new_residence.write(values)
