@@ -662,7 +662,8 @@ class Summary(models.Model):
         #                 row_nr += 2
 
         col_residence_category = 0
-        col_street2 = 2
+        # col_street2 = 2
+        col_district = 2
         col_residence = 4
         col_patient = 6
 
@@ -672,20 +673,26 @@ class Summary(models.Model):
             sheet.write(row_nr, col_residence_category, residence_category.name, style=style_bold)
             row_nr += 2
 
-            street2s = []
+            # street2s = []
+            districts = []
             for summary_residence in summary.summary_residence_ids:
                 if summary_residence.residence_category_ids.name == residence_category.name:
-                    if summary_residence.residence_id.street2 not in street2s:
-                        street2s.append(summary_residence.residence_id.street2)
+                    # if summary_residence.residence_id.street2 not in street2s:
+                    #     street2s.append(summary_residence.residence_id.street2)
+                    if summary_residence.residence_id.district not in districts:
+                        districts.append(summary_residence.residence_id.district)
 
-            for street2 in street2s:
+            # for street2 in street2s:
+            for district in districts:
 
-                sheet.write(row_nr, col_street2, street2, style=style_bold)
+                # sheet.write(row_nr, col_street2, street2, style=style_bold)
+                sheet.write(row_nr, col_district, district, style=style_bold)
                 row_nr += 2
 
                 residences = []
                 for summary_residence in summary.summary_residence_ids:
-                    if summary_residence.residence_id.street2 == street2 and \
+                    # if summary_residence.residence_id.street2 == street2 and \
+                    if summary_residence.residence_id.district == district and \
                        summary_residence.residence_id.state == 'selected':
                         if summary_residence.residence_id not in residences:
                             residences.append(summary_residence.residence_id)
@@ -752,7 +759,8 @@ class Summary(models.Model):
 
                 residences = []
                 for summary_residence in summary.summary_residence_ids:
-                    if summary_residence.residence_id.street2 == street2 and \
+                    # if summary_residence.residence_id.street2 == street2 and \
+                    if summary_residence.residence_id.district == district and \
                        summary_residence.residence_id.state == 'waiting':
                         if summary_residence.residence_id not in residences:
                             residences.append(summary_residence.residence_id)
